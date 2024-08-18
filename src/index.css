@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary: #eb873c;
+  --primary-content: #241204;
+  --primary-dark: #dd6c17;
+  --primary-light: #f0a36a;
+
+  --secondary: #3ca0eb;
+  --secondary-content: #041624;
+  --secondary-dark: #1788dd;
+  --secondary-light: #6ab7f0;
+
+  --background: #f1efee;
+  --foreground: #fcfbfb;
+  --border: #e2dfdc;
+
+  --copy: #2a2622;
+  --copy-light: #70655c;
+  --copy-lighter: #988b81;
+
+  --success: #3ceb3c;
+  --warning: #ebeb3c;
+  --error: #eb3c3c;
+  --success-content: #042404;
+  --warning-content: #242404;
+  --error-content: #ffffff;
+}
+.darkmode {
+  --background: #1c1917;
+  --foreground: #2a2622;
+  --border: #463f39;
+  
+  --copy: #fcfbfb;
+  --copy-light: #ddd8d5;
+  --copy-lighter: #afa49d;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 1.125rem;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
 }
