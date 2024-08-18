@@ -3,9 +3,18 @@
   margin: auto;
 }
 
+@media (max-width: 768px) {
+  .App {
+    width: 100%;
+  }
+}
 
-h1 {
-  font-size: 2rem;
-  font-weight: bold;
+
+a {
+  text-decoration: none;
+  transition: all .1s ease-in-out;
+}
+a:hover {
   color: var(--primary);
+  font-weight: 600;
 }

@@ -1,0 +1,27 @@
+.home-page header {
+  margin: auto;
+  margin-top: 2rem;
+  text-align: center;
+  width: fit-content;
+}
+.home-page header h1 {
+  font-size: 5rem;
+  font-weight: bold;
+  color: var(--primary-content);
+  cursor: pointer;
+  transition: transform .1s ease-in-out;
+  padding: 1rem 0;
+}
+.home-page header h1:hover {
+  transform: translateY(-0.2rem);
+}
+
+.home-page--links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.home-page--links a {
+  font-size: 1.25rem;
+}
