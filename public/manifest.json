@@ -1,0 +1,8 @@
+{
+  "short_name": "Wainwright Walks",
+  "name": "Wainwright Walks Website",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
