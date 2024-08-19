@@ -44,7 +44,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   min-height: 100vh;
-  background-color: var(--background);
+  background: var(--background);
+  color: var(--copy);
 }
 
 

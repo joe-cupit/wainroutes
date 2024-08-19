@@ -1,0 +1,9 @@
+.lake-map-container {
+  width: min(90%, 800px);
+  aspect-ratio: 1;
+  margin: auto;
+
+  border: 0.3rem solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}

@@ -1,3 +1,9 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .home-page header {
   margin: auto;
   margin-top: 2rem;
@@ -7,7 +13,7 @@
 .home-page header h1 {
   font-size: 5rem;
   font-weight: bold;
-  color: var(--primary-content);
+  color: var(--copy);
   cursor: pointer;
   transition: transform .1s ease-in-out;
   padding: 1rem 0;
@@ -21,7 +27,6 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
-
 .home-page--links a {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
 }

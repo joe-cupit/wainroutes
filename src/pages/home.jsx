@@ -1,6 +1,7 @@
 import "../styles/home.css";
 
 import { Link } from "react-router-dom";
+import { LakeMap } from "./map";
 
 
 export function HomePage() {
@@ -15,6 +16,7 @@ export function HomePage() {
         <Link to="/more">more</Link>
       </div>
     </header>
+    <LakeMap />
   </main>
   )
 }
