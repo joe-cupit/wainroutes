@@ -27,6 +27,14 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
-.home-page--links a {
+.home-page--links button {
   font-size: 1.4rem;
+  border: none;
+  transition: all .1s ease-in-out;
+  cursor: pointer;
+}
+.home-page--links button:hover,
+.home-page--links button.active {
+  color: var(--primary);
+  font-weight: 600;
 }
