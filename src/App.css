@@ -1,12 +1,31 @@
 .App {
-  width: min(1200px, 70%);
+  width: min(1200px, 95%);
   margin: auto;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .App {
-    width: 100%;
+    width: 95%;
   }
+} */
+
+
+.light-dark-button {
+  width: 2rem;
+  aspect-ratio: 1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  cursor: pointer;
+  color: var(--copy);
+  transition: .1s;
+
+  border: none;
+  background: none;
+}
+.light-dark-button:hover {
+  color: var(--copy-light);
 }
 
 

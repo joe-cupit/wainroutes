@@ -1,9 +1,43 @@
-.walk-page header {
-  text-align: center;
-  padding-top: 1rem;
+.walk-page--header {
+  text-align: left;
+  padding: 1rem 0;
 }
-.walk-page header h1 {
-  font-size: 3rem;
+.walk-page--title {
+  font-size: 4rem;
+  font-weight: 600;
+}
+.walk-page--intro {
+  font-size: 1.325rem;
+  padding-left: 0.5rem;
+}
+
+.walk-page--details {
+  margin: 1rem 0;
+}
+
+.bus-section, .start-location {
+  display: flex;
+  gap: 0.5rem;
+}
+.bus-block {
+  display: inline-block;
+  width: 4ch;
+  height: 1lh;
+  margin: 0 0.1rem;
+
+  font-size: 0.9rem;
   font-weight: bold;
-  color: var(--primary-content);
+  text-align: center;
+
+  color: var(--copy);
+  background-color: var(--border);
+  border-radius: 0.3rem;
+  cursor: default;
+  user-select: none;
+}
+
+
+.walk-page--map-container {
+  width: min(550px, 80%);
+  aspect-ratio: 1;
 }

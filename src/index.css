@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light;
+
   --primary: #eb873c;
   --primary-content: #241204;
   --primary-dark: #dd6c17;
@@ -25,6 +27,8 @@
   --error-content: #ffffff;
 }
 .darkmode {
+  color-scheme: dark;
+
   --background: #1c1917;
   --foreground: #2a2622;
   --border: #463f39;
@@ -46,6 +50,8 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--copy);
+
+  transition: .1s;
 }
 
 

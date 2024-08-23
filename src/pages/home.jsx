@@ -35,20 +35,27 @@ export function HomePage() {
 
   return (
   <main className="home-page">
+
     <header>
       <h1>Wainwright Walks</h1>
       <div className="home-page--links">
-        {/* <Link to="/walks">walks</Link>
+        <Link to="/walks">walks</Link>
         <Link to="/mountains">mountains</Link>
         <Link to="/weather">weather</Link>
-        <Link to="/more">more</Link> */}
-        <button className={showWalkroutes && "active"} onClick={handleClick}>walks</button>
+        <Link to="/more">travel</Link>
+        {/* <button className={showWalkroutes && "active"} onClick={handleClick}>walks</button>
         <button className={showWainwrights && "active"} onClick={handleClick}>mountains</button>
         <button onClick={handleClick}>weather</button>
-        <button onClick={handleClick}>more</button>
+        <button onClick={handleClick}>more</button> */}
       </div>
     </header>
-    <LakeMap showWainwrights={showWainwrights} showWalkroutes={showWalkroutes}/>
+
+    <div className="home-page--map">
+      <LakeMap showWainwrights={true} showWalkroutes={true}/>
+    </div>
+
+    <div style={{height: "670px"}}></div>
+    
   </main>
   )
 }
