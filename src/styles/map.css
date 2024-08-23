@@ -9,6 +9,10 @@
   overflow: hidden;
 }
 
+.lake-map-container a:hover {
+  font-weight: inherit;
+}
+
 /* body.darkmode .lake-map--overlay {
   width: 100%;
   height: 100%;

@@ -3,6 +3,7 @@
   "name": "The Full Walk Name",
 
   "length": "5km",
+  "total_elevation": "1200m",
   "wainwrights": ["first-slug", "second-slug", "scafell-pike"],
 
   "start_lat_lang": ["startlat", "startlang"],
@@ -14,8 +15,9 @@
 
   "intro": "A brief intro shown at the start of the walk page and as preview on other pages.",
   "steps": {
-    "Step One Name": "Each step can be named anything",
-    "Another Step Name": "This can include as many steps as necessary"
+    "Step One Name": "Each step can be named anything!",
+    "Another Step Name": "This can include as many steps as necessary.",
+    "Final Step Name": "The end of this walk is amazing!"
   },
 
   "busRoutes": [

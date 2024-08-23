@@ -10,25 +10,6 @@
 } */
 
 
-.light-dark-button {
-  width: 2rem;
-  aspect-ratio: 1;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-
-  cursor: pointer;
-  color: var(--copy);
-  transition: .1s;
-
-  border: none;
-  background: none;
-}
-.light-dark-button:hover {
-  color: var(--copy-light);
-}
-
-
 a {
   text-decoration: none;
   transition: all .1s ease-in-out;

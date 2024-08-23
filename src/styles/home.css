@@ -7,7 +7,7 @@
 
 .home-page header {
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   text-align: center;
   width: fit-content;
 }
@@ -16,7 +16,7 @@
   font-weight: bold;
   cursor: default;
   transition: transform .1s ease-in-out;
-  padding: 1rem 0;
+  padding-bottom: 0.625rem;
   transition: .1s;
 }
 /* .home-page header h1:hover {
@@ -43,4 +43,5 @@
 
 .home-page--map {
   width: min(650px, 90%);
+  aspect-ratio: 1;
 }

@@ -31,13 +31,18 @@ export function WalkPage() {
         <div className="length">
           Length: {walkData?.length}
         </div>
+        <div className="elevation">
+          Total elevation: {walkData?.total_elevation}
+        </div>
 
         <div className="start-location">
           Start location:
           <span>
             <div>{walkData?.start_lat_lang?.join(" - ")}</div>
             <div>{walkData?.start_grid_reference}</div>
-            <div><Link to={`https://what3words.com/${walkData?.start_what_three_words?.join(".")}`} target="_blank">{walkData?.start_what_three_words?.join(".")}</Link></div>
+            <div>
+              <Link to={`https://what3words.com/${walkData?.start_what_three_words?.join(".")}`} target="_blank">{walkData?.start_what_three_words?.join(".")}</Link>
+            </div>
             <div>{walkData?.start_post_code}</div>
           </span>
         </div>
@@ -54,11 +59,22 @@ export function WalkPage() {
 
       </section>
 
-      <main>
+      <section>
         <div className="walk-page--map-container">
           <LakeMap />
         </div>
-      </main>
+      </section>
+
+      <section className="walk-page--steps-section">
+        {walkData?.steps && Object.keys(walkData?.steps).map((step, index) => {
+          return (
+            <div key={index} className="walk-page--step">
+              <h2 className="walk-page--step-title">{step}</h2>
+              <p className="walk-page--step-content">{walkData?.steps?.[step]}</p>
+            </div>
+          )
+        })}
+      </section>
       </>
     }
   </main>

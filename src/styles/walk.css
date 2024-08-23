@@ -1,13 +1,17 @@
+.walk-page a:hover {
+  font-weight: inherit;
+}
+
 .walk-page--header {
   text-align: left;
   padding: 1rem 0;
 }
 .walk-page--title {
   font-size: 4rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 .walk-page--intro {
-  font-size: 1.325rem;
+  font-size: 1.425rem;
   padding-left: 0.5rem;
 }
 
@@ -40,4 +44,34 @@
 .walk-page--map-container {
   width: min(550px, 80%);
   aspect-ratio: 1;
+}
+
+
+.walk-page--steps-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  margin: 3rem 0;
+  padding: 0 0.5rem;
+}
+
+.walk-page--step {
+  position: relative;
+  border-top: 0.3rem solid var(--copy);
+  padding-top: 1rem;
+  padding-left: 1ch;
+}
+
+.walk-page--step-title {
+  display: inline-block;
+  background-color: var(--background);
+  padding: 0 0.5ch 0 0.4ch;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  position: absolute;
+  top: -0.6lh;
+  left: 1ch;
 }
