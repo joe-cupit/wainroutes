@@ -2,6 +2,8 @@ import "../styles/map.css";
 
 import { useEffect, useState } from "react";
 import { Map, Marker, ZoomControl } from "pigeon-maps";
+import Supercluster from 'supercluster';
+import { hasPointerEvents } from "@testing-library/user-event/dist/utils";
 const geoViewport = require('@mapbox/geo-viewport');
 // import { maptiler } from 'pigeon-maps/providers';
 
@@ -11,7 +13,7 @@ const geoViewport = require('@mapbox/geo-viewport');
 export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
 
   const [center, setCenter] = useState([54.55, -3.09]);
-  const [zoom, setZoom] = useState(10.65);
+  const [zoom, setZoom] = useState(11);
   const [minZoom, setMinZoom] = useState();
   const [shownPoints, setShownPoints] = useState([])
   // const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2")
@@ -29,13 +31,16 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
       if (long > maxLong) maxLong = long;
     }
 
-    const mapBounds = document.getElementById("lake-map").getBoundingClientRect()
-    console.log(mapBounds);
-    const { center, zoom } = geoViewport.viewport([minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height])
+    console.log([minLat, minLong, maxLat, maxLong])
 
-    setCenter(center);
-    setZoom(zoom*1.04);
-    setMinZoom(zoom);
+    const mapBounds = document.getElementById("lake-map").getBoundingClientRect()
+    const { center, zoom } = geoViewport.viewport(
+      [minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height], 0, 20, 256, true
+    )
+
+    setCenter([center[0]+0.015, center[1]]);
+    setZoom(zoom*0.98);
+    setMinZoom(zoom*0.85);
   }, [shownPoints])
 
   const [wainwrights, setWainwrights] = useState();
@@ -72,18 +77,53 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
     }
   }, [showWalkroutes]);
 
+
+  const renderMarker = (point, index) => {
+    return (
+      <Marker key={index} className="wainwright" anchor={point.geometry.coordinates} color="#eb873c"/>
+    )
+  }
+
+  const [supercluster, setSupercluster] = useState(null);
+  const [markerPositions, setMarkerPositions] =  useState([]);
+  
+  useEffect(() => {
+    if (!shownPoints || shownPoints?.length === 0) return
+
+    const index = new Supercluster({ radius: 20 });
+
+    index.load(shownPoints?.map(point => ({
+      geometry: {
+        coordinates: point,
+        type: "Point"
+      }
+    })));
+
+    setSupercluster(index);
+  }, [shownPoints])
+
+
+  const onBoundsChanged = ({ center, zoom, bounds }) => {
+    setCenter(center);
+    setZoom(zoom);
+    if (supercluster != null) {
+      // const [n, e] = bounds.ne;
+      // const [s, w] = bounds.sw;
+      // const clusterBounds = [s, w, n, e]
+      let newthing = supercluster?.getClusters([54, -4, 55, -2], zoom);
+      setMarkerPositions(newthing);
+    }
+  }
+
   return (<>
     <section id="lake-map" className="lake-map-container">
       <Map
-        // provider={maptilerProvider}
         center={center} zoom={zoom} minZoom={minZoom || 1} zoomSnap={false}
+        onBoundsChanged={onBoundsChanged}
+        // provider={maptilerProvider}
+        // attributionPrefix={false}
       >
-        {showWainwrights && wainwrights?.map((hill, index) => {
-          return (<Marker className="wainwright" key={index} anchor={[hill.latitude, hill.longitude]} color="#eb873c"/>)
-        })}
-        {showWalkroutes && walkRoutes?.map((hill, index) => {
-          return (<Marker className="walks" key={index} anchor={[hill.latitude, hill.longitude]} color="#3ca0eb"/>)
-        })}
+        {markerPositions?.map(renderMarker)}
         <ZoomControl />
       </Map>
       <div className="lake-map--overlay"></div>
