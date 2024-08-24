@@ -8,3 +8,15 @@
   font-weight: bold;
   padding: 1rem 0;
 }
+
+.not-found--go-back {
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .1s;
+}
+.not-found--go-back:hover {
+  color: var(--primary);
+}

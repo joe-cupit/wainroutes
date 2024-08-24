@@ -1,9 +1,36 @@
 {
   "the-fairfield-horseshoe": {
+    "slug": "the-fairfield-horseshoe",
     "name": "The Fairfield Horseshoe",
+
+    "length": 17.85,
+    "total_elevation": 1027,
+    "wainwrights": ["low-pike", "high-pike-e", "dove-crag", "hart-crag", "fairfield", "great-rigg", "heron-pike", "nab-scar"],
+
+    "start_lat_lang": [54.4337000, -2.9630070],
+    "start_grid_reference": "NY376046",
+    "start_what_three_words": ["markets", "download", "tutorial"],
+    "start_post_code": "LA22 9BJ",
+    "gpx": [["lat1", "lang1"], ["lat2", "lang2"], ["more", "andmore"]],
+    "elevation": ["list", "of", "elevation", "values"],
+
     "intro": "A must do walk for those staying in or near Ambleside.",
-    "length": 10,
-    "wainwrights": [],
-    "wainwrights_count": 7
+    "steps": {
+      "Initial Ascent": "This walk begins in Ambleside and ascends slowly up to Low Pike.",
+      "Across to High Pike": "Once conquering Low Pike, the goal moves over to High Pike.",
+      "Over to Dove Crag": "The walk from High Pike to Dove Crag is rather long but not too difficult.",
+      "To Hart Crag": "Short hop over to Hart Crag.",
+      "Fairfield Summit": "The peak this walk is named after for good reason, amazing views from here.",
+      "Down to Great Rigg": "It's all downhill from here.",
+      "Heron Pike": "The final 'pike' of this walk, with an optional accross to Arthur's Seat.",
+      "Nab Scar": "The final and smallest peak of this walk is Nab Scar, great views of Rydal water and Rydal caves.",
+      "Final Descent": "A quick and easy decent down to Rydal church bus stop, where a bus can be used to travel in either direction, or a short road walk back to Ambleside."
+    },
+
+    "busRoutes": [
+      ["505", "from Windermere/Coniston"],
+      ["555", "from Windermere/Keswick"],
+      ["599", "from Windermere"]  
+    ]
   }
 }

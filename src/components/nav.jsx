@@ -17,6 +17,11 @@ export function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar--left">
+        <button className="navbar--button navbar--mobile">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+          </svg>
+        </button>
         <Link className="navbar--home" to="/">wainwright walks</Link>
         <span className="navbar--links">
           <Link className="navbar--link" to="/walks">walks</Link>
@@ -24,20 +29,11 @@ export function Navbar() {
           <Link className="navbar--link" to="/weather">weather</Link>
           <Link className="navbar--link" to="/travel">travel</Link>          
         </span>
-
-      </div>
-      <div className="navbar--left-mobile">
-        <button className="navbar--button">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
-          </svg>
-        </button>
-        <h1 className="navbar--home">wainwright walks</h1>
       </div>
 
       <div className="navbar--right">
 
-        <button className="navbar--button navbar--button-block" onClick={toggleDarkMode}>
+        <button className="navbar--button navbar--button-block navbar--dark-light" onClick={toggleDarkMode}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
           {darkMode
           ? <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clipRule="evenodd" />

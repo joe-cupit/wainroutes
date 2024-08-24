@@ -1,7 +1,7 @@
 import "../styles/home.css";
 
 import { Link } from "react-router-dom";
-import { LakeMap } from "./map";
+import { LakeMap } from "../components/map";
 import { useState } from "react";
 
 
