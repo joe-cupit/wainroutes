@@ -42,7 +42,7 @@ export function HomePage() {
         <Link to="/walks">walks</Link>
         <Link to="/mountains">mountains</Link>
         <Link to="/weather">weather</Link>
-        <Link to="/more">travel</Link>
+        <Link to="/travel">travel</Link>
         {/* <button className={showWalkroutes && "active"} onClick={handleClick}>walks</button>
         <button className={showWainwrights && "active"} onClick={handleClick}>mountains</button>
         <button onClick={handleClick}>weather</button>

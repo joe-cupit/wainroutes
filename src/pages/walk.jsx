@@ -27,6 +27,7 @@ export function WalkPage() {
       ? <></>
       : <header className="walk-page--header">
           <h1 className="walk-page--title">{"This walk doesn't {yet} exist"}</h1>
+          <p className="walk-page--intro">Did you mean... ?</p>
         </header>
     : <>
       <header className="walk-page--header">
