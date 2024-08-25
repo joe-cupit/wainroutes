@@ -8,7 +8,7 @@ export function EditorPage() {
 
   const [GPXPoints, setGPXPoints] = useState(null);
   const [geoJSON, setGeoJSON] = useState(null);
-  const totalPoints = geoJSON[1].features?.length;
+  const totalPoints = geoJSON?.[1]?.features?.length;
 
   const [center, setCenter] = useState([54.45, -3.03])
   const [zoom, setZoom] = useState(10)
@@ -108,14 +108,14 @@ export function EditorPage() {
             center={center} zoom={zoom} zoomSnap={false}
             onBoundsChanged={onBoundsChanged} >
           {geoJSON && <GeoJson
-            data={geoJSON[0]}
+            data={geoJSON?.[0]}
             styleCallback={(feature, hover) => {
               return { strokeWidth: "3", stroke: "#eb873c" };
             }}
           />}
           {geoJSON && (zoom >= 15) &&
             <GeoJson
-              data={geoJSON[1]}
+              data={geoJSON?.[1]}
               styleCallback={(feature, hover) => {
                 if (!hover) return { strokeWidth: "2", stroke: "#eb873c", r: zoom-11*(18/zoom) };
                 else return { strokeWidth: "2", stroke: "#eb873c", r: zoom-11*(18/zoom), fill: "#eb873c" };
