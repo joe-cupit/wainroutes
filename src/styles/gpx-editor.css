@@ -1,4 +1,41 @@
+.gpx-editor--main {
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+}
+
+.gpx-editor--navbar {
+  display: flex;
+  width: calc(100% - 2rem);
+  height: 3rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  position: absolute;
+  z-index: calc(infinity);
+  padding: .6rem 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+
+  color: var(--copy);
+  background: var(--foreground);
+}
+
 .gpx-editor--map-container {
   width: 100%;
-  height: 100vh;
+  flex-grow: 1;
+}
+
+.gpx-editor--elevation {
+  height: 0.5rem;
+  background-color: var(--background);
+  border-top: 3px solid var(--border);
+  cursor: pointer;
+
+  transition: height .2s ease-out;
+}
+.gpx-editor--elevation:hover {
+  height: 15rem;
 }

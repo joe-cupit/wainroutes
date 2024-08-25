@@ -12,7 +12,8 @@ function App() {
 
   return (<>
   <Routes>
-    <Route path="/" element={<>
+    <Route path="/gpx-editor" element={<EditorPage />} />  
+    <Route path="*" element={<>
       <Navbar />
       <div className="App">
         <Routes>
@@ -23,9 +24,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>      
-    </>} />
-
-    <Route path="/gpx-editor" element={<EditorPage />} />    
+    </>} />  
   </Routes>
 
   </>);
