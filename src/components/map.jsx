@@ -30,8 +30,6 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
       if (long > maxLong) maxLong = long;
     }
 
-    console.log([minLat, minLong, maxLat, maxLong])
-
     const mapBounds = document.getElementById("lake-map").getBoundingClientRect()
     const { center, zoom } = geoViewport.viewport(
       [minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height], 0, 20, 256, true
@@ -55,12 +53,12 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
             newLatLang.push({coordinates: [hill.latitude, hill.longitude], book: hill.book});
           }
 
-          setShownPoints(curr => [...curr, ...newLatLang]);
+          setShownPoints(newLatLang);
         });
     }
   }, [showWainwrights]);    
 
-  // const [walkRoutes, setWalkRoutes] = useState();
+  // const [walkRoutes, setWalkRoutes] = useState(); 
   useEffect(() => {
     if (showWalkroutes) {
       fetch("/walks/walkstarts.json")
@@ -78,19 +76,31 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
   }, [showWalkroutes]);
 
 
+  const zoomTo = (coordinates) => {
+    onBoundsChanged(coordinates, ((zoom+3>=13) ? 13 : zoom+3), [])
+  }
+
   const renderMarker = (point, key) => {
+    const width = 30;
 
     const clusterItems = (point.properties?.cluster || false) ?
-      supercluster.getLeaves(point.id, Infinity)
+      supercluster.getLeaves(point.id, 4) || [point]
        : [point];
 
     return (
-      <Marker key={key} className="wainwright" hover={false}
+      <Marker key={key} color="currentColor" width={width} className="wainwright"
               anchor={point.geometry.coordinates}
-              color="#eb873c">
-        {clusterItems.map((item, index) => {
-          return (<MarkerIcon key={index} book={item.properties.book} />)
-        })}
+              onMouseOver={() => {}}
+              onClick={() => zoomTo(point.geometry.coordinates)}
+      >
+        <div className="map--cluster">
+          <WainwrightIcon width={width} book={clusterItems[0].properties.book} />
+
+          {clusterItems.slice(1).map((item, index) => {
+            return (<WainwrightIcon key={index} width={width} book={item.properties.book} />)
+          })}
+        </div>
+
       </Marker>
     )
   }
@@ -117,42 +127,41 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
   }, [shownPoints])
 
 
-  const onBoundsChanged = ({ center, zoom, bounds }) => {
-    setCenter(center);
-    setZoom(zoom);
-    if (supercluster != null) {
-      // const [n, e] = bounds.ne;
-      // const [s, w] = bounds.sw;
-      // const clusterBounds = [s, w, n, e]
-      let newthing = supercluster?.getClusters([54, -4, 55, -2], zoom);
+  const onBoundsChanged = (newcenter, newzoom, newbounds) => {
+    if (supercluster !== null && newzoom !== zoom) {
+      console.log("clustering")
+      let newthing = supercluster?.getClusters([54, -4, 55, -2], newzoom);
       setMarkerPositions(
         newthing.sort((a, b) => b.geometry?.coordinates[0] - a.geometry?.coordinates[0])
       );
     }
+
+    setCenter(newcenter);
+    setZoom(newzoom);
   }
 
   return (<>
     <section id="lake-map" className="lake-map-container">
       <Map
         center={center} zoom={zoom} minZoom={minZoom || 1} zoomSnap={false}
-        onBoundsChanged={onBoundsChanged}
-        
+        onBoundsChanged={({ center, zoom, bounds }) => onBoundsChanged(center, zoom, bounds)}
         // provider={maptilerProvider}
         // attributionPrefix={false}
       >
+        <ZoomControl style={{zIndex: 11}}/>
         {markerPositions?.map(renderMarker)}
-        <ZoomControl />
       </Map>
-      <div className="lake-map--overlay"></div>
     </section>
   </>)
 }
 
 
-function MarkerIcon({ book }) {
+function WainwrightIcon({ width, book }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 30" fill={`var(--wain-book-${book})`} stroke={"#111"} strokeWidth={1} >
+  <svg width={width} className={`wain-book-${book}`} viewBox="0 0 24 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="#151515" strokeWidth={1} >
+    <g style={{ pointerEvents: 'auto' }}>
       <path d="M13.0392019,21.7081936 C12.0940626,22.2815258 10.8626021,21.9809256 10.2886866,21.0367943 C6.7619497,15.2353103 5,11.2870891 5,8.99256161 C5,5.13067647 8.13400675,2 12,2 C15.8659932,2 19,5.13067647 19,8.99256161 C19,11.2870898 17.2380492,15.2353128 13.71131,21.0367998 C13.544473,21.3112468 13.3139409,21.5415339 13.0392019,21.7081936 Z M12.0074463,12 C13.666063,12 15.0106376,10.6568542 15.0106376,9 C15.0106376,7.34314575 13.666063,6 12.0074463,6 C10.3488296,6 9.00425503,7.34314575 9.00425503,9 C9.00425503,10.6568542 10.3488296,12 12.0074463,12 Z"/>
-    </svg>
+    </g>
+  </svg>
   )
 }
