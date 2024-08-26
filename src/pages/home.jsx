@@ -51,7 +51,7 @@ export function HomePage() {
     </header>
 
     <div className="home-page--map">
-      <LakeMap showWainwrights={true} showWalkroutes={true}/>
+      <LakeMap showWainwrights={true} showWalkroutes={true} />
     </div>
 
     <div style={{height: "670px"}}></div>

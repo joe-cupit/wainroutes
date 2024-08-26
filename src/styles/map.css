@@ -1,4 +1,4 @@
-.lake-map-container {
+.lake-map--container {
   position: relative;
   width: 100%;
   height: 100%;
@@ -8,38 +8,47 @@
   border-radius: 0.75rem;
   overflow: hidden;
 }
-
-.lake-map-container a:hover {
+.lake-map--container a:hover {
   font-weight: inherit;
 }
 
-.map--cluster svg {
+
+.lake-map--cluster {
+  transform-origin: bottom;
+  transition: .1s;
+}
+.lake-map--marker:hover .lake-map--cluster {
+  transform: scale(1.2) translate(-2px, -3px);
+}
+
+
+.lake-map--cluster svg {
   position: absolute;
 }
-.map--cluster svg:nth-child(1) {
+.lake-map--cluster svg:nth-child(1) {
   z-index: 10;
 }
-.map--cluster svg:nth-child(2) {
+.lake-map--cluster svg:nth-child(2) {
   opacity: 0.8;
   z-index: 9;
   transform: translate(3px, -1px) scale(0.95);
 }
-.map--cluster svg:nth-child(3) {
+.lake-map--cluster svg:nth-child(3) {
   opacity: 0.7;
   z-index: 8;
   transform: translate(5px, -1px) scale(0.9);
 }
-.map--cluster svg:nth-child(4) {
+.lake-map--cluster svg:nth-child(4) {
   opacity: 0.4;
   z-index: 7;
   transform: translate(6px, -1px) scale(0.85);
 }
 
 
-.wainwright {
-  color: var(--primary);
-  cursor: pointer;
+.walk-marker {
+  color: lightblue;
 }
+
 .wain-book-1 {
   color: var(--wain-book-1);
 }
@@ -81,14 +90,4 @@
 }
 .wainwright:hover .wain-book-7 {
   color: var(--wain-book-7);
-} */
-
-/* body.darkmode .lake-map--overlay {
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.1);
 } */
