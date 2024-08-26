@@ -20,28 +20,37 @@ export function WalkPage() {
       });
   }, [slug]);
 
+  const [hillData, setHillData] = useState();
+  useEffect(() => {
+    fetch(`/mountains/wainwrights.json`)
+      .then(response => response.text())
+      .then(responseText => {
+        setHillData(JSON.parse(responseText));
+      });
+  }, []);
+
   return (
   <main className="walk-page">
     {!walkData
     ? loading
       ? <></>
       : <header className="walk-page--header">
-          <h1 className="walk-page--title">{"This walk doesn't {yet} exist"}</h1>
-          <p className="walk-page--intro">Did you mean... ?</p>
+          <h1 className="walk-page--title text--heading">{"This walk doesn't {yet} exist"}</h1>
+          <p className="walk-page--intro text--default">Did you mean... ?</p>
         </header>
     : <>
       <header className="walk-page--header">
-        <h1 className="walk-page--title">{walkData?.name}</h1>
-        <p className="walk-page--intro">{walkData?.intro}</p>
-        <p className="walk-page--intro walk-page--wainwrights">
-          Completing {walkData?.wainwrights?.length} Wainwrights:&nbsp;
+        <h1 className="walk-page--title text--heading">{walkData?.name}</h1>
+        {/* <p className="walk-page--intro text--default">{walkData?.intro}</p> */}
+        <p className="walk-page--intro walk-page--wainwrights text--subtext">
+          {/* Completing {walkData?.wainwrights?.length} Wainwrights:&nbsp; */}
           {walkData?.wainwrights?.map((wain, index) => {
-            return (<><Link to={`/mountain/${wain}`} key={index} className="walk-page--mountain">{wain}</Link>, </>)
+            return (<><Link to={`/mountain/${wain}`} key={index} className="walk-page--mountain">{hillData ? hillData?.[wain].name : wain}</Link>, </>)
           })}
         </p>
       </header>
 
-      <section className="walk-page--details">
+      <section className="walk-page--details text--default">
         <div className="length">
           Length: {walkData?.length}km
         </div>
@@ -69,7 +78,7 @@ export function WalkPage() {
               const from = bus[1];
               return (
                 <div key={index}
-                     className="bus-block"
+                     className="bus-block text--secondary"
                      fromtext={from}
                      style={{"backgroundColor": `var(--bus-${number})`}}>
                   {number}
@@ -91,8 +100,8 @@ export function WalkPage() {
         {walkData?.steps && Object.keys(walkData?.steps).map((step, index) => {
           return (
             <div key={index} className="walk-page--step">
-              <h2 className="walk-page--step-title">{step}</h2>
-              <p className="walk-page--step-content">{walkData?.steps?.[step]}</p>
+              <h2 className="walk-page--step-title text--subheading">{step}</h2>
+              <p className="walk-page--step-content text--default">{walkData?.steps?.[step]}</p>
             </div>
           )
         })}

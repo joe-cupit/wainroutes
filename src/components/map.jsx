@@ -29,8 +29,10 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
         .then(response => response.text())
         .then(responseText => {
           let newLatLang = [];
-          for (let hill of JSON.parse(responseText)) {
-            newLatLang.push({coordinates: [hill.latitude, hill.longitude], properties: {type: "hill", book: hill.book}});
+          const hillData = JSON.parse(responseText)
+          for (let hillSlug of Object.keys(hillData)) {
+            const hill = hillData[hillSlug];
+            newLatLang.push({coordinates: [hill.latitude, hill.longitude], properties: {type: "hill", slug: hillSlug, book: hill.book}});
           }
           setHillPoints(newLatLang);
         });
@@ -112,8 +114,8 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
   }, [zoom, supercluster])
 
   const zoomTo = (coordinates, cluster=false) => {
-    setCenter(coordinates);
-    setZoom(cluster ? ((zoom+2>=13.5) ? 13.5 : zoom+2) : 14);
+    setCenter(cluster ? coordinates : [coordinates[0]+0.002, coordinates[1]]);
+    setZoom(cluster ? (zoom*1.2>14 ? 14 : zoom*1.2) : 15);
   }
 
   const onBoundsChanged = ({ center, zoom }) => {

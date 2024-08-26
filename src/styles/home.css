@@ -12,7 +12,7 @@
   width: 100%;
 }
 .home-page--title {
-  font-size: 5rem;
+  /* font-size: 5rem; */
   font-weight: bold;
   cursor: default;
   transition: transform .1s ease-in-out;
@@ -32,10 +32,11 @@
   overflow: hidden;
   transition: width .3s ease-in-out;
 }
-.home-page--title:hover > .home-page--title-wright {
-  width: 5.3ch;
+@media (min-width: 720px) {
+  .home-page--title:hover > .home-page--title-wright {
+    width: 5.3ch;
+  }
 }
-
 /* .home-page header h1:hover {
   transform: translateY(-0.2rem);
 } */
@@ -46,9 +47,10 @@
   justify-content: space-evenly;
   width: min(70%, 600px);
   margin: auto;
+  font-weight: normal;
 }
 .home-page--links a {
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   border: none;
   transition: all .1s ease-in-out;
   cursor: pointer;

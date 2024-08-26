@@ -17,3 +17,41 @@ a {
 a:hover {
   color: var(--primary);
 }
+
+
+.text--heading {
+  font-size: 60px;
+  font-weight: 800;
+}
+.text--subheading {
+  font-size: 30px;
+  font-weight: 600;
+}
+.text--subtext {
+  font-size: 23px;
+}
+.text--default {
+  font-size: 18px;
+}
+.text--secondary {
+  font-size: 16px;
+}
+
+@media (max-width: 720px) {
+  .text--heading {
+    font-size: 50px;
+    line-height: 50px;
+  }
+  .text--subheading {
+    font-size: 26px;
+  }
+  .text--subtext {
+    font-size: 19px;
+  }
+  .text--default {
+    font-size: 16px;
+  }
+  .text--secondary {
+    font-size: 14px;
+  }
+}

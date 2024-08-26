@@ -2,14 +2,15 @@
   text-align: left;
   padding: 1rem 0;
 }
-.walk-page--title {
+/* .walk-page--title {
   font-size: 4rem;
   font-weight: 700;
-}
+} */
 .walk-page--intro {
-  font-size: 1.425rem;
-  padding-left: 1.5rem;
-  text-indent: -0.5em;
+  /* font-size: 1.425rem; */
+  padding-top: 0.5rem;
+  padding-left: 0.3rem;
+  text-indent: -0.2em;
 }
 
 .walk-page--details {
@@ -27,7 +28,7 @@
   height: 1lh;
   margin: 0 0.1rem;
 
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
   font-weight: bold;
   text-align: center;
 
@@ -69,7 +70,7 @@
   position: relative;
   border-top: 0.3rem solid var(--copy);
   padding-top: 1rem;
-  padding-left: 1ch;
+  padding-left: 0.5ch;
 }
 
 .walk-page--step-title {

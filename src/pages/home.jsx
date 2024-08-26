@@ -10,8 +10,8 @@ export function HomePage() {
   <main className="home-page">
 
     <header>
-      <h1 className="home-page--title">wain<span className="home-page--title-wright">wright:</span>routes</h1>
-      <div className="home-page--links">
+      <h1 className="home-page--title text--heading">wain<span className="home-page--title-wright">wright:</span>routes</h1>
+      <div className="home-page--links text--subtext">
         <Link to="/walks">walks</Link>
         <Link to="/mountains">mountains</Link>
         <Link to="/weather">weather</Link>
