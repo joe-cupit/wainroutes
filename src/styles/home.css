@@ -9,16 +9,33 @@
   margin: auto;
   margin-top: 0.5rem;
   text-align: center;
-  width: fit-content;
+  width: 100%;
 }
-.home-page header h1 {
+.home-page--title {
   font-size: 5rem;
   font-weight: bold;
   cursor: default;
   transition: transform .1s ease-in-out;
   padding-bottom: 0.625rem;
   transition: .1s;
+  cursor: cell;
+  width: fit-content;
+  margin: auto;
 }
+
+.home-page--title-wright{
+  content: "wright";
+  display: inline-block;
+  vertical-align: text-bottom;
+  text-align: left;
+  width: 0;
+  overflow: hidden;
+  transition: width .3s ease-in-out;
+}
+.home-page--title:hover > .home-page--title-wright {
+  width: 5.3ch;
+}
+
 /* .home-page header h1:hover {
   transform: translateY(-0.2rem);
 } */
@@ -27,6 +44,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  width: min(70%, 600px);
+  margin: auto;
 }
 .home-page--links a {
   font-size: 1.5rem;

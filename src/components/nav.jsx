@@ -22,7 +22,7 @@ export function Navbar() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
           </svg>
         </button>
-        <Link className="navbar--home" to="/">wainwright walks</Link>
+        <Link className="navbar--home" to="/">wainroutes</Link>
         <span className="navbar--links">
           <Link className="navbar--link" to="/walks">walks</Link>
           <Link className="navbar--link" to="/mountains">mountains</Link>
