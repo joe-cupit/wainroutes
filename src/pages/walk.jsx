@@ -1,25 +1,20 @@
 import "../styles/walk.css";
 
 import { Link, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { LakeMap } from "../components/map";
+import { useState, useEffect, Fragment } from "react";
+import { LakeMap, GeoRoute } from "../map/map";
+import { useHills } from "../hooks/useHills";
+import { useWalks } from "../hooks/useWalks";
 
 
 export function WalkPage() {
   const { slug } = useParams();
 
-  const [loading, setLoading] = useState(true);
+  const hillData = useHills();
 
-  const [walkData, setWalkData] = useState();
+  const walkData = useWalks(slug);
   const [gpxPoints, setGpxPoints] = useState(null);
   useEffect(() => {
-    fetch(`/walks/walkdata.json`)
-      .then(response => response.text())
-      .then(responseText => {
-        setWalkData(JSON.parse(responseText)[slug]);
-        setLoading(false);
-      });
-
     fetch(`/gpx/${slug}.gpx`)
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
@@ -33,25 +28,13 @@ export function WalkPage() {
       });
   }, [slug]);
 
-
-  const [hillData, setHillData] = useState();
-  useEffect(() => {
-    fetch(`/mountains/wainwrights.json`)
-      .then(response => response.text())
-      .then(responseText => {
-        setHillData(JSON.parse(responseText));
-      });
-  }, []);
-
   return (
   <main className="walk-page">
     {!walkData
-    ? loading
-      ? <></>
-      : <header className="walk-page--header">
-          <h1 className="walk-page--title text--heading">{"This walk doesn't {yet} exist"}</h1>
-          <p className="walk-page--intro text--default">Did you mean... ?</p>
-        </header>
+    ? <header className="walk-page--header">
+        <h1 className="walk-page--title text--heading">{"This walk doesn't {yet} exist"}</h1>
+        <p className="walk-page--intro text--default">Did you mean... ?</p>
+      </header>
     : <>
       <header className="walk-page--header">
         <h1 className="walk-page--title text--heading">{walkData?.name}</h1>
@@ -59,7 +42,7 @@ export function WalkPage() {
         <p className="walk-page--intro walk-page--wainwrights text--subtext">
           {/* Completing {walkData?.wainwrights?.length} Wainwrights:&nbsp; */}
           {walkData?.wainwrights?.map((wain, index) => {
-            return (<><Link to={`/mountain/${wain}`} key={index} className="walk-page--mountain">{hillData ? hillData?.[wain].name : wain}</Link>, </>)
+            return (<Fragment key={index}><Link to={`/mountain/${wain}`} className="walk-page--mountain">{hillData ? hillData?.[wain]?.name : wain}</Link>, </Fragment>)
           })}
         </p>
       </header>
@@ -106,7 +89,9 @@ export function WalkPage() {
 
       <section>
         <div className="walk-page--map-container">
-          <LakeMap gpxPoints={gpxPoints} />
+          <LakeMap gpxPoints={gpxPoints} >
+            <GeoRoute points={gpxPoints} />
+          </LakeMap>
         </div>
       </section>
 

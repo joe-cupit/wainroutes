@@ -1,26 +1,34 @@
 .lake-map--container {
-  position: relative;
   width: 100%;
   height: 100%;
-  margin: auto;
 
   border: 0.1rem solid var(--border);
-  border-radius: 0.75rem;
+  border-radius: 0.625rem;
   overflow: hidden;
 }
-.lake-map--container a:hover {
-  font-weight: inherit;
+
+
+.lake-map--route {
+  stroke: black;
+  stroke-width: 2;
+
+  cursor: default;
+}
+
+.lake-map--marker {
+  width: 30px;
+  fill: var(--primary);
+  stroke: black;
+  stroke-width: 1;
 }
 
 
 .lake-map--cluster {
-  transform-origin: bottom;
-  transition: .1s;
+  transition: transform .1s;
 }
-.lake-map--marker:hover .lake-map--cluster {
-  transform: scale(1.2) translate(-2px, -3px);
+.lake-map--cluster:hover {
+  transform: scale(1.2) translateY(-5px);
 }
-
 
 .lake-map--cluster svg {
   position: absolute;
@@ -45,49 +53,28 @@
 }
 
 
-.walk-marker {
-  color: lightblue;
-}
-
 .wain-book-1 {
-  color: var(--wain-book-1);
+  fill: var(--wain-book-1);
 }
 .wain-book-2 {
-  color: var(--wain-book-2);
+  fill: var(--wain-book-2);
 }
 .wain-book-3 {
-  color: var(--wain-book-3);
+  fill: var(--wain-book-3);
 }
 .wain-book-4 {
-  color: var(--wain-book-4);
+  fill: var(--wain-book-4);
 }
 .wain-book-5 {
-  color: var(--wain-book-5);
+  fill: var(--wain-book-5);
 }
 .wain-book-6 {
-  color: var(--wain-book-6);
+  fill: var(--wain-book-6);
 }
 .wain-book-7 {
-  color: var(--wain-book-7);
+  fill: var(--wain-book-7);
 }
-/* .wainwright:hover .wain-book-1 {
-  color: var(--wain-book-1);
+
+.walk-marker {
+  fill: lightblue;
 }
-.wainwright:hover .wain-book-2 {
-  color: var(--wain-book-2);
-}
-.wainwright:hover .wain-book-3 {
-  color: var(--wain-book-3);
-}
-.wainwright:hover .wain-book-4 {
-  color: var(--wain-book-4);
-}
-.wainwright:hover .wain-book-5 {
-  color: var(--wain-book-5);
-}
-.wainwright:hover .wain-book-6 {
-  color: var(--wain-book-6);
-}
-.wainwright:hover .wain-book-7 {
-  color: var(--wain-book-7);
-} */

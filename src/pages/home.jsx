@@ -1,10 +1,19 @@
 import "../styles/home.css";
 
 import { Link } from "react-router-dom";
-import { LakeMap } from "../components/map";
+import { LakeMap } from "../map/map";
+import { useMemo } from "react";
+import { useHillMarkers, useWalkMarkers } from "../map/useMarkers";
 
 
 export function HomePage() {
+
+  const hillMarkers = useHillMarkers();
+  const walkMarkers = useWalkMarkers();
+
+  const mapMarkers = useMemo(() => {
+    return [...(hillMarkers ?? []), ...(walkMarkers ?? [])]
+  }, [hillMarkers, walkMarkers])
 
   return (
   <main className="home-page">
@@ -20,7 +29,7 @@ export function HomePage() {
     </header>
 
     <div className="home-page--map">
-      <LakeMap showWainwrights={true} showWalkroutes={true} />
+      <LakeMap mapMarkers={mapMarkers} />
     </div>
 
     <div style={{height: "670px"}}></div>
