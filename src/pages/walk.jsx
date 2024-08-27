@@ -11,6 +11,7 @@ export function WalkPage() {
   const [loading, setLoading] = useState(true);
 
   const [walkData, setWalkData] = useState();
+  const [gpxPoints, setGpxPoints] = useState(null);
   useEffect(() => {
     fetch(`/walks/walkdata.json`)
       .then(response => response.text())
@@ -18,7 +19,20 @@ export function WalkPage() {
         setWalkData(JSON.parse(responseText)[slug]);
         setLoading(false);
       });
+
+    fetch(`/gpx/${slug}.gpx`)
+      .then(response => response.text())
+      .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+      .then(doc => {
+        let coordinates = [];
+        const nodes = [...doc.getElementsByTagName("trkpt")];
+        nodes.forEach(node => {
+          coordinates.push([parseFloat(node.getAttribute("lon")), parseFloat(node.getAttribute("lat"))])
+        });
+        setGpxPoints(coordinates);
+      });
   }, [slug]);
+
 
   const [hillData, setHillData] = useState();
   useEffect(() => {
@@ -92,7 +106,7 @@ export function WalkPage() {
 
       <section>
         <div className="walk-page--map-container">
-          <LakeMap />
+          <LakeMap gpxPoints={gpxPoints} />
         </div>
       </section>
 

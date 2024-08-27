@@ -2,14 +2,14 @@ import "../styles/map.css";
 
 import { useEffect, useMemo, useState } from "react";
 import Supercluster from 'supercluster';
-import { Map, Marker, ZoomControl } from "pigeon-maps";
+import { Map, Marker, GeoJson, ZoomControl } from "pigeon-maps";
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2")
 
 const geoViewport = require('@mapbox/geo-viewport');
 
 
-export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
+export function LakeMap({ showWainwrights=false, showWalkroutes=false, gpxPoints=null }) {
 
   const [center, setCenter] = useState([54.55, -3.09]);
   const [zoom, setZoom] = useState(11);
@@ -118,9 +118,10 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
     setZoom(cluster ? (zoom*1.2>14 ? 14 : zoom*1.2) : 15);
   }
 
-  const onBoundsChanged = ({ center, zoom }) => {
+  const onBoundsChanged = ({ center, zoom, bounds }) => {
     setCenter(center);
     setZoom(zoom);
+    console.log(bounds);
   }
 
   const renderMarker = (point, key) => {
@@ -146,6 +147,52 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
     )
   }
 
+  useEffect(() => {
+    if (gpxPoints === null) return;
+    if (gpxPoints.length === 0) return;
+
+    let minLat = 999.0; let maxLat = -999.0;
+    let minLong = 999.0; let maxLong = -999.0;
+    for (let point of gpxPoints) {
+      const [long, lat] = point;
+      if (lat < minLat) minLat = lat;
+      if (lat > maxLat) maxLat = lat;
+      if (long < minLong) minLong = long;
+      if (long > maxLong) maxLong = long;
+    }
+
+    const mapBounds = document.getElementById("lake-map").getBoundingClientRect()
+    const { center, zoom } = geoViewport.viewport(
+      [minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height], 0, 20, 512, true
+    )
+
+    setCenter(center);
+    setZoom(zoom);
+    setMinZoom(zoom*0.85);
+
+  }, [gpxPoints])
+
+  const renderGPX = (gpxPoints) => {
+
+    return (<GeoJson
+      data={{
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "LineString",
+              coordinates: gpxPoints
+            }
+          }
+        ]
+      }}
+      styleCallback={(feature, hover) => {
+        return { strokeWidth: "3", stroke: "var(--nav-background)", cursor: "default" };
+      }}
+    />)
+  }
+
   return (<>
     <section id="lake-map" className="lake-map--container">
       <Map
@@ -154,7 +201,11 @@ export function LakeMap({ showWainwrights=false, showWalkroutes=false }) {
         // provider={maptilerProvider}
       >
         <ZoomControl style={{zIndex: 11}}/>
+
         {markerPositions?.map(renderMarker)}
+
+        {gpxPoints && renderGPX(gpxPoints)}
+
       </Map>
     </section>
   </>)
