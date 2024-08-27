@@ -6,15 +6,34 @@
   font-size: 4rem;
   font-weight: 700;
 } */
+.walk-page--mountain {
+  white-space: nowrap;
+}
+
 .walk-page--intro {
   /* font-size: 1.425rem; */
   padding-top: 0.5rem;
-  padding-left: 0.3rem;
-  text-indent: -0.2em;
+
+  margin: 0.5rem 0;
 }
 
 .walk-page--details {
-  margin: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+
+  margin: 1rem 0.1rem;
+}
+.walk-page--details-grid {
+  display: grid;
+  grid-template-columns: 13ch auto;
+  row-gap: 0.2rem;
+}
+@media (max-width: 640px) {
+  .walk-page--details {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
 }
 
 .bus-section, .start-location {
@@ -36,13 +55,13 @@
   background-color: var(--border);
   border-radius: 0.3rem;
   cursor: pointer;
-  user-select: none;
 }
 .bus-block:hover::after {
   content: attr(fromtext);
   position: absolute;
   color: var(--copy);
   background-color: var(--foreground);
+  border-radius: 0.3rem;
   bottom: 105%;
   left: 50%;
   transform: translateX(-50%);
@@ -55,12 +74,19 @@
   width: min(550px, 80%);
   aspect-ratio: 1;
 }
+@media (max-width: 720px) {
+  .walk-page--map-container {
+    width: 95%;
+    margin: auto;
+  }
+}
 
 
 .walk-page--steps-section {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  width: 98%;
 
   margin: 3rem 0;
   padding: 0 0.5rem;
@@ -78,10 +104,15 @@
   background-color: var(--background);
   padding: 0 0.5ch 0 0.3ch;
 
-  font-size: 2rem;
+  /* font-size: 2rem; */
   font-weight: 700;
 
   position: absolute;
   top: -0.6lh;
   left: 1ch;
+}
+
+.walk-page--extra-details {
+  padding: 0 2rem;
+  padding-bottom: 2rem;
 }

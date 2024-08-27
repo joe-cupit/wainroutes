@@ -65,7 +65,7 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
               anchor={point.geometry.coordinates}
               onClick={() => {
                 setCenter(point.geometry.coordinates);
-                if (clusterItems.length > 1) setZoom(supercluster.getClusterExpansionZoom(point.id)+1.5);
+                if (clusterItems.length > 1) setZoom(supercluster.getClusterExpansionZoom(point.id)+1);
                 else setZoom(z => 15);
               }}
       >

@@ -2,19 +2,21 @@
   "the-fairfield-horseshoe": {
     "slug": "the-fairfield-horseshoe",
     "name": "The Fairfield Horseshoe",
+    "date": "2024-01-27",
 
     "length": 17.85,
     "total_elevation": 1027,
+    "estimated_time": "4:30-5:30",
     "wainwrights": ["low-pike", "high-pike-e", "dove-crag", "hart-crag", "fairfield", "great-rigg", "heron-pike", "nab-scar"],
 
-    "start_lat_lang": [54.4337000, -2.9630070],
+    "start_lat_lang": [54.4337, -2.9630],
     "start_grid_reference": "NY376046",
     "start_what_three_words": ["markets", "download", "tutorial"],
     "start_post_code": "LA22 9BJ",
     "gpx": [["lat1", "lang1"], ["lat2", "lang2"], ["more", "andmore"]],
     "elevation": ["list", "of", "elevation", "values"],
 
-    "intro": "A must do walk for those staying in or near Ambleside.",
+    "intro": "A must do walk for those staying in or near Ambleside, taking you over eight Wainwrights around the Fairfield valley.",
     "steps": {
       "Initial Ascent": "This walk begins in Ambleside and ascends slowly up to Low Pike.",
       "Across to High Pike": "Once conquering Low Pike, the goal moves over to High Pike.",
@@ -27,7 +29,7 @@
       "Final Descent": "A quick and easy decent down to Rydal church bus stop, where a bus can be used to travel in either direction, or a short road walk back to Ambleside."
     },
 
-    "busRoutes": [
+    "bus_routes": [
       ["505", "from Windermere/Coniston"],
       ["555", "from Windermere/Keswick"],
       ["599", "from Windermere"]  

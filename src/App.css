@@ -1,5 +1,5 @@
 .App {
-  width: min(1200px, 95%);
+  width: min(1200px, 93%);
   margin: auto;
 }
 
@@ -24,11 +24,11 @@ a:hover {
   font-weight: 800;
 }
 .text--subheading {
-  font-size: 30px;
+  font-size: 33px;
   font-weight: 600;
 }
 .text--subtext {
-  font-size: 23px;
+  font-size: 21px;
 }
 .text--default {
   font-size: 18px;
@@ -43,10 +43,11 @@ a:hover {
     line-height: 50px;
   }
   .text--subheading {
-    font-size: 26px;
+    font-size: 27px;
+    font-weight: 600;
   }
   .text--subtext {
-    font-size: 19px;
+    font-size: 18px;
   }
   .text--default {
     font-size: 16px;

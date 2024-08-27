@@ -45,7 +45,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: min(70%, 600px);
+  width: min(100%, 550px);
   margin: auto;
   font-weight: normal;
 }
@@ -60,6 +60,11 @@
   color: var(--primary);
   font-weight: 600;
 }
+/* @media (max-width: 720px) {
+  .home-page--links {
+    width: 100%;
+  }
+} */
 
 
 .home-page--map {

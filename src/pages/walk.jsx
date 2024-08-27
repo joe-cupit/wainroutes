@@ -9,10 +9,11 @@ import { useWalks } from "../hooks/useWalks";
 
 export function WalkPage() {
   const { slug } = useParams();
+  const walkData = useWalks(slug);
+  document.title = (walkData?.name ?? slug) + " | WainRoutes";
 
   const hillData = useHills();
 
-  const walkData = useWalks(slug);
   const [gpxPoints, setGpxPoints] = useState(null);
   useEffect(() => {
     fetch(`/gpx/${slug}.gpx`)
@@ -38,53 +39,52 @@ export function WalkPage() {
     : <>
       <header className="walk-page--header">
         <h1 className="walk-page--title text--heading">{walkData?.name}</h1>
-        {/* <p className="walk-page--intro text--default">{walkData?.intro}</p> */}
-        <p className="walk-page--intro walk-page--wainwrights text--subtext">
-          {/* Completing {walkData?.wainwrights?.length} Wainwrights:&nbsp; */}
+        <p className="walk-page--wainwrights text--subtext">
           {walkData?.wainwrights?.map((wain, index) => {
-            return (<Fragment key={index}><Link to={`/mountain/${wain}`} className="walk-page--mountain">{hillData ? hillData?.[wain]?.name : wain}</Link>, </Fragment>)
+            return (
+              <Fragment key={index}>
+                <Link to={`/mountain/${wain}`} className="walk-page--mountain">
+                  {hillData ? hillData?.[wain]?.name : wain}
+                </Link>
+                {index !== walkData?.wainwrights?.length-1 && ", "}
+              </Fragment>
+            )
           })}
         </p>
       </header>
 
       <section className="walk-page--details text--default">
-        <div className="length">
-          Length: {walkData?.length}km
-        </div>
-        <div className="elevation">
-          Total elevation: {walkData?.total_elevation}m
+        <div className="walk-page--details-grid">
+          <div className="length">Disatance:</div>
+          <div> {walkData?.length}km</div>
+
+          <div className="elevation">Total elevation:</div>
+          <div>{walkData?.total_elevation}m</div>
+
+          <div className="elevation">Estimated time:</div>
+          <div>{walkData?.estimated_time}</div>          
         </div>
 
-        <div className="start-location">
-          Start location:
-          <span>
+        <div className="walk-page--details-grid">
+          <div className="start-location">Start location:</div>
+          <div>
             <div>{walkData?.start_lat_lang?.join(", ")}</div>
-            <div>{walkData?.start_grid_reference}</div>
+            {/* <div>{walkData?.start_grid_reference}</div> */}
             <div>
               <Link to={`https://what3words.com/${walkData?.start_what_three_words?.join(".")}`} target="_blank">{walkData?.start_what_three_words?.join(".")}</Link>
             </div>
             <div>{walkData?.start_post_code}</div>
-          </span>
-        </div>
+          </div>
 
-        <div className="bus-section">
-          Bus connections:
-          <span className="bus-section--list">
-            {walkData?.busRoutes?.map((bus, index) => {
-              const number = bus[0];
-              const from = bus[1];
-              return (
-                <div key={index}
-                     className="bus-block text--secondary"
-                     fromtext={from}
-                     style={{"backgroundColor": `var(--bus-${number})`}}>
-                  {number}
-                </div>
-              )
-            })}
-          </span>
+          <div className="bus-section">Bus connections:</div>
+          <div className="bus-section--list">
+            <BusRoutes busRoutes={walkData?.bus_routes} />
+          </div>
         </div>
+      </section>
 
+      <section className="walk-page--intro text--default">
+        {walkData?.intro}
       </section>
 
       <section>
@@ -105,8 +105,32 @@ export function WalkPage() {
           )
         })}
       </section>
+
+      <section className="walk-page--extra-details">
+        {walkData?.date && <div><b>Date completed:</b> {new Date(walkData?.date).toLocaleDateString()}</div>}
+      </section>
       </>
     }
   </main>
+  )
+}
+
+
+function BusRoutes({ busRoutes }) {
+  return (
+  <>
+    {busRoutes?.map((bus, index) => {
+      const number = bus[0];
+      const from = bus[1];
+      return (
+        <div key={index}
+              className="bus-block text--secondary"
+              fromtext={from}
+              style={{"backgroundColor": `var(--bus-${number})`}}>
+          {number}
+        </div>
+      )
+    })}
+  </>
   )
 }

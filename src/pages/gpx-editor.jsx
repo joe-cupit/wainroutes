@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 
 export function EditorPage() {
 
+  document.title = "GPX Editor | WainRoutes";
+
   const [GPXPoints, setGPXPoints] = useState(null);
   const [geoJSON, setGeoJSON] = useState(null);
   const totalPoints = geoJSON?.[1]?.features?.length;
