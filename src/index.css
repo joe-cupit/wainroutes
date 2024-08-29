@@ -21,6 +21,8 @@
   --copy-white: #fcfbfb;
   --copy-black: #1d1a17;
 
+  --favourited: rgb(244, 200, 6);
+
   --nav-background: #2a2622;
   --nav-foreground: #453f39;
   --nav-copy: #f1efee;
@@ -43,6 +45,8 @@
   --copy: #fcfbfb;
   --copy-light: #ddd8d5;
   --copy-lighter: #afa49d;
+
+  --favourited: rgb(204, 168, 8);
 }
 
 ::selection {
@@ -86,4 +90,7 @@ img {
 
 b {
   font-weight: bold;
+}
+i {
+  font-style: italic;
 }

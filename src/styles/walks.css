@@ -1,0 +1,91 @@
+.walks-page--heading {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.walks-page--walks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.walks-page--walk-card {
+  position: relative;
+  display: flex;
+  gap: 0.6rem;
+  width: min(100%, 600px);
+  height: 8rem;
+
+  background: var(--foreground);
+  border: 2px solid var(--border);
+  border-radius: 0.3rem;
+
+  padding: 0.4rem;
+
+  cursor: pointer;
+}
+a.walks-page--walk-card:hover {
+  color: inherit;
+  transform: translate(2px, -2px);
+}
+
+.walks-page--walk-card-fav {
+  position: absolute;
+  width: 1.6rem;
+
+  fill: var(--foreground);
+  stroke: var(--copy);
+  stroke-width: 1.25;
+
+  top: 0.6rem;
+  right: 0.5rem;
+}
+.walk-card--favourited {
+  fill: var(--favourited);
+}
+
+.walks-page--walk-image {
+  height: 100%;
+  aspect-ratio: 1;
+
+  background: #dee1b2;
+  border: 1px solid var(--border);
+}
+@media (max-width: 720px) {
+  .walks-page--walk-image {
+    width: 5rem;
+  }
+}
+
+.walks-page--walk-data {
+  min-width: 50px;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.walks-page--walk-title {
+  font-weight: 700;
+  transition: color .05s;
+  width: 92%;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.walks-page--walk-title:hover,
+.walks-page--walk-card:active .walks-page--walk-title {
+  color: var(--primary);
+}
+
+.walks-page--walk-hills {
+  white-space: nowrap;
+  overflow: hidden;
+
+  width: 100%;
+}
+
+.walks-page--walk-details {
+  margin-top: 2rem;
+  color: var(--copy-light);
+  font-weight: 600;
+}

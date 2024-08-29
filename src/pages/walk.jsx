@@ -12,7 +12,7 @@ export function WalkPage() {
   const walkData = useWalks(slug);
   document.title = (walkData?.name ?? slug) + " | wainroutes";
 
-  const hillData = useHills();
+  const hillData = useHills(null);
 
   const [gpxPoints, setGpxPoints] = useState(null);
   useEffect(() => {
@@ -89,7 +89,7 @@ export function WalkPage() {
 
       <section>
         <div className="walk-page--map-container">
-          <LakeMap gpxPoints={gpxPoints} >
+          <LakeMap gpxPoints={gpxPoints} defaultCenter={walkData?.start_lat_lang} defaultZoom={14} >
             <GeoRoute points={gpxPoints} />
           </LakeMap>
         </div>

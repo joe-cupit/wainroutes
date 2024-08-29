@@ -31,6 +31,9 @@ a:hover {
   font-size: 33px;
   font-weight: 600;
 }
+.text--smallheading {
+  font-size: 28px;
+}
 .text--subtext {
   font-size: 21px;
 }
@@ -51,6 +54,9 @@ a:hover {
   }
   .text--subheading {
     font-size: 27px;
+  }
+  .text--smallheading {
+    font-size: 21px;
   }
   .text--subtext {
     font-size: 18px;

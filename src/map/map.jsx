@@ -12,6 +12,7 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
 
   const [center, setCenter] = useState(props.defaultCenter || [54.55, -3.09]);
   const [zoom, setZoom] = useState(props.defaultZoom || 11);
+  const [minZoom, setMinZoom] = useState(3);
   const onBoundsChanged = ({ center, zoom }) => {
     setCenter(center);
     setZoom(zoom);
@@ -41,8 +42,9 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
       [minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height], 0, 20, 256, true, true
     )
 
-    setCenter([center[0]+0.015, center[1]]);
+    setCenter([center[0]+(mapMarkers ? 0.015 : 0), center[1]]);
     setZoom(zoom*0.98);
+    setMinZoom(zoom*0.83);
   }, [mapPoints]);
 
 
@@ -96,7 +98,7 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
     <div id="lake-map" className={props.className ? "lake-map--container "+props.className : "lake-map--container"}>
       <Map className="lake-map"
            center={center} zoom={zoom}
-           zoomSnap={false}
+           minZoom={minZoom} zoomSnap={false}
            onBoundsChanged={onBoundsChanged}
            attributionPrefix={false}
            attribution={<Attribution />}

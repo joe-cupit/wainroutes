@@ -30,7 +30,28 @@
     "bus_routes": [
       ["505", "from Windermere/Coniston"],
       ["555", "from Windermere/Keswick"],
-      ["599", "from Windermere"]  
+      ["599", "from Windermere"]
+    ]
+  },
+  "the-fells-south-of-buttermere": {
+    "slug": "the-fells-south-of-buttermere",
+    "name": "The Fells South of Buttermere",
+    "date": "2024-08-14",
+
+    "length": 16.65,
+    "total_elevation": 1012,
+    "estimated_time": "5:00-6:00",
+    "wainwrights": ["red-pike-b", "high-stile", "high-crag", "haystacks"],
+
+    "start_lat_lang": [54.540899 , -3.277522],
+    "start_grid_reference": "NY174169",
+    "start_what_three_words": "unlocking.cackling.vanished",
+    "start_post_code": "CA13 9UZ",
+
+    "bus_routes": [
+      ["77", "from Keswick"],
+      ["77A", "from Keswick"],
+      ["77C", "from Keswick/Cockermouth"]
     ]
   }
 }
