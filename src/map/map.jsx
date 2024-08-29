@@ -1,8 +1,9 @@
 import "../styles/map.css";
 
-import { useEffect, useMemo, useState } from "react";
-import { Map, Marker, GeoJson, ZoomControl } from "pigeon-maps";
+import { Fragment, useEffect, useMemo, useState } from "react";
+import { Map, Marker, GeoJson, ZoomControl, GeoJsonFeature } from "pigeon-maps";
 import { useSupercluster } from "./useSupercluster";
+import { Link } from "react-router-dom";
 const geoViewport = require('@mapbox/geo-viewport');
 
 
@@ -15,17 +16,6 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
     setCenter(center);
     setZoom(zoom);
   }
-
-  const supercluster = useSupercluster(mapMarkers);
-  const [markers, setMarkers] = useState(null);
-  useEffect(() => {
-    if (supercluster === null) return;
-
-    setMarkers(
-      supercluster?.getClusters([54, -4, 55, -2], zoom)
-        ?.sort((a, b) => b?.geometry?.coordinates?.[0] - a?.geometry?.coordinates?.[0])
-    );
-  }, [supercluster, zoom])
 
   const mapPoints = useMemo(() => {
     return [...(mapMarkers ?? []).map(m => m.coordinates), 
@@ -48,36 +38,57 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
 
     const mapBounds = document.getElementById("lake-map").getBoundingClientRect()
     const { center, zoom } = geoViewport.viewport(
-      [minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height], 0, 20, 256, true
+      [minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height], 0, 20, 256, true, true
     )
 
     setCenter([center[0]+0.015, center[1]]);
     setZoom(zoom*0.98);
   }, [mapPoints]);
 
-  const renderMarker = (point, key) => {
-    const clusterItems = (point?.properties?.cluster || false)
-      ? supercluster.getLeaves(point.id, Infinity)
-      : [point];
 
-    return (
-      <Marker key={key} className="lake-map--marker"
-              anchor={point.geometry.coordinates}
-              onClick={() => {
-                setCenter(point.geometry.coordinates);
-                if (clusterItems.length > 1) setZoom(supercluster.getClusterExpansionZoom(point.id)+1);
-                else setZoom(z => 15);
-              }}
-      >
-        <div className="lake-map--cluster">
-          {clusterItems.map((item, index) => {
-            return item.properties.type === "hill"
-              ? <HillIcon key={index} book={item.properties.book} />
-              : <WalkIcon key={index} />
-          })}
-        </div>
-      </Marker>
-    )
+  const supercluster = useSupercluster(mapMarkers);
+  const [markers, setMarkers] = useState(null);
+  useEffect(() => {
+    if (supercluster === null) return;
+
+    setMarkers(
+      supercluster?.getClusters([54, -4, 55, -2], zoom)
+        ?.sort((a, b) => b?.geometry?.coordinates?.[0] - a?.geometry?.coordinates?.[0])
+    );
+  }, [supercluster, zoom])
+
+  const renderMarker = (point, key) => {
+    try {
+      const clusterItems = (point?.properties?.cluster || false)
+        ? supercluster.getLeaves(point.id, Infinity)
+        : [point];
+
+      return (
+        <Marker key={key} className="lake-map--marker"
+                anchor={point.geometry.coordinates}
+                onClick={() => {
+                  setCenter(point.geometry.coordinates);
+                  if (clusterItems.length > 1) setZoom(supercluster.getClusterExpansionZoom(point.id)+1);
+                  else {
+                    console.log("show details for", point?.properties?.name);
+                    if (zoom < 11.5) setZoom(11.5);
+                  }
+                }}
+        >
+          <div className="lake-map--cluster">
+            {clusterItems.map((item, index) => {
+              return item.properties.type === "hill"
+                ? <HillIcon key={index} book={item.properties.book} />
+                : <WalkIcon key={index} />
+            })}
+          </div>
+        </Marker>
+      )
+
+    } catch (e) {
+      console.log("cluster error\n", e);
+      return <Fragment key={key}></Fragment>
+    }
   }
 
 
@@ -87,6 +98,8 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
            center={center} zoom={zoom}
            zoomSnap={false}
            onBoundsChanged={onBoundsChanged}
+           attributionPrefix={false}
+           attribution={<Attribution />}
       >
         {markers?.map(renderMarker)}
         {props.children}
@@ -101,24 +114,25 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
 export function GeoRoute ({ points, ...props }) {
 
   const data = useMemo(() => ({
-    type: "FeatureCollection",
-    features: [{
-        type: "Feature",
-        geometry: {
-          type: "LineString",
-          coordinates: points
-        }
-    }]
+      type: "Feature",
+      geometry: {
+        type: "LineString",
+        coordinates: points
+      }
    }), [points])
 
+  return (points && (
+    <GeoJson styleCallback={() => ({ className: "lake-map--route" })} {...props}>
+      <GeoJsonFeature feature={data} />
+    </GeoJson>
+  ))
+}
+
+function Attribution () {
   return (
-    points && (
-      <GeoJson
-        data={data}
-        styleCallback={() => ({ className: "lake-map--route" })}
-        {...props}
-      />
-    )
+    <div className="lake-map--attribution">
+      <Link to="https://pigeon-maps.js.org/" target="_blank">Pigeon</Link> | © <Link to="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</Link> contributors
+    </div>
   )
 }
 

@@ -1,19 +1,7 @@
-import { useEffect, useState } from "react"
+import walkData from "../assets/walkData.json";
 
 
 export const useWalks = (slug) => {
-  const [walkData, setWalkData] = useState(null);
-
-  useEffect(() => {
-    if (!slug) return;
-
-    fetch("/walks/walkdata.json")
-      .then(res => res.json())
-      .then(data => {
-        setWalkData(data[slug]);
-        console.log("got walk data");
-      })
-  }, [slug]);
-
-  return walkData
+  if (slug === null) return walkData;
+  else return walkData[slug];
 }

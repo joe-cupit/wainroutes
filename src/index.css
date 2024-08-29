@@ -19,6 +19,7 @@
   --copy-light: #70655c;
   --copy-lighter: #988b81;
   --copy-white: #fcfbfb;
+  --copy-black: #1d1a17;
 
   --nav-background: #2a2622;
   --nav-foreground: #453f39;
@@ -42,6 +43,15 @@
   --copy: #fcfbfb;
   --copy-light: #ddd8d5;
   --copy-lighter: #afa49d;
+}
+
+::selection {
+  color: var(--primary-content);
+  background: var(--primary);
+}
+::-moz-selection {
+  color: var(--primary-content);
+  background: var(--primary);
 }
 
 body {

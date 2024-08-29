@@ -1,17 +1,6 @@
-import { useEffect, useState } from "react"
+import hillData from "../assets/hillData.json";
 
 
 export const useHills = () => {
-  const [hillData, setHillData] = useState(null);
-
-  useEffect(() => {
-    fetch("/mountains/wainwrights.json")
-      .then(res => res.json())
-      .then(data => {
-        setHillData(data);
-        console.log("got wainwright data");
-      })
-  }, []);
-
   return hillData
 }

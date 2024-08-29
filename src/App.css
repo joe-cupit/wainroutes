@@ -19,6 +19,10 @@ a:hover {
 }
 
 
+.text--title {
+  font-size: 72px;
+  font-weight: 1000;
+}
 .text--heading {
   font-size: 60px;
   font-weight: 800;
@@ -38,13 +42,15 @@ a:hover {
 }
 
 @media (max-width: 720px) {
+  .text--title {
+    font-size: 54px;
+  }
   .text--heading {
     font-size: 50px;
     line-height: 50px;
   }
   .text--subheading {
     font-size: 27px;
-    font-weight: 600;
   }
   .text--subtext {
     font-size: 18px;

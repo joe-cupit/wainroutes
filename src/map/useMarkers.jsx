@@ -1,5 +1,6 @@
-import { useMemo, useEffect, useState } from "react"
+import { useMemo } from "react"
 import { useHills } from "../hooks/useHills";
+import { useWalks } from "../hooks/useWalks";
 
 
 export const useHillMarkers = (filters=null) => {
@@ -10,6 +11,8 @@ export const useHillMarkers = (filters=null) => {
         coordinates: [hill.latitude, hill.longitude],
         properties: {
           type: "hill",
+          slug: hill.slug,
+          name: hill.name,
           book: hill.book
         }
       }))
@@ -21,22 +24,19 @@ export const useHillMarkers = (filters=null) => {
 
 
 export const useWalkMarkers = (filters=null) => {
+  const walkData = useWalks(null);
 
-  const [walkData, setWalkData] = useState([]);
+  const walkMarkers = useMemo(() => walkData 
+    ? Object.values(walkData).map(walk => ({
+        coordinates: walk.start_lat_lang,
+        properties: {
+          type: "walk",
+          slug: walk.slug,
+          name: walk.name
+        }
+      }))
+    : []
+  , [walkData]);
 
-  useEffect(() => {
-    fetch("/walks/walkstarts.json")
-      .then(res => res.json())
-      .then(data => {
-        setWalkData(data.map(walk => ({
-          coordinates: [walk.latitude, walk.longitude],
-          properties: {
-            type: "walk"
-          }
-        })));
-        console.log("got walk starts");
-      })
-  }, [])
-
-  return walkData
+  return walkMarkers
 }

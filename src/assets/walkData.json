@@ -11,10 +11,8 @@
 
     "start_lat_lang": [54.4337, -2.9630],
     "start_grid_reference": "NY376046",
-    "start_what_three_words": ["markets", "download", "tutorial"],
+    "start_what_three_words": "markets.download.tutorial",
     "start_post_code": "LA22 9BJ",
-    "gpx": [["lat1", "lang1"], ["lat2", "lang2"], ["more", "andmore"]],
-    "elevation": ["list", "of", "elevation", "values"],
 
     "intro": "A must do walk for those staying in or near Ambleside, taking you over eight Wainwrights around the Fairfield valley.",
     "steps": {

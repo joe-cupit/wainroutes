@@ -78,3 +78,14 @@
 .walk-marker {
   fill: lightblue;
 }
+
+.lake-map--attribution {
+  cursor: default;
+}
+.lake-map--attribution a {
+  color: var(--copy-black);
+  font-weight: 600;
+}
+.lake-map--attribution a:hover {
+  text-decoration: underline;
+}

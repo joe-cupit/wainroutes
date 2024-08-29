@@ -1,3 +1,14 @@
 .hill-page--header {
+  display: flex;
+  gap: 0.5rem;
+
   padding: 1rem 0;
+}
+
+.hill-page--marker {
+  display: inline-block;
+  width: 6rem;
+  
+  stroke-width: 1;  
+  stroke: var(--copy);
 }

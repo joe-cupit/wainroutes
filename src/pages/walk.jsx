@@ -10,13 +10,13 @@ import { useWalks } from "../hooks/useWalks";
 export function WalkPage() {
   const { slug } = useParams();
   const walkData = useWalks(slug);
-  document.title = (walkData?.name ?? slug) + " | WainRoutes";
+  document.title = (walkData?.name ?? slug) + " | wainroutes";
 
   const hillData = useHills();
 
   const [gpxPoints, setGpxPoints] = useState(null);
   useEffect(() => {
-    fetch(`/gpx/${slug}.gpx`)
+    fetch(`/tmp/${slug}.gpx`)
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
       .then(doc => {
@@ -71,7 +71,7 @@ export function WalkPage() {
             <div>{walkData?.start_lat_lang?.join(", ")}</div>
             {/* <div>{walkData?.start_grid_reference}</div> */}
             <div>
-              <Link to={`https://what3words.com/${walkData?.start_what_three_words?.join(".")}`} target="_blank">{walkData?.start_what_three_words?.join(".")}</Link>
+              <Link to={`https://what3words.com/${walkData?.start_what_three_words}`} target="_blank">{walkData?.start_what_three_words}</Link>
             </div>
             <div>{walkData?.start_post_code}</div>
           </div>

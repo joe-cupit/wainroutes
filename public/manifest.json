@@ -1,8 +1,8 @@
 {
-  "short_name": "Wainwright Walks",
+  "short_name": "wainroutes",
   "name": "Wainwright Walks Website",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#eb873c",
+  "background_color": "#2a2622"
 }
