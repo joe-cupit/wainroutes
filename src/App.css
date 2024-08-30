@@ -19,6 +19,13 @@ a:hover {
 }
 
 
+
+.font--body {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 .text--title {
   font-size: 72px;
   font-weight: 1000;

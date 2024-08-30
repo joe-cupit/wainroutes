@@ -55,8 +55,8 @@ export function WalkPage() {
 
       <section className="walk-page--details text--default">
         <div className="walk-page--details-grid">
-          <div className="length">Disatance:</div>
-          <div> {walkData?.length}km</div>
+          <div className="length">Distance:</div>
+          <div> {walkData?.distance}km</div>
 
           <div className="elevation">Total elevation:</div>
           <div>{walkData?.total_elevation}m</div>

@@ -4,7 +4,7 @@
     "name": "The Fairfield Horseshoe",
     "date": "2024-01-27",
 
-    "length": 17.85,
+    "distance": 17.85,
     "total_elevation": 1027,
     "estimated_time": "4:30-5:30",
     "wainwrights": ["low-pike", "high-pike-e", "dove-crag", "hart-crag", "fairfield", "great-rigg", "heron-pike", "nab-scar"],
@@ -38,7 +38,7 @@
     "name": "The Fells South of Buttermere",
     "date": "2024-08-14",
 
-    "length": 16.65,
+    "distance": 16.65,
     "total_elevation": 1012,
     "estimated_time": "5:00-6:00",
     "wainwrights": ["red-pike-b", "high-stile", "high-crag", "haystacks"],
