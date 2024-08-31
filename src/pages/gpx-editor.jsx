@@ -1,30 +1,68 @@
 import "../styles/gpx-editor.css";
 
 import { Map, GeoJson, ZoomControl } from "pigeon-maps";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 
 export function EditorPage() {
 
   document.title = "GPX Editor | WainRoutes";
 
-  const [GPXPoints, setGPXPoints] = useState(null);
-  const [geoJSON, setGeoJSON] = useState(null);
-  const totalPoints = geoJSON?.[1]?.features?.length;
+  const [fullPoints, setFullPoints] = useState(null);
 
-  const [center, setCenter] = useState([54.45, -3.03])
-  const [zoom, setZoom] = useState(10)
-  const onBoundsChanged = ({ center, zoom }) => {
+  const [center, setCenter] = useState([54.45, -3.03]);
+  const [zoom, setZoom] = useState(10);
+  const [bounds, setBounds] = useState({ne: [55, 0], sw: [50, -4]});
+  const onBoundsChanged = ({ center, zoom, bounds }) => {
     setCenter(center);
     setZoom(zoom);
+    setBounds(bounds);
   }
 
-  const [samplingRate, setSamplingRate] = useState(100);
+  const [geoCoords, setGeoCoords] = useState(null);
+  const totalPoints = geoCoords?.length;
+
+  const geoLine = useMemo(() => (
+    geoCoords
+    ? {
+      type: "FeatureCollection",
+      features: [{
+          type: "Feature",
+          geometry: {
+            type: "LineString",
+            coordinates: geoCoords
+          }
+        }]
+      }
+    : null), [geoCoords]);
+  const geoPoints = useMemo(() => {
+    const inBounds = (point) => {
+      const maxBound = bounds.ne;
+      const minBound = bounds.sw;
+      
+      if (point[0] > maxBound[1] || point[0] < minBound[1]) return false;
+      if (point[1] > maxBound[0] || point[1] < minBound[0]) return false;
+      return true;
+    }
+
+    return {
+      type: "FeatureCollection",
+      features: geoCoords?.filter(inBounds)
+        .map(point => ({
+          type: "Feature",
+          geometry: {
+            type: "Point",
+            coordinates: point
+          }
+        }))
+    }}, [geoCoords, bounds])
+
+  const [samplingRate, setSamplingRate] = useState(10);
 
   // open gpx file (to be changed to user upload)
   useEffect(() => {
     // https://stackoverflow.com/a/65486570
-    fetch("/gpx/Fairfield_Horseshoe.gpx")
+    fetch("/tmp/the-fairfield-horseshoe.gpx")
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
       // .then(data => console.log(data))
@@ -41,64 +79,28 @@ export function EditorPage() {
           })
         })
 
-        setGPXPoints(points);
+        setFullPoints(points);
       })
   }, [])
 
   // update geoJSON based on current gpx points
   useEffect(() => {
-    if (GPXPoints === null) return
+    if (fullPoints === null) return;
 
-    let geoCoords = []
-    let geoPoints = []
+    let geoCoords = [];
 
     var validTime = new Date(0);
-    GPXPoints?.forEach((point, index) => {
+    fullPoints?.forEach(point => {
       if (point.time >= validTime) {
         geoCoords.push([point.lon, point.lat])
-        geoPoints.push({
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: [point.lon, point.lat]
-          }
-        })
-
         validTime = new Date(point.time.getTime() + samplingRate*1000);
       }
     })
-    const finalPoint = GPXPoints?.[GPXPoints?.length - 1]
+    const finalPoint = fullPoints?.[fullPoints?.length - 1]
     geoCoords.push([finalPoint.lon, finalPoint.lat])
-    geoPoints.push({
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [finalPoint.lon, finalPoint.lat]
-      }
-    })
 
-    let tmp = {
-      type: "FeatureCollection",
-      features: [
-        {
-          type: "Feature",
-          geometry: {
-            type: "LineString",
-            coordinates: geoCoords
-          }
-        }
-      ]
-    }
-
-    let tmp2 = {
-      type: "FeatureCollection",
-      features: [
-        ...geoPoints
-      ]
-    }
-
-    setGeoJSON([tmp, tmp2]);
-  }, [samplingRate, GPXPoints])
+    setGeoCoords(geoCoords);
+  }, [samplingRate, fullPoints])
 
   return (<>
     <MapNavbar
@@ -109,18 +111,18 @@ export function EditorPage() {
         <Map defaultCenter={[54.45, -3.03]} defaultZoom={10}
             center={center} zoom={zoom} zoomSnap={false}
             onBoundsChanged={onBoundsChanged} >
-          {geoJSON && <GeoJson
-            data={geoJSON?.[0]}
+          {geoLine && <GeoJson
+            data={geoLine}
             styleCallback={(feature, hover) => {
               return { strokeWidth: "3", stroke: "#eb873c" };
             }}
           />}
-          {geoJSON && (zoom >= 15) &&
+          {geoPoints && (zoom >= 15.5) &&
             <GeoJson
-              data={geoJSON?.[1]}
+              data={geoPoints}
               styleCallback={(feature, hover) => {
-                if (!hover) return { strokeWidth: "2", stroke: "#eb873c", r: zoom-11*(18/zoom) };
-                else return { strokeWidth: "2", stroke: "#eb873c", r: zoom-11*(18/zoom), fill: "#eb873c" };
+                if (!hover) return { strokeWidth: "2", stroke: "#eb873c", r: zoom-13*(17/zoom) };
+                else return { strokeWidth: "2", stroke: "black", r: zoom-13*(17/zoom), fill: "black" };
               }}
             />
           }
