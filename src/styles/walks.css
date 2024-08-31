@@ -11,8 +11,12 @@
 }
 
 .walks-page--walk-filters {
-  height: 25rem;
-  min-width: 13rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  height: 27rem;
+  min-width: 12rem;
   background: var(--foreground);
   border-radius: 0.2rem;
   padding: 0.7rem;
@@ -27,12 +31,36 @@
 .walks-page--walk-filters h3 {
   font-weight: 600;
 }
-.walks-page--walk-filters label {
+
+.walks-page--filter-choices {
+  margin-left: 0.2rem;
+}
+.walks-page--duration-filter {
+  display: block;
+  cursor: pointer;
+  transition: transform .1s;
+}
+.walks-page--duration-filter input {
+  display: none;
+}
+.walks-page--duration-filter:hover {
+  font-weight: 600;
+}
+.walks-page--duration-filter:has(input:checked) {
+  color: var(--primary);
+  font-weight: 600;
+  transform: translateX(3px);
+}
+
+.walks-page--type-filter {
   display: block;
   cursor: pointer;
   user-select: none;
 }
-
+.walks-page--type-filter:hover,
+.walks-page--type-filter:has(input:checked) {
+  font-weight: 600;
+}
 
 
 .walks-page--walk-list {
