@@ -34,6 +34,22 @@
     ],
     "tags": ["horseshoe"]
   },
+  "helvellyn-via-striding-edge": {
+    "slug": "helvellyn-via-striding-edge",
+    "name": "Helvellyn via Striding Edge",
+    "date": "2023-11-25",
+
+    "distance": 20.61,
+    "total_elevation": 921,
+    "estimated_time": "4:30-6:00",
+    "wainwrights": ["birkhouse-moor", "helvellyn", "catstycam"],
+
+    "bus_routes": [
+      ["508", "from Penrith/Windermere"],
+      ["509", "from Penrith/Keswick"]
+    ],
+    "tags": ["circular"]
+  },
   "the-fells-south-of-buttermere": {
     "slug": "the-fells-south-of-buttermere",
     "name": "The Fells South of Buttermere",
@@ -56,94 +72,33 @@
     ],
     "tags": ["point-to-point"]
   },
-  "castle-crag-with-millican-daltons-cave": {
-    "slug": "castle-crag-with-millican-daltons-cave",
-    "name": "Castle Crag with Millican Dalton's Cave",
-    "date": "2024-08-16",
+  "the-langdale-pikes": {
+    "slug": "the-langdale-pikes",
+    "name": "The Langdale Pikes",
+    "date": "2024-04-20",
 
-    "distance": 9.22,
-    "total_elevation": 284,
-    "estimated_time": "1:30-2:30",
-    "wainwrights": ["castle-crag"],
-
-    "bus_routes": [
-      ["78", "from Keswick"]
-    ],
-    "tags": ["there-and-back"]
-  },
-  "raven-crag": {
-    "slug": "raven-crag",
-    "name": "Raven Crag",
-    "date": "2024-08-16",
-
-    "distance": 3.96,
-    "total_elevation": 291,
-    "estimated_time": "0:45-1:15",
-    "wainwrights": ["raven-crag"],
-
-    "bus_routes": [],
-    "tags": ["there-and-back"]
-  },
-  "whinlatter-peak": {
-    "slug": "whinlatter-peak",
-    "name": "Whinlatter Peak",
-    "date": "2024-08-13",
-
-    "distance": 5.72,
-    "total_elevation": 244,
-    "estimated_time": "0:45-1:30",
-    "wainwrights": ["whinlatter"],
+    "distance": 11.63,
+    "total_elevation": 856,
+    "estimated_time": "3:00-5:30",
+    "wainwrights": ["pavey-ark", "thunacar-knott", "pike-of-stickle", "loft-crag", "harrison-stickle"],
 
     "bus_routes": [
-      ["77", "from Keswick"],
-      ["77A", "from Keswick"]
-    ],
-    "tags": ["there-and-back"]
-  },
-  "walla-crag": {
-    "slug": "walla-crag",
-    "name": "Walla Crag",
-    "date": "2024-08-12",
-
-    "distance": 6.95,
-    "total_elevation": 281,
-    "estimated_time": "1:30-2:30",
-    "wainwrights": ["walla-crag"],
-
-    "bus_routes": [],
-    "tags": ["there-and-back"]
-  },
-  "a-coledale-horseshoe": {
-    "slug": "a-coledale-horseshoe",
-    "name": "A Coledale Horseshoe",
-    "date": "2024-08-11",
-
-    "distance": 19.28,
-    "total_elevation": 1274,
-    "estimated_time": "4:30-6:00",
-    "wainwrights": ["grisedale-pike", "hopegill-head", "eel-crag", "sail", "outerside", "barrow"],
-
-    "bus_routes": [
-      ["77", "from Keswick"],
-      ["77A", "from Keswick"],
-      ["X5", "from Penrith"]
-    ],
-    "tags": ["horseshoe", "circular"]
-  },
-  "north-whinlatter-woods": {
-    "slug": "north-whinlatter-woods",
-    "name": "North Whinlatter Woods",
-    "date": "2024-06-11",
-
-    "distance": 12.75,
-    "total_elevation": 745,
-    "estimated_time": "3:00-4:00",
-    "wainwrights": ["barf", "lords-seat", "broom-fell"],
-
-    "bus_routes": [
-      ["X5", "from Keswick/Penrith"]
+      ["516", "from Ambleside"]
     ],
     "tags": ["circular"]
+  },
+  "the-kentmere-horseshoe": {
+    "slug": "the-kentmere-horseshoe",
+    "name": "The Kentmere Horseshoe",
+    "date": "2024-03-24",
+
+    "distance": 24.78,
+    "total_elevation": 1146,
+    "estimated_time": "6:00-8:00",
+    "wainwrights": ["yoke", "ill-bell", "froswick", "thornthwaite-crag", "high-street", "mardale-ill-bell", "harter-fell-fe", "kentmere-pike", "shipman-knotts"],
+
+    "bus_routes": [],
+    "tags": ["horseshoe", "circular"]
   },
   "great-gable": {
     "slug": "great-gable",
@@ -163,52 +118,35 @@
     ],
     "tags": ["circular"]
   },
-  "a-grasmere-round": {
-    "slug": "a-grasmere-round",
-    "name": "A Grasmere Round",
-    "date": "2024-05-31",
+  "a-coledale-horseshoe": {
+    "slug": "a-coledale-horseshoe",
+    "name": "A Coledale Horseshoe",
+    "date": "2024-08-11",
 
-    "distance": 20.42,
-    "total_elevation": 973,
-    "estimated_time": "5:30-7:00",
-    "wainwrights": ["helm-crag", "gibson-knott", "calf-crag", "high-raise-c", "sergeant-man", "blea-rigg", "silver-how"],
+    "distance": 19.28,
+    "total_elevation": 1274,
+    "estimated_time": "4:30-6:00",
+    "wainwrights": ["grisedale-pike", "hopegill-head", "eel-crag", "sail", "outerside", "barrow"],
 
     "bus_routes": [
-      ["555", "from Keswick/Windermere"],
-      ["599", "from Windermere"]
+      ["77", "from Keswick"],
+      ["77A", "from Keswick"],
+      ["X5", "from Penrith"]
     ],
-    "tags": ["circular", "horseshoe"]
+    "tags": ["horseshoe", "circular"]
   },
-  "the-langdale-pikes": {
-    "slug": "the-langdale-pikes",
-    "name": "The Langdale Pikes",
-    "date": "2024-04-20",
+  "scafell-pike": {
+    "slug": "scafell-pike",
+    "name": "Scafell Pike",
+    "date": "2021-09-01",
 
-    "distance": 11.63,
-    "total_elevation": 856,
-    "estimated_time": "3:00-5:30",
-    "wainwrights": ["pavey-ark", "thunacar-knott", "pike-of-stickle", "loft-crag"],
+    "distance": 9.57,
+    "total_elevation": 845,
+    "estimated_time": "3:00-4:30",
+    "wainwrights": ["scafell-pike"],
 
-    "bus_routes": [
-      ["516", "from Ambleside"]
-    ],
-    "tags": ["circular"]
-  },
-  "loughrigg-fell-with-rydal-cave": {
-    "slug": "loughrigg-fell-with-rydal-cave",
-    "name": "Loughrigg Fell with Rydal Cave",
-    "date": "2024-03-25",
-
-    "distance": 8.04,
-    "total_elevation": 349,
-    "estimated_time": "2:00-3:00",
-    "wainwrights": ["loughrigg-fell"],
-
-    "bus_routes": [
-      ["555", "from Keswick/Windermere"],
-      ["599", "from Windermere"]
-    ],
-    "tags": ["circular"]
+    "bus_routes": [],
+    "tags": ["there-and-back"]
   },
   "the-four-summits-of-dodd-wood": {
     "slug": "the-four-summits-of-dodd-wood",
@@ -227,47 +165,21 @@
     ],
     "tags": ["circular"]
   },
-  "latrigg": {
-    "slug": "latrigg",
-    "name": "Latrigg",
-    "date": "2024-03-28",
+  "a-grasmere-round": {
+    "slug": "a-grasmere-round",
+    "name": "A Grasmere Round",
+    "date": "2024-05-31",
 
-    "distance": 10.28,
-    "total_elevation": 328,
-    "estimated_time": "2:00-3:00",
-    "wainwrights": ["latrigg"],
-
-    "bus_routes": [],
-    "tags": ["there-and-back"]
-  },
-  "the-kentmere-horseshoe": {
-    "slug": "the-kentmere-horseshoe",
-    "name": "The Kentmere Horseshoe",
-    "date": "2024-03-24",
-
-    "distance": 24.78,
-    "total_elevation": 1146,
-    "estimated_time": "6:00-8:00",
-    "wainwrights": ["yoke", "ill-bell", "froswick", "thornthwaite-crag", "high-street", "mardale-ill-bell", "harter-fell-fe", "kentmere-pike", "shipman-knotts"],
-
-    "bus_routes": [],
-    "tags": ["horseshoe", "circular"]
-  },
-  "gowbarrow-fell-with-aira-force": {
-    "slug": "gowbarrow-fell-with-aira-force",
-    "name": "Gowbarrow Fell with Aira Force",
-    "date": "2024-03-23",
-
-    "distance": 3.98,
-    "total_elevation": 298,
-    "estimated_time": "1:00-2:00",
-    "wainwrights": ["gowbarrow-fell"],
+    "distance": 20.42,
+    "total_elevation": 973,
+    "estimated_time": "5:30-7:00",
+    "wainwrights": ["helm-crag", "gibson-knott", "calf-crag", "high-raise-c", "sergeant-man", "blea-rigg", "silver-how"],
 
     "bus_routes": [
-      ["509", "from Keswick"],
-      ["508", "from Penrith/Windermere"]
+      ["555", "from Keswick/Windermere"],
+      ["599", "from Windermere"]
     ],
-    "tags": ["there-and-back"]
+    "tags": ["circular", "horseshoe"]
   },
   "the-old-man-of-coniston": {
     "slug": "the-old-man-of-coniston",
@@ -284,6 +196,19 @@
     ],
     "tags": ["circular"]
   },
+  "raven-crag": {
+    "slug": "raven-crag",
+    "name": "Raven Crag",
+    "date": "2024-08-16",
+
+    "distance": 3.96,
+    "total_elevation": 291,
+    "estimated_time": "0:45-1:15",
+    "wainwrights": ["raven-crag"],
+
+    "bus_routes": [],
+    "tags": ["there-and-back"]
+  },
   "grisedale-tarn-with-surrounding-mountains": {
     "slug": "grisedale-tarn-with-surrounding-mountains",
     "name": "Grisedale Tarn with Surrounding Mountains",
@@ -295,22 +220,6 @@
     "wainwrights": ["dollywaggon-pike", "nethermost-pike", "seat-sandal"],
 
     "bus_routes": [],
-    "tags": ["circular"]
-  },
-  "helvellyn-via-striding-edge": {
-    "slug": "helvellyn-via-striding-edge",
-    "name": "Helvellyn via Striding Edge",
-    "date": "2023-11-25",
-
-    "distance": 20.61,
-    "total_elevation": 921,
-    "estimated_time": "4:30-6:00",
-    "wainwrights": ["birkhouse-moor", "helvellyn", "catstycam"],
-
-    "bus_routes": [
-      ["508", "from Penrith/Windermere"],
-      ["509", "from Penrith/Keswick"]
-    ],
     "tags": ["circular"]
   },
   "skiddaw": {
@@ -341,6 +250,50 @@
     ],
     "tags": ["point-to-point"]
   },
+  "walla-crag": {
+    "slug": "walla-crag",
+    "name": "Walla Crag",
+    "date": "2024-08-12",
+
+    "distance": 6.95,
+    "total_elevation": 281,
+    "estimated_time": "1:30-2:30",
+    "wainwrights": ["walla-crag"],
+
+    "bus_routes": [],
+    "tags": ["there-and-back"]
+  },
+  "north-whinlatter-woods": {
+    "slug": "north-whinlatter-woods",
+    "name": "North Whinlatter Woods",
+    "date": "2024-06-11",
+
+    "distance": 12.75,
+    "total_elevation": 745,
+    "estimated_time": "3:00-4:00",
+    "wainwrights": ["barf", "lords-seat", "broom-fell"],
+
+    "bus_routes": [
+      ["X5", "from Keswick/Penrith"]
+    ],
+    "tags": ["circular"]
+  },
+  "loughrigg-fell-with-rydal-cave": {
+    "slug": "loughrigg-fell-with-rydal-cave",
+    "name": "Loughrigg Fell with Rydal Cave",
+    "date": "2024-03-25",
+
+    "distance": 8.04,
+    "total_elevation": 349,
+    "estimated_time": "2:00-3:00",
+    "wainwrights": ["loughrigg-fell"],
+
+    "bus_routes": [
+      ["555", "from Keswick/Windermere"],
+      ["599", "from Windermere"]
+    ],
+    "tags": ["circular"]
+  },
   "catbells-from-keswick": {
     "slug": "catbells-from-keswick",
     "name": "Catbells from Keswick",
@@ -354,17 +307,64 @@
     "bus_routes": [],
     "tags": ["there-and-back"]
   },
-  "scafell-pike": {
-    "slug": "scafell-pike",
-    "name": "Scafell Pike",
-    "date": "2021-09-01",
+  "latrigg": {
+    "slug": "latrigg",
+    "name": "Latrigg",
+    "date": "2024-03-28",
 
-    "distance": 9.57,
-    "total_elevation": 845,
-    "estimated_time": "3:00-4:30",
-    "wainwrights": ["scafell-pike"],
+    "distance": 10.28,
+    "total_elevation": 328,
+    "estimated_time": "2:00-3:00",
+    "wainwrights": ["latrigg"],
 
     "bus_routes": [],
+    "tags": ["there-and-back"]
+  },
+  "castle-crag-with-millican-daltons-cave": {
+    "slug": "castle-crag-with-millican-daltons-cave",
+    "name": "Castle Crag with Millican Dalton's Cave",
+    "date": "2024-08-16",
+
+    "distance": 9.22,
+    "total_elevation": 284,
+    "estimated_time": "1:30-2:30",
+    "wainwrights": ["castle-crag"],
+
+    "bus_routes": [
+      ["78", "from Keswick"]
+    ],
+    "tags": ["there-and-back"]
+  },
+  "gowbarrow-fell-with-aira-force": {
+    "slug": "gowbarrow-fell-with-aira-force",
+    "name": "Gowbarrow Fell with Aira Force",
+    "date": "2024-03-23",
+
+    "distance": 3.98,
+    "total_elevation": 298,
+    "estimated_time": "1:00-2:00",
+    "wainwrights": ["gowbarrow-fell"],
+
+    "bus_routes": [
+      ["509", "from Keswick"],
+      ["508", "from Penrith/Windermere"]
+    ],
+    "tags": ["there-and-back"]
+  },
+  "whinlatter-peak": {
+    "slug": "whinlatter-peak",
+    "name": "Whinlatter Peak",
+    "date": "2024-08-13",
+
+    "distance": 5.72,
+    "total_elevation": 244,
+    "estimated_time": "0:45-1:30",
+    "wainwrights": ["whinlatter"],
+
+    "bus_routes": [
+      ["77", "from Keswick"],
+      ["77A", "from Keswick"]
+    ],
     "tags": ["there-and-back"]
   }
 }

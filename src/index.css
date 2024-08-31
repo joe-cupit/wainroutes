@@ -59,13 +59,16 @@
 }
 
 body {
-  font-family: "Urbanist", sans-serif;
+  /* font-family: "Urbanist", sans-serif; */
+  font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1.125rem;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  scrollbar-gutter: stable both-edges;
 
   min-height: calc(100vh - 1rem);;
   background: var(--background);

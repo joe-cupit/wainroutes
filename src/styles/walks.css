@@ -1,13 +1,35 @@
+.walks-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
 .walks-page--heading {
   text-align: center;
   margin: 1rem 0;
 }
 
+.walks-page--walk-list-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.walks-page--top-info {
+  color: var(--copy-light);
+}
+.walks-page--sort {
+  align-self: flex-end;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
 .walks-page--walks {
   display: flex;
+  align-items: flex-start;
   gap: 1rem;
-  width: min(100%, 950px);
-  margin: auto;
+  width: 100%;
 }
 
 .walks-page--walk-filters {
@@ -15,7 +37,6 @@
   flex-direction: column;
   gap: 0.5rem;
 
-  height: 27rem;
   min-width: 12rem;
   background: var(--foreground);
   border-radius: 0.2rem;
@@ -63,30 +84,28 @@
 }
 
 
+.walks-page--no-matches {
+  text-align: center;
+  margin-top: 1rem;
+}
+
 .walks-page--walk-list {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  flex-grow: 1;
-}
-
-.walks-page--sort {
-  align-self: flex-end;
-  width: 10rem;
+  flex: 1;
 }
 
 .walks-page--walk-card {
   position: relative;
   display: flex;
   gap: 0.6rem;
-  width: 100%;
 
   background: var(--foreground);
   border: 2px solid var(--border);
   border-radius: 0.3rem;
 
   padding: 0.4rem;
-
   cursor: pointer;
 }
 a.walks-page--walk-card:hover {
@@ -95,7 +114,7 @@ a.walks-page--walk-card:hover {
 }
 
 .walks-page--walk-card-fav {
-  position: absolute;
+  /* position: absolute;
   width: 1.6rem;
 
   fill: var(--foreground);
@@ -103,15 +122,17 @@ a.walks-page--walk-card:hover {
   stroke-width: 2;
 
   top: 0.6rem;
-  right: 0.5rem;
+  right: 0.5rem; */
 }
 .walk-card--favourited {
-  fill: var(--favourited);
+  /* fill: var(--favourited); */
 }
 
 .walks-page--walk-image {
-  min-width: 7rem;
-  max-width: 7rem;
+  min-width: 6rem;
+  max-width: 6rem;
+  min-height: 6rem;
+  max-height: 6rem;
   aspect-ratio: 1;
 
   background: #dee1b2;
@@ -119,20 +140,27 @@ a.walks-page--walk-card:hover {
 }
 @media (max-width: 720px) {
   .walks-page--walk-image {
-    width: 5rem;
+    display: none;
+    /* min-width: 4.5rem;
+    max-width: 4.5rem;
+    min-height: 4.5rem;
+    max-height: 4.5rem; */
+  }
+
+  .walks-page--walk-filters {
+    display: none;
   }
 }
 
 .walks-page--walk-data {
-  min-width: 50px;
-  flex-grow: 1;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .walks-page--walk-title {
   font-weight: 700;
   transition: color .05s;
-  width: 92%;
 
   white-space: nowrap;
   overflow: hidden;
@@ -144,10 +172,9 @@ a.walks-page--walk-card:hover {
 }
 
 .walks-page--walk-hills {
-  white-space: nowrap;
+  /* white-space: nowrap;
   overflow: hidden;
-
-  width: 100%;
+  text-overflow: ellipsis; */
 }
 
 .walks-page--walk-details {
@@ -156,6 +183,7 @@ a.walks-page--walk-card:hover {
   line-height: 1rem;
   font-weight: 900;
   margin-top: auto;
+  width: 100%;
 }
 .walks-page--walk-details span {
   margin: 0 0.4rem;
@@ -178,4 +206,11 @@ a.walks-page--walk-card:hover {
 .walks-page--walk-details span:last-child svg {
   margin-bottom: 4px;
   margin-left: 2px;
+}
+
+
+.walks-page--walk-list-bottom {
+  text-align: center;
+  margin: 0.5rem 0;
+  color: var(--copy-light);
 }

@@ -12,6 +12,8 @@ const previews = Object.fromEntries(previewImages.keys().map(image => [image.sub
 
 export function WalksPage() {
 
+  document.title = "Lake District Walks | wainroutes";
+
   const walkData = Object.values(useWalks(null));
   const [sortValue, setSortValue] = useState("recommended");
   const [filterValues, setFilterValues] = useState({
@@ -86,7 +88,11 @@ export function WalksPage() {
         <FilterSection filters={filterValues} setFilters={setFilterValues} />
 
         <div className="walks-page--walk-list">
-          <span className="walks-page--sort text--secondary font--body">
+        <div className="walks-page--walk-list-top">
+          <span className="walks-page--top-info text--secondary">
+            {filteredWalkData ? "Showing "+filteredWalkData.length+" of "+walkData.length+" walks" : ""}
+          </span>
+          <span className="walks-page--sort text--secondary">
             Sort by: 
             <select type="select" value={sortValue} onChange={(e) => setSortValue(e.target.value)}>
               <option value="recommended">Recommended</option>
@@ -98,13 +104,14 @@ export function WalksPage() {
               <option value="ele-dsc">Elevation (Dsc.)</option>
             </select>
           </span>
-
+        </div>
           {(sortedWalkData.length > 0)
           ? sortedWalkData?.map((walk, key) => {
-              return <WalkCard key={key} walk={walk} index={key} />
+              return <WalkCard key={key} walk={walk} />
             })
-          : "No walks match these filters."
+          : <div className="walks-page--no-matches text--subtext">No walks match these filters.</div>
           }
+          <div className="walks-page--walk-list-bottom">{filteredWalkData.length > 0 ? "• Showing "+filteredWalkData.length+" lovely walks in the Lake District •" : ""}</div>
         </div>
       </section>
 
@@ -132,7 +139,7 @@ function FilterSection({ filters, setFilters }) {
   }
 
   return (
-    <div className="walks-page--walk-filters text--secondary font--body">
+    <div className="walks-page--walk-filters text--secondary">
       <h2 className="text--subtext">Filter walks</h2>
 
       <div>
@@ -182,7 +189,7 @@ function FilterSection({ filters, setFilters }) {
 }
 
 
-function WalkCard({ walk, index }) {
+function WalkCard({ walk }) {
   const hills = [...walk?.wainwrights].sort((a, b) => hillData[b].height - hillData[a].height);
 
   const toggleFavourite = (e) => {
@@ -192,18 +199,18 @@ function WalkCard({ walk, index }) {
 
   return (
     <Link to={`/walk/${walk.slug}`} className="walks-page--walk-card">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+      {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
            className="walks-page--walk-card-fav"
            onClick={toggleFavourite}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-      </svg>
+      </svg> */}
 
-      <div className="walks-page--walk-image">
+      <div className="walks-page--walk-image text--secondary">
         <img src={previews[walk.slug]} alt={walk.name + " preview"} loading="lazy" />
       </div>
       <div className="walks-page--walk-data">
         <h3 className="walks-page--walk-title text--smallheading" title={walk?.name}>{walk?.name}</h3>
-        <p className="walks-page--walk-hills text--default font--body">{hills?.map((hill, index) => {
+        <p className="walks-page--walk-hills text--default">{hills?.map((hill, index) => {
           return (
             <Fragment key={index}>
               {index !== 0 && ", "}
@@ -212,7 +219,7 @@ function WalkCard({ walk, index }) {
           )
         })} {/* hills?.slice(3).length > 0 && <i>(and {hills?.slice(3).length} more)</i> */}
         </p>
-        <p className="walks-page--walk-details text--secondary font--body">
+        <p className="walks-page--walk-details text--secondary">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" viewBox="0 0 100 125">
               <circle cx="46" cy="12.6" r="10.1"/>

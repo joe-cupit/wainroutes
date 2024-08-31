@@ -12,7 +12,8 @@ export function HomePage() {
   const walkMarkers = useWalkMarkers();
 
   const mapMarkers = useMemo(() => {
-    return [...(hillMarkers ?? []), ...(walkMarkers ?? [])]
+    // return [...(hillMarkers ?? []), ...(walkMarkers ?? [])]
+    return [...(hillMarkers ?? [])]
   }, [hillMarkers, walkMarkers])
 
   return (
@@ -20,7 +21,7 @@ export function HomePage() {
 
     <header>
       <h1 className="home-page--title text--title">wain<span className="home-page--title-wright">wright:</span>routes</h1>
-      <div className="home-page--links text--subtext">
+      <div className="home-page--links text--subtext font--urbanist">
         <Link to="/walks">walks</Link>
         <Link to="/mountains">mountains</Link>
         <Link to="/weather">weather</Link>

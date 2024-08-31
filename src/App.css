@@ -20,26 +20,33 @@ a:hover {
 
 
 
-.font--body {
+/* .font--body {
   font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+} */
+.font--urbanist {
+  font-family: "Urbanist", sans-serif;
 }
 
 .text--title {
   font-size: 72px;
   font-weight: 1000;
+  font-family: "Urbanist", sans-serif;
 }
 .text--heading {
   font-size: 60px;
   font-weight: 800;
+  font-family: "Urbanist", sans-serif;
 }
 .text--subheading {
   font-size: 33px;
   font-weight: 600;
+  font-family: "Urbanist", sans-serif;
 }
 .text--smallheading {
   font-size: 28px;
+  font-family: "Urbanist", sans-serif;
 }
 .text--subtext {
   font-size: 21px;

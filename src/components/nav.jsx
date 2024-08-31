@@ -15,7 +15,7 @@ export function Navbar() {
   }
 
   return (
-    <nav id="navbar" className="navbar">
+    <nav id="navbar" className="navbar font--urbanist">
       <div className="navbar--left">
         <button className="navbar--button navbar--mobile">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">

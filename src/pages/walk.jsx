@@ -77,7 +77,7 @@ export function WalkPage() {
           </div>
 
           <div className="bus-section">Bus connections:</div>
-          <div className="bus-section--list">
+          <div className="bus-section--list font--urbanist">
             <BusRoutes busRoutes={walkData?.bus_routes} />
           </div>
         </div>
