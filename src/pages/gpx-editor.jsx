@@ -1,6 +1,6 @@
 import "../styles/gpx-editor.css";
 
-import { Map, GeoJson, ZoomControl } from "pigeon-maps";
+import { Map, GeoJson, ZoomControl, Draggable, GeoJsonFeature } from "pigeon-maps";
 import { useEffect, useState, useMemo } from "react";
 
 
@@ -9,54 +9,6 @@ export function EditorPage() {
   document.title = "GPX Editor | WainRoutes";
 
   const [fullPoints, setFullPoints] = useState(null);
-
-  const [center, setCenter] = useState([54.45, -3.03]);
-  const [zoom, setZoom] = useState(10);
-  const [bounds, setBounds] = useState({ne: [55, 0], sw: [50, -4]});
-  const onBoundsChanged = ({ center, zoom, bounds }) => {
-    setCenter(center);
-    setZoom(zoom);
-    setBounds(bounds);
-  }
-
-  const [geoCoords, setGeoCoords] = useState(null);
-  const totalPoints = geoCoords?.length;
-
-  const geoLine = useMemo(() => (
-    geoCoords
-    ? {
-      type: "FeatureCollection",
-      features: [{
-          type: "Feature",
-          geometry: {
-            type: "LineString",
-            coordinates: geoCoords
-          }
-        }]
-      }
-    : null), [geoCoords]);
-  const geoPoints = useMemo(() => {
-    const inBounds = (point) => {
-      const maxBound = bounds.ne;
-      const minBound = bounds.sw;
-      
-      if (point[0] > maxBound[1] || point[0] < minBound[1]) return false;
-      if (point[1] > maxBound[0] || point[1] < minBound[0]) return false;
-      return true;
-    }
-
-    return {
-      type: "FeatureCollection",
-      features: geoCoords?.filter(inBounds)
-        .map(point => ({
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: point
-          }
-        }))
-    }}, [geoCoords, bounds])
-
   const [samplingRate, setSamplingRate] = useState(10);
 
   // open gpx file (to be changed to user upload)
@@ -102,10 +54,62 @@ export function EditorPage() {
     setGeoCoords(geoCoords);
   }, [samplingRate, fullPoints])
 
+  const [center, setCenter] = useState([54.45, -3.03]);
+  const [zoom, setZoom] = useState(10);
+  const [bounds, setBounds] = useState({ne: [55, 0], sw: [50, -4]});
+  const onBoundsChanged = ({ center, zoom, bounds }) => {
+    setCenter(center);
+    setZoom(zoom);
+    setBounds(bounds);
+  }
+
+  const [geoCoords, setGeoCoords] = useState(null);
+  const totalPoints = geoCoords?.length;
+
+  const geoLine = useMemo(() => (
+    geoCoords
+    ? {
+      type: "FeatureCollection",
+      features: [{
+          type: "Feature",
+          geometry: {
+            type: "LineString",
+            coordinates: geoCoords
+          }
+        }]
+      }
+    : null
+  ), [geoCoords]);
+
+  const geoPoints = useMemo(() => {
+    const inBounds = (point) => {
+      let coords = point[1];
+      const maxBound = bounds.ne;
+      const minBound = bounds.sw;
+      
+      if (coords[1] > maxBound[1] || coords[1] < minBound[1]) return false;
+      if (coords[0] > maxBound[0] || coords[0] < minBound[0]) return false;
+      return true;
+    }
+
+    return geoCoords?.map((point, index) => [index, [point[1], point[0]]])?.filter(inBounds);
+  }, [geoCoords, bounds])
+
+  const moveGeoPoint = (index, anchor) => {
+    let newGeoCoords = [...geoCoords];
+
+    newGeoCoords[index] = [anchor[1], anchor[0]];
+
+    setGeoCoords(newGeoCoords);
+  }
+
   return (<>
     <MapNavbar
-      samplingRate={samplingRate} setSamplingRate={setSamplingRate}
-      totalPoints={totalPoints} />
+      samplingRate={samplingRate}
+      setSamplingRate={setSamplingRate}
+      totalPoints={totalPoints}
+    />
+    
     <main className="gpx-editor--main">
       <section className="gpx-editor--map-container">
         <Map defaultCenter={[54.45, -3.03]} defaultZoom={10}
@@ -113,18 +117,22 @@ export function EditorPage() {
             onBoundsChanged={onBoundsChanged} >
           {geoLine && <GeoJson
             data={geoLine}
-            styleCallback={(feature, hover) => {
+            styleCallback={() => {
               return { strokeWidth: "3", stroke: "#eb873c" };
             }}
           />}
           {geoPoints && (zoom >= 15.5) &&
-            <GeoJson
-              data={geoPoints}
-              styleCallback={(feature, hover) => {
-                if (!hover) return { strokeWidth: "2", stroke: "#eb873c", r: zoom-13*(17/zoom) };
-                else return { strokeWidth: "2", stroke: "black", r: zoom-13*(17/zoom), fill: "black" };
-              }}
-            />
+            geoPoints?.map(point => {
+              return (
+                <Draggable
+                  key={point[0]}
+                  className="gpx-editor--draggable"
+                  style={{width: zoom-13*(12/zoom)}}
+                  anchor={point[1]}
+                  onDragEnd={(anchor) => moveGeoPoint(point[0], anchor)}
+                />
+              )
+            })
           }
 
           <ZoomControl style={{ top: "4.75rem", left: "1.125rem" }} />

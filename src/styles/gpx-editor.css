@@ -28,6 +28,18 @@
   flex-grow: 1;
 }
 
+.gpx-editor--draggable {
+  width: 7px;
+  aspect-ratio: 1;
+  background: var(--primary);
+  border-radius: 30%;
+  border: 1px solid black;
+}
+.gpx-editor--draggable:hover {
+  background: var(--secondary);
+  transform: scale(2);
+}
+
 .gpx-editor--elevation {
   height: 0.5rem;
   background-color: var(--background);
