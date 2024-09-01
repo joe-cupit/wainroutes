@@ -7,25 +7,79 @@
 
 .gpx-editor--navbar {
   display: flex;
-  width: calc(100% - 2rem);
-  height: 3rem;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 1rem;
+
+  width: 2.2rem;
 
   position: absolute;
   z-index: calc(infinity);
-  padding: .6rem 1rem;
-  margin: 1rem;
-  border-radius: 0.5rem;
+  margin-left: 0.90rem;
+  margin-top: 7.5rem;
+}
 
-  color: var(--copy);
+.gpx-editor--navbar-section {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.2rem;
+  color: var(--copy-light);
   background: var(--foreground);
+  filter: drop-shadow(2px 2px 3px rgba(5, 5, 5, 0.25));
+}
+.gpx-editor--navbar-section button {
+  border-bottom: 1px solid var(--border);
+}
+.gpx-editor--navbar-section button:last-child {
+  border-bottom: none;
+}
+
+.gpx-editor--navbar-button {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.gpx-editor--navbar-button:hover {
+  background-color: var(--background);
+}
+.gpx-editor--navbar-button:active {
+  color: var(--primary);
+}
+.gpx-editor--navbar-button svg {
+  width: 55%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  margin-top: 20%;
+  margin-left: 2%;
+}
+
+.gpx-editor--navbar-button-info {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 9rem;
+  height: 100%;
+  color: var(--copy-light);
+  background: var(--foreground);
+}
+
+#gpx-input {
+  display: none;
 }
 
 .gpx-editor--map-container {
   width: 100%;
   flex-grow: 1;
+}
+
+.gpx-editor--line {
+  fill: none;
+  stroke: var(--map-gpx);
+  stroke-width: 3;
 }
 
 .gpx-editor--draggable {
@@ -34,10 +88,16 @@
   background: var(--primary);
   border-radius: 30%;
   border: 1px solid black;
+
+  transform-origin: 50% 50%;
+  transform: translate(-50%, -50%);
 }
 .gpx-editor--draggable:hover {
   background: var(--secondary);
-  transform: scale(2);
+  transform: scale(1.5) translate(-25%, -25%);
+}
+.gpx-editor--map-container.delete-mode .gpx-editor--draggable:hover {
+  background: var(--error);
 }
 
 .gpx-editor--elevation {
