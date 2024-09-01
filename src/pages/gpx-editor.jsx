@@ -1,10 +1,10 @@
 import "../styles/gpx-editor.css";
 
-import { Map, GeoJson, ZoomControl, Draggable, GeoJsonFeature } from "pigeon-maps";
+import { Map, GeoJson, ZoomControl, Draggable } from "pigeon-maps";
 import { useEffect, useState, useMemo } from "react";
 
-import { maptiler } from 'pigeon-maps/providers';
-const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2");
+// import { maptiler } from 'pigeon-maps/providers';
+// const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2");
 
 
 export function EditorPage() {
@@ -35,40 +35,55 @@ export function EditorPage() {
 
       var points = [];
 
-      const nodes = [...doc.getElementsByTagName("trkpt")];
+      const nodes = [...doc.getElementsByTagName("trkpt"), ...doc.getElementsByTagName("rtept")];
       nodes.forEach(node => {
         points.push({
           lat: parseFloat(node.getAttribute("lat")),
           lon: parseFloat(node.getAttribute("lon")),
-          ele: parseFloat(node.getElementsByTagName("ele")[0].textContent),
-          time: new Date(node.getElementsByTagName("time")[0].textContent)
+          ele: parseFloat(node.getElementsByTagName("ele")[0]?.textContent),
+          time: Date.parse(node.getElementsByTagName("time")[0]?.textContent)
         })
       })
 
-      setFullPoints(points);
+      if (isNaN(points[0].time)) {
+        setFullPoints(points.map(p => [p.lon, p.lat]))
+      } else {
+        let geoCoords = [];
+        var validTime = new Date(0);
+        points?.forEach(point => {
+          if (point.time >= validTime) {
+            geoCoords.push([point.lon, point.lat])
+            validTime = new Date(point.time + samplingRate*1000);
+          }
+        })
+        const finalPoint = points?.[points?.length - 1]
+        geoCoords.push([finalPoint.lon, finalPoint.lat])
+
+        setFullPoints(geoCoords);        
+      }
     }
 
     reader.readAsText(gpxFile);
-  }, [gpxFile])
+  }, [gpxFile, samplingRate])
 
   // update geoJSON based on current gpx points
-  useEffect(() => {
-    if (fullPoints === null) return;
+  // useEffect(() => {
+  //   if (fullPoints === null) return;
 
-    let geoCoords = [];
+  //   let geoCoords = [];
 
-    var validTime = new Date(0);
-    fullPoints?.forEach(point => {
-      if (point.time >= validTime) {
-        geoCoords.push([point.lon, point.lat])
-        validTime = new Date(point.time.getTime() + samplingRate*1000);
-      }
-    })
-    const finalPoint = fullPoints?.[fullPoints?.length - 1]
-    geoCoords.push([finalPoint.lon, finalPoint.lat])
+  //   var validTime = new Date(0);
+  //   fullPoints?.forEach(point => {
+  //     if (point.time >= validTime) {
+  //       geoCoords.push([point.lon, point.lat])
+  //       validTime = new Date(point.time.getTime() + samplingRate*1000);
+  //     }
+  //   })
+  //   const finalPoint = fullPoints?.[fullPoints?.length - 1]
+  //   geoCoords.push([finalPoint.lon, finalPoint.lat])
 
-    setGeoCoords(geoCoords);
-  }, [samplingRate, fullPoints])
+  //   setGeoCoords(geoCoords);
+  // }, [samplingRate, fullPoints])
 
   const [center, setCenter] = useState([54.45, -3.03]);
   const [zoom, setZoom] = useState(10);
@@ -80,23 +95,23 @@ export function EditorPage() {
   }
   const gpxPointWidth = useMemo(() => 2*zoom-24, [zoom])
 
-  const [geoCoords, setGeoCoords] = useState(null);
-  const totalPoints = geoCoords?.length;
+  // const [geoCoords, setGeoCoords] = useState(null);
+  const totalPoints = fullPoints?.length;
 
   const geoLine = useMemo(() => (
-    geoCoords
+    fullPoints
     ? {
       type: "FeatureCollection",
       features: [{
           type: "Feature",
           geometry: {
             type: "LineString",
-            coordinates: geoCoords
+            coordinates: fullPoints
           }
         }]
       }
     : null
-  ), [geoCoords]);
+  ), [fullPoints]);
 
   const geoPoints = useMemo(() => {
     const inBounds = (point) => {
@@ -109,23 +124,23 @@ export function EditorPage() {
       return true;
     }
 
-    return geoCoords?.map((point, index) => [index, [point[1], point[0]]])?.filter(inBounds);
-  }, [geoCoords, bounds])
+    return fullPoints?.map((point, index) => [index, [point[1], point[0]]])?.filter(inBounds);
+  }, [fullPoints, bounds])
 
   const [editMode, setEditMode] = useState("default");
 
   const moveGeoPoint = (index, anchor) => {
-    let newGeoCoords = [...geoCoords];
+    let newGeoCoords = [...fullPoints];
     newGeoCoords[index] = [anchor[1], anchor[0]];
 
-    setGeoCoords(newGeoCoords);
+    setFullPoints(newGeoCoords);
   }
 
   const delGeoPoint = (index) => {
-    let newGeoCoords = [...geoCoords];
+    let newGeoCoords = [...fullPoints];
     newGeoCoords.splice(index, 1);
 
-    setGeoCoords(newGeoCoords);
+    setFullPoints(newGeoCoords);
   }
 
   const handleDownloadFile = () => {
@@ -134,7 +149,7 @@ export function EditorPage() {
     // add metadata
 
     gpxText += "\n  <rte>";
-    for (let p of geoCoords) {
+    for (let p of fullPoints) {
       gpxText += `\n    <rtept lat="${p[1]}" lon="${p[0]}" />`;
     }
     gpxText += "\n  </rte>";
@@ -154,6 +169,7 @@ export function EditorPage() {
       totalPoints={totalPoints}
       handleUploadFile={handleUploadFile}
       handleDownloadFile={handleDownloadFile}
+      setEditMode={setEditMode}
     />
 
     <main className="gpx-editor--main">
@@ -198,15 +214,15 @@ export function EditorPage() {
 }
 
 
-function MapNavbar({ samplingRate, setSamplingRate, totalPoints, handleUploadFile, handleDownloadFile }) {
+function MapNavbar({ handleUploadFile, handleDownloadFile, setEditMode }) {
 
-  const updateSamplingRate = (e) => {
-    var newVal = e.target.value;
-    if (newVal < 1) newVal = 1;
-    if (newVal > 3600) newVal = 3600;
+  // const updateSamplingRate = (e) => {
+  //   var newVal = e.target.value;
+  //   if (newVal < 1) newVal = 1;
+  //   if (newVal > 3600) newVal = 3600;
 
-    setSamplingRate(parseFloat(newVal))
-  }
+  //   setSamplingRate(parseFloat(newVal))
+  // }
 
   return (
     <nav className="gpx-editor--navbar text--">
@@ -220,12 +236,12 @@ function MapNavbar({ samplingRate, setSamplingRate, totalPoints, handleUploadFil
       </div>
 
       <div className="gpx-editor--navbar-section">
-        <button className="gpx-editor--navbar-button" title="Add points">
+        <button className="gpx-editor--navbar-button" title="Add points" onClick={() => {setEditMode("default")}}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
           </svg>
         </button>
-        <button className="gpx-editor--navbar-button" title="Remove points">
+        <button className="gpx-editor--navbar-button" title="Remove points" onClick={() => {setEditMode("delete")}}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
           </svg>

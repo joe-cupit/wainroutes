@@ -96,7 +96,7 @@
   background: var(--secondary);
   transform: scale(1.5) translate(-25%, -25%);
 }
-.gpx-editor--map-container.delete-mode .gpx-editor--draggable:hover {
+.gpx-editor--map-container.delete-mode .gpx-editor--draggable {
   background: var(--error);
 }
 
