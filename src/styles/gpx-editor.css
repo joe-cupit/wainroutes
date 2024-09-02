@@ -52,6 +52,9 @@
 .gpx-editor--navbar-button:disabled:hover {
   background-color: inherit;
 }
+svg.flipped {
+  transform: scaleX(-1);
+}
 .gpx-editor--navbar-button svg {
   width: 55%;
   fill: none;

@@ -6,10 +6,31 @@ import { useEffect, useState, useMemo } from "react";
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2");
 
+const geoViewport = require('@mapbox/geo-viewport');
+
 
 export function EditorPage() {
 
   document.title = "GPX Editor | WainRoutes";
+
+  const zoomToFit = (coords) => {
+    let minLat = 999.0; let maxLat = -999.0;
+    let minLong = 999.0; let maxLong = -999.0;
+    for (let point of coords) {
+      const [long, lat] = point;
+      if (lat < minLat) minLat = lat;
+      if (lat > maxLat) maxLat = lat;
+      if (long < minLong) minLong = long;
+      if (long > maxLong) maxLong = long;
+    }
+
+    const mapBounds = document.getElementById("gpx-map").getBoundingClientRect()
+    const { center, zoom } = geoViewport.viewport(
+      [minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height], 0, 20, 256, true, true
+    )
+    setCenter(center);
+    setZoom(zoom*0.98);
+  }
 
   const [undoStack, setUndoStack] = useState([]);
   const [redoStack, setRedoStack] = useState([]);
@@ -18,6 +39,8 @@ export function EditorPage() {
     setUndoStack(prev => [...prev, newItem]);      
   }
   const popFromUndoStack = () => {
+    if (undoStack.length === 0) return;
+
     let prevStack = [...undoStack];
     let popped = prevStack.pop();
     setUndoStack(prevStack);
@@ -25,6 +48,8 @@ export function EditorPage() {
     setFullPoints(popped);
   }
   const popFromRedoStack = () => {
+    if (redoStack.length === 0) return;
+
     let prevStack = [...redoStack];
     let popped = prevStack.pop();
     setRedoStack(prevStack);
@@ -80,30 +105,12 @@ export function EditorPage() {
         geoCoords.push([finalPoint.lon, finalPoint.lat])
 
         setFullPoints(geoCoords);
+        zoomToFit(geoCoords);
       }
     }
 
     reader.readAsText(gpxFile);
   }, [gpxFile, samplingRate])
-
-  // update geoJSON based on current gpx points
-  // useEffect(() => {
-  //   if (fullPoints === null) return;
-
-  //   let geoCoords = [];
-
-  //   var validTime = new Date(0);
-  //   fullPoints?.forEach(point => {
-  //     if (point.time >= validTime) {
-  //       geoCoords.push([point.lon, point.lat])
-  //       validTime = new Date(point.time.getTime() + samplingRate*1000);
-  //     }
-  //   })
-  //   const finalPoint = fullPoints?.[fullPoints?.length - 1]
-  //   geoCoords.push([finalPoint.lon, finalPoint.lat])
-
-  //   setGeoCoords(geoCoords);
-  // }, [samplingRate, fullPoints])
 
   const [center, setCenter] = useState([54.45, -3.03]);
   const [zoom, setZoom] = useState(10);
@@ -200,10 +207,10 @@ export function EditorPage() {
     />
 
     <main className="gpx-editor--main">
-      <section className={(editMode === "delete") ? "delete-mode gpx-editor--map-container" : "gpx-editor--map-container"}>
+      <section id="gpx-map" className={(editMode === "delete") ? "delete-mode gpx-editor--map-container" : "gpx-editor--map-container"}>
         <Map defaultCenter={[54.45, -3.03]} defaultZoom={10}
             center={center} zoom={zoom} zoomSnap={false} // maxZoom={20}
-            onBoundsChanged={onBoundsChanged}
+            onBoundsChanged={onBoundsChanged} animateMaxScreens={1}
             className={(editMode === "delete") && "delete-mode"}
             // provider={maptilerProvider}
         >
@@ -264,17 +271,27 @@ function MapNavbar({ handleUploadFile, handleDownloadFile, setEditMode, undoStac
       </div>
 
       <div className="gpx-editor--navbar-section">
-        <button className="gpx-editor--navbar-button" title="Add points" onClick={() => {setEditMode("default")}}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        <button className="gpx-editor--navbar-button" title="Move points" onClick={() => {setEditMode("default")}}>
+          <svg style={{transform: "rotate(45deg)"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+          </svg>
+        </button>
+        <button className="gpx-editor--navbar-button" title="Add points" onClick={() => {setEditMode("add")}}>
+          <svg style={{transform: "rotate(45deg)"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
         </button>
         <button className="gpx-editor--navbar-button" title="Remove points" onClick={() => {setEditMode("delete")}}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
         </button>
-        <button className="gpx-editor--navbar-button" title="Reverse route direction">
+        <button className="gpx-editor--navbar-button" title="Trim points">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m7.848 8.25 1.536.887M7.848 8.25a3 3 0 1 1-5.196-3 3 3 0 0 1 5.196 3Zm1.536.887a2.165 2.165 0 0 1 1.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 1 1-5.196 3 3 3 0 0 1 5.196-3Zm1.536-.887a2.165 2.165 0 0 0 1.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863 2.077-1.199m0-3.328a4.323 4.323 0 0 1 2.068-1.379l5.325-1.628a4.5 4.5 0 0 1 2.48-.044l.803.215-7.794 4.5m-2.882-1.664A4.33 4.33 0 0 0 10.607 12m3.736 0 7.794 4.5-.802.215a4.5 4.5 0 0 1-2.48-.043l-5.326-1.629a4.324 4.324 0 0 1-2.068-1.379M14.343 12l-2.882 1.664" />
+          </svg>
+        </button>
+        <button className="gpx-editor--navbar-button" title="Reverse route direction" onClick={(e) => {e.target.classList.toggle("flipped")}}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
           </svg>
