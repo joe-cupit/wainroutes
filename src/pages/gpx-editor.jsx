@@ -2,6 +2,8 @@ import "../styles/gpx-editor.css";
 
 import { Map, GeoJson, ZoomControl, Draggable } from "pigeon-maps";
 import { useEffect, useState, useMemo } from "react";
+import haversine from "haversine-distance";
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2");
@@ -66,6 +68,11 @@ export function EditorPage() {
   const [fullPoints, setFullPoints] = useState(null);
   const [samplingRate, setSamplingRate] = useState(10);
 
+  const [dist, setDist] = useState(0);
+  const [elevation, setElevation] = useState(0);
+
+  const [elevationList, setElevationList] = useState([]);
+
   // open gpx file
   useEffect(() => {
     if (gpxFile === null || gpxFile === undefined) return;
@@ -80,8 +87,22 @@ export function EditorPage() {
 
       var points = [];
 
+      let dist = 0, elevation = 0;
+      let eleList = [];
+      let prevP = null, prevE = null;
       const nodes = [...doc.getElementsByTagName("trkpt"), ...doc.getElementsByTagName("rtept")];
       nodes.forEach(node => {
+        let point = [parseFloat(node.getAttribute("lon")), parseFloat(node.getAttribute("lat"))];
+        let ele = node.getElementsByTagName("ele")[0]?.textContent;
+        if (prevP !== null) {
+          dist += haversine(point, prevP);
+          if (ele > prevE) elevation += (ele - prevE);
+
+          eleList.push({dist: parseFloat(dist), ele: parseFloat(ele)});
+        }
+        prevP = point;
+        prevE = ele;
+
         points.push({
           lat: parseFloat(node.getAttribute("lat")),
           lon: parseFloat(node.getAttribute("lon")),
@@ -89,6 +110,12 @@ export function EditorPage() {
           time: Date.parse(node.getElementsByTagName("time")[0]?.textContent)
         })
       })
+
+
+      setElevationList(eleList);
+
+      setDist(dist);
+      setElevation(elevation)
 
       if (isNaN(points[0].time)) {
         setFullPoints(points.map(p => [p.lon, p.lat]));
@@ -206,6 +233,10 @@ export function EditorPage() {
       popFromRedoStack={popFromRedoStack}
     />
 
+    <div className="gpx-editor--gpx-info font--default font--urbanist">
+      Distance: {(dist/1000).toFixed(1)}km, Elevation: {elevation.toFixed(0)}m
+    </div>
+
     <main className="gpx-editor--main">
       <section id="gpx-map" className={(editMode === "delete") ? "delete-mode gpx-editor--map-container" : "gpx-editor--map-container"}>
         <Map defaultCenter={[54.45, -3.03]} defaultZoom={10}
@@ -241,8 +272,13 @@ export function EditorPage() {
 
       </section>
       <section className="gpx-editor--elevation">
-
-      </section>      
+        <LineChart width={1000} height={200} data={elevationList}>
+          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+          <XAxis dataKey="dist" label="Distance" unit="m" interval={500} />
+          <YAxis domain={[0, 1000]} label="Elevation" unit="m" />
+          <Line type="monotone" dataKey="ele" stroke="#82ca9d" strokeWidth={4} dot={false} />
+        </LineChart>
+      </section>
     </main>
 
   </>)

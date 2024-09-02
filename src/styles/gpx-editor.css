@@ -78,6 +78,29 @@ svg.flipped {
   display: none;
 }
 
+
+
+.gpx-editor--gpx-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+
+  height: 2.2rem;
+
+  position: absolute;
+  z-index: calc(infinity);
+  margin-left: 5rem;
+  margin-top: 1.3rem;
+  padding: 0.5rem;
+
+  border-radius: 0.2rem;
+  filter: drop-shadow(2px 2px 3px rgba(5, 5, 5, 0.25));
+  background: var(--foreground);
+}
+
+
+
 .gpx-editor--map-container {
   width: 100%;
   flex-grow: 1;
@@ -108,13 +131,14 @@ svg.flipped {
 }
 
 .gpx-editor--elevation {
-  height: 0.5rem;
+  height: 15rem;
   background-color: var(--background);
   border-top: 3px solid var(--border);
-  cursor: pointer;
+  /* cursor: pointer; */
+  padding: 1rem 4rem;
 
   transition: height .2s ease-out;
 }
-.gpx-editor--elevation:hover {
+/* .gpx-editor--elevation:hover {
   height: 15rem;
-}
+} */
