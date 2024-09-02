@@ -1,20 +1,12 @@
 .walk-page--header {
   text-align: left;
-  padding: 1rem 0;
 }
-/* .walk-page--title {
-  font-size: 4rem;
-  font-weight: 700;
-} */
 .walk-page--mountain {
   white-space: nowrap;
 }
 
 .walk-page--intro {
-  /* font-size: 1.425rem; */
-  padding-top: 0.5rem;
-
-  margin: 0.5rem 0;
+  margin: 1.25rem 0;
 }
 
 .walk-page--details {
@@ -69,14 +61,35 @@
   padding: 0.2rem;
 }
 
+.walk-page--gpx-download {
+  color: var(--copy);
+  background: var(--primary);
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.5rem;
+  padding-bottom: 0;
+  cursor: pointer;
+  margin: 0.3rem;
+  margin-left: auto;
+}
+.walk-page--gpx-download:hover {
+  background: var(--primary-dark);
+}
+.walk-page--gpx-download svg {
+  height: 1.2lh;
+  aspect-ratio: 1;
+  vertical-align: middle;
+  padding-bottom: 0.3rem;
+}
 
 .walk-page--map-container {
-  width: min(550px, 80%);
-  aspect-ratio: 1;
+  width: min(700px, 80%);
+  aspect-ratio: 3/2;
 }
 @media (max-width: 720px) {
   .walk-page--map-container {
     width: 95%;
+    aspect-ratio: 1;
     margin: auto;
   }
 }

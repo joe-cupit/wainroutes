@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HomePage } from './pages/home';
 import { WalkPage } from './pages/walk';
 import { HillPage } from './pages/hill';
@@ -8,9 +8,15 @@ import { NotFoundPage } from './pages/notfound';
 import { Navbar } from './components/nav';
 import { EditorPage } from './pages/gpx-editor';
 import { WalksPage } from './pages/walks';
+import { useEffect } from 'react';
 
 
 function App() {
+
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (<>
   <Routes>

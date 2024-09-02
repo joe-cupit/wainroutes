@@ -46,12 +46,16 @@ export function WalkPage() {
                 <Link to={`/mountain/${wain}`} className="walk-page--mountain">
                   {hillData ? hillData?.[wain]?.name : wain}
                 </Link>
-                {index !== walkData?.wainwrights?.length-1 && ", "}
+                {index !== walkData?.wainwrights?.length-1 && " / "}
               </Fragment>
             )
           })}
         </p>
       </header>
+
+      <section className="walk-page--intro text--default">
+        {walkData?.intro}
+      </section>
 
       <section className="walk-page--details text--default">
         <div className="walk-page--details-grid">
@@ -61,14 +65,17 @@ export function WalkPage() {
           <div className="elevation">Total elevation:</div>
           <div>{walkData?.total_elevation}m</div>
 
+          <div className="elevation">Wainwrights:</div>
+          <div>{walkData?.wainwrights?.length}</div>
+
           <div className="elevation">Estimated time:</div>
-          <div>{walkData?.estimated_time}</div>          
+          <div>{walkData?.estimated_time}</div>
         </div>
 
         <div className="walk-page--details-grid">
           <div className="start-location">Start location:</div>
           <div>
-            <div>{walkData?.start_lat_lang?.join(", ")}</div>
+            <div>{walkData?.start_lat_lang?.[0]?.toFixed(3) + ", " + walkData?.start_lat_lang?.[1]?.toFixed(3)}</div>
             {/* <div>{walkData?.start_grid_reference}</div> */}
             <div>
               <Link to={`https://what3words.com/${walkData?.start_what_three_words}`} target="_blank">{walkData?.start_what_three_words}</Link>
@@ -83,15 +90,21 @@ export function WalkPage() {
         </div>
       </section>
 
-      <section className="walk-page--intro text--default">
-        {walkData?.intro}
-      </section>
-
       <section>
+        <button className="walk-page--gpx-download">
+          Download GPX
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clip-rule="evenodd"/>
+          </svg>
+        </button>
         <div className="walk-page--map-container">
           <LakeMap gpxPoints={gpxPoints} defaultCenter={walkData?.start_lat_lang} defaultZoom={14} >
             <GeoRoute points={gpxPoints} />
           </LakeMap>
+        </div>
+        <div className="walk-page--map-container" style={{height: "200px", background: "var(--foreground)", marginTop: "0.5rem", textAlign: "center", paddingTop: "80px", borderRadius: "0.3rem"}}>
+          Elevation div
         </div>
       </section>
 
@@ -119,18 +132,21 @@ export function WalkPage() {
 function BusRoutes({ busRoutes }) {
   return (
   <>
-    {busRoutes?.map((bus, index) => {
-      const number = bus[0];
-      const from = bus[1];
-      return (
-        <div key={index}
-              className="bus-block text--secondary"
-              fromtext={from}
-              style={{"backgroundColor": `var(--bus-${number})`}}>
-          {number}
-        </div>
-      )
-    })}
+    {busRoutes && busRoutes.length > 0
+    ? busRoutes.map((bus, index) => {
+        const number = bus[0];
+        const from = bus[1];
+        return (
+          <div key={index}
+                className="bus-block text--secondary"
+                fromtext={from}
+                style={{"backgroundColor": `var(--bus-${number})`}}>
+            {number}
+          </div>
+        )
+      })
+    : "None"
+    }
   </>
   )
 }
