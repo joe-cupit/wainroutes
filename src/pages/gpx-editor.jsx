@@ -11,10 +11,30 @@ export function EditorPage() {
 
   document.title = "GPX Editor | WainRoutes";
 
+  const [undoStack, setUndoStack] = useState([]);
+  const [redoStack, setRedoStack] = useState([]);
+  const pushToUndoStack = (newItem) => {
+    setRedoStack([]);
+    setUndoStack(prev => [...prev, newItem]);      
+  }
+  const popFromUndoStack = () => {
+    let prevStack = [...undoStack];
+    let popped = prevStack.pop();
+    setUndoStack(prevStack);
+    setRedoStack(prev => [...prev, [...fullPoints]])
+    setFullPoints(popped);
+  }
+  const popFromRedoStack = () => {
+    let prevStack = [...redoStack];
+    let popped = prevStack.pop();
+    setRedoStack(prevStack);
+    setUndoStack(prev => [...prev, [...fullPoints]])
+    setFullPoints(popped);
+  }
+
   const [gpxFile, setGpxFile] = useState(null);
 
   const handleUploadFile = (e) => {
-    console.log("here")
     setGpxFile(e.target.files[0]);
   }
 
@@ -46,7 +66,7 @@ export function EditorPage() {
       })
 
       if (isNaN(points[0].time)) {
-        setFullPoints(points.map(p => [p.lon, p.lat]))
+        setFullPoints(points.map(p => [p.lon, p.lat]));
       } else {
         let geoCoords = [];
         var validTime = new Date(0);
@@ -59,7 +79,7 @@ export function EditorPage() {
         const finalPoint = points?.[points?.length - 1]
         geoCoords.push([finalPoint.lon, finalPoint.lat])
 
-        setFullPoints(geoCoords);        
+        setFullPoints(geoCoords);
       }
     }
 
@@ -130,10 +150,13 @@ export function EditorPage() {
   const [editMode, setEditMode] = useState("default");
 
   const moveGeoPoint = (index, anchor) => {
+    if (editMode === "delete") return;
+
     let newGeoCoords = [...fullPoints];
     newGeoCoords[index] = [anchor[1], anchor[0]];
 
     setFullPoints(newGeoCoords);
+    pushToUndoStack([...fullPoints]);
   }
 
   const delGeoPoint = (index) => {
@@ -141,6 +164,7 @@ export function EditorPage() {
     newGeoCoords.splice(index, 1);
 
     setFullPoints(newGeoCoords);
+    pushToUndoStack([...fullPoints]);
   }
 
   const handleDownloadFile = () => {
@@ -170,6 +194,9 @@ export function EditorPage() {
       handleUploadFile={handleUploadFile}
       handleDownloadFile={handleDownloadFile}
       setEditMode={setEditMode}
+      undoStack={undoStack} redoStack={redoStack}
+      popFromUndoStack={popFromUndoStack}
+      popFromRedoStack={popFromRedoStack}
     />
 
     <main className="gpx-editor--main">
@@ -190,6 +217,7 @@ export function EditorPage() {
             geoPoints?.map(point => {
               return (
                 <Draggable
+                  pointer-events={null}
                   key={point[0]}
                   anchor={point[1]}
                   onDragEnd={(anchor) => moveGeoPoint(point[0], anchor)}
@@ -214,7 +242,7 @@ export function EditorPage() {
 }
 
 
-function MapNavbar({ handleUploadFile, handleDownloadFile, setEditMode }) {
+function MapNavbar({ handleUploadFile, handleDownloadFile, setEditMode, undoStack, popFromUndoStack, redoStack, popFromRedoStack }) {
 
   // const updateSamplingRate = (e) => {
   //   var newVal = e.target.value;
@@ -254,12 +282,12 @@ function MapNavbar({ handleUploadFile, handleDownloadFile, setEditMode }) {
       </div>
 
       <div className="gpx-editor--navbar-section">
-        <button className="gpx-editor--navbar-button" title="Undo">
+        <button className="gpx-editor--navbar-button" title="Undo" onClick={popFromUndoStack} disabled={undoStack.length === 0}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 9h13a5 5 0 0 1 0 10H7M3 9l4-4M3 9l4 4"/>
           </svg>
         </button>
-        <button className="gpx-editor--navbar-button" title="Redo">
+        <button className="gpx-editor--navbar-button" title="Redo" onClick={popFromRedoStack} disabled={redoStack.length === 0}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 9H8a5 5 0 0 0 0 10h9m4-10-4-4m4 4-4 4"/>
           </svg>

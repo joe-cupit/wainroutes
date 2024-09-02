@@ -45,8 +45,12 @@
 .gpx-editor--navbar-button:hover {
   background-color: var(--background);
 }
-.gpx-editor--navbar-button:active {
-  color: var(--primary);
+.gpx-editor--navbar-button:disabled {
+  color: var(--border);
+  cursor: default;
+}
+.gpx-editor--navbar-button:disabled:hover {
+  background-color: inherit;
 }
 .gpx-editor--navbar-button svg {
   width: 55%;
@@ -94,7 +98,7 @@
 }
 .gpx-editor--draggable:hover {
   background: var(--secondary);
-  transform: scale(1.5) translate(-25%, -25%);
+  /* transform: scale(1.5) translate(-25%, -25%); */
 }
 .gpx-editor--map-container.delete-mode .gpx-editor--draggable {
   background: var(--error);
