@@ -52,6 +52,13 @@
 .gpx-editor--navbar-button:disabled:hover {
   background-color: inherit;
 }
+.gpx-editor--navbar-button.active {
+  color: var(--primary-content);
+  background: var(--primary);
+}
+.gpx-editor--navbar-button.active:hover {
+  background: var(--primary-dark);
+}
 svg.flipped {
   transform: scaleX(-1);
 }
@@ -112,26 +119,38 @@ svg.flipped {
   stroke-width: 3;
 }
 
+.gpx-editor--draggable-container {
+  transform: translate(-50%, -50%);
+  padding-right: 10px;
+}
 .gpx-editor--draggable {
   width: 7px;
   aspect-ratio: 1;
   background: var(--primary);
   border-radius: 30%;
   border: 1px solid black;
-
-  transform-origin: 50% 50%;
-  transform: translate(-50%, -50%);
 }
-.gpx-editor--draggable:hover {
+.gpx-editor--draggable-container:hover .gpx-editor--draggable {
   background: var(--secondary);
-  /* transform: scale(1.5) translate(-25%, -25%); */
+  transform: scale(1.5);
 }
 .gpx-editor--map-container.delete-mode .gpx-editor--draggable {
   background: var(--error);
 }
 
+.gpx-editor--start-marker .gpx-editor--draggable,
+.gpx-editor--end-marker .gpx-editor--draggable {
+  background: var(--success);
+  border-radius: 50%;
+  transform: scale(1.75);
+}
+.gpx-editor--end-marker .gpx-editor--draggable {
+  background: var(--copy-light);
+}
+
 .gpx-editor--elevation {
   height: 15rem;
+  width: 100%;
   background-color: var(--background);
   border-top: 3px solid var(--border);
   /* cursor: pointer; */

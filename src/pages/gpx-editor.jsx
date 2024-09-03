@@ -8,8 +8,6 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2");
 
-const geoViewport = require('@mapbox/geo-viewport');
-
 
 export function EditorPage() {
 
@@ -185,22 +183,30 @@ export function EditorPage() {
 
   const [editMode, setEditMode] = useState("default");
 
+  const reverseGpxDirection = () => {
+    if (fullPoints === null) return;
+    console.log("flipping")
+
+    pushToUndoStack([...fullPoints]);
+    setFullPoints([...fullPoints].reverse());
+  }
+
   const moveGeoPoint = (index, anchor) => {
     if (editMode === "delete") return;
 
     let newGeoCoords = [...fullPoints];
     newGeoCoords[index] = [anchor[1], anchor[0]];
 
-    setFullPoints(newGeoCoords);
     pushToUndoStack([...fullPoints]);
+    setFullPoints(newGeoCoords);
   }
 
   const delGeoPoint = (index) => {
     let newGeoCoords = [...fullPoints];
     newGeoCoords.splice(index, 1);
 
-    setFullPoints(newGeoCoords);
     pushToUndoStack([...fullPoints]);
+    setFullPoints(newGeoCoords);
   }
 
   const handleDownloadFile = () => {
@@ -229,10 +235,12 @@ export function EditorPage() {
       totalPoints={totalPoints}
       handleUploadFile={handleUploadFile}
       handleDownloadFile={handleDownloadFile}
+      editMode={editMode}
       setEditMode={setEditMode}
       undoStack={undoStack} redoStack={redoStack}
       popFromUndoStack={popFromUndoStack}
       popFromRedoStack={popFromRedoStack}
+      reverseGpxDirection={reverseGpxDirection}
     />
 
     <div className="gpx-editor--gpx-info font--default font--urbanist">
@@ -240,19 +248,21 @@ export function EditorPage() {
     </div>
 
     <main className="gpx-editor--main">
-      <section id="gpx-map" className={(editMode === "delete") ? "delete-mode gpx-editor--map-container" : "gpx-editor--map-container"}>
+      <section id="gpx-map" className={"gpx-editor--map-container" + (editMode === "delete" ? " delete-mode" : "")}>
         <Map defaultCenter={[54.45, -3.03]} defaultZoom={10}
             center={center} zoom={zoom} zoomSnap={false} // maxZoom={20}
             onBoundsChanged={onBoundsChanged} animateMaxScreens={1}
             className={(editMode === "delete") && "delete-mode"}
             // provider={maptilerProvider}
         >
-          {geoLine && <GeoJson
-            data={geoLine}
-            styleCallback={() => {
-              return { className: "gpx-editor--line" };
-            }}
-          />}
+          {geoLine && 
+            <GeoJson
+              data={geoLine}
+              styleCallback={() => {
+                return { className: "gpx-editor--line" };
+              }}
+            />}
+
           {geoPoints && (zoom >= 15.5) &&
             geoPoints?.map(point => {
               return (
@@ -260,21 +270,63 @@ export function EditorPage() {
                   pointer-events={null}
                   key={point[0]}
                   anchor={point[1]}
+                  offset={[gpxPointWidth/2, gpxPointWidth/2]}
                   onDragEnd={(anchor) => moveGeoPoint(point[0], anchor)}
                   style={(editMode === "delete") && {cursor: "pointer"}}
+                  className={"gpx-editor--draggable-container" + (point[0] === 0 ? " gpx-editor--start-marker" : "") + (point[0] === fullPoints.length-1 ? " gpx-editor--end-marker" : "")}
                 >
                   <div className="gpx-editor--draggable" style={{width: gpxPointWidth}} onClick={() => {if (editMode === "delete") delGeoPoint(point[0])}} />
                 </Draggable>
               )
             })
           }
+          {fullPoints && (zoom < 15.5) &&
+            <Draggable
+              pointer-events={null}
+              key={0}
+              anchor={[fullPoints[0][1], fullPoints[0][0]]}
+              offset={[4, 4]}
+              onDragEnd={(anchor) => moveGeoPoint(0, anchor)}
+              style={(editMode === "delete") && {cursor: "pointer"}}
+              className={"gpx-editor--start-marker"}
+            >
+              <div className="gpx-editor--draggable" style={{width: "7px"}} onClick={() => {if (editMode === "delete") delGeoPoint(0)}} />
+            </Draggable>
+          }
+
+          {fullPoints && (zoom < 15.5) &&
+            <Draggable
+              pointer-events={null}
+              key={fullPoints.length-1}
+              anchor={[fullPoints[fullPoints.length-1][1], fullPoints[fullPoints.length-1][0]]}
+              offset={[4, 4]}
+              onDragEnd={(anchor) => moveGeoPoint(fullPoints.length-1, anchor)}
+              style={(editMode === "delete") && {cursor: "pointer"}}
+              className={"gpx-editor--end-marker"}
+            >
+              <div className="gpx-editor--draggable" style={{width: "7px"}} onClick={() => {if (editMode === "delete") delGeoPoint(fullPoints.length-1)}} />
+            </Draggable>
+          }
+
+          {/* {fullPoints &&
+            <GeoJson 
+              svgAttributes={{
+                fill: "green",
+                strokeWidth: "4",
+                stroke: "white",
+                r: "10",
+              }}>
+              <GeoJsonFeature className="gpx-editor--start-end start" feature={{type: "Feature", geometry: {type: "Point", coordinates: fullPoints[0]}}} />
+              <GeoJsonFeature className="gpx-editor--start-end end" feature={{type: "Feature", geometry: {type: "Point", coordinates: fullPoints[fullPoints.length-1]}}} />
+            </GeoJson>
+          } */}
 
           <ZoomControl style={{ top: "1.75rem", left: "1.125rem", transform: "scale(1.25)", filter: "drop-shadow(2px 2px 3px rgba(5, 5, 5, 0.25))" }} />
         </Map>
 
       </section>
       <section className="gpx-editor--elevation">
-        <LineChart width={1000} height={200} data={elevationList}>
+        <LineChart width={500} height={200} data={elevationList}>
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
           <XAxis dataKey="dist" label="Distance" unit="m" interval={500} />
           <YAxis domain={[0, 1000]} label="Elevation" unit="m" />
@@ -287,7 +339,7 @@ export function EditorPage() {
 }
 
 
-function MapNavbar({ handleUploadFile, handleDownloadFile, setEditMode, undoStack, popFromUndoStack, redoStack, popFromRedoStack }) {
+function MapNavbar({ handleUploadFile, handleDownloadFile, editMode, setEditMode, undoStack, popFromUndoStack, redoStack, popFromRedoStack, reverseGpxDirection }) {
 
   // const updateSamplingRate = (e) => {
   //   var newVal = e.target.value;
@@ -309,17 +361,17 @@ function MapNavbar({ handleUploadFile, handleDownloadFile, setEditMode, undoStac
       </div>
 
       <div className="gpx-editor--navbar-section">
-        <button className="gpx-editor--navbar-button" title="Move points" onClick={() => {setEditMode("default")}}>
+        <button className={"gpx-editor--navbar-button" + (editMode==="default" ? " active" : "")} title="Move points" onClick={() => {setEditMode("default")}}>
           <svg style={{transform: "rotate(45deg)"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
           </svg>
         </button>
-        <button className="gpx-editor--navbar-button" title="Add points" onClick={() => {setEditMode("add")}}>
+        <button className={"gpx-editor--navbar-button" + (editMode==="add" ? " active" : "")} title="Add points" onClick={() => {setEditMode("add")}}>
           <svg style={{transform: "rotate(45deg)"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
         </button>
-        <button className="gpx-editor--navbar-button" title="Remove points" onClick={() => {setEditMode("delete")}}>
+        <button className={"gpx-editor--navbar-button" + (editMode==="delete" ? " active" : "")} title="Remove points" onClick={() => {setEditMode("delete")}}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
@@ -329,7 +381,7 @@ function MapNavbar({ handleUploadFile, handleDownloadFile, setEditMode, undoStac
             <path strokeLinecap="round" strokeLinejoin="round" d="m7.848 8.25 1.536.887M7.848 8.25a3 3 0 1 1-5.196-3 3 3 0 0 1 5.196 3Zm1.536.887a2.165 2.165 0 0 1 1.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 1 1-5.196 3 3 3 0 0 1 5.196-3Zm1.536-.887a2.165 2.165 0 0 0 1.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863 2.077-1.199m0-3.328a4.323 4.323 0 0 1 2.068-1.379l5.325-1.628a4.5 4.5 0 0 1 2.48-.044l.803.215-7.794 4.5m-2.882-1.664A4.33 4.33 0 0 0 10.607 12m3.736 0 7.794 4.5-.802.215a4.5 4.5 0 0 1-2.48-.043l-5.326-1.629a4.324 4.324 0 0 1-2.068-1.379M14.343 12l-2.882 1.664" />
           </svg>
         </button>
-        <button className="gpx-editor--navbar-button" title="Reverse route direction" onClick={(e) => {e.target.classList.toggle("flipped")}}>
+        <button className="gpx-editor--navbar-button" title="Reverse route direction" onClick={(e) => {e.target.classList.toggle("flipped"); reverseGpxDirection();}}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
           </svg>
