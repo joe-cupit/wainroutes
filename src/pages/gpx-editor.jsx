@@ -2,8 +2,8 @@ import "../styles/gpx-editor.css";
 
 import { Map, GeoJson, ZoomControl, Draggable } from "pigeon-maps";
 import { useEffect, useState, useMemo } from "react";
-import haversine from "haversine-distance";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import haversine from "../assets/haversine";
 
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2");
