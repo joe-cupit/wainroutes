@@ -26,12 +26,14 @@ export function EditorPage() {
       if (long > maxLong) maxLong = long;
     }
 
-    const mapBounds = document.getElementById("gpx-map").getBoundingClientRect()
-    const { center, zoom } = geoViewport.viewport(
-      [minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height], 0, 20, 256, true, true
-    )
-    setCenter(center);
-    setZoom(zoom*0.98);
+    const mapBounds = document.getElementById("gpx-map").getBoundingClientRect();
+    let newcenter = [(minLat+maxLat)/2, (minLong+maxLong)/2]
+    let newzoom = -Math.max(Math.log((maxLat-minLat)/(mapBounds.height-160))/Math.log(2), Math.log((maxLong-minLong)/mapBounds.width)/Math.log(2))
+
+    setCenter(newcenter);
+    setZoom(newzoom);
+
+    // console.log(geoViewport.bounds(newcenter, newzoom, [mapBounds.width, mapBounds.height]))
   }
 
   const [undoStack, setUndoStack] = useState([]);
