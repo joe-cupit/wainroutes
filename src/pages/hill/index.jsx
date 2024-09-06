@@ -1,7 +1,8 @@
-import "../styles/hill.css";
+import "./index.css";
 
 import { useParams } from "react-router-dom";
-import { useHills } from "../hooks/useHills";
+
+import { useHills } from "../../hooks/useHills";
 
 
 const numbers = {
@@ -12,7 +13,7 @@ const titles = {
 }
 
 
-export function HillPage() {
+export default function HillPage() {
   const { slug } = useParams();
 
   const hillData = useHills(slug);

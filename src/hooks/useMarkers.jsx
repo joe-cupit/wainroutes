@@ -1,6 +1,6 @@
 import { useMemo } from "react"
-import { useHills } from "../hooks/useHills";
-import { useWalks } from "../hooks/useWalks";
+import { useHills } from "./useHills";
+import { useWalks } from "./useWalks";
 
 
 export const useHillMarkers = (filters=null) => {

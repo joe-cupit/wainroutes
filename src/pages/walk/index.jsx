@@ -1,10 +1,12 @@
-import "../styles/walk.css";
+import "./index.css";
 
-import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, Fragment } from "react";
-import { LakeMap, GeoRoute } from "../map/map";
-import { useHills } from "../hooks/useHills";
-import { useWalks } from "../hooks/useWalks";
+import { Link, useParams } from "react-router-dom";
+
+import { useHills } from "../../hooks/useHills";
+import { useWalks } from "../../hooks/useWalks";
+
+import { LakeMap, GeoRoute } from "../../components/map";
 
 
 export function WalkPage() {
@@ -16,7 +18,7 @@ export function WalkPage() {
 
   const [gpxPoints, setGpxPoints] = useState(null);
   useEffect(() => {
-    fetch(`/tmp/${slug}.gpx`)
+    fetch(`/gpx/${slug}.gpx`)
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
       .then(doc => {

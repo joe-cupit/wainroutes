@@ -1,10 +1,15 @@
-import "../styles/map.css";
+import "./index.css";
 
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { Map, Marker, GeoJson, ZoomControl, GeoJsonFeature } from "pigeon-maps";
-import { useSupercluster } from "./useSupercluster";
+import { useSupercluster } from "./hooks/useSupercluster";
 import { Link } from "react-router-dom";
+
+// import { maptiler } from 'pigeon-maps/providers';
+// const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2");
+
 const geoViewport = require('@mapbox/geo-viewport');
+
 
 
 // main component
@@ -45,6 +50,14 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
     setCenter([center[0]+(mapMarkers ? 0.015 : 0), center[1]]);
     setZoom(zoom*0.98);
     setMinZoom(zoom*0.83);
+
+    // const mapBounds = document.getElementById("lake-map").getBoundingClientRect();
+    // let newcenter = [(minLat+maxLat)/2, (minLong+maxLong)/2]
+    // let newzoom = -Math.max(Math.log((maxLat-minLat)/(mapBounds.width-150))/Math.log(2), Math.log((maxLong-minLong)/mapBounds.height)/Math.log(2))
+
+    // setCenter(newcenter);
+    // setZoom(newzoom);
+
   }, [mapPoints]);
 
 

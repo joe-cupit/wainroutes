@@ -1,12 +1,12 @@
-import "../styles/walks.css";
+import "./index.css";
 
-import { Link } from "react-router-dom";
-import { useWalks } from "../hooks/useWalks";
 import { Fragment, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
-import hillData from "../assets/hillData";
+import { useWalks } from "../../hooks/useWalks";
+import hillData from "../../assets/hillData";
 
-const previewImages = require.context("../assets/previews")
+const previewImages = require.context("../../assets/previews")
 const previews = Object.fromEntries(previewImages.keys().map(image => [image.substring(2, image.length-4), previewImages(image)]));
 
 

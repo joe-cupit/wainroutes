@@ -1,21 +1,22 @@
 import "./index.css";
 
-import { Map, GeoJson, ZoomControl, Draggable } from "pigeon-maps";
 import { useEffect, useState, useMemo } from "react";
+import { Map, GeoJson, ZoomControl, Draggable } from "pigeon-maps";
 
-import MapNavbar from "./components/MapNavbar";
+import useUndoStack from "./hooks/useUndoStack";
+import useOpenGpx from "./hooks/useOpenGpx";
 
 import haversine from "./utils/haversine";
 import zoomToFit from "./utils/zoomToFit";
 import buildXML from "./utils/buildXML";
-import useUndoStack from "./hooks/useUndoStack";
-import useOpenGpx from "./hooks/useOpenGpx";
+
+import MapNavbar from "./components/MapNavbar";
 
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "topo-v2");
 
 
-export function EditorPage() {
+export default function EditorApp() {
 
   document.title = "GPX Editor | WainRoutes";
 

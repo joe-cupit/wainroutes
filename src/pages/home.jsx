@@ -1,9 +1,9 @@
-import "../styles/home.css";
+import "./home.css";
 
 import { Link } from "react-router-dom";
-import { LakeMap } from "../map/map";
+import { LakeMap } from "../components/map";
 import { useMemo } from "react";
-import { useHillMarkers, useWalkMarkers } from "../map/useMarkers";
+import { useHillMarkers, useWalkMarkers } from "../hooks/useMarkers";
 
 
 export function HomePage() {
