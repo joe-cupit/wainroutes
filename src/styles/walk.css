@@ -61,6 +61,12 @@
   padding: 0.2rem;
 }
 
+.walk-page--route-section {
+  display: flex;
+  flex-direction: column;
+  width: min(600px, 100%);
+}
+
 .walk-page--gpx-download {
   color: var(--copy);
   background: var(--primary);
@@ -69,8 +75,8 @@
   padding: 0.2rem 0.5rem;
   padding-bottom: 0;
   cursor: pointer;
-  margin: 0.3rem;
-  margin-left: auto;
+  margin-bottom: 0.3rem;
+  align-self: flex-end;
 }
 .walk-page--gpx-download:hover {
   background: var(--primary-dark);
@@ -83,14 +89,18 @@
 }
 
 .walk-page--map-container {
-  width: min(700px, 80%);
-  aspect-ratio: 3/2;
+  width: 100%;
+  aspect-ratio: 5/4;
 }
 @media (max-width: 720px) {
   .walk-page--map-container {
-    width: 95%;
-    aspect-ratio: 1;
+    width: 100%;
     margin: auto;
+  }
+}
+@media (max-width: 450px) {
+  .walk-page--map-container {
+    aspect-ratio: 1;
   }
 }
 

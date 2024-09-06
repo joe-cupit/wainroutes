@@ -133,7 +133,7 @@
     "book": 7
   },
   "wansfell": {
-    "name": "Wansfell (Baystones)",
+    "name": "Wansfell",
     "height": 486.9,
     "heightFt": "1597.4",
     "gridReference": "NY403051",
@@ -145,7 +145,7 @@
     "book": 2
   },
   "beda-fell": {
-    "name": "Beda Fell (Beda Head)",
+    "name": "Beda Fell",
     "height": 509,
     "heightFt": "1669.94750656168",
     "gridReference": "NY428171",
@@ -517,7 +517,7 @@
     "book": 7
   },
   "eel-crag": {
-    "name": "Eel Crag (Crag Hill)",
+    "name": "Eel Crag",
     "height": 839,
     "heightFt": "2752.62467191601",
     "gridReference": "NY192203",
@@ -553,7 +553,7 @@
     "book": 6
   },
   "dodd": {
-    "name": "Dodd (Skiddaw)",
+    "name": "Dodd",
     "height": 502,
     "heightFt": "1646.98162729659",
     "gridReference": "NY244273",
@@ -733,7 +733,7 @@
     "book": 1
   },
   "grange-fell": {
-    "name": "Grange Fell (Brund Fell)",
+    "name": "Grange Fell",
     "height": 416,
     "heightFt": "1364.82939632546",
     "gridReference": "NY264162",
@@ -829,7 +829,7 @@
     "book": 5
   },
   "great-crag": {
-    "name": "Great Crag (Stonethwaite)",
+    "name": "Great Crag",
     "height": 449,
     "heightFt": "1473.09711286089",
     "gridReference": "NY270146",
@@ -937,7 +937,7 @@
     "book": 7
   },
   "grey-crag": {
-    "name": "Grey Crag (Sleddale Fell)",
+    "name": "Grey Crag",
     "height": 638,
     "heightFt": "2093.17585301837",
     "gridReference": "NY497072",
@@ -1501,7 +1501,7 @@
     "book": 4
   },
   "little-hart-crag": {
-    "name": "Little Hart Crag (Little Hart Crag-West Top)",
+    "name": "Little Hart Crag",
     "height": 637,
     "heightFt": "2089.89501312336",
     "gridReference": "NY387100",
@@ -2269,7 +2269,7 @@
     "book": 1
   },
   "caudale-moor": {
-    "name": "Caudale Moor (Stony Cove Pike)",
+    "name": "Caudale Moor",
     "height": 763,
     "heightFt": "2503.28083989501",
     "gridReference": "NY417100",
@@ -2329,7 +2329,7 @@
     "book": 2
   },
   "the-knott": {
-    "name": "The Knott (High Street)",
+    "name": "The Knott",
     "height": 739,
     "heightFt": "2424.5406824147",
     "gridReference": "NY437126",
@@ -2353,7 +2353,7 @@
     "book": 2
   },
   "coniston-old-man": {
-    "name": "The Old Man of Coniston (Coniston Old Man)",
+    "name": "The Old Man of Coniston",
     "height": 803,
     "heightFt": "2634.51443569554",
     "gridReference": "SD272978",
