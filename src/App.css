@@ -10,12 +10,42 @@
 } */
 
 
+.flex-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.flex-space {
+  justify-content: space-between;
+}
+.flex-vertical-center {
+  align-items: center;
+}
+
+
+.font-cursive {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+}
+
+.text-light {
+  color: var(--nav-copy-light);
+}
+
+
 a {
   text-decoration: none;
-  transition: all .1s ease-in-out;
+  transition: color .1s ease-in-out;
 }
 a:hover {
   color: var(--primary);
+}
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 
