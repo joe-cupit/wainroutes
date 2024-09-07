@@ -1,4 +1,34 @@
 :root {
+  --fs-200: 0.875rem;
+  --fs-400: 1rem;
+  --fs-600: 1.625rem;
+  --fs-800: 2rem;
+  --fs-1000: 4rem;
+
+  --fw-400: 400;
+  --fw-600: 600;
+  --fw-800: 700;
+
+  --ff-heading: "Urbanist", sans-serif;
+
+  --cl-primary: #eb873c;
+
+  --cl-text: #2a2622;
+  --cl-text-light: #70655c;
+}
+
+@media (max-width: 650px) {
+  :root {
+    --fs-200: 0.75rem;
+    --fs-400: 0.8125rem;
+    --fs-600: 1.5rem;
+    --fs-800: 1.375rem;
+    --fs-1000: 3rem;
+  }
+}
+
+
+:root {
   color-scheme: light;
 
   --primary: #eb873c;
@@ -99,6 +129,8 @@ body {
   background: var(--background);
   color: var(--copy);
   accent-color: var(--primary);
+
+  font-size: var(--fs-400);
 
   transition: .1s;
 }

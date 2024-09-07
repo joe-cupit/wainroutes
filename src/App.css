@@ -16,11 +16,27 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+.flex-column {
+  flex-direction: column;
+}
 .flex-space {
   justify-content: space-between;
 }
 .flex-vertical-center {
   align-items: center;
+}
+
+.grid-group {
+  display: grid;
+  gap: 1rem;
+}
+.two-columns {
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 650px) {
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
 }
 
 

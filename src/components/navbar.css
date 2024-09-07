@@ -1,4 +1,5 @@
 .navbar {
+  --fs-400: 1.1875rem;
   --cl-text: #f1efee;
   --cl-text-hover: #bbb6b1;
   --cl-background: #2a2622;
@@ -10,13 +11,17 @@
   top: 0.5rem;
   z-index: calc(infinity);
 
-  margin-inline: 0.5rem;
+  margin: 0.5rem;
   padding: 0.6rem 1rem;
 
   color: var(--cl-text);
   background: var(--cl-background);
 
   border-radius: var(--border-radius);
+
+  font-size: var(--fs-400);
+  font-weight: var(--fw-600);
+  font-family: var(--ff-heading);
 }
 
 .navbar a:hover {
@@ -28,7 +33,7 @@
 }
 .navbar-navtitle {
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: var(--fw-800);
   transform: translateY(-0.1rem);
 }
 

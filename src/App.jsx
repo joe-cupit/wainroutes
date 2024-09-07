@@ -7,7 +7,7 @@ import { Navbar } from './components/navbar';
 import { NotFoundPage } from './pages/error/notfound';
 
 import { HomePage } from './pages/home';
-import { WalksPage } from './pages/walklist';
+import { WalksPage } from './pages/WalksPage';
 import { WalkPage } from './pages/walk';
 import HillPage from './pages/hill';
 
