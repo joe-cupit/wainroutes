@@ -33,11 +33,6 @@
 .two-columns {
   grid-template-columns: 1fr 1fr;
 }
-@media (max-width: 650px) {
-  .two-columns {
-    grid-template-columns: 1fr;
-  }
-}
 
 
 .font-cursive {
@@ -70,7 +65,7 @@ button {
 }
 
 
-.text--title {
+/* .text--title {
   font-size: 72px;
   font-weight: 1000;
   font-family: "Urbanist", sans-serif;
@@ -122,7 +117,7 @@ button {
   .text--secondary {
     font-size: 14px;
   }
-}
+} */
 
 
 .font--body {

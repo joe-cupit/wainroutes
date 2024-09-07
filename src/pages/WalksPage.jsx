@@ -82,23 +82,23 @@ export function WalksPage() {
   }, [filteredWalkData, sortValue]);
 
   return (
-    <main className="walk-page grid-group">
+    <main className="walks-page grid-group">
       <h1>walks</h1>
 
-      <section className="walk-page_intro grid-group two-columns">
+      <section className="walks-page_intro grid-group two-columns">
         <LakeMap />
         <div>
           test
         </div>
       </section>
 
-      <section className="walk-page_walks grid-group">
+      <section className="walks-page_walks grid-group">
         <h2>All Walks</h2>
 
-        <input type="text" className="walk-page_search" placeholder="search for a walk..." />
+        <input type="text" className="walks-page_search" placeholder="search for a walk..." />
 
         <div className="flex-group flex-space flex-vertical-center">
-          <span className="walk-page_desktop-only">
+          <span className="walks-page_desktop-only">
             {filteredWalkData ? "Showing "+filteredWalkData.length+" of "+walkData.length+" walks" : ""}
           </span>
           <span>
@@ -114,7 +114,7 @@ export function WalksPage() {
             </select>
           </span>
         </div>
-        <div className="walk-page_list grid-group">
+        <div className="walks-page_list grid-group">
           {(sortedWalkData.length > 0)
           ? sortedWalkData?.map((walk, key) => {
               return <WalkCard key={key} walk={walk} />
@@ -142,7 +142,7 @@ export default function WalkCard({ walk }) {
   return (
     <Link to={`/walk/${walk.slug}`} className="walk-card flex-group">
 
-      <div className="walk-card_image walk-page_desktop-only">
+      <div className="walk-card_image walks-page_desktop-only">
         <img src={previews[walk.slug]} alt={walk.name + " preview"} loading="lazy" />
       </div>
 

@@ -1,26 +1,26 @@
 
-.walk-page h1, .walk-page h2 {
+.walks-page h1, .walks-page h2 {
   font-size: var(--fs-1000);
   font-weight: var(--fw-800);
   font-family: var(--ff-heading);
 }
 
-.walk-page_intro {
+.walks-page_intro {
   height: 25rem;
 }
 
-.walk-page_walks {
+.walks-page_walks {
   gap: 0.325em;
 }
 
-.walk-page_search {
+.walks-page_search {
   font-size: var(--fs-600);
   width: 90%;
   margin-inline: auto;
   margin-bottom: 1rem;
 }
 
-.walk-page_list {
+.walks-page_list {
   gap: 0.5rem;
 }
 
@@ -58,7 +58,7 @@
     --card-padding: 0.375rem;
     padding-left: calc(var(--card-padding)*1.5);
   }
-  .walk-page_desktop-only {
+  .walks-page_desktop-only {
     display: none;
   }
 }
@@ -73,7 +73,7 @@
   text-overflow: ellipsis;
 }
 .walk-card_text h3 {
-  font-size: var(--fs-800);
+  font-size: var(--fs-600);
   font-weight: var(--fw-800);
   font-family: var(--ff-heading);
 

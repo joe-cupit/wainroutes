@@ -1,12 +1,12 @@
-import "./index.css";
+import "./WalkPage.css";
 
 import { useState, useEffect, Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { useHills } from "../../hooks/useHills";
-import { useWalks } from "../../hooks/useWalks";
+import { useHills } from "../hooks/useHills";
+import { useWalks } from "../hooks/useWalks";
 
-import { LakeMap, GeoRoute } from "../../components/map";
+import { LakeMap, GeoRoute } from "../components/map";
 
 
 export function WalkPage() {
@@ -32,16 +32,10 @@ export function WalkPage() {
   }, [slug]);
 
   return (
-  <main className="walk-page">
-    {!walkData
-    ? <header className="walk-page--header">
-        <h1 className="walk-page--title text--heading">{"This walk doesn't {yet} exist"}</h1>
-        <p className="walk-page--intro text--default">Did you mean... ?</p>
-      </header>
-    : <>
-      <header className="walk-page--header">
-        <h1 className="walk-page--title text--heading">{walkData?.name}</h1>
-        <p className="walk-page--wainwrights text--subtext">
+    <main className="walk-page grid-group">
+      <header className="walk-page_heading">
+        <h1>{walkData?.name}</h1>
+        <p>
           {walkData?.wainwrights?.map((wain, index) => {
             return (
               <Fragment key={index}>
@@ -55,27 +49,27 @@ export function WalkPage() {
         </p>
       </header>
 
-      <section className="walk-page--intro text--default">
+      <section className="walk-page_intro">
         {walkData?.intro}
       </section>
 
-      <section className="walk-page--details text--default">
-        <div className="walk-page--details-grid">
-          <div className="length">Distance:</div>
+      <section className="walk-page_details grid-group two-columns">
+        <div className="walk-page_details-section grid-group two-columns">
+          <div>Distance:</div>
           <div> {walkData?.distance}km</div>
 
-          <div className="elevation">Total elevation:</div>
+          <div>Total elevation:</div>
           <div>{walkData?.total_elevation}m</div>
 
-          <div className="elevation">Wainwrights:</div>
+          <div>Wainwrights:</div>
           <div>{walkData?.wainwrights?.length}</div>
 
-          <div className="elevation">Estimated time:</div>
+          <div>Estimated time:</div>
           <div>{walkData?.estimated_time}</div>
         </div>
 
-        <div className="walk-page--details-grid">
-          <div className="start-location">Start location:</div>
+        <div className="walk-page_details-section grid-group two-columns">
+          <div>Start location:</div>
           <div>
             <div>{walkData?.start_lat_lang?.[0]?.toFixed(3) + ", " + walkData?.start_lat_lang?.[1]?.toFixed(3)}</div>
             {/* <div>{walkData?.start_grid_reference}</div> */}
@@ -85,48 +79,46 @@ export function WalkPage() {
             <div>{walkData?.start_post_code}</div>
           </div>
 
-          <div className="bus-section">Bus connections:</div>
-          <div className="bus-section--list font--urbanist">
+          <div>Bus connections:</div>
+          <div className="bus-group flex-group flex-vertical-center">
             <BusRoutes busRoutes={walkData?.bus_routes} />
           </div>
         </div>
       </section>
 
-      <section className="walk-page--route-section">
-        <button className="walk-page--gpx-download">
+      <section className="walk-page_map grid-group">
+        <button className="flex-group flex-vertical-center">
           Download GPX
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
             <path fillRule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clipRule="evenodd"/>
             <path fillRule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clipRule="evenodd"/>
           </svg>
         </button>
-        <div className="walk-page--map-container">
+        <div className="walk-page_map-map">
           <LakeMap gpxPoints={gpxPoints} defaultCenter={walkData?.start_lat_lang} defaultZoom={14} >
             <GeoRoute points={gpxPoints} />
           </LakeMap>
         </div>
-        <div style={{height: "200px", background: "var(--foreground)", marginTop: "0.5rem", textAlign: "center", paddingTop: "80px", borderRadius: "0.3rem"}}>
+        <div className="walk-page_map-elevation">
           Elevation div
         </div>
       </section>
 
-      <section className="walk-page--steps-section">
+      <section className="walk-page_steps grid-group">
         {walkData?.steps && Object.keys(walkData?.steps).map((step, index) => {
           return (
-            <div key={index} className="walk-page--step">
-              <h2 className="walk-page--step-title text--subheading">{step}</h2>
-              <p className="walk-page--step-content text--default">{walkData?.steps?.[step]}</p>
+            <div key={index} className="walk-page_steps-step">
+              <h2>{step}</h2>
+              <p>{walkData?.steps?.[step]}</p>
             </div>
           )
         })}
       </section>
 
-      <section className="walk-page--extra-details">
+      <section className="walk-page_extras">
         {walkData?.date && <div><b>Date completed:</b> {new Date(walkData?.date).toLocaleDateString()}</div>}
       </section>
-      </>
-    }
-  </main>
+    </main>
   )
 }
 
@@ -140,7 +132,7 @@ function BusRoutes({ busRoutes }) {
         const from = bus[1];
         return (
           <div key={index}
-                className="bus-block text--secondary"
+                className="bus-group_bus-block"
                 fromtext={from}
                 style={{"backgroundColor": `var(--bus-${number})`}}>
             {number}

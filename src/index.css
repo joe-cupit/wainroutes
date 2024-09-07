@@ -1,6 +1,7 @@
 :root {
   --fs-200: 0.875rem;
-  --fs-400: 1rem;
+  --fs-300: 0.9375rem;
+  --fs-400: 1.125rem;
   --fs-600: 1.625rem;
   --fs-800: 2rem;
   --fs-1000: 4rem;
@@ -12,17 +13,24 @@
   --ff-heading: "Urbanist", sans-serif;
 
   --cl-primary: #eb873c;
+  --cl-primary-hover: #dd6c17;
 
   --cl-text: #2a2622;
   --cl-text-light: #70655c;
+
+  --cl-background: #f1efee;
+  --cl-foreground: #fcfbfb;
+
+  --cl-text-white: #fcfbfb;
 }
 
 @media (max-width: 650px) {
   :root {
     --fs-200: 0.75rem;
-    --fs-400: 0.8125rem;
-    --fs-600: 1.5rem;
-    --fs-800: 1.375rem;
+    --fs-300: 0.8125rem;
+    --fs-400: 1rem;
+    --fs-600: 1.375rem;
+    --fs-800: 1.625rem;
     --fs-1000: 3rem;
   }
 }
