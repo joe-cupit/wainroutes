@@ -1,0 +1,70 @@
+.hill-page_map-container {
+  width: 500px;
+  aspect-ratio: 1;
+}
+
+
+.hill-page_hill-table {
+  border-spacing: 1.5rem 0.5rem;
+}
+
+.hill-card:hover {
+  color: inherit;
+}
+
+
+.hill-card_book {
+  gap: 0;
+  background: var(--cl-foreground);
+  width: 2rem;
+  height: 2.5rem;
+
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  overflow: hidden;
+
+  -webkit-box-shadow: 1px 1px 0 0.5px #c7c7c7;
+  -moz-box-shadow: 1px 1px 0 0.5px #c7c7c7;
+  box-shadow: 1px 1px 0 0.5px #c7c7c7;
+}
+.hill-card_book-bind {
+  height: 70%;
+}
+.hill-card_book-bind[data-book="1"] {
+  background: var(--wain-book-1);
+}
+.hill-card_book-bind[data-book="2"] {
+  background: var(--wain-book-2);
+}
+.hill-card_book-bind[data-book="3"] {
+  background: var(--wain-book-3);
+}
+.hill-card_book-bind[data-book="4"] {
+  background: var(--wain-book-4);
+}
+.hill-card_book-bind[data-book="5"] {
+  background: var(--wain-book-5);
+}
+.hill-card_book-bind[data-book="6"] {
+  background: var(--wain-book-6);
+}
+.hill-card_book-bind[data-book="7"] {
+  background: var(--wain-book-7);
+}
+
+.hill-card_name {
+  gap: 0;
+}
+.hill-card_name h2 {
+  font-size: var(--fs-600);
+  font-weight: var(--fw-800);
+  font-family: var(--ff-heading);
+}
+.hill-card_name h2:hover {
+  color: var(--cl-primary);
+}
+.hill-card_name span {
+  font-size: var(--fs-300);
+  font-weight: var(--fw-600);
+  color: var(--cl-text-light);
+}

@@ -13,7 +13,7 @@ const titles = {
 }
 
 
-export default function HillPage() {
+export function HillPage() {
   const { slug } = useParams();
 
   const hillData = useHills(slug);

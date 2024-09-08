@@ -9,7 +9,8 @@ import { NotFoundPage } from './pages/error/notfound';
 import { HomePage } from './pages/home';
 import { WalksPage } from './pages/WalksPage';
 import { WalkPage } from './pages/WalkPage';
-import HillPage from './pages/HillPage';
+import { HillsPage } from './pages/HillsPage';
+import { HillPage } from './pages/HillPage';
 
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/walks/" element={<WalksPage />} />
         <Route path="/walk/:slug" element={<WalkPage />} />
 
+        <Route path="/mountains/" element={<HillsPage />} />
         <Route path="/mountain/:slug" element={<HillPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
