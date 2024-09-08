@@ -73,7 +73,7 @@
   text-overflow: ellipsis;
 }
 .walk-card_text h3 {
-  font-size: var(--fs-600);
+  font-size: var(--fs-800);
   font-weight: var(--fw-800);
   font-family: var(--ff-heading);
 

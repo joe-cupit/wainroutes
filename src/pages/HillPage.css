@@ -1,0 +1,90 @@
+
+.hill-page_book {
+  width: 3.625rem;
+  height: 30rem;
+
+  font-family: var(--ff-hand);
+  text-transform: uppercase;
+
+  background: var(--cl-foreground);
+}
+.hill-page_book-bind {
+  height: 13%;
+  width: 100%;
+
+  color: var(--cl-text-white);
+  font-size: var(--fs-300);
+  text-align: center;
+  line-height: var(--fs-300);
+
+  padding-top: 35%;
+  padding-inline: 5px;
+}
+.hill-page_book-bind[data-book="1"] {
+  background: var(--wain-book-1);
+}
+.hill-page_book-bind[data-book="2"] {
+  background: var(--wain-book-2);
+}
+.hill-page_book-bind[data-book="3"] {
+  background: var(--wain-book-3);
+}
+.hill-page_book-bind[data-book="4"] {
+  background: var(--wain-book-4);
+}
+.hill-page_book-bind[data-book="5"] {
+  background: var(--wain-book-5);
+}
+.hill-page_book-bind[data-book="6"] {
+  background: var(--wain-book-6);
+}
+.hill-page_book-bind[data-book="7"] {
+  background: var(--wain-book-7);
+}
+.hill-page_book-text {
+  gap: 0rem;
+  flex: 1;
+
+  font-size: var(--fs-600);
+  writing-mode: vertical-rl;
+  text-align: center;
+  line-height: var(--fs-600);
+}
+.hill-page_book-text span[data-book="1"] {
+  color: var(--wain-book-1);
+}
+.hill-page_book-text span[data-book="2"] {
+  color: var(--wain-book-2);
+}
+.hill-page_book-text span[data-book="3"] {
+  color: var(--wain-book-3);
+}
+.hill-page_book-text span[data-book="4"] {
+  color: var(--wain-book-4);
+}
+.hill-page_book-text span[data-book="5"] {
+  color: var(--wain-book-5);
+}
+.hill-page_book-text span[data-book="6"] {
+  color: var(--wain-book-6);
+}
+.hill-page_book-text span[data-book="7"] {
+  color: var(--wain-book-7);
+}
+
+
+.hill-page_header h1 {
+  font-size: var(--fs-1000);
+  font-weight: var(--fw-800);
+  font-family: var(--ff-heading);
+}
+.hill-page_header p {
+  font-size: var(--fs-600);
+  font-family: var(--ff-cursive);
+}
+
+.hill-page_walks h2 {
+  font-size: var(--fs-800);
+  font-weight: var(--fw-800);
+  font-family: var(--ff-heading);
+}

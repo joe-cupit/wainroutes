@@ -88,7 +88,7 @@ export function WalksPage() {
       <section className="walks-page_intro grid-group two-columns">
         <LakeMap />
         <div>
-          test
+          tmp
         </div>
       </section>
 

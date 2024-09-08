@@ -11,6 +11,8 @@
   --fw-800: 700;
 
   --ff-heading: "Urbanist", sans-serif;
+  --ff-hand: "Dekko", cursive;
+  --ff-cursive: "Caveat", cursive;
 
   --cl-primary: #eb873c;
   --cl-primary-hover: #dd6c17;
@@ -30,8 +32,8 @@
     --fs-300: 0.8125rem;
     --fs-400: 1rem;
     --fs-600: 1.375rem;
-    --fs-800: 1.625rem;
-    --fs-1000: 3rem;
+    --fs-800: 1.5rem;
+    --fs-1000: 3.125rem;
   }
 }
 

@@ -9,7 +9,7 @@ import { NotFoundPage } from './pages/error/notfound';
 import { HomePage } from './pages/home';
 import { WalksPage } from './pages/WalksPage';
 import { WalkPage } from './pages/WalkPage';
-import HillPage from './pages/hill';
+import HillPage from './pages/HillPage';
 
 
 export default function App() {
