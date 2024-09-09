@@ -49,6 +49,9 @@
 .hill-page_hill-table thead {
   font-weight: var(--fw-800);
 }
+.hill-page_hill-table thead {
+  cursor: pointer;
+}
 
 .hill-page_hill-table {
   --inner-gap: 1.5rem;

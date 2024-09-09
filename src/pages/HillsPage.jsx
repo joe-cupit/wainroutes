@@ -6,6 +6,7 @@ import { LakeMap } from "../components/map";
 
 import { useHillMarkers } from "../hooks/useMarkers";
 import { useHills } from "../hooks/useHills";
+import { useState } from "react";
 
 const titles = {
   1: "The Eastern Fells", 2: "The Far Eastern Fells", 3: "The Central Fells", 4: "The Southern Fells", 5: "The Northern Fells", 6: "The North Western Fells", 7: "The Western Fells"
@@ -17,7 +18,32 @@ export function HillsPage() {
 
   const hillMarkers = useHillMarkers();
   const hillData = Object.values(useHills(null)).sort((a, b) => b.height-a.height);
-  console.log(hillData)
+  const [hillList, setHillList] = useState(hillData);
+
+  const [sortStates, setSortStates] = useState([true, true, true]);
+
+  function sortHillData(sortBy) {
+    switch (sortBy) {
+      case "book":
+        if (sortStates[0]) setHillList([...hillList].sort((a, b) => a.book-b.book));
+        else setHillList([...hillList].sort((b, a) => a.book-b.book));
+        setSortStates([!sortStates[0], sortStates[1], sortStates[2]]);
+        break;
+      case "mountain":
+        if (sortStates[1]) setHillList([...hillList].sort((a, b) => a.name.localeCompare(b.name)));
+        else setHillList([...hillList].sort((b, a) => a.name.localeCompare(b.name)));
+        setSortStates([sortStates[0], !sortStates[1], sortStates[2]]);
+        break;
+      case "height":
+        if (sortStates[2]) setHillList([...hillList].sort((a, b) => a.height-b.height));
+        else setHillList([...hillList].sort((b, a) => a.height-b.height));
+        setSortStates([sortStates[0], sortStates[1], !sortStates[2]]);
+        break;
+      default:
+        break;
+    }
+  }
+
 
   return (
     <main className="hill-page grid-group">
@@ -36,13 +62,13 @@ export function HillsPage() {
           <table className="hill-page_hill-table">
             <thead>
               <tr>
-                <td>Book</td>
-                <td>Mountain</td>
-                <td className="hill-card_height">Height</td>
+                <td onClick={() => sortHillData("book")}>Book {sortStates[0] ? "↓": "↑"}</td>
+                <td onClick={() => sortHillData("mountain")}>Mountain {sortStates[1] ? "↓": "↑"}</td>
+                <td onClick={() => sortHillData("height")} className="hill-card_height">Height {sortStates[2] ? "↓": "↑"}</td>
               </tr>
             </thead>
             <tbody>
-              {hillData?.map((hill, index) => {
+              {hillList?.map((hill, index) => {
                 return (
                   <tr key={index} className="hill-card">
                     <td>
