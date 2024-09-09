@@ -33,7 +33,11 @@ export function Navbar() {
           </svg>
         </button>
 
-        <Link className="navbar-navtitle" to="/">wainroutes</Link>
+        <Link to="/" className="navbar-navtitle">wainroutes
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.154701 36 4.155">
+            <path d="M 0 4 C 2 2 4 -3 6 2 C 8 3 8 0 9 1 C 10 2 11 1 12 2 C 13 3 14 2 15 1 C 16 0 18 -1 19 1 C 20 2 21 1 22 2 C 23 3 24 1 25 2 C 26 3 27 0 29 0 C 31 0 31 3 32 2 C 34 1 34.6667 3.3333 36 4 Z"/>
+          </svg>
+        </Link>
         <nav id="navbar-nav" className="navbar-nav flex-group">
           <Link className="navbar-navlink" to="/walks">walks</Link>
           <Link className="navbar-navlink" to="/mountains">mountains</Link>

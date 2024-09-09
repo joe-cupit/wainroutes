@@ -1,7 +1,8 @@
 .App {
-  width: min(1200px, 93%);
+  width: min(1200px, 95%);
   margin: auto;
   margin-bottom: 2rem;
+  margin-top: 1rem;
 }
 
 /* @media (max-width: 768px) {
@@ -25,6 +26,9 @@
 }
 .flex-vertical-center {
   align-items: center;
+}
+.flex-horizontal-center {
+  justify-content: center;
 }
 
 .grid-group {

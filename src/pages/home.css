@@ -11,17 +11,6 @@
   text-align: center;
   width: 100%;
 }
-.home-page--title {
-  /* font-size: 5rem; */
-  font-weight: bold;
-  cursor: default;
-  transition: transform .1s ease-in-out;
-  padding-bottom: 0.625rem;
-  transition: .1s;
-  cursor: cell;
-  width: fit-content;
-  margin: auto;
-}
 
 .home-page--title-wright{
   content: "wright";
@@ -40,6 +29,20 @@
 /* .home-page header h1:hover {
   transform: translateY(-0.2rem);
 } */
+
+.home-page_button {
+  font-size: var(--fs-600);
+  font-weight: var(--fw-800);
+  font-family: var(--ff-cursive);
+
+  color: var(--cl-text-white);
+  background: var(--cl-primary);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.75rem;
+}
+.home-page_button:hover {
+  color: inherit;
+}
 
 .home-page--links {
   display: flex;

@@ -19,9 +19,12 @@
 
   --cl-text: #2a2622;
   --cl-text-light: #70655c;
+  --cl-text-lighter: #988b81;
 
   --cl-background: #f1efee;
   --cl-foreground: #fcfbfb;
+
+  --cl-border: #e2dfdc;
 
   --cl-text-white: #fcfbfb;
 }
@@ -141,8 +144,6 @@ body {
   accent-color: var(--primary);
 
   font-size: var(--fs-400);
-
-  transition: .1s;
 }
 
 

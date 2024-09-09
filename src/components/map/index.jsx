@@ -53,7 +53,7 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
 
     // const mapBounds = document.getElementById("lake-map").getBoundingClientRect();
     // let newcenter = [(minLat+maxLat)/2, (minLong+maxLong)/2]
-    // let newzoom = -Math.max(Math.log((maxLat-minLat)/(mapBounds.width-150))/Math.log(2), Math.log((maxLong-minLong)/mapBounds.height)/Math.log(2))
+    // let newzoom = -Math.max(Math.log((maxLat-minLat)/(mapBounds.width))/Math.log(2), Math.log((maxLong-minLong)/(mapBounds.height))/Math.log(2))
 
     // setCenter(newcenter);
     // setZoom(newzoom);
@@ -86,7 +86,7 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
                   if (clusterItems.length > 1) setZoom(supercluster.getClusterExpansionZoom(point.id)+1);
                   else {
                     console.log("show details for", point?.properties?.name);
-                    if (zoom < 11.5) setZoom(11.5);
+                    if (zoom < 13) setZoom(13);
                   }
                 }}
         >

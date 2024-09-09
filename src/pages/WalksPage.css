@@ -1,12 +1,12 @@
 
-.walks-page h1, .walks-page h2 {
+.walks-page h2 {
   font-size: var(--fs-1000);
   font-weight: var(--fw-800);
   font-family: var(--ff-heading);
 }
 
 .walks-page_intro {
-  height: 25rem;
+  height: 30rem;
 }
 
 .walks-page_walks {

@@ -8,6 +8,8 @@ import { useHillMarkers, useWalkMarkers } from "../hooks/useMarkers";
 
 export function HomePage() {
 
+  document.title = "wainroutes";
+
   const hillMarkers = useHillMarkers();
   const walkMarkers = useWalkMarkers();
 
@@ -19,21 +21,28 @@ export function HomePage() {
   return (
   <main className="home-page">
 
-    <header>
-      <h1 className="home-page--title text--title">wain<span className="home-page--title-wright">wright:</span>routes</h1>
-      <div className="home-page--links text--subtext font--urbanist">
+    <header className="grid-group">
+      <h1 className="page-title">wain<span className="home-page--title-wright">wright:</span>routes</h1>
+      <p className="text--smallheading">Lake District walks covering the 214 Wainwrights</p>
+      {/* <div className="home-page--links text--subtext font--urbanist">
         <Link to="/walks">walks</Link>
         <Link to="/mountains">mountains</Link>
         <Link to="/weather">weather</Link>
         <Link to="/travel">travel</Link>
-      </div>
+      </div> */}
+      <p className="flex-group flex-horizontal-center">
+        <Link className="home-page_button" to="/walks">Go for a walk →</Link>
+        <Link className="home-page_button" to="/mountains">Find a mountain ^</Link>
+      </p>
     </header>
 
-    <div className="home-page--map">
+    {/* <div className="home-page--map">
       <LakeMap mapMarkers={mapMarkers} />
-    </div>
+    </div> */}
 
-    <div style={{height: "670px"}}></div>
+    <div style={{height: "670px"}}>
+
+    </div>
     
   </main>
   )

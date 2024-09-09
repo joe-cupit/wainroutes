@@ -41,6 +41,8 @@
     "estimated_time": "4:30-6:00",
     "wainwrights": ["birkhouse-moor", "helvellyn", "catstycam"],
 
+    "start_lat_lang": [54.5437190, -2.9492340],
+
     "bus_routes": [
       ["508", "from Penrith/Windermere"],
       ["509", "from Penrith/Keswick"]
@@ -57,7 +59,7 @@
     "estimated_time": "5:00-6:00",
     "wainwrights": ["red-pike-b", "high-stile", "high-crag", "haystacks"],
 
-    "start_lat_lang": [54.540899 , -3.277522],
+    "start_lat_lang": [54.540899, -3.277522],
     "start_grid_reference": "NY174169",
     "start_what_three_words": "unlocking.cackling.vanished",
     "start_post_code": "CA13 9UZ",
@@ -79,6 +81,8 @@
     "estimated_time": "3:00-5:30",
     "wainwrights": ["pavey-ark", "thunacar-knott", "pike-of-stickle", "loft-crag", "harrison-stickle"],
 
+    "start_lat_lang": [54.4482780, -3.0877100],
+
     "bus_routes": [
       ["516", "from Ambleside"]
     ],
@@ -94,6 +98,8 @@
     "estimated_time": "6:00-8:00",
     "wainwrights": ["yoke", "ill-bell", "froswick", "thornthwaite-crag", "high-street", "mardale-ill-bell", "harter-fell-fe", "kentmere-pike", "shipman-knotts"],
 
+    "start_lat_lang": [54.4296780, -2.8403580],
+
     "bus_routes": [],
     "tags": ["horseshoe", "circular"]
   },
@@ -106,6 +112,8 @@
     "total_elevation": 1023,
     "estimated_time": "5:00-7:00",
     "wainwrights": ["base-brown", "green-gable", "great-gable", "seathwaite-fell"],
+
+    "start_lat_lang": [54.5128280, -3.1662430],
 
     "bus_routes": [
       ["77", "from Keswick"],
@@ -125,6 +133,8 @@
     "estimated_time": "4:30-6:00",
     "wainwrights": ["grisedale-pike", "hopegill-head", "eel-crag", "sail", "outerside", "barrow"],
 
+    "start_lat_lang": [54.6030000, -3.1897670],
+
     "bus_routes": [
       ["77", "from Keswick"],
       ["77A", "from Keswick"],
@@ -142,6 +152,8 @@
     "estimated_time": "3:00-4:30",
     "wainwrights": ["scafell-pike"],
 
+    "start_lat_lang": [54.4542250, -3.2539700],
+
     "bus_routes": [],
     "tags": ["there-and-back"]
   },
@@ -154,6 +166,8 @@
     "total_elevation": 815,
     "estimated_time": "2:30-4:00",
     "wainwrights": ["ullock-pike", "long-side", "carl-side", "dodd"],
+
+    "start_lat_lang": [54.6426600, -3.1861450],
 
     "bus_routes": [
       ["553", "from Keswick/Carlise"],
@@ -172,6 +186,8 @@
     "estimated_time": "5:30-7:00",
     "wainwrights": ["helm-crag", "gibson-knott", "calf-crag", "high-raise-c", "sergeant-man", "blea-rigg", "silver-how"],
 
+    "start_lat_lang": [54.4597590, -3.0244860],
+
     "bus_routes": [
       ["555", "from Keswick/Windermere"],
       ["599", "from Windermere"]
@@ -188,6 +204,8 @@
     "estimated_time": "4:30-6:00",
     "wainwrights": ["coniston-old-man", "dow-crag", "brim-fell"],
 
+    "start_lat_lang": [54.3689020, -3.0761210],
+
     "bus_routes": [
       ["505", "from Ambleside"]
     ],
@@ -203,6 +221,8 @@
     "estimated_time": "0:45-1:15",
     "wainwrights": ["raven-crag"],
 
+    "start_lat_lang": [54.5620880, -3.0732030],
+
     "bus_routes": [],
     "tags": ["there-and-back"]
   },
@@ -215,6 +235,8 @@
     "total_elevation": 756,
     "estimated_time": "3:30-5:30",
     "wainwrights": ["dollywaggon-pike", "nethermost-pike", "seat-sandal"],
+
+    "start_lat_lang": [54.4736930, -3.0260060],
 
     "bus_routes": [],
     "tags": ["circular"]
@@ -229,6 +251,8 @@
     "estimated_time": "4:30-6:00",
     "wainwrights": ["skiddaw-little-man", "skiddaw"],
 
+    "start_lat_lang": [54.6006530, -3.1356460],
+
     "bus_routes": [],
     "tags": ["there-and-back"]
   },
@@ -241,6 +265,8 @@
     "total_elevation": 736,
     "estimated_time": "2:30-4:00",
     "wainwrights": ["helvellyn"],
+
+    "start_lat_lang": [54.5423070, -3.0578130],
 
     "bus_routes": [
       ["555", "from Keswick/Windermere"]
@@ -257,6 +283,8 @@
     "estimated_time": "1:30-2:30",
     "wainwrights": ["walla-crag"],
 
+    "start_lat_lang": [54.5963540, -3.1269280],
+
     "bus_routes": [],
     "tags": ["there-and-back"]
   },
@@ -269,6 +297,8 @@
     "total_elevation": 745,
     "estimated_time": "3:00-4:00",
     "wainwrights": ["barf", "lords-seat", "broom-fell"],
+
+    "start_lat_lang": [54.6259810, -3.2101790],
 
     "bus_routes": [
       ["X5", "from Keswick/Penrith"]
@@ -284,6 +314,8 @@
     "total_elevation": 349,
     "estimated_time": "2:00-3:00",
     "wainwrights": ["loughrigg-fell"],
+
+    "start_lat_lang": [54.4498270, -3.0039870],
 
     "bus_routes": [
       ["555", "from Keswick/Windermere"],
@@ -301,6 +333,8 @@
     "estimated_time": "3:30-4:30",
     "wainwrights": ["catbells"],
 
+    "start_lat_lang": [54.6005160, -3.1367420],
+
     "bus_routes": [],
     "tags": ["there-and-back"]
   },
@@ -314,6 +348,8 @@
     "estimated_time": "2:00-3:00",
     "wainwrights": ["latrigg"],
 
+    "start_lat_lang": [54.5995730, -3.1303120],
+
     "bus_routes": [],
     "tags": ["there-and-back"]
   },
@@ -326,6 +362,8 @@
     "total_elevation": 284,
     "estimated_time": "1:30-2:30",
     "wainwrights": ["castle-crag"],
+
+    "start_lat_lang": [54.5234940, -3.1481900],
 
     "bus_routes": [
       ["78", "from Keswick"]
@@ -342,6 +380,8 @@
     "estimated_time": "1:00-2:00",
     "wainwrights": ["gowbarrow-fell"],
 
+    "start_lat_lang": [54.5765580, -2.9302290],
+
     "bus_routes": [
       ["509", "from Keswick"],
       ["508", "from Penrith/Windermere"]
@@ -357,6 +397,8 @@
     "total_elevation": 244,
     "estimated_time": "0:45-1:30",
     "wainwrights": ["whinlatter"],
+
+    "start_lat_lang": [54.6100510, -3.2256590],
 
     "bus_routes": [
       ["77", "from Keswick"],

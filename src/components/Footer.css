@@ -1,0 +1,16 @@
+.footer {
+  min-height: 5rem;
+
+  font-weight: var(--fw-400);
+
+  color: var(--nav-copy);
+  background: var(--nav-background);
+
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+
+.footer_copywright {
+  font-size: var(--fs-200);
+  color: var(--cl-text-lighter);
+}

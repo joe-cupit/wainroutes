@@ -8,6 +8,7 @@ import { useWalks } from "../hooks/useWalks";
 import { LakeMap } from "../components/map";
 
 import hillData from "../assets/hillData";
+import { useWalkMarkers } from "../hooks/useMarkers";
 const previewImages = require.context("../assets/previews")
 const previews = Object.fromEntries(previewImages.keys().map(image => [image.substring(2, image.length-4), previewImages(image)]));
 
@@ -17,6 +18,7 @@ export function WalksPage() {
 
   document.title = "Lake District Walks | wainroutes";
 
+  const walkMarkers = useWalkMarkers(null);
   const walkData = Object.values(useWalks(null));
   const [sortValue, setSortValue] = useState("recommended");
   const [filterValues, setFilterValues] = useState({
@@ -83,10 +85,10 @@ export function WalksPage() {
 
   return (
     <main className="walks-page grid-group">
-      <h1>walks</h1>
+      <h1 className="page-title">walks</h1>
 
       <section className="walks-page_intro grid-group two-columns">
-        <LakeMap />
+        <LakeMap mapMarkers={walkMarkers} />
         <div>
           tmp
         </div>
