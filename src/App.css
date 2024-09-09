@@ -1,6 +1,7 @@
 .App {
   width: min(1200px, 93%);
   margin: auto;
+  margin-bottom: 2rem;
 }
 
 /* @media (max-width: 768px) {
@@ -38,6 +39,7 @@
   font-size: var(--fs-1000);
   font-weight: var(--fw-800);
   font-family: var(--ff-heading);
+  line-height: var(--fs-1000);
 }
 
 .font-cursive {

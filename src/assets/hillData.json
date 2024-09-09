@@ -145,7 +145,7 @@
   "wansfell": {
     "slug": "wansfell",
     "name": "Wansfell",
-    "height": 486.9,
+    "height": 487,
     "heightFt": "1597.4",
     "gridReference": "NY403051",
     "gridZone": "NY",
@@ -704,7 +704,7 @@
   "fleetwith-pike": {
     "slug": "fleetwith-pike",
     "name": "Fleetwith Pike",
-    "height": 648.9,
+    "height": 649,
     "heightFt": "2128.9",
     "gridReference": "NY205141",
     "gridZone": "NY",
@@ -782,7 +782,7 @@
   "gowbarrow-fell": {
     "slug": "gowbarrow-fell",
     "name": "Gowbarrow Fell",
-    "height": 481.2,
+    "height": 481,
     "heightFt": "1578.7",
     "gridReference": "NY407218",
     "gridZone": "NY",
@@ -990,7 +990,7 @@
   "green-crag": {
     "slug": "green-crag",
     "name": "Green Crag",
-    "height": 488.7,
+    "height": 488,
     "heightFt": "1603.3",
     "gridReference": "SD200982",
     "gridZone": "SD",
@@ -1145,7 +1145,8 @@
   },
   "harter-fell-s": {
     "slug": "harter-fell-s",
-    "name": "Harter Fell (Southern)",
+    "name": "Harter Fell",
+    "name_secondary": "Southern",
     "height": 654,
     "heightFt": "2145.66929133858",
     "gridReference": "SD218997",
@@ -1158,7 +1159,8 @@
   },
   "harter-fell-fe": {
     "slug": "harter-fell-fe",
-    "name": "Harter Fell (Far-Eastern)",
+    "name": "Harter Fell",
+    "name_secondary": "Far-Eastern",
     "height": 779,
     "heightFt": "2555.77427821522",
     "gridReference": "NY459093",
@@ -1301,7 +1303,8 @@
   },
   "high-pike-n": {
     "slug": "high-pike-n",
-    "name": "High Pike (Northern)",
+    "name": "High Pike",
+    "name_secondary": "Northern",
     "height": 658,
     "heightFt": "2158.79265091864",
     "gridReference": "NY318350",
@@ -1314,7 +1317,8 @@
   },
   "high-pike-e": {
     "slug": "high-pike-e",
-    "name": "High Pike (Eastern)",
+    "name": "High Pike",
+    "name_secondary": "Eastern",
     "height": 656,
     "heightFt": "2152.23097112861",
     "gridReference": "NY374088",
@@ -1327,7 +1331,8 @@
   },
   "high-raise-c": {
     "slug": "high-raise-c",
-    "name": "High Raise (Central)",
+    "name": "High Raise",
+    "name_secondary": "Central",
     "height": 762,
     "heightFt": "2500",
     "gridReference": "NY280095",
@@ -1340,7 +1345,8 @@
   },
   "high-raise-fe": {
     "slug": "high-raise-fe",
-    "name": "High Raise (Far-Eastern)",
+    "name": "High Raise",
+    "name_secondary": "Far-Eastern",
     "height": 802,
     "heightFt": "2631.23359580052",
     "gridReference": "NY448134",
@@ -1380,7 +1386,7 @@
   "high-spy": {
     "slug": "high-spy",
     "name": "High Spy",
-    "height": 653.1,
+    "height": 653,
     "heightFt": "2142.7",
     "gridReference": "NY234162",
     "gridZone": "NY",
@@ -2016,7 +2022,8 @@
   },
   "red-pike-b": {
     "slug": "red-pike-b",
-    "name": "Red Pike (Buttermere)",
+    "name": "Red Pike",
+    "name_secondary": "Buttermere",
     "height": 755,
     "heightFt": "2477.03412073491",
     "gridReference": "NY160154",
@@ -2029,7 +2036,8 @@
   },
   "red-pike-w": {
     "slug": "red-pike-w",
-    "name": "Red Pike (Wasdale)",
+    "name": "Red Pike",
+    "name_secondary": "Wasdale",
     "height": 826,
     "heightFt": "2709.97375328084",
     "gridReference": "NY165106",
@@ -2199,7 +2207,7 @@
   "seat-sandal": {
     "slug": "seat-sandal",
     "name": "Seat Sandal",
-    "height": 736.8,
+    "height": 736,
     "heightFt": "2417.3",
     "gridReference": "NY344115",
     "gridZone": "NY",
@@ -2497,7 +2505,8 @@
   },
   "tarn-crag-c": {
     "slug": "tarn-crag-c",
-    "name": "Tarn Crag (Central)",
+    "name": "Tarn Crag",
+    "name_secondary": "Central",
     "height": 549,
     "heightFt": "1801.1811023622",
     "gridReference": "NY303093",
@@ -2510,7 +2519,8 @@
   },
   "tarn-crag-fe": {
     "slug": "tarn-crag-fe",
-    "name": "Tarn Crag (Far-Eastern)",
+    "name": "Tarn Crag",
+    "name_secondary": "Far-Eastern",
     "height": 664,
     "heightFt": "2178.47769028871",
     "gridReference": "NY488078",

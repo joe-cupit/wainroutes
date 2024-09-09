@@ -21,44 +21,47 @@ export function HillsPage() {
 
   return (
     <main className="hill-page grid-group">
-      <h1 className="page-title">Wainwrights</h1>
+      <h1 className="page-title">The <span className="wainwright-number">214</span> Wainwrights</h1>
 
-      {/* <section className="hill-page_map">
-        <div className="hill-page_map-container">
-          <LakeMap mapMarkers={hillMarkers} />
-        </div>
-      </section> */}
+      <div className="hill-page_container">
+        <section className="hill-page_map">
+          <div className="hill-page_map-container">
+            <LakeMap mapMarkers={hillMarkers} />
+          </div>
+        </section>
 
-      <section className="hill-page_hill-list">
-        <table className="hill-page_hill-table">
-          <thead>
-            <tr>
-              <td>Book</td>
-              <td>Mountain</td>
-              <td>Height</td>
-            </tr>
-          </thead>
-          <tbody>
-            {hillData?.map((hill, index) => {
-              return (
-                <tr key={index} className="hill-card">
-                  <td>
-                    <div className="hill-card_book grid-group">
-                      <div className="hill-card_book-bind" data-book={hill.book}></div>
-                    </div>
-                  </td>
-                  <td className="hill-card_name flex-group flex-column">
-                    <Link to={`/mountain/${hill.slug}`}><h2>{hill.name}</h2></Link>
-                    <span>{titles[hill.book]}</span>
-                  </td>
-                  <td>{hill.height}m</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </section>
+        <section className="hill-page_hill-list">
+          <input placeholder="Search..."/>
 
+          <table className="hill-page_hill-table">
+            <thead>
+              <tr>
+                <td>Book</td>
+                <td>Mountain</td>
+                <td className="hill-card_height">Height</td>
+              </tr>
+            </thead>
+            <tbody>
+              {hillData?.map((hill, index) => {
+                return (
+                  <tr key={index} className="hill-card">
+                    <td>
+                      <div className="hill-card_book grid-group">
+                        <div className="hill-card_book-bind" data-book={hill.book}></div>
+                      </div>
+                    </td>
+                    <td className="hill-card_name flex-group flex-column">
+                      <Link to={`/mountain/${hill.slug}`}><h2>{hill.name}{hill.name_secondary ? <span className="hill-card_name-secondary"> ({hill.name_secondary})</span> : ""}</h2></Link>
+                      <span className="hill-card_name-book">{titles[hill.book]}</span>
+                    </td>
+                    <td className="hill-card_height">{hill.height}m</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </section>
+      </div>
     </main>
   )
 }
