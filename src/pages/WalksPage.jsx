@@ -85,13 +85,10 @@ export function WalksPage() {
 
   return (
     <main className="walks-page grid-group">
-      <h1 className="page-title">walks</h1>
+      <h1 className="page-title">Find a Walk</h1>
 
-      <section className="walks-page_intro grid-group two-columns">
+      <section className="walks-page_intro">
         <LakeMap mapMarkers={walkMarkers} />
-        <div>
-          tmp
-        </div>
       </section>
 
       <section className="walks-page_walks grid-group">

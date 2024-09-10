@@ -6,8 +6,6 @@ import { useWalks } from "./useWalks";
 export const useHillMarkers = (filters=null) => {
   const hillData = useHills(null);
 
-  console.log(filters)
-
   const hillMarkers = useMemo(() => hillData 
     ? Object.values(hillData)
         .map(hill => ({

@@ -116,8 +116,8 @@ export function LakeMap ({ mapMarkers, gpxPoints, ...props }) {
            attributionPrefix={false}
            attribution={<Attribution />}
       >
-        {markers?.map(renderMarker)}
         {props.children}
+        {markers?.map(renderMarker)}
         <ZoomControl />
       </Map>
     </div>

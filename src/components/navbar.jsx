@@ -26,6 +26,10 @@ export function Navbar() {
   return (
     <header className="navbar flex-group flex-vertical-center flex-space">
 
+      <svg className="navbar-mountains" xmlns="http://www.w3.org/2000/svg" viewBox="0 -8.22648 58.96 8.226">
+        <path d="M0 0C1.685-1.929 1.465-4.343 3.5-5.62c1.058.08.699.539 1.836 1.317 1.057.659 1.636.34 2.534.719 1.057.299 1.556 2.113 3.172 2.175 1.037.038 2.1547-1.81 2.394-2.875.259-1.197 1.337-2.095 2.354-2.813.998-.559 1.736.997 2.953 1.396 1.029.106 1.747 1.163 2.745 1.403.798.218 1.376-1.737 2.753-1.996.998-.3 1.098 1.017 2.295 2.234.975 1.068 1.225 2.428 2.079 1.376 1.018.033 1.478-1.117 2.037-1.379 1.051-2.004.919 1.314 3.186 1.905 1.741.23 1.478-2.332 3.383-3.482 1.117-.788 1.708 1.018 3.318 1.445 2.073.431 3.421-4.501 5.487-3.995 2.107-.169 2.529 5.016 9.147 7.545 1.097.394 2.369.575 3.787.636" />
+      </svg>
+
       <div className="navbar-left flex-group flex-vertical-center">
         <button className="nav-button navbar-mobile-only" onClick={toggleMobileNav}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
@@ -33,11 +37,7 @@ export function Navbar() {
           </svg>
         </button>
 
-        <Link to="/" className="navbar-navtitle">wainroutes
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.154701 36 4.155">
-            <path d="M 0 4 C 2 2 4 -3 6 2 C 8 3 8 0 9 1 C 10 2 11 1 12 2 C 13 3 14 2 15 1 C 16 0 18 -1 19 1 C 20 2 21 1 22 2 C 23 3 24 1 25 2 C 26 3 27 0 29 0 C 31 0 31 3 32 2 C 34 1 34.6667 3.3333 36 4 Z"/>
-          </svg>
-        </Link>
+        <Link to="/" className="navbar-navtitle">wainroutes</Link>
         <nav id="navbar-nav" className="navbar-nav flex-group">
           <Link className="navbar-navlink" to="/walks">walks</Link>
           <Link className="navbar-navlink" to="/mountains">mountains</Link>

@@ -5,11 +5,33 @@
   gap: 2rem;
 }
 
-.home-page header {
+.home-page_hero {
+  gap: 4rem;
   margin: auto;
   margin-top: 0.5rem;
   text-align: center;
   width: 100%;
+}
+
+.home-page_title {
+  font-size: var(--fs-1000);
+  font-weight: var(--fw-900);
+  font-family: var(--ff-heading);
+  letter-spacing: -1px;
+  line-height: var(--fs-1000);
+}
+
+.home-page_tagline {
+  font-size: var(--fs-900);
+  font-weight: var(--fw-800);
+  font-family: var(--ff-heading);
+  line-height: calc(var(--fs-900)*1.125);
+}
+.home-page_tagline .cursive {
+  font-family: var(--ff-cursive);
+  font-size: calc((var(--fs-1000) + var(--fs-900))/2);
+  margin-left: -0.25rem;
+  margin-right: 0.375rem;
 }
 
 .home-page--title-wright{
@@ -30,7 +52,14 @@
   transform: translateY(-0.2rem);
 } */
 
+.home-page_buttons {
+  gap: calc(var(--fs-600)/2);
+}
+
 .home-page_button {
+  display: flex;
+  gap: calc(var(--fs-600)/2.5);
+
   font-size: var(--fs-600);
   font-weight: var(--fw-800);
   font-family: var(--ff-cursive);
@@ -42,6 +71,18 @@
 }
 .home-page_button:hover {
   color: inherit;
+}
+
+.home-page_button svg {
+  width: calc(var(--fs-600) * 0.96);
+}
+.home-page_button.walks svg {
+  stroke-width: 1.25;
+  rotate: 15deg;
+}
+.home-page_button.mountains svg {
+  stroke-width: 0.75;
+  rotate: 6deg;
 }
 
 .home-page--links {

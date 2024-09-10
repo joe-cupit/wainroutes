@@ -4,11 +4,13 @@
   --fs-400: 1.125rem;
   --fs-600: 1.625rem;
   --fs-800: 2rem;
+  --fs-900: 2.75rem;
   --fs-1000: 4rem;
 
   --fw-400: 400;
   --fw-600: 600;
   --fw-800: 700;
+  --fw-900: 900;
 
   --ff-heading: "Urbanist", sans-serif;
   --ff-hand: "Dekko", cursive;
@@ -20,6 +22,7 @@
   --cl-text: #2a2622;
   --cl-text-light: #70655c;
   --cl-text-lighter: #988b81;
+  --cl-text-lightest: #bcb0a5;
 
   --cl-background: #f1efee;
   --cl-foreground: #fcfbfb;
@@ -36,6 +39,7 @@
     --fs-400: 1rem;
     --fs-600: 1.375rem;
     --fs-800: 1.5rem;
+    --fs-900: 1.925rem;
     --fs-1000: 3.125rem;
   }
 }
