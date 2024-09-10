@@ -10,7 +10,8 @@
     "gridNorth": 8528,
     "latitude": 54.466367,
     "longitude": -3.179175,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "angletarn-pikes": {
     "slug": "angletarn-pikes",
@@ -23,7 +24,8 @@
     "gridNorth": 14826,
     "latitude": 54.525312,
     "longitude": -2.907999,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "ard-crags": {
     "slug": "ard-crags",
@@ -36,7 +38,8 @@
     "gridNorth": 19772,
     "latitude": 54.566938,
     "longitude": -3.228123,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "armboth-fell": {
     "slug": "armboth-fell",
@@ -49,7 +52,8 @@
     "gridNorth": 15740,
     "latitude": 54.532026,
     "longitude": -3.089686,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "arnison-crag": {
     "slug": "arnison-crag",
@@ -62,7 +66,8 @@
     "gridNorth": 14969,
     "latitude": 54.526364,
     "longitude": -2.938524,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "arthurs-pike": {
     "slug": "arthurs-pike",
@@ -75,7 +80,8 @@
     "gridNorth": 20679,
     "latitude": 54.578435,
     "longitude": -2.835799,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "bakestall": {
     "slug": "bakestall",
@@ -88,7 +94,8 @@
     "gridNorth": 30856,
     "latitude": 54.667426,
     "longitude": -3.139049,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "bannerdale-crags": {
     "slug": "bannerdale-crags",
@@ -101,7 +108,8 @@
     "gridNorth": 29027,
     "latitude": 54.65195,
     "longitude": -3.031747,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "barf": {
     "slug": "barf",
@@ -114,7 +122,8 @@
     "gridNorth": 26740,
     "latitude": 54.629665,
     "longitude": -3.218084,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "barrow": {
     "slug": "barrow",
@@ -127,7 +136,8 @@
     "gridNorth": 21821,
     "latitude": 54.58566,
     "longitude": -3.19752,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "base-brown": {
     "slug": "base-brown",
@@ -140,7 +150,8 @@
     "gridNorth": 11465,
     "latitude": 54.492581,
     "longitude": -3.197777,
-    "book": 7
+    "book": 7,
+    "hasWalk": true
   },
   "wansfell": {
     "slug": "wansfell",
@@ -153,7 +164,8 @@
     "gridNorth": 5144,
     "latitude": 54.438194,
     "longitude": -2.921751,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "beda-fell": {
     "slug": "beda-fell",
@@ -166,7 +178,8 @@
     "gridNorth": 17163,
     "latitude": 54.54649,
     "longitude": -2.884399,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "binsey": {
     "slug": "binsey",
@@ -179,7 +192,8 @@
     "gridNorth": 35529,
     "latitude": 54.708795,
     "longitude": -3.204188,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "birkhouse-moor": {
     "slug": "birkhouse-moor",
@@ -192,7 +206,8 @@
     "gridNorth": 15976,
     "latitude": 54.535042,
     "longitude": -2.98532,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "birks": {
     "slug": "birks",
@@ -205,7 +220,8 @@
     "gridNorth": 14357,
     "latitude": 54.520702,
     "longitude": -2.959051,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "black-fell": {
     "slug": "black-fell",
@@ -218,7 +234,8 @@
     "gridNorth": 1593,
     "latitude": 54.405503,
     "longitude": -3.017955,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "blake-fell": {
     "slug": "blake-fell",
@@ -231,7 +248,8 @@
     "gridNorth": 19687,
     "latitude": 54.564569,
     "longitude": -3.377198,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "blea-rigg": {
     "slug": "blea-rigg",
@@ -244,7 +262,8 @@
     "gridNorth": 7835,
     "latitude": 54.461076,
     "longitude": -3.078806,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "bleaberry-fell": {
     "slug": "bleaberry-fell",
@@ -257,7 +276,8 @@
     "gridNorth": 19578,
     "latitude": 54.56637,
     "longitude": -3.106162,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "blencathra": {
     "slug": "blencathra",
@@ -270,7 +290,8 @@
     "gridNorth": 27709,
     "latitude": 54.63995,
     "longitude": -3.049773,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "bonscale-pike": {
     "slug": "bonscale-pike",
@@ -283,7 +304,8 @@
     "gridNorth": 20086,
     "latitude": 54.573028,
     "longitude": -2.846919,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "bowfell": {
     "slug": "bowfell",
@@ -296,7 +318,8 @@
     "gridNorth": 6452,
     "latitude": 54.447834,
     "longitude": -3.166212,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "bowscale-fell": {
     "slug": "bowscale-fell",
@@ -309,7 +332,8 @@
     "gridNorth": 30542,
     "latitude": 54.665538,
     "longitude": -3.035037,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "brae-fell": {
     "slug": "brae-fell",
@@ -322,7 +346,8 @@
     "gridNorth": 35160,
     "latitude": 54.70642,
     "longitude": -3.105361,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "brandreth": {
     "slug": "brandreth",
@@ -335,7 +360,8 @@
     "gridNorth": 11917,
     "latitude": 54.496479,
     "longitude": -3.214274,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "branstree": {
     "slug": "branstree",
@@ -348,7 +374,8 @@
     "gridNorth": 9972,
     "latitude": 54.482402,
     "longitude": -2.807168,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "brim-fell": {
     "slug": "brim-fell",
@@ -361,7 +388,8 @@
     "gridNorth": 98558,
     "latitude": 54.377283,
     "longitude": -3.124197,
-    "book": 4
+    "book": 4,
+    "hasWalk": true
   },
   "brock-crags": {
     "slug": "brock-crags",
@@ -374,7 +402,8 @@
     "gridNorth": 13663,
     "latitude": 54.5149,
     "longitude": -2.902593,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "broom-fell": {
     "slug": "broom-fell",
@@ -387,7 +416,8 @@
     "gridNorth": 27192,
     "latitude": 54.633407,
     "longitude": -3.249491,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "buckbarrow": {
     "slug": "buckbarrow",
@@ -400,7 +430,8 @@
     "gridNorth": 6125,
     "latitude": 54.443156,
     "longitude": -3.334275,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "burnbank-fell": {
     "slug": "burnbank-fell",
@@ -413,7 +444,8 @@
     "gridNorth": 20954,
     "latitude": 54.575943,
     "longitude": -3.37834,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "calf-crag": {
     "slug": "calf-crag",
@@ -426,7 +458,8 @@
     "gridNorth": 10412,
     "latitude": 54.484231,
     "longitude": -3.079493,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "carl-side": {
     "slug": "carl-side",
@@ -439,7 +472,8 @@
     "gridNorth": 28088,
     "latitude": 54.642389,
     "longitude": -3.155984,
-    "book": 5
+    "book": 5,
+    "hasWalk": true
   },
   "carrock-fell": {
     "slug": "carrock-fell",
@@ -452,7 +486,8 @@
     "gridNorth": 33640,
     "latitude": 54.693484,
     "longitude": -3.02287,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "castle-crag": {
     "slug": "castle-crag",
@@ -465,7 +500,8 @@
     "gridNorth": 15943,
     "latitude": 54.533181,
     "longitude": -3.161612,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "catbells": {
     "slug": "catbells",
@@ -478,7 +514,8 @@
     "gridNorth": 19862,
     "latitude": 54.568316,
     "longitude": -3.1707,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "catstycam": {
     "slug": "catstycam",
@@ -491,7 +528,8 @@
     "gridNorth": 15823,
     "latitude": 54.533472,
     "longitude": -3.008928,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "causey-pike": {
     "slug": "causey-pike",
@@ -504,7 +542,8 @@
     "gridNorth": 20852,
     "latitude": 54.576825,
     "longitude": -3.210149,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "caw-fell": {
     "slug": "caw-fell",
@@ -517,7 +556,8 @@
     "gridNorth": 10997,
     "latitude": 54.486868,
     "longitude": -3.341256,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "clough-head": {
     "slug": "clough-head",
@@ -530,7 +570,8 @@
     "gridNorth": 22542,
     "latitude": 54.593661,
     "longitude": -3.032362,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "cold-pike": {
     "slug": "cold-pike",
@@ -543,7 +584,8 @@
     "gridNorth": 3614,
     "latitude": 54.4226,
     "longitude": -3.137582,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "crag-fell": {
     "slug": "crag-fell",
@@ -556,7 +598,8 @@
     "gridNorth": 14386,
     "latitude": 54.516708,
     "longitude": -3.396072,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "eel-crag": {
     "slug": "eel-crag",
@@ -569,7 +612,8 @@
     "gridNorth": 20335,
     "latitude": 54.571771,
     "longitude": -3.250235,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "crinkle-crags": {
     "slug": "crinkle-crags",
@@ -582,7 +626,8 @@
     "gridNorth": 4873,
     "latitude": 54.433704,
     "longitude": -3.159813,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "dale-head": {
     "slug": "dale-head",
@@ -595,7 +640,8 @@
     "gridNorth": 15326,
     "latitude": 54.527238,
     "longitude": -3.202284,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "dodd": {
     "slug": "dodd",
@@ -608,7 +654,8 @@
     "gridNorth": 27351,
     "latitude": 54.63561,
     "longitude": -3.172122,
-    "book": 5
+    "book": 5,
+    "hasWalk": true
   },
   "dollywaggon-pike": {
     "slug": "dollywaggon-pike",
@@ -621,7 +668,8 @@
     "gridNorth": 13068,
     "latitude": 54.508693,
     "longitude": -3.011175,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "dove-crag": {
     "slug": "dove-crag",
@@ -634,7 +682,8 @@
     "gridNorth": 10436,
     "latitude": 54.4854,
     "longitude": -2.96693,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "dow-crag": {
     "slug": "dow-crag",
@@ -647,7 +696,8 @@
     "gridNorth": 97794,
     "latitude": 54.3703,
     "longitude": -3.136659,
-    "book": 4
+    "book": 4,
+    "hasWalk": true
   },
   "eagle-crag": {
     "slug": "eagle-crag",
@@ -660,7 +710,8 @@
     "gridNorth": 12103,
     "latitude": 54.499056,
     "longitude": -3.12048,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "esk-pike": {
     "slug": "esk-pike",
@@ -673,7 +724,8 @@
     "gridNorth": 7505,
     "latitude": 54.457172,
     "longitude": -3.179219,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "fairfield": {
     "slug": "fairfield",
@@ -686,7 +738,8 @@
     "gridNorth": 11757,
     "latitude": 54.497072,
     "longitude": -2.991633,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "fellbarrow": {
     "slug": "fellbarrow",
@@ -699,7 +752,8 @@
     "gridNorth": 24236,
     "latitude": 54.60582,
     "longitude": -3.344699,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "fleetwith-pike": {
     "slug": "fleetwith-pike",
@@ -712,7 +766,8 @@
     "gridNorth": 14167,
     "latitude": 54.516562,
     "longitude": -3.22818,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "froswick": {
     "slug": "froswick",
@@ -725,7 +780,8 @@
     "gridNorth": 8526,
     "latitude": 54.468949,
     "longitude": -2.872959,
-    "book": 2
+    "book": 2,
+    "hasWalk": true
   },
   "gavel-fell": {
     "slug": "gavel-fell",
@@ -738,7 +794,8 @@
     "gridNorth": 18385,
     "latitude": 54.552984,
     "longitude": -3.366804,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "gibson-knott": {
     "slug": "gibson-knott",
@@ -751,7 +808,8 @@
     "gridNorth": 10037,
     "latitude": 54.48107,
     "longitude": -3.055825,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "glaramara": {
     "slug": "glaramara",
@@ -764,7 +822,8 @@
     "gridNorth": 10457,
     "latitude": 54.483839,
     "longitude": -3.165338,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "glenridding-dodd": {
     "slug": "glenridding-dodd",
@@ -777,7 +836,8 @@
     "gridNorth": 17558,
     "latitude": 54.54947,
     "longitude": -2.959246,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "gowbarrow-fell": {
     "slug": "gowbarrow-fell",
@@ -790,7 +850,8 @@
     "gridNorth": 21822,
     "latitude": 54.58811,
     "longitude": -2.918201,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "grange-fell": {
     "slug": "grange-fell",
@@ -803,7 +864,8 @@
     "gridNorth": 16276,
     "latitude": 54.536399,
     "longitude": -3.137963,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "grasmoor": {
     "slug": "grasmoor",
@@ -816,7 +878,8 @@
     "gridNorth": 20352,
     "latitude": 54.571635,
     "longitude": -3.277905,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "gray-crag": {
     "slug": "gray-crag",
@@ -829,7 +892,8 @@
     "gridNorth": 11710,
     "latitude": 54.497475,
     "longitude": -2.885379,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "graystones": {
     "slug": "graystones",
@@ -842,7 +906,8 @@
     "gridNorth": 26622,
     "latitude": 54.627991,
     "longitude": -3.277642,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "great-borne": {
     "slug": "great-borne",
@@ -855,7 +920,8 @@
     "gridNorth": 16359,
     "latitude": 54.534903,
     "longitude": -3.355442,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "great-calva": {
     "slug": "great-calva",
@@ -868,7 +934,8 @@
     "gridNorth": 31188,
     "latitude": 54.670761,
     "longitude": -3.101073,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "great-carrs": {
     "slug": "great-carrs",
@@ -881,7 +948,8 @@
     "gridNorth": 950,
     "latitude": 54.398777,
     "longitude": -3.124738,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "great-cockup": {
     "slug": "great-cockup",
@@ -894,7 +962,8 @@
     "gridNorth": 33321,
     "latitude": 54.689677,
     "longitude": -3.128766,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "great-crag": {
     "slug": "great-crag",
@@ -907,7 +976,8 @@
     "gridNorth": 14686,
     "latitude": 54.522189,
     "longitude": -3.129333,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "great-dodd": {
     "slug": "great-dodd",
@@ -920,7 +990,8 @@
     "gridNorth": 20530,
     "latitude": 54.575689,
     "longitude": -3.019377,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "great-end": {
     "slug": "great-end",
@@ -933,7 +1004,8 @@
     "gridNorth": 8387,
     "latitude": 54.464949,
     "longitude": -3.194532,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "great-gable": {
     "slug": "great-gable",
@@ -946,7 +1018,8 @@
     "gridNorth": 10321,
     "latitude": 54.482084,
     "longitude": -3.219296,
-    "book": 7
+    "book": 7,
+    "hasWalk": true
   },
   "great-mell-fell": {
     "slug": "great-mell-fell",
@@ -959,7 +1032,8 @@
     "gridNorth": 25367,
     "latitude": 54.619837,
     "longitude": -2.935657,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "great-rigg": {
     "slug": "great-rigg",
@@ -972,7 +1046,8 @@
     "gridNorth": 10407,
     "latitude": 54.484906,
     "longitude": -2.995676,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "great-sca-fell": {
     "slug": "great-sca-fell",
@@ -985,7 +1060,8 @@
     "gridNorth": 33901,
     "latitude": 54.695145,
     "longitude": -3.100989,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "green-crag": {
     "slug": "green-crag",
@@ -998,7 +1074,8 @@
     "gridNorth": 98275,
     "latitude": 54.373688,
     "longitude": -3.232801,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "green-gable": {
     "slug": "green-gable",
@@ -1011,7 +1088,8 @@
     "gridNorth": 10717,
     "latitude": 54.485699,
     "longitude": -3.213769,
-    "book": 7
+    "book": 7,
+    "hasWalk": true
   },
   "grey-crag": {
     "slug": "grey-crag",
@@ -1024,7 +1102,8 @@
     "gridNorth": 7221,
     "latitude": 54.457874,
     "longitude": -2.777191,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "grey-friar": {
     "slug": "grey-friar",
@@ -1037,7 +1116,8 @@
     "gridNorth": 361,
     "latitude": 54.39333,
     "longitude": -3.14107,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "grey-knotts": {
     "slug": "grey-knotts",
@@ -1050,7 +1130,8 @@
     "gridNorth": 12567,
     "latitude": 54.502362,
     "longitude": -3.210186,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "grike": {
     "slug": "grike",
@@ -1063,7 +1144,8 @@
     "gridNorth": 14083,
     "latitude": 54.513766,
     "longitude": -3.41488,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "grisedale-pike": {
     "slug": "grisedale-pike",
@@ -1076,7 +1158,8 @@
     "gridNorth": 22548,
     "latitude": 54.591745,
     "longitude": -3.242071,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "hallin-fell": {
     "slug": "hallin-fell",
@@ -1089,7 +1172,8 @@
     "gridNorth": 19820,
     "latitude": 54.570412,
     "longitude": -2.878498,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "hard-knott": {
     "slug": "hard-knott",
@@ -1102,7 +1186,8 @@
     "gridNorth": 2377,
     "latitude": 54.411026,
     "longitude": -3.185029,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "harrison-stickle": {
     "slug": "harrison-stickle",
@@ -1115,7 +1200,8 @@
     "gridNorth": 7401,
     "latitude": 54.456898,
     "longitude": -3.109455,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "hart-crag": {
     "slug": "hart-crag",
@@ -1128,7 +1214,8 @@
     "gridNorth": 11207,
     "latitude": 54.492259,
     "longitude": -2.975615,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "hart-side": {
     "slug": "hart-side",
@@ -1141,7 +1228,8 @@
     "gridNorth": 19730,
     "latitude": 54.568719,
     "longitude": -2.992938,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "harter-fell-s": {
     "slug": "harter-fell-s",
@@ -1155,7 +1243,8 @@
     "gridNorth": 99714,
     "latitude": 54.386898,
     "longitude": -3.204538,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "harter-fell-fe": {
     "slug": "harter-fell-fe",
@@ -1169,7 +1258,8 @@
     "gridNorth": 9327,
     "latitude": 54.476414,
     "longitude": -2.835323,
-    "book": 2
+    "book": 2,
+    "hasWalk": true
   },
   "hartsop-above-how": {
     "slug": "hartsop-above-how",
@@ -1182,7 +1272,8 @@
     "gridNorth": 12004,
     "latitude": 54.499595,
     "longitude": -2.953939,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "hartsop-dodd": {
     "slug": "hartsop-dodd",
@@ -1195,7 +1286,8 @@
     "gridNorth": 11849,
     "latitude": 54.498538,
     "longitude": -2.910448,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "haycock": {
     "slug": "haycock",
@@ -1208,7 +1300,8 @@
     "gridNorth": 10717,
     "latitude": 54.484568,
     "longitude": -3.321576,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "haystacks": {
     "slug": "haystacks",
@@ -1221,7 +1314,8 @@
     "gridNorth": 13152,
     "latitude": 54.507243,
     "longitude": -3.247321,
-    "book": 7
+    "book": 7,
+    "hasWalk": true
   },
   "helm-crag": {
     "slug": "helm-crag",
@@ -1234,7 +1328,8 @@
     "gridNorth": 9350,
     "latitude": 54.475026,
     "longitude": -3.040823,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "helvellyn": {
     "slug": "helvellyn",
@@ -1247,7 +1342,8 @@
     "gridNorth": 15111,
     "latitude": 54.527001,
     "longitude": -3.017514,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "hen-comb": {
     "slug": "hen-comb",
@@ -1260,7 +1356,8 @@
     "gridNorth": 18118,
     "latitude": 54.550848,
     "longitude": -3.343261,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "heron-pike": {
     "slug": "heron-pike",
@@ -1273,7 +1370,8 @@
     "gridNorth": 8310,
     "latitude": 54.466063,
     "longitude": -2.995126,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "high-crag": {
     "slug": "high-crag",
@@ -1286,7 +1384,8 @@
     "gridNorth": 13997,
     "latitude": 54.514628,
     "longitude": -3.267412,
-    "book": 7
+    "book": 7,
+    "hasWalk": true
   },
   "high-hartsop-dodd": {
     "slug": "high-hartsop-dodd",
@@ -1299,7 +1398,8 @@
     "gridNorth": 10768,
     "latitude": 54.488614,
     "longitude": -2.93769,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "high-pike-n": {
     "slug": "high-pike-n",
@@ -1313,7 +1413,8 @@
     "gridNorth": 35001,
     "latitude": 54.705407,
     "longitude": -3.058742,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "high-pike-e": {
     "slug": "high-pike-e",
@@ -1327,7 +1428,8 @@
     "gridNorth": 8831,
     "latitude": 54.470976,
     "longitude": -2.966791,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "high-raise-c": {
     "slug": "high-raise-c",
@@ -1341,7 +1443,8 @@
     "gridNorth": 9524,
     "latitude": 54.475962,
     "longitude": -3.111268,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "high-raise-fe": {
     "slug": "high-raise-fe",
@@ -1355,7 +1458,8 @@
     "gridNorth": 13453,
     "latitude": 54.513367,
     "longitude": -2.853779,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "high-rigg": {
     "slug": "high-rigg",
@@ -1368,7 +1472,8 @@
     "gridNorth": 21998,
     "latitude": 54.588432,
     "longitude": -3.071568,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "high-seat": {
     "slug": "high-seat",
@@ -1381,7 +1486,8 @@
     "gridNorth": 18047,
     "latitude": 54.552632,
     "longitude": -3.103765,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "high-spy": {
     "slug": "high-spy",
@@ -1394,7 +1500,8 @@
     "gridNorth": 16233,
     "latitude": 54.535559,
     "longitude": -3.185141,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "high-stile": {
     "slug": "high-stile",
@@ -1407,7 +1514,8 @@
     "gridNorth": 14788,
     "latitude": 54.521522,
     "longitude": -3.287851,
-    "book": 7
+    "book": 7,
+    "hasWalk": true
   },
   "high-street": {
     "slug": "high-street",
@@ -1420,7 +1528,8 @@
     "gridNorth": 11050,
     "latitude": 54.491691,
     "longitude": -2.86486,
-    "book": 2
+    "book": 2,
+    "hasWalk": true
   },
   "high-tove": {
     "slug": "high-tove",
@@ -1433,7 +1542,8 @@
     "gridNorth": 16511,
     "latitude": 54.53886,
     "longitude": -3.100209,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "hindscarth": {
     "slug": "hindscarth",
@@ -1446,7 +1556,8 @@
     "gridNorth": 16517,
     "latitude": 54.537828,
     "longitude": -3.213755,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "holme-fell": {
     "slug": "holme-fell",
@@ -1459,7 +1570,8 @@
     "gridNorth": 606,
     "latitude": 54.396301,
     "longitude": -3.056527,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "hopegill-head": {
     "slug": "hopegill-head",
@@ -1472,7 +1584,8 @@
     "gridNorth": 22163,
     "latitude": 54.588082,
     "longitude": -3.26166,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "ill-bell": {
     "slug": "ill-bell",
@@ -1485,7 +1598,8 @@
     "gridNorth": 7753,
     "latitude": 54.462017,
     "longitude": -2.870837,
-    "book": 2
+    "book": 2,
+    "hasWalk": true
   },
   "illgill-head": {
     "slug": "illgill-head",
@@ -1498,7 +1612,8 @@
     "gridNorth": 4909,
     "latitude": 54.432782,
     "longitude": -3.283,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "kentmere-pike": {
     "slug": "kentmere-pike",
@@ -1511,7 +1626,8 @@
     "gridNorth": 7791,
     "latitude": 54.462673,
     "longitude": -2.826033,
-    "book": 2
+    "book": 2,
+    "hasWalk": true
   },
   "kidsty-pike": {
     "slug": "kidsty-pike",
@@ -1524,7 +1640,8 @@
     "gridNorth": 12580,
     "latitude": 54.505513,
     "longitude": -2.854959,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "kirk-fell": {
     "slug": "kirk-fell",
@@ -1537,7 +1654,8 @@
     "gridNorth": 10487,
     "latitude": 54.483323,
     "longitude": -3.244123,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "knott": {
     "slug": "knott",
@@ -1550,7 +1668,8 @@
     "gridNorth": 32985,
     "latitude": 54.686982,
     "longitude": -3.093322,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "knott-rigg": {
     "slug": "knott-rigg",
@@ -1563,7 +1682,8 @@
     "gridNorth": 18872,
     "latitude": 54.558701,
     "longitude": -3.242613,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "lank-rigg": {
     "slug": "lank-rigg",
@@ -1576,7 +1696,8 @@
     "gridNorth": 11958,
     "latitude": 54.494793,
     "longitude": -3.403972,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "latrigg": {
     "slug": "latrigg",
@@ -1589,7 +1710,8 @@
     "gridNorth": 24699,
     "latitude": 54.612291,
     "longitude": -3.117565,
-    "book": 5
+    "book": 5,
+    "hasWalk": true
   },
   "ling-fell": {
     "slug": "ling-fell",
@@ -1602,7 +1724,8 @@
     "gridNorth": 28536,
     "latitude": 54.645249,
     "longitude": -3.272325,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "lingmell": {
     "slug": "lingmell",
@@ -1615,7 +1738,8 @@
     "gridNorth": 8178,
     "latitude": 54.462803,
     "longitude": -3.2213,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "lingmoor-fell": {
     "slug": "lingmoor-fell",
@@ -1628,7 +1752,8 @@
     "gridNorth": 4605,
     "latitude": 54.432067,
     "longitude": -3.07641,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "little-hart-crag": {
     "slug": "little-hart-crag",
@@ -1641,7 +1766,8 @@
     "gridNorth": 10031,
     "latitude": 54.481916,
     "longitude": -2.947169,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "little-mell-fell": {
     "slug": "little-mell-fell",
@@ -1654,7 +1780,8 @@
     "gridNorth": 24018,
     "latitude": 54.608024,
     "longitude": -2.894465,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "loadpot-hill": {
     "slug": "loadpot-hill",
@@ -1667,7 +1794,8 @@
     "gridNorth": 18047,
     "latitude": 54.554737,
     "longitude": -2.842072,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "loft-crag": {
     "slug": "loft-crag",
@@ -1680,7 +1808,8 @@
     "gridNorth": 7133,
     "latitude": 54.454429,
     "longitude": -3.115975,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "long-side": {
     "slug": "long-side",
@@ -1693,7 +1822,8 @@
     "gridNorth": 28444,
     "latitude": 54.645496,
     "longitude": -3.165618,
-    "book": 5
+    "book": 5,
+    "hasWalk": true
   },
   "longlands-fell": {
     "slug": "longlands-fell",
@@ -1706,7 +1836,8 @@
     "gridNorth": 35402,
     "latitude": 54.708411,
     "longitude": -3.125313,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "lonscale-fell": {
     "slug": "lonscale-fell",
@@ -1719,7 +1850,8 @@
     "gridNorth": 27145,
     "latitude": 54.634357,
     "longitude": -3.108518,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "lords-seat": {
     "slug": "lords-seat",
@@ -1732,7 +1864,8 @@
     "gridNorth": 26553,
     "latitude": 54.627823,
     "longitude": -3.233984,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "loughrigg-fell": {
     "slug": "loughrigg-fell",
@@ -1745,7 +1878,8 @@
     "gridNorth": 5139,
     "latitude": 54.437454,
     "longitude": -3.008355,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "low-fell": {
     "slug": "low-fell",
@@ -1758,7 +1892,8 @@
     "gridNorth": 22617,
     "latitude": 54.591358,
     "longitude": -3.336608,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "low-pike": {
     "slug": "low-pike",
@@ -1771,7 +1906,8 @@
     "gridNorth": 7841,
     "latitude": 54.462069,
     "longitude": -2.967985,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "maiden-moor": {
     "slug": "maiden-moor",
@@ -1784,7 +1920,8 @@
     "gridNorth": 18189,
     "latitude": 54.553174,
     "longitude": -3.181585,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "mardale-ill-bell": {
     "slug": "mardale-ill-bell",
@@ -1797,7 +1934,8 @@
     "gridNorth": 10121,
     "latitude": 54.483418,
     "longitude": -2.854112,
-    "book": 2
+    "book": 2,
+    "hasWalk": true
   },
   "meal-fell": {
     "slug": "meal-fell",
@@ -1810,7 +1948,8 @@
     "gridNorth": 33764,
     "latitude": 54.693795,
     "longitude": -3.113923,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "mellbreak": {
     "slug": "mellbreak",
@@ -1823,7 +1962,8 @@
     "gridNorth": 18614,
     "latitude": 54.555581,
     "longitude": -3.318258,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "middle-dodd": {
     "slug": "middle-dodd",
@@ -1836,7 +1976,8 @@
     "gridNorth": 9575,
     "latitude": 54.477939,
     "longitude": -2.931566,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "middle-fell": {
     "slug": "middle-fell",
@@ -1849,7 +1990,8 @@
     "gridNorth": 7220,
     "latitude": 54.453249,
     "longitude": -3.311327,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "mungrisdale-common": {
     "slug": "mungrisdale-common",
@@ -1862,7 +2004,8 @@
     "gridNorth": 29229,
     "latitude": 54.653432,
     "longitude": -3.070132,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "nab-scar": {
     "slug": "nab-scar",
@@ -1875,7 +2018,8 @@
     "gridNorth": 7237,
     "latitude": 54.456414,
     "longitude": -2.995833,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "nethermost-pike": {
     "slug": "nethermost-pike",
@@ -1888,7 +2032,8 @@
     "gridNorth": 14218,
     "latitude": 54.518993,
     "longitude": -3.015446,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "outerside": {
     "slug": "outerside",
@@ -1901,7 +2046,8 @@
     "gridNorth": 21460,
     "latitude": 54.582169,
     "longitude": -3.222175,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "pavey-ark": {
     "slug": "pavey-ark",
@@ -1914,7 +2060,8 @@
     "gridNorth": 7908,
     "latitude": 54.461494,
     "longitude": -3.105214,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "pike-of-blisco": {
     "slug": "pike-of-blisco",
@@ -1927,7 +2074,8 @@
     "gridNorth": 4214,
     "latitude": 54.428111,
     "longitude": -3.124925,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "pike-of-stickle": {
     "slug": "pike-of-stickle",
@@ -1940,7 +2088,8 @@
     "gridNorth": 7358,
     "latitude": 54.456402,
     "longitude": -3.121366,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "pillar": {
     "slug": "pillar",
@@ -1953,7 +2102,8 @@
     "gridNorth": 12105,
     "latitude": 54.497479,
     "longitude": -3.281134,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "place-fell": {
     "slug": "place-fell",
@@ -1966,7 +2116,8 @@
     "gridNorth": 16947,
     "latitude": 54.544278,
     "longitude": -2.920741,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "raise": {
     "slug": "raise",
@@ -1979,7 +2130,8 @@
     "gridNorth": 17416,
     "latitude": 54.547718,
     "longitude": -3.017473,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "rampsgill-head": {
     "slug": "rampsgill-head",
@@ -1992,7 +2144,8 @@
     "gridNorth": 12872,
     "latitude": 54.508092,
     "longitude": -2.861252,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "rannerdale-knotts": {
     "slug": "rannerdale-knotts",
@@ -2005,7 +2158,8 @@
     "gridNorth": 18252,
     "latitude": 54.552643,
     "longitude": -3.289032,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "raven-crag": {
     "slug": "raven-crag",
@@ -2018,7 +2172,8 @@
     "gridNorth": 18756,
     "latitude": 54.559231,
     "longitude": -3.07872,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "red-pike-b": {
     "slug": "red-pike-b",
@@ -2032,7 +2187,8 @@
     "gridNorth": 15459,
     "latitude": 54.527438,
     "longitude": -3.298529,
-    "book": 7
+    "book": 7,
+    "hasWalk": true
   },
   "red-pike-w": {
     "slug": "red-pike-w",
@@ -2046,7 +2202,8 @@
     "gridNorth": 10607,
     "latitude": 54.483922,
     "longitude": -3.289879,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "red-screes": {
     "slug": "red-screes",
@@ -2059,7 +2216,8 @@
     "gridNorth": 8757,
     "latitude": 54.47058,
     "longitude": -2.932556,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "rest-dodd": {
     "slug": "rest-dodd",
@@ -2072,7 +2230,8 @@
     "gridNorth": 13648,
     "latitude": 54.514946,
     "longitude": -2.878033,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "robinson": {
     "slug": "robinson",
@@ -2085,7 +2244,8 @@
     "gridNorth": 16874,
     "latitude": 54.540818,
     "longitude": -3.235284,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "rossett-pike": {
     "slug": "rossett-pike",
@@ -2098,7 +2258,8 @@
     "gridNorth": 7569,
     "latitude": 54.457935,
     "longitude": -3.159804,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "rosthwaite-fell": {
     "slug": "rosthwaite-fell",
@@ -2111,7 +2272,8 @@
     "gridNorth": 12480,
     "latitude": 54.502198,
     "longitude": -3.14685,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "sail": {
     "slug": "sail",
@@ -2124,7 +2286,8 @@
     "gridNorth": 20276,
     "latitude": 54.571328,
     "longitude": -3.241806,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "sale-fell": {
     "slug": "sale-fell",
@@ -2137,7 +2300,8 @@
     "gridNorth": 29665,
     "latitude": 54.655627,
     "longitude": -3.250157,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "sallows": {
     "slug": "sallows",
@@ -2150,7 +2314,8 @@
     "gridNorth": 3981,
     "latitude": 54.428122,
     "longitude": -2.869995,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "scafell": {
     "slug": "scafell",
@@ -2163,7 +2328,8 @@
     "gridNorth": 6479,
     "latitude": 54.447498,
     "longitude": -3.224731,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "scafell-pike": {
     "slug": "scafell-pike",
@@ -2176,7 +2342,8 @@
     "gridNorth": 7212,
     "latitude": 54.454219,
     "longitude": -3.211511,
-    "book": 4
+    "book": 4,
+    "hasWalk": true
   },
   "scar-crags": {
     "slug": "scar-crags",
@@ -2189,7 +2356,8 @@
     "gridNorth": 20663,
     "latitude": 54.574968,
     "longitude": -3.225966,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "scoat-fell": {
     "slug": "scoat-fell",
@@ -2202,7 +2370,8 @@
     "gridNorth": 11395,
     "latitude": 54.490904,
     "longitude": -3.299239,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "seat-sandal": {
     "slug": "seat-sandal",
@@ -2215,7 +2384,8 @@
     "gridNorth": 11531,
     "latitude": 54.494857,
     "longitude": -3.014027,
-    "book": 1
+    "book": 1,
+    "hasWalk": true
   },
   "seatallan": {
     "slug": "seatallan",
@@ -2228,7 +2398,8 @@
     "gridNorth": 8444,
     "latitude": 54.464065,
     "longitude": -3.328274,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "seathwaite-fell": {
     "slug": "seathwaite-fell",
@@ -2241,7 +2412,8 @@
     "gridNorth": 10184,
     "latitude": 54.481131,
     "longitude": -3.191438,
-    "book": 4
+    "book": 4,
+    "hasWalk": true
   },
   "selside-pike": {
     "slug": "selside-pike",
@@ -2254,7 +2426,8 @@
     "gridNorth": 11146,
     "latitude": 54.49308,
     "longitude": -2.787925,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "sergeant-man": {
     "slug": "sergeant-man",
@@ -2267,7 +2440,8 @@
     "gridNorth": 8892,
     "latitude": 54.470362,
     "longitude": -3.102552,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "sergeants-crag": {
     "slug": "sergeants-crag",
@@ -2280,7 +2454,8 @@
     "gridNorth": 11379,
     "latitude": 54.492531,
     "longitude": -3.122463,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "sheffield-pike": {
     "slug": "sheffield-pike",
@@ -2293,7 +2468,8 @@
     "gridNorth": 18182,
     "latitude": 54.554936,
     "longitude": -2.977002,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "shipman-knotts": {
     "slug": "shipman-knotts",
@@ -2306,7 +2482,8 @@
     "gridNorth": 6214,
     "latitude": 54.448577,
     "longitude": -2.814707,
-    "book": 2
+    "book": 2,
+    "hasWalk": true
   },
   "silver-how": {
     "slug": "silver-how",
@@ -2319,7 +2496,8 @@
     "gridNorth": 6645,
     "latitude": 54.450696,
     "longitude": -3.04289,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "skiddaw": {
     "slug": "skiddaw",
@@ -2332,7 +2510,8 @@
     "gridNorth": 29082,
     "latitude": 54.6514,
     "longitude": -3.147761,
-    "book": 5
+    "book": 5,
+    "hasWalk": true
   },
   "skiddaw-little-man": {
     "slug": "skiddaw-little-man",
@@ -2345,7 +2524,8 @@
     "gridNorth": 27793,
     "latitude": 54.639911,
     "longitude": -3.137629,
-    "book": 5
+    "book": 5,
+    "hasWalk": true
   },
   "slight-side": {
     "slug": "slight-side",
@@ -2358,7 +2538,8 @@
     "gridNorth": 5015,
     "latitude": 54.434392,
     "longitude": -3.219575,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "sour-howes": {
     "slug": "sour-howes",
@@ -2371,7 +2552,8 @@
     "gridNorth": 3218,
     "latitude": 54.421166,
     "longitude": -2.883579,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "souther-fell": {
     "slug": "souther-fell",
@@ -2384,7 +2566,8 @@
     "gridNorth": 29142,
     "latitude": 54.653236,
     "longitude": -3.001663,
-    "book": 5
+    "book": 5,
+    "hasWalk": false
   },
   "st-sunday-crag": {
     "slug": "st-sunday-crag",
@@ -2397,7 +2580,8 @@
     "gridNorth": 13398,
     "latitude": 54.511949,
     "longitude": -2.975867,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "starling-dodd": {
     "slug": "starling-dodd",
@@ -2410,7 +2594,8 @@
     "gridNorth": 15748,
     "latitude": 54.529725,
     "longitude": -3.327207,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "stell-fell": {
     "slug": "stell-fell",
@@ -2423,7 +2608,8 @@
     "gridNorth": 11155,
     "latitude": 54.49115,
     "longitude": -3.052179,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "steel-knotts": {
     "slug": "steel-knotts",
@@ -2436,7 +2622,8 @@
     "gridNorth": 18123,
     "latitude": 54.555245,
     "longitude": -2.866807,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "steeple": {
     "slug": "steeple",
@@ -2449,7 +2636,8 @@
     "gridNorth": 11675,
     "latitude": 54.493389,
     "longitude": -3.302174,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "stone-arthur": {
     "slug": "stone-arthur",
@@ -2462,7 +2650,8 @@
     "gridNorth": 9236,
     "latitude": 54.474276,
     "longitude": -3.008366,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "caudale-moor": {
     "slug": "caudale-moor",
@@ -2475,7 +2664,8 @@
     "gridNorth": 10007,
     "latitude": 54.48206,
     "longitude": -2.90008,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "stybarrow-dodd": {
     "slug": "stybarrow-dodd",
@@ -2488,7 +2678,8 @@
     "gridNorth": 18912,
     "latitude": 54.561164,
     "longitude": -3.017391,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "swirl-how": {
     "slug": "swirl-how",
@@ -2501,7 +2692,8 @@
     "gridNorth": 552,
     "latitude": 54.39523,
     "longitude": -3.12153,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "tarn-crag-c": {
     "slug": "tarn-crag-c",
@@ -2515,7 +2707,8 @@
     "gridNorth": 9303,
     "latitude": 54.474295,
     "longitude": -3.076006,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "tarn-crag-fe": {
     "slug": "tarn-crag-fe",
@@ -2529,7 +2722,8 @@
     "gridNorth": 7852,
     "latitude": 54.463458,
     "longitude": -2.790658,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "the-knott": {
     "slug": "the-knott",
@@ -2542,7 +2736,8 @@
     "gridNorth": 12682,
     "latitude": 54.506316,
     "longitude": -2.870821,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "the-nab": {
     "slug": "the-nab",
@@ -2555,7 +2750,8 @@
     "gridNorth": 15199,
     "latitude": 54.528902,
     "longitude": -2.875675,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "coniston-old-man": {
     "slug": "coniston-old-man",
@@ -2568,7 +2764,8 @@
     "gridNorth": 97818,
     "latitude": 54.370658,
     "longitude": -3.121445,
-    "book": 4
+    "book": 4,
+    "hasWalk": true
   },
   "thornthwaite-crag": {
     "slug": "thornthwaite-crag",
@@ -2581,7 +2778,8 @@
     "gridNorth": 10051,
     "latitude": 54.482611,
     "longitude": -2.878976,
-    "book": 2
+    "book": 2,
+    "hasWalk": true
   },
   "thunacar-knott": {
     "slug": "thunacar-knott",
@@ -2594,7 +2792,8 @@
     "gridNorth": 7993,
     "latitude": 54.462189,
     "longitude": -3.112653,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "troutbeck-tongue": {
     "slug": "troutbeck-tongue",
@@ -2607,7 +2806,8 @@
     "gridNorth": 6429,
     "latitude": 54.449961,
     "longitude": -2.892312,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "ullock-pike": {
     "slug": "ullock-pike",
@@ -2620,7 +2820,8 @@
     "gridNorth": 28759,
     "latitude": 54.648261,
     "longitude": -3.17247,
-    "book": 5
+    "book": 5,
+    "hasWalk": true
   },
   "ullscarf": {
     "slug": "ullscarf",
@@ -2633,7 +2834,8 @@
     "gridNorth": 12174,
     "latitude": 54.499923,
     "longitude": -3.095518,
-    "book": 3
+    "book": 3,
+    "hasWalk": false
   },
   "walla-crag": {
     "slug": "walla-crag",
@@ -2646,7 +2848,8 @@
     "gridNorth": 21288,
     "latitude": 54.581608,
     "longitude": -3.120377,
-    "book": 3
+    "book": 3,
+    "hasWalk": true
   },
   "wandope": {
     "slug": "wandope",
@@ -2659,7 +2862,8 @@
     "gridNorth": 19738,
     "latitude": 54.566335,
     "longitude": -3.257091,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "watsons-dodd": {
     "slug": "watsons-dodd",
@@ -2672,7 +2876,8 @@
     "gridNorth": 19563,
     "latitude": 54.566917,
     "longitude": -3.028995,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "wether-hill": {
     "slug": "wether-hill",
@@ -2685,7 +2890,8 @@
     "gridNorth": 16768,
     "latitude": 54.543239,
     "longitude": -2.842469,
-    "book": 2
+    "book": 2,
+    "hasWalk": false
   },
   "wetherlam": {
     "slug": "wetherlam",
@@ -2698,7 +2904,8 @@
     "gridNorth": 1113,
     "latitude": 54.400488,
     "longitude": -3.097981,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "whin-rigg": {
     "slug": "whin-rigg",
@@ -2711,7 +2918,8 @@
     "gridNorth": 3537,
     "latitude": 54.420162,
     "longitude": -3.309916,
-    "book": 4
+    "book": 4,
+    "hasWalk": false
   },
   "whinlatter": {
     "slug": "whinlatter",
@@ -2724,7 +2932,8 @@
     "gridNorth": 25133,
     "latitude": 54.614855,
     "longitude": -3.254033,
-    "book": 6
+    "book": 6,
+    "hasWalk": true
   },
   "white-side": {
     "slug": "white-side",
@@ -2737,7 +2946,8 @@
     "gridNorth": 16666,
     "latitude": 54.540913,
     "longitude": -3.025048,
-    "book": 1
+    "book": 1,
+    "hasWalk": false
   },
   "whiteless-pike": {
     "slug": "whiteless-pike",
@@ -2750,7 +2960,8 @@
     "gridNorth": 18977,
     "latitude": 54.559368,
     "longitude": -3.269294,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "whiteside": {
     "slug": "whiteside",
@@ -2763,7 +2974,8 @@
     "gridNorth": 21949,
     "latitude": 54.585912,
     "longitude": -3.285161,
-    "book": 6
+    "book": 6,
+    "hasWalk": false
   },
   "yewbarrow": {
     "slug": "yewbarrow",
@@ -2776,7 +2988,8 @@
     "gridNorth": 8474,
     "latitude": 54.464889,
     "longitude": -3.27686,
-    "book": 7
+    "book": 7,
+    "hasWalk": false
   },
   "yoke": {
     "slug": "yoke",
@@ -2789,6 +3002,7 @@
     "gridNorth": 6740,
     "latitude": 54.452928,
     "longitude": -2.868716,
-    "book": 2
+    "book": 2,
+    "hasWalk": true
   }
 }

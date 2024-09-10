@@ -50,9 +50,14 @@
 
 .hill-page_hill-table thead {
   font-weight: var(--fw-800);
-}
-.hill-page_hill-table thead {
   cursor: pointer;
+}
+.hill-page_hill-table thead span {
+  color: var(--cl-text-lightest);
+}
+.hill-page_hill-table thead span.hill-page_hill-table-arrow {
+  color: var(--cl-text);
+  font-weight: var(--fw-1000);
 }
 
 .hill-page_hill-table {
@@ -111,8 +116,12 @@
   font-size: var(--fs-600);
   font-weight: var(--fw-800);
   font-family: var(--ff-heading);
+  color: var(--cl-text-light);
 }
-.hill-card_name h2:hover {
+.hill-card_name a {
+  color: var(--cl-text);
+}
+.hill-card_name a:hover {
   color: var(--cl-primary);
 }
 .hill-card_name-secondary {
@@ -139,7 +148,7 @@
   }
 
   .hill-page_hill-table {
-    --inner-gap: 1rem;
+    --inner-gap: 0.5rem;
   }
 
   .hill-page_hill-list {
