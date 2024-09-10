@@ -74,15 +74,33 @@
 }
 
 .home-page_button svg {
+  --svg-dash: 20;
   width: calc(var(--fs-600) * 0.96);
+  stroke-dasharray: var(--svg-dash);
 }
 .home-page_button.walks svg {
+  --svg-dash: 5;
   stroke-width: 1.25;
   rotate: 15deg;
 }
-.home-page_button.mountains svg {
+.home-page_button svg {
   stroke-width: 0.75;
   rotate: 6deg;
+}
+
+.home-page_button:hover svg {
+  animation: draw-svg 600ms ease-out;
+}
+.home-page_button.walks:hover svg {
+  animation-duration: 400ms;
+}
+@keyframes draw-svg {
+  0%, 20% {
+    stroke-dashoffset: var(--svg-dash);
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 .home-page--links {
