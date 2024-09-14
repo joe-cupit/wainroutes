@@ -78,6 +78,11 @@ button.green-button:hover {
 .walk-page_map-map {
   aspect-ratio: 3/2;
 }
+@media (max-width: 500px) {
+  .walk-page_map-map {
+    aspect-ratio: 1;
+  }
+}
 .walk-page_map-elevation {
   width: 100%;
   height: 10rem;

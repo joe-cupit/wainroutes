@@ -16,7 +16,7 @@
 }
 
 .lake-map--marker {
-  width: 30px;
+  width: 24px;
   fill: var(--primary);
   stroke: black;
   stroke-width: 1;
