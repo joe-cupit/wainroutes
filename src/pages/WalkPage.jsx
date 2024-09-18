@@ -8,6 +8,7 @@ import { useWalks } from "../hooks/useWalks";
 
 import { LakeMap, GeoRoute } from "../components/map";
 import { useHillMarkers } from "../hooks/useMarkers";
+import Gallery from "../components/Gallery";
 
 
 export function WalkPage() {
@@ -133,7 +134,8 @@ export function WalkPage() {
           return (
             <div key={index} className="walk-page_steps-step">
               <h2>{step}</h2>
-              <p>{walkData?.steps?.[step]}</p>
+              <p>{walkData?.steps?.[step]?.text}</p>
+              <Gallery imageList={walkData?.steps?.[step]?.images} />
             </div>
           )
         })}

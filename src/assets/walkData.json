@@ -16,12 +16,30 @@
 
     "intro": "The Fairfield Horseshoe is one of the 'must do' walks in the Lake District. Kicking off in either Ambleside or Rydal, this walk takes you across eight summits around the Fairfield valley, providing views spanning most of the district.",
     "steps": {
-      "Initial Ascent": "Starting in Ambleside, the initial ascent up to Low Pike is rocky and winding. The climb is not too difficult and the views of Lake Windermere behind provide a good excuse for stopping to admire the views. The fields trekked in this section of the walk are often home to a curious herd of highland cattle adding to the fun.",
-      "Low and High Pike": "Reaching the first milestone of Low Pike provides stunning views of the town of Ambleside and the lakes that surround it. The path from this point on is rather undulating and, even though some 450 metres has already been ascended, much more of the walks climb is to come. Something to note from this point is the risk of a boggy trail, with the main guidance being a cobbled wall that spans the ridge for the majority of this half. High Pike is much the same as Low Pike but much higher (as the name would suggest).",
-      "Dove and Hart Crag": "The walk to the next two crags is a long one, but, provided you don't get consumed by cloud, should present great views of both the mountains to come and the surrounding landscape. Those with more time (and energy) can take the opportunity before reaching Dove Crag to bag an extra Wainwright by making their way over to Little Hart Crag.",
-      "Fairfield Summit": "The tallest mountain summited in this walk, and the namesake of the walk, Fairfield, provides 360 degree views of the highest peaks in the lakes, with one of the most famous, Helvellyn, being a stones throw north of here. On a calm, clear day this makes for the perfect mid-walk resting point to eat lunch and soak in the surroundings.",
-      "The Final Three Peaks": "The final three summits can be reached with comparitively minimal ascent to those in the first half, providing a more relaxed second half to the walk.",
-      "Final Descent": "The exit off of Nab Scar is steep and efficient at bringing this walk to a close and should prove no issue in good conditions. The path comes to a close along the main road traversing the central lakes at a bus stop where a bus can be caught travelling in both directions. As an alternative, the short-ish road to Ambleside can be walked turning this into a perfectly circular walk."
+      "Initial Ascent": {
+        "text": "Starting in Ambleside, the initial ascent up to Low Pike is rocky and winding. The climb is not too difficult and the views of Lake Windermere behind provide a good excuse for stopping to admire the views. The fields trekked in this section of the walk are often home to a curious herd of highland cattle adding to the fun.",
+        "images": ["270101", "270102", "270103"]
+      },
+      "Low and High Pike": {
+        "text":  "Reaching the first milestone of Low Pike provides stunning views of the town of Ambleside and the lakes that surround it. The path from this point on is rather undulating and, even though some 450 metres has already been ascended, much more of the walks climb is to come. Something to note from this point is the risk of a boggy trail, with the main guidance being a cobbled wall that spans the ridge for the majority of this half. High Pike is much the same as Low Pike but much higher (as the name would suggest).",
+        "images": ["270104", "270105"]
+      },
+      "Dove and Hart Crag": {
+        "text":  "The walk to the next two crags is a long one, but, provided you don't get consumed by cloud, should present great views of both the mountains to come and the surrounding landscape. Those with more time (and energy) can take the opportunity before reaching Dove Crag to bag an extra Wainwright by making their way over to Little Hart Crag.",
+        "images": ["270106", "270107", "270108"]
+      },
+      "Fairfield Summit": {
+        "text":  "The tallest mountain summited in this walk, and the namesake of the walk, Fairfield, provides 360 degree views of the highest peaks in the lakes, with one of the most famous, Helvellyn, being a stones throw north of here. On a calm, clear day this makes for the perfect mid-walk resting point to eat lunch and soak in the surroundings.",
+        "images": ["270109", "270110"]
+      },
+      "The Final Three Peaks": {
+        "text":  "The final three summits can be reached with comparitively minimal ascent to those in the first half, providing a more relaxed second half to the walk.",
+        "images": ["270111", "270112", "270113"]
+      },
+      "Final Descent": {
+        "text": "The exit off of Nab Scar is steep and efficient at bringing this walk to a close and should prove no issue in good conditions. The path comes to a close along the main road traversing the central lakes at a bus stop where a bus can be caught travelling in both directions. As an alternative, the short-ish road to Ambleside can be walked turning this into a perfectly circular walk.",
+        "images": ["270114"]
+      }
     },
 
     "bus_routes": [
