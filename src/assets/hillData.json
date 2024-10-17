@@ -11,7 +11,7 @@
     "latitude": 54.466367,
     "longitude": -3.179175,
     "book": 4,
-    "hasWalk": false
+    "hasWalk": true
   },
   "angletarn-pikes": {
     "slug": "angletarn-pikes",
@@ -319,7 +319,7 @@
     "latitude": 54.447834,
     "longitude": -3.166212,
     "book": 4,
-    "hasWalk": false
+    "hasWalk": true
   },
   "bowscale-fell": {
     "slug": "bowscale-fell",
@@ -585,7 +585,7 @@
     "latitude": 54.4226,
     "longitude": -3.137582,
     "book": 4,
-    "hasWalk": false
+    "hasWalk": true
   },
   "crag-fell": {
     "slug": "crag-fell",
@@ -627,7 +627,7 @@
     "latitude": 54.433704,
     "longitude": -3.159813,
     "book": 4,
-    "hasWalk": false
+    "hasWalk": true
   },
   "dale-head": {
     "slug": "dale-head",
@@ -725,7 +725,7 @@
     "latitude": 54.457172,
     "longitude": -3.179219,
     "book": 4,
-    "hasWalk": false
+    "hasWalk": true
   },
   "fairfield": {
     "slug": "fairfield",
@@ -823,7 +823,7 @@
     "latitude": 54.483839,
     "longitude": -3.165338,
     "book": 4,
-    "hasWalk": false
+    "hasWalk": true
   },
   "glenridding-dodd": {
     "slug": "glenridding-dodd",

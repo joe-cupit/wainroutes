@@ -160,6 +160,26 @@
     ],
     "tags": ["horseshoe", "circular"]
   },
+  "borrowdale-to-dungeon-ghyll": {
+    "slug": "borrowdale-to-dungeon-ghyll",
+    "name": "Borrowdale to Dungeon Ghyll",
+    "date": "2024-09-23",
+
+    "distance": 23.43,
+    "total_elevation": 1346,
+    "estimated_time": "6:30-8:30",
+    "wainwrights": ["glaramara", "allen-crags", "esk-pike", "bowfell", "crinkle-crags", "cold-pike"],
+
+    "start_lat_lang": [54.5180560, -3.1528740],
+
+    "intro": "Starting in the picturesque Borrowdale valley, this walk will take you through some of the tallest mountains in the lakes, ending in Dungeon Ghyll at the base of the Langdale Pikes. This walk is best enjoyed by staying the night in Borrowdale, whether that be in a tent or the perfectly placed Youth Hostel - a bus out of Dungeon Ghyll can be used to return to Ambleside, providing connections to the rest of the district.",
+
+    "bus_routes": [
+      ["78", "from Keswick"],
+      ["508", "to Ambleside"]
+    ],
+    "tags": ["point-to-point"]
+  },
   "scafell-pike": {
     "slug": "scafell-pike",
     "name": "Scafell Pike",
@@ -387,6 +407,23 @@
       ["78", "from Keswick"]
     ],
     "tags": ["there-and-back"]
+  },
+  "bessyboot-rosthwaite-fell": {
+    "slug": "bessyboot-rosthwaite-fell",
+    "name": "Bessyboot (Rosthwaite Fell)",
+    "date": "2024-09-22",
+
+    "distance": 6.88,
+    "total_elevation": 470,
+    "estimated_time": "1:30-2:30",
+    "wainwrights": ["rosthwaite-fell"],
+
+    "start_lat_lang": [54.5183360, -3.1521050],
+
+    "bus_routes": [
+      ["78", "from Keswick"]
+    ],
+    "tags": ["point-to-point"]
   },
   "gowbarrow-fell-with-aira-force": {
     "slug": "gowbarrow-fell-with-aira-force",
