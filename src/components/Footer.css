@@ -1,16 +1,18 @@
 .footer {
   min-height: 5rem;
+  padding-block-start: 2rem;
+  padding-inline: 1rem;
+  
+  color: var(--clr-white-400);
+  background: var(--clr-black-400);
+}
 
-  font-weight: var(--fw-400);
-
-  color: var(--nav-copy);
-  background: var(--nav-background);
-
-  padding-top: 2rem;
-  padding-left: 2rem;
+.footer_container {
+  width: min(1300px, 98%);
+  margin-inline: auto;
 }
 
 .footer_copywright {
-  font-size: var(--fs-200);
-  color: var(--cl-text-lighter);
+  font-size: var(--fs-300);
+  color: var(--clr-black-200);
 }

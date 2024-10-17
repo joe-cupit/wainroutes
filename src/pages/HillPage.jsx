@@ -32,7 +32,7 @@ export function HillPage() {
 
       <div className="grid-group">
         <header className="hill-page_header">
-          <h1>{hillData.name}</h1>
+          <h1 className="page-title">{hillData.name}</h1>
           <p>"This is a random Wainwright quote about the current mountain and could be quite long"</p>
         </header>
 

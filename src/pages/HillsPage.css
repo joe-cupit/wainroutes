@@ -4,19 +4,16 @@
 }
 .wainwright-number::after {
   content: "";
-  width: 100%;
-  height: 1.5rem;
-  background: var(--cl-primary);
   position: absolute;
   top: 65%;
   left: 10%;
   z-index: -1;
-}
 
-/* .hill-page_container {
-  gap: 2rem;
-  grid-template-columns: 1fr 500px;
-} */
+  width: 100%;
+  height: 1.5rem;
+
+  background: var(--clr-primary-400);
+}
 
 
 .hill-page_map-container {
@@ -27,37 +24,37 @@
 }
 
 .hill-page_hill-list {
-  margin-top: 2rem;
+  margin-block-start: 2rem;
   padding-inline: 5rem;
 }
 
 .hill-page_hill-list input {
+  margin-block-end: 1rem;
+  padding: 0.125rem 0.25rem;
+
+  width: 12ch;
+
+  font-size: var(--fs-800);
+
   background: none;
   border: none;
   outline: none;
-  border-bottom: 2px solid var(--cl-text-lighter);
-  width: 12ch;
-
-  font-size: var(--fs-600);
-  margin-bottom: 1rem;
-  padding-inline: 0.25rem;
-  padding-block: 0.125rem;
+  border-bottom: 2px solid var(--clr-black-200);
 }
 .hill-page_hill-list input:focus {
-  border-bottom: 2px solid var(--cl-text);
+  border-bottom: 2px solid var(--clr-black-400);
 }
 
 
 .hill-page_hill-table thead {
-  font-weight: var(--fw-800);
+  font-weight: var(--fw-bold);
   cursor: pointer;
 }
 .hill-page_hill-table thead span {
-  color: var(--cl-text-lightest);
+  color: var(--clr-black-100);
 }
 .hill-page_hill-table thead span.hill-page_hill-table-arrow {
-  color: var(--cl-text);
-  font-weight: var(--fw-1000);
+  color: var(--clr-black-400);
 }
 
 .hill-page_hill-table {
@@ -70,15 +67,18 @@
 
 .hill-card_book {
   gap: 0;
-  background: var(--cl-foreground);
+  margin: auto;
+
   width: 2rem;
   height: 2.5rem;
-  margin: auto;
-  cursor: pointer;
+  overflow: hidden;
 
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  overflow: hidden;
+
+  background: var(--clr-white-400);
+
+  cursor: pointer;
 
   -webkit-box-shadow: 1px 1px 0 0.5px #c7c7c7;
   -moz-box-shadow: 1px 1px 0 0.5px #c7c7c7;
@@ -113,29 +113,28 @@
   gap: 0;
 }
 .hill-card_name h2 {
-  font-size: var(--fs-600);
-  font-weight: var(--fw-800);
   font-family: var(--ff-heading);
-  color: var(--cl-text-light);
+  font-size: var(--fs-800);
+  font-weight: var(--fw-bold);
+  line-height: 1.125;
+
+  color: var(--clr-black-300);
 }
 .hill-card_name a {
-  color: var(--cl-text);
+  color: var(--clr-black-400);
 }
 .hill-card_name a:hover {
-  color: var(--cl-primary);
+  color: var(--clr-primary-400);
 }
 .hill-card_name-secondary {
   font-size: var(--fs-400);
-  font-weight: var(--fw-600);
+  font-weight: var(--fw-base);
 }
 .hill-card_name-book {
-  font-size: var(--fs-300);
-  font-weight: var(--fw-600);
-  color: var(--cl-text-light);
+  color: var(--clr-black-300);
 }
 
 .hill-card_height {
-  font-weight: var(--fw-600);
   text-align: center;
 }
 
@@ -152,7 +151,7 @@
   }
 
   .hill-page_hill-list {
-    margin-top: 1rem;
+    margin-block-start: 1rem;
     padding-inline: 0;
   }
 }

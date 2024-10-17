@@ -1,15 +1,20 @@
 .App {
   width: min(1200px, 95%);
   margin: auto;
-  margin-bottom: 2rem;
-  margin-top: 1rem;
+  margin-block: 1rem 2rem;
 }
 
-/* @media (max-width: 768px) {
-  .App {
-    width: 95%;
-  }
-} */
+
+.page-title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-1000);
+  font-weight: var(--fw-bold);
+  line-height: 1.125;
+}
+
+.pigeon-tiles-box {
+  user-select: none;
+}
 
 
 .flex-group {
@@ -37,111 +42,4 @@
 }
 .two-columns {
   grid-template-columns: 1fr 1fr;
-}
-
-.page-title {
-  font-size: var(--fs-1000);
-  font-weight: var(--fw-800);
-  font-family: var(--ff-heading);
-  line-height: var(--fs-1000);
-}
-
-.font-cursive {
-  font-family: "Caveat", cursive;
-  font-optical-sizing: auto;
-  font-weight: 600;
-}
-
-.text-light {
-  color: var(--nav-copy-light);
-}
-
-
-a {
-  text-decoration: none;
-  transition: color .1s ease-in-out;
-}
-a:hover {
-  color: var(--primary);
-}
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-
-.pigeon-tiles-box {
-  user-select: none;
-}
-
-
-/* .text--title {
-  font-size: 72px;
-  font-weight: 1000;
-  font-family: "Urbanist", sans-serif;
-}
-.text--heading {
-  font-size: 60px;
-  font-weight: 800;
-  font-family: "Urbanist", sans-serif;
-}
-.text--subheading {
-  font-size: 33px;
-  font-weight: 600;
-  font-family: "Urbanist", sans-serif;
-}
-.text--smallheading {
-  font-size: 28px;
-  font-family: "Urbanist", sans-serif;
-}
-.text--subtext {
-  font-size: 21px;
-}
-.text--default {
-  font-size: 18px;
-}
-.text--secondary {
-  font-size: 16px;
-}
-
-@media (max-width: 720px) {
-  .text--title {
-    font-size: 54px;
-  }
-  .text--heading {
-    font-size: 45px;
-    line-height: 45px;
-  }
-  .text--subheading {
-    font-size: 27px;
-  }
-  .text--smallheading {
-    font-size: 21px;
-  }
-  .text--subtext {
-    font-size: 18px;
-  }
-  .text--default {
-    font-size: 16px;
-  }
-  .text--secondary {
-    font-size: 14px;
-  }
-} */
-
-
-.font--body {
-  font-family: "DM Sans", sans-serif;
-}
-.font--urbanist {
-  font-family: "Urbanist", sans-serif;
-}
-.font--handwriting {
-  font-family: "Caveat", cursive;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-  text-indent: -0.5ch;
-  margin-left: 0.5ch;
 }

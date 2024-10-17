@@ -1,70 +1,63 @@
 .navbar {
-  --fs-400: 1.1875rem;
-  --cl-text: #f1efee;
-  --cl-text-hover: #bbb6b1;
-  --cl-background: #2a2622;
-  --cl-background-light: #342f2b;
-
-  --navbar-margin: 1rem;
-  --border-radius: 0.5rem;
-
-  width: min(1350px, 100% - (var(--navbar-margin)*2));
+  --_navbar-margin: 1rem;
 
   position: sticky;
-  top: var(--navbar-margin);
+  top: var(--_navbar-margin);
   z-index: calc(infinity);
 
-  margin: var(--navbar-margin);
+  width: min(1350px, 100% - (var(--_navbar-margin)*2));
+  margin: var(--_navbar-margin);
   margin-inline: auto;
   padding: 0.6rem 1rem;
 
-  color: var(--cl-text);
-  background: var(--cl-background);
+  border-radius: 0.5rem;
 
-  border-radius: var(--border-radius);
+  font-family: var(--ff-title);
+  color: var(--clr-white-400);
+  background: var(--clr-black-400);
 
-  font-size: var(--fs-400);
-  font-weight: var(--fw-600);
-  font-family: var(--ff-heading);
+  isolation: isolate;
 }
 
 .navbar-mountains {
   position: absolute;
   bottom: 97%;
   left: 0;
+  
   width: 10rem;
   height: 1rem;
-  fill: var(--cl-background);
   transform: scaleX(-1);
-}
 
-.navbar a:hover {
-  color: inherit;
+  fill: var(--clr-black-400);
 }
 
 .navbar-left {
   gap: 2rem;
 }
+
 .navbar-navtitle {
   position: relative;
-  font-size: 1.75rem;
-  font-weight: var(--fw-800);
   transform: translateY(-0.1rem);
+
+  font-size: var(--fs-800);
+  font-weight: var(--fw-bold);
+
   cursor: pointer;
 }
 
-.navbar-navlink:hover {
-  font-size: var(--fs-600);
-  font-family: var(--ff-cursive);
-  line-height: var(--fs-400);
+.navbar-navlink {
+  transition: color 150ms ease;
 }
 .navbar-nav:has(.navbar-navlink:hover) .navbar-navlink:not(:hover) {
-  color: var(--cl-text-hover);
+  color: var(--clr-black-100);
 }
 
 .nav-button {
   height: 30px;
   aspect-ratio: 1;
+}
+
+.nav-button-rotate {
   transition: rotate 200ms;
 }
 .nav-button-rotate:hover {
@@ -86,26 +79,29 @@
   }
   .navbar-nav {
     flex-direction: column;
-    width: 60%;
-    height: 0;
-    overflow: hidden;
 
     position: absolute;
-    top: calc(100% - var(--border-radius)*2);
-    left: calc(var(--border-radius));
+    top: calc(100% - 0.5rem*2);
+    left: calc(0.5rem);
 
+    width: 60%;
+    height: 0;
     padding: 0;
-    padding-top: 0;
+    overflow: hidden;
+    border-radius: 0.5rem;
 
-    background: var(--cl-background);
-    border-radius: var(--border-radius);
+    font-size: var(--fs-600);
+
+    background: var(--clr-black-400);
+
+    z-index: -1;
 
     transition: height 100ms ease-in-out, padding 0ms 100ms;
   }
   .navbar-nav[data-status="open"] {
-    height: 14rem;
+    height: 12rem;
     padding: 1rem;
-    padding-top: calc(1rem + var(--border-radius));
+    padding-top: calc(1rem + 0.5rem);
 
     transition: height 100ms ease-in-out, padding 0ms;
   }

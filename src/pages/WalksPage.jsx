@@ -92,7 +92,7 @@ export function WalksPage() {
       </section>
 
       <section className="walks-page_walks grid-group">
-        <h2>All Walks</h2>
+        <h2 className="page-title">All Walks</h2>
 
         <input type="text" className="walks-page_search" placeholder="search for a walk..." />
 

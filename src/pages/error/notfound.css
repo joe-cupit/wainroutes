@@ -4,19 +4,19 @@
 }
 
 .not-found-page h1 {
-  font-size: 3rem;
-  font-weight: bold;
+  font-size: var(--fs-1000);
+  font-weight: var(--fw-bold);
+  font-family: var(--ff-heading);
   padding: 1rem 0;
 }
 
 .not-found--go-back {
   border: none;
   background: none;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: var(--fs-600);
   cursor: pointer;
   transition: .1s;
 }
 .not-found--go-back:hover {
-  color: var(--primary);
+  color: var(--clr-primary-400);
 }

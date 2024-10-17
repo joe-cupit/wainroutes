@@ -1,12 +1,7 @@
 
-.walks-page h2 {
-  font-size: var(--fs-1000);
-  font-weight: var(--fw-800);
-  font-family: var(--ff-heading);
-}
-
 .walks-page_intro {
-  height: 20rem;
+  height: 30rem;
+  width: 20rem;
 }
 
 .walks-page_walks {
@@ -14,10 +9,11 @@
 }
 
 .walks-page_search {
-  font-size: var(--fs-600);
   width: 90%;
   margin-inline: auto;
   margin-bottom: 1rem;
+
+  font-size: var(--fs-800);
 }
 
 .walks-page_list {
@@ -32,19 +28,19 @@
   height: var(--card-height);
   padding: var(--card-padding);
 
-  border: 1px solid var(--border);
+  background: var(--clr-white-400);
+  border: 1px solid var(--clr-white-600);
   border-radius: 0.5rem;
-  background: var(--foreground);
 
   transition: translate 100ms;
 }
 .walk-card:hover {
-  color: inherit;
   translate: 0 -0.125rem;
 }
 
 .walk-card_image {
   --image-width: calc(var(--card-height) - 2.25*var(--card-padding));
+
   min-width: var(--image-width);
   max-width: var(--image-width);
   aspect-ratio: 1;
@@ -65,36 +61,36 @@
 
 .walk-card_text {
   gap: 0;
-  margin-block: calc(var(--card-padding)/3);
   height: calc(100% - var(--card-padding)/2);
+  margin-block: calc(var(--card-padding)/3);
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .walk-card_text h3 {
-  font-size: var(--fs-800);
-  font-weight: var(--fw-800);
   font-family: var(--ff-heading);
-
+  font-size: var(--fs-800);
+  font-weight: var(--fw-bold);
   line-height: 1.25lh;
 }
 .walk-card_text h3:hover {
-  color: var(--cl-primary);
+  color: var(--clr-primary-400);
 }
 
 .walk-card_stats {
   gap: 0.375rem;
   margin-top: auto;
-  font-size: var(--fs-200);
-  font-weight: var(--fw-800);
-  color: var(--cl-text-light);
+
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
+  color: var(--clr-black-300);
 }
 .walk-card_stats span {
   gap: 0.125rem;
 }
 .walk-card_stats svg {
-  width: calc(var(--fs-200)*1.25);
+  width: calc(var(--fs-300)*1.125);
   aspect-ratio: 1;
   stroke-width: 2;
 }

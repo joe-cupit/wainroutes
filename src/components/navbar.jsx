@@ -43,7 +43,6 @@ export function Navbar() {
           <Link className="navbar-navlink" to="/mountains">mountains</Link>
           <Link className="navbar-navlink" to="/weather">weather</Link>
           <Link className="navbar-navlink" to="/travel">travel</Link>
-          <p className="navbar-mobile-only font-cursive text-light">"no pain, no wain!" - LT</p>
         </nav>
       </div>
 
