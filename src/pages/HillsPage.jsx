@@ -73,7 +73,7 @@ export function HillsPage() {
   }, [hillList, filterTerm])
 
   return (
-    <main className="hill-page grid-group">
+    <main className="hills-page">
       <h1 className="page-title">The <span className="wainwright-number">214</span> Wainwrights</h1>
 
       <div className="hill-page_container">
@@ -100,11 +100,11 @@ export function HillsPage() {
                   return (
                     <tr key={index} className="hill-card">
                       <td>
-                        <div className="hill-card_book grid-group">
+                        <div className="hill-card_book">
                           <div className="hill-card_book-bind" data-book={hill.book}></div>
                         </div>
                       </td>
-                      <td className="hill-card_name flex-group flex-column">
+                      <td className="hill-card_name">
                         <h2>
                           {hill.hasWalk
                           ? <Link to={`/mountain/${hill.slug}`}>{hill.name}{hill.name_secondary ? <span className="hill-card_name-secondary"> ({hill.name_secondary})</span> : ""}</Link>

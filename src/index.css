@@ -1,6 +1,6 @@
 :root {
   /*  fonts  */
-  --ff-title: "Urbanist", sans-serif;
+  /* --ff-title: "Urbanist", sans-serif; */
   --ff-heading: "DM Serif Display", serif;
   --ff-subheading: "Urbanist", sans-serif;
   --ff-body: "DM Sans", sans-serif;
@@ -99,7 +99,7 @@ body {
 }
 
 
-input {
+input, select {
   font: inherit;
   color: inherit;
 }

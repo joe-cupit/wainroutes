@@ -1,4 +1,6 @@
 .walk-page {
+  display: grid;
+  gap: 1rem;
   padding-top: 0.5rem;
 }
 
@@ -10,10 +12,15 @@
 }
 
 .walk-page_details {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
   width: 800px;
 }
 .walk-page_details-section {
+  display: grid;
   gap: 0.375rem;
+  grid-template-columns: 1fr 1fr;
 }
 
 @media (max-width: 900px) {
@@ -25,7 +32,10 @@
 }
 
 .bus-group {
+  display: flex;
   gap: 0.375rem;
+  justify-content: flex-start;
+  align-items: center;
   height: fit-content;
 }
 .bus-group_bus-block {
@@ -40,17 +50,21 @@
 }
 
 .walk-page_map {
-  gap: 0.375rem;
+  display: grid;
+  gap: 0.5rem;
   width: min(100%, 600px);
 }
 
 .walk-page_map-buttons {
+  display: flex;
   gap: 0.375rem;
   justify-content: flex-end;
   margin-inline: 0.25rem;
 }
 .walk-page_map button {
+  display: flex;
   gap: 0.25rem;
+  align-items: center;
   padding: 0.25rem 0.375rem;
   border-radius: 0.375rem;
 
@@ -88,6 +102,7 @@ button.green-button:hover {
 }
 
 .walk-page_steps {
+  display: grid;
   gap: calc(var(--fs-800)*1.2);
   margin-block: 2rem;
 }

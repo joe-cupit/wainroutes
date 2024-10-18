@@ -20,17 +20,17 @@ export function HillPage() {
   const bookNum = hillData?.book;
 
   return (
-    <main className="hill-page flex-group">
-      <aside className="hill-page_book flex-group flex-column flex-vertical-center">
+    <main className="hill-page">
+      <aside className="hill-page_book">
         <div className="hill-page_book-bind" data-book={bookNum}>{("Book "+numbers[bookNum])}</div>
-        <div className="hill-page_book-text grid-group">
+        <div className="hill-page_book-text">
           A. WAINWRIGHT
           <span data-book={bookNum}>{titles[bookNum]}</span>
         </div>
         <div className="hill-page_book-bind" data-book={bookNum}></div>
       </aside>
 
-      <div className="grid-group">
+      <div>
         <header className="hill-page_header">
           <h1 className="page-title">{hillData.name}</h1>
           <p>"This is a random Wainwright quote about the current mountain and could be quite long"</p>

@@ -15,31 +15,3 @@
 .pigeon-tiles-box {
   user-select: none;
 }
-
-
-.flex-group {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.flex-column {
-  flex-direction: column;
-}
-.flex-space {
-  justify-content: space-between;
-}
-.flex-vertical-center {
-  align-items: center;
-}
-.flex-horizontal-center {
-  justify-content: center;
-}
-
-.grid-group {
-  display: grid;
-  gap: 1rem;
-}
-.two-columns {
-  grid-template-columns: 1fr 1fr;
-}

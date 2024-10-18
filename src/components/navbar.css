@@ -1,6 +1,11 @@
 .navbar {
   --_navbar-margin: 1rem;
 
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+
   position: sticky;
   top: var(--_navbar-margin);
   z-index: calc(infinity);
@@ -12,7 +17,6 @@
 
   border-radius: 0.5rem;
 
-  font-family: var(--ff-title);
   color: var(--clr-white-400);
   background: var(--clr-black-400);
 
@@ -32,13 +36,16 @@
 }
 
 .navbar-left {
+  display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .navbar-navtitle {
   position: relative;
   transform: translateY(-0.1rem);
 
+  font-family: var(--ff-heading);
   font-size: var(--fs-800);
   font-weight: var(--fw-bold);
 
@@ -48,8 +55,17 @@
 .navbar-navlink {
   transition: color 150ms ease;
 }
+.navbar-nav {
+  display: flex;
+  gap: 1rem;
+}
 .navbar-nav:has(.navbar-navlink:hover) .navbar-navlink:not(:hover) {
   color: var(--clr-black-100);
+}
+
+.navbar-right {
+  display: flex;
+  justify-content: center;
 }
 
 .nav-button {

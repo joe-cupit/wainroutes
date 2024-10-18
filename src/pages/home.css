@@ -6,6 +6,7 @@
 }
 
 .home-page_hero {
+  display: grid;
   gap: 4rem;
   text-align: center;
 
@@ -17,6 +18,7 @@
   margin-block-start: 1rem;
 }
 .home-page_hero-main {
+  display: grid;
   gap: 2rem;
   margin: auto;
 }
@@ -45,7 +47,9 @@
 }
 
 .home-page_buttons {
+  display: flex;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 .home-page_button {

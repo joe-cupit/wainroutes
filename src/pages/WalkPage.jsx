@@ -18,7 +18,6 @@ export function WalkPage() {
 
   const hillData = useHills(null);
   const hillMarkers = useHillMarkers(walkData?.wainwrights);
-  console.log(hillMarkers)
 
   const [gpxPoints, setGpxPoints] = useState(null);
   useEffect(() => {
@@ -44,9 +43,9 @@ export function WalkPage() {
   }
 
   return (
-    <main className="walk-page grid-group">
+    <main className="walk-page">
       <header className="walk-page_heading">
-        <h1>{walkData?.name}</h1>
+        <h1 className="page-title">{walkData?.name}</h1>
         <p>
           {walkData?.wainwrights?.map((wain, index) => {
             return (
@@ -65,8 +64,8 @@ export function WalkPage() {
         {walkData?.intro}
       </section>
 
-      <section className="walk-page_details grid-group two-columns">
-        <div className="walk-page_details-section grid-group two-columns">
+      <section className="walk-page_details">
+        <div className="walk-page_details-section">
           <div>Distance:</div>
           <div> {walkData?.distance}km</div>
 
@@ -80,7 +79,7 @@ export function WalkPage() {
           <div>{walkData?.estimated_time}</div>
         </div>
 
-        <div className="walk-page_details-section grid-group two-columns">
+        <div className="walk-page_details-section">
           <div>Start location:</div>
           <div>
             <div>{walkData?.start_lat_lang?.[0]?.toFixed(3) + ", " + walkData?.start_lat_lang?.[1]?.toFixed(3)}</div>
@@ -92,15 +91,15 @@ export function WalkPage() {
           </div>
 
           <div>Bus connections:</div>
-          <div className="bus-group flex-group flex-vertical-center">
+          <div className="bus-group">
             <BusRoutes busRoutes={walkData?.bus_routes} />
           </div>
         </div>
       </section>
 
-      <section className="walk-page_map grid-group">
-        <div className="walk-page_map-buttons flex-group">
-          <button className={"flex-group flex-vertical-center" + (recentlyCopied ? " green-button" : "")} onClick={copyToClipboard}>
+      <section className="walk-page_map">
+        <div className="walk-page_map-buttons">
+          <button className={recentlyCopied ? " green-button" : ""} onClick={copyToClipboard}>
             {!recentlyCopied
             ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="-0.5 -0.5 16 16">
                 <path d="M5.7125 4.518750000000001A2.9749999999999996 2.9749999999999996 0 0 1 8.125 3.325h2.9875000000000003a2.9812499999999997 2.9812499999999997 0 1 1 0 5.9624999999999995H8.125a2.9812499999999997 2.9812499999999997 0 0 1 -2.91875 -2.38125"></path>
@@ -111,7 +110,7 @@ export function WalkPage() {
               </svg>
             }
           </button>
-          <button className="flex-group flex-vertical-center">
+          <button>
             Download GPX
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
               <path fillRule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clipRule="evenodd"/>
@@ -129,7 +128,7 @@ export function WalkPage() {
         </div>
       </section>
 
-      <section className="walk-page_steps grid-group">
+      <section className="walk-page_steps">
         {walkData?.steps && Object.keys(walkData?.steps).map((step, index) => {
           return (
             <div key={index} className="walk-page_steps-step">
