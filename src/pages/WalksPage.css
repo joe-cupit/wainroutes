@@ -1,19 +1,45 @@
-.walks-page {
+.walks {
   display: grid;
   gap: 1rem;
 }
 
-.walks-page_intro {
-  height: 30rem;
-  width: 20rem;
+.walks h1 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-1000);
+  font-weight: var(--fw-bold);
+  line-height: 1;
 }
 
-.walks-page_walks {
-  display: grid;
-  gap: 0.5rem;
+
+.walks-main {
+  display: flex;
+  gap: 1rem;
 }
 
-.walks-page_search {
+
+.walks-map {
+  position: sticky;
+  top: 6rem;
+
+  width: 40%;
+  height: 80vh;
+}
+
+@media (max-width: 750px) {
+  .walks-main {
+    flex-direction: column-reverse;
+  }
+
+  .walks-map {
+    position: initial;
+    width: 100%;
+    height: 300px;
+  }
+}
+
+
+
+.walks-search input {
   width: 90%;
   margin-inline: auto;
   margin-bottom: 1rem;
@@ -21,19 +47,19 @@
   font-size: var(--fs-800);
 }
 
-.walks-page_search-top {
+.walks-search-top {
   display: flex;
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
 }
 
-.walks-page_list {
+.walks-list {
   display: grid;
   gap: 0.5rem;
 }
 
-.walk-card {
+.walks-card {
   --card-height: 7.5rem;
   --card-padding: 0.5rem;
 
@@ -52,11 +78,11 @@
 
   transition: translate 100ms;
 }
-.walk-card:hover {
+.walks-card:hover {
   translate: 0 -0.125rem;
 }
 
-.walk-card_image {
+.walks-card_image {
   --image-width: calc(var(--card-height) - 2.25*var(--card-padding));
 
   min-width: var(--image-width);
@@ -67,17 +93,17 @@
   overflow: hidden;
 }
 @media (max-width: 650px) {
-  .walk-card {
+  .walks-card {
     --card-height: 5.325rem;
     --card-padding: 0.375rem;
     padding-left: calc(var(--card-padding)*1.5);
   }
-  .walks-page_desktop-only {
+  .walks-desktop-only {
     display: none;
   }
 }
 
-.walk-card_text {
+.walks-card_text {
   display: flex;
   flex-direction: column;
   height: calc(100% - var(--card-padding)/2);
@@ -87,17 +113,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.walk-card_text h3 {
+.walks-card_text h3 {
   font-family: var(--ff-heading);
   font-size: var(--fs-800);
   font-weight: var(--fw-bold);
   line-height: 1.25lh;
 }
-.walk-card_text h3:hover {
+.walks-card_text h3:hover {
   color: var(--clr-primary-400);
 }
 
-.walk-card_stats {
+.walks-card_stats {
   display: flex;
   gap: 0.375rem;
   align-items: center;
@@ -107,12 +133,12 @@
   font-weight: var(--fw-bold);
   color: var(--clr-black-300);
 }
-.walk-card_stats span {
+.walks-card_stats span {
   display: flex;
   gap: 0.125rem;
   align-items: center;
 }
-.walk-card_stats svg {
+.walks-card_stats svg {
   width: calc(var(--fs-300)*1.125);
   aspect-ratio: 1;
   stroke-width: 2;

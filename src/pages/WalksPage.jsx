@@ -21,47 +21,13 @@ export function WalksPage() {
   const walkMarkers = useWalkMarkers(null);
   const walkData = Object.values(useWalks(null));
   const [sortValue, setSortValue] = useState("recommended");
-  const [filterValues, setFilterValues] = useState({
-    distance: [0, 100],
-    duration: [0, 100],
-    wainwrights: [0, 100],
-    types: []
-  });
-
-  const filteredWalkData = useMemo(() => {
-    let newWalkData = [...walkData];
-
-    if (filterValues?.distance) {
-      const [distMin, distMax] = filterValues.distance;
-      newWalkData = newWalkData.filter(walk => (walk.distance >= distMin) && (walk.distance <= distMax))
-    }
-    if (filterValues?.duration) {
-      const [durMin, durMax] = filterValues.duration;
-      newWalkData = newWalkData.filter(walk => {
-        const [estMinS, estMaxS] = walk.estimated_time.split("-");
-        const estMin = parseFloat(estMinS.split(":")[0]) + parseFloat(estMinS.split(":")[1])/60;
-        const estMax = parseFloat(estMaxS.split(":")[0]) + parseFloat(estMaxS.split(":")[1])/60;
-        return ((estMin >= durMin) && (estMin < durMax)) || ((estMax > durMin) && (estMax <= durMax));
-      })
-    }
-    if (filterValues?.wainwrights) {
-      const [wainMin, wainMax] = filterValues.wainwrights;
-      newWalkData = newWalkData.filter(walk => (walk.wainwrights?.length >= wainMin) && (walk.wainwrights?.length <= wainMax))
-    }
-    if (filterValues?.types?.length > 0) {
-      const validTypes = filterValues.types;
-      newWalkData = newWalkData.filter(walk => walk.tags?.some(tag => validTypes.includes(tag)))
-    }
-
-    return newWalkData;
-  }, [walkData, filterValues])
 
   const sortedWalkData = useMemo(() => {
-    if (sortValue === null || sortValue === "recommended") return filteredWalkData;
+    if (sortValue === null || sortValue === "recommended") return walkData;
 
     const [type, dir] = sortValue.split("-");
   
-    let newWalkData = [...filteredWalkData];
+    let newWalkData = [...walkData];
     switch (type) {
       case "hills":
         newWalkData.sort((a, b) => a.wainwrights?.length - b.wainwrights?.length);
@@ -81,49 +47,49 @@ export function WalksPage() {
     }
 
     return newWalkData;
-  }, [filteredWalkData, sortValue]);
+  }, [walkData, sortValue]);
+
 
   return (
-    <main className="walks-page">
-      <h1 className="page-title">Find a Walk</h1>
+    <main className="walks">
+      <h1>Find a Walk</h1>
 
-      <section className="walks-page_intro">
-        <LakeMap mapMarkers={walkMarkers} />
-      </section>
-
-      <section className="walks-page_walks">
-        <h2 className="page-title">All Walks</h2>
-
-        <input type="text" className="walks-page_search" placeholder="search for a walk..." />
-
-        <div className="walks-page_search-top">
-          <span className="walks-page_desktop-only">
-            {filteredWalkData ? "Showing "+filteredWalkData.length+" of "+walkData.length+" walks" : ""}
-          </span>
-          <span>
-            Sort by: <select type="select" value={sortValue} onChange={(e) => setSortValue(e.target.value)}>
-              <option value="recommended">Recommended</option>
-              <option value="hills-dsc">Most Wainwrights</option>
-              <option value="hills-asc">Least Wainwrights</option>
-              <option value="dist-asc">Distance (Asc.)</option>
-              <option value="dist-dsc">Distance (Dsc.)</option>
-              <option value="ele-asc">Elevation (Asc.)</option>
-              <option value="ele-dsc">Elevation (Dsc.)</option>
-            </select>
-          </span>
+      <div className="walks-main">
+        <div className="walks-search">
+          <input type="text" placeholder="search for a walk..." />
+          <div className="walks-search-top">
+            <span className="walks-desktop-only">
+              {walkData ? "Showing "+walkData.length+" of "+walkData.length+" walks" : ""}
+            </span>
+            <span>
+              Sort by: <select type="select" value={sortValue} onChange={(e) => setSortValue(e.target.value)}>
+                <option value="recommended">Recommended</option>
+                <option value="hills-dsc">Most Wainwrights</option>
+                <option value="hills-asc">Least Wainwrights</option>
+                <option value="dist-asc">Distance (Asc.)</option>
+                <option value="dist-dsc">Distance (Dsc.)</option>
+                <option value="ele-asc">Elevation (Asc.)</option>
+                <option value="ele-dsc">Elevation (Dsc.)</option>
+              </select>
+            </span>
+          </div>
+          <div className="walks-list">
+            {(sortedWalkData.length > 0)
+            ? sortedWalkData?.map((walk, key) => {
+                return <WalkCard key={key} walk={walk} />
+              })
+            : <div>No walks match these filters.</div>
+            }
+            <p>
+              {walkData.length > 0 ? "• Showing "+walkData.length+" lovely walks in the Lake District •" : ""}
+            </p>
+          </div>
         </div>
-        <div className="walks-page_list">
-          {(sortedWalkData.length > 0)
-          ? sortedWalkData?.map((walk, key) => {
-              return <WalkCard key={key} walk={walk} />
-            })
-          : <div>No walks match these filters.</div>
-          }
-          <p>
-            {filteredWalkData.length > 0 ? "• Showing "+filteredWalkData.length+" lovely walks in the Lake District •" : ""}
-          </p>
+
+        <div className="walks-map">
+          <LakeMap mapMarkers={walkMarkers} />
         </div>
-      </section>
+      </div>
     </main>
   )
 }
@@ -132,19 +98,14 @@ export function WalksPage() {
 export default function WalkCard({ walk }) {
   const hills = [...walk?.wainwrights].sort((a, b) => hillData[b].height - hillData[a].height);
 
-  const toggleFavourite = (e) => {
-    e.preventDefault();
-    e.target.classList.toggle("walk-card--favourited");
-  }
-
   return (
-    <Link to={`/walk/${walk.slug}`} className="walk-card">
+    <Link to={`/walk/${walk.slug}`} className="walks-card">
 
-      <div className="walk-card_image walks-page_desktop-only">
+      <div className="walks-card_image walks-desktop-only">
         <img src={previews[walk.slug]} alt={walk.name + " preview"} loading="lazy" />
       </div>
 
-      <div className="walk-card_text">
+      <div className="walks-card_text">
         <h3 title={walk?.name}>{walk?.name}</h3>
         <p>
           {hills?.map((hill, index) => {
@@ -156,7 +117,7 @@ export default function WalkCard({ walk }) {
             )
           })}
         </p>
-        <p className="walk-card_stats">
+        <p className="walks-card_stats">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" viewBox="0 0 100 125">
               <circle cx="46" cy="12.6" r="10.1"/>
@@ -191,73 +152,3 @@ export default function WalkCard({ walk }) {
     </Link>
   )
 }
-
-
-function FilterSection({ filters, setFilters }) {
-
-  const updateTypes = (e) => {
-    const clickedVal = e.target.value;
-
-    const addRemoveType = (prev) => {
-      let prevTypes = [...prev];
-      if (e.target.checked && !prevTypes.includes(clickedVal)) prevTypes.push(clickedVal);
-      else {
-        const typeIndex = prevTypes.indexOf(clickedVal);
-        if (typeIndex > -1) prevTypes.splice(typeIndex, 1);
-      }
-      return prevTypes;
-    }
-
-    setFilters(prev => ({...prev, types: addRemoveType(prev.types)}))
-  }
-
-  return (
-    <div className="walks-page--walk-filters text--secondary">
-      <h2 className="text--subtext">Filter walks</h2>
-
-      <div>
-        <h3 className="text--default">Distance</h3>
-        <input type="range" />        
-      </div>
-
-      <div>
-        <h3 className="text--default">Duration</h3>
-        <form className="walks-page--filter-choices">
-          {[["0,100", "Any"], ["0,2", "< 2 hours"], ["2,4", "2 - 4 hours"], ["4,6", "4 - 6 hours"], ["6,100", "6+ hours"]].map((val, index) => {
-            const [value, text] = val;
-            return (
-              <label key={index} className="walks-page--duration-filter">
-                <input type="radio" value={value}
-                      checked={filters.duration.join(",") === value}
-                      onChange={() => setFilters(prev => ({...prev, duration: value.split(",")}))} />
-                {text}
-              </label>
-            )
-          })}
-        </form>
-      </div>
-
-      <div>
-        <h3 className="text--default">Wainwrights</h3>
-        <div className="walks-page--filter-choices">
-          <input type="text" /><input type="text" />  
-        </div>
-      </div>
-
-      <div>
-        <h3 className="text--default">Type of walk</h3>
-        <div className="walks-page--filter-choices">
-          {["horseshoe", "circular", "there-and-back", "point-to-point"].map((val, index) => {
-            return (
-              <label key={index} className="walks-page--type-filter">
-                <input type="checkbox" value={val} onChange={updateTypes} /> {val}
-              </label>
-            )
-          })}
-        </div>
-      </div>
-
-    </div>
-  )
-}
-

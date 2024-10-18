@@ -1,6 +1,6 @@
 import "./WalkPage.css";
 
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { useHills } from "../hooks/useHills";
@@ -8,7 +8,7 @@ import { useWalks } from "../hooks/useWalks";
 
 import { LakeMap, GeoRoute } from "../components/map";
 import { useHillMarkers } from "../hooks/useMarkers";
-import Gallery from "../components/Gallery";
+// import Gallery from "../components/Gallery";
 
 
 export function WalkPage() {
@@ -16,7 +16,6 @@ export function WalkPage() {
   const walkData = useWalks(slug);
   document.title = (walkData?.name ?? slug) + " | wainroutes";
 
-  const hillData = useHills(null);
   const hillMarkers = useHillMarkers(walkData?.wainwrights);
 
   const [gpxPoints, setGpxPoints] = useState(null);
@@ -34,138 +33,135 @@ export function WalkPage() {
       });
   }, [slug]);
 
-  const [recentlyCopied, setRecentlyCopied] = useState(false);
-  function copyToClipboard() {
-    navigator.clipboard.writeText(`wainroutes.co.uk/walk/${walkData?.slug}`);
+  // const [recentlyCopied, setRecentlyCopied] = useState(false);
+  // function copyToClipboard() {
+  //   navigator.clipboard.writeText(`wainroutes.co.uk/walk/${walkData?.slug}`);
 
-    setRecentlyCopied(true)
-    setTimeout(() => setRecentlyCopied(false), 3000);
-  }
+  //   setRecentlyCopied(true)
+  //   setTimeout(() => setRecentlyCopied(false), 3000);
+  // }
+
 
   return (
-    <main className="walk-page">
-      <header className="walk-page_heading">
-        <h1 className="page-title">{walkData?.name}</h1>
-        <p>
-          {walkData?.wainwrights?.map((wain, index) => {
-            return (
-              <Fragment key={index}>
-                <Link to={`/mountain/${wain}`} className="walk-page--mountain">
-                  {hillData ? hillData?.[wain]?.name : wain}
-                </Link>
-                {index !== walkData?.wainwrights?.length-1 && " / "}
-              </Fragment>
-            )
-          })}
-        </p>
-      </header>
+    <main className="walk">
+      <div className="walk-header">
+        <h1>{walkData?.name}</h1>
+        <MountainList mountains={walkData?.wainwrights} />
+      </div>
 
-      <section className="walk-page_intro">
-        {walkData?.intro}
-      </section>
-
-      <section className="walk-page_details">
-        <div className="walk-page_details-section">
-          <div>Distance:</div>
-          <div> {walkData?.distance}km</div>
-
-          <div>Total elevation:</div>
-          <div>{walkData?.total_elevation}m</div>
-
-          <div>Wainwrights:</div>
-          <div>{walkData?.wainwrights?.length}</div>
-
-          <div>Estimated time:</div>
-          <div>{walkData?.estimated_time}</div>
+      <div className="walk-stats">
+        <div>
+          <span>Length</span>
+          <span>{walkData?.distance}km</span>
         </div>
+        <div>
+          <span>Elevation</span>
+          <span>{walkData?.total_elevation}m</span>
+        </div>
+        <div>
+          <span>Wainwrights</span>
+          <span>{walkData?.wainwrights?.length}</span>
+        </div>
+        <div>
+          <span>Estimated time</span>
+          <span>{walkData?.estimated_time}</span>
+        </div>
+      </div>
 
-        <div className="walk-page_details-section">
-          <div>Start location:</div>
-          <div>
-            <div>{walkData?.start_lat_lang?.[0]?.toFixed(3) + ", " + walkData?.start_lat_lang?.[1]?.toFixed(3)}</div>
-            {/* <div>{walkData?.start_grid_reference}</div> */}
-            <div>
-              <Link to={`https://what3words.com/${walkData?.start_what_three_words}`} target="_blank">{walkData?.start_what_three_words}</Link>
+      <div className="walk-wrapper">
+        <div className="walk-main">
+          <p>{walkData?.intro}</p>
+
+          <div className="walk-route">
+            <button>
+              Download GPX
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clipRule="evenodd"/>
+                <path fillRule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clipRule="evenodd"/>
+              </svg>
+            </button>
+            <div className="walk-map">
+              <LakeMap
+                gpxPoints={gpxPoints} mapMarkers={hillMarkers}
+                defaultCenter={walkData?.start_lat_lang} defaultZoom={14} >
+                  <GeoRoute points={gpxPoints} />
+              </LakeMap>
             </div>
-            <div>{walkData?.start_post_code}</div>
+            <div className="walk-elevation">
+            </div>
           </div>
 
-          <div>Bus connections:</div>
-          <div className="bus-group">
-            <BusRoutes busRoutes={walkData?.bus_routes} />
+          <div className="walk-description">
+            <WalkSteps steps={walkData?.steps} />
           </div>
         </div>
-      </section>
 
-      <section className="walk-page_map">
-        <div className="walk-page_map-buttons">
-          <button className={recentlyCopied ? " green-button" : ""} onClick={copyToClipboard}>
-            {!recentlyCopied
-            ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="-0.5 -0.5 16 16">
-                <path d="M5.7125 4.518750000000001A2.9749999999999996 2.9749999999999996 0 0 1 8.125 3.325h2.9875000000000003a2.9812499999999997 2.9812499999999997 0 1 1 0 5.9624999999999995H8.125a2.9812499999999997 2.9812499999999997 0 0 1 -2.91875 -2.38125"></path>
-                <path d="M9.825000000000001 8.125a2.9812499999999997 2.9812499999999997 0 0 0 -2.91875 -2.38125H3.9187499999999997a2.9812499999999997 2.9812499999999997 0 0 0 0 5.9624999999999995h2.9875000000000003a2.9749999999999996 2.9749999999999996 0 0 0 2.10625 -0.8687499999999999 2.2312499999999997 2.2312499999999997 0 0 0 0.275 -0.325"></path>
-              </svg>
-            : <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-              </svg>
-            }
-          </button>
-          <button>
-            Download GPX
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-              <path fillRule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clipRule="evenodd"/>
-              <path fillRule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clipRule="evenodd"/>
-            </svg>
-          </button>
-        </div>
-        <div className="walk-page_map-map">
-          <LakeMap gpxPoints={gpxPoints} mapMarkers={hillMarkers} defaultCenter={walkData?.start_lat_lang} defaultZoom={14} >
-            <GeoRoute points={gpxPoints} />
-          </LakeMap>
-        </div>
-        <div className="walk-page_map-elevation">
-          Elevation div
-        </div>
-      </section>
+        <aside>
+          <p>Info</p>
+          <p>Route</p>
+          <p>Details</p>
+          <p>Weather</p>
+          <p>Travel</p>
+          <p>Other</p>
 
-      <section className="walk-page_steps">
-        {walkData?.steps && Object.keys(walkData?.steps).map((step, index) => {
-          return (
-            <div key={index} className="walk-page_steps-step">
-              <h2>{step}</h2>
-              <p>{walkData?.steps?.[step]?.text}</p>
-              <Gallery imageList={walkData?.steps?.[step]?.images} />
-            </div>
-          )
-        })}
-      </section>
+          <BusRoutes busRoutes={walkData?.bus_routes} />
+          {walkData?.date && <div><b>Date completed:</b> {new Date(walkData?.date).toLocaleDateString()}</div>}
+        </aside>
+      </div>
 
-      <section className="walk-page_extras">
-        {walkData?.date && <div><b>Date completed:</b> {new Date(walkData?.date).toLocaleDateString()}</div>}
-      </section>
     </main>
+  )
+}
+
+
+function MountainList({ mountains }) {
+  const hillData = useHills(null);
+
+  return (
+    <ul>
+      {mountains?.map((hill, index) => {
+        return (
+          <li key={index}>
+            <Link to={`/mountain/${hill}`}>{hillData?.[hill]?.name ?? hill}</Link>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+
+function WalkSteps({ steps }) {
+  return (
+    steps && Object.keys(steps).map((step, index) => {
+      return (
+        <div key={index}>
+          <h2>{step}</h2>
+          <p>{steps[step]?.text}</p>
+        </div>
+      )
+    })
   )
 }
 
 
 function BusRoutes({ busRoutes }) {
   return (
-  <>
-    {busRoutes && busRoutes.length > 0
-    ? busRoutes.map((bus, index) => {
-        const number = bus[0];
-        const from = bus[1];
-        return (
-          <div key={index}
-                className="bus-group_bus-block"
-                fromtext={from}
-                style={{"backgroundColor": `var(--bus-${number})`}}>
-            {number}
-          </div>
-        )
-      })
-    : "None"
-    }
-  </>
+    <div className="bus-group">
+      {busRoutes && busRoutes.length > 0
+      ? busRoutes.map((bus, index) => {
+          const number = bus[0];
+          const from = bus[1];
+          return (
+            <div key={index}
+                 className="bus-number"
+                 fromtext={from}
+                 style={{"backgroundColor": `var(--bus-${number})`}}>
+              {number}
+            </div>
+          )
+        })
+      : "None"}
+    </div>
   )
 }
