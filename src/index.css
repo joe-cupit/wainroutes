@@ -2,26 +2,26 @@
   /*  fonts  */
   /* --ff-title: "Urbanist", sans-serif; */
   --ff-heading: "DM Serif Display", serif;
-  --ff-subheading: "Urbanist", sans-serif;
+  /* --ff-heading: "Urbanist", sans-serif; */
   --ff-body: "DM Sans", sans-serif;
-  --ff-cursive: "Caveat", cursive;
+  /* --ff-cursive: "Caveat", cursive; */
   /* --ff-hand: "Dekko", cursive; */
 
   --fs-300: 1rem;
   --fs-400: 1.125rem;
-  --fs-600: 1.5rem;
-  --fs-800: 2rem;
-  --fs-1000: 4rem;
+  --fs-600: 1.375rem;
+  --fs-800: 2.125rem;
+  --fs-1000: 3.75rem;
 
   --fw-light: 300;
   --fw-base: 400;
-  --fw-bold: 700;
+  --fw-bold: 1000;
 
 
   /*  colours  */
   color-scheme: light;
 
-  --clr-primary-300: #f0a36a;
+  --clr-primary-200: #f7c9a6;
   --clr-primary-400: #eb873c;
   --clr-primary-500: #dd6c17;
   --clr-primary-800: #241204;
@@ -35,8 +35,6 @@
   --clr-white-400: #fcfbfb;
   --clr-white-500: #f1efee;
   --clr-white-600: #e2dfdc;
-
-  --map-gpx: #3d2d0c;
 
   /* --wain-book-1: #6c9934;
   --wain-book-2: #e5173e;
@@ -74,8 +72,8 @@
     --fs-300: 0.8125rem;
     --fs-400: 1rem;
     --fs-600: 1.25rem;
-    --fs-800: 1.5rem;
-    --fs-1000: 3rem;
+    --fs-800: 1.625rem;
+    --fs-1000: 2.5rem;
   }
 }
 

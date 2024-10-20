@@ -1,0 +1,143 @@
+{
+  "update_time": "2024-10-20T16:24:19Z",
+  "confidence": "High until Thursday then confidence lowering for details regarding weather fronts moving over the United Kingdom.",
+  "days": [
+    {
+      "type": "this-evening",
+      "sunrise": "07:54",
+      "sunset": "18:00",
+      "summary": "Gales in the valleys with storm force winds gusting over 80mph on the tops making walking almost impossible and potentially dangerous. Showery outbreaks of rain."
+    },
+    {
+      "type": "current-day",
+      "date": "2024-10-21",
+      "sunrise": "07:54",
+      "sunset": "18:00",
+      "meteorologist_view": "Gale force winds on the summits and ridges bring arduous walking conditions and a risk of being blown over.",
+      "weather": "A few showers overnight with storm force winds decreasing a little. A mainly dry, bright and windy day with sunny spells. There could be one or two brief showers. Cloudier after dark with more widespread showers developing.",
+      "cloud_free_top": "90%, becoming 60% in evening.",
+      "visibility": "Mainly good visibility with cloud staying above the summits and just brief reductions in showers. A few patches of cloud above 600m in the early hours and again in the evening.",
+      "ground_conditions": "No recent ground conditions report available.",
+      "forecast": {
+        "time": [
+          "00:00",
+          "03:00",
+          "06:00",
+          "09:00",
+          "12:00",
+          "15:00",
+          "18:00",
+          "21:00"
+        ],
+        "type": [
+          "Heavy rain",
+          "Light rain",
+          "Partly cloudy (night)",
+          "Sunny intervals",
+          "Sunny intervals",
+          "Sunny intervals",
+          "Partly cloudy (night)",
+          "Heavy shower (night)"
+        ],
+        "precip": [
+          "70%",
+          "30%",
+          "10%",
+          "10%",
+          "10%",
+          "10%",
+          "20%",
+          "60%"
+        ],
+        "wind_speed": [
+          "60",
+          "48",
+          "40",
+          "39",
+          "36",
+          "36",
+          "39",
+          "40"
+        ],
+        "wind_gust": [
+          "75",
+          "60",
+          "51",
+          "50",
+          "47",
+          "47",
+          "49",
+          "51"
+        ],
+        "wind_dir": [
+          "SW",
+          "SW",
+          "SW",
+          "SW",
+          "SW",
+          "SW",
+          "SW",
+          "SW"
+        ],
+        "temp": [
+          "5",
+          "5",
+          "4",
+          "4",
+          "4",
+          "5",
+          "5",
+          "5"
+        ],
+        "feel_temp": [
+          "-3",
+          "-3",
+          "-3",
+          "-3",
+          "-2",
+          "-2",
+          "-2",
+          "-2"
+        ]
+      }
+    },
+    {
+      "type": "tomorrows-tab",
+      "date": "2024-10-22",
+      "sunrise": "07:56",
+      "sunset": "17:57",
+      "weather": "Clear or sunny spells and a few brief showers. Turning cloudy from mid-afternoon with outbreaks of light rain. Less windy that Monday.",
+      "cloud_free_top": "80% becoming 40% in evening.",
+      "max_wind": "West or Southwest 20 to 25mph gusts 35mph.",
+      "temperature": {
+        "At 800m": "Plus 6 or 7C.",
+        "Valley": "Plus 9C rising to 13C.",
+        "Freezing level": "Above summits."
+      },
+      "visibility": "Mainly good visibility with cloud staying above the summits and just brief reductions in showers. Areas of cloud developing above 600m in the evening."
+    },
+    {
+      "type": "further-outlook",
+      "days": [
+        {
+          "date": "Wed 23 Oct",
+          "sunrise": "07:58",
+          "sunset": "17:55",
+          "summary": "Mainly cloudy with patchy light rain but some dry weather too. Some low cloud, mainly across southern and western fells. Strong southwesterly winds with summit gales. Mild, freezing level well above summits."
+        },
+        {
+          "date": "Thu 24 Oct",
+          "sunrise": "08:00",
+          "sunset": "17:53",
+          "summary": "A mostly dry start but remaining cloudy with outbreaks of rain arriving from the west at some point during the day. Strong southerly winds. Freezing level well above summits."
+        },
+        {
+          "date": "Fri 25 Oct",
+          "sunrise": "08:02",
+          "sunset": "17:51",
+          "summary": "Likely to stay unsettled with some rain or showers. Perhaps turning cooler with a freshening northwest breeze."
+        }
+      ]
+    }
+  ]
+}
