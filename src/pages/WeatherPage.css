@@ -1,10 +1,16 @@
 
 .weather-page {
-  display: grid;
-  gap: 1rem;
+  --max-content: 73ch;
+  --min-padding: 1rem;
 
-  max-width: calc(73ch + 2rem);
-  /* margin-inline: auto; */
+  display: grid;
+  gap: 1.5rem;
+  padding-inline: 0;
+}
+
+.weather-header {
+  width: min(calc(var(--max-content) + 2*var(--min-padding)), calc(100% - 2*var(--min-padding)));
+  margin-inline: auto;
 }
 
 .weather-page h2,
@@ -14,44 +20,47 @@
   font-weight: var(--fw-bold);
   line-height: 1.1;
 }
-
 .weather-page h3 {
   font-size: var(--fs-600);
 }
-
 .weather-page h4 {
-  font-family: var(--ff-body);
   font-weight: var(--fw-bold);
 }
 
 
-.weather-main {
+.weather-day {
+  row-gap: 1rem;
+  padding-block: 1.5rem;
+
   display: grid;
+  justify-content: start;
+  max-width: calc(var(--max-content) + 2*var(--min-padding));
+  padding-inline: var(--min-padding);
+}
+.weather-day > * {
+  grid-column: content;
 }
 
-
-.weather-main .suntime {
-  font-size: var(--fs-300);
-  color: var(--clr-black-300)
+.weather-day-today {
+  background: var(--clr-white-600);
+  padding-inline: calc(var(--min-padding) * 1.5);
+  border-radius: 0.5rem;
 }
 
-.weather-main p {
+.weather-day p {
   line-height: 1.5;
   text-wrap: pretty;
 }
-
-.weather-day {
-  display: grid;
-  gap: 1rem;
-  padding-block: 1rem;
+.weather-day ul {
+  list-style: square inside;
+  margin-inline-start: 0.5rem;
 }
 
-
-.weather-day:nth-child(2n-1) {
-  background: var(--clr-white-600);
+.weather-day .suntime {
+  font-size: var(--fs-300);
+  color: var(--clr-black-300)
 }
-
-.meteorologist {
+.weather-day .meteorologist {
   width: 95%;
   margin-inline: auto;
   padding: 0.25rem 0.375rem;
@@ -60,36 +69,18 @@
   border-inline-start: 0.25rem solid var(--clr-primary-400);
 }
 
-.weather-day ul {
-  list-style: square inside;
-  margin-inline-start: 0.5rem;
-}
-
-
-.forecast {
+.weather-day .forecast {
   width: 100%;
   overflow-x: auto;
 }
 
-
 .forecast-table th,
 .forecast-table td {
   padding-inline: 0.125rem 1rem;
-}
 
-.forecast-table th,
-.forecast-table td {
   text-align: center;
   vertical-align: bottom;
 }
-
-
-.forecast-table img {
-  width: calc(2 * var(--fs-600));
-
-  filter: invert(0.1) sepia(1) saturate(2) hue-rotate(-30deg);
-}
-
 .forecast-table .primary-row th,
 .forecast-table .primary-row td {
   padding-top: 0.75rem;
@@ -100,7 +91,14 @@
   color: var(--clr-black-300);
 }
 
-.table-break th {
-  text-align: left;
-  margin-top: 0.25rem;
+.forecast-table img {
+  width: calc(2 * var(--fs-600));
+
+  filter: invert(0.1) sepia(1) saturate(2) hue-rotate(-30deg);
+  cursor: pointer;
+}
+
+.weather-future .weather-day {
+  padding-block: 0.75rem;
+  background: var(--clr-white-600);
 }

@@ -8,6 +8,8 @@ const WeatherSymbols = Object.fromEntries(WeatherSymbolsFolder.keys().map(image 
 
 export function WeatherPage() {
 
+  document.title = "Lake District Weather | wainroutes";
+
   const [weatherData, setWeatherData] = useState(null)
 
   useEffect(() => {
@@ -23,12 +25,12 @@ export function WeatherPage() {
 
   return (
     <main className="weather-page">
-      <div>
+      <div className="weather-header">
         <h1 className="page-title">Lake District Weather</h1>
         <p>Last updated: {new Date(weatherData?.update_time).toUTCString()}</p>
       </div>
 
-      <div className="weather-main">
+      <div className="weather-forecast">
         {weatherData?.days?.map((day, index) => {
           switch (day.type) {
             // case "this-evening": return <EveningWeather key={index} weather={day} />
@@ -44,20 +46,20 @@ export function WeatherPage() {
 }
 
 
-function EveningWeather({ weather }) {
-  return (
-    <div>
-      <h2>This Evening</h2>
-      <span className="suntime">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
-      <p>{weather.summary}</p>
-    </div>
-  )
-}
+// function EveningWeather({ weather }) {
+//   return (
+//     <div>
+//       <h2>This Evening</h2>
+//       <span className="suntime">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
+//       <p>{weather.summary}</p>
+//     </div>
+//   )
+// }
 
 function CurrentDayWeather({ weather }) {
 
   return (
-    <div className="weather-day">
+    <div className="weather-day weather-day-today">
 
       <div>
         <h2>{DateTitle(weather.date)}</h2>
@@ -76,7 +78,7 @@ function CurrentDayWeather({ weather }) {
         <p>{weather.visibility}</p>
       </div>
 
-      {weather.meteorologist_view &&
+      {weather.meteorologist_view && weather.meteorologist_view !== "Nothing additional" &&
         <div className="meteorologist">
           <h4>Meteorologist's View</h4>
           <p>{weather.meteorologist_view}</p>
@@ -193,30 +195,40 @@ function TomorrowsWeather({ weather }) {
 }
 
 function FutureWeather({ weather }) {
+  const weekdayDict = {
+    "Mon": "Monday", "Tue": "Tuesday", "Wed": "Wednesday", "Thu": "Thursday", "Fri": "Friday", "Sat": "Saturday", "Sun": "Sunday" 
+  }
+  const monthDict = {
+    "Jan": "January", "Feb": "February", "Mar": "March", "Apr": "April", "May": "May", "Jun": "June", "Jul": "July", "Aug": "August", "Sep": "September", "Oct": "October","Nov": "November", "Dec": "December"
+  }
+
   return (
-    weather.days?.map((day, index) => {
-      return (
-        <div key={index} className="weather-day">
-          <div>
-            <h3>{day.date}</h3>
-            <span className="suntime">Sunrise: {day.sunrise}, Sunset: {day.sunset}</span>
+    <div className="weather-future">
+      {weather.days?.map((day, index) => {
+        var dateList = day.date.split(" ");
+        dateList[0] = weekdayDict[dateList[0]];
+        dateList[2] = monthDict[dateList[2]];
+  
+        return (
+          <div key={index} className="weather-day">
+            <div>
+              <h3>{dateList.join(" ")}</h3>
+              <span className="suntime">Sunrise: {day.sunrise}, Sunset: {day.sunset}</span>
+            </div>
+            <p>{day.summary}</p>
           </div>
-          <p>{day.summary}</p>
-        </div>
-      )
-    })
+        )
+      })}
+    </div>
   )
 }
 
 
 function DateTitle(dateString) {
-  const options = {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-  };
+  const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
   var date = new Date(dateString);
 
-  return date.toLocaleDateString("en-EN", options);
+  return [weekday[date.getDay()], date.getDate(), month[date.getMonth()]].join(" ");
 }

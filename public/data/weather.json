@@ -1,22 +1,22 @@
 {
-  "update_time": "2024-10-20T16:24:19Z",
-  "confidence": "High until Thursday then confidence lowering for details regarding weather fronts moving over the United Kingdom.",
+  "update_time": "2024-10-22T15:18:16Z",
+  "confidence": "High for mainly dry weather for the next couple of days but medium for cloud details. Then good confidence for more changeable conditions but low for details and timing.",
   "days": [
     {
       "type": "this-evening",
-      "sunrise": "07:54",
-      "sunset": "18:00",
-      "summary": "Gales in the valleys with storm force winds gusting over 80mph on the tops making walking almost impossible and potentially dangerous. Showery outbreaks of rain."
+      "sunrise": "07:58",
+      "sunset": "17:55",
+      "summary": "Dry. Some clear periods at first, but increasing chance of areas of low hill fog later especially over southern and western fells. Light to moderate southwesterly winds."
     },
     {
       "type": "current-day",
-      "date": "2024-10-21",
-      "sunrise": "07:54",
-      "sunset": "18:00",
-      "meteorologist_view": "Gale force winds on the summits and ridges bring arduous walking conditions and a risk of being blown over.",
-      "weather": "A few showers overnight with storm force winds decreasing a little. A mainly dry, bright and windy day with sunny spells. There could be one or two brief showers. Cloudier after dark with more widespread showers developing.",
-      "cloud_free_top": "90%, becoming 60% in evening.",
-      "visibility": "Mainly good visibility with cloud staying above the summits and just brief reductions in showers. A few patches of cloud above 600m in the early hours and again in the evening.",
+      "date": "2024-10-23",
+      "sunrise": "07:58",
+      "sunset": "17:55",
+      "meteorologist_view": "Nothing additional",
+      "weather": "A cloudy morning with some patchy drizzle mainly over southern and western fells though it will be mainly dry. A few sunny intervals in good shelter. In the afternoon cloud lifting and also breaking to an extent with more chance of a few sunny intervals especially later . Some clear spells in the evening but some low cloud again forming over the hills.",
+      "cloud_free_top": "10% in morning rising 70-80% by mid afternoon dropping 50% during the evening",
+      "visibility": "Fairly extensive cloud of cloud above 500m in morning and hazy below the cloud but this lifting and breaking in the afternoon with mostly good visibility, just a few patches of cloud lingering on higher fell tops. Some cloud again lowering onto higher hills during the evening.",
       "ground_conditions": "No recent ground conditions report available.",
       "forecast": {
         "time": [
@@ -30,44 +30,44 @@
           "21:00"
         ],
         "type": [
-          "Heavy rain",
-          "Light rain",
+          "Overcast",
+          "Overcast",
+          "Fog",
+          "Fog",
+          "Overcast",
+          "Cloudy",
           "Partly cloudy (night)",
-          "Sunny intervals",
-          "Sunny intervals",
-          "Sunny intervals",
-          "Partly cloudy (night)",
-          "Heavy shower (night)"
+          "Cloudy"
         ],
         "precip": [
-          "70%",
-          "30%",
-          "10%",
-          "10%",
-          "10%",
+          "<05%",
           "10%",
           "20%",
-          "60%"
+          "10%",
+          "10%",
+          "<05%",
+          "<05%",
+          "<05%"
         ],
         "wind_speed": [
-          "60",
-          "48",
-          "40",
-          "39",
-          "36",
-          "36",
-          "39",
-          "40"
+          "24",
+          "24",
+          "22",
+          "24",
+          "24",
+          "27",
+          "31",
+          "36"
         ],
         "wind_gust": [
-          "75",
-          "60",
-          "51",
-          "50",
-          "47",
-          "47",
-          "49",
-          "51"
+          "29",
+          "30",
+          "28",
+          "31",
+          "33",
+          "36",
+          "40",
+          "46"
         ],
         "wind_dir": [
           "SW",
@@ -75,67 +75,67 @@
           "SW",
           "SW",
           "SW",
-          "SW",
-          "SW",
-          "SW"
+          "S",
+          "S",
+          "S"
         ],
         "temp": [
-          "5",
-          "5",
-          "4",
-          "4",
-          "4",
-          "5",
-          "5",
-          "5"
+          "6",
+          "6",
+          "6",
+          "6",
+          "6",
+          "6",
+          "6",
+          "6"
         ],
         "feel_temp": [
-          "-3",
-          "-3",
-          "-3",
-          "-3",
-          "-2",
-          "-2",
-          "-2",
-          "-2"
+          "0",
+          "1",
+          "1",
+          "1",
+          "1",
+          "0",
+          "0",
+          "0"
         ]
       }
     },
     {
       "type": "tomorrows-tab",
-      "date": "2024-10-22",
-      "sunrise": "07:56",
-      "sunset": "17:57",
-      "weather": "Clear or sunny spells and a few brief showers. Turning cloudy from mid-afternoon with outbreaks of light rain. Less windy that Monday.",
-      "cloud_free_top": "80% becoming 40% in evening.",
-      "max_wind": "West or Southwest 20 to 25mph gusts 35mph.",
+      "date": "2024-10-24",
+      "sunrise": "08:00",
+      "sunset": "17:53",
+      "weather": "Another mainly dry day. Any low cloud lifting off the tops in the morning, with a mixture of sunny intervals and cloudier spells in the afternoon. Best breaks in the north, while southern felltops likely to stay mainly cloudy and shrouded. Cloud becoming overcast in the evening with perhaps some rain towards midnight.",
+      "cloud_free_top": "40% at first rising 80% from mid morning, but 60% in south, gradually falling 20% or less as the evening goes on.",
+      "max_wind": "South to southeast 25 gusts 35mph.",
       "temperature": {
-        "At 800m": "Plus 6 or 7C.",
-        "Valley": "Plus 9C rising to 13C.",
-        "Freezing level": "Above summits."
+        "At 800m": "Plus 6 rising to Plus 9 Celsius.",
+        "Valley": "Plus 10 rising to Plus 15 Celsius.",
+        "Freezing level": "Above the summits."
       },
-      "visibility": "Mainly good visibility with cloud staying above the summits and just brief reductions in showers. Areas of cloud developing above 600m in the evening."
+      "visibility": "Areas of cloud above 500-600m at first tending to break and lift off most hills during the afternoon though some patches persisting over southern summits. Good visibility away from the cloud. Then by mid to late evening extensive cloud above 500-600m, visibility also dropping at lower levels in any rain that arrives later."
     },
     {
       "type": "further-outlook",
       "days": [
         {
-          "date": "Wed 23 Oct",
-          "sunrise": "07:58",
-          "sunset": "17:55",
-          "summary": "Mainly cloudy with patchy light rain but some dry weather too. Some low cloud, mainly across southern and western fells. Strong southwesterly winds with summit gales. Mild, freezing level well above summits."
-        },
-        {
-          "date": "Thu 24 Oct",
-          "sunrise": "08:00",
-          "sunset": "17:53",
-          "summary": "A mostly dry start but remaining cloudy with outbreaks of rain arriving from the west at some point during the day. Strong southerly winds. Freezing level well above summits."
-        },
-        {
           "date": "Fri 25 Oct",
           "sunrise": "08:02",
           "sunset": "17:51",
-          "summary": "Likely to stay unsettled with some rain or showers. Perhaps turning cooler with a freshening northwest breeze."
+          "summary": "Low confidence in detail. Any rain clearing in early hours then sunny intervals and some showers. More general cloud and rain may then return in the evening. Fresh southwesterly winds, potentially becoming strong with summit gales in the evening."
+        },
+        {
+          "date": "Sat 26 Oct",
+          "sunrise": "08:04",
+          "sunset": "17:49",
+          "summary": "Likely to be cloudy at first with outbreaks of heavy rain, hill fog and southwesterly gales, brightening up for the afternoon to sunny intervals and showers, with winds veering west to northwesterly."
+        },
+        {
+          "date": "Sun 27 Oct",
+          "sunrise": "07:06",
+          "sunset": "16:46",
+          "summary": "Cloudy with occasional rain, and some hill fog. Strong west to southwest winds."
         }
       ]
     }

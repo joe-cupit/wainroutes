@@ -12,6 +12,7 @@ import { WalksPage } from './pages/WalksPage';
 import { WalkPage } from './pages/WalkPage';
 import { HillsPage } from './pages/HillsPage';
 import { HillPage } from './pages/HillPage';
+import { WeatherPage } from './pages/WeatherPage';
 
 
 export default function App() {
@@ -23,7 +24,7 @@ export default function App() {
 
   return (<>
     <Navbar />
-    <div className="App text--default">
+    {/* <div className="App text--default"> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
 
@@ -34,9 +35,11 @@ export default function App() {
         <Route path="/mountains/" element={<HillsPage />} />
         <Route path="/mountain/:slug" element={<HillPage />} />
 
+        <Route path="/weather/" element={<WeatherPage />} />
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </div>
+    {/* </div> */}
     <Footer />
   </>)
 }
