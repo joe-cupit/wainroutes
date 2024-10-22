@@ -17,6 +17,8 @@
 
   border-radius: 0.5rem;
 
+  font-weight: var(--fw-bold);
+
   color: var(--clr-white-400);
   background: var(--clr-black-400);
 
@@ -49,7 +51,13 @@
   font-size: var(--fs-800);
   font-weight: var(--fw-bold);
 
+  height: calc(var(--fs-800) * 1.15);
+
   cursor: pointer;
+}
+.navbar-navtitle:hover {
+  font-family: "DM Serif Display", "Urbanist", sans-serif;
+  line-height: 1.2;
 }
 
 .navbar-navlink {
@@ -86,6 +94,13 @@
 }
 
 @media (max-width: 650px) {
+  .navbar {
+    --_navbar-margin: 0;
+    width: 100%;
+    border-radius: 0;
+    padding-block: 0.75rem;
+  }
+
   .navbar-mobile-only {
     display: inline-block;
   }
@@ -94,31 +109,41 @@
     gap: 1rem;
   }
   .navbar-nav {
+    display: none;
+
     flex-direction: column;
+    gap: 1.5rem;
+    align-items: start;
 
     position: absolute;
-    top: calc(100% - 0.5rem*2);
-    left: calc(0.5rem);
+    top: 100%;
+    left: 0;
 
-    width: 60%;
-    height: 0;
-    padding: 0;
+    width: min(80%, 400px);
+    height: calc(100vh - 100%);
+    padding: 1.5rem;
     overflow: hidden;
-    border-radius: 0.5rem;
 
-    font-size: var(--fs-600);
+    font-size: var(--fs-800);
 
     background: var(--clr-black-400);
+    z-index: inherit;
 
-    z-index: -1;
+    transform: translateX(-100%);
 
-    transition: height 100ms ease-in-out, padding 0ms 100ms;
+    transition-property: display transform;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+    transition-behavior: allow-discrete;
   }
   .navbar-nav[data-status="open"] {
-    height: 12rem;
-    padding: 1rem;
-    padding-top: calc(1rem + 0.5rem);
+    display: flex;
 
-    transition: height 100ms ease-in-out, padding 0ms;
+    transform: translateX(0);
+    transition-duration: 200ms;
+  
+    @starting-style {
+      transform: translateX(-100%);
+    }
   }
 }

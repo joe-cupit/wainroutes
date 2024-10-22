@@ -1,25 +1,34 @@
 import "./navbar.css";
 
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
 export function Navbar() {
 
-  const [darkMode, setDarkMode] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
 
-  function toggleDarkMode() {
-    setDarkMode(prev => !prev);
-    if (darkMode) document.body.classList.remove('darkmode');
-    else document.body.classList.add('darkmode');
+  // function toggleDarkMode() {
+  //   setDarkMode(prev => !prev);
+  //   if (darkMode) document.body.classList.remove('darkmode');
+  //   else document.body.classList.add('darkmode');
+  // }
+
+  function clickListener(e) {
+    const nav = document.getElementById("navbar-nav");
+    if (!e.composedPath().includes(nav) || e.target.tagName.toLowerCase() === "a") {
+      nav.setAttribute("data-status", "closed");
+    }
   }
 
   function toggleMobileNav() {
     const nav = document.getElementById("navbar-nav");
     if (nav.getAttribute("data-status") === "open") {
       nav.setAttribute("data-status", "closed");
+      document.removeEventListener("mouseup", clickListener);
     } else {
       nav.setAttribute("data-status", "open");
+      document.addEventListener("mouseup", clickListener);
     }
   }
 
