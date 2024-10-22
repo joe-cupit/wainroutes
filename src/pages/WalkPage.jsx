@@ -47,39 +47,34 @@ export function WalkPage() {
       <div className="walk-header">
         <h1>{walkData?.name}</h1>
         <MountainList mountains={walkData?.wainwrights} />
+        {/* <p>{walkData?.wainwrights?.length + " Wainwright" + (walkData?.wainwrights?.length !== 1 ? "s" : "")}</p> */}
       </div>
 
-      <div className="walk-stats">
-        <div>
-          <span>Length</span>
-          <span>{walkData?.distance}km</span>
-        </div>
-        <div>
-          <span>Elevation</span>
-          <span>{walkData?.total_elevation}m</span>
-        </div>
-        <div>
-          <span>Wainwrights</span>
-          <span>{walkData?.wainwrights?.length}</span>
-        </div>
-        <div>
-          <span>Estimated time</span>
-          <span>{walkData?.estimated_time}</span>
-        </div>
-      </div>
+      <hr />
 
       <div className="walk-wrapper">
         <div className="walk-main">
+
+          <div className="walk-stats">
+            <div>
+              <p>Length:</p>
+              <p>{walkData?.distance + "km"}</p>
+            </div>
+
+            <div>
+              <p>Elevation:</p>
+              <p>{walkData?.total_elevation + "m"}</p>
+            </div>
+
+            <div>
+              <p>Walk type:</p>
+              <p>{walkData?.tags?.[0] && walkData?.tags?.[0].charAt(0).toUpperCase() + walkData?.tags?.[0].slice(1)}</p>
+            </div>
+          </div>
+
           <p>{walkData?.intro}</p>
 
           <div className="walk-route">
-            <button>
-              Download GPX
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                <path fillRule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clipRule="evenodd"/>
-                <path fillRule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clipRule="evenodd"/>
-              </svg>
-            </button>
             <div className="walk-map">
               <LakeMap
                 gpxPoints={gpxPoints} mapMarkers={hillMarkers}
@@ -96,16 +91,36 @@ export function WalkPage() {
           </div>
         </div>
 
-        <aside>
-          <p>Info</p>
+        <aside className="walk_desktop-only">
+          {/* <p>Info</p>
           <p>Route</p>
           <p>Details</p>
           <p>Weather</p>
-          <p>Travel</p>
-          <p>Other</p>
+          <p>Gallery</p>
+          <p>Other</p> */}
 
-          <BusRoutes busRoutes={walkData?.bus_routes} />
-          {walkData?.date && <div><b>Date completed:</b> {new Date(walkData?.date).toLocaleDateString()}</div>}
+          <button>
+            Download GPX
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+              <path fillRule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clipRule="evenodd"/>
+              <path fillRule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clipRule="evenodd"/>
+            </svg>
+          </button>
+
+          <div>
+            <b>Start location:</b>
+            <div>{walkData?.start_lat_lang?.[0]?.toFixed(3) + ", " + walkData?.start_lat_lang?.[1]?.toFixed(3)}</div>
+          </div>
+
+          <div>
+            <b>Bus connections:</b>
+            <BusRoutes busRoutes={walkData?.bus_routes} />
+          </div>
+
+          <div style={{marginTop: "auto"}}>
+            <b>Date completed: </b>
+            {new Date(walkData?.date).toLocaleDateString()}
+          </div>
         </aside>
       </div>
 
