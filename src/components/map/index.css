@@ -9,9 +9,12 @@
 
 
 .lake-map--route {
-  stroke: var(--map-gpx);
-  stroke-width: 2.5;
-
+  stroke: var(--clr-primary-400);
+  stroke-width: 5;
+  filter: drop-shadow(0.0625rem 0 0 var(--clr-primary-800))
+          drop-shadow(0 0.0625rem 0 var(--clr-primary-800))
+          drop-shadow(-0.0625rem 0 0 var(--clr-primary-800))
+          drop-shadow(0 -0.0625rem 0 var(--clr-primary-800));
   cursor: default;
 }
 
@@ -28,6 +31,13 @@
 }
 .lake-map--cluster:hover {
   transform: scale(1.2) translateY(-5px);
+}
+
+.focussed-cluster {
+  transform: scale(1.5) translateY(-9px);
+}
+.focussed-cluster:hover {
+  transform: scale(1.8) translateY(-11px);
 }
 
 .lake-map--cluster svg {

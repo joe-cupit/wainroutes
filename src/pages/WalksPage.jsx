@@ -50,6 +50,9 @@ export function WalksPage() {
   }, [walkData, sortValue]);
 
 
+  const [hovered, setHovered] = useState(null);
+
+
   return (
     <main className="walks">
       <h1>Find a Walk</h1>
@@ -76,7 +79,11 @@ export function WalksPage() {
           <div className="walks-list">
             {(sortedWalkData.length > 0)
             ? sortedWalkData?.map((walk, key) => {
-                return <WalkCard key={key} walk={walk} />
+                return (
+                  <div onMouseEnter={() => setHovered(walk.slug)} onMouseLeave={() => setHovered(null)}>
+                    <WalkCard key={key} walk={walk} />
+                  </div>
+                )
               })
             : <div>No walks match these filters.</div>
             }
@@ -87,7 +94,7 @@ export function WalksPage() {
         </div>
 
         <div className="walks-map">
-          <LakeMap mapMarkers={walkMarkers} />
+          <LakeMap mapMarkers={walkMarkers} activePoint={hovered} />
         </div>
       </div>
     </main>
@@ -107,16 +114,7 @@ export default function WalkCard({ walk }) {
 
       <div className="walks-card_text">
         <h3 title={walk?.name}>{walk?.name}</h3>
-        <p>
-          {hills?.map((hill, index) => {
-            return (
-              <Fragment key={index}>
-                {index !== 0 && ", "}
-                {hillData?.[hill]?.name}
-              </Fragment>
-            )
-          })}
-        </p>
+        <MountainList mountains={hills} />
         <p className="walks-card_stats">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" viewBox="0 0 100 125">
@@ -150,5 +148,25 @@ export default function WalkCard({ walk }) {
         </p>
       </div>
     </Link>
+  )
+}
+
+
+function MountainList({ mountains, container } ) {
+
+  const hillMap = mountains.length > 4 ? mountains.slice(0, 3) : mountains;
+  const remainingHills = mountains.length - hillMap.length;
+
+  return (
+    <p>
+      {hillMap?.map((hill, index) => {
+        return (
+          <Fragment key={index}>
+            {(index !== 0 ? ", " : "") + hillData?.[hill]?.name}
+          </Fragment>
+        )
+      })}
+      {remainingHills ? (" & " + (remainingHills) + " more") : ""}
+    </p>
   )
 }
