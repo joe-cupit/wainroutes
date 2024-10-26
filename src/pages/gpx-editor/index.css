@@ -1,189 +1,90 @@
-.gpx-editor--main {
-  display: flex;
-  flex-direction: column;
 
-  height: 100vh;
+.editor-page {
+  display: flex;
+
+  width: 100%;
+  padding: 0;
 }
 
-.gpx-editor--navbar {
+.editor-page h1 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-800);
+  text-wrap: balance;
+  line-height: 1.1;
+
+  text-align: center;
+}
+
+
+.editor-controls {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1rem;
 
-  width: 2.2rem;
+  padding: 1rem;
 
-  position: absolute;
-  z-index: calc(infinity);
-  left: 0.90rem;
-  top: 7.5rem;
-}
+  background: var(--clr-white-400);
+  width: 300px;
 
-.gpx-editor--navbar-section {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 0.2rem;
-  color: var(--copy-light);
-  background: var(--foreground);
-  filter: drop-shadow(2px 2px 3px rgba(5, 5, 5, 0.25));
-}
-.gpx-editor--navbar-section button {
-  border-bottom: 1px solid var(--border);
-}
-.gpx-editor--navbar-section button:last-child {
-  border-bottom: none;
+  overflow-x: auto;
 }
 
-.gpx-editor--navbar-button {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  background: none;
-  border: none;
+.editor-controls input[type="radio"] {
+  display: none;
+}
+
+.editor-controls button,
+.editor-controls label[role="button"] {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+
+  background: var(--clr-white-600);
   cursor: pointer;
 }
-.gpx-editor--navbar-button:hover {
-  background-color: var(--background);
-}
-.gpx-editor--navbar-button:disabled {
-  color: var(--border);
-  cursor: default;
-}
-.gpx-editor--navbar-button:disabled:hover {
-  background-color: inherit;
-}
-.gpx-editor--navbar-button.active {
-  color: var(--primary-content);
-  background: var(--primary);
-}
-.gpx-editor--navbar-button.active:hover {
-  background: var(--primary-dark);
-}
-svg.flipped {
-  transform: scaleX(-1);
-}
-.gpx-editor--navbar-button svg {
-  width: 55%;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.5;
-  margin-top: 20%;
-  margin-left: 2%;
+.editor-controls button:hover,
+.editor-controls label[role="button"]:hover {
+  background: var(--clr-white-500);
 }
 
-.gpx-editor--navbar-button-info {
-  position: absolute;
-  left: 100%;
-  top: 0;
-  width: 9rem;
-  height: 100%;
-  color: var(--copy-light);
-  background: var(--foreground);
+.editor-controls label[role="button"].active {
+  background: var(--clr-primary-500);
 }
 
-
-.gpx-editor--gpx-config-div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: calc(infinity);
-
-  border-radius: 0.3rem;
-  filter: drop-shadow(2px 2px 3px rgba(5, 5, 5, 0.25));
-
-  padding: 0.3rem;
-  width: 17rem;
-  height: 26rem;
-
-  background-color: var(--foreground);
-  
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-start;
-}
-.gpx-editor--gpx-config-div h3 {
-  font-weight: 700;
-  align-self: center;
-}
-
-
-.gpx-editor--gpx-info {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-
-  height: 2.2rem;
-
-  position: absolute;
-  z-index: calc(infinity);
-  margin-left: 5rem;
-  margin-top: 1.3rem;
-  padding: 0.5rem;
-
-  border-radius: 0.2rem;
-  filter: drop-shadow(2px 2px 3px rgba(5, 5, 5, 0.25));
-  background: var(--foreground);
-}
-
-
-
-.gpx-editor--map-container {
-  width: 100%;
-  flex-grow: 1;
-}
-
-.gpx-editor--line {
-  fill: none;
-  stroke: var(--map-gpx);
-  stroke-width: 3;
+.editor-controls button:disabled {
+  color: var(--clr-black-200);
+  background: var(--clr-black-100);
   cursor: default;
 }
 
-.gpx-editor--draggable-container {
-  transform: translate(-50%, -50%);
-  padding-right: 10px;
+
+.editor-map {
+  flex: 1;
 }
-.gpx-editor--draggable {
+
+
+.editor-map_route {
+  --_gpx-line-colour: var(--clr-primary-500);
+  --_gpx-line-stroke: var(--clr-primary-800);
+
+  stroke: var(--_gpx-line-colour);
+  stroke-width: 5;
+  filter: drop-shadow(0.0625rem 0 0 var(--_gpx-line-stroke))
+          drop-shadow(0 0.0625rem 0 var(--_gpx-line-stroke))
+          drop-shadow(-0.0625rem 0 0 var(--_gpx-line-stroke))
+          drop-shadow(0 -0.0625rem 0 var(--_gpx-line-stroke));
+  cursor: default;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.editor-map_point {
   width: 7px;
   aspect-ratio: 1;
-  background: var(--primary);
+  background: rgb(86, 209, 246);
   border-radius: 30%;
-  border: 1px solid black;
+  border: 1px solid var(--clr-primary-800);
 }
-.gpx-editor--draggable-container:hover .gpx-editor--draggable {
-  transform: scale(1.5);
-}
-.gpx-editor--map-container.delete-mode .gpx-editor--draggable {
-  background: var(--error);
-}
-.gpx-editor--map-container.add-mode .gpx-editor--draggable {
-  background: var(--secondary);
-}
-
-.gpx-editor--start-marker .gpx-editor--draggable,
-.gpx-editor--end-marker .gpx-editor--draggable {
-  background: var(--success);
-  border-radius: 50%;
-  border-width: 2px;
+.editor-map_point:hover {
   transform: scale(1.75);
 }
-.gpx-editor--end-marker .gpx-editor--draggable {
-  background: var(--copy-light);
-}
-
-.gpx-editor--elevation {
-  height: 15rem;
-  width: 100%;
-  background-color: var(--background);
-  border-top: 3px solid var(--border);
-  /* cursor: pointer; */
-  padding: 1rem 4rem;
-
-  transition: height .2s ease-out;
-}
-/* .gpx-editor--elevation:hover {
-  height: 15rem;
-} */
