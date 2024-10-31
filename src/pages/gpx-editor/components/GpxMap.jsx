@@ -1,9 +1,9 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Map, GeoJson, ZoomControl, Draggable, Overlay } from "pigeon-maps"
 // import zoomToFit from "../utils/zoomToFit";
 
 
-export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint }) {
+export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint, panValue }) {
 
   const [center, setCenter] = useState([54.45, -3.03]);
   const [zoom, setZoom] = useState(10);
@@ -12,6 +12,7 @@ export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint }
     setCenter(center);
     setZoom(zoom);
     setBounds(bounds);
+    console.log(zoom)
   }
   const gpxPointWidth = useMemo(() => 2*zoom-24, [zoom]);
 
@@ -40,6 +41,31 @@ export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint }
   //   setCenter(newCenter)
   //   setZoom(newZoom)
   // }
+
+
+  useEffect(() => {
+    if (panValue === null) return
+
+    const ewChange = (bounds.sw[1] - bounds.ne[1]) / 12
+    const nsChange = (bounds.ne[0] - bounds.sw[0]) / 10
+
+    switch (panValue) {
+      case "up":
+        setCenter([center[0]+nsChange, center[1]])
+        break
+      case "down":
+        setCenter([center[0]-nsChange, center[1]])
+        break
+      case "left":
+        setCenter([center[0], center[1]+ewChange])
+        break
+      case "right":
+        setCenter([center[0], center[1]-ewChange])
+        break
+      default:
+        break
+    }
+  }, [panValue])
 
 
   return (

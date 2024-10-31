@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/gpx-editor" element={<EditorApp />} />
+      <Route path="/editor" element={<EditorApp />} />
       <Route path="*" element={<App />} />
     </Routes>
   </BrowserRouter>

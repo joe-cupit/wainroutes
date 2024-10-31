@@ -81,10 +81,27 @@
 .editor-map_point {
   width: 7px;
   aspect-ratio: 1;
-  background: rgb(86, 209, 246);
+  background: rgb(222, 161, 21);
   border-radius: 30%;
   border: 1px solid var(--clr-primary-800);
 }
 .editor-map_point:hover {
   transform: scale(1.75);
+}
+
+.editor-map[data-mode="del"] .editor-map_point {
+  background: rgb(201, 9, 9);
+}
+.editor-map[data-mode="add"] .editor-map_point {
+  background: rgb(174, 161, 161);
+}
+.editor-map[data-mode="add"] .editor-map_point:hover {
+  transform: none;
+}
+
+.editor-map[data-mode="del"] .editor-map_route {
+  --_gpx-line-colour: rgb(145, 32, 26);
+}
+.editor-map[data-mode="add"] .editor-map_route {
+  --_gpx-line-colour: green;
 }

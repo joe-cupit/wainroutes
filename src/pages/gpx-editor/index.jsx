@@ -141,6 +141,63 @@ export default function EditorApp() {
   }
 
 
+  const [panValue, setPanValue] = useState(null)
+
+  function keyListener(e) {
+    if (!e.isTrusted) return
+
+    switch (e.key.toLowerCase()) {
+      case "m":
+      case "s":
+        setMapMode("move")
+        break
+      case "d":
+      case "delete":
+        setMapMode("del")
+        break
+      case "a":
+        setMapMode("add")
+        break
+      case "f":
+        document.getElementById("fill-button").click()
+        break
+      case "r":
+        document.getElementById("reverse-button").click()
+        break
+      case "z":
+        if (e.ctrlKey) {
+          if (e.shiftKey) document.getElementById("redo-button").click()
+          else document.getElementById("undo-button").click()
+          break
+        }
+      case "arrowup":
+        setPanValue("up")
+        setTimeout(() => setPanValue(null), 100)
+        break;
+      case "arrowdown":
+        setPanValue("down")
+        setTimeout(() => setPanValue(null), 100)
+        break;
+      case "arrowleft":
+        setPanValue("left")
+        setTimeout(() => setPanValue(null), 100)
+        break;
+      case "arrowright":
+        setPanValue("right")
+        setTimeout(() => setPanValue(null), 100)
+        break;
+      default:
+        console.log(e)
+        break
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("keyup", keyListener)
+    return () => {document.removeEventListener("keyup", keyListener)}
+  }, [])
+
+
   return (
     <main className="editor-page">
       <aside className="editor-controls">
@@ -154,32 +211,33 @@ export default function EditorApp() {
 
         <div>
           <h2>Version control</h2>
-          <button onClick={() => setFullPoints(undoStack.undo(fullPoints))} disabled={undoStack.undoSize === 0}>Undo</button>
-          <button onClick={() => setFullPoints(undoStack.redo(fullPoints))} disabled={undoStack.redoSize === 0}>Redo</button>
+          <button id="undo-button" onClick={() => setFullPoints(undoStack.undo(fullPoints))} disabled={undoStack.undoSize === 0}>Undo</button>
+          <button id="redo-button" onClick={() => setFullPoints(undoStack.redo(fullPoints))} disabled={undoStack.redoSize === 0}>Redo</button>
         </div>
 
         <div>
           <h2>Map edit mode</h2>
           <input type="radio" name="map-mode" id="mode-move" checked={mapMode === "move"} onChange={() => setMapMode("move")} />
-          <label htmlFor="mode-move" className={mapMode === "move" ? "active" : ""} role="button">Move</label>
+          <label htmlFor="mode-move" className={mapMode === "move" ? "active" : ""} role="button">Move (m)</label>
           <input type="radio" name="map-mode" id="mode-del" checked={mapMode === "del"} onChange={() => setMapMode("del")} />
-          <label htmlFor="mode-del" className={mapMode === "del" ? "active" : ""} role="button">Delete</label>
+          <label htmlFor="mode-del" className={mapMode === "del" ? "active" : ""} role="button">Delete (d)</label>
           <input type="radio" name="map-mode" id="mode-add" checked={mapMode === "add"} onChange={() => setMapMode("add")} />
-          <label htmlFor="mode-add" className={mapMode === "add" ? "active" : ""} role="button">Add</label>
+          <label htmlFor="mode-add" className={mapMode === "add" ? "active" : ""} role="button">Add (a)</label>
         </div>
 
         <div>
           <h2>Advanced options</h2>
-          <button onClick={fillGaps}>Fill gaps</button>
-          <button onClick={reverseGpxDirection}>Reverse direction</button>
+          <button id="fill-button" onClick={fillGaps}>Fill gaps (f)</button>
+          <button id="reverse-button" onClick={reverseGpxDirection}>Reverse direction (r)</button>
         </div>
 
         <button onClick={handleDownloadFile}>Download GPX</button>
       </aside>
 
-      <div id="editor-map" className="editor-map">
+      <div id="editor-map" className="editor-map" data-mode={mapMode}>
         <GpxMap gpxPoints={fullPoints} mapMode={mapMode}
                 moveGeoPoint={moveGeoPoint} delGeoPoint={delGeoPoint}
+                panValue={panValue}
         />
       </div>
 
