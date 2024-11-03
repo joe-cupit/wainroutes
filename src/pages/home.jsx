@@ -1,68 +1,74 @@
-import "./home.css";
+import "./Home.css";
 
 import { Link } from "react-router-dom";
-import { LakeMap } from "../components/map";
-import { useMemo } from "react";
-import { useHillMarkers, useWalkMarkers } from "../hooks/useMarkers";
+import HerdyImage from "../assets/images/home/herdy.jpeg"
 
 
 export function HomePage() {
 
   document.title = "wainroutes";
 
-  const hillMarkers = useHillMarkers();
-  const walkMarkers = useWalkMarkers();
-
-  const mapMarkers = useMemo(() => {
-    // return [...(hillMarkers ?? []), ...(walkMarkers ?? [])]
-    return [...(hillMarkers ?? [])]
-  }, [hillMarkers, walkMarkers])
 
   return (
   <main className="home-page">
 
-    <section id="hero-section" className="home-page_hero">
+    <section className="home-hero-section">
+      <div className="flex-column align-center justify-center text-center">
+        <h1 className="title">Love your next Lake District walk</h1>
+        <Link to="/walks" className="primary button">Find a walk</Link>
+      </div>
+    </section>
 
-      {/* <div className="image-background">
-        <img src={"/images/home_backdrop.jpeg"} alt="mountains" />
-      </div> */}
+    <section>
+      <div className="flex-column align-center">
+        <h2 className="heading">Featured routes</h2>
+        <div className="flex-row home-featured-container">
+          <div className="home-featured-walk"></div>
+          <div className="home-featured-walk"></div>
+          <div className="home-featured-walk"></div>
+        </div>
+      </div>
+    </section>
 
-      <div className="home-page_hero-main">
-        <div>
-          <h1 className="home-page_title">wainroutes</h1>
-          <p className="home-page_tagline">Lake District <span className="cursive">walks</span> covering the 214 Wainwrights</p>        
+    <section className="highlighted-section">
+      <div className="grid-two-left align-center">
+        <div className="flex-column">
+          <h2 className="heading">Wainwrights</h2>
+          <p>
+            In the 1950s Alfred Wainwrights began to release his series of books covering the Lakeland Fells.
+            In seven books he wrote about 214 of the most significant and noteworthy peaks.
+            This site aims to provide walks to climb all mountains referenced by him.
+          </p>
+          <button>Check them out →</button>
         </div>
 
-        <div className="home-page_buttons">
-          <Link className="home-page_button walks" to="/walks">
-            Go for a walk
-            <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" fill="none" viewBox="-0.5 -11.207 17.19 11.71">
-              <path d="M0 0C.128-.892.308-1.61 1.006-2.248M2.243-3.505C2.822-4.083 3.44-4.562 4.558-4.602M6.194-4.542C7.131-4.462 7.63-4.003 8.528-4.103M10.483-4.422C11.321-4.622 11.58-5.141 11.94-5.998M12.518-7.814C12.897-8.612 13.994-9.151 15.052-9.071M12.738-10.707C13.975-9.949 14.433-9.689 16.189-9.231M15.359-5.825C15.301-6.819 15.661-8.114 16.187-9.224" />
-            </svg>
-          </Link>
-          <Link className="home-page_button mountains" to="/mountains">
-            Find a mountain
-            <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" fill="none" viewBox="-0.5 -5.98057 8 6.481">
-              <path d="M 0 0 C 1.322 -0.932 2.149 -3.989 3 -5 C 3.77 -6.069 3.816 -5.334 5 -3 C 6 -1 5.758 -1.024 7 0 M 1.552 -3.161 L 2.643 -2.345 L 3.379 -3.07 L 4.103 -2.219 L 5.873 -2.966" />
-            </svg>
-          </Link>
-        </div>        
+        <div className="flex-column align-center text-center">
+          <div className="donut circle">
+            <p><span className="wainwright-count">77</span> of 214 Wainwrights</p>
+            <div className="progress">
+              <div className="circle"></div>
+            </div>
+          </div>
+          <p className="secondary-text">*we're adding to this every month!</p>
+        </div>
       </div>
-
     </section>
 
-    <section id="walks-section" className="home-page_walks">
-      <h2>Popular Walks</h2>
+    <section>
+      <div className="grid-two-right">
+        <img src={HerdyImage} alt="A herdwick sheep in the mountains." className="home-about-image" />
+
+        <div className="flex-column">
+          <h2 className="heading">About wainroutes</h2>
+          <p>
+            In the 1950s Alfred Wainwrights began to release his series of books covering the Lakeland Fells.
+            In seven books he wrote about 214 of the most significant and noteworthy peaks.
+            This site aims to provide walks to climb all mountains referenced by him.
+          </p>
+        </div>
+      </div>
     </section>
 
-    {/* <div className="home-page--map">
-      <LakeMap mapMarkers={mapMarkers} />
-    </div> */}
-
-    <div style={{height: "670px"}}>
-
-    </div>
-    
   </main>
   )
 }
