@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom";
 import { useHills } from "../hooks/useHills";
 
 
-const numbers = {
+const BookNumbers = {
   1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven"
 }
-const titles = {
+const BookTitles = {
   1: "The Eastern Fells", 2: "The Far Eastern Fells", 3: "The Central Fells", 4: "The Southern Fells", 5: "The Northern Fells", 6: "The North Western Fells", 7: "The Western Fells"
 }
 
@@ -21,31 +21,33 @@ export function HillPage() {
 
   return (
     <main className="hill-page">
-      <aside className="hill-page_book">
-        <div className="hill-page_book-bind" data-book={bookNum}>{("Book "+numbers[bookNum])}</div>
-        <div className="hill-page_book-text">
-          A. WAINWRIGHT
-          <span data-book={bookNum}>{titles[bookNum]}</span>
+
+      <section>
+        <div className="flex-row">
+          <article className="wainwright-book" data-book={bookNum}>
+            <div className="wainwright-book-bind">{("Book "+BookNumbers[bookNum])}</div>
+            <div className="wainwright-book-text">
+              A. Wainwright
+              <p>{BookTitles[bookNum]}</p>
+            </div>
+            <div className="wainwright-book-bind"></div>
+          </article>
+
+          <div className="flex-column">
+            <div className="hill-page_header">
+              <h1 className="title">{hillData.name}</h1>
+              <p className="subheading">{hillData.height}m</p>
+              <p>"This is a random Wainwright quote about the current mountain and could be quite long"</p>
+            </div>
+
+            <div>
+              <h2 className="heading">Walks:</h2>
+              <p>Sorry, we've not been to this mountain yet!</p>
+            </div>
+          </div>
         </div>
-        <div className="hill-page_book-bind" data-book={bookNum}></div>
-      </aside>
+      </section>
 
-      <div>
-        <header className="hill-page_header">
-          <h1 className="page-title">{hillData.name}</h1>
-          <p>"This is a random Wainwright quote about the current mountain and could be quite long"</p>
-        </header>
-
-
-        <section className="hill-page_stats">
-          {hillData.height}m
-        </section>
-
-        <section className="hill-page_walks">
-          <h2>Walks:</h2>
-          Sorry, we've not been to this mountain yet!
-        </section>
-      </div>
     </main>
   )
 }

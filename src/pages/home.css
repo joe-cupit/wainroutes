@@ -1,3 +1,7 @@
+.home-page section {
+  padding-block: var(--gap-600);
+}
+
 .home-page .title,
 .home-page .heading {
   text-transform: lowercase;
@@ -10,7 +14,6 @@
   background-repeat: no-repeat;
   /* filter: blur(2px); */
 
-  padding-inline: 2rem;
   color: var(--clr-white-400);
 
   height: 75vh;

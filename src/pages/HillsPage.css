@@ -1,76 +1,59 @@
-.hills-page {
-  display: grid;
-  gap: 1rem;
+.hills-page section {
+  padding-block: var(--gap-400);
 }
 
-.wainwright-number {
-  position: relative;
-  z-index: 0;
-}
-.wainwright-number::after {
-  content: "";
-  position: absolute;
-  top: 65%;
-  left: 10%;
-  z-index: -1;
-
+.hills-page-map {
   width: 100%;
-  height: 1.5rem;
-
-  background: var(--clr-primary-400);
+  height: min(35rem, 95vw);
 }
 
 
-.hill-page_map-container {
-  margin: auto;
-
-  width: 95%;
-  height: 35rem;
-}
-
-.hill-page_hill-list {
-  margin-block-start: 2rem;
-  padding-inline: 5rem;
-}
-
-.hill-page_hill-list input {
+.hills-page input {
   margin-block-end: 1rem;
   padding: 0.125rem 0.25rem;
 
   width: 12ch;
 
-  font-size: var(--fs-800);
+  font-size: var(--fs-600);
 
   background: none;
   border: none;
   outline: none;
   border-bottom: 2px solid var(--clr-black-200);
 }
-.hill-page_hill-list input:focus {
+.hills-page input:focus {
   border-bottom: 2px solid var(--clr-black-400);
 }
-
-
-.hill-page_hill-table thead {
-  font-weight: var(--fw-bold);
-  cursor: pointer;
-}
-.hill-page_hill-table thead span {
-  color: var(--clr-black-100);
-}
-.hill-page_hill-table thead span.hill-page_hill-table-arrow {
-  color: var(--clr-black-400);
+.hills-page a:hover {
+  text-decoration: underline;
 }
 
-.hill-page_hill-table {
+
+.hills-page table {
   --inner-gap: 1.5rem;
+
+  @media (max-width: 700px) {
+    --inner-gap: 0.25rem;
+  }
 
   border-spacing: var(--inner-gap) 0.5rem;
   margin-inline: calc(var(--inner-gap)*-1);
 }
+.hills-page table thead {
+  font-weight: var(--fw-bold);
+  cursor: pointer;
+}
+.hills-page .table-arrow {
+  color: var(--clr-black-200);
+}
+.hills-page .table-arrow.active {
+  color: var(--clr-black-400);
+}
 
 
-.hill-card_book {
+.wainwright-book-top {
+  --_book-color: black;
+
   display: grid;
   gap: 0;
   margin: auto;
@@ -90,75 +73,28 @@
   -moz-box-shadow: 1px 1px 0 0.5px #c7c7c7;
   box-shadow: 1px 1px 0 0.5px #c7c7c7;
 }
-.hill-card_book-bind {
+.wainwright-book-top-color {
   height: 70%;
+  background: var(--_book-color);
 }
-.hill-card_book-bind[data-book="1"] {
-  background: var(--wain-book-1);
+.wainwright-book-top[data-book="1"] {
+  --_book-color: var(--wain-book-1);
 }
-.hill-card_book-bind[data-book="2"] {
-  background: var(--wain-book-2);
+.wainwright-book-top[data-book="2"] {
+  --_book-color: var(--wain-book-2);
 }
-.hill-card_book-bind[data-book="3"] {
-  background: var(--wain-book-3);
+.wainwright-book-top[data-book="3"] {
+  --_book-color: var(--wain-book-3);
 }
-.hill-card_book-bind[data-book="4"] {
-  background: var(--wain-book-4);
+.wainwright-book-top[data-book="4"] {
+  --_book-color: var(--wain-book-4);
 }
-.hill-card_book-bind[data-book="5"] {
-  background: var(--wain-book-5);
+.wainwright-book-top[data-book="5"] {
+  --_book-color: var(--wain-book-5);
 }
-.hill-card_book-bind[data-book="6"] {
-  background: var(--wain-book-6);
+.wainwright-book-top[data-book="6"] {
+  --_book-color: var(--wain-book-6);
 }
-.hill-card_book-bind[data-book="7"] {
-  background: var(--wain-book-7);
-}
-
-.hill-card_name {
-  display: flex;
-  flex-direction: column;
-}
-.hill-card_name h2 {
-  font-family: var(--ff-heading);
-  font-size: var(--fs-800);
-  font-weight: var(--fw-bold);
-  line-height: 1.125;
-
-  color: var(--clr-black-300);
-}
-.hill-card_name a {
-  color: var(--clr-black-400);
-}
-.hill-card_name a:hover {
-  color: var(--clr-primary-400);
-}
-.hill-card_name-secondary {
-  font-size: var(--fs-400);
-  font-weight: var(--fw-base);
-}
-.hill-card_name-book {
-  color: var(--clr-black-300);
-}
-
-.hill-card_height {
-  text-align: center;
-}
-
-
-@media (max-width: 700px) {
-  .hill-page_map-container {
-    width: 100%;
-    height: fit-content;
-    aspect-ratio: 1;
-  }
-
-  .hill-page_hill-table {
-    --inner-gap: 0.5rem;
-  }
-
-  .hill-page_hill-list {
-    margin-block-start: 1rem;
-    padding-inline: 0;
-  }
+.wainwright-book-top[data-book="7"] {
+  --_book-color: var(--wain-book-7);
 }

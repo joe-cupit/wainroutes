@@ -1,24 +1,31 @@
-.hill-page {
-  display: flex;
-  gap: 1rem;
+.hill-page section {
+  padding-block: var(--gap-400);
 }
 
-.hill-page_book {
+
+.wainwright-book {
+  --_book-color: black;
+
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
 
   width: 3.625rem;
   height: 30rem;
-
-  font-family: var(--ff-hand);
-  text-transform: uppercase;
-
   background: var(--clr-white-400);
+
+  text-transform: uppercase;
 }
-.hill-page_book-bind {
+.wainwright-book-text {
+  display: grid;
+  flex: 1;
+
+  writing-mode: vertical-rl;
+  text-align: center;
+}
+.wainwright-book-bind {
   text-align: center;
   padding-top: 35%;
   padding-inline: 5px;
@@ -29,65 +36,26 @@
   font-size: var(--fs-300);
   line-height: 1;
   color: var(--clr-white-400);
+  background: var(--_book-color);
 }
-.hill-page_book-bind[data-book="1"] {
-  background: var(--wain-book-1);
+.wainwright-book[data-book="1"] {
+  --_book-color: var(--wain-book-1);
 }
-.hill-page_book-bind[data-book="2"] {
-  background: var(--wain-book-2);
+.wainwright-book[data-book="2"] {
+  --_book-color: var(--wain-book-2);
 }
-.hill-page_book-bind[data-book="3"] {
-  background: var(--wain-book-3);
+.wainwright-book[data-book="3"] {
+  --_book-color: var(--wain-book-3);
 }
-.hill-page_book-bind[data-book="4"] {
-  background: var(--wain-book-4);
+.wainwright-book[data-book="4"] {
+  --_book-color: var(--wain-book-4);
 }
-.hill-page_book-bind[data-book="5"] {
-  background: var(--wain-book-5);
+.wainwright-book[data-book="5"] {
+  --_book-color: var(--wain-book-5);
 }
-.hill-page_book-bind[data-book="6"] {
-  background: var(--wain-book-6);
+.wainwright-book[data-book="6"] {
+  --_book-color: var(--wain-book-6);
 }
-.hill-page_book-bind[data-book="7"] {
-  background: var(--wain-book-7);
-}
-.hill-page_book-text {
-  display: grid;
-  flex: 1;
-
-  writing-mode: vertical-rl;
-  text-align: center;
-}
-.hill-page_book-text span[data-book="1"] {
-  color: var(--wain-book-1);
-}
-.hill-page_book-text span[data-book="2"] {
-  color: var(--wain-book-2);
-}
-.hill-page_book-text span[data-book="3"] {
-  color: var(--wain-book-3);
-}
-.hill-page_book-text span[data-book="4"] {
-  color: var(--wain-book-4);
-}
-.hill-page_book-text span[data-book="5"] {
-  color: var(--wain-book-5);
-}
-.hill-page_book-text span[data-book="6"] {
-  color: var(--wain-book-6);
-}
-.hill-page_book-text span[data-book="7"] {
-  color: var(--wain-book-7);
-}
-
-
-.hill-page_header p {
-  font-family: var(--ff-cursive);
-  font-size: var(--fs-800);
-}
-
-.hill-page_walks h2 {
-  font-family: var(--ff-heading);
-  font-size: var(--fs-800);
-  font-weight: var(--fw-bold);
+.wainwright-book[data-book="7"] {
+  --_book-color: var(--wain-book-7);
 }

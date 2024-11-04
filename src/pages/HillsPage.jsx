@@ -74,46 +74,45 @@ export function HillsPage() {
 
   return (
     <main className="hills-page">
-      <h1 className="page-title">The <span className="wainwright-number">214</span> Wainwrights</h1>
 
-      <div className="hill-page_container">
-        <section className="hill-page_map">
-          <div className="hill-page_map-container">
+      <section>
+        <div className="flex-column">
+          <h1 className="title">The 214 Wainwrights</h1>
+          <div className="hills-page-map">
             <LakeMap mapMarkers={hillMarkers} />
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="hill-page_hill-list">
-          <input placeholder="Search..." value={filterTerm} onChange={e => setFilterTerm(e.target.value)} />
+      <section>
+        <div>
+          <input type="text" placeholder="Search..." value={filterTerm} onChange={e => setFilterTerm(e.target.value)} />
 
-          <table className="hill-page_hill-table">
+          <table>
             <thead>
               <tr>
-                <td onClick={() => sortHillData("book")}>Book <span className={sortMode==="book" ? "hill-page_hill-table-arrow" : ""}>{sortStates[0] ? "↓": "↑"}</span></td>
-                <td onClick={() => sortHillData("mountain")}>Mountain <span className={sortMode==="mountain" ? "hill-page_hill-table-arrow" : ""}>{sortStates[1] ? "↓": "↑"}</span></td>
-                <td onClick={() => sortHillData("height")} className="hill-card_height">Height <span className={sortMode==="height" ? "hill-page_hill-table-arrow" : ""}>{sortStates[2] ? "↓": "↑"}</span></td>
+                <td onClick={() => sortHillData("book")}>Book <span className={"table-arrow" + (sortMode==="book" ? " active" : "")}>{sortStates[0] ? "↓": "↑"}</span></td>
+                <td onClick={() => sortHillData("mountain")}>Mountain <span className={"table-arrow" + (sortMode==="mountain" ? " active" : "")}>{sortStates[1] ? "↓": "↑"}</span></td>
+                <td onClick={() => sortHillData("height")} className="hill-card_height">Height <span className={"table-arrow" + (sortMode==="height" ? " active" : "")}>{sortStates[2] ? "↓": "↑"}</span></td>
               </tr>
             </thead>
             <tbody>
               {filteredHills.length > 0
               ? filteredHills?.map((hill, index) => {
                   return (
-                    <tr key={index} className="hill-card">
+                    <tr key={index}>
                       <td>
-                        <div className="hill-card_book">
-                          <div className="hill-card_book-bind" data-book={hill.book}></div>
+                        <div className="wainwright-book-top" data-book={hill.book}>
+                          <div className="wainwright-book-top-color" />
                         </div>
                       </td>
-                      <td className="hill-card_name">
-                        <h2>
-                          {hill.hasWalk
-                          ? <Link to={`/mountain/${hill.slug}`}>{hill.name}{hill.name_secondary ? <span className="hill-card_name-secondary"> ({hill.name_secondary})</span> : ""}</Link>
-                          : <>{hill.name}{hill.name_secondary ? <span className="hill-card_name-secondary"> ({hill.name_secondary})</span> : ""}</>
-                          }
+                      <td className="flex-column gap-0">
+                        <h2 className="subheading">
+                          <Link to={`/mountain/${hill.slug}`}>{hill.name}{hill.name_secondary ? <span className="secondary-text"> ({hill.name_secondary})</span> : ""}</Link>
                         </h2>
-                        <span className="hill-card_name-book">{titles[hill.book]}</span>
+                        <span className="secondary-text">{titles[hill.book]}</span>
                       </td>
-                      <td className="hill-card_height">{hill.height}m</td>
+                      <td className="text-center">{hill.height}m</td>
                     </tr>
                   )
                 })
@@ -121,8 +120,9 @@ export function HillsPage() {
               }
             </tbody>
           </table>
-        </section>
-      </div>
+        </div>
+      </section>
+
     </main>
   )
 }

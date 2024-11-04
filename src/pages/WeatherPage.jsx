@@ -11,7 +11,6 @@ export function WeatherPage() {
   document.title = "Lake District Weather | wainroutes";
 
   const [weatherData, setWeatherData] = useState(null)
-
   useEffect(() => {
     const fetchWeatherData = async () => {
       const weather = await fetch("/data/weather.json");
@@ -25,44 +24,38 @@ export function WeatherPage() {
 
   return (
     <main className="weather-page">
-      <div className="weather-header">
-        <h1 className="page-title">Lake District Weather</h1>
-        <p>Last updated: {new Date(weatherData?.update_time).toUTCString()}</p>
-      </div>
 
-      <div className="weather-forecast">
-        {weatherData?.days?.map((day, index) => {
-          switch (day.type) {
-            // case "this-evening": return <EveningWeather key={index} weather={day} />
-            case "current-day": return <CurrentDayWeather key={index} weather={day} />
-            case "tomorrows-tab": return <TomorrowsWeather key={index} weather={day} />
-            case "further-outlook": return <FutureWeather key={index} weather={day} />
-            default: return <Fragment key={index}></Fragment>
-          }
-        })}
-      </div>
+      <section>
+        <div className="flex-column">
+          <div className="weather-header">
+            <h1 className="title">Lake District Weather</h1>
+            <p className="secondary-text">Last updated: {new Date(weatherData?.update_time).toUTCString()}</p>
+          </div>
+
+          {weatherData?.days?.map((day, index) => {
+            switch (day.type) {
+              // case "this-evening": return <EveningWeather key={index} weather={day} />
+              case "current-day": return <CurrentDayWeather key={index} weather={day} />
+              case "tomorrows-tab": return <TomorrowsWeather key={index} weather={day} />
+              case "further-outlook": return <FutureWeather key={index} weather={day} />
+              default: return <Fragment key={index}></Fragment>
+            }
+          })}
+        </div>
+      </section>
+
     </main>
   )
 }
 
 
-// function EveningWeather({ weather }) {
-//   return (
-//     <div>
-//       <h2>This Evening</h2>
-//       <span className="suntime">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
-//       <p>{weather.summary}</p>
-//     </div>
-//   )
-// }
-
 function CurrentDayWeather({ weather }) {
 
   return (
-    <div className="weather-day weather-day-today">
+    <div className="flex-column weather-day highlighted-section">
 
       <div>
-        <h2>{DateTitle(weather.date)}</h2>
+        <h2 className="heading">{DateTitle(weather.date)}</h2>
         <span className="suntime">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
       </div>
 
@@ -78,7 +71,7 @@ function CurrentDayWeather({ weather }) {
         <p>{weather.visibility}</p>
       </div>
 
-      {weather.meteorologist_view && weather.meteorologist_view !== "Nothing additional" &&
+      {weather.meteorologist_view && !weather.meteorologist_view.startsWith("Nothing") &&
         <div className="meteorologist">
           <h4>Meteorologist's View</h4>
           <p>{weather.meteorologist_view}</p>
@@ -157,9 +150,9 @@ function ForecastTable({ forecast }) {
 
 function TomorrowsWeather({ weather }) {
   return (
-    <div className="weather-day">
+    <div className="flex-column weather-day">
       <div>
-        <h2>{DateTitle(weather.date)}</h2>
+        <h2 className="heading">{DateTitle(weather.date)}</h2>
         <span className="suntime">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
       </div>
 
@@ -210,9 +203,9 @@ function FutureWeather({ weather }) {
         dateList[2] = monthDict[dateList[2]];
   
         return (
-          <div key={index} className="weather-day">
+          <div key={index} className="flex-column weather-day">
             <div>
-              <h3>{dateList.join(" ")}</h3>
+              <h3 className="subheading">{dateList.join(" ")}</h3>
               <span className="suntime">Sunrise: {day.sunrise}, Sunset: {day.sunset}</span>
             </div>
             <p>{day.summary}</p>

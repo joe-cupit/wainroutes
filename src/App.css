@@ -21,11 +21,15 @@ main {
   flex: 1;
 }
 
-section {
-  --section-padding: var(--gap-600);
+section,
+header,
+footer {
+  --section-padding: 2rem;
   --content-max-width: 1350px;
 
-  padding-block: var(--section-padding);
+  @media (max-width: 650px) {
+    --section-padding: 1rem;
+  }
 
   display: grid;
   width: 100%;
@@ -38,7 +42,9 @@ section {
       minmax(var(--section-padding), 1fr)
     [full-width-end];
 }
-section > * {
+section > *,
+header > *,
+footer > * {
   grid-column: content;
 }
 
@@ -50,15 +56,15 @@ section > * {
 .flex-row,
 .flex-column {
   display: flex;
-  gap: 1rem;
+  gap: var(--gap-400);
   align-items: start;
   flex-wrap: wrap;
 }
-.flex-row {
-  width: 100%;
-}
 .flex-column {
   flex-direction: column;
+}
+.wrap-none {
+  flex-wrap: nowrap;
 }
 
 .grid-two,
@@ -75,8 +81,15 @@ section > * {
   grid-template-columns: 1fr 2fr;
 }
 
+.gap-0 {
+  gap: 0;
+}
+
 .justify-center {
   justify-content: center;
+}
+.justify-apart {
+  justify-content: space-between;
 }
 .align-center {
   align-items: center;
@@ -105,6 +118,7 @@ p {
 .subheading {
   font-family: var(--ff-heading);
   font-weight: var(--fw-bold);
+  line-height: 1.1;
 }
 .title {
   font-size: var(--fs-1000);
