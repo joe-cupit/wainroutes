@@ -42,6 +42,9 @@ footer {
       minmax(var(--section-padding), 1fr)
     [full-width-end];
 }
+header {
+  --section-padding: 1rem;
+}
 section > *,
 header > *,
 footer > * {
@@ -133,6 +136,10 @@ p {
 .secondary-text {
   color: var(--clr-black-300);
   font-size: var(--fs-300);
+}
+
+.bold {
+  font-weight: var(--fw-bold);
 }
 
 
