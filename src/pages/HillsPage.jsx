@@ -7,6 +7,7 @@ import { LakeMap } from "../components/map";
 import { useHillMarkers } from "../hooks/useMarkers";
 import { useHills } from "../hooks/useHills";
 import { useMemo, useState } from "react";
+import Height from "../components/Height";
 
 const titles = {
   1: "The Eastern Fells", 2: "The Far Eastern Fells", 3: "The Central Fells", 4: "The Southern Fells", 5: "The Northern Fells", 6: "The North Western Fells", 7: "The Western Fells"
@@ -112,7 +113,7 @@ export function HillsPage() {
                         </h2>
                         <span className="secondary-text">{titles[hill.book]}</span>
                       </td>
-                      <td className="text-center">{hill.height}m</td>
+                      <td className="text-center"><Height m={hill.height} /></td>
                     </tr>
                   )
                 })
