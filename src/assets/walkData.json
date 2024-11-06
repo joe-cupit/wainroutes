@@ -1,464 +1,573 @@
 {
   "the-fairfield-horseshoe": {
     "slug": "the-fairfield-horseshoe",
-    "name": "The Fairfield Horseshoe",
+
+    "title": "The Fairfield Horseshoe",
+    "type": "Horseshoe",
+    "summary": "A staple horseshoe walk directly accessible from Ambleside.",
+    "wainwrights": ["low-pike", "high-pike-e", "dove-crag", "hart-crag", "fairfield", "great-rigg", "heron-pike", "nab-scar"],
+    "length": 17.85,
+    "elevation": 1027,
+    "estimatedTime": "4:30-5:30",
     "date": "2024-01-27",
 
-    "distance": 17.85,
-    "total_elevation": 1027,
-    "estimated_time": "4:30-5:30",
-    "wainwrights": ["low-pike", "high-pike-e", "dove-crag", "hart-crag", "fairfield", "great-rigg", "heron-pike", "nab-scar"],
-
-    "start_lat_lang": [54.4337, -2.9630],
-    "start_grid_reference": "NY376046",
-    "start_what_three_words": "markets.download.tutorial",
-    "start_post_code": "LA22 9BJ",
-
-    "intro": "The Fairfield Horseshoe is one of the 'must do' walks in the Lake District. Kicking off in either Ambleside or Rydal, this walk takes you across eight summits around the Fairfield valley, providing views spanning most of the district.",
-    "steps": {
-      "Initial Ascent": {
-        "text": "Starting in Ambleside, the initial ascent up to Low Pike is rocky and winding. The climb is not too difficult and the views of Lake Windermere behind provide a good excuse for stopping to admire the views. The fields trekked in this section of the walk are often home to a curious herd of highland cattle adding to the fun.",
-        "images": ["270101", "270102", "270103"]
-      },
-      "Low and High Pike": {
-        "text":  "Reaching the first milestone of Low Pike provides stunning views of the town of Ambleside and the lakes that surround it. The path from this point on is rather undulating and, even though some 450 metres has already been ascended, much more of the walks climb is to come. Something to note from this point is the risk of a boggy trail, with the main guidance being a cobbled wall that spans the ridge for the majority of this half. High Pike is much the same as Low Pike but much higher (as the name would suggest).",
-        "images": ["270104", "270105"]
-      },
-      "Dove and Hart Crag": {
-        "text":  "The walk to the next two crags is a long one, but, provided you don't get consumed by cloud, should present great views of both the mountains to come and the surrounding landscape. Those with more time (and energy) can take the opportunity before reaching Dove Crag to bag an extra Wainwright by making their way over to Little Hart Crag.",
-        "images": ["270106", "270107", "270108"]
-      },
-      "Fairfield Summit": {
-        "text":  "The tallest mountain summited in this walk, and the namesake of the walk, Fairfield, provides 360 degree views of the highest peaks in the lakes, with one of the most famous, Helvellyn, being a stones throw north of here. On a calm, clear day this makes for the perfect mid-walk resting point to eat lunch and soak in the surroundings.",
-        "images": ["270109", "270110"]
-      },
-      "The Final Three Peaks": {
-        "text":  "The final three summits can be reached with comparitively minimal ascent to those in the first half, providing a more relaxed second half to the walk.",
-        "images": ["270111", "270112", "270113"]
-      },
-      "Final Descent": {
-        "text": "The exit off of Nab Scar is steep and efficient at bringing this walk to a close and should prove no issue in good conditions. The path comes to a close along the main road traversing the central lakes at a bus stop where a bus can be caught travelling in both directions. As an alternative, the short-ish road to Ambleside can be walked turning this into a perfectly circular walk.",
-        "images": ["270114"]
-      }
+    "startLocation": {
+      "latitude": 54.4337,
+      "longitude": -2.9630,
+      "gridRef": "NY376046",
+      "whatThreeWords": "markets.download.tutorial",
+      "postCode": "LA22 9BJ"
+    },
+    "busConnections": {
+      "505": "If you are staying in Coniston, the 505 can bring you to Ambleside",
+      "555": "The 555 covers most of the central lakes and can bring you to Ambleside from both Keswick and Windermere",
+      "599": "The 599 offers a lovely open top experience between Grasmere and Windermere"
     },
 
-    "bus_routes": [
-      ["505", "from Windermere/Coniston"],
-      ["555", "from Windermere/Keswick"],
-      ["599", "from Windermere"]
+    "intro": "The Fairfield Horseshoe is one of the 'must do' walks in the Lake District. Kicking off in either Ambleside or Rydal, this walk takes you across eight summits around the Fairfield valley, providing views spanning most of the district.",
+    "steps": [
+      "Starting in Ambleside, the initial ascent up to Low Pike is rocky and winding. The climb is not too difficult and the views of Lake Windermere behind provide a good excuse for stopping to admire the views. The fields trekked in this section of the walk are often home to a curious herd of highland cattle adding to the fun.",
+      "Reaching the first milestone of Low Pike provides stunning views of the town of Ambleside and the lakes that surround it. The path from this point on is rather undulating and, even though some 450 metres has already been ascended, much more of the walks climb is to come. Something to note from this point is the risk of a boggy trail, with the main guidance being a cobbled wall that spans the ridge for the majority of this half. High Pike is much the same as Low Pike but much higher (as the title would suggest).",
+      "The walk to the next two crags is a long one, but, provided you don't get consumed by cloud, should present great views of both the mountains to come and the surrounding landscape. Those with more time (and energy) can take the opportunity before reaching Dove Crag to bag an extra Wainwright by making their way over to Little Hart Crag.",
+      "The tallest mountain summited in this walk, and the namesake of the walk, Fairfield, provides 360 degree views of the highest peaks in the lakes, with one of the most famous, Helvellyn, being a stones throw north of here. On a calm, clear day this makes for the perfect mid-walk resting point to eat lunch and soak in the surroundings.",
+      "The final three summits can be reached with comparitively minimal ascent to those in the first half, providing a more relaxed second half to the walk.",
+      "The exit off of Nab Scar is steep and efficient at bringing this walk to a close and should prove no issue in good conditions. The path comes to a close along the main road traversing the central lakes at a bus stop where a bus can be caught travelling in both directions. As an alternative, the short-ish road to Ambleside can be walked turning this into a perfectly circular walk."
     ],
-    "tags": ["horseshoe"]
+
+    "tags": ["horseshoe", "ambleside", "fairfield"]
   },
   "helvellyn-via-striding-edge": {
     "slug": "helvellyn-via-striding-edge",
-    "name": "Helvellyn via Striding Edge",
+
+    "title": "Helvellyn via Striding Edge",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["birkhouse-moor", "helvellyn", "catstycam"],
+    "length": 20.61,
+    "elevation": 921,
+    "estimatedTime": "4:30-6:00",
     "date": "2023-11-25",
 
-    "distance": 20.61,
-    "total_elevation": 921,
-    "estimated_time": "4:30-6:00",
-    "wainwrights": ["birkhouse-moor", "helvellyn", "catstycam"],
+    "startLocation": {
+      "latitude": 54.5437190,
+      "longitude": -2.9492340
+    },
+    "busConnections": {
+      "508": "Get on this bus between Penrith and Windermere stops in ",
+      "509": "Alternatively, the 508 can get you here from Keswick too"
+    },
 
-    "start_lat_lang": [54.5437190, -2.9492340],
-
-    "bus_routes": [
-      ["508", "from Penrith/Windermere"],
-      ["509", "from Penrith/Keswick"]
-    ],
     "tags": ["circular"]
   },
   "the-fells-south-of-buttermere": {
     "slug": "the-fells-south-of-buttermere",
-    "name": "The Fells South of Buttermere",
+
+    "title": "The Fells South of Buttermere",
+    "type": "Point-to-point",
+    "summary": "",
+    "wainwrights": ["red-pike-b", "high-stile", "high-crag", "haystacks"],
+    "length": 16.65,
+    "elevation": 1012,
+    "estimatedTime": "5:00-6:00",
     "date": "2024-08-14",
 
-    "distance": 16.65,
-    "total_elevation": 1012,
-    "estimated_time": "5:00-6:00",
-    "wainwrights": ["red-pike-b", "high-stile", "high-crag", "haystacks"],
+    "startLocation": {
+      "latitude": 54.540899,
+      "longitude": -3.277522,
+      "gridRef": "NY174169",
+      "whatThreeWords": "unlocking.cackling.vanished",
+      "postCode": "CA13 9UZ"
+    },
+    "busConnections": {
+      "77": "from Keswick",
+      "77A": "from Keswick",
+      "77C": "from Keswick/Cockermouth"
+    },
 
-    "start_lat_lang": [54.540899, -3.277522],
-    "start_grid_reference": "NY174169",
-    "start_what_three_words": "unlocking.cackling.vanished",
-    "start_post_code": "CA13 9UZ",
-
-    "bus_routes": [
-      ["77", "from Keswick"],
-      ["77A", "from Keswick"],
-      ["77C", "from Keswick/Cockermouth"]
-    ],
     "tags": ["point-to-point"]
   },
   "the-langdale-pikes": {
     "slug": "the-langdale-pikes",
-    "name": "The Langdale Pikes",
+
+    "title": "The Langdale Pikes",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["pavey-ark", "thunacar-knott", "pike-of-stickle", "loft-crag", "harrison-stickle"],
+    "length": 11.63,
+    "elevation": 856,
+    "estimatedTime": "3:00-5:30",
     "date": "2024-04-20",
 
-    "distance": 11.63,
-    "total_elevation": 856,
-    "estimated_time": "3:00-5:30",
-    "wainwrights": ["pavey-ark", "thunacar-knott", "pike-of-stickle", "loft-crag", "harrison-stickle"],
+    "startLocation": {
+      "latitude": 54.4482780,
+      "longitude": -3.0877100
+    },
+    "busConnections": {
+      "516": "from Ambleside"
+    },
 
-    "start_lat_lang": [54.4482780, -3.0877100],
-
-    "bus_routes": [
-      ["516", "from Ambleside"]
-    ],
     "tags": ["circular"]
   },
   "the-kentmere-horseshoe": {
     "slug": "the-kentmere-horseshoe",
-    "name": "The Kentmere Horseshoe",
+
+    "title": "The Kentmere Horseshoe",
+    "type": "Horseshoe",
+    "summary": "",
+    "wainwrights": ["yoke", "ill-bell", "froswick", "thornthwaite-crag", "high-street", "mardale-ill-bell", "harter-fell-fe", "kentmere-pike", "shipman-knotts"],
+    "length": 24.78,
+    "elevation": 1146,
+    "estimatedTime": "6:00-8:00",
     "date": "2024-03-24",
 
-    "distance": 24.78,
-    "total_elevation": 1146,
-    "estimated_time": "6:00-8:00",
-    "wainwrights": ["yoke", "ill-bell", "froswick", "thornthwaite-crag", "high-street", "mardale-ill-bell", "harter-fell-fe", "kentmere-pike", "shipman-knotts"],
+    "startLocation": {
+      "latitude": 54.4296780,
+      "longitude": -2.8403580
+    },
+    "busConnections": {},
 
-    "start_lat_lang": [54.4296780, -2.8403580],
-
-    "bus_routes": [],
     "tags": ["horseshoe", "circular"]
   },
   "great-gable": {
     "slug": "great-gable",
-    "name": "Great Gable",
+
+    "title": "Great Gable",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["base-brown", "green-gable", "great-gable", "seathwaite-fell"],
+    "length": 17.36,
+    "elevation": 1023,
+    "estimatedTime": "5:00-7:00",
     "date": "2024-06-08",
 
-    "distance": 17.36,
-    "total_elevation": 1023,
-    "estimated_time": "5:00-7:00",
-    "wainwrights": ["base-brown", "green-gable", "great-gable", "seathwaite-fell"],
+    "startLocation": {
+      "latitude": 54.5128280,
+      "longitude": -3.1662430
+    },
+    "busConnections": {
+      "77": "from Keswick",
+      "77A": "from Keswick",
+      "77C": "from Keswick/Cockermouth",
+      "78": "from Keswick"
+    },
 
-    "start_lat_lang": [54.5128280, -3.1662430],
-
-    "bus_routes": [
-      ["77", "from Keswick"],
-      ["77A", "from Keswick"],
-      ["77C", "from Keswick/Cockermouth"],
-      ["78", "from Keswick"]
-    ],
     "tags": ["circular"]
   },
   "a-coledale-horseshoe": {
     "slug": "a-coledale-horseshoe",
-    "name": "A Coledale Horseshoe",
+
+    "title": "A Coledale Horseshoe",
+    "type": "Horseshoe",
+    "summary": "",
+    "wainwrights": ["grisedale-pike", "hopegill-head", "eel-crag", "sail", "outerside", "barrow"],
+    "length": 19.28,
+    "elevation": 1274,
+    "estimatedTime": "4:30-6:00",
     "date": "2024-08-11",
 
-    "distance": 19.28,
-    "total_elevation": 1274,
-    "estimated_time": "4:30-6:00",
-    "wainwrights": ["grisedale-pike", "hopegill-head", "eel-crag", "sail", "outerside", "barrow"],
+    "startLocation": {
+      "latitude": 54.6030000,
+      "longitude": -3.1897670
+    },
+    "busConnections": {
+      "77": "from Keswick",
+      "77A": "from Keswick",
+      "X5": "from Penrith"
+    },
 
-    "start_lat_lang": [54.6030000, -3.1897670],
-
-    "bus_routes": [
-      ["77", "from Keswick"],
-      ["77A", "from Keswick"],
-      ["X5", "from Penrith"]
-    ],
     "tags": ["horseshoe", "circular"]
   },
   "borrowdale-to-dungeon-ghyll": {
     "slug": "borrowdale-to-dungeon-ghyll",
-    "name": "Borrowdale to Dungeon Ghyll",
+
+    "title": "Borrowdale to Dungeon Ghyll",
+    "type": "Point-to-point",
+    "summary": "",
+    "wainwrights": ["glaramara", "allen-crags", "esk-pike", "bowfell", "crinkle-crags", "cold-pike"],
+    "length": 23.43,
+    "elevation": 1346,
+    "estimatedTime": "6:30-8:30",
     "date": "2024-09-23",
 
-    "distance": 23.43,
-    "total_elevation": 1346,
-    "estimated_time": "6:30-8:30",
-    "wainwrights": ["glaramara", "allen-crags", "esk-pike", "bowfell", "crinkle-crags", "cold-pike"],
-
-    "start_lat_lang": [54.5180560, -3.1528740],
+    "startLocation": {
+      "latitude": 54.5180560,
+      "longitude": -3.1528740
+    },
+    "busConnections": {
+      "78": "Takes you to the start from Keswick",
+      "508": "Brings you from the end to Ambleside (many busses from there return to Keswick)"
+    },
 
     "intro": "Starting in the picturesque Borrowdale valley, this walk will take you through some of the tallest mountains in the lakes, ending in Dungeon Ghyll at the base of the Langdale Pikes. This walk is best enjoyed by staying the night in Borrowdale, whether that be in a tent or the perfectly placed Youth Hostel - a bus out of Dungeon Ghyll can be used to return to Ambleside, providing connections to the rest of the district.",
 
-    "bus_routes": [
-      ["78", "from Keswick"],
-      ["508", "to Ambleside"]
-    ],
     "tags": ["point-to-point"]
   },
   "scafell-pike": {
     "slug": "scafell-pike",
-    "name": "Scafell Pike",
+
+    "title": "Scafell Pike",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["scafell-pike"],
+    "length": 9.57,
+    "elevation": 845,
+    "estimatedTime": "3:00-4:30",
     "date": "2021-09-01",
 
-    "distance": 9.57,
-    "total_elevation": 845,
-    "estimated_time": "3:00-4:30",
-    "wainwrights": ["scafell-pike"],
+    "startLocation": {
+      "latitude": 54.4542250,
+      "longitude": -3.2539700
+    },
+    "busConnections": {
 
-    "start_lat_lang": [54.4542250, -3.2539700],
+    },
 
-    "bus_routes": [],
     "tags": ["there-and-back"]
   },
   "the-four-summits-of-dodd-wood": {
     "slug": "the-four-summits-of-dodd-wood",
-    "name": "The Four Summits of Dodd Wood",
+
+    "title": "The Four Summits of Dodd Wood",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["ullock-pike", "long-side", "carl-side", "dodd"],
+    "length": 12.33,
+    "elevation": 815,
+    "estimatedTime": "2:30-4:00",
     "date": "2024-03-27",
 
-    "distance": 12.33,
-    "total_elevation": 815,
-    "estimated_time": "2:30-4:00",
-    "wainwrights": ["ullock-pike", "long-side", "carl-side", "dodd"],
+    "startLocation": {
+      "latitude": 54.6426600,
+      "longitude": -3.1861450
+    },
+    "busConnections": {
+      "553": "from Keswick/Carlise",
+      "554": "from Keswick/Carlise",
+      "X4": "from Penrith/Cockermouth"
+    },
 
-    "start_lat_lang": [54.6426600, -3.1861450],
-
-    "bus_routes": [
-      ["553", "from Keswick/Carlise"],
-      ["554", "from Keswick/Carlise"],
-      ["X4", "from Penrith/Cockermouth"]
-    ],
     "tags": ["circular"]
   },
   "a-grasmere-round": {
     "slug": "a-grasmere-round",
-    "name": "A Grasmere Round",
+
+    "title": "A Grasmere Round",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["helm-crag", "gibson-knott", "calf-crag", "high-raise-c", "sergeant-man", "blea-rigg", "silver-how"],
+    "length": 20.42,
+    "elevation": 973,
+    "estimatedTime": "5:30-7:00",
     "date": "2024-05-31",
 
-    "distance": 20.42,
-    "total_elevation": 973,
-    "estimated_time": "5:30-7:00",
-    "wainwrights": ["helm-crag", "gibson-knott", "calf-crag", "high-raise-c", "sergeant-man", "blea-rigg", "silver-how"],
+    "startLocation": {
+      "latitude": 54.4597590,
+      "longitude": -3.0244860
+    },
+    "busConnections": {
+      "555": "from Keswick/Windermere",
+      "599": "from Windermere"
+    },
 
-    "start_lat_lang": [54.4597590, -3.0244860],
-
-    "bus_routes": [
-      ["555", "from Keswick/Windermere"],
-      ["599", "from Windermere"]
-    ],
     "tags": ["circular", "horseshoe"]
   },
   "the-old-man-of-coniston": {
     "slug": "the-old-man-of-coniston",
-    "name": "The Old Man of Coniston",
+
+    "title": "The Old Man of Coniston",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["coniston-old-man", "dow-crag", "brim-fell"],
+    "length": 15.40,
+    "elevation": 1029,
+    "estimatedTime": "4:30-6:00",
     "date": "2024-02-24",
 
-    "distance": 15.40,
-    "total_elevation": 1029,
-    "estimated_time": "4:30-6:00",
-    "wainwrights": ["coniston-old-man", "dow-crag", "brim-fell"],
+    "startLocation": {
+      "latitude": 54.3689020,
+      "longitude": -3.0761210
+    },
+    "busConnections": {
+      "505": "Takes you directly from Ambleside to Coniston"
+    },
 
-    "start_lat_lang": [54.3689020, -3.0761210],
-
-    "bus_routes": [
-      ["505", "from Ambleside"]
-    ],
     "tags": ["circular"]
   },
   "raven-crag": {
     "slug": "raven-crag",
-    "name": "Raven Crag",
+
+    "title": "Raven Crag",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["raven-crag"],
+    "length": 3.96,
+    "elevation": 291,
+    "estimatedTime": "0:45-1:15",
     "date": "2024-08-16",
 
-    "distance": 3.96,
-    "total_elevation": 291,
-    "estimated_time": "0:45-1:15",
-    "wainwrights": ["raven-crag"],
+    "startLocation": {
+      "latitude": 54.5620880,
+      "longitude": -3.0732030
+    },
+    "busConnections": {},
 
-    "start_lat_lang": [54.5620880, -3.0732030],
-
-    "bus_routes": [],
     "tags": ["there-and-back"]
   },
   "grisedale-tarn-with-surrounding-mountains": {
     "slug": "grisedale-tarn-with-surrounding-mountains",
-    "name": "Grisedale Tarn with Surrounding Mountains",
+
+    "title": "Grisedale Tarn with Surrounding Mountains",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["dollywaggon-pike", "nethermost-pike", "seat-sandal"],
+    "length": 11.68,
+    "elevation": 756,
+    "estimatedTime": "3:30-5:30",
     "date": "2023-12-13",
 
-    "distance": 11.68,
-    "total_elevation": 756,
-    "estimated_time": "3:30-5:30",
-    "wainwrights": ["dollywaggon-pike", "nethermost-pike", "seat-sandal"],
+    "startLocation": {
+      "latitude": 54.4736930,
+      "longitude": -3.0260060
+    },
+    "busConnections": {},
 
-    "start_lat_lang": [54.4736930, -3.0260060],
-
-    "bus_routes": [],
     "tags": ["circular"]
   },
   "skiddaw": {
     "slug": "skiddaw",
-    "name": "Skiddaw",
+
+    "title": "Skiddaw",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["skiddaw-little-man", "skiddaw"],
+    "length": 19.40,
+    "elevation": 962,
+    "estimatedTime": "4:30-6:00",
     "date": "2023-08-23",
 
-    "distance": 19.40,
-    "total_elevation": 962,
-    "estimated_time": "4:30-6:00",
-    "wainwrights": ["skiddaw-little-man", "skiddaw"],
+    "startLocation": {
+      "latitude": 54.6006530,
+      "longitude": -3.1356460
+    },
+    "busConnections": {},
 
-    "start_lat_lang": [54.6006530, -3.1356460],
-
-    "bus_routes": [],
     "tags": ["there-and-back"]
   },
   "helvellyns-west-face": {
     "slug": "helvellyns-west-face",
-    "name": "Helvellyn's West Face",
+
+    "title": "Helvellyn's West Face",
+    "type": "Point-to-point",
+    "summary": "",
+    "wainwrights": ["helvellyn"],
+    "length": 9.85,
+    "elevation": 736,
+    "estimatedTime": "2:30-4:00",
     "date": "2023-08-25",
 
-    "distance": 9.85,
-    "total_elevation": 736,
-    "estimated_time": "2:30-4:00",
-    "wainwrights": ["helvellyn"],
+    "startLocation": {
+      "latitude": 54.5423070,
+      "longitude": -3.0578130
+    },
+    "busConnections": {
+      "555": "from Keswick/Windermere"
+    },
 
-    "start_lat_lang": [54.5423070, -3.0578130],
-
-    "bus_routes": [
-      ["555", "from Keswick/Windermere"]
-    ],
     "tags": ["point-to-point"]
   },
   "walla-crag": {
     "slug": "walla-crag",
-    "name": "Walla Crag",
+
+    "title": "Walla Crag",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["walla-crag"],
+    "length": 6.95,
+    "elevation": 281,
+    "estimatedTime": "1:30-2:30",
     "date": "2024-08-12",
 
-    "distance": 6.95,
-    "total_elevation": 281,
-    "estimated_time": "1:30-2:30",
-    "wainwrights": ["walla-crag"],
+    "startLocation": {
+      "latitude": 54.5963540,
+      "longitude": -3.1269280
+    },
+    "busConnections": {},
 
-    "start_lat_lang": [54.5963540, -3.1269280],
-
-    "bus_routes": [],
     "tags": ["there-and-back"]
   },
   "north-whinlatter-woods": {
     "slug": "north-whinlatter-woods",
-    "name": "North Whinlatter Woods",
+
+    "title": "North Whinlatter Woods",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["barf", "lords-seat", "broom-fell"],
+    "length": 12.75,
+    "elevation": 745,
+    "estimatedTime": "3:00-4:00",
     "date": "2024-06-11",
 
-    "distance": 12.75,
-    "total_elevation": 745,
-    "estimated_time": "3:00-4:00",
-    "wainwrights": ["barf", "lords-seat", "broom-fell"],
+    "startLocation": {
+      "latitude": 54.6259810,
+      "longitude": -3.2101790
+    },
+    "busConnections": {
+      "X5": "from Keswick/Penrith"
+    },
 
-    "start_lat_lang": [54.6259810, -3.2101790],
-
-    "bus_routes": [
-      ["X5", "from Keswick/Penrith"]
-    ],
     "tags": ["circular"]
   },
   "loughrigg-fell-with-rydal-cave": {
     "slug": "loughrigg-fell-with-rydal-cave",
-    "name": "Loughrigg Fell with Rydal Cave",
+
+    "title": "Loughrigg Fell with Rydal Cave",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["loughrigg-fell"],
+    "length": 8.04,
+    "elevation": 349,
+    "estimatedTime": "2:00-3:00",
     "date": "2024-03-25",
 
-    "distance": 8.04,
-    "total_elevation": 349,
-    "estimated_time": "2:00-3:00",
-    "wainwrights": ["loughrigg-fell"],
+    "startLocation": {
+      "latitude": 54.4498270,
+      "longitude": -3.0039870
+    },
+    "busConnections": {
+      "555": "from Keswick/Windermere",
+      "599": "from Windermere"
+    },
 
-    "start_lat_lang": [54.4498270, -3.0039870],
-
-    "bus_routes": [
-      ["555", "from Keswick/Windermere"],
-      ["599", "from Windermere"]
-    ],
     "tags": ["circular"]
   },
   "catbells-from-keswick": {
     "slug": "catbells-from-keswick",
-    "name": "Catbells from Keswick",
+
+    "title": "Catbells from Keswick",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["catbells"],
+    "length": 16.26,
+    "elevation": 485,
+    "estimatedTime": "3:30-4:30",
     "date": "2023-08-20",
 
-    "distance": 16.26,
-    "total_elevation": 485,
-    "estimated_time": "3:30-4:30",
-    "wainwrights": ["catbells"],
+    "startLocation": {
+      "latitude": 54.6005160,
+      "longitude": -3.1367420
+    },
+    "busConnections": {},
 
-    "start_lat_lang": [54.6005160, -3.1367420],
-
-    "bus_routes": [],
     "tags": ["there-and-back"]
   },
   "latrigg": {
     "slug": "latrigg",
-    "name": "Latrigg",
+
+    "title": "Latrigg",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["latrigg"],
+    "length": 10.28,
+    "elevation": 328,
+    "estimatedTime": "2:00-3:00",
     "date": "2024-03-28",
 
-    "distance": 10.28,
-    "total_elevation": 328,
-    "estimated_time": "2:00-3:00",
-    "wainwrights": ["latrigg"],
+    "startLocation": {
+      "latitude": 54.5995730,
+      "longitude": -3.1303120
+    },
+    "busConnections": {},
 
-    "start_lat_lang": [54.5995730, -3.1303120],
-
-    "bus_routes": [],
     "tags": ["there-and-back"]
   },
   "castle-crag-with-millican-daltons-cave": {
     "slug": "castle-crag-with-millican-daltons-cave",
-    "name": "Castle Crag with Millican Dalton's Cave",
+
+    "title": "Castle Crag with Millican Dalton's Cave",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["castle-crag"],
+    "length": 9.22,
+    "elevation": 284,
+    "estimatedTime": "1:30-2:30",
     "date": "2024-08-16",
 
-    "distance": 9.22,
-    "total_elevation": 284,
-    "estimated_time": "1:30-2:30",
-    "wainwrights": ["castle-crag"],
+    "startLocation": {
+      "latitude": 54.5234940,
+      "longitude": -3.1481900
+    },
+    "busConnections": {
+      "78": "from Keswick"
+    },
 
-    "start_lat_lang": [54.5234940, -3.1481900],
-
-    "bus_routes": [
-      ["78", "from Keswick"]
-    ],
     "tags": ["there-and-back"]
   },
   "bessyboot-rosthwaite-fell": {
     "slug": "bessyboot-rosthwaite-fell",
-    "name": "Bessyboot (Rosthwaite Fell)",
+
+    "title": "Bessyboot (Rosthwaite Fell)",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["rosthwaite-fell"],
+    "length": 6.88,
+    "elevation": 470,
+    "estimatedTime": "1:30-2:30",
     "date": "2024-09-22",
 
-    "distance": 6.88,
-    "total_elevation": 470,
-    "estimated_time": "1:30-2:30",
-    "wainwrights": ["rosthwaite-fell"],
+    "startLocation": {
+      "latitude": 54.5183360,
+      "longitude": -3.1521050
+    },
+    "busConnections": {
+      "78": "from Keswick"
+    },
 
-    "start_lat_lang": [54.5183360, -3.1521050],
-
-    "bus_routes": [
-      ["78", "from Keswick"]
-    ],
     "tags": ["point-to-point"]
   },
   "gowbarrow-fell-with-aira-force": {
     "slug": "gowbarrow-fell-with-aira-force",
-    "name": "Gowbarrow Fell with Aira Force",
+
+    "title": "Gowbarrow Fell with Aira Force",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["gowbarrow-fell"],
+    "length": 3.98,
+    "elevation": 298,
+    "estimatedTime": "1:00-2:00",
     "date": "2024-03-23",
 
-    "distance": 3.98,
-    "total_elevation": 298,
-    "estimated_time": "1:00-2:00",
-    "wainwrights": ["gowbarrow-fell"],
+    "startLocation": {
+      "latitude": 54.5765580,
+      "longitude": -2.9302290
+    },
+    "busConnections": {
+      "509": "from Keswick",
+      "508": "from Penrith/Windermere"
+    },
 
-    "start_lat_lang": [54.5765580, -2.9302290],
-
-    "bus_routes": [
-      ["509", "from Keswick"],
-      ["508", "from Penrith/Windermere"]
-    ],
     "tags": ["there-and-back"]
   },
   "whinlatter-peak": {
     "slug": "whinlatter-peak",
-    "name": "Whinlatter Peak",
+
+    "title": "Whinlatter Peak",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["whinlatter"],
+    "length": 5.72,
+    "elevation": 244,
+    "estimatedTime": "0:45-1:30",
     "date": "2024-08-13",
 
-    "distance": 5.72,
-    "total_elevation": 244,
-    "estimated_time": "0:45-1:30",
-    "wainwrights": ["whinlatter"],
+    "startLocation": {
+      "latitude": 54.6100510,
+      "longitude": -3.2256590
+    },
+    "busConnections": {
+      "77": "from Keswick",
+      "77A": "from Keswick"
+    },
 
-    "start_lat_lang": [54.6100510, -3.2256590],
-
-    "bus_routes": [
-      ["77", "from Keswick"],
-      ["77A", "from Keswick"]
-    ],
     "tags": ["there-and-back"]
   }
 }

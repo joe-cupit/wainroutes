@@ -8,6 +8,8 @@ import { useWalks } from "../hooks/useWalks";
 
 import { LakeMap, GeoRoute } from "../components/map";
 import { useHillMarkers } from "../hooks/useMarkers";
+import Distance from "../components/Distance";
+import Height from "../components/Height";
 
 
 export function WalkPage() {
@@ -41,7 +43,7 @@ export function WalkPage() {
         <div className="flex-column walk">
           <div className="walk-title">
             <Link to="/walks">&lt; back to walks</Link>
-            <h1 className="title">{walkData?.name}</h1>
+            <h1 className="title">{walkData?.title}</h1>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 -1.25 106 12.5" preserveAspectRatio="none">
               <path d="M5 5C22 2 38 2 55 5 71 8 88 8 105 5" fill="none"/>
             </svg>
@@ -50,15 +52,15 @@ export function WalkPage() {
           <div className="flex-row walk-stats">
             <div>
               <h3>Length</h3>
-              <p>{walkData?.distance + "km"}</p>
+              <p><Distance km={walkData?.length} /></p>
             </div>
             <div>
               <h3>Elevation</h3>
-              <p>{walkData?.total_elevation + "m"}</p>
+              <p><Height m={walkData?.elevation} /></p>
             </div>
             <div>
               <h3>Type</h3>
-              <p>{walkData?.tags?.[0]}</p>
+              <p>{walkData?.type}</p>
             </div>
             <div>
               <h3>Wainwrights</h3>
@@ -104,11 +106,10 @@ export function WalkPage() {
 function WalkSteps({ steps }) {
   return (
     
-    steps && Object.keys(steps).map((step, index) => {
+    steps && steps.map((step, index) => {
       return (
         <div key={index}>
-          <h2>{step}</h2>
-          <p>{steps[step]?.text}</p>
+          <p>{step}</p>
         </div>
       )
     })

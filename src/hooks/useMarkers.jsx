@@ -30,13 +30,13 @@ export const useWalkMarkers = (filters=null) => {
 
   const walkMarkers = useMemo(() => walkData 
     ? Object.values(walkData).map(walk => (
-      walk.start_lat_lang
+      walk.startLocation
       ? {
-          coordinates: walk.start_lat_lang,
+          coordinates: [walk.startLocation.latitude, walk.startLocation.longitude],
           properties: {
             type: "walk",
             slug: walk.slug,
-            name: walk.name
+            name: walk.title
           }
         }
       : null))
