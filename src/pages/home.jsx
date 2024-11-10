@@ -2,22 +2,27 @@ import "./Home.css";
 
 import { Link } from "react-router-dom";
 import HerdyImage from "../assets/images/home/herdy.jpeg"
+import FlatMap from "../components/FlatMap";
 
 
 export function HomePage() {
 
-  document.title = "wainroutes";
+  document.title = "Wainroutes | Lake District Wainwright Walks";
 
 
   return (
   <main className="home-page">
 
-    <section className="home-hero-section">
+    <section>
+      <FlatMap />
+    </section>
+
+    {/* <section className="home-hero-section">
       <div className="flex-column align-center justify-center text-center">
         <h1 className="title">Love your next Lake District walk</h1>
         <Link to="/walks" className="primary button">Find a walk</Link>
       </div>
-    </section>
+    </section> */}
 
     <section>
       <div className="flex-column align-center">
@@ -35,9 +40,9 @@ export function HomePage() {
         <div className="flex-column">
           <h2 className="heading">Wainwrights</h2>
           <p>
-            In the 1950s Alfred Wainwrights began to release his series of books covering the Lakeland Fells.
+            In the 1950s Alfred Wainwright began to release his series of books covering the Lakeland Fells.
             In seven books he wrote about 214 of the most significant and noteworthy peaks.
-            This site aims to provide walks to climb all mountains referenced by him.
+            Since then, it has become a popular goal among fell enthusiasts to climb all mountains featured in these books, which became known as 'The Wainwrights'.
           </p>
           <button>Check them out →</button>
         </div>
