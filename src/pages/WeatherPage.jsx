@@ -26,21 +26,23 @@ export function WeatherPage() {
     <main className="weather-page">
 
       <section>
-        <div className="flex-column">
+        <div className="flex-column weather-main">
           <div className="weather-header">
             <h1 className="title">Lake District Weather</h1>
             <p className="secondary-text">Last updated: {new Date(weatherData?.update_time).toUTCString()}</p>
           </div>
 
-          {weatherData?.days?.map((day, index) => {
-            switch (day.type) {
-              // case "this-evening": return <EveningWeather key={index} weather={day} />
-              case "current-day": return <CurrentDayWeather key={index} weather={day} />
-              case "tomorrows-tab": return <TomorrowsWeather key={index} weather={day} />
-              case "further-outlook": return <FutureWeather key={index} weather={day} />
-              default: return <Fragment key={index}></Fragment>
-            }
-          })}
+          <div className="flex-column weather-days">
+            {weatherData?.days?.map((day, index) => {
+              switch (day.type) {
+                // case "this-evening": return <EveningWeather key={index} weather={day} />
+                case "current-day": return <CurrentDayWeather key={index} weather={day} />
+                case "tomorrows-tab": return <TomorrowsWeather key={index} weather={day} />
+                case "further-outlook": return <FutureWeather key={index} weather={day} />
+                default: return <Fragment key={index}></Fragment>
+              }
+            })}
+          </div>
         </div>
       </section>
 
@@ -52,40 +54,80 @@ export function WeatherPage() {
 function CurrentDayWeather({ weather }) {
 
   return (
-    <div className="flex-column weather-day highlighted-section">
-
+    <div className="flex-column weather-day">
       <div>
+        <span className="secondary-text">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
         <h2 className="heading">{DateTitle(weather.date)}</h2>
-        <span className="suntime">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
       </div>
 
-      <p>{weather.weather}</p>
+      <div className="flex-row">
+        <div className="flex-column weather-day">
+          <p>{weather.weather}</p>
 
-      <div>
-        <h4>Chance of Cloud-Free Hill Top</h4>
-        <p>{weather.cloud_free_top}</p>
-      </div>
+          <div className="forecast">
+            <h4>Mountain Weather Forecast (800m)</h4>
+            <ForecastTable forecast={weather.forecast} />
+          </div>
 
-      <div>
-        <h4>Visibility</h4>
-        <p>{weather.visibility}</p>
-      </div>
+          <div>
+            <h4>Chance of Cloud-Free Hill Top</h4>
+            <p>{weather.cloud_free_top}</p>
+          </div>
 
-      {weather.meteorologist_view && !weather.meteorologist_view.startsWith("Nothing") &&
-        <div className="meteorologist">
-          <h4>Meteorologist's View</h4>
-          <p>{weather.meteorologist_view}</p>
+          <div>
+            <h4>Visibility</h4>
+            <p>{weather.visibility}</p>
+          </div>
+
+          <div>
+            <h4>Summary</h4>
+            <p>{weather.summary}</p>
+          </div>
         </div>
-      }
 
-      {/* <div>
-        <h4>Ground Conditions</h4>
-        <p>{weather.ground_conditions}</p>
-      </div> */}
+        <div className="flex-column weather-extra-details">
+          <div className="flex-column mountain-hazards">
+            <h3>Mountain Hazards</h3>
 
-      <div className="forecast">
-        <h4>Lake District Forecast at 800m</h4>
-        <ForecastTable forecast={weather.forecast} />
+            {weather.hazards
+              ? <div className="flex-column mountain-hazards-list">
+                  {weather.hazards.high &&
+                    <div>
+                      <h4>High likelihood</h4>
+                      {Object.keys(weather.hazards.high).map((hazard, index) => {
+                        return <p key={index} className="mountain-hazard high">{hazard}</p>
+                      })}
+                    </div>
+                  }
+                  {weather.hazards.medium &&
+                    <div>
+                      <h4>Medium likelihood</h4>
+                      {Object.keys(weather.hazards.medium).map((hazard, index) => {
+                        return <p key={index} className="mountain-hazard medium">{hazard}</p>
+                      })}
+                    </div>
+                  }
+                  {weather.hazards.low &&
+                    <div>
+                      <h4>Low likelihood</h4>
+                      {Object.keys(weather.hazards.low).map((hazard, index) => {
+                        return <p key={index} className="mountain-hazard low">{hazard}</p>
+                      })}
+                    </div>
+                  }
+                </div>
+              : "None reported"}
+          </div>
+
+          <div>
+            <h3>Meteorologist's View</h3>
+            {weather.meteorologist_view && !weather.meteorologist_view.startsWith("Nothing")
+              ? <p className="meteorologist">{weather.meteorologist_view}</p>
+              : <p>{weather.meteorologist_view ?? "Nothing to add"}</p>
+            }
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -129,19 +171,10 @@ function ForecastTable({ forecast }) {
         </tr>
       </thead>
       <tbody>
-        <TypeRow title="Weather" data={forecast.type} className={"primary-row"} />
-        <ForecastRow title="Precipitation" data={forecast.precip} />
-        {/* <tr className="table-break">
-          <th colSpan="5">Temperature (°C)</th>
-        </tr> */}
+        <TypeRow title="Weather type" data={forecast.type} className={"primary-row"} />
+        <ForecastRow title="Precipitation %" data={forecast.precip} />
         <ForecastRow title="Temperature (°C)" data={forecast.temp} postText={"°"} className={"primary-row"} />
-        <ForecastRow title="Feels-like" data={forecast.feel_temp} postText={"°"} className={"secondary-row"} />
-        {/* <tr className="table-break">
-          <th colSpan="5">Wind speeds (mph)</th>
-        </tr> */}
         <ForecastRow title="Wind speed (mph)" data={forecast.wind_speed} className={"primary-row"} />
-        <ForecastRow title="Wind gusts" data={forecast.wind_gust} className={"secondary-row"} />
-        <ForecastRow title="Wind direction" data={forecast.wind_dir} />
       </tbody>
     </table>
   )
@@ -152,11 +185,11 @@ function TomorrowsWeather({ weather }) {
   return (
     <div className="flex-column weather-day">
       <div>
+        <span className="secondary-text">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
         <h2 className="heading">{DateTitle(weather.date)}</h2>
-        <span className="suntime">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
       </div>
 
-      <p>{weather.weather}</p>
+      <p>{weather.summary}</p>
 
       <div>
         <h4>Chance of Cloud-Free Hill Top</h4>
@@ -196,23 +229,21 @@ function FutureWeather({ weather }) {
   }
 
   return (
-    <div className="weather-future">
-      {weather.days?.map((day, index) => {
-        var dateList = day.date.split(" ");
-        dateList[0] = weekdayDict[dateList[0]];
-        dateList[2] = monthDict[dateList[2]];
-  
-        return (
-          <div key={index} className="flex-column weather-day">
-            <div>
-              <h3 className="subheading">{dateList.join(" ")}</h3>
-              <span className="suntime">Sunrise: {day.sunrise}, Sunset: {day.sunset}</span>
-            </div>
-            <p>{day.summary}</p>
+    weather.days?.map((day, index) => {
+      var dateList = day.date.split(" ");
+      dateList[0] = weekdayDict[dateList[0]];
+      dateList[2] = monthDict[dateList[2]];
+
+      return (
+        <div key={index} className="flex-column future weather-day">
+          <div>
+            <span className="secondary-text">Sunrise: {day.sunrise}, Sunset: {day.sunset}</span>
+            <h2 className="subheading">{dateList.join(" ")}</h2>
           </div>
-        )
-      })}
-    </div>
+          <p>{day.summary}</p>
+        </div>
+      )
+    })
   )
 }
 

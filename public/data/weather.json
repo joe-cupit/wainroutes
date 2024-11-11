@@ -1,23 +1,24 @@
 {
-  "update_time": "2024-10-22T15:18:16Z",
-  "confidence": "High for mainly dry weather for the next couple of days but medium for cloud details. Then good confidence for more changeable conditions but low for details and timing.",
+  "update_time": "2024-11-11T15:33:50Z",
+  "confidence": "High for mostly dry, settled weather for the coming week. Lower confidence for cloud details from late Wednesday onwards. High for a transition to more unsettled and colder weather on Saturday",
   "days": [
     {
       "type": "this-evening",
-      "sunrise": "07:58",
-      "sunset": "17:55",
-      "summary": "Dry. Some clear periods at first, but increasing chance of areas of low hill fog later especially over southern and western fells. Light to moderate southwesterly winds."
+      "sunrise": "07:38",
+      "sunset": "16:15",
+      "summary": "Dry with mostly clear skies and light winds, allowing mist or fog to form in valleys and a touch of frost in places."
     },
     {
       "type": "current-day",
-      "date": "2024-10-23",
-      "sunrise": "07:58",
-      "sunset": "17:55",
-      "meteorologist_view": "Nothing additional",
-      "weather": "A cloudy morning with some patchy drizzle mainly over southern and western fells though it will be mainly dry. A few sunny intervals in good shelter. In the afternoon cloud lifting and also breaking to an extent with more chance of a few sunny intervals especially later . Some clear spells in the evening but some low cloud again forming over the hills.",
-      "cloud_free_top": "10% in morning rising 70-80% by mid afternoon dropping 50% during the evening",
-      "visibility": "Fairly extensive cloud of cloud above 500m in morning and hazy below the cloud but this lifting and breaking in the afternoon with mostly good visibility, just a few patches of cloud lingering on higher fell tops. Some cloud again lowering onto higher hills during the evening.",
+      "date": "2024-11-12",
+      "sunrise": "07:38",
+      "sunset": "16:15",
+      "meteorologist_view": "It will feel chilly at height despite light winds, especially in the morning and evening with some overnight frost. Fog will stay confined to valleys and lower elevations.",
+      "summary": "Another dry, bright day with sunny spells. A cold start with frost and some fog patches in the valleys. Fog developing again in valleys through the evening.",
+      "cloud_free_top": "90%",
+      "visibility": "Very good visibility with summits mainly clear but the odd patch of cloud around 700 to 800m.",
       "ground_conditions": "No recent ground conditions report available.",
+      "weather": "Dry, bright with sunny spells. Some overnight fog, frost.",
       "forecast": {
         "time": [
           "00:00",
@@ -30,112 +31,112 @@
           "21:00"
         ],
         "type": [
-          "Overcast",
-          "Overcast",
-          "Fog",
-          "Fog",
-          "Overcast",
-          "Cloudy",
-          "Partly cloudy (night)",
-          "Cloudy"
+          "Clear night",
+          "Clear night",
+          "Sunny day",
+          "Sunny day",
+          "Sunny intervals",
+          "Sunny intervals",
+          "Clear night",
+          "Clear night"
         ],
         "precip": [
+          "00%",
+          "00%",
+          "00%",
+          "00%",
           "<05%",
-          "10%",
-          "20%",
-          "10%",
-          "10%",
           "<05%",
-          "<05%",
-          "<05%"
+          "00%",
+          "00%"
         ],
         "wind_speed": [
-          "24",
-          "24",
-          "22",
-          "24",
-          "24",
-          "27",
-          "31",
-          "36"
+          "11",
+          "7",
+          "9",
+          "8",
+          "5",
+          "4",
+          "4",
+          "5"
         ],
         "wind_gust": [
-          "29",
-          "30",
-          "28",
-          "31",
-          "33",
-          "36",
-          "40",
-          "46"
+          "14",
+          "9",
+          "11",
+          "10",
+          "7",
+          "5",
+          "5",
+          "6"
         ],
         "wind_dir": [
-          "SW",
-          "SW",
-          "SW",
-          "SW",
-          "SW",
+          "NE",
+          "E",
+          "NE",
+          "E",
           "S",
-          "S",
-          "S"
+          "NW",
+          "E",
+          "SE"
         ],
         "temp": [
-          "6",
-          "6",
-          "6",
-          "6",
-          "6",
-          "6",
-          "6",
-          "6"
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3"
         ],
         "feel_temp": [
           "0",
-          "1",
-          "1",
-          "1",
-          "1",
           "0",
           "0",
+          "0",
+          "1",
+          "1",
+          "1",
           "0"
         ]
       }
     },
     {
       "type": "tomorrows-tab",
-      "date": "2024-10-24",
-      "sunrise": "08:00",
-      "sunset": "17:53",
-      "weather": "Another mainly dry day. Any low cloud lifting off the tops in the morning, with a mixture of sunny intervals and cloudier spells in the afternoon. Best breaks in the north, while southern felltops likely to stay mainly cloudy and shrouded. Cloud becoming overcast in the evening with perhaps some rain towards midnight.",
-      "cloud_free_top": "40% at first rising 80% from mid morning, but 60% in south, gradually falling 20% or less as the evening goes on.",
-      "max_wind": "South to southeast 25 gusts 35mph.",
+      "date": "2024-11-13",
+      "sunrise": "07:40",
+      "sunset": "16:14",
+      "summary": "A dry, bright morning with sunny spells. A cold start with frost and some fog patches in the valleys. Clouding over through the day with some patchy light rain or drizzle.",
+      "cloud_free_top": "90% in the morning, falling to 30% by the evening.",
+      "max_wind": "West veering northwest, increasing to 20mph, gusting 30mph.",
       "temperature": {
-        "At 800m": "Plus 6 rising to Plus 9 Celsius.",
-        "Valley": "Plus 10 rising to Plus 15 Celsius.",
-        "Freezing level": "Above the summits."
+        "At 800m": "Plus 2 rising to plus 5 Celsius.",
+        "Valley": "Plus 2 rising to plus 9 Celsius.",
+        "Freezing level": "Above summits"
       },
-      "visibility": "Areas of cloud above 500-600m at first tending to break and lift off most hills during the afternoon though some patches persisting over southern summits. Good visibility away from the cloud. Then by mid to late evening extensive cloud above 500-600m, visibility also dropping at lower levels in any rain that arrives later."
+      "visibility": "Very good visibility in the morning with summits mainly clear but the odd patch of cloud around 700 to 800m, and fog in the valleys. Cloud becomes quite extensive through the afternoon and evening, shrouding most summits, with visibilities falling poor in drizzle or hill fog."
     },
     {
       "type": "further-outlook",
       "days": [
         {
-          "date": "Fri 25 Oct",
-          "sunrise": "08:02",
-          "sunset": "17:51",
-          "summary": "Low confidence in detail. Any rain clearing in early hours then sunny intervals and some showers. More general cloud and rain may then return in the evening. Fresh southwesterly winds, potentially becoming strong with summit gales in the evening."
+          "date": "Thu 14 Nov",
+          "sunrise": "07:42",
+          "sunset": "16:12",
+          "summary": "Cloudy morning and evening with hill fog and patchy light drizzle, becoming brighter through the middle of the day. Light northerly backing westerly winds. Freezing level above summits."
         },
         {
-          "date": "Sat 26 Oct",
-          "sunrise": "08:04",
-          "sunset": "17:49",
-          "summary": "Likely to be cloudy at first with outbreaks of heavy rain, hill fog and southwesterly gales, brightening up for the afternoon to sunny intervals and showers, with winds veering west to northwesterly."
+          "date": "Fri 15 Nov",
+          "sunrise": "07:44",
+          "sunset": "16:11",
+          "summary": "Staying cloudy with hill fog and patchy light drizzle. Light to fresh westerly winds. Freezing level above summits."
         },
         {
-          "date": "Sun 27 Oct",
-          "sunrise": "07:06",
-          "sunset": "16:46",
-          "summary": "Cloudy with occasional rain, and some hill fog. Strong west to southwest winds."
+          "date": "Sat 16 Nov",
+          "sunrise": "07:46",
+          "sunset": "16:09",
+          "summary": "Early rain clearing south. Then bright spells and some showers, wintry at height with freezing levels falling to 500-600m. Fresh northwest winds."
         }
       ]
     }

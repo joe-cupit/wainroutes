@@ -1,59 +1,100 @@
 .weather-page section {
   padding-block: var(--gap-400);
 }
-
-.weather-day {
-  padding: var(--gap-400);
+.weather-main {
+  gap: var(--gap-600);
 }
-.weather-future .weather-day {
+
+.weather-days {
+  gap: var(--gap-600);
+}
+.weather-day {
+  flex: 1;
+}
+.weather-day.future {
   gap: var(--gap-300);
 }
 
-
+.weather-page h3,
 .weather-page h4 {
+  font-size: var(--fs-400);
   font-weight: var(--fw-bold);
+}
+.weather-page h4 {
+  font-weight: var(--fw-medium);
 }
 .weather-page ul {
   list-style: square inside;
   margin-inline-start: 0.5rem;
 }
-.weather-page .suntime {
-  font-size: var(--fs-300);
-  color: var(--clr-black-300)
-}
-.weather-page .meteorologist {
-  width: 95%;
-  margin-inline: auto;
-  padding: 0.25rem 0.375rem;
-
-  background: var(--clr-primary-200);
-  border-inline-start: 0.25rem solid var(--clr-primary-400);
-}
 
 
 .weather-page .forecast {
-  width: 100%;
+  max-width: 90vw;
   overflow-x: auto;
 }
 .forecast-table th,
 .forecast-table td {
-  padding-inline: 0.125rem 1rem;
-
+  padding-inline: calc(var(--gap-200) / 2) var(--gap-400);
   text-align: center;
-  vertical-align: bottom;
+  text-wrap: nowrap;
+}
+.forecast-table th:first-child,
+.forecast-table td:first-child {
+  text-align: left;
 }
 .forecast-table .primary-row th,
 .forecast-table .primary-row td {
-  padding-top: 0.75rem;
+  padding-top: var(--gap-300);
   min-width: fit-content;
 }
-.forecast-table .secondary-row {
-  font-size: var(--fs-300);
-  color: var(--clr-black-300);
-}
 .forecast-table img {
-  width: calc(2 * var(--fs-600));
+  min-width: calc(2.5 * var(--fs-600));
+  max-width: calc(2.5 * var(--fs-600));
+}
 
-  filter: invert(0.1) sepia(1) saturate(2) hue-rotate(-30deg);
-  cursor: pointer;
+
+.weather-extra-details {
+  max-width: 300px;
+}
+.mountain-hazards,
+.mountain-hazards-list {
+  gap: var(--gap-300);
+}
+.mountain-hazard,
+.meteorologist {
+  padding: 0.25rem 0.5rem;
+  margin-block: var(--gap-200);
+}
+.mountain-hazard.low {
+  background: #F1D46340;
+  border-inline-start: 0.25rem solid #F1D463;
+}
+.mountain-hazard.medium {
+  background: #F6B24340;
+  border-inline-start: 0.25rem solid #F6B243;
+}
+.mountain-hazard.high {
+  background: #F3693740;
+  border-inline-start: 0.25rem solid #F36937;
+}
+.meteorologist {
+  background: #6DAAC340;
+  border-inline-start: 0.25rem solid #6DAAC3;
+}
+
+@media (max-width: 1048px) {
+  .weather-extra-details {
+    max-width: none;
+  }
+  .mountain-hazards {
+    gap: 0;
+  }
+  .mountain-hazards-list {
+    flex-direction: row;
+    width: 100%;
+  }
+  .mountain-hazards-list h4 {
+    display: none;
+  }
 }
