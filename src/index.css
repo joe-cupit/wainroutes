@@ -94,6 +94,12 @@
   }
 }
 
+@media (max-width: 650px) {
+  :root {
+    --fs-1000: 2rem;
+  }
+}
+
 
 /* Style resets */
 

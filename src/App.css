@@ -8,7 +8,6 @@ body {
 
   color: var(--clr-black-400);
   background: var(--clr-white-500);
-  background: #FCF6F2;
 }
 
 #root {
@@ -68,6 +67,9 @@ footer > * {
 }
 .wrap-none {
   flex-wrap: nowrap;
+}
+.flex-1 {
+  flex: 1;
 }
 
 .grid-two,
@@ -153,6 +155,7 @@ p {
 
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  border-top-right-radius: 0;
   cursor: pointer;
 
   font-family: var(--ff-body);

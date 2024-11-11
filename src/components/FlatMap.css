@@ -12,23 +12,26 @@
 
   user-select: none;
   pointer-events: none;
+
+  transform-origin: 66% 66%;
 }
 
 #layer-water {
   scale: 1.02;
+  transform-origin: 40% 40%;
 }
 #layer-0 {
-  scale: 1.012;
+  scale: 1.014;
 }
 #layer-1 {
-  scale: 1.017;
+  scale: 1.02;
 }
 #layer-2 {
-  scale: 1.022;
+  scale: 1.028;
 }
 #layer-3 {
-  scale: 1.027;
+  scale: 1.035;
 }
 #layer-4 {
-  scale: 1.035;
+  scale: 1.043;
 }

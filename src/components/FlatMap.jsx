@@ -19,14 +19,13 @@ export default function FlatMap() {
 
   useEffect(() => {
     function mouseListener(e) {
+      const originX = HalfWidth - (e.offsetX - HalfWidth)
+      const originY = HalfHeight - (e.offsetY - HalfHeight)
+      const origin = `${originX}px ${originY}px`
+      console.log(origin)
 
       flatMap.querySelectorAll("img").forEach((image, index) => {
-
         if (index === 0) return
-
-        const originX = HalfWidth - (e.offsetX - HalfWidth)
-        const originY = HalfHeight - (e.offsetY - HalfHeight)
-        const origin = `${originX}px ${originY}px`
 
         image.animate({ 
           transformOrigin: origin
@@ -34,11 +33,23 @@ export default function FlatMap() {
       })
     }
 
+    function mouseLeave() {
+      flatMap.querySelectorAll("img").forEach((image, index) => {
+        if (index === 0) return
+
+        image.animate({ 
+          transformOrigin: "66% 66%"
+        }, { duration: 250, fill: "forwards", easing: "ease" });
+      })
+    }
+
     const flatMap = document.getElementById("flat-map")
     flatMap.addEventListener("mousemove", mouseListener)
+    flatMap.addEventListener("mouseleave", mouseLeave)
 
     return () => {
       flatMap.removeEventListener("mousemove", mouseListener)
+      flatMap.removeEventListener("mouseleave", mouseLeave)
     }
   })
 

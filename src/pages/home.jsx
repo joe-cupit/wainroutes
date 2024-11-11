@@ -13,8 +13,16 @@ export function HomePage() {
   return (
   <main className="home-page">
 
-    <section>
-      <FlatMap />
+    <section className="home-hero-section">
+      <div className="flex-row align-center justify-center">
+        <div className="flex-column flex-1 home-hero-text">
+          <h1 className="title">Lake District Walks Over The Wainwrights</h1>
+          <p>From Northern to Far-Eastern, whatever your next Wainwright, walk it with Wainroutes.</p>
+          <Link to="/walks" className="primary button">Find your next route</Link>
+        </div>
+
+        <FlatMap />
+      </div>
     </section>
 
     {/* <section className="home-hero-section">
