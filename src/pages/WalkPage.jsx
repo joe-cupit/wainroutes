@@ -16,7 +16,7 @@ export function WalkPage() {
   const { slug } = useParams();
   const walkData = useWalks(slug);
   const hillData = useHills(null);
-  document.title = (walkData?.name ?? slug) + " | wainroutes";
+  document.title = (walkData?.title ?? "A Lake District Walk") + " | wainroutes";
 
   const hillMarkers = useHillMarkers(walkData?.wainwrights);
 
@@ -69,7 +69,7 @@ export function WalkPage() {
                   return (
                     <Fragment key={index}>
                       <span>
-                        <Link to={"/mountain/"+hill}>{hillData?.[hill]?.name}</Link>
+                        <Link to={"/wainwrights/"+hill}>{hillData?.[hill]?.name}</Link>
                         {(index+1 < walkData?.wainwrights?.length ? "," : "")}
                       </span>
                       {(index+2 === walkData?.wainwrights?.length ? " and " : " ")}

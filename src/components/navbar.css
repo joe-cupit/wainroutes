@@ -6,9 +6,10 @@
 
   padding-block: var(--gap-300) var(--gap-200);
 
-  font-weight: var(--fw-bold);
-  color: var(--clr-white-400);
-  background: var(--clr-black-400);
+  font-size: calc((var(--fs-400) + var(--fs-600)) / 2);
+  font-weight: var(--fw-medium);
+  color: var(--clr-black-400);
+  background: var(--clr-white-500);
 }
 
 .navbar ul {
@@ -26,9 +27,12 @@
   transition: color 150ms ease;
 }
 .navbar nav:has(a:hover) a:not(:hover) {
-  color: var(--clr-black-100);
+  color: var(--clr-black-200);
 }
 
+.navbar-right {
+  gap: var(--gap-500);
+}
 
 .nav-button {
   width: 30px;
@@ -54,7 +58,8 @@
   min-width: min(55%, 500px);
   height: 100vh;
 
-  background: var(--clr-black-400);
+  color: var(--clr-black-400);
+  background: var(--clr-white-400);
 
   transform: translateX(-100%);
   transition-property: display transform;

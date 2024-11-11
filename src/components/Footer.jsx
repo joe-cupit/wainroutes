@@ -23,7 +23,7 @@ export default function Footer() {
 
             <ul className="flex-column footer-list">
               <li className="bold">Mountains</li>
-              <li><Link to="/mountains">Wainwrights</Link></li>
+              <li><Link to="/wainwrights">Wainwrights</Link></li>
               <li><Link to="/other">Other</Link></li>
             </ul>
 

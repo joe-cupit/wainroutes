@@ -15,7 +15,7 @@ const titles = {
 
 
 export function HillsPage() {
-  document.title = "214 Wainwrights | wainroutes";
+  document.title = "The Wainwrights | wainroutes";
 
   const hillMarkers = useHillMarkers();
   const hillData = Object.values(useHills(null)).sort((a, b) => b.height-a.height);
@@ -109,7 +109,7 @@ export function HillsPage() {
                       </td>
                       <td className="flex-column gap-0">
                         <h2 className="subheading">
-                          <Link to={`/mountain/${hill.slug}`}>{hill.name}{hill.name_secondary ? <span className="secondary-text"> ({hill.name_secondary})</span> : ""}</Link>
+                          <Link to={`/wainwrights/${hill.slug}`}>{hill.name}{hill.name_secondary ? <span className="secondary-text"> ({hill.name_secondary})</span> : ""}</Link>
                         </h2>
                         <span className="secondary-text">{titles[hill.book]}</span>
                       </td>

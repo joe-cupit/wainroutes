@@ -115,7 +115,7 @@ export default function WalkCard({ walk }) {
   const hills = [...walk?.wainwrights].sort((a, b) => hillData[b].height - hillData[a].height);
 
   return (
-    <Link to={`/walk/${walk.slug}`} className="flex-row walks-card">
+    <Link to={`/walks/${walk.slug}`} className="flex-row walks-card">
 
       <div className="walks-card_image walks-desktop-only">
         <img src={previews[walk.slug]} alt={walk.title+" preview"} loading="lazy" />

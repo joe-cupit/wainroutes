@@ -30,10 +30,10 @@ export default function App() {
 
         <Route path="/walk/" element={<Navigate to="/walks" />} />
         <Route path="/walks/" element={<WalksPage />} />
-        <Route path="/walk/:slug" element={<WalkPage />} />
+        <Route path="/walks/:slug" element={<WalkPage />} />
 
-        <Route path="/mountains/" element={<HillsPage />} />
-        <Route path="/mountain/:slug" element={<HillPage />} />
+        <Route path="/wainwrights/" element={<HillsPage />} />
+        <Route path="/wainwrights/:slug" element={<HillPage />} />
 
         <Route path="/weather/" element={<WeatherPage />} />
 
