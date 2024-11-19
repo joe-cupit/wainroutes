@@ -15,43 +15,42 @@ export default function FlatMap() {
   const MapWidth = 518
   const MapHeight = 614
   const HalfWidth = MapWidth/2
-  const HalfHeight = MapWidth/2
+  const HalfHeight = MapHeight/2
 
-  useEffect(() => {
-    function mouseListener(e) {
-      const originX = HalfWidth - (e.offsetX - HalfWidth)
-      const originY = HalfHeight - (e.offsetY - HalfHeight)
-      const origin = `${originX}px ${originY}px`
-      console.log(origin)
+  // useEffect(() => {
+  //   function mouseListener(e) {
+  //     const originX = HalfWidth - (e.offsetX - HalfWidth)
+  //     const originY = HalfHeight - (e.offsetY - HalfHeight)
+  //     const origin = `${originX}px ${originY}px`
 
-      flatMap.querySelectorAll("img").forEach((image, index) => {
-        if (index === 0) return
+  //     flatMap.querySelectorAll("img").forEach((image, index) => {
+  //       if (index === 0) return
 
-        image.animate({ 
-          transformOrigin: origin
-        }, { duration: 750, fill: "forwards", easing: "ease" });
-      })
-    }
+  //       image.animate({ 
+  //         transformOrigin: origin
+  //       }, { duration: 750, fill: "forwards", easing: "ease" });
+  //     })
+  //   }
 
-    function mouseLeave() {
-      flatMap.querySelectorAll("img").forEach((image, index) => {
-        if (index === 0) return
+  //   function mouseLeave() {
+  //     flatMap.querySelectorAll("img").forEach((image, index) => {
+  //       if (index === 0) return
 
-        image.animate({ 
-          transformOrigin: "66% 66%"
-        }, { duration: 250, fill: "forwards", easing: "ease" });
-      })
-    }
+  //       image.animate({ 
+  //         transformOrigin: "66% 66%"
+  //       }, { duration: 250, fill: "forwards", easing: "ease" });
+  //     })
+  //   }
 
-    const flatMap = document.getElementById("flat-map")
-    flatMap.addEventListener("mousemove", mouseListener)
-    flatMap.addEventListener("mouseleave", mouseLeave)
+  //   const flatMap = document.getElementById("flat-map")
+  //   flatMap.addEventListener("mousemove", mouseListener)
+  //   flatMap.addEventListener("mouseleave", mouseLeave)
 
-    return () => {
-      flatMap.removeEventListener("mousemove", mouseListener)
-      flatMap.removeEventListener("mouseleave", mouseLeave)
-    }
-  })
+  //   return () => {
+  //     flatMap.removeEventListener("mousemove", mouseListener)
+  //     flatMap.removeEventListener("mouseleave", mouseLeave)
+  //   }
+  // })
 
 
   return (
