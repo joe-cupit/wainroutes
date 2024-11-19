@@ -61,10 +61,18 @@
 .mountain-hazards-list {
   gap: var(--gap-300);
 }
+.mountain-hazards-list > div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: var(--gap-200);
+}
 .mountain-hazard,
 .meteorologist {
-  padding: 0.25rem 0.5rem;
-  margin-block: var(--gap-200);
+  padding-inline: var(--gap-300);
+  padding-block: calc(1.25 * var(--gap-200)) calc(0.75 * var(--gap-200));
+  display: inline-block;
 }
 .mountain-hazard.low {
   background: #F1D46340;
@@ -83,7 +91,7 @@
   border-inline-start: 0.25rem solid #6DAAC3;
 }
 
-@media (max-width: 1048px) {
+@media (max-width: 1100px) {
   .weather-extra-details {
     max-width: none;
   }
@@ -93,6 +101,10 @@
   .mountain-hazards-list {
     flex-direction: row;
     width: 100%;
+  }
+  .mountain-hazards-list > div {
+    flex-direction: row;
+    gap: var(--gap-300);
   }
   .mountain-hazards-list h4 {
     display: none;

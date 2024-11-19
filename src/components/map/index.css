@@ -2,20 +2,23 @@
   width: 100%;
   height: 100%;
 
-  border: 0.1rem solid var(--clr-white-600);
-  border-radius: 0.625rem;
+  /* border: 0.1rem solid var(--clr-white-600); */
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 
 
 .lake-map--route {
-  stroke: var(--clr-primary-400);
+  stroke: var(--clr-primary-500);
   stroke-width: 5;
   filter: drop-shadow(0.0625rem 0 0 var(--clr-primary-800))
           drop-shadow(0 0.0625rem 0 var(--clr-primary-800))
           drop-shadow(-0.0625rem 0 0 var(--clr-primary-800))
           drop-shadow(0 -0.0625rem 0 var(--clr-primary-800));
   cursor: default;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .lake-map--marker {

@@ -29,7 +29,7 @@ export function WeatherPage() {
         <div className="flex-column weather-main">
           <div className="weather-header">
             <h1 className="title">Lake District Weather</h1>
-            <p className="secondary-text">Last updated: {new Date(weatherData?.update_time).toUTCString()}</p>
+            <p className="secondary-text">{`Updated at: ${weatherData?.update_time}`}</p>
           </div>
 
           <div className="flex-column weather-days">

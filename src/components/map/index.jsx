@@ -116,7 +116,7 @@ export function LakeMap ({ mapMarkers, gpxPoints, activePoint, ...props }) {
 
 
   return (
-    <div id="lake-map" className={props.className ? "lake-map--container "+props.className : "lake-map--container"}>
+    <div id="lake-map" className={props.className ? "lake-map--container "+props.className : "lake-map--container"} style={{minWidth: "100px", minHeight: "100px"}}>
       <Map className="lake-map"
            center={center} zoom={zoom}
            minZoom={minZoom} zoomSnap={false}
