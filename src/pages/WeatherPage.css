@@ -1,3 +1,6 @@
+.weather-page {
+  margin-bottom: var(--gap-800);
+}
 .weather-page section {
   padding-block: var(--gap-400);
 }
@@ -6,9 +9,10 @@
 }
 
 .weather-days {
-  gap: var(--gap-600);
+  gap: var(--gap-700);
 }
 .weather-day {
+  gap: var(--gap-500);
   flex: 1;
 }
 .weather-day.future {
@@ -19,9 +23,13 @@
 .weather-page h4 {
   font-size: var(--fs-400);
   font-weight: var(--fw-bold);
+  line-height: 1.5;
 }
 .weather-page h4 {
   font-weight: var(--fw-medium);
+}
+.weather-page p {
+  line-height: 1.4;
 }
 .weather-page ul {
   list-style: square inside;
@@ -33,20 +41,33 @@
   max-width: 90vw;
   overflow-x: auto;
 }
+
+.forecast-table {
+  --_padding-inline: var(--gap-400);
+  margin-block: var(--gap-200);
+}
 .forecast-table th,
 .forecast-table td {
-  padding-inline: calc(var(--gap-200) / 2) var(--gap-400);
+  padding-inline: var(--_padding-inline);
   text-align: center;
   text-wrap: nowrap;
 }
 .forecast-table th:first-child,
 .forecast-table td:first-child {
   text-align: left;
+  padding-inline: 0 var(--_padding-inline);
+}
+.forecast-table th,
+.forecast-table td {
+  padding-top: var(--gap-200);
+  min-width: fit-content;
 }
 .forecast-table .primary-row th,
 .forecast-table .primary-row td {
-  padding-top: var(--gap-300);
-  min-width: fit-content;
+  padding-top: var(--gap-400);
+}
+.forecast-table .secondary-row {
+  color: var(--clr-black-300);
 }
 .forecast-table img {
   min-width: calc(2.5 * var(--fs-600));
@@ -64,14 +85,13 @@
 .mountain-hazards-list > div {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   align-items: start;
   gap: var(--gap-200);
 }
 .mountain-hazard,
 .meteorologist {
-  padding-inline: var(--gap-300);
-  padding-block: calc(1.25 * var(--gap-200)) calc(0.75 * var(--gap-200));
+  padding-inline: 0.5rem;
+  padding-block: 0.3125rem 0.1875rem;
   display: inline-block;
 }
 .mountain-hazard.low {
@@ -95,6 +115,9 @@
   .weather-extra-details {
     max-width: none;
   }
+  .forecast-table {
+    --_padding-inline: var(--gap-300)
+  }
   .mountain-hazards {
     gap: 0;
   }
@@ -103,8 +126,7 @@
     width: 100%;
   }
   .mountain-hazards-list > div {
-    flex-direction: row;
-    gap: var(--gap-300);
+    display: contents;
   }
   .mountain-hazards-list h4 {
     display: none;

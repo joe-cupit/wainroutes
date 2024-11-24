@@ -1,7 +1,8 @@
 import "./WeatherPage.css";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 
+import weatherData from "../assets/weather.json"
 const WeatherSymbolsFolder = require.context("../assets/images/weather")
 const WeatherSymbols = Object.fromEntries(WeatherSymbolsFolder.keys().map(image => [image.substring(2), WeatherSymbolsFolder(image)]));
 
@@ -9,17 +10,6 @@ const WeatherSymbols = Object.fromEntries(WeatherSymbolsFolder.keys().map(image 
 export function WeatherPage() {
 
   document.title = "Lake District Weather | wainroutes";
-
-  const [weatherData, setWeatherData] = useState(null)
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      const weather = await fetch("/data/weather.json");
-      const weatherJson = await weather.json();
-      setWeatherData(weatherJson);
-    }
-
-    fetchWeatherData().catch(console.error)
-  }, [])
 
 
   return (
@@ -54,7 +44,7 @@ export function WeatherPage() {
 function CurrentDayWeather({ weather }) {
 
   return (
-    <div className="flex-column weather-day">
+    <div className="flex-column">
       <div>
         <span className="secondary-text">Sunrise: {weather.sunrise}, Sunset: {weather.sunset}</span>
         <h2 className="heading">{DateTitle(weather.date)}</h2>
@@ -65,22 +55,22 @@ function CurrentDayWeather({ weather }) {
           <p>{weather.weather}</p>
 
           <div className="forecast">
-            <h4>Mountain Weather Forecast (800m)</h4>
+            <h3>Mountain Weather Forecast (800m)</h3>
             <ForecastTable forecast={weather.forecast} />
           </div>
 
           <div>
-            <h4>Chance of Cloud-Free Hill Top</h4>
+            <h3>Chance of Cloud-Free Hill Top</h3>
             <p>{weather.cloud_free_top}</p>
           </div>
 
           <div>
-            <h4>Visibility</h4>
+            <h3>Visibility</h3>
             <p>{weather.visibility}</p>
           </div>
 
           <div>
-            <h4>Summary</h4>
+            <h3>Summary</h3>
             <p>{weather.summary}</p>
           </div>
         </div>
@@ -173,8 +163,12 @@ function ForecastTable({ forecast }) {
       <tbody>
         <TypeRow title="Weather type" data={forecast.type} className={"primary-row"} />
         <ForecastRow title="Precipitation %" data={forecast.precip} />
+
         <ForecastRow title="Temperature (°C)" data={forecast.temp} postText={"°"} className={"primary-row"} />
+        <ForecastRow title="Feels-like" data={forecast.feel_temp} postText={"°"} className={"secondary-row"} />
+
         <ForecastRow title="Wind speed (mph)" data={forecast.wind_speed} className={"primary-row"} />
+        <ForecastRow title="Wind gusts" data={forecast.wind_gust} className={"secondary-row"} />
       </tbody>
     </table>
   )
@@ -192,22 +186,22 @@ function TomorrowsWeather({ weather }) {
       <p>{weather.summary}</p>
 
       <div>
-        <h4>Chance of Cloud-Free Hill Top</h4>
+        <h3>Chance of Cloud-Free Hill Top</h3>
         <p>{weather.cloud_free_top}</p>
       </div>
 
       <div>
-        <h4>Visibility</h4>
+        <h3>Visibility</h3>
         <p>{weather.visibility}</p>
       </div>
 
       <div>
-        <h4>Wind</h4>
+        <h3>Wind</h3>
         <p>{weather.max_wind}</p>
       </div>
 
       <div>
-        <h4>Temperature</h4>
+        <h3>Temperature</h3>
         <ul>
           {Object.keys(weather.temperature).map((loc, index) => {
             return (
