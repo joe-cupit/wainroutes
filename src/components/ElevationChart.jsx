@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 
-export default function ElevationChart({ data }) {
+export default function ElevationChart({ data, setActiveIndex }) {
 
   console.log(data)
   const totalDist = useMemo(() => {
@@ -13,7 +13,9 @@ export default function ElevationChart({ data }) {
   return (
     data && 
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data} margin={{ left: 25 }}>
+        <LineChart data={data} margin={{ left: 25 }}
+          onMouseLeave={() => setActiveIndex(null)}
+        >
 
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <Tooltip position={{ y: 25}} isAnimationActive={false} />
@@ -27,7 +29,8 @@ export default function ElevationChart({ data }) {
           />
 
           <Line dataKey="ele" unit="m"
-            dot={false} label={false}
+            isAnimationActive={false} dot={false}
+            activeDot={e => setActiveIndex(e.index)}
             stroke="var(--clr-primary-400)" strokeWidth={2}
           />
 

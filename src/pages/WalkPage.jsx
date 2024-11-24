@@ -57,6 +57,8 @@ export function WalkPage() {
       });
   }, [slug]);
 
+  const [activeIndex, setActiveIndex] = useState(null)
+
 
   return (
     <main className="walk-page">
@@ -109,11 +111,11 @@ export function WalkPage() {
               <LakeMap
                 gpxPoints={gpxPoints} mapMarkers={hillMarkers}
                 defaultCenter={walkData?.start_lat_lang} defaultZoom={14} >
-                  <GeoRoute points={gpxPoints} />
+                  <GeoRoute points={gpxPoints} activeIndex={activeIndex} />
               </LakeMap>
             </div>
             <div className="walk-elevation">
-              <ElevationChart data={elevationData} />
+              <ElevationChart data={elevationData} setActiveIndex={setActiveIndex} />
             </div>
           </div>
 

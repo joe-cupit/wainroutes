@@ -135,21 +135,37 @@ export function LakeMap ({ mapMarkers, gpxPoints, activePoint, ...props }) {
 
 
 // secondary components
-export function GeoRoute ({ points, ...props }) {
+export function GeoRoute ({ points, activeIndex, ...props }) {
 
   const data = useMemo(() => ({
+    type: "Feature",
+    geometry: {
+      type: "LineString",
+      coordinates: points
+    }
+  }), [points])
+
+  const activeData = useMemo(() => {
+    if (points === null || activeIndex === null) return null
+    else return ({
       type: "Feature",
       geometry: {
-        type: "LineString",
-        coordinates: points
+        type: "Point",
+        coordinates: points[activeIndex]
       }
-   }), [points])
+    })
+  }, [points, activeIndex])
 
-  return (points && (
-    <GeoJson styleCallback={() => ({ className: "lake-map--route" })} {...props}>
-      <GeoJsonFeature feature={data} />
+  return (points && 
+    <GeoJson {...props}>
+      <GeoJsonFeature feature={data} styleCallback={() => ({ className: "lake-map--route" })} />
+      {activeData &&
+        <GeoJsonFeature feature={activeData}
+          svgAttributes={{ r: "9" }}
+          styleCallback={() => ({ className: "lake-map--hovered-point" })}
+        />}
     </GeoJson>
-  ))
+  )
 }
 
 function Attribution () {
