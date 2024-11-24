@@ -51,8 +51,10 @@
 }
 .walk-elevation {
   width: 100%;
-  aspect-ratio: 7 / 3;
+  height: 200px;
 
-  background: var(--clr-white-600);
-  border-radius: 0.5rem;
+  background: var(--clr-white-400);
+  border-radius: 0.25rem;
+  padding-inline: var(--gap-400);
+  padding-block: var(--gap-300);
 }

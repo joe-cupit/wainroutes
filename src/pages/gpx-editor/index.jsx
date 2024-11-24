@@ -5,7 +5,7 @@ import { useEffect, useState, useMemo } from "react"
 import useUndoStack from "./hooks/useUndoStack"
 import useOpenGpx from "./hooks/useOpenGpx"
 
-import haversine from "./utils/haversine"
+import haversine from "../../utils/haversine"
 import buildXML from "./utils/buildXML"
 
 import GpxMap from "./components/GpxMap"

@@ -10,6 +10,8 @@ import { LakeMap, GeoRoute } from "../components/map";
 import { useHillMarkers } from "../hooks/useMarkers";
 import Distance from "../components/Distance";
 import Height from "../components/Height";
+import ElevationChart from "../components/ElevationChart";
+import haversine from "../utils/haversine";
 
 
 export function WalkPage() {
@@ -21,17 +23,37 @@ export function WalkPage() {
   const hillMarkers = useHillMarkers(walkData?.wainwrights);
 
   const [gpxPoints, setGpxPoints] = useState(null);
+  const [elevationData, setElevationData] = useState(null);
   useEffect(() => {
     fetch(`/gpx/${slug}.gpx`)
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
       .then(doc => {
-        let coordinates = [];
+        let coordinates = []
+        let elevations = []
+
+        let dist = 0
+        let prevPoint = null
+
         const nodes = [...doc.getElementsByTagName("trkpt")];
-        nodes.forEach(node => {
-          coordinates.push([parseFloat(node.getAttribute("lon")), parseFloat(node.getAttribute("lat"))])
-        });
+        for (let node of nodes) {
+          let point = [parseFloat(node.getAttribute("lon")), parseFloat(node.getAttribute("lat"))]
+
+          if (prevPoint) {
+            dist += haversine(point, prevPoint)
+          }
+
+          coordinates.push(point)
+          elevations.push({
+            "dist": Number((dist / 1000).toFixed(1)),
+            "ele": Number(node.getElementsByTagName("ele")[0]?.textContent)
+          })
+
+          prevPoint = point
+        }
+
         setGpxPoints(coordinates);
+        setElevationData(elevations)
       });
   }, [slug]);
 
@@ -91,6 +113,7 @@ export function WalkPage() {
               </LakeMap>
             </div>
             <div className="walk-elevation">
+              <ElevationChart data={elevationData} />
             </div>
           </div>
 
