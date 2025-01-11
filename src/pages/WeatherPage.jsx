@@ -3,8 +3,13 @@ import "./WeatherPage.css";
 import { Fragment } from "react";
 
 import weatherData from "../assets/weather.json"
-const WeatherSymbolsFolder = require.context("../assets/images/weather")
-const WeatherSymbols = Object.fromEntries(WeatherSymbolsFolder.keys().map(image => [image.substring(2), WeatherSymbolsFolder(image)]));
+const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg")
+let WeatherSymbols = {}
+for (const path in WeatherSymbolsFolder) {
+  WeatherSymbolsFolder[path]().then((mod) => {
+    WeatherSymbols[path.split("/").at(-1)] = mod.default
+  })
+}
 
 
 export function WeatherPage() {
@@ -142,7 +147,7 @@ function TypeRow({ title, data }) {
       {data.map((entry, index) => {
         const slug = entry.toLowerCase().replaceAll(" ", "-").replaceAll(/[()]/g, "");
         return (
-          <td key={index}>
+          <td key={index} className="image-cell">
             <img src={WeatherSymbols[`${slug}.svg`]} alt={entry} title={entry} />
           </td>
         )

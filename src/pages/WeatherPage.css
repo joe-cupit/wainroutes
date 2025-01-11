@@ -69,9 +69,14 @@
 .forecast-table .secondary-row {
   color: var(--clr-black-300);
 }
-.forecast-table img {
-  min-width: calc(2.5 * var(--fs-600));
-  max-width: calc(2.5 * var(--fs-600));
+.forecast-table td.image-cell {
+  --_image-height: calc(2.5 * var(--fs-600));
+
+  height: var(--_image-height);
+}
+.forecast-table td.image-cell img {
+  min-width: var(--_image-height);
+  max-width: var(--_image-height);
 }
 
 

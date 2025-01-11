@@ -12,8 +12,7 @@ import Distance from "../components/Distance";
 import hillData from "../assets/hillData";
 import { useWalkMarkers } from "../hooks/useMarkers";
 
-const previewImages = require.context("../assets/previews")
-const previews = Object.fromEntries(previewImages.keys().map(image => [image.substring(2, image.length-4), previewImages(image)]));
+const PreviewFolder = "/src/assets/previews/"
 
 
 
@@ -118,7 +117,7 @@ export default function WalkCard({ walk }) {
     <Link to={`/walks/${walk.slug}`} className="flex-row walks-card">
 
       <div className="walks-card_image walks-desktop-only">
-        <img src={previews[walk.slug]} alt={walk.title+" preview"} loading="lazy" />
+        <img src={PreviewFolder + walk.slug + ".jpg"} alt={walk.title+" preview"} loading="lazy" />
       </div>
 
       <div className="flex-column gap-0 walks-card_text">
