@@ -161,7 +161,7 @@ export function GeoRoute ({ points, activeIndex, ...props }) {
       <GeoJsonFeature feature={data} styleCallback={() => ({ className: "lake-map--route" })} />
       {activeData &&
         <GeoJsonFeature feature={activeData}
-          svgAttributes={{ r: "9" }}
+          svgAttributes={{ r: "6" }}
           styleCallback={() => ({ className: "lake-map--hovered-point" })}
         />}
     </GeoJson>

@@ -140,7 +140,10 @@ function Summary({ wainwrights, length, elevation, intro }) {
           </div>
         </div>
 
-        <p>{intro}</p>
+        <div>
+          <h3 className="smallheading" style={{display: "block"}}>Overview: </h3>
+          <p>{intro}</p>
+        </div>
       </div>
     </div>
   )
@@ -172,10 +175,21 @@ function Route({ wainwrights, center, slug }) {
           }
 
           coordinates.push(point)
-          elevations.push({
-            "dist": Number((dist / 1000).toFixed(1)),
+
+          let ele = {
+            "dist": Number((dist / 1000).toFixed(4)),
             "ele": Number(node.getElementsByTagName("ele")[0]?.textContent)
-          })
+          }
+          if (node.getElementsByTagName("name").length > 0) {
+            ele["waypoint"] = node.getElementsByTagName("name")[0]?.textContent
+          }
+          elevations.push(ele)
+
+          // if (node.getElementsByTagName("name").length > 0) {
+          //   console.log(node.getElementsByTagName("name")[0]?.textContent)
+          //   elevations.push(elevationGroup)
+          //   elevationGroup = []
+          // }
 
           prevPoint = point
         }
@@ -252,7 +266,10 @@ function Weather({  }) {
 
       <div className="walks-page_section walks-page_weather flex-row flex-center">
         <p className="walks-page_weather-temperature">7°C</p>
-        <img src={WeatherSymbols[`heavy-snow.svg`]} alt={"cloudy"} title={"cloudy"} className="walks-page_weather-image" />
+        <div className="walks-page_weather-symbol">
+          <img src={WeatherSymbols[`cloudy.svg`]} alt={"cloudy"} title={"cloudy"} />
+        </div>
+        <p>Cloudy H: 7° L: 3° Sunrise: 06:45 Sunset: 20:12</p>
       </div>
     </div>
   )

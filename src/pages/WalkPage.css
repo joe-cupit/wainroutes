@@ -59,13 +59,14 @@
 
 
 .walks-page_gallery img {
-  transition: scale 100ms;
+  transition: scale 100ms, border-radius 100ms;
   cursor: pointer;
 
-  border-radius: calc(var(--gap-200) / 2);
+  border-radius: var(--gap-200);
 }
 .walks-page_gallery img:hover {
   scale: 1.05;
+  border-radius: 0;
 }
 
 
@@ -112,8 +113,18 @@
   font-size: var(--fs-1000);
   font-weight: var(--fw-bold);
 }
-.walks-page_weather-image {
-  max-width: 200px;
+.walks-page_weather-symbol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 125px;
+  aspect-ratio: 1;
+
+  overflow: hidden;
+}
+.walks-page_weather-symbol img {
+  max-width: 115%;
 }
 
 
@@ -127,4 +138,19 @@
   border-radius: var(--gap-300);
 
   background: white;
+}
+
+
+
+
+/*  */
+
+
+.elevation-chart_tooltip {
+  font-size: var(--fs-300);
+  background: var(--clr-white-400);
+  padding: var(--gap-200) var(--gap-300);
+  border-radius: var(--gap-200);
+
+  filter: drop-shadow(0 0 2px #0003);
 }

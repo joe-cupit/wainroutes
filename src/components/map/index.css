@@ -21,10 +21,15 @@
   stroke-linejoin: round;
 }
 .lake-map--hovered-point {
-  fill: var(--clr-primary-400);
-  stroke: white;
-  stroke-width: 3;
-  filter: drop-shadow(0 0 0.125rem #0007);
+  /* fill: var(--clr-primary-500); */
+  /* stroke: white; */
+  /* stroke-width: 1; */
+  /* filter: drop-shadow(0 0 0.125rem #0007); */
+  fill: var(--clr-white-500);
+  filter: drop-shadow(0.0625rem 0 0 var(--clr-primary-800))
+          drop-shadow(0 0.0625rem 0 var(--clr-primary-800))
+          drop-shadow(-0.0625rem 0 0 var(--clr-primary-800))
+          drop-shadow(0 -0.0625rem 0 var(--clr-primary-800));
 }
 
 .lake-map--marker {
