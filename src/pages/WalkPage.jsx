@@ -13,14 +13,142 @@ import Height from "../components/Height";
 import ElevationChart from "../components/ElevationChart";
 import haversine from "../utils/haversine";
 
+const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg")
+let WeatherSymbols = {}
+for (const path in WeatherSymbolsFolder) {
+  WeatherSymbolsFolder[path]().then((mod) => {
+    WeatherSymbols[path.split("/").at(-1)] = mod.default
+  })
+}
+
 
 export function WalkPage() {
   const { slug } = useParams();
   const walkData = useWalks(slug);
-  const hillData = useHills(null);
+
   document.title = (walkData?.title ?? "A Lake District Walk") + " | wainroutes";
 
-  const hillMarkers = useHillMarkers(walkData?.wainwrights);
+
+  if (walkData) return <Walk walkData={walkData} slug={slug} />
+  else return (
+    <>not a valid walk</>
+  )
+  
+}
+
+
+function Walk({ walkData, slug }) {
+
+  return (
+    <>
+    <main className="walk-page">
+      <section>
+        <div className="walk-page_heading">
+          <p>walks / ambleside</p>
+          <h1 className="title">{walkData?.title}</h1>          
+        </div>
+
+        <div className="walk-page_body flex-row">
+          <div className="walk-page_main flex-column flex-1">
+            <Summary 
+              wainwrights={walkData?.wainwrights}
+              length={walkData?.length}
+              elevation={walkData?.elevation}
+              intro={walkData?.intro}
+            />
+
+            <Route
+              wainwrights={walkData?.wainwrights}
+              center={[walkData?.startLocation?.latitude, walkData?.startLocation?.longitude]}
+              slug={slug}
+            />
+
+            <Waypoints
+              waypoints={walkData?.waypoints}
+            />
+
+            <Gallery />
+
+            <Weather />
+          </div>
+
+          <div className="walk-page_aside flex-column">
+            <div>
+              <img src="/images/wainroutes-27012311.JPEG" />
+            </div>
+
+            <StartingLocation
+              startLocation={walkData?.startLocation}
+              busRoutes={walkData?.busConnections}
+            />
+            <EstimatedTime />
+            <Terrain />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="walk-page_nearby flex-column flex-center">
+          <h2 className="heading">Nearby Walks</h2>
+
+          <div className="flex-row">
+            <div className="walk-page_nearby-walk"></div>
+            <div className="walk-page_nearby-walk"></div>
+            <div className="walk-page_nearby-walk"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    </>
+  )
+}
+
+
+function Summary({ wainwrights, length, elevation, intro }) {
+
+  const hillData = useHills(null);
+
+  return (
+    <div className="walk-page_summary">
+      <h2 className="subheading" style={{display: "none"}}>Summary</h2>
+      <div className="walks-page_section flex-column">
+        <div>
+          <h3 className="smallheading">Wainwrights: </h3>
+          <p className="walk-page_wainwrights">
+            {wainwrights?.map((hill, index) => {
+              return (
+                <Fragment key={index}>
+                  <span>
+                    <Link to={"/wainwrights/"+hill}>{hillData?.[hill]?.name}</Link>
+                    {(index+1 < wainwrights?.length ? "," : "")}
+                  </span>
+                  {(index+2 === wainwrights?.length ? " and " : " ")}
+                </Fragment>
+              )
+            })}
+          </p>
+        </div>
+
+        <div className="walk-page_summary flex-row">
+          <div>
+            <h3 className="smallheading">Distance: </h3>
+            <p><Distance km={length} /></p>
+          </div>
+          <div>
+            <h3 className="smallheading">Elevation: </h3>
+            <p><Height m={elevation} /></p>
+          </div>
+        </div>
+
+        <p>{intro}</p>
+      </div>
+    </div>
+  )
+}
+
+function Route({ wainwrights, center, slug }) {
+
+  const hillMarkers = useHillMarkers(wainwrights);
 
   const [gpxPoints, setGpxPoints] = useState(null);
   const [elevationData, setElevationData] = useState(null);
@@ -61,82 +189,153 @@ export function WalkPage() {
 
 
   return (
-    <main className="walk-page">
-
-      <section>
-        <div className="flex-column walk">
-          <div className="walk-title">
-            <Link to="/walks">&lt; back to walks</Link>
-            <h1 className="title">{walkData?.title}</h1>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 -1.25 106 12.5" preserveAspectRatio="none">
-              <path d="M5 5C22 2 38 2 55 5 71 8 88 8 105 5" fill="none"/>
-            </svg>
-          </div>
-
-          <div className="flex-row walk-stats">
-            <div>
-              <h3>Length</h3>
-              <p><Distance km={walkData?.length} /></p>
-            </div>
-            <div>
-              <h3>Elevation</h3>
-              <p><Height m={walkData?.elevation} /></p>
-            </div>
-            <div>
-              <h3>Type</h3>
-              <p>{walkData?.type}</p>
-            </div>
-            <div>
-              <h3>Wainwrights</h3>
-              <p className="walk-wainwrights">
-                {walkData?.wainwrights?.map((hill, index) => {
-                  return (
-                    <Fragment key={index}>
-                      <span>
-                        <Link to={"/wainwrights/"+hill}>{hillData?.[hill]?.name}</Link>
-                        {(index+1 < walkData?.wainwrights?.length ? "," : "")}
-                      </span>
-                      {(index+2 === walkData?.wainwrights?.length ? " and " : " ")}
-                    </Fragment>
-                  )
-                })}
-              </p>
-            </div>
-          </div>
-
-          <p>{walkData?.intro}</p>
-
-          <div className="flex-column walk-route">
-            <div className="walk-map">
-              <LakeMap
-                gpxPoints={gpxPoints} mapMarkers={hillMarkers}
-                defaultCenter={walkData?.start_lat_lang} defaultZoom={14} >
-                  <GeoRoute points={gpxPoints} activeIndex={activeIndex} />
-              </LakeMap>
-            </div>
-            <div className="walk-elevation">
-              <ElevationChart data={elevationData} setActiveIndex={setActiveIndex} />
-            </div>
-          </div>
-
-          <WalkSteps steps={walkData?.steps} />
+    <div>
+      <h2 className="subheading">Route</h2>
+      <div className="walks-page_section flex-column">
+        <div className="walk-page_map">
+          <LakeMap
+            gpxPoints={gpxPoints} mapMarkers={hillMarkers}
+            defaultCenter={center} defaultZoom={14} >
+              <GeoRoute points={gpxPoints} activeIndex={activeIndex} />
+          </LakeMap>
         </div>
-      </section>
+        <div className="walk-page_elevation">
+          <ElevationChart data={elevationData} setActiveIndex={setActiveIndex} />
+        </div>
+      </div>
+    </div>
+  )
+}
 
-    </main>
+function Waypoints({ waypoints }) {
+
+  return (
+    <div>
+      <h2 className="subheading">Waypoints</h2>
+      <div className="walks-page_section flex-column">
+        {waypoints
+        ? Object.keys(waypoints).map((waypoint, index) => {
+            return (
+              <div key={index}>
+                <h3 className="smallheading">{waypoint}</h3>
+                <p>{waypoints?.[waypoint]}</p>
+              </div>
+            )
+          })
+        : "N/A"
+        }
+      </div>
+    </div>
+  )
+}
+
+function Gallery({  }) {
+
+  return (
+    <div>
+      <h2 className="subheading">Gallery</h2>
+
+      <div className="walks-page_section walks-page_gallery grid-three">
+        {["01", "02", "04", "05", "06", "07", "08", "09"].map((image, index) => {
+          return <img key={index} src={`/images/wainroutes-270123${image}.JPEG`} />
+        })}
+      </div>
+    </div>
+  )
+}
+
+function Weather({  }) {
+
+  return (
+    <div>
+      <h2 className="subheading">Weather</h2>
+
+      <div className="walks-page_section walks-page_weather flex-row flex-center">
+        <p className="walks-page_weather-temperature">7°C</p>
+        <img src={WeatherSymbols[`heavy-snow.svg`]} alt={"cloudy"} title={"cloudy"} className="walks-page_weather-image" />
+      </div>
+    </div>
   )
 }
 
 
-function WalkSteps({ steps }) {
+function StartingLocation({ startLocation, busRoutes }) {
+
   return (
-    
-    steps && steps.map((step, index) => {
-      return (
-        <div key={index}>
-          <p>{step}</p>
+    <div>
+      <h2 className="subheading">Starting Location</h2>
+      <div className="walk-page_locations flex-column">
+
+        <div className="flex-row flex-apart">
+          <p>Location</p>
+          <p className="bold">{startLocation?.location ?? "Unavailable"}</p>
         </div>
-      )
-    })
+
+        <div className="flex-row flex-apart">
+          <p>Postcode</p>
+          <p className="bold">
+            {startLocation?.postCode
+            ? <a href={"https://www.google.com/maps/dir/?api=1&destination="+startLocation?.latitude+","+startLocation?.longitude} target="_blank">{startLocation?.postCode}</a>
+            : "Unavailable"
+            }
+          </p>
+        </div>
+
+        <div className="flex-row flex-apart">
+          <p>Grid Ref</p>
+          <p className="bold">{startLocation?.gridRef ?? "Unavailable"}</p>
+        </div>
+
+        <div className="flex-row flex-apart">
+          <p>What3Words</p>
+          <p className="bold">
+            {startLocation?.whatThreeWords
+            ? <a href={"https://what3words.com/"+startLocation?.whatThreeWords} target="_blank">{"///"+startLocation?.whatThreeWords}</a>
+            : "Unavailable"
+            }
+          </p>
+        </div>
+
+        <div className="flex-row flex-apart">
+          <p>Busses</p>
+          <div className="walk-page_busses flex-row">
+            {(busRoutes && Object.keys(busRoutes).length > 0)
+            ? Object.keys(busRoutes).map((bus, index) => {
+                return (
+                  <div key={index}
+                    className="walk-page_bus-number"
+                    style={{"backgroundColor": `var(--clr-bus-${bus})`}}
+                  >
+                    {bus}
+                  </div>
+                )
+              })
+            : "None"
+            }
+          </div>
+        </div>
+
+      </div>
+    </div>
+  )
+}
+
+function EstimatedTime({  }) {
+
+  return (
+    <div>
+      <h2 className="subheading">Estimated Time</h2>
+      <p>At a pace of 3km/h, this walk will take 4.5 hours</p>
+    </div>
+  )
+}
+
+function Terrain({  }) {
+
+  return (
+    <div>
+      <h2 className="subheading">Terrain</h2>
+      <p>This walk involves some small sections of scrambling. (maybe use cool symbols?)</p>
+    </div>
   )
 }

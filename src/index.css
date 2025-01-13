@@ -11,13 +11,14 @@
   --fs-300: 1rem;
   --fs-400: 1.125rem;
   --fs-600: 1.5rem;
-  --fs-800: 2.5rem;
+  --fs-800: 2.125rem;
   --fs-1000: 3.75rem;
 
   --fw-light: 300;
   --fw-regular: 400;
   --fw-medium: 600;
   --fw-bold: 800;
+  --fw-black: 1000;
 
   --gap-200: 0.25rem;
   --gap-300: 0.5rem;
@@ -60,20 +61,20 @@
   --wain-book-6: #edb636;
   --wain-book-7: #1b8651;
 
-  --bus-77: #ddad00;
-  --bus-77A: #ddad00;
-  --bus-77C: #ddad00;
-  --bus-78: #ec6608;
-  --bus-505: #016067;
-  --bus-508: #814997;
-  --bus-509: #af5742;
-  --bus-516: #a71681;
-  --bus-553: #ef99c1;
-  --bus-554: #ef99c1;
-  --bus-555: #e30613;
-  --bus-599: #3fa535;
-  --bus-X4: #87704c;
-  --bus-X5: #87704c;
+  --clr-bus-77: #ddad00;
+  --clr-bus-77A: #ddad00;
+  --clr-bus-77C: #ddad00;
+  --clr-bus-78: #ec6608;
+  --clr-bus-505: #016067;
+  --clr-bus-508: #814997;
+  --clr-bus-509: #af5742;
+  --clr-bus-516: #a71681;
+  --clr-bus-553: #ef99c1;
+  --clr-bus-554: #ef99c1;
+  --clr-bus-555: #e30613;
+  --clr-bus-599: #3fa535;
+  --clr-bus-X4: #87704c;
+  --clr-bus-X5: #87704c;
 }
 
 @media (max-width: 650px) {

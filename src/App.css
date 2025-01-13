@@ -71,19 +71,32 @@ footer > * {
 .flex-1 {
   flex: 1;
 }
+.flex-apart {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.flex-center {
+  align-items: center;
+}
 
 .grid-two,
 .grid-two-left,
 .grid-two-right {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: var(--gap-400);
 }
 .grid-two-left {
   grid-template-columns: 2fr 1fr;
 }
 .grid-two-right {
   grid-template-columns: 1fr 2fr;
+}
+.grid-three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--gap-400);
 }
 
 .gap-0 {
@@ -192,4 +205,32 @@ p {
 
 .button.round {
   border-radius: 9999px;
+}
+
+
+
+.title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-1000);
+  font-weight: var(--fw-black);
+  line-height: 1.1;
+}
+
+.heading {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-800);
+  font-weight: var(--fw-black);
+  line-height: 1.4;
+}
+.subheading {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-600);
+  font-weight: var(--fw-bold);
+  line-height: 1.7;
+}
+.smallheading {
+  font-family: var(--ff-body);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.7;
 }
