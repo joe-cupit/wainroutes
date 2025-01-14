@@ -39,13 +39,52 @@ export function WalkPage() {
 
 function Walk({ walkData, slug }) {
 
+  function scrollToSection(section) {
+    document.getElementById("walk_"+section.toLowerCase()).scrollIntoView({ behavior: "smooth" });
+    setCurrentSection(section)
+  }
+
+  const [currentSection, setCurrentSection] = useState("overview")
+  const sections = ["overview", "route", "waypoints", "gallery", "weather"]
+
+  const [showOverlay, setShowOverlay] = useState(false)
+  addEventListener("scroll", (e) => {
+    if (e.target.scrollingElement.scrollTop < 120) setShowOverlay(false)
+    else setShowOverlay(true)
+  });
+
+
   return (
     <>
     <main className="walk-page">
+
+      <div className={"walk-page_overlay" + (showOverlay ? " show" : "")}>
+        <section>
+          <div className="walk-page_overlay-wrapper flex-row flex-apart">
+            <div className="walk-page_overlay-title flex-1">
+              <p className="subheading">{walkData?.title}</p>
+            </div>
+
+            <div className="walk-page_overlay-nav flex-row">
+              {sections.map((sec, index) => {
+                return (
+                  <button key={index} 
+                    onClick={() => scrollToSection(sec)}
+                    className={currentSection == sec ? "active" : ""}
+                  >
+                    {sec.charAt(0).toUpperCase() + sec.slice(1)}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      </div>
+
       <section>
         <div className="walk-page_heading">
-          <p>walks / ambleside</p>
-          <h1 className="title">{walkData?.title}</h1>          
+          {/* <p>walks / ambleside</p> */}
+          <h1 className="title">{walkData?.title}</h1>
         </div>
 
         <div className="walk-page_body flex-row">
@@ -110,7 +149,7 @@ function Summary({ wainwrights, length, elevation, intro }) {
 
   return (
     <div className="walk-page_summary">
-      <h2 className="subheading" style={{display: "none"}}>Summary</h2>
+      <h2 className="subheading" id="walk_overview" style={{visibility: "hidden", height: 0}}>Overview</h2>
       <div className="walks-page_section flex-column">
         <div>
           <h3 className="smallheading">Wainwrights: </h3>
@@ -204,7 +243,7 @@ function Route({ wainwrights, center, slug }) {
 
   return (
     <div>
-      <h2 className="subheading">Route</h2>
+      <h2 className="subheading" id="walk_route">Route</h2>
       <div className="walks-page_section flex-column">
         <div className="walk-page_map">
           <LakeMap
@@ -225,7 +264,7 @@ function Waypoints({ waypoints }) {
 
   return (
     <div>
-      <h2 className="subheading">Waypoints</h2>
+      <h2 className="subheading" id="walk_waypoints">Waypoints</h2>
       <div className="walks-page_section flex-column">
         {waypoints
         ? Object.keys(waypoints).map((waypoint, index) => {
@@ -247,7 +286,7 @@ function Gallery({  }) {
 
   return (
     <div>
-      <h2 className="subheading">Gallery</h2>
+      <h2 className="subheading" id="walk_gallery">Gallery</h2>
 
       <div className="walks-page_section walks-page_gallery grid-three">
         {["01", "02", "04", "05", "06", "07", "08", "09"].map((image, index) => {
@@ -262,7 +301,7 @@ function Weather({  }) {
 
   return (
     <div>
-      <h2 className="subheading">Weather</h2>
+      <h2 className="subheading" id="walk_weather">Weather</h2>
 
       <div className="walks-page_section walks-page_weather flex-row flex-center">
         <p className="walks-page_weather-temperature">7°C</p>

@@ -3,6 +3,8 @@ footer {
 
   color: var(--clr-white-400);
   background: var(--clr-black-400);
+
+  margin-top: auto;
 }
 
 .footer-container {
