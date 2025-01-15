@@ -113,14 +113,14 @@ function Walk({ walkData, slug }) {
               waypoints={walkData?.waypoints}
             />
 
-            <Gallery />
+            <Gallery baseId={walkData?.photos?.baseId} />
 
             <Weather />
           </div>
 
           <div className="walk-page_aside flex-column">
             <div>
-              <img src="/images/wainroutes-27012311.JPEG" />
+              <img src={`/images/wainroutes-${walkData?.photos?.baseId}${walkData?.photos?.coverId}.jpeg`} />
             </div>
 
             <StartingLocation
@@ -286,15 +286,15 @@ function Waypoints({ waypoints }) {
   )
 }
 
-function Gallery({  }) {
+function Gallery({ baseId }) {
 
   return (
     <div>
       <h2 className="subheading" id="walk_gallery">Gallery</h2>
 
       <div className="walks-page_section walks-page_gallery grid-three">
-        {["01", "02", "04", "05", "06", "07", "08", "09"].map((image, index) => {
-          return <img key={index} src={`/images/wainroutes-270123${image}.JPEG`} />
+        {["01", "02", "04", "05", "06", "07"].map((image, index) => {
+          return <img key={index} src={`/images/wainroutes-${baseId}${image}.jpeg`} />
         })}
       </div>
     </div>
@@ -425,7 +425,7 @@ function NearbyWalks({ location, currentSlug }) {
       <div className="walk-page_nearby flex-column align-center">
         <h2 className="heading">Nearby Walks</h2>
 
-        <div className="grid-three">
+        <div className="walk-page_nearby-walks">
           {closestWalks.map((walk, index) => {
             return (
               <WalkCard key={index}

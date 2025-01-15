@@ -31,6 +31,10 @@
       "Fairfield Summit": "The tallest mountain summited in this walk, and the namesake of the walk, Fairfield, provides 360 degree views of the highest peaks in the lakes, with one of the most famous, Helvellyn, being a stones throw north of here. On a calm, clear day this makes for the perfect mid-walk resting point to eat lunch and soak in the surroundings.",
       "Final Steps": "The exit off of Nab Scar is steep and efficient at bringing this walk to a close and should prove no issue in good conditions. The path comes to a close along the main road traversing the central lakes at a bus stop where a bus can be caught travelling in both directions. As an alternative, the short-ish road to Ambleside can be walked turning this into a perfectly circular walk."
     },
+    "photos": {
+      "baseId": "001",
+      "coverId": "04"
+    },
 
     "tags": ["horseshoe", "ambleside", "fairfield"]
   },

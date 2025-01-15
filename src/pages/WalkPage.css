@@ -147,8 +147,11 @@ html {
 }
 
 
-.walk-page_aside {
-  /* max-width: var(--_aside-width); */
+@media (max-width: 50rem) {
+  .walk-page_body {
+    display: block;
+  }
+
 }
 .walk-page_aside > div {
   width: 100%;
@@ -205,6 +208,13 @@ html {
   max-width: 115%;
 }
 
+
+.walk-page_nearby-walks {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 .walk-page_nearby-link {
   text-decoration: underline;

@@ -9,9 +9,13 @@ import {ElevationIcon, HikingIcon, MountainIcon} from "../components/Icons"
 
 export default function WalkCard({ walk, link=true, dist=0 }) {
 
+  if (walk === null || walk === undefined) return <></>
+
+
   const WalkCardContent = <>
     <div className="walk-card_image">
-      <img src={"/images/wainroutes-2701230"+(4)+".JPEG"} />
+      {/* <img src={`/images/wainroutes-${walk?.photos?.baseId}${walk?.photos?.coverId}.jpeg`} /> */}
+      <img src={`/images/${walk?.slug}.jpg`} />
       {dist > 0 &&
         <p className="walk-card_dist">
           {walk.distanceFromLocation < 1000 ? walk.distanceFromLocation.toFixed(0)+"m" : (walk.distanceFromLocation / 1000).toFixed(1)+"km"} away
