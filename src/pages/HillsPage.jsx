@@ -3,11 +3,12 @@ import "./HillsPage.css"
 import { Link } from "react-router-dom";
 
 import { LakeMap } from "../components/map";
+import FlatMap from "../components/FlatMap";
 
 import { useHillMarkers } from "../hooks/useMarkers";
 import { useHills } from "../hooks/useHills";
 import { useMemo, useState } from "react";
-import Height from "../components/Height";
+import { displayElevation } from "../utils/unitConversions";
 
 const titles = {
   1: "The Eastern Fells", 2: "The Far Eastern Fells", 3: "The Central Fells", 4: "The Southern Fells", 5: "The Northern Fells", 6: "The North Western Fells", 7: "The Western Fells"
@@ -79,9 +80,8 @@ export function HillsPage() {
       <section>
         <div className="flex-column">
           <h1 className="title">The 214 Wainwrights</h1>
-          <div className="hills-page-map">
-            <LakeMap mapMarkers={hillMarkers} />
-          </div>
+          <p>Click on a mountain for more details</p>
+          <FlatMap width={700} height={830} />
         </div>
       </section>
 
@@ -113,7 +113,7 @@ export function HillsPage() {
                         </h2>
                         <span className="secondary-text">{titles[hill.book]}</span>
                       </td>
-                      <td className="text-center"><Height m={hill.height} /></td>
+                      <td className="text-center">{displayElevation(hill.height)}</td>
                     </tr>
                   )
                 })

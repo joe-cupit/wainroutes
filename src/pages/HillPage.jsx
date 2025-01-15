@@ -3,7 +3,7 @@ import "./HillPage.css";
 import { useParams } from "react-router-dom";
 
 import { useHills } from "../hooks/useHills";
-import Height from "../components/Height";
+import { displayElevation } from "../utils/unitConversions";
 
 
 const BookNumbers = {
@@ -37,7 +37,7 @@ export function HillPage() {
           <div className="flex-column">
             <div className="hill-page_header">
               <h1 className="title">{hillData.name}</h1>
-              <p className="subheading"><Height m={hillData.height} /></p>
+              <p className="subheading">{displayElevation(hillData.height)}</p>
               <p>"This is a random Wainwright quote about the current mountain and could be quite long"</p>
             </div>
 

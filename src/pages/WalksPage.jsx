@@ -6,11 +6,10 @@ import { Link } from "react-router-dom";
 import { useWalks } from "../hooks/useWalks";
 
 import { LakeMap } from "../components/map";
-import Height from "../components/Height";
-import Distance from "../components/Distance";
 
 import hillData from "../assets/hillData";
 import { useWalkMarkers } from "../hooks/useMarkers";
+import { displayDistance, displayElevation } from "../utils/unitConversions";
 
 const PreviewFolder = "/src/assets/previews/"
 
@@ -129,14 +128,14 @@ export default function WalkCard({ walk }) {
               <circle cx="46" cy="12.6" r="10.1"/>
               <path d="M74.9,41.4l-9.1-3.5l-6.5-8c-2.3-2.8-5.7-4.4-9.3-4.4h-8.4c-3.3,0-6.5,1.4-8.8,3.8L26,36.7c-0.6,0.6-0.9,1.3-1.1,2.1     l-2.5,12.1c-0.5,2.4,1,4.8,3.5,5.3c0.3,0.1,0.6,0.1,0.9,0.1c2.1,0,3.9-1.5,4.4-3.6l2.3-10.8l3-3.2v19.1l-2.2,14.3l-9.8,17.6     c-1.4,2.5-0.5,5.7,2,7.1c0.8,0.5,1.7,0.7,2.5,0.7c1.8,0,3.6-1,4.6-2.7l10.3-18.4c0.3-0.5,0.5-1.1,0.6-1.8l2-12.8l8.6,14.6     l3.3,16.8c0.5,2.5,2.7,4.2,5.1,4.2c0.3,0,0.7,0,1-0.1c2.8-0.6,4.7-3.3,4.1-6.1L65,73.6c-0.1-0.6-0.3-1.1-0.6-1.6l-8.9-15.2V39.5     l4,5c0.5,0.6,1.1,1.1,1.9,1.4l10.2,3.9c2.3,0.9,4.9-0.3,5.8-2.6C78.4,44.8,77.2,42.3,74.9,41.4z"/>
             </svg>
-            <Distance km={walk?.length} />
+            {displayDistance(walk?.length)}
           </span>
           •
           <span className="walks-card-stat-group">
             <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="none" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
             </svg>
-            <Height m={walk?.elevation} />
+            {displayElevation(walk?.elevation)}
           </span>
           •
           <span className="walks-card-stat-group">

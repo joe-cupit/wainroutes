@@ -8,10 +8,11 @@ import { useWalks } from "../hooks/useWalks";
 
 import { LakeMap, GeoRoute } from "../components/map";
 import { useHillMarkers } from "../hooks/useMarkers";
-import Distance from "../components/Distance";
-import Height from "../components/Height";
 import ElevationChart from "../components/ElevationChart";
 import haversine from "../utils/haversine";
+import WalkCard from "../components/WalkCard";
+import { displayDistance, displayElevation } from "../utils/unitConversions";
+
 
 const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg")
 let WeatherSymbols = {}
@@ -170,11 +171,11 @@ function Summary({ wainwrights, length, elevation, intro }) {
         <div className="walk-page_summary flex-row">
           <div>
             <h3 className="smallheading">Distance: </h3>
-            <p><Distance km={length} /></p>
+            <p>{displayDistance(length)}</p>
           </div>
           <div>
             <h3 className="smallheading">Elevation: </h3>
-            <p><Height m={elevation} /></p>
+            <p>{displayElevation(elevation)}</p>
           </div>
         </div>
 
@@ -345,7 +346,7 @@ function StartingLocation({ startLocation, busRoutes }) {
           <p className="bold">{startLocation?.gridRef ?? "Unavailable"}</p>
         </div>
 
-        <div className="flex-row flex-apart">
+        {/* <div className="flex-row flex-apart">
           <p>What3Words</p>
           <p className="bold">
             {startLocation?.whatThreeWords
@@ -353,7 +354,7 @@ function StartingLocation({ startLocation, busRoutes }) {
             : "Unavailable"
             }
           </p>
-        </div>
+        </div> */}
 
         <div className="flex-row flex-apart">
           <p>Busses</p>
@@ -427,23 +428,15 @@ function NearbyWalks({ location, currentSlug }) {
         <div className="grid-three">
           {closestWalks.map((walk, index) => {
             return (
-              <Link key={index}
-                to={"/walks/"+walk.slug}
-                className="walk-page_nearby-walk"
-              >
-                <div className="walk-page_nearby-walk-image">
-                  <img src={"/images/wainroutes-2701230"+(index+4)+".JPEG"} />
-                </div>
-                <p className="walk-page_nearby-dist">
-                  {walk.distanceFromLocation < 1000 ? walk.distanceFromLocation.toFixed(0)+"m" : (walk.distanceFromLocation / 1000).toFixed(1)+"km"} away
-                </p>
-                <h3 className="subheading">{walk.title}</h3>
-              </Link>
+              <WalkCard key={index}
+                walk={walk} // link={false}
+                dist={walk?.distanceFromLocation}
+              />
             )
           })}
         </div>
 
-        <Link to="/walks">View all</Link>
+        <Link to="/walks" className="walk-page_nearby-link">view all walks</Link>
       </div>
     </section>
   )
