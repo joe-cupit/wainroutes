@@ -1,6 +1,6 @@
 import "./WalkPage.css";
 
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { useHills } from "../hooks/useHills";
@@ -40,7 +40,13 @@ export function WalkPage() {
 function Walk({ walkData, slug }) {
 
   function scrollToSection(section) {
-    document.getElementById("walk_"+section.toLowerCase()).scrollIntoView({ behavior: "smooth" });
+    if (section == "overview") {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+    else {
+      document.getElementById("walk_"+section.toLowerCase()).scrollIntoView({ behavior: "smooth" });
+    }
+
     setCurrentSection(section)
   }
 
@@ -62,7 +68,7 @@ function Walk({ walkData, slug }) {
         <section>
           <div className="walk-page_overlay-wrapper flex-row flex-apart">
             <div className="walk-page_overlay-title flex-1">
-              <p className="subheading">{walkData?.title}</p>
+              <button className="subheading" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>{walkData?.title}</button>
             </div>
 
             <div className="walk-page_overlay-nav flex-row">
@@ -87,7 +93,7 @@ function Walk({ walkData, slug }) {
           <h1 className="title">{walkData?.title}</h1>
         </div>
 
-        <div className="walk-page_body flex-row">
+        <div className="walk-page_body grid-two">
           <div className="walk-page_main flex-column flex-1">
             <Summary 
               wainwrights={walkData?.wainwrights}
@@ -126,17 +132,10 @@ function Walk({ walkData, slug }) {
         </div>
       </section>
 
-      <section>
-        <div className="walk-page_nearby flex-column flex-center">
-          <h2 className="heading">Nearby Walks</h2>
-
-          <div className="flex-row">
-            <div className="walk-page_nearby-walk"></div>
-            <div className="walk-page_nearby-walk"></div>
-            <div className="walk-page_nearby-walk"></div>
-          </div>
-        </div>
-      </section>
+      <NearbyWalks
+        location={[walkData?.startLocation?.longitude, walkData?.startLocation?.latitude]}
+        currentSlug={slug}
+      />
     </main>
     </>
   )
@@ -149,7 +148,7 @@ function Summary({ wainwrights, length, elevation, intro }) {
 
   return (
     <div className="walk-page_summary">
-      <h2 className="subheading" id="walk_overview" style={{visibility: "hidden", height: 0}}>Overview</h2>
+      <h2 className="subheading" id="walk_overview" style={{visibility: "hidden", height: 0, padding: 0}}>Overview</h2>
       <div className="walks-page_section flex-column">
         <div>
           <h3 className="smallheading">Wainwrights: </h3>
@@ -238,7 +237,7 @@ function Route({ wainwrights, center, slug }) {
       });
   }, [slug]);
 
-  const [activeIndex, setActiveIndex] = useState(null)
+  const [hoveredIndex, setHoveredIndex] = useState(null)
 
 
   return (
@@ -249,11 +248,15 @@ function Route({ wainwrights, center, slug }) {
           <LakeMap
             gpxPoints={gpxPoints} mapMarkers={hillMarkers}
             defaultCenter={center} defaultZoom={14} >
-              <GeoRoute points={gpxPoints} activeIndex={activeIndex} />
+              <GeoRoute points={gpxPoints} activeIndex={hoveredIndex} />
           </LakeMap>
         </div>
         <div className="walk-page_elevation">
-          <ElevationChart data={elevationData} setActiveIndex={setActiveIndex} />
+          <ElevationChart
+            data={elevationData}
+            setActiveIndex={setHoveredIndex}
+            showHillMarkers={false}
+          />
         </div>
       </div>
     </div>
@@ -303,7 +306,7 @@ function Weather({  }) {
     <div>
       <h2 className="subheading" id="walk_weather">Weather</h2>
 
-      <div className="walks-page_section walks-page_weather flex-row flex-center">
+      <div className="walks-page_section walks-page_weather flex-row align-center">
         <p className="walks-page_weather-temperature">7°C</p>
         <div className="walks-page_weather-symbol">
           <img src={WeatherSymbols[`cloudy.svg`]} alt={"cloudy"} title={"cloudy"} />
@@ -393,5 +396,55 @@ function Terrain({  }) {
       <h2 className="subheading">Terrain</h2>
       <p>This walk involves some small sections of scrambling. (maybe use cool symbols?)</p>
     </div>
+  )
+}
+
+
+function NearbyWalks({ location, currentSlug }) {
+
+  const closestWalks = useMemo(() => {
+    let walks = useWalks()
+
+    for (let walkSlug of Object.keys(walks)) {
+      if (walkSlug === currentSlug) {
+        walks[walkSlug].distanceFromLocation = Infinity
+        continue
+      }
+
+      walks[walkSlug].distanceFromLocation = haversine(location, [walks[walkSlug].startLocation?.longitude, walks[walkSlug].startLocation?.latitude])
+    }
+
+    const orderedWalks = Object.values(walks).sort((a, b) => a.distanceFromLocation - b.distanceFromLocation)
+    return orderedWalks.slice(0, 3)
+  }, [location])
+
+
+  return (
+    <section>
+      <div className="walk-page_nearby flex-column align-center">
+        <h2 className="heading">Nearby Walks</h2>
+
+        <div className="grid-three">
+          {closestWalks.map((walk, index) => {
+            return (
+              <Link key={index}
+                to={"/walks/"+walk.slug}
+                className="walk-page_nearby-walk"
+              >
+                <div className="walk-page_nearby-walk-image">
+                  <img src={"/images/wainroutes-2701230"+(index+4)+".JPEG"} />
+                </div>
+                <p className="walk-page_nearby-dist">
+                  {walk.distanceFromLocation < 1000 ? walk.distanceFromLocation.toFixed(0)+"m" : (walk.distanceFromLocation / 1000).toFixed(1)+"km"} away
+                </p>
+                <h3 className="subheading">{walk.title}</h3>
+              </Link>
+            )
+          })}
+        </div>
+
+        <Link to="/walks">View all</Link>
+      </div>
+    </section>
   )
 }

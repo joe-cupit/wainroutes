@@ -1,0 +1,14 @@
+.elevation-chart {
+  --_clr-chart-stroke: var(--clr-primary-400);
+  --_clr-chart-fill: var(--clr-primary-200);
+  --_clr-chart-black: var(--clr-black-400);
+  --_clr-chart-black-light: var(--clr-black-200);
+
+  font-size: var(--fs-300);
+}
+
+
+.elevation-chart .recharts-cartesian-axis .recharts-label {
+  font-weight: var(--fw-bold);
+}
+

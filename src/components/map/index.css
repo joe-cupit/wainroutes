@@ -26,10 +26,8 @@
   /* stroke-width: 1; */
   /* filter: drop-shadow(0 0 0.125rem #0007); */
   fill: var(--clr-white-500);
-  filter: drop-shadow(0.0625rem 0 0 var(--clr-primary-800))
-          drop-shadow(0 0.0625rem 0 var(--clr-primary-800))
-          drop-shadow(-0.0625rem 0 0 var(--clr-primary-800))
-          drop-shadow(0 -0.0625rem 0 var(--clr-primary-800));
+  stroke: var(--clr-primary-800);
+  stroke-width: 2;
 }
 
 .lake-map--marker {
