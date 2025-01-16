@@ -1,7 +1,9 @@
 import "./WalkPage.css";
 
 import { useState, useEffect, Fragment, useMemo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
+
+import { NotFoundPage } from "./error/notfound";
 
 import { useHills } from "../hooks/useHills";
 import { useWalks } from "../hooks/useWalks";
@@ -32,10 +34,7 @@ export function WalkPage() {
 
 
   if (walkData) return <Walk walkData={walkData} slug={slug} />
-  else return (
-    <>not a valid walk</>
-  )
-  
+  else return <NotFoundPage />
 }
 
 
@@ -121,7 +120,7 @@ function Walk({ walkData, slug }) {
 
           <div className="walk-page_aside flex-column">
             <div>
-              <img src={`/images/wainroutes-${walkData?.photos?.baseId}${walkData?.photos?.coverId}.jpeg`} />
+              <img src={`/images/${walkData?.slug}.jpg`} />
             </div>
 
             <StartingLocation
@@ -470,7 +469,7 @@ function NearbyWalks({ location, currentSlug }) {
             return (
               <WalkCard key={index}
                 walk={walk} // link={false}
-                dist={walk?.distanceFromLocation}
+                distFrom={location}
               />
             )
           })}
