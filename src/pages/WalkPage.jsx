@@ -11,7 +11,8 @@ import { useHillMarkers } from "../hooks/useMarkers";
 import ElevationChart from "../components/ElevationChart";
 import haversine from "../utils/haversine";
 import WalkCard from "../components/WalkCard";
-import { displayDistance, displayElevation } from "../utils/unitConversions";
+import { displayDistance, displayElevation, displayTemperature, getDistanceValue, getElevationValue } from "../utils/unitConversions";
+import useWeather from "../hooks/useWeather";
 
 
 const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg")
@@ -216,8 +217,8 @@ function Route({ wainwrights, center, slug }) {
           coordinates.push(point)
 
           let ele = {
-            "dist": Number((dist / 1000).toFixed(4)),
-            "ele": Number(node.getElementsByTagName("ele")[0]?.textContent)
+            "dist": getDistanceValue((dist / 1000)),
+            "ele": getElevationValue(node.getElementsByTagName("ele")[0]?.textContent)
           }
           if (node.getElementsByTagName("name").length > 0) {
             ele["waypoint"] = node.getElementsByTagName("name")[0]?.textContent
@@ -303,16 +304,55 @@ function Gallery({ baseId }) {
 
 function Weather({  }) {
 
+  const weatherData = useWeather()?.days?.[0]
+  const weatherForecast = weatherData?.forecast
+  const suntime = [weatherData?.sunrise, weatherData?.sunset]
+
+  const middayIndex = weatherForecast?.time?.indexOf("12:00")
+
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
+  const startDate = weatherData?.date ? (new Date(weatherData?.date)) : null
+  let comingDays = []
+  if (startDate) {
+    comingDays = [...Array(7).fill().map((d, n) => (addDays(startDate, n)))]
+  }
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0)
+
+
   return (
     <div>
       <h2 className="subheading" id="walk_weather">Weather</h2>
 
-      <div className="walks-page_section walks-page_weather flex-row align-center">
-        <p className="walks-page_weather-temperature">7°C</p>
-        <div className="walks-page_weather-symbol">
-          <img src={WeatherSymbols[`cloudy.svg`]} alt={"cloudy"} title={"cloudy"} />
+      <div className="walk-page_weather-tabs flex-row justify-apart">
+        {comingDays?.map((day, index) => {
+          return (
+            <button key={index}
+              className={"walk-page_weather-tab flex-column gap-0 align-center smallheading" + (index === selectedDayIndex ? " selected" : "")}
+              onClick={() => setSelectedDayIndex(index)}
+            >
+              <span className="subtext">{days[day.getDay()]}</span>
+              <span className="subtext weather-day">{day.getDate()}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      <div className="walks-page_section walks-page_weather-main flex-column gap-0">
+        <h3 className="subheading walks-page_weather-date">{comingDays[selectedDayIndex].toDateString()}</h3>
+        <p className="subtext walks-page_weather-suntime">Sunrise: {suntime[0]} Sunset: {suntime[1]}</p>
+        <div className="flex-row align-center gap-0">
+          <p className="walks-page_weather-temperature">{displayTemperature(Number(weatherForecast?.temp[middayIndex]))}</p>
+          <div className="walks-page_weather-symbol">
+            <img src={WeatherSymbols[`${weatherForecast?.type[middayIndex]?.toLowerCase().replaceAll(" ", "-").replaceAll(/[()]/g, "")}.svg`]} alt={weatherForecast?.type[middayIndex]} title={weatherForecast?.type[middayIndex]} />
+          </div>
+          <p>{weatherForecast?.type[middayIndex]} H: {displayTemperature(Math.max(...weatherForecast?.temp ?? "none"), false)} L: {displayTemperature(Math.min(...weatherForecast?.temp ?? "none"), false)}</p>
         </div>
-        <p>Cloudy H: 7° L: 3° Sunrise: 06:45 Sunset: 20:12</p>
       </div>
     </div>
   )

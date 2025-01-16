@@ -232,3 +232,9 @@ p {
   font-weight: var(--fw-bold);
   line-height: 1.7;
 }
+
+.subtext {
+  font-family: var(--ff-body);
+  font-size: var(--fs-300);
+  line-height: 1;
+}
