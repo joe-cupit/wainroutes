@@ -1,6 +1,6 @@
 import "./ElevationChart.css"
 
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { Area, AreaChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { getDistanceUnit, getElevationUnit } from "../utils/unitConversions";
 
@@ -61,8 +61,7 @@ export default function ElevationChart({ data, setActiveIndex, showHillMarkers=f
 
           <Tooltip
             isAnimationActive={false}
-            // content={<CustomToolTipContent setActiveIndex={setActiveIndex} />}
-            content={({ payload }) => {if (!payload?.length > 0) setActiveIndex(null)}}
+            content={<CustomToolTipContent setActiveIndex={setActiveIndex} />}
             cursor={{ stroke: "var(--_clr-chart-black)", strokeWidth: 1.5 }}
           />
 
@@ -78,8 +77,21 @@ export default function ElevationChart({ data, setActiveIndex, showHillMarkers=f
 }
 
 
+const CustomToolTipContent = ({ payload, setActiveIndex }) => {
+
+  useEffect(() => {
+    if (!payload?.length > 0) setActiveIndex(null)
+  }, [payload])
+
+  return <></>
+}
+
+
 const ActiveDot = ({ payload, setActiveIndex }) => {
-  setActiveIndex(payload.index)
+
+  useEffect(() => {
+    setActiveIndex(payload.index)
+  }, [])
 
   const width = 10
   const halfwidth = width / 2
