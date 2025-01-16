@@ -1,0 +1,56 @@
+.error-page {
+  position: relative;
+  overflow: hidden;
+
+  min-height: max(35rem, 40vw);
+}
+
+.error-page_text {
+  margin-block-start: var(--gap-400);
+  text-align: center;
+}
+@media (max-width: 47rem) {
+  .error-page_message {
+    max-width: 20ch;
+  }
+}
+@media (max-width: 40rem) {
+  .error-page_text {
+    align-items: end;
+    margin-inline-start: auto;
+    text-align: right;
+  }
+}
+
+.error-page_code {
+  font-size: 8em;
+  line-height: 0.8;
+}
+.error-page_message {
+  font-size: var(--fs-600);
+}
+
+.error-page_svg {
+  min-height: 80vh;
+}
+
+.error-page_svg-background,
+.error-page_svg-foreground {
+  pointer-events: none;
+  position: absolute;
+}
+
+.error-page_svg-background {
+  fill: var(--clr-black-400);
+
+  bottom: calc(+1rem - 20vw);
+  left: max(10rem, 20vw);
+  width: max(40rem, 80vw);
+}
+.error-page_svg-foreground {
+  fill: var(--clr-black-500);
+
+  bottom: calc(-20vw);
+  left: calc(-12rem + 5vw);
+  width: max(35rem, 60vw);
+}

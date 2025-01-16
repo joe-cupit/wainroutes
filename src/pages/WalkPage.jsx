@@ -3,7 +3,7 @@ import "./WalkPage.css";
 import { useState, useEffect, Fragment, useMemo } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 
-import { NotFoundPage } from "./error/notfound";
+import { NotFoundPage } from "./error/NotFoundPage";
 
 import { useHills } from "../hooks/useHills";
 import { useWalks } from "../hooks/useWalks";

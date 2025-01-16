@@ -5,7 +5,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 import { Navbar } from './components/Navbar';
 import Footer from './components/Footer';
-import { NotFoundPage } from './pages/error/notfound';
+import { NotFoundPage } from './pages/error/NotFoundPage';
 
 import { HomePage } from './pages/Home';
 import { WalksPage } from './pages/WalksPage';
