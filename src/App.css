@@ -163,8 +163,8 @@ p {
   transition: color var(--_button-duration) ease,
               background-color var(--_button-duration) ease;
 
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
   border-top-right-radius: 0;
   cursor: pointer;
 
@@ -189,6 +189,15 @@ p {
 }
 .button.secondary:hover {
   --_button-background: var(--clr-black-100);
+}
+
+button.small {
+  padding: 0.25em 0.5em;
+}
+
+button.bottom-left {
+  border-radius: 0.5em;
+  border-bottom-left-radius: 0;
 }
 
 .button.empty {

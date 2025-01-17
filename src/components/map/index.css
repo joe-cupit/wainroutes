@@ -31,10 +31,10 @@
 }
 
 .lake-map--marker {
-  width: 24px;
+  width: 32px;
   fill: var(--clr-primary-400);
   stroke: black;
-  stroke-width: 0.5;
+  stroke-width: 1;
 }
 
 

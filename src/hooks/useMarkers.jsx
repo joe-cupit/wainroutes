@@ -19,7 +19,7 @@ export const useHillMarkers = (filters=null) => {
         }))
         .filter(a => filters===null || filters.includes(a.properties.slug))
     : []
-  , [hillData]);
+  , [hillData, filters]);
 
   return hillMarkers
 }

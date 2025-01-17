@@ -6,7 +6,7 @@ import { useSupercluster } from "./hooks/useSupercluster";
 import { Link } from "react-router-dom";
 
 // import { maptiler } from 'pigeon-maps/providers';
-// const maptilerProvider = maptiler(process.env.REACT_APP_MAP_API_KEY, "uk-openzoomstack-outdoor");
+// const maptilerProvider = maptiler(import.meta.env.VITE_MAP_API_KEY, "uk-openzoomstack-outdoor");
 
 // const geoViewport = require('@mapbox/geo-viewport');
 
@@ -187,8 +187,18 @@ function HillIcon({ book }) {
     //     <path d="M13.0392019,21.7081936 C12.0940626,22.2815258 10.8626021,21.9809256 10.2886866,21.0367943 C6.7619497,15.2353103 5,11.2870891 5,8.99256161 C5,5.13067647 8.13400675,2 12,2 C15.8659932,2 19,5.13067647 19,8.99256161 C19,11.2870898 17.2380492,15.2353128 13.71131,21.0367998 C13.544473,21.3112468 13.3139409,21.5415339 13.0392019,21.7081936 Z M12.0074463,12 C13.666063,12 15.0106376,10.6568542 15.0106376,9 C15.0106376,7.34314575 13.666063,6 12.0074463,6 C10.3488296,6 9.00425503,7.34314575 9.00425503,9 C9.00425503,10.6568542 10.3488296,12 12.0074463,12 Z"/>
     //   </g>
     // </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 4 4" className={`lake-map--marker wain-book-${book}`}>
-      <path d="M0 0 2-4 4 0Z" style={{ pointerEvents: "auto", strokeWidth: 0.25 }}/>
+
+    // <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 4 4" className={`lake-map--marker wain-book-${book}`}>
+    //   <path d="M0 0 2-4 4 0Z" style={{ pointerEvents: "auto", strokeWidth: 0.25 }}/>
+    // </svg>
+
+    // <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined">
+    //   <path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/>
+    // </svg>
+
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" // className={`wain-book-${book}`}
+    >
+      <path d="M11.291 21.706 12 21l-.709.706zM12 21l.708.706a1 1 0 0 1-1.417 0l-.006-.007-.017-.017-.062-.063a47.708 47.708 0 0 1-1.04-1.106 49.562 49.562 0 0 1-2.456-2.908c-.892-1.15-1.804-2.45-2.497-3.734C4.535 12.612 4 11.248 4 10c0-4.539 3.592-8 8-8 4.408 0 8 3.461 8 8 0 1.248-.535 2.612-1.213 3.87-.693 1.286-1.604 2.585-2.497 3.735a49.583 49.583 0 0 1-3.496 4.014l-.062.063-.017.017-.006.006L12 21zm0-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
     </svg>
   )
 }

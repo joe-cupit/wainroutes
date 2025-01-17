@@ -161,6 +161,7 @@ html {
 }
 
 
+.walk-page_route-title,
 .walk-page_map,
 .walk-page_elevation {
   width: 98%;
@@ -240,15 +241,15 @@ html {
 
 
 .walk-page_busses {
-  gap: var(--gap-200);
+  gap: 0.25em;
   font-weight: var(--fw-medium);
 }
 
 .walk-page_bus-number {
   color: var(--clr-white-400);
-  border-radius: var(--gap-200);
-  padding-inline: var(--gap-200);
-  padding-block-start: calc(var(--gap-200) / 2);
+  border-radius: 0.25em;
+  padding-inline: 0.25em;
+  padding-block-start: 0.125em;
 
   cursor: default;
 }
@@ -338,11 +339,15 @@ html {
   width: 3.5rem;
   padding-block: 0.375em;
   
-  color: var(--clr-black-300);
-  border: 1px solid transparent;
+  color: var(--clr-black-100);
+  border: 2px solid transparent;
   border-radius: 0.375em;
   
   transition: border-color 100ms;
+}
+.walk-page_weather-tab.weekend {
+  color: var(--clr-black-200);
+  background: var(--clr-white-500);
 }
 .walk-page_weather-tab .weather-day {
   font-size: var(--fs-600);
@@ -353,7 +358,6 @@ html {
 .walk-page_weather-tab.selected {
   color: var(--clr-black-400);
   border-color: currentColor;
-  font-size: var(--fs-600);
 }
 
 .walks-page_weather-main {
@@ -402,12 +406,6 @@ section.walk-page_nearby {
   justify-content: center;
 }
 
-.walk-page_nearby-link {
-  text-decoration: underline;
-}
-.walk-page_nearby-link:hover {
-  text-decoration: none;
-}
 
 /*  */
 

@@ -297,7 +297,12 @@ function Route({ wainwrights, center, slug }) {
 
   return (
     <div>
-      <h2 className="subheading" id="walk_route">Route</h2>
+      <div className="walk-page_route-title flex-row flex-apart">
+        <h2 className="subheading" id="walk_route">Route</h2>
+        <button className="primary small bottom-left button">
+          Download GPX
+        </button>
+      </div>
       <div className="walks-page_section flex-column">
         <div className="walk-page_map">
           <LakeMap
@@ -386,7 +391,7 @@ function Weather({  }) {
         {comingDays?.map((day, index) => {
           return (
             <button key={index}
-              className={"walk-page_weather-tab flex-column gap-0 align-center smallheading" + (index === selectedDayIndex ? " selected" : "")}
+              className={"walk-page_weather-tab flex-column gap-0 align-center smallheading" + ([0, 6].includes(day.getDay()) ? " weekend" : "") + (index === selectedDayIndex ? " selected" : "")}
               onClick={() => setSelectedDayIndex(index)}
             >
               <span className="subtext">{days[day.getDay()]}</span>
@@ -553,7 +558,7 @@ function NearbyWalks({ location, currentSlug }) {
           })}
         </div>
 
-        <Link to="/walks" className="walk-page_nearby-link">view all walks</Link>
+        <Link to="/walks" className="primary button">View all walks</Link>
       </div>
     </section>
   )

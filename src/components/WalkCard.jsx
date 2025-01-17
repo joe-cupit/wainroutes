@@ -14,7 +14,6 @@ export default function WalkCard({ walk, link=true, distFrom=null }) {
 
   let distString = ""
   if (distFrom) {
-    console.log(haversine(distFrom, [walk?.startLocation?.longitude, walk?.startLocation?.latitude]))
     let dist = getDistanceValue(haversine(distFrom, [walk?.startLocation?.longitude, walk?.startLocation?.latitude]) / 1000)
 
     if (getDistanceUnit() === "km" && dist < 1) {
