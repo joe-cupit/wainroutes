@@ -2,6 +2,10 @@ html {
   scroll-padding-top: 3.5rem;
 }
 
+.walk-page {
+  background: var(--clr-white-400);
+}
+
 .walk-page section {
   --_main-width: 70ch;
   --_aside-width: 18rem;
@@ -187,7 +191,6 @@ html {
 
 
 .walk-page_aside {
-  --_aside-border-radius: var(--gap-300);
   order: 1;
 }
 
@@ -200,22 +203,18 @@ html {
   text-align: center;
 
   border: 1px solid var(--clr-black-400);
+  border-right: none;
 
   padding-block: 0.25em;
+  padding-inline: 0.25em;
 }
 .walk-page_aside-tab.selected {
   font-weight: var(--fw-medium);
-  background: var(--clr-white-600);
-}
-.walk-page_aside-tab:first-child {
-  border-start-start-radius: var(--_aside-border-radius);
-  border-end-start-radius: var(--_aside-border-radius);
-  border-right: none;
+  /* background: var(--clr-white-600); */
+  border-block-end: none;
 }
 .walk-page_aside-tab:last-child {
-  border-start-end-radius: var(--_aside-border-radius);
-  border-end-end-radius: var(--_aside-border-radius);
-  border-left: none;
+  border-right: 1px solid var(--clr-black-400);
 }
 
 .walk-page_aside > div {
@@ -262,8 +261,17 @@ html {
 }
 
 
+.walk-page_terrain {
+  --clr-terrain-icon-color: var(--clr-black-400);
+  --clr-terrain-icon-highlight: var(--clr-black-200);
+
+  --clr-terrain-level-1: #57B493;
+  --clr-terrain-level-2: #C39E4C;
+  --clr-terrain-level-3: #B65353;
+  --clr-terrain-level-4: #7b3551;
+}
 .walk-page_terrain-badges {
-  gap: var(--gap-300)
+  gap: 0.5em;
 }
 .walk-page_terrain svg {
   cursor: pointer;
@@ -303,13 +311,13 @@ html {
     border: 1px solid var(--clr-black-400);
     border-top: none;
 
-    width: calc(100% - 2 * var(--_aside-border-radius));
     margin-inline: auto;
 
     border-end-end-radius: var(--_aside-border-radius);
     border-end-start-radius: var(--_aside-border-radius);
 
     padding: 0.5em 1em;
+    padding-block-end: 1em;
   }
 }
 
@@ -380,8 +388,12 @@ html {
 }
 
 
-.walk-page_nearby {
+section.walk-page_nearby {
+  max-width: none;
   margin-block: 1em;
+  padding-block: 1em;
+
+  background: var(--clr-white-500);
 }
 .walk-page_nearby-walks {
   display: flex;

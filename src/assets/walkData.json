@@ -24,6 +24,13 @@
       "555": "The 555 covers most of the central lakes and can bring you to Ambleside from both Keswick and Windermere",
       "599": "The 599 offers a lovely open top experience between Grasmere and Windermere"
     },
+    "terrain": {
+      "gradient": 2,
+      "path": 2,
+      "exposure": 1,
+      "scrambling": 2,
+      "desc": "Sort of steep, path sometimes hard to follow, limited exposure and occasional moments of hands on rock scrambling"
+    },
 
     "intro": "The Fairfield Horseshoe is one of the 'must do' walks in the Lake District. Kicking off in either Ambleside or Rydal, this walk takes you across eight summits around the Fairfield valley, providing views spanning most of the district.",
     "waypoints": {
@@ -51,12 +58,20 @@
     "date": "2023-11-25",
 
     "startLocation": {
+      "location": "Glenridding",
       "latitude": 54.5437190,
       "longitude": -2.9492340
     },
     "busConnections": {
       "508": "Get on this bus between Penrith and Windermere stops in ",
       "509": "Alternatively, the 508 can get you here from Keswick too"
+    },
+    "terrain": {
+      "gradient": 3,
+      "path": 2,
+      "exposure": 3,
+      "scrambling": 4,
+      "desc": ""
     },
 
     "tags": ["circular"]
@@ -74,6 +89,7 @@
     "date": "2024-08-14",
 
     "startLocation": {
+      "location": "Buttermere",
       "latitude": 54.540899,
       "longitude": -3.277522,
       "gridRef": "NY174169",
@@ -84,6 +100,13 @@
       "77": "from Keswick",
       "77A": "from Keswick",
       "77C": "from Keswick/Cockermouth"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 2,
+      "desc": ""
     },
 
     "tags": ["point-to-point"]
@@ -101,11 +124,19 @@
     "date": "2024-04-20",
 
     "startLocation": {
+      "location": "Dungeon Ghyll",
       "latitude": 54.4482780,
       "longitude": -3.0877100
     },
     "busConnections": {
       "516": "from Ambleside"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 3,
+      "exposure": 3,
+      "scrambling": 4,
+      "desc": ""
     },
 
     "tags": ["circular"]
@@ -123,10 +154,18 @@
     "date": "2024-03-24",
 
     "startLocation": {
+      "location": "Kentmere",
       "latitude": 54.4296780,
       "longitude": -2.8403580
     },
     "busConnections": {},
+    "terrain": {
+      "gradient": 2,
+      "path": 2,
+      "exposure": 2,
+      "scrambling": 1,
+      "desc": ""
+    },
 
     "tags": ["horseshoe", "circular"]
   },
@@ -143,6 +182,7 @@
     "date": "2024-06-08",
 
     "startLocation": {
+      "location": "Seatoller",
       "latitude": 54.5128280,
       "longitude": -3.1662430
     },
@@ -151,6 +191,13 @@
       "77A": "from Keswick",
       "77C": "from Keswick/Cockermouth",
       "78": "from Keswick"
+    },
+    "terrain": {
+      "gradient": 3,
+      "path": 3,
+      "exposure": 2,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["circular"]
@@ -168,6 +215,7 @@
     "date": "2024-08-11",
 
     "startLocation": {
+      "location": "Braithwaite",
       "latitude": 54.6030000,
       "longitude": -3.1897670
     },
@@ -175,6 +223,13 @@
       "77": "from Keswick",
       "77A": "from Keswick",
       "X5": "from Penrith"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["horseshoe", "circular"]
@@ -192,12 +247,20 @@
     "date": "2024-09-23",
 
     "startLocation": {
+      "location": "Borrowdale",
       "latitude": 54.5180560,
       "longitude": -3.1528740
     },
     "busConnections": {
       "78": "Takes you to the start from Keswick",
       "508": "Brings you from the end to Ambleside (many busses from there return to Keswick)"
+    },
+    "terrain": {
+      "gradient": 3,
+      "path": 2,
+      "exposure": 1,
+      "scrambling": 2,
+      "desc": ""
     },
 
     "intro": "Starting in the picturesque Borrowdale valley, this walk will take you through some of the tallest mountains in the lakes, ending in Dungeon Ghyll at the base of the Langdale Pikes. This walk is best enjoyed by staying the night in Borrowdale, whether that be in a tent or the perfectly placed Youth Hostel - a bus out of Dungeon Ghyll can be used to return to Ambleside, providing connections to the rest of the district.",
@@ -217,11 +280,17 @@
     "date": "2021-09-01",
 
     "startLocation": {
+      "location": "Wasdale",
       "latitude": 54.4542250,
       "longitude": -3.2539700
     },
-    "busConnections": {
-
+    "busConnections": {},
+    "terrain": {
+      "gradient": 2,
+      "path": 2,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["there-and-back"]
@@ -239,6 +308,7 @@
     "date": "2024-03-27",
 
     "startLocation": {
+      "location": "Under-Skiddaw",
       "latitude": 54.6426600,
       "longitude": -3.1861450
     },
@@ -246,6 +316,13 @@
       "553": "from Keswick/Carlise",
       "554": "from Keswick/Carlise",
       "X4": "from Penrith/Cockermouth"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 1,
+      "exposure": 2,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["circular"]
@@ -263,12 +340,20 @@
     "date": "2024-05-31",
 
     "startLocation": {
+      "location": "Grasmere",
       "latitude": 54.4597590,
       "longitude": -3.0244860
     },
     "busConnections": {
       "555": "from Keswick/Windermere",
       "599": "from Windermere"
+    },
+    "terrain": {
+      "gradient": 3,
+      "path": 2,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["circular", "horseshoe"]
@@ -286,11 +371,19 @@
     "date": "2024-02-24",
 
     "startLocation": {
+      "location": "Coniston",
       "latitude": 54.3689020,
       "longitude": -3.0761210
     },
     "busConnections": {
       "505": "Takes you directly from Ambleside to Coniston"
+    },
+    "terrain": {
+      "gradient": 3,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["circular"]
@@ -308,10 +401,18 @@
     "date": "2024-08-16",
 
     "startLocation": {
+      "location": "North Thirlmere",
       "latitude": 54.5620880,
       "longitude": -3.0732030
     },
     "busConnections": {},
+    "terrain": {
+      "gradient": 3,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
 
     "tags": ["there-and-back"]
   },
@@ -328,10 +429,18 @@
     "date": "2023-12-13",
 
     "startLocation": {
+      "location": "Grasmere",
       "latitude": 54.4736930,
       "longitude": -3.0260060
     },
     "busConnections": {},
+    "terrain": {
+      "gradient": 3,
+      "path": 2,
+      "exposure": 2,
+      "scrambling": 1,
+      "desc": ""
+    },
 
     "tags": ["circular"]
   },
@@ -348,10 +457,18 @@
     "date": "2023-08-23",
 
     "startLocation": {
+      "location": "Keswick",
       "latitude": 54.6006530,
       "longitude": -3.1356460
     },
     "busConnections": {},
+    "terrain": {
+      "gradient": 3,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
 
     "tags": ["there-and-back"]
   },
@@ -368,11 +485,19 @@
     "date": "2023-08-25",
 
     "startLocation": {
+      "location": "Thirlmere",
       "latitude": 54.5423070,
       "longitude": -3.0578130
     },
     "busConnections": {
       "555": "from Keswick/Windermere"
+    },
+    "terrain": {
+      "gradient": 3,
+      "path": 2,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["point-to-point"]
@@ -390,10 +515,18 @@
     "date": "2024-08-12",
 
     "startLocation": {
+      "location": "Keswick",
       "latitude": 54.5963540,
       "longitude": -3.1269280
     },
     "busConnections": {},
+    "terrain": {
+      "gradient": 2,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
 
     "tags": ["there-and-back"]
   },
@@ -410,11 +543,19 @@
     "date": "2024-06-11",
 
     "startLocation": {
+      "location": "Thornthwaite",
       "latitude": 54.6259810,
       "longitude": -3.2101790
     },
     "busConnections": {
       "X5": "from Keswick/Penrith"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["circular"]
@@ -432,12 +573,20 @@
     "date": "2024-03-25",
 
     "startLocation": {
+      "location": "Ambleside",
       "latitude": 54.4498270,
       "longitude": -3.0039870
     },
     "busConnections": {
       "555": "from Keswick/Windermere",
       "599": "from Windermere"
+    },
+    "terrain": {
+      "gradient": 1,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["circular"]
@@ -455,10 +604,18 @@
     "date": "2023-08-20",
 
     "startLocation": {
+      "location": "Keswick",
       "latitude": 54.6005160,
       "longitude": -3.1367420
     },
     "busConnections": {},
+    "terrain": {
+      "gradient": 2,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 2,
+      "desc": ""
+    },
 
     "tags": ["there-and-back"]
   },
@@ -475,10 +632,18 @@
     "date": "2024-03-28",
 
     "startLocation": {
+      "location": "Keswick",
       "latitude": 54.5995730,
       "longitude": -3.1303120
     },
     "busConnections": {},
+    "terrain": {
+      "gradient": 1,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
 
     "tags": ["there-and-back"]
   },
@@ -495,11 +660,19 @@
     "date": "2024-08-16",
 
     "startLocation": {
+      "location": "Rosthwaite",
       "latitude": 54.5234940,
       "longitude": -3.1481900
     },
     "busConnections": {
       "78": "from Keswick"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["there-and-back"]
@@ -517,11 +690,19 @@
     "date": "2024-09-22",
 
     "startLocation": {
+      "location": "Borrowdale",
       "latitude": 54.5183360,
       "longitude": -3.1521050
     },
     "busConnections": {
       "78": "from Keswick"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 3,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["point-to-point"]
@@ -539,12 +720,20 @@
     "date": "2024-03-23",
 
     "startLocation": {
+      "location": "Glenridding",
       "latitude": 54.5765580,
       "longitude": -2.9302290
     },
     "busConnections": {
       "509": "from Keswick",
       "508": "from Penrith/Windermere"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 2,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["there-and-back"]
@@ -562,12 +751,20 @@
     "date": "2024-08-13",
 
     "startLocation": {
+      "location": "Whinlatter Pass",
       "latitude": 54.6100510,
       "longitude": -3.2256590
     },
     "busConnections": {
       "77": "from Keswick",
       "77A": "from Keswick"
+    },
+    "terrain": {
+      "gradient": 1,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
     },
 
     "tags": ["there-and-back"]
