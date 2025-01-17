@@ -236,5 +236,5 @@ p {
 .subtext {
   font-family: var(--ff-body);
   font-size: var(--fs-300);
-  line-height: 1;
+  line-height: 1.3;
 }
