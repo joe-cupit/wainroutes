@@ -1,7 +1,7 @@
 import "./WalkPage.css";
 
-import { useState, useEffect, Fragment, useMemo } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { useState, useEffect, Fragment, useMemo, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
 
 import { NotFoundPage } from "./error/NotFoundPage";
 
@@ -48,21 +48,55 @@ function Walk({ walkData, slug }) {
     else {
       document.getElementById("walk_"+section.toLowerCase()).scrollIntoView({ behavior: "smooth" });
     }
-
-    setCurrentSection(section)
   }
-
-  const [currentSection, setCurrentSection] = useState("overview")
-  const sections = ["overview", "route", "waypoints", "gallery", "weather"]
 
   const [showOverlay, setShowOverlay] = useState(false)
+  const [currentSection, setCurrentSection] = useState("overview")
+  
+  const overviewRef = useRef(null)
+  const routeRef = useRef(null)
+  const waypointsRef = useRef(null)
+  const photosRef = useRef(null)
+  const weatherRef = useRef(null)
+  const sections = [
+    {section: "overview", ref: overviewRef},
+    {section: "route", ref: routeRef},
+    {section: "waypoints", ref: waypointsRef},
+    {section: "photos", ref: photosRef},
+    {section: "weather", ref: weatherRef}
+  ]
 
-  function toggleOverlay(e) {
-    if (e.target.scrollingElement.scrollTop < 330) setShowOverlay(false)
-    else setShowOverlay(true)
-  }
 
+  
   useEffect(() => {
+
+    function toggleOverlay(e) {
+      const currentScroll = e.target.scrollingElement.scrollTop
+
+      if (currentScroll < 330) {
+        setShowOverlay(false)
+        setCurrentSection("overview")
+      }
+      else {
+        setShowOverlay(true)
+
+        const selected = sections.find(({ ref }) => {
+          const ele = ref.current
+          if (ele) {
+            return currentScroll + 40 < (ele.offsetTop + ele.getBoundingClientRect().height)
+          }
+        })
+
+        if (selected) {
+          setCurrentSection(selected.section)
+        }
+        else {
+          setCurrentSection(null)
+        }
+      }
+    }
+
+
     window.addEventListener("scroll", toggleOverlay)
 
     return () => {
@@ -96,10 +130,10 @@ function Walk({ walkData, slug }) {
               {sections.map((sec, index) => {
                 return (
                   <button key={index} 
-                    onClick={() => scrollToSection(sec)}
-                    className={currentSection == sec ? "active" : ""}
+                    onClick={() => scrollToSection(sec.section)}
+                    className={(currentSection == sec.section ? "active" : "")}
                   >
-                    {sec.charAt(0).toUpperCase() + sec.slice(1)}
+                    {sec.section.charAt(0).toUpperCase() + sec.section.slice(1)}
                   </button>
                 )
               })}
@@ -163,26 +197,28 @@ function Walk({ walkData, slug }) {
           </div>
 
           <div className="walk-page_main flex-column flex-1">
-            <Summary 
+            <Summary secRef={overviewRef}
               wainwrights={walkData?.wainwrights}
               length={walkData?.length}
               elevation={walkData?.elevation}
               intro={walkData?.intro}
             />
 
-            <Route
+            <Route secRef={routeRef}
               wainwrights={walkData?.wainwrights}
               center={[walkData?.startLocation?.latitude, walkData?.startLocation?.longitude]}
               slug={slug}
             />
 
-            <Waypoints
+            <Waypoints secRef={waypointsRef}
               waypoints={walkData?.waypoints}
             />
 
-            <Gallery baseId={walkData?.photos?.baseId} />
+            <Photos secRef={photosRef}
+              baseId={walkData?.photos?.baseId}
+            />
 
-            <Weather />
+            <Weather secRef={weatherRef} />
           </div>
         </div>
       </section>
@@ -197,12 +233,12 @@ function Walk({ walkData, slug }) {
 }
 
 
-function Summary({ wainwrights, length, elevation, intro }) {
+function Summary({ secRef, wainwrights, length, elevation, intro }) {
 
   const hillData = useHills(null);
 
   return (
-    <div className="walk-page_summary">
+    <div className="walk-page_summary" ref={secRef}>
       <h2 className="subheading" id="walk_overview" style={{visibility: "hidden", height: 0, padding: 0}}>Overview</h2>
       <div className="walks-page_section flex-column">
         <div>
@@ -242,7 +278,7 @@ function Summary({ wainwrights, length, elevation, intro }) {
   )
 }
 
-function Route({ wainwrights, center, slug }) {
+function Route({ secRef, wainwrights, center, slug }) {
 
   const hillMarkers = useHillMarkers(wainwrights);
 
@@ -296,7 +332,7 @@ function Route({ wainwrights, center, slug }) {
 
 
   return (
-    <div>
+    <div ref={secRef}>
       <div className="walk-page_route-title flex-row flex-apart">
         <h2 className="subheading" id="walk_route">Route</h2>
         <button className="primary small bottom-left button">
@@ -323,10 +359,10 @@ function Route({ wainwrights, center, slug }) {
   )
 }
 
-function Waypoints({ waypoints }) {
+function Waypoints({ secRef, waypoints }) {
 
   return (
-    <div>
+    <div ref={secRef}>
       <h2 className="subheading" id="walk_waypoints">Waypoints</h2>
       <div className="walks-page_section flex-column">
         {waypoints
@@ -345,13 +381,13 @@ function Waypoints({ waypoints }) {
   )
 }
 
-function Gallery({ baseId }) {
+function Photos({ secRef, baseId }) {
 
   return (
-    <div>
-      <h2 className="subheading" id="walk_gallery">Gallery</h2>
+    <div ref={secRef}>
+      <h2 className="subheading" id="walk_photos">Photos</h2>
 
-      <div className="walks-page_section walks-page_gallery grid-three">
+      <div className="walks-page_section walks-page_photos grid-three">
         {["01", "02", "04", "05", "06", "07"].map((image, index) => {
           return <img key={index} src={`/images/wainroutes-${baseId}${image}.jpeg`} />
         })}
@@ -360,7 +396,7 @@ function Gallery({ baseId }) {
   )
 }
 
-function Weather({  }) {
+function Weather({ secRef }) {
 
   const weatherData = useWeather()?.days?.[0]?.date ? useWeather()?.days?.[0] : useWeather()?.days?.[1]
   const weatherForecast = weatherData?.forecast
@@ -384,7 +420,7 @@ function Weather({  }) {
 
 
   return (
-    <div>
+    <div ref={secRef}>
       <h2 className="subheading" id="walk_weather">Weather</h2>
 
       <div className="walk-page_weather-tabs flex-row justify-apart">

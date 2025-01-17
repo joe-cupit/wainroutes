@@ -167,6 +167,9 @@ html {
   width: 98%;
   border-radius: 0.25rem;
 }
+.walk-page_route-title {
+  margin-block-end: 0.25em;
+}
 .walk-page_map {
   aspect-ratio: 7 / 5;
 }
@@ -179,13 +182,13 @@ html {
 }
 
 
-.walks-page_gallery img {
+.walks-page_photos img {
   transition: scale 100ms, border-radius 100ms;
   cursor: pointer;
 
   border-radius: var(--gap-200);
 }
-.walks-page_gallery img:hover {
+.walks-page_photos img:hover {
   scale: 1.05;
   border-radius: 0;
 }
