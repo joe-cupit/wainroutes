@@ -15,7 +15,7 @@ import haversine from "../utils/haversine";
 import WalkCard from "../components/WalkCard";
 import { displayDistance, displayElevation, displayTemperature, getDistanceValue, getElevationValue } from "../utils/unitConversions";
 import useWeather from "../hooks/useWeather";
-import { LocationIcon, TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "../components/Icons";
+import { BackIcon, ElevationIcon, HikingIcon, LocationIcon, MountainIcon, TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "../components/Icons";
 
 
 const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg")
@@ -52,7 +52,8 @@ function Walk({ walkData, slug }) {
 
   const [showOverlay, setShowOverlay] = useState(false)
   const [currentSection, setCurrentSection] = useState("overview")
-  
+
+  const titleRef = useRef(null)
   const overviewRef = useRef(null)
   const routeRef = useRef(null)
   const waypointsRef = useRef(null)
@@ -73,7 +74,7 @@ function Walk({ walkData, slug }) {
     function toggleOverlay(e) {
       const currentScroll = e.target.scrollingElement.scrollTop
 
-      if (currentScroll < 330) {
+      if (currentScroll < titleRef?.current?.offsetTop + titleRef?.current?.getBoundingClientRect().height / 2) {
         setShowOverlay(false)
         setCurrentSection("overview")
       }
@@ -121,12 +122,21 @@ function Walk({ walkData, slug }) {
 
       <div className={"walk-page_overlay" + (showOverlay ? " show" : "")}>
         <section>
-          <div className="walk-page_overlay-wrapper flex-row flex-apart">
-            <div className="walk-page_overlay-title flex-1">
-              <button className="subheading" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>{walkData?.title}</button>
+          <div className="walk-page_overlay-wrapper flex-row flex-apart wrap-none">
+            <div className="walk-page_overlay-left flex-1 flex-row align-center wrap-none" // className="flex-1 flex-row align-center wrap-none"
+            >
+              <Link to="/walks" title="Back"><BackIcon /></Link>
+              <div className="walk-page_overlay-title flex-column gap-0">
+                <button className="subheading" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>{walkData?.title}</button>
+                <div className="walk-page_overlay-details flex-row">
+                  <span><MountainIcon /> {walkData?.wainwrights?.length}</span>
+                  <span><HikingIcon /> {displayDistance(walkData?.length)}</span>
+                  <span><ElevationIcon /> {displayElevation(walkData?.elevation)}</span>
+                </div>
+              </div>
             </div>
 
-            <div className="walk-page_overlay-nav flex-row">
+            <div className="walk-page_overlay-nav flex-row wrap-none">
               {sections.map((sec, index) => {
                 return (
                   <button key={index} 
@@ -152,7 +162,7 @@ function Walk({ walkData, slug }) {
 
       <section>
         <div className="walk-page_heading">
-          <h1 className="title">{walkData?.title}</h1>
+          <h1 className="title" ref={titleRef}>{walkData?.title}</h1>
         </div>
 
         <div className="walk-page_body grid-two">

@@ -33,6 +33,12 @@ export function LocationIcon() {
   )
 }
 
+export function BackIcon() {
+  return (
+    <GoogleIcon d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+  )
+}
+
 
 
 function TerrainIcon({ bgColour, children }) {
