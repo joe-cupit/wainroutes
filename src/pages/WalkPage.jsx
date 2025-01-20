@@ -16,6 +16,7 @@ import WalkCard from "../components/WalkCard";
 import { displayDistance, displayElevation, displayTemperature, getDistanceValue, getElevationValue } from "../utils/unitConversions";
 import useWeather from "../hooks/useWeather";
 import { BackIcon, ElevationIcon, HikingIcon, LocationIcon, MountainIcon, TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "../components/Icons";
+import ImageGallery from "../components/ImageGallery";
 
 
 const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg")
@@ -397,11 +398,7 @@ function Photos({ secRef, baseId }) {
     <div ref={secRef}>
       <h2 className="subheading" id="walk_photos">Photos</h2>
 
-      <div className="walks-page_section walks-page_photos grid-three">
-        {["01", "02", "04", "05", "06", "07"].map((image, index) => {
-          return <img key={index} src={`/images/wainroutes-${baseId}${image}.jpeg`} />
-        })}
-      </div>
+      <ImageGallery imageList={["01", "02", "03", "04", "05", "06", "07"].map(img => baseId+img)} />
     </div>
   )
 }
