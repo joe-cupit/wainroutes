@@ -39,6 +39,23 @@ export function BackIcon() {
   )
 }
 
+export function CloseIcon() {
+  return (
+    <GoogleIcon d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+  )
+}
+
+export function LeftIcon() {
+  return (
+    <GoogleIcon d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+  )
+}
+
+export function RightIcon() {
+  return (
+    <GoogleIcon d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+  )
+}
 
 
 function TerrainIcon({ bgColour, children }) {

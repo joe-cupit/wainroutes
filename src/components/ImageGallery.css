@@ -4,6 +4,9 @@
   display: grid;
   gap: var(--_gallery-gap);
   grid-template-columns: repeat(3, 1fr);
+
+  border-radius: 0.25em;
+  overflow: hidden;
 }
 
 .image-gallery_image {
@@ -18,10 +21,11 @@
 }
 .image-gallery_image img {
   object-fit: cover;
+  transition: scale 100ms;
 }
-/* .image-gallery_image img:hover {
-  opacity: 0.8;
-} */
+.image-gallery_image img:hover {
+  scale: 1.05;
+}
 
 
 .image-gallery_column {

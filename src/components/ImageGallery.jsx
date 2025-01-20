@@ -52,9 +52,15 @@ function GalleryCarousel({ imageId, display, setDisplay }) {
     if (imageId !== null) setDisplay(true)
   }, [imageId])
 
+  const bgClicked = useCallback((e) => {
+    if (e.target !== e.currentTarget) return
+
+    setDisplay(false)
+  }, [])
+
 
   if (display) return (
-    <div className="image-gallery_carousel">
+    <div className="image-gallery_carousel" onClick={bgClicked}>
       <button className="image-gallery_carousel-close" title="Close"
         onClick={() => setDisplay(false)}
       >
@@ -81,7 +87,7 @@ function GalleryCarousel({ imageId, display, setDisplay }) {
       </div>
       <CorouselImage index={currIndex} />
       <div className="image-gallery_carousel-caption">
-        <h4>Caption Title</h4>
+        <h4 className="smallheading">Caption Title</h4>
         <p>This will be the caption for the image, that could be a little long.</p>
       </div>
     </div>
