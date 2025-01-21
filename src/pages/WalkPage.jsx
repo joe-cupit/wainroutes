@@ -158,7 +158,7 @@ function Walk({ walkData, slug }) {
         <div className="walk-page_top" style={{backgroundImage: `url(/images/${walkData?.slug}-small.jpg)`}}>
           <Image
             className="walk-page_top-image"
-            name={walkData?.slug + "-" + walkData?.photos?.coverId}
+            name={walkData?.slug + "-" + walkData?.gallery?.coverId}
             sizes="(min-width: 1100px) 1100px, 100vw"
           />
           <div className="walk-page_top-block"></div>
@@ -196,7 +196,7 @@ function Walk({ walkData, slug }) {
 
             <div className="walk-page_aside-image">
               <Image
-                name={walkData?.slug + "-" + walkData?.photos?.coverId}
+                name={walkData?.slug + "-" + walkData?.gallery?.coverId}
                 sizes="(min-width: 300px) 300px, 90vw"
               />
             </div>
@@ -235,6 +235,7 @@ function Walk({ walkData, slug }) {
 
             <Photos secRef={photosRef}
               slug={walkData?.slug}
+              galleryData={walkData?.gallery}
             />
 
             <Weather secRef={weatherRef} />
@@ -400,13 +401,17 @@ function Waypoints({ secRef, waypoints }) {
   )
 }
 
-function Photos({ secRef, slug }) {
+function Photos({ secRef, slug, galleryData }) {
 
   return (
     <div ref={secRef}>
       <h2 className="subheading" id="walk_photos">Photos</h2>
 
-      <ImageGallery imageList={["01", "02", "03", "04", "05", "06", "07"].map(img => slug+"-"+img)} />
+      <ImageGallery
+        imageList={galleryData?.imageIds?.map(img => slug+"-"+img)}
+        imageData={galleryData?.imageData}
+        groups={galleryData?.sections}
+      />
     </div>
   )
 }

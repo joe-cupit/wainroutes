@@ -7,7 +7,7 @@ import Image from "./Image";
 const GalleryContext = createContext({images: null, openCarousel: () => {}})
 
 
-export default function ImageGallery({ imageList }) {
+export default function ImageGallery({ imageList, imageData, groups }) {
 
   const [carouselId, setCarouselId] = useState(null)
   const [displayCorousel, setDisplayCarousel] = useState(false)
@@ -21,6 +21,7 @@ export default function ImageGallery({ imageList }) {
 
   const contextValue = {
     images: imageList,
+    imageData: imageData,
     openCarousel: openCarousel
   }
 
@@ -28,12 +29,26 @@ export default function ImageGallery({ imageList }) {
     <>
       <GalleryContext.Provider value={contextValue}>
         <div className="image-gallery">
-          <GalleryRowWideLeft ids={[0, 1, 4]} />
-          <GalleryRowTwo ids={[0, 1]} />
-          <GalleryRowTallRight ids={[2, 1, 3, 4]} />
-          <GalleryRowThree ids={[0, 1, 5]} />
-          <GalleryRowTallLeft ids={[2, 1, 0, 3]} />
-          <GalleryRowWideRight ids={[6, 5, 4]} />
+          {groups?.map((group, index) => {
+            switch (group?.type) {
+              case 0:
+                return <GallerySingleImage key={index} ids={group?.indexes} />
+              case 1:
+                return <GalleryRowTwo key={index} ids={group?.indexes} />
+              case 2:
+                return <GalleryRowThree key={index} ids={group?.indexes} />
+              case 3:
+                return <GalleryRowWideLeft key={index} ids={group?.indexes} />
+              case 4:
+                return <GalleryRowWideRight key={index} ids={group?.indexes} />
+              case 5:
+                return <GalleryRowTallLeft key={index} ids={group?.indexes} />
+              case 6:
+                return <GalleryRowTallRight key={index} ids={group?.indexes} />
+              default:
+                return <></>
+            }
+          })}
         </div>
 
         <GalleryCarousel imageId={carouselId} display={displayCorousel} setDisplay={setDisplayCarousel} />
@@ -73,8 +88,8 @@ function GalleryCarousel({ imageId, display, setDisplay }) {
       </div>
       <CorouselImage index={currIndex} />
       <div className="image-gallery_carousel-caption">
-        <h4 className="smallheading">Caption Title</h4>
-        <p>This will be the caption for the image, that could be a little long.</p>
+        <h4 className="smallheading">{galleryContext?.imageData?.[currIndex]?.title ?? "Image "+(currIndex+1)}</h4>
+        <p>{galleryContext?.imageData?.[currIndex]?.caption ?? "No caption."}</p>
       </div>
 
       <button className="image-gallery_carousel-left" title="Previous Image"
@@ -109,18 +124,32 @@ function CorouselImage({ index }) {
 }
 
 
-function GalleryImage({ index }) {
+function GalleryImage({ index, big=false }) {
 
   const galleryContext = useContext(GalleryContext)
 
   return (
     <div className="image-gallery_image" onClick={() => galleryContext?.openCarousel(index)}>
-      <Image name={galleryContext?.images?.[index]} />
+      <Image
+        name={galleryContext?.images?.[index]}
+        sizes={big ? "(min-width: 1000px) 1000px, (min-width: 1000px) 50vw, 80vw" : "(min-width: 1000px) 500px, (min-width: 1000px) 25vw, 40vw"}
+      />
     </div>
   )
 }
 
 
+// 0
+function GallerySingleImage({ ids }) {
+  return (
+    <div className="image-gallery_row image-gallery_row-one">
+      <GalleryImage index={ids?.[0]} />
+    </div>
+  )
+}
+
+
+// 1
 function GalleryRowTwo({ ids }) {
   return (
     <div className="image-gallery_row image-gallery_row-two">
@@ -130,6 +159,7 @@ function GalleryRowTwo({ ids }) {
   )
 }
 
+// 2
 function GalleryRowThree({ ids }) {
   return (
     <div className="image-gallery_row image-gallery_row-three">
@@ -141,11 +171,12 @@ function GalleryRowThree({ ids }) {
 }
 
 
+// 3
 function GalleryRowWideLeft({ ids }) {
   return (
     <div className="image-gallery_row image-gallery_row-wide-left">
       <div className="image-gallery_span-2">
-        <GalleryImage index={ids?.[0]} />
+        <GalleryImage index={ids?.[0]} big={true} />
       </div>
       <div className="image-gallery_column">
         <GalleryImage index={ids?.[1]} />
@@ -155,26 +186,28 @@ function GalleryRowWideLeft({ ids }) {
   )
 }
 
+// 4
 function GalleryRowWideRight({ ids }) {
   return (
     <div className="image-gallery_row image-gallery_row-wide-right">
       <div className="image-gallery_column">
+        <GalleryImage index={ids?.[0]} />
         <GalleryImage index={ids?.[1]} />
-        <GalleryImage index={ids?.[2]} />
       </div>
       <div className="image-gallery_span-2">
-        <GalleryImage index={ids?.[0]} />
+        <GalleryImage index={ids?.[2]} big={true} />
       </div>
     </div>
   )
 }
 
 
+// 5
 function GalleryRowTallLeft({ ids }) {
   return (
     <div className="image-gallery_row image-gallery_row-wide-left">
       <div className="image-gallery_span-2">
-        <GalleryImage index={ids?.[0]} />
+        <GalleryImage index={ids?.[0]} big={true} />
       </div>
       <div className="image-gallery_column">
         <GalleryImage index={ids?.[1]} />
@@ -185,16 +218,17 @@ function GalleryRowTallLeft({ ids }) {
   )
 }
 
+// 6
 function GalleryRowTallRight({ ids }) {
   return (
     <div className="image-gallery_row image-gallery_row-wide-right">
       <div className="image-gallery_column">
+        <GalleryImage index={ids?.[0]} />
         <GalleryImage index={ids?.[1]} />
         <GalleryImage index={ids?.[2]} />
-        <GalleryImage index={ids?.[3]} />
       </div>
       <div className="image-gallery_span-2">
-        <GalleryImage index={ids?.[0]} />
+        <GalleryImage index={ids?.[3]} big={true} />
       </div>
     </div>
   )

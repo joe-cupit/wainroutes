@@ -38,9 +38,15 @@
       "Fairfield Summit": "The tallest mountain summited in this walk, and the namesake of the walk, Fairfield, provides 360 degree views of the highest peaks in the lakes, with one of the most famous, Helvellyn, being a stones throw north of here. On a calm, clear day this makes for the perfect mid-walk resting point to eat lunch and soak in the surroundings.",
       "Final Steps": "The exit off of Nab Scar is steep and efficient at bringing this walk to a close and should prove no issue in good conditions. The path comes to a close along the main road traversing the central lakes at a bus stop where a bus can be caught travelling in both directions. As an alternative, the short-ish road to Ambleside can be walked turning this into a perfectly circular walk."
     },
-    "photos": {
-      "baseId": "001",
-      "coverId": "04"
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        {"title": "Hart Crag Summit", "caption": "Looking over towards Great Rigg."}
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["horseshoe", "ambleside", "fairfield"]
@@ -72,6 +78,27 @@
       "exposure": 3,
       "scrambling": 4,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
+      "imageData": [
+        {"title": "h1", "caption": "test caption"},
+        {"title": "h2", "caption": "test caption asdf"},
+        {"title": "h3", "caption": "test caption as"},
+        {"title": "h4", "caption": "test caption dcxasd"},
+        {"title": "h5", "caption": "test caption cwer"},
+        {"title": "h6", "caption": "test caption ghufty"},
+        {"title": "h7", "caption": "test caption asdqwr"},
+        {"title": "h8", "caption": "test caption gnfg"},
+        {"title": "h9", "caption": "test caption dqwer"}
+      ],
+      "coverId": "02",
+      "sections": [
+        {"type": 3, "indexes": [0, 1, 2]},
+        {"type": 2, "indexes": [3, 5, 6]},
+        {"type": 5, "indexes": [4, 7, 8, 9]}
+      ]
     },
 
     "tags": ["circular"]
