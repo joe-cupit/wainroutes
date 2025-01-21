@@ -1,5 +1,5 @@
 html {
-  scroll-padding-top: 3.5rem;
+  scroll-padding-top: 4rem;
 }
 
 .walk-page {
@@ -103,7 +103,7 @@ html {
   color: var(--clr-black-400);
   border-color: var(--clr-black-400);
 }
-@media (max-width: 50rem) {
+@media (max-width: 52rem) {
   .walk-page_overlay-left {
     padding-inline-end: 1em;
   }
@@ -122,6 +122,7 @@ html {
 
 .walk-page_top {
   position: relative;
+  background: var(--clr-black-300);
 
   @media (max-width: 68rem) {
     grid-column: full-width;
@@ -138,6 +139,7 @@ html {
 
   background: var(--clr-white-400);
   border-radius: 0.5em;
+  font-weight: var(--fw-medium);
 
   padding: 0.25rem 0.375rem;
   padding-inline-end: 0.625rem;
@@ -145,7 +147,7 @@ html {
 .walk-page_top-link:hover {
   text-decoration: underline;
 }
-.walk-page_top img {
+.walk-page_top-image {
   flex: 1;
   width: 100%;
   height: min(17rem, 40vw);
@@ -254,11 +256,11 @@ html {
   width: 100%;
 }
 
-.walk-page_aside img {
-  max-width: 100%;
+.walk-page_aside-image {
+  width: 100%;
   aspect-ratio: 1.5;
-  object-fit: cover;
   border-radius: var(--gap-300);
+  overflow: hidden;
 }
 
 .walk-page_locations {

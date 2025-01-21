@@ -106,10 +106,6 @@
 .image-gallery_carousel-image {
   overflow: hidden;
 
-  width: fit-content;
-  height: fit-content;
-}
-.image-gallery_carousel img {
   max-width: 90%;
   max-height: 90%;
   user-select: none;

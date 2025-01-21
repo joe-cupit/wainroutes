@@ -5,6 +5,7 @@ import { displayDistance, displayElevation, getDistanceUnit, getDistanceValue, g
 
 import {ElevationIcon, HikingIcon, MountainIcon} from "../components/Icons"
 import haversine from "../utils/haversine"
+import Image from "./Image"
 
 
 
@@ -32,8 +33,7 @@ export default function WalkCard({ walk, link=true, distFrom=null }) {
 
   const WalkCardContent = <>
     <div className="walk-card_image">
-      {/* <img src={`/images/wainroutes-${walk?.photos?.baseId}${walk?.photos?.coverId}.jpeg`} /> */}
-      <img src={`/images/${walk?.slug}.jpg`} />
+      <Image name={walk?.slug + "-01"} sizes="(min-width: 320px) 320px, 100vw" />
       {distFrom &&
         <p className="walk-card_dist">
           {distString}
@@ -64,6 +64,7 @@ export default function WalkCard({ walk, link=true, distFrom=null }) {
   if (link) return (
     <Link to={"/walks/"+walk.slug}
       className="walk-card"
+      title={walk?.title}
     >
       {WalkCardContent}
     </Link>

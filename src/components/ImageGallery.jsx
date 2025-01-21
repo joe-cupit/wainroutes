@@ -2,6 +2,7 @@ import "./ImageGallery.css";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { CloseIcon, LeftIcon, RightIcon } from "./Icons";
+import Image from "./Image";
 
 const GalleryContext = createContext({images: null, openCarousel: () => {}})
 
@@ -67,6 +68,15 @@ function GalleryCarousel({ imageId, display, setDisplay }) {
         <CloseIcon />
       </button>
 
+      <div className="image-gallery_carousel-caption">
+        {currIndex+1}/{galleryContext?.images?.length}
+      </div>
+      <CorouselImage index={currIndex} />
+      <div className="image-gallery_carousel-caption">
+        <h4 className="smallheading">Caption Title</h4>
+        <p>This will be the caption for the image, that could be a little long.</p>
+      </div>
+
       <button className="image-gallery_carousel-left" title="Previous Image"
         onClick={() => setCurrIndex(prev => {
           let curr = prev - 1
@@ -82,14 +92,6 @@ function GalleryCarousel({ imageId, display, setDisplay }) {
         <RightIcon />
       </button>
 
-      <div className="image-gallery_carousel-caption">
-        {currIndex+1}/{galleryContext?.images?.length}
-      </div>
-      <CorouselImage index={currIndex} />
-      <div className="image-gallery_carousel-caption">
-        <h4 className="smallheading">Caption Title</h4>
-        <p>This will be the caption for the image, that could be a little long.</p>
-      </div>
     </div>
   )
   else return <></>
@@ -100,7 +102,9 @@ function CorouselImage({ index }) {
   const galleryContext = useContext(GalleryContext)
 
   return (
-    <img src={`/images/wainroutes-${galleryContext?.images?.[index]}.jpeg`} />
+    <div className="image-gallery_carousel-image">
+      <Image name={galleryContext?.images?.[index]} />
+    </div>
   )
 }
 
@@ -111,7 +115,7 @@ function GalleryImage({ index }) {
 
   return (
     <div className="image-gallery_image" onClick={() => galleryContext?.openCarousel(index)}>
-      <img src={`/images/wainroutes-${galleryContext?.images?.[index]}.jpeg`} />
+      <Image name={galleryContext?.images?.[index]} />
     </div>
   )
 }

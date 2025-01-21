@@ -45,6 +45,7 @@
   --clr-white-400: #fcfbfb;
   --clr-white-500: #f1efee;
   --clr-white-600: #e2dfdc;
+  --clr-white-700: #baaea1;
 
   /* --wain-book-1: #6c9934;
   --wain-book-2: #e5173e;
@@ -125,7 +126,10 @@ button {
 }
 img {
   max-width: 100%;
+  max-height: 100%;
   display: block;
+  object-fit: cover;
+  object-position: center;
 }
 a {
   color: inherit;

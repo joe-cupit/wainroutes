@@ -17,6 +17,7 @@ import { displayDistance, displayElevation, displayTemperature, getDistanceValue
 import useWeather from "../hooks/useWeather";
 import { BackIcon, ElevationIcon, HikingIcon, LocationIcon, MountainIcon, TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "../components/Icons";
 import ImageGallery from "../components/ImageGallery";
+import Image from "../components/Image";
 
 
 const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg")
@@ -85,7 +86,7 @@ function Walk({ walkData, slug }) {
         const selected = sections.find(({ ref }) => {
           const ele = ref.current
           if (ele) {
-            return currentScroll + 40 < (ele.offsetTop + ele.getBoundingClientRect().height)
+            return currentScroll + 60 < (ele.offsetTop + ele.getBoundingClientRect().height)
           }
         })
 
@@ -154,10 +155,14 @@ function Walk({ walkData, slug }) {
       </div>
 
       <section>
-        <div className="walk-page_top">
-          <Link to="/walks" className="walk-page_top-link"><LocationIcon /> {walkData?.startLocation?.location}</Link>
-          <img src={`/images/${walkData?.slug}.jpg`} />
+        <div className="walk-page_top" style={{backgroundImage: `url(/images/${walkData?.slug}-small.jpg)`}}>
+          <Image
+            className="walk-page_top-image"
+            name={walkData?.slug + "-" + walkData?.photos?.coverId}
+            sizes="(min-width: 1100px) 1100px, 100vw"
+          />
           <div className="walk-page_top-block"></div>
+          <Link to="/walks" className="walk-page_top-link"><LocationIcon /> {walkData?.startLocation?.location}</Link>
         </div>
       </section>
 
@@ -190,7 +195,10 @@ function Walk({ walkData, slug }) {
             </div>
 
             <div className="walk-page_aside-image">
-              <img src={`/images/${walkData?.slug}.jpg`} />
+              <Image
+                name={walkData?.slug + "-" + walkData?.photos?.coverId}
+                sizes="(min-width: 300px) 300px, 90vw"
+              />
             </div>
 
             <div className={"walk-page_aside-content" + ([1, 2, 3].includes(asideTabIndex) ? " visible" : "")}>
@@ -226,7 +234,7 @@ function Walk({ walkData, slug }) {
             />
 
             <Photos secRef={photosRef}
-              baseId={walkData?.photos?.baseId}
+              slug={walkData?.slug}
             />
 
             <Weather secRef={weatherRef} />
@@ -392,13 +400,13 @@ function Waypoints({ secRef, waypoints }) {
   )
 }
 
-function Photos({ secRef, baseId }) {
+function Photos({ secRef, slug }) {
 
   return (
     <div ref={secRef}>
       <h2 className="subheading" id="walk_photos">Photos</h2>
 
-      <ImageGallery imageList={["01", "02", "03", "04", "05", "06", "07"].map(img => baseId+img)} />
+      <ImageGallery imageList={["01", "02", "03", "04", "05", "06", "07"].map(img => slug+"-"+img)} />
     </div>
   )
 }

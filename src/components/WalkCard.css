@@ -17,18 +17,15 @@
 }
 
 .walk-card_image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #0001;
 
   width: 100%;
   height: var(--_image-height);
-  max-height: fit-content;
 
   overflow: hidden;
 }
 .walk-card_image img {
-  transition: scale 250ms;
+  transition: scale 250ms, opacity 200ms ease-in-out;
 }
 
 .walk-card_dist {
@@ -62,8 +59,14 @@
 }
 .walk-card_intro {
   flex: 1;
+  --_paragraph-height: 4;
+
+  display: -webkit-box;
+  max-height: calc(var(--_paragraph-height) * 1lh);
+  -webkit-line-clamp: var(--_paragraph-height);
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+
   margin-block: 0.25em 0.5em;
 }
 
