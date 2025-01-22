@@ -258,6 +258,7 @@ button.bottom-left {
 
   background-size: cover;
   background-position: center;
+  filter: blur(0.5em);
 
   overflow: hidden;
 }
@@ -271,6 +272,9 @@ button.bottom-left {
   opacity: 0;
   transition: opacity 200ms ease-in-out;
 }
+.image_blur-load.loaded {
+  filter: none;
+}
 .image_blur-load.loaded img {
   opacity: 1;
 }
@@ -280,7 +284,7 @@ button.bottom-left {
   position: absolute;
   inset: 0;
 
-  animation: pulse 2.5s infinite;
+  /* animation: pulse 2.5s infinite; */
 }
 .image_blur-load.loaded::after {
   content: none;

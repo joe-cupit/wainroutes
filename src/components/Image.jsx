@@ -4,11 +4,11 @@ export default function Image({ name, className, sizes="100vw", alt="", blurLoad
 
   const path = "/images/wainroutes_" + name
   const ext = ".webp"
-  const src = path + "-1024" + ext
+  const src = path + "_1024w" + ext
 
-  const imgWidths = ["64", "256", "512", "1024", "2048"]
+  const imgWidths = ["256", "512", "1024", "2048"]
   const srcset = useMemo(() => {
-    return imgWidths.map(w => path + "-" + w + ext + " " + w + "w").join(", ")
+    return imgWidths.map(w => `${path}_${w}w${ext} ${w}w`).join(", ")
   }, [path, name, ext])
 
   const ImageTag = (
@@ -24,7 +24,7 @@ export default function Image({ name, className, sizes="100vw", alt="", blurLoad
 
 
   if (blurLoad) {
-    const srcSmall = "url(" + path + "-64" + ext + ")"
+    const srcSmall = `url(${path}_32w${ext})`
 
     return (
       <div

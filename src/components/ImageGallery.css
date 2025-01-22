@@ -1,5 +1,5 @@
 .image-gallery {
-  --_gallery-gap: 0.5em;
+  --_gallery-gap: var(--gap-300);
 
   display: grid;
   gap: var(--_gallery-gap);
@@ -70,7 +70,7 @@
   align-items: center;
   justify-content: center;
 
-  padding-block: 1em;
+  padding-block: 2em;
 
   background: #000D;
 }

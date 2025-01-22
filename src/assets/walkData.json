@@ -41,7 +41,7 @@
     "gallery": {
       "imageIds": ["01"],
       "imageData": [
-        {"title": "Hart Crag Summit", "caption": "Looking over towards Great Rigg."}
+        {"title": "Hart Crag Summit", "caption": "Looking over towards Great Rigg with The Old Man of Coniston in the distance."}
       ],
       "coverId": "01",
       "sections": [
@@ -77,23 +77,31 @@
       "path": 2,
       "exposure": 3,
       "scrambling": 4,
-      "desc": ""
+      "desc": "Striding Edge is a Grade 1 scramble, meaning proper preparation and skill is required."
     },
 
+    "intro": "The most popular approach to one of the most popular fells in the district, ascending Helvellyn via Striding Edge is both beautiful and thrilling. This route sees thousands of visitors each year, and rightly so.",
+    "waypoints": {
+      "Birkhouse Moor Ascent": "",
+      "Striding Edge": "Then comes the attraction of this walk for many, the Grade One scramble of Striding Edge.",
+      "Helvellyn Summit": "The summit of Helvellyn, the third tallest fell of the district.",
+      "Catstycam & The Descent": "The descent from Catstycam is a long relaxing 6km walk. It begins rather steep but the gradient continues to lessen as you descend, following Ulls Water, on of the many streams feeding the Ullswater Lake."
+    },
     "gallery": {
       "imageIds": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
       "imageData": [
-        {"title": "h1", "caption": "test caption"},
-        {"title": "h2", "caption": "test caption asdf"},
-        {"title": "h3", "caption": "test caption as"},
-        {"title": "h4", "caption": "test caption dcxasd"},
-        {"title": "h5", "caption": "test caption cwer"},
-        {"title": "h6", "caption": "test caption ghufty"},
-        {"title": "h7", "caption": "test caption asdqwr"},
-        {"title": "h8", "caption": "test caption gnfg"},
-        {"title": "h9", "caption": "test caption dqwer"}
+        {"title": "Above Glenridding", "caption": "Looking down towards both the town of Glenridding and Ullswater after an initial climb."},
+        {"title": "Summit Reveal", "caption": "After climbing steep hills the summit of Helvellyn and Striding Edge reveal themselves."},
+        {"title": "Sunny Mountain Neighbours", "caption": "Looking left while climbing over to St. Sunday Crag and Fairfield."},
+        {"title": "Striding Edge", "caption": "The view from the beginning of the edge to Red Tarn, with the scramble-less path below."},
+        {"title": "Summit Approach", "caption": "Halfway across the edge, looking up to the final 100m steep climb to the summit."},
+        {"title": "Above Striding Edge", "caption": "Looking down after climbing up from Striding Edge to the summit."},
+        {"title": "Helvellyn Summit", "caption": "Looking down on the mountains around Ullswater."},
+        {"title": "Descending Swirral Edge", "caption": "The initial steep down scramble section onto Swirral Edge from the summit of Helvellyn."},
+        {"title": "Catstycam Summit", "caption": "Looking back to see Striding Edge, Helvellyn summit, and Swirral edge from the summit of Catstycam."},
+        {"title": "Red Tarn Beck Bridge", "caption": "Looking back to Catstycam after crossing a small bridge across the stream that follows you down."}
       ],
-      "coverId": "02",
+      "coverId": "06",
       "sections": [
         {"type": 3, "indexes": [0, 1, 2]},
         {"type": 2, "indexes": [3, 5, 6]},
@@ -136,6 +144,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["point-to-point"]
   },
   "the-langdale-pikes": {
@@ -166,6 +185,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["circular"]
   },
   "the-kentmere-horseshoe": {
@@ -192,6 +222,17 @@
       "exposure": 2,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["horseshoe", "circular"]
@@ -227,6 +268,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["circular"]
   },
   "a-coledale-horseshoe": {
@@ -259,6 +311,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["horseshoe", "circular"]
   },
   "borrowdale-to-dungeon-ghyll": {
@@ -280,7 +343,7 @@
     },
     "busConnections": {
       "78": "Takes you to the start from Keswick",
-      "508": "Brings you from the end to Ambleside (many busses from there return to Keswick)"
+      "516": "Brings you from the end to Ambleside (many busses from there return to Keswick)"
     },
     "terrain": {
       "gradient": 3,
@@ -291,6 +354,17 @@
     },
 
     "intro": "Starting in the picturesque Borrowdale valley, this walk will take you through some of the tallest mountains in the lakes, ending in Dungeon Ghyll at the base of the Langdale Pikes. This walk is best enjoyed by staying the night in Borrowdale, whether that be in a tent or the perfectly placed Youth Hostel - a bus out of Dungeon Ghyll can be used to return to Ambleside, providing connections to the rest of the district.",
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
 
     "tags": ["point-to-point"]
   },
@@ -318,6 +392,17 @@
       "exposure": 1,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["there-and-back"]
@@ -352,6 +437,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["circular"]
   },
   "a-grasmere-round": {
@@ -381,6 +477,17 @@
       "exposure": 1,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["circular", "horseshoe"]
@@ -413,6 +520,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["circular"]
   },
   "raven-crag": {
@@ -439,6 +557,17 @@
       "exposure": 1,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["there-and-back"]
@@ -469,6 +598,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["circular"]
   },
   "skiddaw": {
@@ -495,6 +635,17 @@
       "exposure": 1,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["there-and-back"]
@@ -527,6 +678,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["point-to-point"]
   },
   "walla-crag": {
@@ -553,6 +715,17 @@
       "exposure": 1,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["there-and-back"]
@@ -583,6 +756,17 @@
       "exposure": 1,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["circular"]
@@ -616,6 +800,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["circular"]
   },
   "catbells-from-keswick": {
@@ -644,6 +839,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["there-and-back"]
   },
   "latrigg": {
@@ -670,6 +876,17 @@
       "exposure": 1,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["there-and-back"]
@@ -702,6 +919,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["there-and-back"]
   },
   "bessyboot-rosthwaite-fell": {
@@ -730,6 +958,17 @@
       "exposure": 1,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["point-to-point"]
@@ -763,6 +1002,17 @@
       "desc": ""
     },
 
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
     "tags": ["there-and-back"]
   },
   "whinlatter-peak": {
@@ -792,6 +1042,189 @@
       "exposure": 1,
       "scrambling": 1,
       "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
+    "tags": ["there-and-back"]
+  },
+  "blencathra-via-halls-fell-ridge": {
+    "slug": "blencathra-via-halls-fell-ridge",
+
+    "title": "Blencathra via Hall's Fell Ridge",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["blencathra"],
+    "length": 10.49,
+    "elevation": 788,
+    "estimatedTime": "2:30-4:00",
+    "date": "2024-11-16",
+
+    "startLocation": {
+      "location": "Threlkeld",
+      "latitude": 54.619837,
+      "longitude": -3.047828
+    },
+    "busConnections": {
+      "X4": "Penrith - Keswick - Cockermouth",
+      "X5": "Penrith - Keswick - Cockermouth"
+    },
+    "terrain": {
+      "gradient": 3,
+      "path": 2,
+      "exposure": 3,
+      "scrambling": 3,
+      "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
+    "tags": ["circular"]
+  },
+  "grange-fell": {
+    "slug": "grange-fell",
+
+    "title": "Grange Fell",
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["grange-fell"],
+    "length": 8.72,
+    "elevation": 405,
+    "estimatedTime": "2:00-3:00",
+    "date": "2024-12-14",
+
+    "startLocation": {
+      "location": "Borrowdale",
+      "latitude": 54.541182,
+      "longitude": -3.155515
+    },
+    "busConnections": {
+      "77": "from Keswick",
+      "77A": "from Keswick",
+      "77C": "from Keswick",
+      "78": "from Keswick"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 2,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
+    "tags": ["circular"]
+  },
+  "wansfell-baystones": {
+    "slug": "wansfell-baystones",
+
+    "title": "Wansfell (Baystones)",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["wansfell"],
+    "length": 9.44,
+    "elevation": 555,
+    "estimatedTime": "2:00-3:00",
+    "date": "2025-01-08",
+
+    "startLocation": {
+      "location": "Ambleside",
+      "latitude": 54.431920,
+      "longitude": -2.961856
+    },
+    "busConnections": {
+      "505": "from Coniston",
+      "516": "from Dungeon Ghyll",
+      "555": "from Keswick/Windermere",
+      "599": "from Grasmere/Windermere"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 2,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
+    },
+
+    "tags": ["there-and-back"]
+  },
+  "stone-arthur": {
+    "slug": "stone-arthur",
+
+    "title": "Stone Arthur",
+    "type": "There-and-back",
+    "summary": "",
+    "wainwrights": ["stone-arthur"],
+    "length": 7.28,
+    "elevation": 550,
+    "estimatedTime": "1:00-2:00",
+    "date": "2025-01-09",
+
+    "startLocation": {
+      "location": "Grasmere",
+      "latitude": 54.459932,
+      "longitude": -3.024151
+    },
+    "busConnections": {
+      "555": "from Keswick/Windermere",
+      "599": "from Windermere"
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
+
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [
+        
+      ],
+      "coverId": "01",
+      "sections": [
+        {"type": 0, "indexes": [0]}
+      ]
     },
 
     "tags": ["there-and-back"]

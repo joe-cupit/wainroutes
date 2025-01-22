@@ -158,7 +158,7 @@ function Walk({ walkData, slug }) {
         <div className="walk-page_top" style={{backgroundImage: `url(/images/${walkData?.slug}-small.jpg)`}}>
           <Image
             className="walk-page_top-image"
-            name={walkData?.slug + "-" + walkData?.gallery?.coverId}
+            name={walkData?.slug + "_" + walkData?.gallery?.coverId}
             sizes="(min-width: 1100px) 1100px, 100vw"
           />
           <div className="walk-page_top-block"></div>
@@ -196,7 +196,7 @@ function Walk({ walkData, slug }) {
 
             <div className="walk-page_aside-image">
               <Image
-                name={walkData?.slug + "-" + walkData?.gallery?.coverId}
+                name={walkData?.slug + "_" + walkData?.gallery?.coverId}
                 sizes="(min-width: 300px) 300px, 90vw"
               />
             </div>
@@ -408,7 +408,7 @@ function Photos({ secRef, slug, galleryData }) {
       <h2 className="subheading" id="walk_photos">Photos</h2>
 
       <ImageGallery
-        imageList={galleryData?.imageIds?.map(img => slug+"-"+img)}
+        imageList={galleryData?.imageIds?.map(img => slug+"_"+img)}
         imageData={galleryData?.imageData}
         groups={galleryData?.sections}
       />

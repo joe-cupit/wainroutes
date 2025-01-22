@@ -33,7 +33,7 @@ export default function WalkCard({ walk, link=true, distFrom=null }) {
 
   const WalkCardContent = <>
     <div className="walk-card_image">
-      <Image name={walk?.slug + "-" + walk?.gallery?.coverId} sizes="(min-width: 320px) 320px, 100vw" />
+      <Image name={walk?.slug + "_" + walk?.gallery?.coverId} sizes="(min-width: 320px) 320px, 100vw" />
       {distFrom &&
         <p className="walk-card_dist">
           {distString}
