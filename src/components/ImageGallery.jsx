@@ -132,7 +132,8 @@ function GalleryImage({ index, big=false }) {
     <div className="image-gallery_image" onClick={() => galleryContext?.openCarousel(index)}>
       <Image
         name={galleryContext?.images?.[index]}
-        sizes={big ? "(min-width: 1000px) 1000px, (min-width: 1000px) 50vw, 80vw" : "(min-width: 1000px) 500px, (min-width: 1000px) 25vw, 40vw"}
+        sizes={big ? "(min-width: 1000px) 1000px, (min-width: 840px) 50vw, 90vw" : "(min-width: 1000px) 500px, (min-width: 1000px) 25vw, 40vw"}
+        maxWidth={big ? null : 1024}
       />
     </div>
   )
@@ -143,7 +144,7 @@ function GalleryImage({ index, big=false }) {
 function GallerySingleImage({ ids }) {
   return (
     <div className="image-gallery_row image-gallery_row-one">
-      <GalleryImage index={ids?.[0]} />
+      <GalleryImage index={ids?.[0]} big={true} />
     </div>
   )
 }

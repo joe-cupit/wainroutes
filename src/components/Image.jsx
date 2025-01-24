@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 
-export default function Image({ name, className, sizes="100vw", alt="", blurLoad=true }) {
+export default function Image({ name, className, sizes="100vw", alt="", maxWidth=null, blurLoad=true }) {
 
   const path = "/images/wainroutes_" + name
   const ext = ".webp"
@@ -8,7 +8,11 @@ export default function Image({ name, className, sizes="100vw", alt="", blurLoad
 
   const imgWidths = ["256", "512", "1024", "2048"]
   const srcset = useMemo(() => {
-    return imgWidths.map(w => `${path}_${w}w${ext} ${w}w`).join(", ")
+    return (
+      imgWidths
+        .filter(w => (maxWidth === null || Number(w) <= maxWidth))
+        .map(w => `${path}_${w}w${ext} ${w}w`).join(", ")
+    )
   }, [path, name, ext])
 
   const ImageTag = (
