@@ -39,7 +39,7 @@
 
 
 .lake-map--cluster {
-  transition: transform .1s;
+  transition: transform 100ms, fill 100ms;
 }
 .lake-map--cluster:hover {
   transform: scale(1.2) translateY(-5px);
@@ -47,6 +47,7 @@
 
 .focussed-cluster {
   transform: scale(1.5) translateY(-9px);
+  fill: green;
 }
 .focussed-cluster:hover {
   transform: scale(1.8) translateY(-11px);

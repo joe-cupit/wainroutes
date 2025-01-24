@@ -162,7 +162,7 @@ function Walk({ walkData, slug }) {
             sizes="(min-width: 1100px) 1100px, 100vw"
           />
           <div className="walk-page_top-block"></div>
-          <Link to="/walks" className="walk-page_top-link"><LocationIcon /> {walkData?.startLocation?.location}</Link>
+          <Link to={"/walks?nearto=" + walkData?.startLocation?.location?.toLowerCase().replaceAll(" ", "-")} className="walk-page_top-link"><LocationIcon /> {walkData?.startLocation?.location}</Link>
         </div>
       </section>
 

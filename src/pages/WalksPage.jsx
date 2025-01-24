@@ -1,43 +1,63 @@
 import "./WalksPage.css";
 
-import { Fragment, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { useWalks } from "../hooks/useWalks";
 
 import { LakeMap } from "../components/map";
 
-import hillData from "../assets/hillData";
 import { useWalkMarkers } from "../hooks/useMarkers";
-import { displayDistance, displayElevation } from "../utils/unitConversions";
-
-const PreviewFolder = "/src/assets/previews/"
-
+import { ChevronIcon  } from "../components/Icons";
+import WalkCard from "../components/WalkCard"
+import haversine from "../utils/haversine";
 
 
 export function WalksPage() {
 
-  document.title = "Lake District Walks | wainroutes";
+  document.title = "Discover Lake District Walks – Wainroutes";
 
   const walkMarkers = useWalkMarkers(null);
-  const walkData = Object.values(useWalks(null));
+  const [walkData, setWalkData] = useState(Object.values(useWalks(null)));
   const [sortValue, setSortValue] = useState("recommended");
+  const [nearLocation, setNearLocation] = useState(null)
+
+  useEffect(() => {
+    let newWalkData = [...walkData]
+    if (nearLocation !== null) {
+      for (let walk of newWalkData) {
+        walk.distance = haversine([walk.startLocation?.longitude, walk.startLocation?.latitude], nearLocation?.coords) / 1000
+      }
+    }
+
+    setWalkData(newWalkData)
+  }, [nearLocation])
 
   const sortedWalkData = useMemo(() => {
-    if (sortValue === null || sortValue === "recommended") return walkData;
+    let filteredWalkData = [...walkData]
+    if (nearLocation) {
+      filteredWalkData = filteredWalkData.filter(a => a.distance < 10)
+    }
 
+    if (sortValue === null || sortValue === "recommended") return filteredWalkData;
+
+    let newWalkData = [...filteredWalkData];
     const [type, dir] = sortValue.split("-");
-  
-    let newWalkData = [...walkData];
     switch (type) {
+      case "closest":
+        newWalkData.sort((a, b) => a.distance - b.distance)
+        break;
+      case "recent":
+        newWalkData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        break;
       case "hills":
         newWalkData.sort((a, b) => a.wainwrights?.length - b.wainwrights?.length);
         break;
       case "ele":
-        newWalkData.sort((a, b) => a.total_elevation - b.total_elevation);
+        newWalkData.sort((a, b) => a.elevation - b.elevation);
         break;
       case "dist":
-        newWalkData.sort((a, b) => a.distance - b.distance);
+        newWalkData.sort((a, b) => a.length - b.length);
         break;
       default:
         break;
@@ -50,8 +70,36 @@ export function WalksPage() {
     return newWalkData;
   }, [walkData, sortValue]);
 
-
   const [hovered, setHovered] = useState(null);
+
+  const locations = useMemo(() => ({
+    "keswick": {name: "Keswick", coords: [-3.1347, 54.6013]},
+    "ambleside": {name: "Ambleside", coords: [-2.9613, 54.4287]},
+    "windermere": {name: "Windermere", coords: [-2.9068, 54.3807]},
+    "buttermere": {name: "Buttermere", coords: [-3.2766, 54.5413]},
+    "grasmere": {name: "Grasmere", coords: [-3.0244, 54.4597]},
+    "coniston": {name: "Coniston", coords: [-3.0759, 54.3691]}
+  }), [])
+
+  const [searchParams, setSearchParams] = useSearchParams()
+  
+  useEffect(() => {
+    if (searchParams.has("nearto")) {
+      let nearto = searchParams.get("nearto").toLowerCase()
+      if (nearto in locations) {
+        setNearLocation(locations[nearto])
+      }
+      else {
+        searchParams.delete("nearto")
+        setSearchParams(searchParams)
+      }
+    }
+    else {
+      setNearLocation(null)
+    }
+  }, [searchParams])
+
+  const [openLocationPicker, setOpenLocationPicker] = useState(false)
 
 
   return (
@@ -59,43 +107,50 @@ export function WalksPage() {
 
       <section>
         <div className="flex-column">
-          <h1 className="title">Find a Walk</h1>
+          <span className="walks-page_title">
+            <h1 className="title">
+              {nearLocation
+                ? <>Walks near {<button onClick={() => setOpenLocationPicker(prev => !prev)} className="walks-page_place-button" title="Change location">{nearLocation?.name}</button>}</>
+                : <>Walks in the {<button onClick={() => setOpenLocationPicker(prev => !prev)} className="walks-page_place-button" title="Change location">Lake District</button>}</>
+              }
+            </h1>
 
-          <input type="text" placeholder="search for a walk..." />
+            <LocationSelect
+              open={openLocationPicker}
+              setOpen={setOpenLocationPicker}
+              locations={locations}
+              nearLocation={nearLocation}
+              setSearchParams={setSearchParams}
+            />
+          </span>
+          <p>There are currently 29 individual walks available covering 81 of the 214 Wainwrights. </p>
 
-          <div className="flex-row wrap-none">
+
+          <div className="walks-page_body flex-row wrap-none">
             <div className="flex-column walks-page-main">
-              <div className="flex-row align-center justify-apart">
-                <span className="walks-desktop-only">
-                  {walkData ? "Showing "+walkData.length+" of "+walkData.length+" walks" : ""}
-                </span>
-                <span>
-                  Sort by: <select type="select" value={sortValue} onChange={(e) => setSortValue(e.target.value)}>
-                    <option value="recommended">Recommended</option>
-                    <option value="hills-dsc">Most Wainwrights</option>
-                    <option value="hills-asc">Least Wainwrights</option>
-                    <option value="dist-asc">Distance (Asc.)</option>
-                    <option value="dist-dsc">Distance (Dsc.)</option>
-                    <option value="ele-asc">Elevation (Asc.)</option>
-                    <option value="ele-dsc">Elevation (Dsc.)</option>
-                  </select>
-                </span>
+              <div className="walks-page_body-header flex-row">
+                <input type="text" placeholder="search for a route, place, or wainwright" className="walk-page_search-bar" />
+                <WalkSortSelect allowClosest={nearLocation !== null} setGlobalSortValue={setSortValue} />
               </div>
-              <div className="flex-column walks-page-list">
+              <div className="grid-three walks-page-list">
                 {(sortedWalkData.length > 0)
                 ? sortedWalkData?.map((walk, key) => {
                     return (
-                      <div onMouseEnter={() => setHovered(walk.slug)} onMouseLeave={() => setHovered(null)}>
-                        <WalkCard key={key} walk={walk} />
-                      </div>
+                      <WalkCard key={key} walk={walk}
+                        distFrom={nearLocation && nearLocation?.coords}
+                        onHover={(mouseEnter=false) => {
+                          if (mouseEnter) setHovered(walk?.slug)
+                          else setHovered(null)
+                        }}
+                      />
                     )
                   })
                 : <div>No walks match these filters.</div>
                 }
-                <p className="secondary-text">
-                  {walkData.length > 0 ? "• Showing "+walkData.length+" lovely walks in the Lake District •" : ""}
-                </p>
               </div>
+              <p className="subtext" style={{marginInline: "auto", marginBlock: "0.5em 1em"}}>
+                {sortedWalkData?.length > 0 ? "• Showing "+sortedWalkData?.length+" lovely walks in the Lake District •" : ""}
+              </p>
             </div>
             <div className="walks-page-map">
               <LakeMap mapMarkers={walkMarkers} activePoint={hovered} />
@@ -109,71 +164,129 @@ export function WalksPage() {
 }
 
 
-export default function WalkCard({ walk }) {
-  const hills = [...walk?.wainwrights].sort((a, b) => hillData[b].height - hillData[a].height);
+function LocationSelect({ open, setOpen, locations, nearLocation, setSearchParams }) {
+
+  function changeLocation(label) {
+    let newParams = new URLSearchParams()
+
+    if (label === "all") {
+      setSearchParams(newParams)
+    }
+    else {
+      newParams.set("nearto", label)
+      setSearchParams(newParams)
+    }
+
+    setOpen(false)
+  }
+
 
   return (
-    <Link to={`/walks/${walk.slug}`} className="flex-row walks-card">
+    <div
+      className="walks-page_place-popup"
+      style={open ? {} : {display: "none"}}
+    >
+      <h2 className="heading">Select a location</h2>
 
-      <div className="walks-card_image walks-desktop-only">
-        <img src={PreviewFolder + walk.slug + ".jpg"} alt={walk.title+" preview"} loading="lazy" />
+      <div className="flex-column gap-0">
+        <label className={"walks-page_place-popup_option" + (nearLocation === null ? " current" : "")}>
+          <input type="radio"
+            checked={nearLocation === null}
+            onChange={() => changeLocation("all")}
+          />
+          All walks
+        </label>
+        {Object.keys(locations)?.map((label, index) => {
+          return (
+            <label key={index} className={"walks-page_place-popup_option" + (nearLocation?.name === locations[label]?.name ? " current" : "")}>
+              <input type="radio"
+                checked={nearLocation?.name === locations[label]?.name}
+                onChange={() => changeLocation(label)}
+              />
+              {locations[label]?.name}
+            </label>
+          )
+        })}
       </div>
-
-      <div className="flex-column gap-0 walks-card_text">
-        <h3 className="subheading" title={walk?.title}>{walk?.title}</h3>
-        <MountainList mountains={hills} />
-        <p className="flex-row secondary-text walks-card_stats">
-          <span className="walks-card-stat-group">
-            <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" viewBox="0 0 100 125">
-              <circle cx="46" cy="12.6" r="10.1"/>
-              <path d="M74.9,41.4l-9.1-3.5l-6.5-8c-2.3-2.8-5.7-4.4-9.3-4.4h-8.4c-3.3,0-6.5,1.4-8.8,3.8L26,36.7c-0.6,0.6-0.9,1.3-1.1,2.1     l-2.5,12.1c-0.5,2.4,1,4.8,3.5,5.3c0.3,0.1,0.6,0.1,0.9,0.1c2.1,0,3.9-1.5,4.4-3.6l2.3-10.8l3-3.2v19.1l-2.2,14.3l-9.8,17.6     c-1.4,2.5-0.5,5.7,2,7.1c0.8,0.5,1.7,0.7,2.5,0.7c1.8,0,3.6-1,4.6-2.7l10.3-18.4c0.3-0.5,0.5-1.1,0.6-1.8l2-12.8l8.6,14.6     l3.3,16.8c0.5,2.5,2.7,4.2,5.1,4.2c0.3,0,0.7,0,1-0.1c2.8-0.6,4.7-3.3,4.1-6.1L65,73.6c-0.1-0.6-0.3-1.1-0.6-1.6l-8.9-15.2V39.5     l4,5c0.5,0.6,1.1,1.1,1.9,1.4l10.2,3.9c2.3,0.9,4.9-0.3,5.8-2.6C78.4,44.8,77.2,42.3,74.9,41.4z"/>
-            </svg>
-            {displayDistance(walk?.length)}
-          </span>
-          •
-          <span className="walks-card-stat-group">
-            <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
-            </svg>
-            {displayElevation(walk?.elevation)}
-          </span>
-          •
-          <span className="walks-card-stat-group">
-            <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-            {walk?.estimatedTime}
-          </span>
-          •
-          <span className="walks-card-stat-group">
-            <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" viewBox="0 0 100 125">
-              <polygon points="59.811,100 19.623,100 39.717,65.194 59.811,30.391 79.906,65.194 100,100  "/>
-              <polygon points="35.658,60.679 29.18,49.457 14.59,74.729 0,100 12.958,100 33.051,65.194  "/>
-            </svg>            
-            {walk?.wainwrights?.length}
-          </span>
-        </p>
-      </div>
-    </Link>
+    </div>
   )
 }
 
 
-function MountainList({ mountains, container } ) {
+function WalkSortSelect({ setGlobalSortValue, allowClosest=false }) {
 
-  const hillMap = mountains.length > 4 ? mountains.slice(0, 3) : mountains;
-  const remainingHills = mountains.length - hillMap.length;
+  const options = useMemo(() => ({
+    "closest": "Closest",
+    "recommended": "Recommended",
+    "recent": "Recently Added",
+    "hills-dsc": "Most Wainwrights",
+    // "hills-asc": "Least Wainwrights",
+    "dist-dsc": "Longest Route",
+    "dist-asc": "Shortest Route",
+    "ele-dsc": "Most Elevation",
+    "ele-asc": "Least Elevation",
+  }), [])
+  const [selected, setSelected] = useState(allowClosest ? "closest" : "recommended")
+
+  function onRadioChange(key) {
+    if (selected === key) setSelected(null)
+    else setSelected(key)
+    setOpen(false)
+  }
+
+  useEffect(() => {
+    setGlobalSortValue(selected)
+  }, [selected])
+
+  useEffect(() => {
+    if (allowClosest) setSelected("closest")
+    else {
+      if (selected === "closest") setSelected("recommended")
+    }
+  }, [allowClosest])
+
+  const [open, setOpen] = useState(false)
+
 
   return (
-    <p>
-      {hillMap?.map((hill, index) => {
-        return (
-          <Fragment key={index}>
-            {(index !== 0 ? ", " : "") + hillData?.[hill]?.name}
-          </Fragment>
-        )
-      })}
-      {remainingHills ? (" & " + (remainingHills) + " more") : ""}
-    </p>
+    <div className={"walks-page_sort" + (open ? " active" : "")}>
+      <button
+        className="walks-page_sort-button flex-row flex-apart"
+        onClick={() => setOpen(prev => !prev)}
+      >
+        {options[selected]}
+        <ChevronIcon />
+      </button>
+
+      <div
+        className="walks-page_sort-popup flex-column"
+        style={open ? {} : {display: "none"}}
+      >
+        <div className="walks-page_sort-options flex-column wrap-none">
+          {options && Object.keys(options).map((label, index) => {
+            if (index !== 0 || allowClosest) {
+              return (
+                <WalkSortSelectOption key={index}
+                  label={options[label]}
+                  checked={selected == label}
+                  setChecked={() => onRadioChange(label)}
+                />
+              )
+            }
+
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function WalkSortSelectOption({ label, checked, setChecked }) {
+
+  return (
+    <label className={"walks-page_sort-options_option" + (checked ? " checked" : "")}>
+      <input type="radio" checked={checked} onChange={setChecked} />
+      {label}
+    </label>
   )
 }
