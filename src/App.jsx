@@ -1,6 +1,6 @@
 import './App.css';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 import { Navbar } from './components/Navbar';
@@ -17,10 +17,17 @@ import { WeatherPage } from './pages/WeatherPage';
 
 export default function App() {
 
-  const { pathname } = useLocation();
+  const [lastPoppedPage, setLastPoppedPage] = useState(null)
+  window.onpopstate = e => {
+    setLastPoppedPage(e?.state?.key)
+  }
+
+  const { key } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    console.log(key, lastPoppedPage)
+    if (key !== lastPoppedPage) window.scrollTo(0, 0);
+  }, [key]);
+
 
   return (<>
     <Navbar />
