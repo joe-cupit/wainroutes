@@ -1,6 +1,6 @@
 import "./WalkPage.css";
 
-import { useState, useEffect, Fragment, useMemo, useRef } from "react";
+import { useState, useEffect, Fragment, useMemo, useRef, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { NotFoundPage } from "./error/NotFoundPage";
@@ -13,7 +13,7 @@ import { useHillMarkers } from "../hooks/useMarkers";
 import ElevationChart from "../components/ElevationChart";
 import haversine from "../utils/haversine";
 import WalkCard from "../components/WalkCard";
-import { displayDistance, displayElevation, displayTemperature, getDistanceValue, getElevationValue } from "../utils/unitConversions";
+import { displayDistance, displayElevation, displaySpeed, displayTemperature, getDistanceValue, getElevationValue } from "../utils/unitConversions";
 import useWeather from "../hooks/useWeather";
 import { BackIcon, ElevationIcon, HikingIcon, LocationIcon, MountainIcon, TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "../components/Icons";
 import ImageGallery from "../components/ImageGallery";
@@ -418,56 +418,111 @@ function Photos({ secRef, slug, galleryData }) {
 
 function Weather({ secRef }) {
 
-  const weatherData = useWeather()?.days?.[0]?.date ? useWeather()?.days?.[0] : useWeather()?.days?.[1]
-  const weatherForecast = weatherData?.forecast
-  const suntime = [weatherData?.sunrise, weatherData?.sunset]
+  const weatherData = null
 
-  const middayIndex = weatherForecast?.time?.indexOf("12:00")
-
-  function addDays(date, days) {
-    var result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
-
-  const startDate = weatherData?.date ? (new Date(weatherData?.date)) : null
-  let comingDays = []
-  if (startDate) {
-    comingDays = [...Array(7).fill().map((d, n) => (addDays(startDate, n)))]
-  }
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const [selectedDayIndex, setSelectedDayIndex] = useState(0)
+
+  const selectedDayWeather = useMemo(() =>
+    weatherData ? weatherData?.days?.[selectedDayIndex] : null
+  , [selectedDayIndex])
+
+  const formatDate = useCallback((dateString) => {
+    const dateObject = new Date(dateString)
+    const options = {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+    }
+
+    return dateObject.toLocaleDateString("en-GB", options)
+  }, [])
+
+  const [displayDayData, setDisplayDayData] = useState(true)
 
 
   return (
     <div ref={secRef}>
       <h2 className="subheading" id="walk_weather">Weather</h2>
 
-      <div className="walk-page_weather-tabs flex-row justify-apart">
-        {comingDays?.map((day, index) => {
-          return (
-            <button key={index}
-              className={"walk-page_weather-tab flex-column gap-0 align-center smallheading" + ([0, 6].includes(day.getDay()) ? " weekend" : "") + (index === selectedDayIndex ? " selected" : "")}
-              onClick={() => setSelectedDayIndex(index)}
-            >
-              <span className="subtext">{days[day.getDay()]}</span>
-              <span className="subtext weather-day">{day.getDate()}</span>
-            </button>
-          )
-        })}
-      </div>
+      {weatherData
+      ? <>
+          <p>Forecast for <b>{weatherData?.name + " Summit"} ({displayElevation(weatherData?.elevation)})</b></p>
 
-      <div className="walks-page_section walks-page_weather-main flex-column gap-0">
-        <h3 className="subheading walks-page_weather-date">{comingDays[selectedDayIndex].toDateString()}</h3>
-        <p className="subtext walks-page_weather-suntime">Sunrise: {suntime[0]} Sunset: {suntime[1]}</p>
-        <div className="flex-row align-center gap-0">
-          <p className="walks-page_weather-temperature">{displayTemperature(Number(weatherForecast?.temp[middayIndex]))}</p>
-          <div className="walks-page_weather-symbol">
-            <img src={WeatherSymbols[`${weatherForecast?.type[middayIndex]?.toLowerCase().replaceAll(" ", "-").replaceAll(/[()]/g, "")}.svg`]} alt={weatherForecast?.type[middayIndex]} title={weatherForecast?.type[middayIndex]} />
+          <div className="walk-page_weather-tabs flex-row justify-apart">
+            {weatherData?.days?.map((day, index) => {
+              let dayDate = new Date(day?.date)
+
+              return (
+                <button key={index}
+                  className={"walk-page_weather-tab flex-column gap-0 align-center smallheading" + ([0, 6].includes(dayDate?.getDay()) ? " weekend" : "") + (index === selectedDayIndex ? " selected" : "")}
+                  onClick={() => setSelectedDayIndex(index)}
+                >
+                  <span className="subtext">{days[dayDate?.getDay()]}</span>
+                  <span className="subtext weather-day">{dayDate?.getDate()}</span>
+                </button>
+              )
+            })}
           </div>
-          <p>{weatherForecast?.type[middayIndex]} H: {displayTemperature(Math.max(...weatherForecast?.temp ?? "none"), false)} L: {displayTemperature(Math.min(...weatherForecast?.temp ?? "none"), false)}</p>
-        </div>
-      </div>
+
+          <div className={"walks-page_section walks-page_weather-body flex-column" + (!displayDayData ? " night-view" : "")}>
+            <div className="walks-page_weather-header flex-row justify-apart align-center">
+              <h3 className="subheading walks-page_weather-date">{formatDate(selectedDayWeather?.date)}</h3>
+              <div className="walks-page_day-night">
+                <button className={displayDayData ? "active" : ""} onClick={() => setDisplayDayData(true)}>day</button>
+                &nbsp;/&nbsp;
+                <button className={!displayDayData ? "active" : ""} onClick={() => setDisplayDayData(false)}>night</button>
+              </div>
+            </div>
+
+            <div className="walks-page_weather-main flex-row align-center">
+              <div className="flex-row gap-0 align-center">
+                <div className="flex-column gap-0">
+                  <span className="walks-page_weather-temp title">{displayDayData ? displayTemperature(selectedDayWeather?.max_temp) : displayTemperature(selectedDayWeather?.min_temp)}</span>
+
+                  <div className="walks-page_weather-temps">
+                    L: {displayTemperature(selectedDayWeather?.min_temp, false)} H: {displayTemperature(selectedDayWeather?.max_temp, false)}
+                  </div>
+                </div>
+
+                <div className="walks-page_weather-symbol">
+                  <img src={WeatherSymbols[`${(displayDayData ? selectedDayWeather?.day_weather_type : selectedDayWeather?.night_weather_type)?.toLowerCase().replaceAll(" ", "-").replaceAll(/[()]/g, "")}.svg`]} alt={displayDayData ? selectedDayWeather?.day_weather_type : selectedDayWeather?.night_weather_type} title={displayDayData ? selectedDayWeather?.day_weather_type : selectedDayWeather?.night_weather_type} />
+                </div>
+              </div>
+
+              <div className="walks-page_weather-grid grid-two gap-0">
+                <div className="walks-page_weather-grid_box">
+                  <h4>Feels-like</h4>
+                  <p>{displayDayData ? displayTemperature(selectedDayWeather?.max_feels_like) : displayTemperature(selectedDayWeather?.min_feels_like)}</p>
+                </div>
+                <div className="walks-page_weather-grid_box">
+                  <h4>Precipitation</h4>
+                  <p className="default-value">{displayDayData ? selectedDayWeather?.precipitation?.day_prob + "%" : selectedDayWeather?.precipitation?.night_prob + "%"}</p>
+                  <p className="hover-value">{displayDayData ? selectedDayWeather?.precipitation?.day_type : selectedDayWeather?.precipitation?.night_type}</p>
+                </div>
+                <div className="walks-page_weather-grid_box">
+                  <h4 className="default-value">Wind speed</h4>
+                  <h4 className="hover-value">Wind gusts</h4>
+                  <p className="default-value">{displaySpeed(selectedDayWeather?.wind_speed)}</p>
+                  <p className="hover-value">{displaySpeed(selectedDayWeather?.wind_gusts)}</p>
+                </div>
+                <div className="walks-page_weather-grid_box">
+                  <h4>Visibility</h4>
+                  <p className="default-value">{selectedDayWeather?.visibility_type}</p>
+                  <p className="hover-value">{displayDistance(selectedDayWeather?.visibility_m / 1000, 0)}</p>
+                </div>
+              </div>
+            </div>
+
+            <p className="walks-page_weather-info subtext">
+              Provided by the <a href="https://www.metoffice.gov.uk/" target="_blank">Met Office</a> under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">Open Government Licence</a>.
+            </p>
+          </div>
+        </>
+      : <p>The forecast for this walk is currently unavailable.</p>
+      }
+
+      <p className="walks-page_weather-link">For the district-wide forecast, see the <Link to="/weather">mountain weather forecast</Link>.</p>
     </div>
   )
 }

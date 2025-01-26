@@ -11,8 +11,15 @@ export function getDistanceUnit() {
   if (useMiles) return "mi"
   else return "km"
 }
+export function getSpeedUnit() {
+  if (useMiles) return "mph"
+  else return "kph"
+}
 export function displayDistance(kilometers, roundTo=2) {
   return getDistanceValue(kilometers).toFixed(roundTo) + getDistanceUnit()
+}
+export function displaySpeed(kilometers_per_hour, roundTo=0) {
+  return getDistanceValue(kilometers_per_hour).toFixed(roundTo) + getSpeedUnit()
 }
 
 
