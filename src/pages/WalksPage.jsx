@@ -11,6 +11,7 @@ import { useWalkMarkers } from "../hooks/useMarkers";
 import { ChevronIcon  } from "../components/Icons";
 import WalkCard from "../components/WalkCard"
 import haversine from "../utils/haversine";
+import { displayDistance } from "../utils/unitConversions";
 
 
 export function WalksPage() {
@@ -75,10 +76,24 @@ export function WalksPage() {
   const locations = useMemo(() => ({
     "keswick": {name: "Keswick", coords: [-3.1347, 54.6013]},
     "ambleside": {name: "Ambleside", coords: [-2.9613, 54.4287]},
-    "windermere": {name: "Windermere", coords: [-2.9068, 54.3807]},
-    "buttermere": {name: "Buttermere", coords: [-3.2766, 54.5413]},
     "grasmere": {name: "Grasmere", coords: [-3.0244, 54.4597]},
-    "coniston": {name: "Coniston", coords: [-3.0759, 54.3691]}
+    "buttermere": {name: "Buttermere", coords: [-3.2766, 54.5413]},
+    "borrowdale": {name: "Borrowdale", coords: [-3.1486, 54.5028]},
+    "coniston": {name: "Coniston", coords: [-3.0759, 54.3691]},
+    "glenridding": {name: "Glenridding", coords: [-2.9498, 54.5448]},
+    "windermere": {name: "Windermere", coords: [-2.9068, 54.3807]},
+
+    "dungeon-ghyll": {name: "Dungeon Ghyll", coords: [-3.0942, 54.4461]},
+    "kentmere": {name: "Kentmere", coords: [-2.8402, 54.4302]},
+    "seatoller": {name: "Seatoller", coords: [-3.1678, 54.5142]},
+    "braithwaite": {name: "Braithwaite", coords: [-3.1923, 54.6026]},
+    "wasdale": {name: "Wasdale", coords: [-3.2966, 54.4660]},
+    "thirlmere": {name: "Thirlmere", coords: [-3.0642, 54.5365]},
+    "thornthwaite": {name: "Thornthwaite", coords: [-3.2029, 54.6173]},
+    "rosthwaite": {name: "Rosthwaite", coords: [-3.1466, 54.5228]},
+    "whinlatter-pass": {name: "Whinlatter Pass", coords: [-3.2256, 54.6082]},
+    "threlkeld": {name: "Threlkeld", coords: [-3.0543, 54.6190]},
+    "dodd-wood": {name: "Dodd Wood", coords: [-3.1868, 54.6428]},
   }), [])
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -111,7 +126,8 @@ export function WalksPage() {
             <h1 className="title">
               {nearLocation
                 ? <>Walks near {<button onClick={() => setOpenLocationPicker(prev => !prev)} className="walks-page_place-button" title="Change location">{nearLocation?.name}</button>}</>
-                : <>Walks in the {<button onClick={() => setOpenLocationPicker(prev => !prev)} className="walks-page_place-button" title="Change location">Lake District</button>}</>
+                // : <>Walks in the {<button onClick={() => setOpenLocationPicker(prev => !prev)} className="walks-page_place-button" title="Change location">Lake District</button>}</>
+                : <>Walks in the Lake District</>
               }
             </h1>
 
@@ -123,16 +139,15 @@ export function WalksPage() {
               setSearchParams={setSearchParams}
             />
           </span>
-          <p>There are currently 29 individual walks available covering 81 of the 214 Wainwrights. </p>
-
+          <p>Explore the best walks covering the Wainwrights around {nearLocation?.name}.</p>
 
           <div className="walks-page_body flex-row wrap-none">
-            <div className="flex-column walks-page-main">
-              <div className="walks-page_body-header flex-row">
+            <div className="flex-column gap-0 walks-page-main">
+              <div className="walks-page_body-header flex-row align-center">
                 <input type="text" placeholder="search for a route, place, or wainwright" className="walk-page_search-bar" />
                 <WalkSortSelect allowClosest={nearLocation !== null} setGlobalSortValue={setSortValue} />
               </div>
-              <div className="grid-three walks-page-list">
+              <div className="walks-page-list flex-row">
                 {(sortedWalkData.length > 0)
                 ? sortedWalkData?.map((walk, key) => {
                     return (
@@ -149,7 +164,7 @@ export function WalksPage() {
                 }
               </div>
               <p className="subtext" style={{marginInline: "auto", marginBlock: "0.5em 1em"}}>
-                {sortedWalkData?.length > 0 ? "• Showing "+sortedWalkData?.length+" lovely walks in the Lake District •" : ""}
+                {nearLocation ? "• Showing all our Lake District walks within "+displayDistance(10, 0)+" of "+nearLocation?.name+" •" : ""}
               </p>
             </div>
             <div className="walks-page-map">
@@ -183,31 +198,31 @@ function LocationSelect({ open, setOpen, locations, nearLocation, setSearchParam
 
   return (
     <div
-      className="walks-page_place-popup"
+      className="walks-page_place-popup flex-column gap-0"
       style={open ? {} : {display: "none"}}
     >
-      <h2 className="heading">Select a location</h2>
+      {/* <h2 className="heading">Select a location</h2> */}
 
-      <div className="flex-column gap-0">
-        <label className={"walks-page_place-popup_option" + (nearLocation === null ? " current" : "")}>
-          <input type="radio"
-            checked={nearLocation === null}
-            onChange={() => changeLocation("all")}
-          />
-          All walks
-        </label>
-        {Object.keys(locations)?.map((label, index) => {
-          return (
-            <label key={index} className={"walks-page_place-popup_option" + (nearLocation?.name === locations[label]?.name ? " current" : "")}>
-              <input type="radio"
-                checked={nearLocation?.name === locations[label]?.name}
-                onChange={() => changeLocation(label)}
-              />
-              {locations[label]?.name}
-            </label>
-          )
-        })}
-      </div>
+      {/* <div className="flex-column gap-0"> */}
+      <label className={"walks-page_place-popup_option" + (nearLocation === null ? " current" : "")}>
+        <input type="radio"
+          checked={nearLocation === null}
+          onChange={() => changeLocation("all")}
+        />
+        All walks
+      </label>
+      {Object.keys(locations)?.map((label, index) => {
+        return (
+          <label key={index} className={"walks-page_place-popup_option" + (nearLocation?.name === locations[label]?.name ? " current" : "")}>
+            <input type="radio"
+              checked={nearLocation?.name === locations[label]?.name}
+              onChange={() => changeLocation(label)}
+            />
+            {locations[label]?.name}
+          </label>
+        )
+      })}
+      {/* </div> */}
     </div>
   )
 }

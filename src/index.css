@@ -78,13 +78,13 @@
   --clr-bus-X5: #009FE3;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 41rem) {
   :root {
     --fs-300: 0.8125rem;
     --fs-400: 1rem;
     --fs-600: 1.25rem;
     --fs-800: 1.625rem;
-    --fs-1000: 2.5rem;
+    --fs-1000: 2rem;
 
     --gap-200: 0.125rem;
     --gap-300: 0.25rem;
@@ -93,12 +93,6 @@
     --gap-600: 1.75rem;
     --gap-700: 2rem;
     --gap-800: 4rem;
-  }
-}
-
-@media (max-width: 650px) {
-  :root {
-    --fs-1000: 2rem;
   }
 }
 

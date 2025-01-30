@@ -26,7 +26,7 @@ footer {
   --section-padding: 2rem;
   --content-max-width: 1350px;
 
-  @media (max-width: 650px) {
+  @media (max-width: 41rem) {
     --section-padding: 1rem;
   }
 

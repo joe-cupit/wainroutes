@@ -5,8 +5,8 @@
   flex-direction: column;
 
   flex: 1;
-  min-width: 17rem;
-  max-width: 20rem;
+  min-width: 18rem;
+  max-width: 20em;
   height: 23rem;
   border-radius: 0.5em;
 
@@ -17,6 +17,7 @@
 }
 
 .walk-card_image {
+  position: relative;
   background: #0001;
 
   width: 100%;

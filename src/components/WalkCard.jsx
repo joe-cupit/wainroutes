@@ -9,7 +9,7 @@ import Image from "./Image"
 
 
 
-export default function WalkCard({ walk, link=true, distFrom=null }) {
+export default function WalkCard({ walk, link=true, distFrom=null, onHover=null }) {
 
   if (walk === null || walk === undefined) return <></>
 
@@ -17,17 +17,24 @@ export default function WalkCard({ walk, link=true, distFrom=null }) {
   if (distFrom) {
     let dist = getDistanceValue(haversine(distFrom, [walk?.startLocation?.longitude, walk?.startLocation?.latitude]) / 1000)
 
-    if (getDistanceUnit() === "km" && dist < 1) {
-      distString = (dist * 1000).toFixed(0) + "m"
-    }
-    else if (getDistanceUnit() === "mi" && dist < 0.1) {
-      distString = metersToFeet(dist * 1000) + "ft"
+    if (dist < 1) {
+      distString = "Less than 1" + getDistanceUnit()
     }
     else {
-      distString = dist.toFixed(1) + getDistanceUnit()
+      distString = dist.toFixed(1) + getDistanceUnit() + " away"
     }
 
-    distString += " away"
+    // if (getDistanceUnit() === "km" && dist < 1) {
+    //   distString = (dist * 1000).toFixed(0) + "m"
+    // }
+    // else if (getDistanceUnit() === "mi" && dist < 0.1) {
+    //   distString = metersToFeet(dist * 1000) + "ft"
+    // }
+    // else {
+    //   distString = dist.toFixed(1) + getDistanceUnit()
+    // }
+
+    // distString += " away"
   }
 
 
@@ -69,12 +76,18 @@ export default function WalkCard({ walk, link=true, distFrom=null }) {
     <Link to={"/walks/"+walk.slug}
       className="walk-card"
       title={walk?.title}
+      onMouseEnter={() => onHover(true)}
+      onMouseLeave={() => onHover()}
     >
       {WalkCardContent}
     </Link>
   )
   else return (
-    <div className="walk-card">
+    <div
+      className="walk-card"
+      onMouseEnter={() => onHover(true)}
+      onMouseLeave={() => onHover()}
+    >
       {WalkCardContent}
     </div>
   )

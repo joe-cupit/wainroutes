@@ -8,9 +8,10 @@
 .walks-page_place-button {
   border-block-end: 0.075em dashed currentColor;
 
-  transition: color 50ms;
+  transition: color 100ms;
 }
-.walks-page_place-button:hover {
+.walks-page_place-button:hover,
+.walks-page_place-button.hovered {
   color: var(--clr-primary-400);
 }
 
@@ -20,70 +21,115 @@
   right: 0;
   z-index: calc(infinity);
 
-  font-size: var(--fs-600);
+  font-size: var(--fs-400);
   font-weight: var(--fw-medium);
 
   border-radius: 0.5em;
-
-  padding: 0.75em;
+  padding-block: 0.25em;
+  overflow: hidden;
 
   background: var(--clr-white-400);
   filter: drop-shadow(2px 2px 7px #0008);
 }
 .walks-page_place-popup_option {
   cursor: pointer;
+  width: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.25em;
 }
 .walks-page_place-popup_option:hover {
   background: var(--clr-white-600);
 }
 .walks-page_place-popup_option.current {
   color: var(--clr-primary-400);
-  background: var(--clr-white-400);
 }
 .walks-page_place-popup_option input {
   display: none;
 }
 
-
-.walks-page_body {
-  width: 100%;
-  gap: 2em;
+.walks-page_place-dist {
+  margin-block-start: 0.5em;
+  margin-inline-start: auto;
+  width: fit-content;
 }
 
-.walks-page-main {
-  flex: 1;
+.walks-page_body {
+  container-type: inline-size;
+  width: 100%;
+  gap: min(2vw, 2rem);
 }
 
 .walks-page_body-header,
 .walks-page-map {
   position: sticky;
-  top: 2.5%;
+  top: 0;
+  padding-block-start: 1rem;
+  z-index: 2;
 }
 
+.walks-page-list {
+  display: grid;
+  gap: var(--gap-400);
+
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+@container (min-width: 60rem) {
+  .walks-page-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
 .walks-page-map {
-  width: 40%;
-  min-width: 300px;
+  flex: 1;
+  min-width: 350px;
   height: max(95vh, 20rem);
+}
+@media (max-width: 50rem) {
+  .walks-page_body {
+    flex-direction: column-reverse;
+  }
+
+  .walks-page-main,
+  .walks-page-map {
+    width: 100%;
+  }
+  .walks-page-map {
+    position: initial;
+    width: 100%;
+    min-height: 50vw;
+    max-height: 50vw;
+  }
+
+  .walks-page-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 41rem) {
+  .walks-page-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .walks-page_body-header {
-  top: 0;
-
   width: 100%;
-  z-index: 2;
+  padding-block-end: 2.5%;
 
   background: var(--clr-white-500);
-
-  padding-block: 2.5% 0.5em;
 }
 .walk-page_search-bar {
   flex: 1;
   padding-block: 0.375em 0.25em;
   padding-inline: 0.375em;
+  min-width: 5rem;
 }
 
 .walks-page_sort {
   position: relative;
+  margin-inline-start: auto;
 }
 
 .walks-page_sort-button {
