@@ -76,8 +76,7 @@ export default function WalkCard({ walk, link=true, distFrom=null, onHover=null 
     <Link to={"/walks/"+walk.slug}
       className="walk-card"
       title={walk?.title}
-      onMouseEnter={() => onHover(true)}
-      onMouseLeave={() => onHover()}
+      {...(onHover ? {onMouseEnter: () => onHover(true), onMouseLeave: () => onHover()} : {} )}
     >
       {WalkCardContent}
     </Link>
@@ -85,8 +84,7 @@ export default function WalkCard({ walk, link=true, distFrom=null, onHover=null 
   else return (
     <div
       className="walk-card"
-      onMouseEnter={() => onHover(true)}
-      onMouseLeave={() => onHover()}
+      {...(onHover ? {onMouseEnter: () => onHover(true), onMouseLeave: () => onHover()} : {} )}
     >
       {WalkCardContent}
     </div>
