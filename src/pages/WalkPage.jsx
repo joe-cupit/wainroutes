@@ -19,6 +19,8 @@ import { BackIcon, ElevationIcon, HikingIcon, LocationIcon, MountainIcon, Terrai
 import ImageGallery from "../components/ImageGallery";
 import Image from "../components/Image";
 
+import AllWeatherData from "../assets/individual_weather.json";
+
 
 const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg")
 let WeatherSymbols = {}
@@ -238,7 +240,9 @@ function Walk({ walkData, slug }) {
               galleryData={walkData?.gallery}
             />
 
-            <Weather secRef={weatherRef} />
+            <Weather secRef={weatherRef}
+              weatherLoc={walkData?.weatherLoc}
+            />
           </div>
         </div>
       </section>
@@ -416,9 +420,9 @@ function Photos({ secRef, slug, galleryData }) {
   )
 }
 
-function Weather({ secRef }) {
+function Weather({ secRef, weatherLoc }) {
 
-  const weatherData = null
+  const weatherData = AllWeatherData[weatherLoc]
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const [selectedDayIndex, setSelectedDayIndex] = useState(0)
@@ -438,7 +442,7 @@ function Weather({ secRef }) {
     return dateObject.toLocaleDateString("en-GB", options)
   }, [])
 
-  const [displayDayData, setDisplayDayData] = useState(true)
+  const [displayNightData, setDisplayNightData] = useState(0)
 
 
   return (
@@ -447,7 +451,7 @@ function Weather({ secRef }) {
 
       {weatherData
       ? <>
-          <p>Forecast for <b>{weatherData?.name + " Summit"} ({displayElevation(weatherData?.elevation)})</b></p>
+          <p>Forecast for <b>{weatherLoc} ({displayElevation(weatherData?.elevation)})</b></p>
 
           <div className="walk-page_weather-tabs flex-row justify-apart">
             {weatherData?.days?.map((day, index) => {
@@ -465,51 +469,51 @@ function Weather({ secRef }) {
             })}
           </div>
 
-          <div className={"walks-page_section walks-page_weather-body flex-column" + (!displayDayData ? " night-view" : "")}>
+          <div className={"walks-page_section walks-page_weather-body flex-column" + (displayNightData ? " night-view" : "")}>
             <div className="walks-page_weather-header flex-row justify-apart align-center">
               <h3 className="subheading walks-page_weather-date">{formatDate(selectedDayWeather?.date)}</h3>
               <div className="walks-page_day-night">
-                <button className={displayDayData ? "active" : ""} onClick={() => setDisplayDayData(true)}>day</button>
+                <button className={!displayNightData ? "active" : ""} onClick={() => setDisplayNightData(0)}>day</button>
                 &nbsp;/&nbsp;
-                <button className={!displayDayData ? "active" : ""} onClick={() => setDisplayDayData(false)}>night</button>
+                <button className={displayNightData ? "active" : ""} onClick={() => setDisplayNightData(1)}>night</button>
               </div>
             </div>
 
             <div className="walks-page_weather-main flex-row align-center">
               <div className="flex-row gap-0 align-center">
                 <div className="flex-column gap-0">
-                  <span className="walks-page_weather-temp title">{displayDayData ? displayTemperature(selectedDayWeather?.max_temp) : displayTemperature(selectedDayWeather?.min_temp)}</span>
+                  <span className="walks-page_weather-temp title">{displayTemperature(selectedDayWeather?.temp?.screen?.[displayNightData])}</span>
 
                   <div className="walks-page_weather-temps">
-                    L: {displayTemperature(selectedDayWeather?.min_temp, false)} H: {displayTemperature(selectedDayWeather?.max_temp, false)}
+                    L: {displayTemperature(selectedDayWeather?.temp?.min?.[displayNightData], false)} H: {displayTemperature(selectedDayWeather?.temp?.max?.[displayNightData], false)}
                   </div>
                 </div>
 
                 <div className="walks-page_weather-symbol">
-                  <img src={WeatherSymbols[`${(displayDayData ? selectedDayWeather?.day_weather_type : selectedDayWeather?.night_weather_type)?.toLowerCase().replaceAll(" ", "-").replaceAll(/[()]/g, "")}.svg`]} alt={displayDayData ? selectedDayWeather?.day_weather_type : selectedDayWeather?.night_weather_type} title={displayDayData ? selectedDayWeather?.day_weather_type : selectedDayWeather?.night_weather_type} />
+                  <img src={WeatherSymbols[`${(selectedDayWeather?.weather_type?.[displayNightData])?.toLowerCase().replaceAll(" ", "-").replaceAll(/[()]/g, "")}.svg`]} alt={selectedDayWeather?.weather_type?.[displayNightData]} title={selectedDayWeather?.weather_type?.[displayNightData]} />
                 </div>
               </div>
 
               <div className="walks-page_weather-grid grid-two gap-0">
                 <div className="walks-page_weather-grid_box">
                   <h4>Feels-like</h4>
-                  <p>{displayDayData ? displayTemperature(selectedDayWeather?.max_feels_like) : displayTemperature(selectedDayWeather?.min_feels_like)}</p>
+                  <p>{displayTemperature(selectedDayWeather?.temp?.feels?.[displayNightData], false)}</p>
                 </div>
                 <div className="walks-page_weather-grid_box">
                   <h4>Precipitation</h4>
-                  <p className="default-value">{displayDayData ? selectedDayWeather?.precipitation?.day_prob + "%" : selectedDayWeather?.precipitation?.night_prob + "%"}</p>
-                  <p className="hover-value">{displayDayData ? selectedDayWeather?.precipitation?.day_type : selectedDayWeather?.precipitation?.night_type}</p>
+                  <p className="default-value">{selectedDayWeather?.precipitation?.prob?.[displayNightData] + "%"}</p>
+                  <p className="hover-value">{selectedDayWeather?.precipitation?.type?.[displayNightData]}</p>
                 </div>
                 <div className="walks-page_weather-grid_box">
                   <h4 className="default-value">Wind speed</h4>
                   <h4 className="hover-value">Wind gusts</h4>
-                  <p className="default-value">{displaySpeed(selectedDayWeather?.wind_speed)}</p>
-                  <p className="hover-value">{displaySpeed(selectedDayWeather?.wind_gusts)}</p>
+                  <p className="default-value">{displaySpeed(selectedDayWeather?.wind?.speed?.[displayNightData])}</p>
+                  <p className="hover-value">{displaySpeed(selectedDayWeather?.wind?.gusts?.[displayNightData])}</p>
                 </div>
                 <div className="walks-page_weather-grid_box">
                   <h4>Visibility</h4>
-                  <p className="default-value">{selectedDayWeather?.visibility_type}</p>
-                  <p className="hover-value">{displayDistance(selectedDayWeather?.visibility_m / 1000, 0)}</p>
+                  <p className="default-value">{selectedDayWeather?.visibility?.text?.[displayNightData]}</p>
+                  <p className="hover-value">{displayDistance(selectedDayWeather?.visibility?.m?.[displayNightData] / 1000, 0)}</p>
                 </div>
               </div>
             </div>

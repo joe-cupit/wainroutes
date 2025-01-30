@@ -1,0 +1,5546 @@
+{
+  "Helvellyn Summit": {
+    "request_date": "2025-01-30",
+    "name": "Helvellyn Summit",
+    "elevation": 950,
+    "coordinates": [
+      -3.0161,
+      54.5269
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            -1
+          ],
+          "min": [
+            -2,
+            -6
+          ],
+          "feels": [
+            -4,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            7,
+            97
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            19,
+            49
+          ],
+          "gusts": [
+            27,
+            56
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            53
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -2,
+            -6
+          ],
+          "feels": [
+            -4,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            20,
+            20
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            22,
+            13
+          ],
+          "gusts": [
+            28,
+            16
+          ]
+        },
+        "visibility": {
+          "m": [
+            324,
+            3999
+          ],
+          "text": [
+            "Very poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Mist",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -3,
+            -5
+          ],
+          "feels": [
+            -8,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            21,
+            79
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            37,
+            46
+          ],
+          "gusts": [
+            52,
+            65
+          ]
+        },
+        "visibility": {
+          "m": [
+            3999,
+            4133
+          ],
+          "text": [
+            "Poor",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Light snow",
+          "Fog"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -3
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -3,
+            -6
+          ],
+          "feels": [
+            -6,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            59,
+            19
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            34,
+            27
+          ],
+          "gusts": [
+            46,
+            36
+          ]
+        },
+        "visibility": {
+          "m": [
+            2020,
+            999
+          ],
+          "text": [
+            "Poor",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Heavy snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            0
+          ],
+          "max": [
+            3,
+            2
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -8,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            17,
+            81
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            49,
+            59
+          ],
+          "gusts": [
+            70,
+            87
+          ]
+        },
+        "visibility": {
+          "m": [
+            8892,
+            6961
+          ],
+          "text": [
+            "Moderate",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Heavy snow",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -3
+          ],
+          "max": [
+            3,
+            0
+          ],
+          "min": [
+            0,
+            -5
+          ],
+          "feels": [
+            -6,
+            -11
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            85,
+            64
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            48,
+            46
+          ],
+          "gusts": [
+            71,
+            66
+          ]
+        },
+        "visibility": {
+          "m": [
+            7893,
+            21146
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Heavy snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -7
+          ],
+          "feels": [
+            -7,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            57,
+            5
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            32,
+            23
+          ],
+          "gusts": [
+            49,
+            30
+          ]
+        },
+        "visibility": {
+          "m": [
+            25107,
+            13355
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "The Old Man of Coniston Summit": {
+    "request_date": "2025-01-30",
+    "name": "The Old Man of Coniston Summit",
+    "elevation": 803,
+    "coordinates": [
+      -3.1201,
+      54.3705
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -3,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            54,
+            93
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            18,
+            43
+          ],
+          "gusts": [
+            25,
+            50
+          ]
+        },
+        "visibility": {
+          "m": [
+            34566,
+            59
+          ],
+          "text": [
+            "Very Good",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -1
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            0,
+            -4
+          ],
+          "feels": [
+            -3,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            17,
+            21
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            25,
+            13
+          ],
+          "gusts": [
+            30,
+            16
+          ]
+        },
+        "visibility": {
+          "m": [
+            999,
+            3999
+          ],
+          "text": [
+            "Very poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Mist",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -4
+          ],
+          "feels": [
+            -7,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            22,
+            81
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            36,
+            43
+          ],
+          "gusts": [
+            48,
+            59
+          ]
+        },
+        "visibility": {
+          "m": [
+            3999,
+            5451
+          ],
+          "text": [
+            "Poor",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Sleet",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -3,
+            -5
+          ],
+          "feels": [
+            -4,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            80,
+            18
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            31,
+            25
+          ],
+          "gusts": [
+            42,
+            33
+          ]
+        },
+        "visibility": {
+          "m": [
+            4123,
+            2623
+          ],
+          "text": [
+            "Moderate",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Cloudy",
+          "Heavy rain"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            0
+          ],
+          "max": [
+            4,
+            3
+          ],
+          "min": [
+            -1,
+            -3
+          ],
+          "feels": [
+            -6,
+            -6
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            15,
+            87
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            47,
+            60
+          ],
+          "gusts": [
+            67,
+            85
+          ]
+        },
+        "visibility": {
+          "m": [
+            10291,
+            7373
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            2,
+            -2
+          ],
+          "max": [
+            4,
+            0
+          ],
+          "min": [
+            0,
+            -4
+          ],
+          "feels": [
+            -5,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            87,
+            62
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            47,
+            45
+          ],
+          "gusts": [
+            69,
+            64
+          ]
+        },
+        "visibility": {
+          "m": [
+            8660,
+            23621
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -1,
+            -6
+          ],
+          "feels": [
+            -5,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            33,
+            4
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            31,
+            23
+          ],
+          "gusts": [
+            47,
+            29
+          ]
+        },
+        "visibility": {
+          "m": [
+            24622,
+            12661
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "Grisedale Pike Summit": {
+    "request_date": "2025-01-30",
+    "name": "Grisedale Pike Summit",
+    "elevation": 791,
+    "coordinates": [
+      -3.2407,
+      54.5916
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -3,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            5,
+            96
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            17,
+            48
+          ],
+          "gusts": [
+            24,
+            56
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            65
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Partly cloudy (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            0
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            0,
+            -5
+          ],
+          "feels": [
+            -2,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            20
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            21,
+            14
+          ],
+          "gusts": [
+            26,
+            18
+          ]
+        },
+        "visibility": {
+          "m": [
+            297,
+            12493
+          ],
+          "text": [
+            "Very poor",
+            "Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Cloudy",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -4
+          ],
+          "feels": [
+            -6,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            20,
+            80
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            42,
+            46
+          ],
+          "gusts": [
+            54,
+            65
+          ]
+        },
+        "visibility": {
+          "m": [
+            11484,
+            4088
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Sleet",
+          "Overcast"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -3,
+            -5
+          ],
+          "feels": [
+            -4,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            61,
+            15
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            32,
+            25
+          ],
+          "gusts": [
+            44,
+            33
+          ]
+        },
+        "visibility": {
+          "m": [
+            2715,
+            4000
+          ],
+          "text": [
+            "Poor",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Cloudy",
+          "Heavy rain"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            0
+          ],
+          "max": [
+            4,
+            3
+          ],
+          "min": [
+            -1,
+            -3
+          ],
+          "feels": [
+            -6,
+            -6
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            13,
+            88
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            47,
+            57
+          ],
+          "gusts": [
+            69,
+            84
+          ]
+        },
+        "visibility": {
+          "m": [
+            15976,
+            7088
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            2,
+            -2
+          ],
+          "max": [
+            4,
+            0
+          ],
+          "min": [
+            0,
+            -4
+          ],
+          "feels": [
+            -5,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            85,
+            65
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            45,
+            44
+          ],
+          "gusts": [
+            67,
+            64
+          ]
+        },
+        "visibility": {
+          "m": [
+            8748,
+            22058
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -3
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -1,
+            -6
+          ],
+          "feels": [
+            -5,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            36,
+            27
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            30,
+            23
+          ],
+          "gusts": [
+            47,
+            29
+          ]
+        },
+        "visibility": {
+          "m": [
+            24283,
+            13742
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "High Street Summit": {
+    "request_date": "2025-01-30",
+    "name": "High Street Summit",
+    "elevation": 828,
+    "coordinates": [
+      -2.8635,
+      54.4916
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Cloudy",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -1,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            5,
+            95
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            14,
+            49
+          ],
+          "gusts": [
+            22,
+            59
+          ]
+        },
+        "visibility": {
+          "m": [
+            45920,
+            123
+          ],
+          "text": [
+            "Excellent",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -1
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -3,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            21
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            21,
+            13
+          ],
+          "gusts": [
+            25,
+            17
+          ]
+        },
+        "visibility": {
+          "m": [
+            999,
+            3999
+          ],
+          "text": [
+            "Very poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Mist",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -7,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            20,
+            79
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            43,
+            42
+          ],
+          "gusts": [
+            58,
+            57
+          ]
+        },
+        "visibility": {
+          "m": [
+            1000,
+            14232
+          ],
+          "text": [
+            "Poor",
+            "Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Light snow",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            3,
+            0
+          ],
+          "min": [
+            -3,
+            -6
+          ],
+          "feels": [
+            -4,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            64,
+            17
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            32,
+            25
+          ],
+          "gusts": [
+            45,
+            33
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            3999
+          ],
+          "text": [
+            "Moderate",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Heavy rain"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            0
+          ],
+          "max": [
+            4,
+            3
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -5,
+            -6
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            16,
+            86
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            44,
+            56
+          ],
+          "gusts": [
+            63,
+            79
+          ]
+        },
+        "visibility": {
+          "m": [
+            10588,
+            9148
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            2,
+            -2
+          ],
+          "max": [
+            4,
+            0
+          ],
+          "min": [
+            0,
+            -4
+          ],
+          "feels": [
+            -4,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            85,
+            60
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            46,
+            42
+          ],
+          "gusts": [
+            67,
+            59
+          ]
+        },
+        "visibility": {
+          "m": [
+            9034,
+            22757
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            3,
+            0
+          ],
+          "min": [
+            -1,
+            -6
+          ],
+          "feels": [
+            -5,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            31,
+            3
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            29,
+            20
+          ],
+          "gusts": [
+            45,
+            26
+          ]
+        },
+        "visibility": {
+          "m": [
+            25285,
+            14054
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "Fairfield Summit": {
+    "request_date": "2025-01-30",
+    "name": "Fairfield Summit",
+    "elevation": 873,
+    "coordinates": [
+      -2.9902,
+      54.497
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -4,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            6,
+            97
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            19,
+            43
+          ],
+          "gusts": [
+            25,
+            50
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            51
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Fog"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -2
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            -1,
+            -5
+          ],
+          "feels": [
+            -4,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            20,
+            20
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            23,
+            13
+          ],
+          "gusts": [
+            29,
+            17
+          ]
+        },
+        "visibility": {
+          "m": [
+            356,
+            999
+          ],
+          "text": [
+            "Very poor",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Fog",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -3,
+            -5
+          ],
+          "feels": [
+            -8,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            22,
+            79
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            42,
+            45
+          ],
+          "gusts": [
+            56,
+            63
+          ]
+        },
+        "visibility": {
+          "m": [
+            469,
+            4000
+          ],
+          "text": [
+            "Very poor",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Light snow",
+          "Fog"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -6
+          ],
+          "feels": [
+            -5,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            60,
+            19
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            32,
+            26
+          ],
+          "gusts": [
+            44,
+            34
+          ]
+        },
+        "visibility": {
+          "m": [
+            2005,
+            999
+          ],
+          "text": [
+            "Poor",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Sleet"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            0
+          ],
+          "max": [
+            4,
+            2
+          ],
+          "min": [
+            -2,
+            -4
+          ],
+          "feels": [
+            -7,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            17,
+            67
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            47,
+            57
+          ],
+          "gusts": [
+            68,
+            85
+          ]
+        },
+        "visibility": {
+          "m": [
+            8924,
+            6876
+          ],
+          "text": [
+            "Moderate",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -3
+          ],
+          "max": [
+            3,
+            0
+          ],
+          "min": [
+            0,
+            -5
+          ],
+          "feels": [
+            -6,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            86,
+            62
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            47,
+            45
+          ],
+          "gusts": [
+            70,
+            66
+          ]
+        },
+        "visibility": {
+          "m": [
+            7892,
+            21146
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -7
+          ],
+          "feels": [
+            -6,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            55,
+            4
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            31,
+            23
+          ],
+          "gusts": [
+            49,
+            30
+          ]
+        },
+        "visibility": {
+          "m": [
+            25107,
+            13355
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "High Stile Summit": {
+    "request_date": "2025-01-30",
+    "name": "High Stile Summit",
+    "elevation": 806,
+    "coordinates": [
+      -3.2861000000000002,
+      54.5212
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -3,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            5,
+            93
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            19,
+            50
+          ],
+          "gusts": [
+            22,
+            59
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            59
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -1
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            0,
+            -5
+          ],
+          "feels": [
+            -2,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            19
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            25,
+            14
+          ],
+          "gusts": [
+            30,
+            19
+          ]
+        },
+        "visibility": {
+          "m": [
+            388,
+            3999
+          ],
+          "text": [
+            "Very poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Mist",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -2,
+            -4
+          ],
+          "feels": [
+            -7,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            21,
+            81
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            45,
+            45
+          ],
+          "gusts": [
+            63,
+            64
+          ]
+        },
+        "visibility": {
+          "m": [
+            3999,
+            3525
+          ],
+          "text": [
+            "Poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Sleet",
+          "Cloudy"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -3,
+            -6
+          ],
+          "feels": [
+            -4,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            81,
+            14
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            32,
+            25
+          ],
+          "gusts": [
+            44,
+            34
+          ]
+        },
+        "visibility": {
+          "m": [
+            2901,
+            4000
+          ],
+          "text": [
+            "Poor",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Heavy rain"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            0
+          ],
+          "max": [
+            4,
+            2
+          ],
+          "min": [
+            -1,
+            -3
+          ],
+          "feels": [
+            -6,
+            -6
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            14,
+            88
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            48,
+            58
+          ],
+          "gusts": [
+            69,
+            84
+          ]
+        },
+        "visibility": {
+          "m": [
+            16527,
+            7502
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            2,
+            -2
+          ],
+          "max": [
+            4,
+            0
+          ],
+          "min": [
+            0,
+            -4
+          ],
+          "feels": [
+            -5,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            85,
+            65
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            45,
+            44
+          ],
+          "gusts": [
+            67,
+            64
+          ]
+        },
+        "visibility": {
+          "m": [
+            8702,
+            22058
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Heavy snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -3
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -1,
+            -6
+          ],
+          "feels": [
+            -5,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            60,
+            26
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            30,
+            23
+          ],
+          "gusts": [
+            47,
+            29
+          ]
+        },
+        "visibility": {
+          "m": [
+            24283,
+            13742
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "High Raise Summit": {
+    "request_date": "2025-01-30",
+    "name": "High Raise Summit",
+    "elevation": 762,
+    "coordinates": [
+      -3.1099,
+      54.4758
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -2,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            4,
+            97
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            18,
+            44
+          ],
+          "gusts": [
+            24,
+            51
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            59
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -1
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -3,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            21
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            24,
+            14
+          ],
+          "gusts": [
+            30,
+            18
+          ]
+        },
+        "visibility": {
+          "m": [
+            641,
+            3999
+          ],
+          "text": [
+            "Very poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Fog",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -4
+          ],
+          "feels": [
+            -7,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            21,
+            81
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            43,
+            41
+          ],
+          "gusts": [
+            56,
+            60
+          ]
+        },
+        "visibility": {
+          "m": [
+            688,
+            3299
+          ],
+          "text": [
+            "Very poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Sleet",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            2,
+            1
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -4,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            81,
+            28
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            27,
+            23
+          ],
+          "gusts": [
+            39,
+            32
+          ]
+        },
+        "visibility": {
+          "m": [
+            2213,
+            1000
+          ],
+          "text": [
+            "Poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Sleet"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            0
+          ],
+          "max": [
+            4,
+            3
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -5,
+            -6
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            17,
+            83
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            44,
+            53
+          ],
+          "gusts": [
+            66,
+            81
+          ]
+        },
+        "visibility": {
+          "m": [
+            11139,
+            6544
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            2,
+            -2
+          ],
+          "max": [
+            4,
+            0
+          ],
+          "min": [
+            0,
+            -4
+          ],
+          "feels": [
+            -4,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            85,
+            64
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            42,
+            41
+          ],
+          "gusts": [
+            65,
+            62
+          ]
+        },
+        "visibility": {
+          "m": [
+            8312,
+            21898
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -3
+          ],
+          "max": [
+            2,
+            1
+          ],
+          "min": [
+            -1,
+            -6
+          ],
+          "feels": [
+            -5,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            37,
+            6
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            28,
+            20
+          ],
+          "gusts": [
+            45,
+            27
+          ]
+        },
+        "visibility": {
+          "m": [
+            24391,
+            12828
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "Great Gable Summit": {
+    "request_date": "2025-01-30",
+    "name": "Great Gable Summit",
+    "elevation": 899,
+    "coordinates": [
+      -3.2179,
+      54.482
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -4,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            7,
+            97
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            18,
+            50
+          ],
+          "gusts": [
+            25,
+            59
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            44
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Partly cloudy (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -1
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            -1,
+            -5
+          ],
+          "feels": [
+            -4,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            19
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            29,
+            14
+          ],
+          "gusts": [
+            36,
+            18
+          ]
+        },
+        "visibility": {
+          "m": [
+            325,
+            10857
+          ],
+          "text": [
+            "Very poor",
+            "Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Overcast",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -7,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            18,
+            81
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            41,
+            48
+          ],
+          "gusts": [
+            54,
+            67
+          ]
+        },
+        "visibility": {
+          "m": [
+            14709,
+            4107
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Heavy snow",
+          "Cloudy"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -3,
+            -6
+          ],
+          "feels": [
+            -5,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            81,
+            18
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            33,
+            27
+          ],
+          "gusts": [
+            46,
+            35
+          ]
+        },
+        "visibility": {
+          "m": [
+            3021,
+            4000
+          ],
+          "text": [
+            "Poor",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Sleet"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            0
+          ],
+          "max": [
+            3,
+            2
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -7,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            16,
+            77
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            50,
+            61
+          ],
+          "gusts": [
+            71,
+            87
+          ]
+        },
+        "visibility": {
+          "m": [
+            11344,
+            6971
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -3
+          ],
+          "max": [
+            3,
+            0
+          ],
+          "min": [
+            0,
+            -5
+          ],
+          "feels": [
+            -6,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            69,
+            66
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            47,
+            45
+          ],
+          "gusts": [
+            69,
+            65
+          ]
+        },
+        "visibility": {
+          "m": [
+            8712,
+            22058
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Heavy snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -6
+          ],
+          "feels": [
+            -6,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            62,
+            28
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            31,
+            23
+          ],
+          "gusts": [
+            47,
+            30
+          ]
+        },
+        "visibility": {
+          "m": [
+            24283,
+            13742
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "Scafell Pike Summit": {
+    "request_date": "2025-01-30",
+    "name": "Scafell Pike Summit",
+    "elevation": 978,
+    "coordinates": [
+      -3.2111,
+      54.4549
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            -1
+          ],
+          "min": [
+            -3,
+            -5
+          ],
+          "feels": [
+            -5,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            8,
+            97
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            18,
+            51
+          ],
+          "gusts": [
+            25,
+            60
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            45
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Partly cloudy (night)"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -1,
+            -6
+          ],
+          "feels": [
+            -4,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            20
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            30,
+            14
+          ],
+          "gusts": [
+            36,
+            17
+          ]
+        },
+        "visibility": {
+          "m": [
+            337,
+            19022
+          ],
+          "text": [
+            "Very poor",
+            "Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Cloudy",
+          "Heavy snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -3,
+            -5
+          ],
+          "feels": [
+            -7,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            81
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            41,
+            49
+          ],
+          "gusts": [
+            54,
+            67
+          ]
+        },
+        "visibility": {
+          "m": [
+            14144,
+            3920
+          ],
+          "text": [
+            "Good",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Heavy snow",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -3
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -3,
+            -6
+          ],
+          "feels": [
+            -6,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            81,
+            18
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            34,
+            27
+          ],
+          "gusts": [
+            46,
+            35
+          ]
+        },
+        "visibility": {
+          "m": [
+            2757,
+            1000
+          ],
+          "text": [
+            "Poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Sleet"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            0
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            -2,
+            -4
+          ],
+          "feels": [
+            -8,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            16,
+            69
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            51,
+            64
+          ],
+          "gusts": [
+            72,
+            90
+          ]
+        },
+        "visibility": {
+          "m": [
+            11094,
+            6917
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -4
+          ],
+          "max": [
+            3,
+            -1
+          ],
+          "min": [
+            -1,
+            -5
+          ],
+          "feels": [
+            -7,
+            -11
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            70,
+            67
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            49,
+            47
+          ],
+          "gusts": [
+            71,
+            67
+          ]
+        },
+        "visibility": {
+          "m": [
+            8616,
+            22053
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -3,
+            -7
+          ],
+          "feels": [
+            -7,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            38,
+            27
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            33,
+            24
+          ],
+          "gusts": [
+            49,
+            30
+          ]
+        },
+        "visibility": {
+          "m": [
+            24447,
+            13722
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "Bowfell Summit": {
+    "request_date": "2025-01-30",
+    "name": "Bow Fell Summit",
+    "elevation": 902,
+    "coordinates": [
+      -3.1648,
+      54.4477
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -4,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            8,
+            97
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            18,
+            50
+          ],
+          "gusts": [
+            25,
+            59
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            45
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Partly cloudy (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -1
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            -1,
+            -5
+          ],
+          "feels": [
+            -4,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            20
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            30,
+            15
+          ],
+          "gusts": [
+            36,
+            18
+          ]
+        },
+        "visibility": {
+          "m": [
+            337,
+            19022
+          ],
+          "text": [
+            "Very poor",
+            "Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Cloudy",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -3,
+            -5
+          ],
+          "feels": [
+            -7,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            81
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            41,
+            48
+          ],
+          "gusts": [
+            54,
+            66
+          ]
+        },
+        "visibility": {
+          "m": [
+            14144,
+            3920
+          ],
+          "text": [
+            "Good",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Heavy snow",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -3,
+            -6
+          ],
+          "feels": [
+            -5,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            81,
+            18
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            34,
+            27
+          ],
+          "gusts": [
+            46,
+            35
+          ]
+        },
+        "visibility": {
+          "m": [
+            2757,
+            1000
+          ],
+          "text": [
+            "Poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Sleet"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            0
+          ],
+          "max": [
+            3,
+            2
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -7,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            16,
+            76
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            49,
+            61
+          ],
+          "gusts": [
+            70,
+            87
+          ]
+        },
+        "visibility": {
+          "m": [
+            11094,
+            6917
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -3
+          ],
+          "max": [
+            3,
+            0
+          ],
+          "min": [
+            0,
+            -5
+          ],
+          "feels": [
+            -6,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            69,
+            66
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            47,
+            46
+          ],
+          "gusts": [
+            69,
+            65
+          ]
+        },
+        "visibility": {
+          "m": [
+            8616,
+            22053
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -6
+          ],
+          "feels": [
+            -6,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            38,
+            27
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            31,
+            23
+          ],
+          "gusts": [
+            48,
+            30
+          ]
+        },
+        "visibility": {
+          "m": [
+            24447,
+            13722
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "Skiddaw Summit": {
+    "request_date": "2025-01-30",
+    "name": "Skiddaw Summit",
+    "elevation": 931,
+    "coordinates": [
+      -3.1449,
+      54.6479
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -3,
+            -11
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            8,
+            97
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            15,
+            48
+          ],
+          "gusts": [
+            20,
+            55
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            75
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Partly cloudy (night)"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            2,
+            1
+          ],
+          "min": [
+            -1,
+            -6
+          ],
+          "feels": [
+            -4,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            20,
+            19
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            22,
+            14
+          ],
+          "gusts": [
+            27,
+            17
+          ]
+        },
+        "visibility": {
+          "m": [
+            285,
+            10608
+          ],
+          "text": [
+            "Very poor",
+            "Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Cloudy",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -3,
+            -5
+          ],
+          "feels": [
+            -8,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            16,
+            80
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            36,
+            49
+          ],
+          "gusts": [
+            52,
+            69
+          ]
+        },
+        "visibility": {
+          "m": [
+            8641,
+            4000
+          ],
+          "text": [
+            "Moderate",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Light snow",
+          "Fog"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -6
+          ],
+          "feels": [
+            -6,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            55,
+            19
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            34,
+            27
+          ],
+          "gusts": [
+            46,
+            36
+          ]
+        },
+        "visibility": {
+          "m": [
+            2087,
+            999
+          ],
+          "text": [
+            "Poor",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Sleet"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            0
+          ],
+          "max": [
+            3,
+            2
+          ],
+          "min": [
+            -2,
+            -4
+          ],
+          "feels": [
+            -8,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            18,
+            82
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            50,
+            63
+          ],
+          "gusts": [
+            72,
+            91
+          ]
+        },
+        "visibility": {
+          "m": [
+            10381,
+            6557
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -3
+          ],
+          "max": [
+            3,
+            -1
+          ],
+          "min": [
+            0,
+            -5
+          ],
+          "feels": [
+            -6,
+            -11
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            86,
+            65
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            49,
+            47
+          ],
+          "gusts": [
+            72,
+            68
+          ]
+        },
+        "visibility": {
+          "m": [
+            8096,
+            21921
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Heavy snow shower (day)",
+          "Partly cloudy (night)"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -7
+          ],
+          "feels": [
+            -7,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            62,
+            28
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            33,
+            23
+          ],
+          "gusts": [
+            50,
+            30
+          ]
+        },
+        "visibility": {
+          "m": [
+            25116,
+            12777
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "Dollywagon Pike Summit": {
+    "request_date": "2025-01-30",
+    "name": "Dollywagon Pike Summit",
+    "elevation": 858,
+    "coordinates": [
+      -3.0098,
+      54.5086
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -4,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            3,
+            97
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            19,
+            43
+          ],
+          "gusts": [
+            25,
+            50
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            51
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Fog"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -2
+          ],
+          "max": [
+            3,
+            1
+          ],
+          "min": [
+            -1,
+            -5
+          ],
+          "feels": [
+            -3,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            20,
+            20
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            23,
+            13
+          ],
+          "gusts": [
+            29,
+            17
+          ]
+        },
+        "visibility": {
+          "m": [
+            356,
+            999
+          ],
+          "text": [
+            "Very poor",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Fog",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -3,
+            -5
+          ],
+          "feels": [
+            -8,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            22,
+            80
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            42,
+            45
+          ],
+          "gusts": [
+            56,
+            63
+          ]
+        },
+        "visibility": {
+          "m": [
+            469,
+            4000
+          ],
+          "text": [
+            "Very poor",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Light snow",
+          "Fog"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -6
+          ],
+          "feels": [
+            -5,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            60,
+            19
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            32,
+            26
+          ],
+          "gusts": [
+            44,
+            34
+          ]
+        },
+        "visibility": {
+          "m": [
+            2005,
+            999
+          ],
+          "text": [
+            "Poor",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Sleet"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            0
+          ],
+          "max": [
+            4,
+            2
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -7,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            17,
+            67
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            46,
+            57
+          ],
+          "gusts": [
+            68,
+            84
+          ]
+        },
+        "visibility": {
+          "m": [
+            8924,
+            6876
+          ],
+          "text": [
+            "Moderate",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -3
+          ],
+          "max": [
+            4,
+            0
+          ],
+          "min": [
+            0,
+            -5
+          ],
+          "feels": [
+            -6,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            85,
+            62
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            47,
+            45
+          ],
+          "gusts": [
+            70,
+            66
+          ]
+        },
+        "visibility": {
+          "m": [
+            7892,
+            21146
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            1,
+            0
+          ],
+          "min": [
+            -2,
+            -7
+          ],
+          "feels": [
+            -6,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            31,
+            4
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            31,
+            23
+          ],
+          "gusts": [
+            49,
+            30
+          ]
+        },
+        "visibility": {
+          "m": [
+            25107,
+            13355
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "Blencathra Summit": {
+    "request_date": "2025-01-30",
+    "name": "Blencathra Summit",
+    "elevation": 868,
+    "coordinates": [
+      -3.0484,
+      54.6398
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -3,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            5,
+            93
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            20,
+            47
+          ],
+          "gusts": [
+            27,
+            55
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            79
+          ],
+          "text": [
+            "Moderate",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Fog",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            -1
+          ],
+          "max": [
+            2,
+            1
+          ],
+          "min": [
+            -1,
+            -5
+          ],
+          "feels": [
+            -3,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            20,
+            19
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            23,
+            13
+          ],
+          "gusts": [
+            27,
+            17
+          ]
+        },
+        "visibility": {
+          "m": [
+            403,
+            3999
+          ],
+          "text": [
+            "Very poor",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Mist",
+          "Light snow"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -1
+          ],
+          "max": [
+            0,
+            0
+          ],
+          "min": [
+            -2,
+            -5
+          ],
+          "feels": [
+            -8,
+            -9
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            21,
+            64
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            42,
+            48
+          ],
+          "gusts": [
+            55,
+            66
+          ]
+        },
+        "visibility": {
+          "m": [
+            3999,
+            5298
+          ],
+          "text": [
+            "Poor",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Light snow",
+          "Mist"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -2
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -2,
+            -6
+          ],
+          "feels": [
+            -5,
+            -8
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            52,
+            18
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            36,
+            28
+          ],
+          "gusts": [
+            48,
+            36
+          ]
+        },
+        "visibility": {
+          "m": [
+            4648,
+            1000
+          ],
+          "text": [
+            "Moderate",
+            "Poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Overcast",
+          "Heavy rain"
+        ],
+        "temp": {
+          "screen": [
+            1,
+            0
+          ],
+          "max": [
+            4,
+            2
+          ],
+          "min": [
+            -1,
+            -4
+          ],
+          "feels": [
+            -6,
+            -7
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            16,
+            86
+          ],
+          "type": [
+            "snow",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            49,
+            60
+          ],
+          "gusts": [
+            69,
+            86
+          ]
+        },
+        "visibility": {
+          "m": [
+            11118,
+            8231
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Sleet",
+          "Heavy snow shower (night)"
+        ],
+        "temp": {
+          "screen": [
+            2,
+            -3
+          ],
+          "max": [
+            4,
+            0
+          ],
+          "min": [
+            0,
+            -5
+          ],
+          "feels": [
+            -5,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            86,
+            62
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            49,
+            45
+          ],
+          "gusts": [
+            71,
+            64
+          ]
+        },
+        "visibility": {
+          "m": [
+            8686,
+            22832
+          ],
+          "text": [
+            "Moderate",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Light snow shower (day)",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            0,
+            -4
+          ],
+          "max": [
+            2,
+            0
+          ],
+          "min": [
+            -2,
+            -7
+          ],
+          "feels": [
+            -6,
+            -10
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            57,
+            4
+          ],
+          "type": [
+            "snow",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            31,
+            23
+          ],
+          "gusts": [
+            48,
+            29
+          ]
+        },
+        "visibility": {
+          "m": [
+            25579,
+            13320
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  },
+  "Whinlatter Visitor Centre": {
+    "request_date": "2025-01-30",
+    "name": "Whinlatter Visitor Centre Summit",
+    "elevation": 199,
+    "coordinates": [
+      -3.2014,
+      54.6062
+    ],
+    "days": [
+      {
+        "date": "2025-01-30",
+        "weather_type": [
+          "Partly cloudy (day)",
+          "Drizzle"
+        ],
+        "temp": {
+          "screen": [
+            5,
+            1
+          ],
+          "max": [
+            5,
+            3
+          ],
+          "min": [
+            2,
+            -1
+          ],
+          "feels": [
+            2,
+            -1
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            1,
+            96
+          ],
+          "type": [
+            "rain",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            19,
+            12
+          ],
+          "gusts": [
+            25,
+            34
+          ]
+        },
+        "visibility": {
+          "m": [
+            48644,
+            163
+          ],
+          "text": [
+            "Excellent",
+            "Very poor"
+          ]
+        }
+      },
+      {
+        "date": "2025-01-31",
+        "weather_type": [
+          "Mist",
+          "Cloudy"
+        ],
+        "temp": {
+          "screen": [
+            5,
+            1
+          ],
+          "max": [
+            6,
+            4
+          ],
+          "min": [
+            3,
+            -1
+          ],
+          "feels": [
+            4,
+            0
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            19,
+            15
+          ],
+          "type": [
+            "rain",
+            "snow"
+          ]
+        },
+        "wind": {
+          "speed": [
+            8,
+            5
+          ],
+          "gusts": [
+            18,
+            11
+          ]
+        },
+        "visibility": {
+          "m": [
+            1789,
+            25069
+          ],
+          "text": [
+            "Poor",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-01",
+        "weather_type": [
+          "Cloudy",
+          "Light rain"
+        ],
+        "temp": {
+          "screen": [
+            4,
+            2
+          ],
+          "max": [
+            6,
+            5
+          ],
+          "min": [
+            1,
+            0
+          ],
+          "feels": [
+            1,
+            0
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            6,
+            59
+          ],
+          "type": [
+            "rain",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            15,
+            21
+          ],
+          "gusts": [
+            30,
+            44
+          ]
+        },
+        "visibility": {
+          "m": [
+            18550,
+            5754
+          ],
+          "text": [
+            "Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-02",
+        "weather_type": [
+          "Cloudy",
+          "Cloudy"
+        ],
+        "temp": {
+          "screen": [
+            5,
+            1
+          ],
+          "max": [
+            7,
+            5
+          ],
+          "min": [
+            2,
+            -2
+          ],
+          "feels": [
+            2,
+            0
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            39,
+            8
+          ],
+          "type": [
+            "rain",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            14,
+            10
+          ],
+          "gusts": [
+            31,
+            21
+          ]
+        },
+        "visibility": {
+          "m": [
+            4000,
+            7975
+          ],
+          "text": [
+            "Moderate",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "weather_type": [
+          "Cloudy",
+          "Heavy rain"
+        ],
+        "temp": {
+          "screen": [
+            6,
+            5
+          ],
+          "max": [
+            9,
+            7
+          ],
+          "min": [
+            2,
+            0
+          ],
+          "feels": [
+            1,
+            1
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            8,
+            88
+          ],
+          "type": [
+            "rain",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            24,
+            29
+          ],
+          "gusts": [
+            50,
+            59
+          ]
+        },
+        "visibility": {
+          "m": [
+            22992,
+            9475
+          ],
+          "text": [
+            "Very Good",
+            "Moderate"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "weather_type": [
+          "Heavy rain",
+          "Partly cloudy (night)"
+        ],
+        "temp": {
+          "screen": [
+            7,
+            1
+          ],
+          "max": [
+            8,
+            4
+          ],
+          "min": [
+            4,
+            -1
+          ],
+          "feels": [
+            2,
+            -1
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            87,
+            37
+          ],
+          "type": [
+            "rain",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            23,
+            20
+          ],
+          "gusts": [
+            47,
+            41
+          ]
+        },
+        "visibility": {
+          "m": [
+            10418,
+            22864
+          ],
+          "text": [
+            "Good",
+            "Very Good"
+          ]
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "weather_type": [
+          "Sunny day",
+          "Clear night"
+        ],
+        "temp": {
+          "screen": [
+            5,
+            0
+          ],
+          "max": [
+            6,
+            5
+          ],
+          "min": [
+            3,
+            -4
+          ],
+          "feels": [
+            1,
+            -2
+          ]
+        },
+        "precipitation": {
+          "prob": [
+            4,
+            4
+          ],
+          "type": [
+            "rain",
+            "rain"
+          ]
+        },
+        "wind": {
+          "speed": [
+            16,
+            8
+          ],
+          "gusts": [
+            33,
+            15
+          ]
+        },
+        "visibility": {
+          "m": [
+            26901,
+            14261
+          ],
+          "text": [
+            "Very Good",
+            "Good"
+          ]
+        }
+      }
+    ]
+  }
+}
