@@ -46,9 +46,9 @@ export default function WalkCard({ walk, link=true, distFrom=null, onHover=null 
         maxWidth={1024}
       />
       {distFrom &&
-        <p className="walk-card_dist">
+        <span className="walk-card_dist">
           {distString}
-        </p>
+        </span>
       }
     </div>
 
@@ -77,6 +77,7 @@ export default function WalkCard({ walk, link=true, distFrom=null, onHover=null 
       className="walk-card"
       title={walk?.title}
       {...(onHover ? {onMouseEnter: () => onHover(true), onMouseLeave: () => onHover()} : {} )}
+      aria-label={walk?.title}
     >
       {WalkCardContent}
     </Link>

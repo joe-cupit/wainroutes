@@ -64,9 +64,11 @@ export function ChevronIcon() {
 }
 
 
-function TerrainIcon({ bgColour, children }) {
+function TerrainIcon({ bgColour, children, label }) {
   return (
-    <svg width="64" height="64" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="64" height="64" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"
+      aria-label={label}
+    >
       <circle fill={bgColour} cx="64" cy="64" r="62"/>
       {children}
       <circle stroke="var(--clr-terrain-icon-color)" strokeWidth="8" cx="64" cy="64" r="60"/>
@@ -103,8 +105,25 @@ export function TerrainGradientIcon({ level = 1 }) {
     }
   }
 
+  function iconLabel(level) {
+    switch (level) {
+      case 1:
+        return "Easy gradient"
+      case 2:
+        return "Medium gradient"
+      case 3:
+        return "Hard gradient"
+      case 4:
+        return "Dangerous gradient"
+      default:
+        return ""
+    }
+  }
+
   return (
-    <TerrainIcon bgColour={"var(--clr-terrain-level-"+level+")"}>
+    <TerrainIcon bgColour={"var(--clr-terrain-level-"+level+")"}
+      label={iconLabel(level)}
+    >
       {iconInsides(level)}
     </TerrainIcon>
   )
@@ -147,8 +166,23 @@ export function TerrainPathIcon({ level }) {
     }
   }
 
+  function iconLabel(level) {
+    switch (level) {
+      case 1:
+        return "Easy terrain"
+      case 2:
+        return "Medium terrain"
+      case 3:
+        return "Hard terrain"
+      default:
+        return ""
+    }
+  }
+
   return (
-    <TerrainIcon bgColour={"var(--clr-terrain-level-"+level+")"}>
+    <TerrainIcon bgColour={"var(--clr-terrain-level-"+level+")"}
+      label={iconLabel(level)}
+    >
       {iconInsides(level)}
     </TerrainIcon>
   )
@@ -183,8 +217,25 @@ export function TerrainExposureIcon({ level }) {
     }
   }
 
+  function iconLabel(level) {
+    switch (level) {
+      case 1:
+        return "Easy exposure"
+      case 2:
+        return "Medium exposure"
+      case 3:
+        return "Hard exposure"
+      case 4:
+        return "Dangerous exposure"
+      default:
+        return ""
+    }
+  }
+
   return (
-    <TerrainIcon bgColour={"var(--clr-terrain-level-"+level+")"}>
+    <TerrainIcon bgColour={"var(--clr-terrain-level-"+level+")"}
+      label={iconLabel(level)}
+    >
       {iconInsides(level)}
     </TerrainIcon>
   )

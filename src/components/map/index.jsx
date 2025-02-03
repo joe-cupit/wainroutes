@@ -114,6 +114,11 @@ export function LakeMap ({ mapMarkers, gpxPoints, activePoint, ...props }) {
     }
   }
 
+  useEffect(() => {
+    document.getElementsByClassName("pigeon-zoom-in")[0].ariaLabel = "Zoom in"
+    document.getElementsByClassName("pigeon-zoom-out")[0].ariaLabel = "Zoom out"
+  }, [])
+
 
   return (
     <div id="lake-map" className={props.className ? "lake-map--container "+props.className : "lake-map--container"} style={{minWidth: "100px", minHeight: "100px"}}>
@@ -170,9 +175,9 @@ export function GeoRoute ({ points, activeIndex, ...props }) {
 
 function Attribution () {
   return (
-    <div className="lake-map--attribution">
-      <Link to="https://pigeon-maps.js.org/" target="_blank">Pigeon</Link> | © <Link to="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</Link> contributors
-    </div>
+    <p className="lake-map--attribution">
+      <Link to="https://pigeon-maps.js.org/" target="_blank" aria-label="Pigeon Maps">Pigeon</Link> | © <Link to="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</Link> contributors
+    </p>
   )
 }
 

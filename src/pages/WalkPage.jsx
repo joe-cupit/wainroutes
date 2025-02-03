@@ -129,7 +129,7 @@ function Walk({ walkData, slug }) {
           <div className="walk-page_overlay-wrapper flex-row flex-apart wrap-none">
             <div className="walk-page_overlay-left flex-1 flex-row align-center wrap-none" // className="flex-1 flex-row align-center wrap-none"
             >
-              <Link to="/walks" title="Back"><BackIcon /></Link>
+              <Link to="/walks" title="Back" aria-label="Back to walks"><BackIcon /></Link>
               <div className="walk-page_overlay-title flex-column gap-0">
                 <button className="subheading" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>{walkData?.title}</button>
                 <div className="walk-page_overlay-details flex-row">
@@ -164,7 +164,12 @@ function Walk({ walkData, slug }) {
             sizes="(min-width: 1100px) 1100px, 100vw"
           />
           <div className="walk-page_top-block"></div>
-          <Link to={"/walks?nearto=" + walkData?.startLocation?.location?.toLowerCase().replaceAll(" ", "-")} className="walk-page_top-link"><LocationIcon /> {walkData?.startLocation?.location}</Link>
+          <Link to={"/walks?nearto=" + walkData?.startLocation?.location?.toLowerCase().replaceAll(" ", "-")}
+            className="walk-page_top-link"
+            aria-label={"Walks near " + walkData?.startLocation?.location}
+          >
+            <LocationIcon /> {walkData?.startLocation?.location}
+          </Link>
         </div>
       </section>
 
@@ -263,7 +268,7 @@ function Summary({ secRef, wainwrights, length, elevation, intro }) {
 
   return (
     <div className="walk-page_summary" ref={secRef}>
-      <h2 className="subheading" id="walk_overview" style={{visibility: "hidden", height: 0, padding: 0}}>Overview</h2>
+      <h2 className="subheading visually-hidden" id="walk_overview">Summary</h2>
       <div className="walks-page_section flex-column">
         <div>
           <h3 className="smallheading">Wainwrights: </h3>
@@ -295,7 +300,7 @@ function Summary({ secRef, wainwrights, length, elevation, intro }) {
 
         <div>
           <h3 className="smallheading" style={{display: "block"}}>Overview: </h3>
-          <p>{intro}</p>
+          <p>{intro ?? "N/A"}</p>
         </div>
       </div>
     </div>
@@ -540,52 +545,57 @@ function StartingLocation({ selected, startLocation, busRoutes }) {
       <div className="walk-page_locations flex-column">
 
         <div className="flex-row flex-apart">
-          <p>Location</p>
-          <p className="bold">{startLocation?.location ?? "Unavailable"}</p>
+          <h3>Location</h3>
+          <span className="bold">{startLocation?.location ?? "Unavailable"}</span>
         </div>
 
         <div className="flex-row flex-apart">
-          <p>Postcode</p>
-          <p className="bold">
+          <h3>Postcode</h3>
+          <span className="bold">
             {startLocation?.postCode
-            ? <a href={"https://www.google.com/maps/dir/?api=1&destination="+startLocation?.latitude+","+startLocation?.longitude} target="_blank">{startLocation?.postCode}</a>
+            ? <a href={"https://www.google.com/maps/dir/?api=1&destination="+startLocation?.latitude+","+startLocation?.longitude}
+                 target="_blank"
+                 aria-label={startLocation?.postCode + " on Google Maps"}
+              >
+                {startLocation?.postCode}
+              </a>
             : "Unavailable"
             }
-          </p>
+          </span>
         </div>
 
         <div className="flex-row flex-apart">
-          <p>Grid Ref</p>
-          <p className="bold">{startLocation?.gridRef ?? "Unavailable"}</p>
+          <h3>Grid Ref</h3>
+          <span className="bold">{startLocation?.gridRef ?? "Unavailable"}</span>
         </div>
 
         {/* <div className="flex-row flex-apart">
-          <p>What3Words</p>
-          <p className="bold">
+          <h3>What3Words</h3>
+          <span className="bold">
             {startLocation?.whatThreeWords
             ? <a href={"https://what3words.com/"+startLocation?.whatThreeWords} target="_blank">{"///"+startLocation?.whatThreeWords}</a>
             : "Unavailable"
             }
-          </p>
+          </span>
         </div> */}
 
         <div className="flex-row flex-apart">
-          <p>Busses</p>
-          <div className="walk-page_busses flex-row">
+          <h3>Busses</h3>
+          <ul className="walk-page_busses flex-row">
             {(busRoutes && Object.keys(busRoutes).length > 0)
             ? Object.keys(busRoutes).map((bus, index) => {
                 return (
-                  <div key={index}
+                  <li key={index}
                     className="walk-page_bus-number"
                     style={{"backgroundColor": `var(--clr-bus-${bus})`}}
                   >
                     {bus}
-                  </div>
+                  </li>
                 )
               })
             : "None"
             }
-          </div>
+          </ul>
         </div>
 
       </div>
@@ -608,8 +618,12 @@ function EstimatedTime({ selected, walkLengthInKm }) {
   return (
     <div className={"walk-page_estimated-time walk-page_aside-section" + (selected ? " selected" : "")}>
       <h2 className="subheading">Estimated Time</h2>
-      <p>An average pace of {displayDistance(speedInKm, 1) + "/h"} completes this walk in {timeTaken}</p>
-      <input type="range" min={1} max={6} step={0.1} value={speedInKm} onChange={e => setSpeedInKm(e.target.value)} />
+      <p aria-live="polite">An average pace of {displayDistance(speedInKm, 1) + "/h"} completes this walk in {timeTaken}</p>
+      <input type="range"
+        min={1} max={6} step={0.1}
+        value={speedInKm} onChange={e => setSpeedInKm(e.target.value)}
+        aria-label="Walking speed"
+      />
       {/* <p className="subtext">*always allow ample time to complete walks in the mountains</p> */}
       <p className="subtext">*hiking pace in the mountains is always slower than on flat ground</p>
     </div>
@@ -623,11 +637,11 @@ function Terrain({ selected, walkTerrain }) {
       <h2 className="subheading">Terrain</h2>
       {walkTerrain
       ? <div className="flex-column">
-          <div className="walk-page_terrain-badges flex-row">
-            {walkTerrain?.gradient && <TerrainGradientIcon level={walkTerrain?.gradient} />}
-            {walkTerrain?.path && <TerrainPathIcon level={walkTerrain?.path} />}
-            {walkTerrain?.exposure && <TerrainExposureIcon level={walkTerrain?.exposure} />}
-          </div>
+          <ul className="walk-page_terrain-badges flex-row">
+            <li>{walkTerrain?.gradient && <TerrainGradientIcon level={walkTerrain?.gradient} />}</li>
+            <li>{walkTerrain?.path && <TerrainPathIcon level={walkTerrain?.path} />}</li>
+            <li>{walkTerrain?.exposure && <TerrainExposureIcon level={walkTerrain?.exposure} />}</li>
+          </ul>
           <p>{walkTerrain?.desc?.length > 0 ? walkTerrain?.desc : "No details"}</p>
 
           <p className="subtext">*terrain badges are merely a suggestion, always properly prepare for changing weather conditions</p>

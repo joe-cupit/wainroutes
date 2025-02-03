@@ -270,12 +270,17 @@ html {
 .walk-page_locations > div {
   row-gap: 0;
 }
+.walk-page_locations h3 {
+  font-size: inherit;
+  font-weight: inherit;
+}
 .walk-page_locations a:hover {
   text-decoration: underline;
 }
 
 
 .walk-page_busses {
+  list-style: none;
   gap: 0.25em;
   font-weight: var(--fw-medium);
 }
@@ -307,6 +312,7 @@ html {
   --clr-terrain-level-4: #7b3551;
 }
 .walk-page_terrain-badges {
+  list-style: none;
   gap: 0.5em;
 }
 .walk-page_terrain svg {
