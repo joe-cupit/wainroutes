@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Map, GeoJson, ZoomControl, Draggable, Overlay } from "pigeon-maps"
+import { Map, GeoJson, ZoomControl, Draggable, Overlay } from "pigeon-maps";
 // import zoomToFit from "../utils/zoomToFit";
 
 
@@ -12,25 +12,24 @@ export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint, 
     setCenter(center);
     setZoom(zoom);
     setBounds(bounds);
-    console.log(zoom)
   }
   const gpxPointWidth = useMemo(() => 2*zoom-24, [zoom]);
 
 
-  const geoJsonLine = useMemo(() => (gpxPoints ? {type: "FeatureCollection", features: [{type: "Feature", geometry: {type: "LineString", coordinates: gpxPoints}}]} : null), [gpxPoints])
+  const geoJsonLine = useMemo(() => (gpxPoints ? {type: "FeatureCollection", features: [{type: "Feature", geometry: {type: "LineString", coordinates: gpxPoints}}]} : null), [gpxPoints]);
   const geoJsonPoints = useMemo(() => {
     const inBounds = (point) => {
-      let coords = point[1]
-      const maxBound = bounds.ne
-      const minBound = bounds.sw
+      let coords = point[1];
+      const maxBound = bounds.ne;
+      const minBound = bounds.sw;
 
-      if (coords[1] > maxBound[1] || coords[1] < minBound[1]) return false
-      if (coords[0] > maxBound[0] || coords[0] < minBound[0]) return false
-      return true
+      if (coords[1] > maxBound[1] || coords[1] < minBound[1]) return false;
+      if (coords[0] > maxBound[0] || coords[0] < minBound[0]) return false;
+      return true;
     }
 
-    return gpxPoints?.map((point, index) => [index, [point[1], point[0]]])?.filter(inBounds)
-  }, [gpxPoints, bounds])
+    return gpxPoints?.map((point, index) => [index, [point[1], point[0]]])?.filter(inBounds);
+  }, [gpxPoints, bounds]);
 
 
   // // center map when receiving new points
@@ -44,28 +43,28 @@ export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint, 
 
 
   useEffect(() => {
-    if (panValue === null) return
+    if (panValue === null) return;
 
-    const ewChange = (bounds.sw[1] - bounds.ne[1]) / 12
-    const nsChange = (bounds.ne[0] - bounds.sw[0]) / 10
+    const ewChange = (bounds.sw[1] - bounds.ne[1]) / 12;
+    const nsChange = (bounds.ne[0] - bounds.sw[0]) / 10;
 
     switch (panValue) {
       case "up":
-        setCenter([center[0]+nsChange, center[1]])
-        break
+        setCenter([center[0]+nsChange, center[1]]);
+        break;
       case "down":
-        setCenter([center[0]-nsChange, center[1]])
-        break
+        setCenter([center[0]-nsChange, center[1]]);
+        break;
       case "left":
-        setCenter([center[0], center[1]+ewChange])
-        break
+        setCenter([center[0], center[1]+ewChange]);
+        break;
       case "right":
-        setCenter([center[0], center[1]-ewChange])
-        break
+        setCenter([center[0], center[1]-ewChange]);
+        break;
       default:
-        break
+        break;
     }
-  }, [panValue])
+  }, [panValue]);
 
 
   return (
