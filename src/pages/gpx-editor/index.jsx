@@ -10,6 +10,15 @@ import buildXML from "./utils/buildXML"
 
 import GpxMap from "./components/GpxMap"
 
+import UploadIcon from "./assets/upload-icon.svg?react";
+import DownloadIcon from "./assets/download-icon.svg?react";
+import MoveIcon from "./assets/move-icon.svg?react";
+import DelIcon from "./assets/del-icon.svg?react";
+import UndoIcon from "./assets/undo-icon.svg?react";
+import RedoIcon from "./assets/redo-icon.svg?react";
+import FillIcon from "./assets/fill-icon.svg?react";
+import ReverseIcon from "./assets/reverse-icon.svg?react";
+
 
 export default function EditorApp() {
 
@@ -57,23 +66,23 @@ export default function EditorApp() {
 
 
   const [distance, elevation] = useMemo(() => {
-    if (gpxNodeList == null) return [0, 0]
+    if (gpxNodeList == null) return [0, 0];
 
-    let dist = 0//, elevation = 0
-    let prevP = null//, prevE = null
+    let dist = 0, elevation = 0;
+    let prevP = null, prevE = null;
     for (let node of gpxNodeList) {
       let point = node.coordinates;
-      //let ele = node.elevation
+      let ele = node.elevation;
       if (prevP !== null) {
-        dist += haversine(point, prevP)
-        //if (ele > prevE) elevation += (ele - prevE)
+        dist += haversine(point, prevP);
+        if (ele && ele > prevE) elevation += (ele - prevE);
       }
-      prevP = point
-      //prevE = ele
+      prevP = point;
+      if (ele) prevE = ele;
     }
 
-    return [dist, 0]
-  }, [gpxNodeList])
+    return [dist, elevation];
+  }, [gpxNodeList]);
 
 
   // // gpx point editing functions
@@ -89,10 +98,16 @@ export default function EditorApp() {
   }
   const moveGeoPoint = (index, anchor) => {
     let newGeoCoords = [...gpxNodeList];
-    newGeoCoords[index].coordinates = [anchor[1], anchor[0]];
-    
-    undoStack.push([...gpxNodeList]);  // TODO: isn't working??
-    setGpxNodeList(newGeoCoords);
+    const newPoint = [Number(anchor[1].toFixed(6)), Number(anchor[0].toFixed(6))];
+    if (newPoint[0] !== newGeoCoords[index].coordinates[0] || newPoint[1] !== newGeoCoords[index].coordinates[1]) {
+      console.log(newPoint, newGeoCoords[index].coordinates)
+      newGeoCoords[index].coordinates = newPoint;
+      newGeoCoords[index].elevation = null;
+
+      undoStack.push([...gpxNodeList]);  // TODO: isn't working??
+      setGpxNodeList(newGeoCoords);
+    }
+
     setSelectedIndex(index);
   }
   const delGeoPoint = (index) => {
@@ -103,11 +118,13 @@ export default function EditorApp() {
     setGpxNodeList(newGeoCoords);
   }
   const waypointGeoPoint = (index, name) => {
-    let newGeoCoords = [...gpxNodeList];
-    newGeoCoords[index].waypoint = name;
+    if (index && name && name.length > 0) {
+      let newGeoCoords = [...gpxNodeList];
+      newGeoCoords[index].waypoint = name;
 
-    undoStack.push([...gpxNodeList]);
-    setGpxNodeList(newGeoCoords);
+      undoStack.push([...gpxNodeList]);
+      setGpxNodeList(newGeoCoords);
+    }
   }
 
 
@@ -171,12 +188,9 @@ export default function EditorApp() {
       case "delete":
         setMapMode("del");
         break;
-      case "a":
-        setMapMode("add");
-        break;
-      case "w":
-        setMapMode("waypoint");
-        break;
+      // case "a":
+      //   setMapMode("add");
+      //   break;
       case "f":
         document.getElementById("fill-button").click();
         break;
@@ -216,51 +230,103 @@ export default function EditorApp() {
   }, [])
 
 
+  const [editorOpen, setEditorOpen] = useState(true);
+
+
   return (
     <main className="editor-page">
-      <aside className="editor-controls">
-        <h1>wainroutes route gpx editor</h1>
+      <aside className="editor__controls" data-open={editorOpen}>
+        <div className="editor__controls-wrapper">
+          <h1>GPX Editor</h1>
 
-        <input type="file" id="editor-upload" onChange={handleUploadFile} style={{display: "none"}} />
-        <button onClick={() => {document.getElementById("editor-upload").click()}}>Upload GPX</button>
+          <div className="editor__controls-group">
+            <input type="file" id="editor-upload" onChange={handleUploadFile} style={{display: "none"}} />
+            <button onClick={() => {document.getElementById("editor-upload").click()}}>
+              Upload Raw GPX <UploadIcon />
+            </button>
+          </div>
 
-        <p>Distance: {(distance/1000).toFixed(2)}km</p>
-        <p>Elevation: {elevation.toFixed(0)}m</p>
+          <div className="editor__controls-group">
+            <p>Distance: {(distance/1000).toFixed(2)}km</p>
+            <p>Elevation: {elevation.toFixed(0)}m</p>
+          </div>
 
-        <div>
-          <h2>Selected point</h2>
           <CurrentPoint
             index={selectedIndex}
             point={gpxNodeList?.[selectedIndex]}
             waypointGeoPoint={waypointGeoPoint}
           />
+
+          <div className="editor__controls-group">
+            <h2>Edit mode</h2>
+
+            <input type="radio"
+              name="map-mode"
+              id="mode-move"
+              checked={mapMode === "move"}
+              onChange={() => setMapMode("move")}
+            />
+            <label role="button"
+              htmlFor="mode-move"
+              className={mapMode === "move" ? "active" : ""}
+              title="Move points (m)"
+            >
+              <MoveIcon /> Move (m)
+            </label>
+
+            <input type="radio"
+              name="map-mode"
+              id="mode-del"
+              checked={mapMode === "del"}
+              onChange={() => setMapMode("del")}
+            />
+            <label role="button"
+              htmlFor="mode-del"
+              className={mapMode === "del" ? "active" : ""}
+              title="Delete points (d)"
+            >
+              <DelIcon /> Delete (d)
+            </label>
+
+            {/* <input type="radio" name="map-mode" id="mode-add" checked={mapMode === "add"} onChange={() => setMapMode("add")} />
+            <label htmlFor="mode-add" className={mapMode === "add" ? "active" : ""} role="button">Add (a)</label> */}
+          </div>
+
+          <div className="editor__controls-group">
+            <h2>Advanced</h2>
+            <button
+              id="fill-button"
+              onClick={fillGaps}
+              title="Fill gaps (f)"
+            >
+              <FillIcon /> Fill gaps (f)
+            </button>
+            <button
+              id="reverse-button"
+              onClick={reverseGpxDirection}
+              title="Reverse direction (r)"
+            >
+              <ReverseIcon /> Reverse dir. (r)
+            </button>
+          </div>
+
+          <div className="editor__controls-group">
+            <button id="undo-button" onClick={() => setGpxNodeList(undoStack.undo(gpxNodeList))} disabled={undoStack.undoSize === 0}>
+              <UndoIcon /> Undo
+            </button>
+            <button id="redo-button" onClick={() => setGpxNodeList(undoStack.redo(gpxNodeList))} disabled={undoStack.redoSize === 0}>
+              <RedoIcon /> Redo
+            </button>
+          </div>
+
+          <button onClick={handleDownloadFile}>
+            Download GPX <DownloadIcon />
+          </button>
         </div>
 
-        <div>
-          <h2>Version control</h2>
-          <button id="undo-button" onClick={() => setGpxNodeList(undoStack.undo(gpxNodeList))} disabled={undoStack.undoSize === 0}>Undo</button>
-          <button id="redo-button" onClick={() => setGpxNodeList(undoStack.redo(gpxNodeList))} disabled={undoStack.redoSize === 0}>Redo</button>
-        </div>
-
-        <div>
-          <h2>Map edit mode</h2>
-          <input type="radio" name="map-mode" id="mode-move" checked={mapMode === "move"} onChange={() => setMapMode("move")} />
-          <label htmlFor="mode-move" className={mapMode === "move" ? "active" : ""} role="button">Move (m)</label>
-          <input type="radio" name="map-mode" id="mode-del" checked={mapMode === "del"} onChange={() => setMapMode("del")} />
-          <label htmlFor="mode-del" className={mapMode === "del" ? "active" : ""} role="button">Delete (d)</label>
-          <input type="radio" name="map-mode" id="mode-add" checked={mapMode === "add"} onChange={() => setMapMode("add")} />
-          <label htmlFor="mode-add" className={mapMode === "add" ? "active" : ""} role="button">Add (a)</label>
-          <input type="radio" name="map-mode" id="mode-waypoint" checked={mapMode === "waypoint"} onChange={() => setMapMode("waypoint")} />
-          <label htmlFor="mode-waypoint" className={mapMode === "waypoint" ? "active" : ""} role="button">Waypoint (w)</label>
-        </div>
-
-        <div>
-          <h2>Advanced options</h2>
-          <button id="fill-button" onClick={fillGaps}>Fill gaps (f)</button>
-          <button id="reverse-button" onClick={reverseGpxDirection}>Reverse direction (r)</button>
-        </div>
-
-        <button onClick={handleDownloadFile}>Download GPX</button>
+        <button className="editor__controls-close" onClick={() => setEditorOpen(prev => !prev)}>
+          {editorOpen ? "<" : ">"}
+        </button>
       </aside>
 
       <div id="editor-map" className="editor-map" data-mode={mapMode}>
@@ -284,19 +350,30 @@ function CurrentPoint({ index, point, waypointGeoPoint }) {
 
   if (index) {
     return (
-      <div>
-        <b>{"Point " + index + (point?.waypoint ? " ("+point?.waypoint+")" : "") + ":"}</b>
-        <p>{point?.coordinates?.[1]?.toFixed(4) + ", " + point?.coordinates?.[0]?.toFixed(4)}</p>
-        <p>{point?.elevation + "m"}</p>
-        <label>Add a waypoint name:</label>
-        <input value={inputVal} onChange={e => setInputVal(e.target.value)} onKeyUp={e => e.preventDefault()} />
-        <button onClick={() => waypointGeoPoint(index, inputVal)}>Set</button>
+      <div className="editor__controls-group editor__controls-selected">
+        <h2>{"Point " + index + (point?.waypoint ? " ("+point?.waypoint+")" : "") + ":"}</h2>
+        <ul>
+          <li>Long: {point?.coordinates?.[1]?.toFixed(4)}</li>
+          <li>Lat: {point?.coordinates?.[0]?.toFixed(4)}</li>
+          <li>Ele: {point?.elevation ? point?.elevation + "m" : "none"}</li>
+        </ul>
+        <label>Set a waypoint:</label>
+        <div className="flex-row wrap-none">
+          <input
+            className="flex-1"
+            value={inputVal}
+            onChange={e => setInputVal(e.target.value)}
+          />
+          <button onClick={() => waypointGeoPoint(index, inputVal)}>Set</button>
+        </div>
       </div>
     )
   }
   else {
     return (
-      <div>None selected</div>
+      <div className="editor__controls-group editor__controls-selected">
+        <b>Select a point to view details</b>
+      </div>
     )
   }
 }

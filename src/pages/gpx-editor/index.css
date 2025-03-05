@@ -6,17 +6,21 @@
   padding: 0;
 }
 
-.editor-page h1 {
-  font-family: var(--ff-heading);
-  font-size: var(--fs-800);
-  text-wrap: balance;
-  line-height: 1.1;
 
-  text-align: center;
+.editor__controls {
+  position: relative;
+  z-index: 2;
+
+  max-width: 50%;
+
+  transition: max-width 100ms;
+  transition-behavior: allow-discrete;
 }
-
-
-.editor-controls {
+.editor__controls[data-open="false"] {
+  max-width: 10px;
+  /* translate: -100%; */
+}
+.editor__controls-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -24,38 +28,112 @@
   padding: 1rem;
 
   background: var(--clr-white-400);
-  width: 300px;
+  width: clamp(240px, 25vw, 300px);
+  height: 100%;
 
-  overflow-x: auto;
+  transition: translate 100ms;
+}
+.editor__controls[data-open="false"] .editor__controls-wrapper {
+  translate: -100%;
 }
 
-.editor-controls input[type="radio"] {
+.editor__controls input[type="radio"] {
   display: none;
 }
 
-.editor-controls button,
-.editor-controls label[role="button"] {
+.editor__controls h1 {
+  font-family: var(--ff-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-800);
+  line-height: 1.1;
+}
+
+.editor__controls-group {
+  display: grid;
+  gap: 0.25rem;
+}
+.editor__controls-group.horizontal {
+  grid-auto-flow: column;
+  width: fit-content;
+}
+
+.editor__controls button,
+.editor__controls label[role="button"] {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: center;
+  align-items: center;
+  vertical-align: center;
+
   user-select: none;
-  display: inline-block;
   padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
+
+  font-weight: var(--fw-medium);
 
   background: var(--clr-white-600);
   cursor: pointer;
+
+  width: fit-content;
 }
-.editor-controls button:hover,
-.editor-controls label[role="button"]:hover {
-  background: var(--clr-white-500);
+.editor__controls button:hover,
+.editor__controls label[role="button"]:hover {
+  background: var(--clr-white-700);
 }
 
-.editor-controls label[role="button"].active {
+.editor__controls label[role="button"].active {
+  color: var(--clr-white-400);
   background: var(--clr-primary-500);
 }
 
-.editor-controls button:disabled {
+.editor__controls button:disabled {
   color: var(--clr-black-200);
   background: var(--clr-black-100);
   cursor: default;
+}
+
+
+.editor__controls-selected {
+  background: var(--clr-white-500);
+  border: 1px solid var(--clr-white-700);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+
+  text-wrap: balance;
+}
+.editor__controls-selected .flex-row {
+  gap: 0.25rem;
+  width: 100%;
+  align-items: center;
+}
+.editor__controls-selected ul {
+  list-style: none;
+  margin-block-end: 0.5rem;
+}
+.editor__controls-selected label {
+  font-weight: var(--fw-medium);
+}
+.editor__controls-selected input {
+  padding: 0.25rem;
+  max-width: 50%;
+}
+
+
+button.editor__controls-close {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 0.25rem);
+
+  translate: 0 -50%;
+
+  padding-block: 0.75rem;
+  padding-inline: 0.25rem;
+
+  font-weight: var(--fw-medium);
+  background: var(--clr-white-400);
+  border-radius: 0.125rem;
+
+  box-shadow: 1px 1px 5px #0006;
 }
 
 
