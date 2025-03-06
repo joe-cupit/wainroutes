@@ -1,10 +1,12 @@
-import "./Home.css";
+import "./HomePage.css";
 
 import setPageTitle from "../hooks/setPageTitle";
 import { Link } from "react-router-dom";
 import HerdyImage from "../assets/images/home/herdy.jpeg"
 import FlatMap from "../components/FlatMap";
 import { useEffect } from "react";
+import WalkCard from "../components/WalkCard";
+import { useWalks } from "../hooks/useWalks";
 
 
 export function HomePage() {
@@ -15,7 +17,9 @@ export function HomePage() {
   const MapHeight = 614
   const HalfWidth = MapWidth/2
   const HalfHeight = MapHeight/2
-
+  
+  const walks = useWalks()
+  
   useEffect(() => {
 
     function throttle(callback, wait) {
@@ -91,7 +95,7 @@ export function HomePage() {
           <Link to="/walks" className="primary button">Find your next route</Link>
         </div>
 
-        <FlatMap />
+        <FlatMap width={MapWidth} height={MapHeight} />
       </div>
     </section>
 
@@ -105,10 +109,10 @@ export function HomePage() {
     <section>
       <div className="flex-column align-center">
         <h2 className="heading">Featured routes</h2>
-        <div className="flex-row home-featured-container">
-          <div className="home-featured-walk"></div>
-          <div className="home-featured-walk"></div>
-          <div className="home-featured-walk"></div>
+        <div className="flex-row justify-center home-featured-container">
+          <WalkCard walk={walks["the-kentmere-horseshoe"]} />
+          <WalkCard walk={walks["a-coledale-horseshoe"]} />
+          <WalkCard walk={walks["the-old-man-of-coniston"]} />
         </div>
       </div>
     </section>
@@ -122,12 +126,12 @@ export function HomePage() {
             In seven books he wrote about 214 of the most significant and noteworthy peaks.
             Since then, it has become a popular goal among fell enthusiasts to climb all mountains featured in these books, which became known as 'The Wainwrights'.
           </p>
-          <button>Check them out →</button>
+          <Link to="/wainwrights" className="primary button">Check them out →</Link>
         </div>
 
         <div className="flex-column align-center text-center">
           <div className="donut circle">
-            <p><span className="wainwright-count">78</span> of 214 Wainwrights</p>
+            <p><span className="wainwright-count">81</span> of 214 Wainwrights</p>
             <div className="progress">
               <div className="circle"></div>
             </div>
@@ -144,9 +148,7 @@ export function HomePage() {
         <div className="flex-column">
           <h2 className="heading">About wainroutes</h2>
           <p>
-            In the 1950s Alfred Wainwrights began to release his series of books covering the Lakeland Fells.
-            In seven books he wrote about 214 of the most significant and noteworthy peaks.
-            This site aims to provide walks to climb all mountains referenced by him.
+            Wainroutes is a work-in-progress passion project.
           </p>
         </div>
       </div>

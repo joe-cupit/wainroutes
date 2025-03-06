@@ -11,7 +11,7 @@
   line-height: 1.5;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 41rem) {
   .home-hero-section {
     position: relative;
     height: calc(95vw * 1.2);
