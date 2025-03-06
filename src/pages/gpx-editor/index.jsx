@@ -2,6 +2,7 @@ import "./index.css"
 
 import { useEffect, useState, useMemo } from "react"
 
+import setPageTitle from "../../hooks/setPageTitle"
 import useUndoStack from "./hooks/useUndoStack"
 import useOpenGpx from "./hooks/useOpenGpx"
 
@@ -22,7 +23,7 @@ import ReverseIcon from "./assets/reverse-icon.svg?react";
 
 export default function EditorApp() {
 
-  document.title = "GPX Editor | wainroutes"
+  setPageTitle("GPX Editor");
 
   // gpx file states
   const [gpxFile, setGpxFile] = useState(null)

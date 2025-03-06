@@ -7,6 +7,7 @@ import { NotFoundPage } from "../error/NotFoundPage";
 
 import { useWalks } from "../../hooks/useWalks";
 import { displayDistance, displayElevation } from "../../utils/unitConversions";
+import setPageTitle from "../../hooks/setPageTitle";
 
 import { BackIcon, ElevationIcon, HikingIcon, LocationIcon, MountainIcon } from "../../components/Icons";
 import Image from "../../components/Image";
@@ -28,7 +29,7 @@ export function WalkPage() {
   const { slug } = useParams();
   const walkData = useWalks(slug);
 
-  document.title = (walkData?.title ?? "A Lake District Walk") + " | wainroutes";
+  setPageTitle(walkData?.title ?? "A Lake District Walk")
 
 
   if (walkData) return <Walk walkData={walkData} slug={slug} />

@@ -1,6 +1,7 @@
 import "./WeatherPage.css";
 
 import { Fragment } from "react";
+import setPageTitle from "../hooks/setPageTitle";
 
 import weatherData from "../assets/weather.json"
 const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg")
@@ -14,7 +15,7 @@ for (const path in WeatherSymbolsFolder) {
 
 export function WeatherPage() {
 
-  document.title = "Lake District Weather | wainroutes";
+  setPageTitle("Lake District Weather")
 
 
   return (

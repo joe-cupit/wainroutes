@@ -7,6 +7,7 @@ import FlatMap from "../components/FlatMap";
 
 import { useHillMarkers } from "../hooks/useMarkers";
 import { useHills } from "../hooks/useHills";
+import { setPageTitle } from "../hooks/setPageTitle";
 import { useMemo, useState } from "react";
 import { displayElevation } from "../utils/unitConversions";
 
@@ -16,7 +17,7 @@ const titles = {
 
 
 export function HillsPage() {
-  document.title = "The Wainwrights | wainroutes";
+  setPageTitle("The Wainwrights");
 
   const hillMarkers = useHillMarkers();
   const hillData = Object.values(useHills(null)).sort((a, b) => b.height-a.height);

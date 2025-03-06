@@ -1,11 +1,13 @@
 import "./ErrorPage.css";
 
+import setPageTitle from "../../hooks/setPageTitle";
+
 import { Link } from "react-router-dom";
 
 
 export function NotFoundPage() {
 
-  document.title = "404 Not Found | Wainroutes"
+  setPageTitle("404 Page Not Found")
 
 
   return (

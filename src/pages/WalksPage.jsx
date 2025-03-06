@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { useWalks } from "../hooks/useWalks";
+import setPageTitle from "../hooks/setPageTitle";
 
 import { LakeMap } from "../components/map";
 
@@ -16,7 +17,7 @@ import { displayDistance } from "../utils/unitConversions";
 
 export function WalksPage() {
 
-  document.title = "Discover Lake District Walks – Wainroutes";
+  setPageTitle("Lake District Walks")
 
   const walkMarkers = useWalkMarkers(null);
   const [walkData, setWalkData] = useState(Object.values(useWalks(null)));

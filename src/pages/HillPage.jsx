@@ -3,6 +3,7 @@ import "./HillPage.css";
 import { useParams } from "react-router-dom";
 
 import { useHills } from "../hooks/useHills";
+import setPageTitle from "../hooks/setPageTitle";
 import { displayElevation } from "../utils/unitConversions";
 
 
@@ -19,6 +20,8 @@ export function HillPage() {
 
   const hillData = useHills(slug);
   const bookNum = hillData?.book;
+
+  setPageTitle(hillData?.name ?? "The Wainwrights");
 
   return (
     <main className="hill-page">
