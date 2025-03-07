@@ -74,6 +74,34 @@ function GalleryCarousel({ imageId, display, setDisplay }) {
     setDisplay(false)
   }, [])
 
+  useEffect(() => {
+    const handleKeyUp = (event) => {
+      if (!event.isTrusted) return;
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        setCurrIndex(prev => {
+          let curr = prev - 1;
+          if (curr < 0) return curr + galleryContext?.images?.length;
+          else return curr;
+        });
+      }
+      else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        setCurrIndex(prev => (prev+1) % (galleryContext?.images?.length ?? 1));
+      }
+      else if (event.key === "Escape") {
+        event.preventDefault();
+        setDisplay(false);
+      }
+    }
+
+    window.addEventListener("keyup", handleKeyUp);
+    return (() => {
+      window.removeEventListener("keyup", handleKeyUp);
+    })
+  }, [])
+
 
   if (display) return (
     <div className="image-gallery_carousel" onClick={bgClicked}>
