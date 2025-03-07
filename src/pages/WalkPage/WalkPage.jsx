@@ -123,7 +123,7 @@ function Walk({ walkData, slug }) {
           <div className="walk-page_overlay-wrapper flex-row flex-apart wrap-none">
             <div className="walk-page_overlay-left flex-1 flex-row align-center wrap-none" // className="flex-1 flex-row align-center wrap-none"
             >
-              <Link to="/walks" title="Back" aria-label="Back to walks"><BackIcon /></Link>
+              <button title="Back" aria-label="Back to walks" onClick={() => history.back()}><BackIcon /></button>
               <div className="walk-page_overlay-title flex-column gap-0">
                 <button className="subheading" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>{walkData?.title}</button>
                 <div className="walk-page_overlay-details flex-row">

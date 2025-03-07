@@ -49,6 +49,9 @@
 .hills-page .table-arrow.active {
   color: var(--clr-black-400);
 }
+.hills-page table tbody td:last-child {
+  text-align: right;
+}
 
 
 .wainwright-book-top {

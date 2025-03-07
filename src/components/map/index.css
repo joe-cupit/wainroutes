@@ -33,7 +33,7 @@
   /* filter: drop-shadow(0 0 0.125rem #0007); */
   fill: var(--clr-white-500);
   stroke: var(--clr-primary-800);
-  stroke-width: 2;
+  stroke-width: 3;
 }
 
 .lake-map--marker {

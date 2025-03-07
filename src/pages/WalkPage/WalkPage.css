@@ -151,7 +151,7 @@ html {
 .walk-page_top-image {
   flex: 1;
   width: 100%;
-  height: min(17rem, 40vw);
+  height: min(20rem, 42vw);
   object-fit: cover;
 }
 .walk-page_top-block {

@@ -10,6 +10,8 @@
   position: absolute;
   inset: 0;
 
+  width: 100%;
+
   user-select: none;
   pointer-events: none;
 

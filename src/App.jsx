@@ -7,9 +7,9 @@ import { Navbar } from './components/Navbar';
 import Footer from './components/Footer';
 import { NotFoundPage } from './pages/error/NotFoundPage';
 
-import { HomePage } from './pages/Home';
+import { HomePage } from './pages/HomePage';
 import { WalksPage } from './pages/WalksPage';
-import { WalkPage } from './pages/WalkPage';
+import { WalkPage } from './pages/WalkPage/WalkPage';
 import { HillsPage } from './pages/HillsPage';
 import { HillPage } from './pages/HillPage';
 import { WeatherPage } from './pages/WeatherPage';
@@ -24,7 +24,6 @@ export default function App() {
 
   const { key } = useLocation();
   useEffect(() => {
-    console.log(key, lastPoppedPage)
     if (key !== lastPoppedPage) window.scrollTo(0, 0);
   }, [key]);
 

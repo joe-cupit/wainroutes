@@ -25,6 +25,7 @@ export function Route({ secRef, wainwrights, center, slug }) {
 
         let dist = 0
         let prevPoint = null
+        let prevEle = 0;
 
         const nodes = [...doc.getElementsByTagName("trkpt")];
         for (let node of nodes) {
@@ -38,7 +39,7 @@ export function Route({ secRef, wainwrights, center, slug }) {
 
           let ele = {
             "dist": getDistanceValue((dist / 1000)),
-            "ele": getElevationValue(node.getElementsByTagName("ele")[0]?.textContent)
+            "ele": getElevationValue(node.getElementsByTagName("ele")[0]?.textContent ?? prevEle)
           }
           if (node.getElementsByTagName("name").length > 0) {
             ele["waypoint"] = node.getElementsByTagName("name")[0]?.textContent
@@ -52,6 +53,7 @@ export function Route({ secRef, wainwrights, center, slug }) {
           // }
 
           prevPoint = point
+          prevEle = ele.ele;
         }
 
         setGpxPoints(coordinates);
@@ -82,7 +84,7 @@ export function Route({ secRef, wainwrights, center, slug }) {
           <ElevationChart
             data={elevationData}
             setActiveIndex={setHoveredIndex}
-            showHillMarkers={false}
+            showHillMarkers={true}
           />
         </div>
       </div>

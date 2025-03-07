@@ -10,12 +10,10 @@ import Layer3 from "../assets/images/flat-map/layer-3.svg"
 import Layer4 from "../assets/images/flat-map/layer-4.svg"
 
 
-export default function FlatMap() {
+export default function FlatMap({ width, height }) {
 
-  const MapWidth = 518
-  const MapHeight = 614
-  const HalfWidth = MapWidth/2
-  const HalfHeight = MapHeight/2
+  const MapWidth = width ?? 518
+  const MapHeight = height ?? 614
 
   // useEffect(() => {
   //   function mouseListener(e) {

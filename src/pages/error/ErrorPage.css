@@ -15,7 +15,7 @@
     max-width: 20ch;
   }
 }
-@media (max-width: 40rem) {
+@media (max-width: 41rem) {
   .error-page_text {
     align-items: end;
     margin-inline-start: auto;

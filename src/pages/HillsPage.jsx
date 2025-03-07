@@ -7,7 +7,7 @@ import FlatMap from "../components/FlatMap";
 
 import { useHillMarkers } from "../hooks/useMarkers";
 import { useHills } from "../hooks/useHills";
-import { setPageTitle } from "../hooks/setPageTitle";
+import setPageTitle from "../hooks/setPageTitle";
 import { useMemo, useState } from "react";
 import { displayElevation } from "../utils/unitConversions";
 
