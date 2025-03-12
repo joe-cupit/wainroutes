@@ -26,8 +26,9 @@ export default function EditorApp() {
   setPageTitle("GPX Editor");
 
   // gpx file states
-  const [gpxFile, setGpxFile] = useState(null)
-  const gpxPoints = useOpenGpx(gpxFile)
+  const [gpxName, setGpxName] = useState(null);
+  const [gpxFile, setGpxFile] = useState(null);
+  const gpxPoints = useOpenGpx(gpxFile);
 
   const [gpxNodeList, setGpxNodeList] = useState(null);
   const fullPoints = useMemo(() => {
@@ -63,6 +64,7 @@ export default function EditorApp() {
 
     undoStack.reset();
     setGpxNodeList(geoPoints);
+    setGpxName(gpxFile.name);
   }, [gpxPoints])
 
 
@@ -101,11 +103,14 @@ export default function EditorApp() {
     let newGeoCoords = [...gpxNodeList];
     const newPoint = [Number(anchor[1].toFixed(6)), Number(anchor[0].toFixed(6))];
     if (newPoint[0] !== newGeoCoords[index].coordinates[0] || newPoint[1] !== newGeoCoords[index].coordinates[1]) {
-      console.log(newPoint, newGeoCoords[index].coordinates)
-      newGeoCoords[index].coordinates = newPoint;
-      newGeoCoords[index].elevation = null;
+      let newNode = {
+        coordinates: newPoint,
+        elevation: null,
+      }
+      if (gpxNodeList[index].waypoint) newNode.waypoint = gpxNodeList[index].waypoint;
+      newGeoCoords[index] = newNode;
 
-      undoStack.push([...gpxNodeList]);  // TODO: isn't working??
+      undoStack.push([...gpxNodeList]);
       setGpxNodeList(newGeoCoords);
     }
 
@@ -139,7 +144,7 @@ export default function EditorApp() {
     const url = window.URL.createObjectURL(new Blob([gpxText], {type: "text/xml"}))
     let a = document.createElement("a")
     a.href = url
-    a.download = "wainroute.gpx"
+    a.download = gpxName;
     a.click()
   }
 
@@ -181,23 +186,23 @@ export default function EditorApp() {
     if (!e.isTrusted) return
 
     switch (e.key.toLowerCase()) {
-      case "m":
-      case "s":
-        setMapMode("move");
-        break;
-      case "d":
-      case "delete":
-        setMapMode("del");
-        break;
+      // case "m":
+      // case "s":
+      //   setMapMode("move");
+      //   break;
+      // case "d":
+      // case "delete":
+      //   setMapMode("del");
+      //   break;
       // case "a":
       //   setMapMode("add");
       //   break;
-      case "f":
-        document.getElementById("fill-button").click();
-        break;
-      case "r":
-        document.getElementById("reverse-button").click();
-        break;
+      // case "f":
+      //   document.getElementById("fill-button").click();
+      //   break;
+      // case "r":
+      //   document.getElementById("reverse-button").click();
+      //   break;
       case "z":
         if (e.ctrlKey) {
           if (e.shiftKey) document.getElementById("redo-button").click();
@@ -248,6 +253,16 @@ export default function EditorApp() {
           </div>
 
           <div className="editor__controls-group">
+            {gpxName === null
+              ? <b>Upload a file</b>
+              : <input
+                  className="editor__controls-title"
+                  placeholder={gpxFile.name}
+                  value={gpxName}
+                  onChange={e => setGpxName(e.target.value)}
+                  onBlur={e => {if (e.target.value === "") setGpxName(gpxFile.name); else if (!e.target.value.endsWith(".gpx")) setGpxName(e.target.value + ".gpx")}}
+                />
+            }
             <p>Distance: {(distance/1000).toFixed(2)}km</p>
             <p>Elevation: {elevation.toFixed(0)}m</p>
           </div>

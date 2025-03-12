@@ -13,7 +13,7 @@ export default function useOpenGpx(file) {
     var points = []
     for (const node of xmlnodes) {
       let coords = [parseFloat(node.getAttribute("lon")), parseFloat(node.getAttribute("lat"))]
-      let ele = node.getElementsByTagName("ele")[0]?.textContent
+      let ele = Number(node.getElementsByTagName("ele")[0]?.textContent)
 
       points.push({coordinates: coords, elevation: ele})
     }

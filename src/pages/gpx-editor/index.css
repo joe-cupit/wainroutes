@@ -28,10 +28,11 @@
   padding: 1rem;
 
   background: var(--clr-white-400);
-  width: clamp(240px, 25vw, 300px);
+  width: clamp(250px, 25vw, 300px);
   height: 100%;
 
   transition: translate 100ms;
+  cursor: default;
 }
 .editor__controls[data-open="false"] .editor__controls-wrapper {
   translate: -100%;
@@ -46,6 +47,24 @@
   font-weight: var(--fw-bold);
   font-size: var(--fs-800);
   line-height: 1.1;
+}
+
+.editor__controls-title {
+  border: none;
+  background: none;
+
+  width: calc(100% + 0.25rem);
+  padding: 0.25rem;
+  margin-inline-start: -0.25rem;
+
+  font-weight: var(--fw-medium);
+  font-size: 1.125em;
+}
+.editor__controls-title::placeholder {
+  font-style: italic;
+}
+.editor__controls-title:focus {
+  background: hsl(from var(--clr-white-500) h s l / 60%);
 }
 
 .editor__controls-group {
