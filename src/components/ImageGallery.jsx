@@ -152,12 +152,15 @@ function CorouselImage({ index }) {
 }
 
 
-function GalleryImage({ index, big=false }) {
+function GalleryImage({ index, className, big=false }) {
 
   const galleryContext = useContext(GalleryContext)
 
   return (
-    <div className="image-gallery_image" onClick={() => galleryContext?.openCarousel(index)}>
+    <div
+      className={"image-gallery_image" + (big ? "" : " image-gallery_lock-ratio") + (className ? " "+className : "")}
+      onClick={() => galleryContext?.openCarousel(index)}
+    >
       <Image
         name={galleryContext?.images?.[index]}
         sizes={big ? "(min-width: 1000px) 1000px, (min-width: 840px) 50vw, 90vw" : "(min-width: 1000px) 500px, (min-width: 1000px) 25vw, 40vw"}
@@ -204,9 +207,7 @@ function GalleryRowThree({ ids }) {
 function GalleryRowWideLeft({ ids }) {
   return (
     <div className="image-gallery_row image-gallery_row-wide-left">
-      <div className="image-gallery_span-2">
-        <GalleryImage index={ids?.[0]} big={true} />
-      </div>
+      <GalleryImage className="image-gallery_span-2" index={ids?.[0]} big={true} />
       <div className="image-gallery_column">
         <GalleryImage index={ids?.[1]} />
         <GalleryImage index={ids?.[2]} />
@@ -223,9 +224,7 @@ function GalleryRowWideRight({ ids }) {
         <GalleryImage index={ids?.[0]} />
         <GalleryImage index={ids?.[1]} />
       </div>
-      <div className="image-gallery_span-2">
-        <GalleryImage index={ids?.[2]} big={true} />
-      </div>
+      <GalleryImage className="image-gallery_span-2" index={ids?.[2]} big={true} />
     </div>
   )
 }
@@ -235,9 +234,7 @@ function GalleryRowWideRight({ ids }) {
 function GalleryRowTallLeft({ ids }) {
   return (
     <div className="image-gallery_row image-gallery_row-wide-left">
-      <div className="image-gallery_span-2">
-        <GalleryImage index={ids?.[0]} big={true} />
-      </div>
+      <GalleryImage className="image-gallery_span-2" index={ids?.[0]} big={true} />
       <div className="image-gallery_column">
         <GalleryImage index={ids?.[1]} />
         <GalleryImage index={ids?.[2]} />
@@ -256,9 +253,7 @@ function GalleryRowTallRight({ ids }) {
         <GalleryImage index={ids?.[1]} />
         <GalleryImage index={ids?.[2]} />
       </div>
-      <div className="image-gallery_span-2">
-        <GalleryImage index={ids?.[3]} big={true} />
-      </div>
+      <GalleryImage className="image-gallery_span-2" index={ids?.[3]} big={true} />
     </div>
   )
 }

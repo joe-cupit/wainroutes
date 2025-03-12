@@ -10,12 +10,12 @@
 }
 
 .image-gallery_image {
-  display: flex;
+  /* display: flex; */
   background: var(--clr-black-100);
 
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
+  /* overflow: hidden; */
+  /* width: 100%; */
+  /* height: 100%;*/
 
   cursor: pointer;
 }
@@ -26,12 +26,17 @@
 .image-gallery_image img:hover {
   scale: 1.05;
 }
+.image-gallery_lock-ratio {
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
 
 
 .image-gallery_column {
   display: grid;
   gap: var(--_gallery-gap);
   grid-template-columns: 1fr;
+  height: fit-content;
 }
 .image-gallery_row {
   display: contents;
