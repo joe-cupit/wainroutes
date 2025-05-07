@@ -1,14 +1,21 @@
 import { useState, useMemo, useEffect } from "react";
 import { Map, GeoJson, ZoomControl, Draggable, Overlay } from "pigeon-maps";
-// import zoomToFit from "../utils/zoomToFit";
 
 
-export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint, panValue }) {
+type Bounds = {
+  ne: [number, number];
+  sw: [number, number];
+}
 
-  const [center, setCenter] = useState([54.45, -3.03]);
-  const [zoom, setZoom] = useState(10);
-  const [bounds, setBounds] = useState({ne: [55, 0], sw: [50, -4]});
-  const onBoundsChanged = ({ center, zoom, bounds }) => {
+type SimplePoint = [number, [number, number]]
+
+
+export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint, panValue } : { gpxPoints: [number, number][]; mapMode: string; moveGeoPoint: CallableFunction; delGeoPoint: CallableFunction; panValue: string | null }) {
+
+  const [center, setCenter] = useState<[number, number]>([54.45, -3.03]);
+  const [zoom, setZoom] = useState<number>(10);
+  const [bounds, setBounds] = useState<Bounds>({ne: [55, 0], sw: [50, -4]});
+  const onBoundsChanged = ({ center, zoom, bounds } : { center: [number, number]; zoom: number; bounds: Bounds }) => {
     setCenter(center);
     setZoom(zoom);
     setBounds(bounds);
@@ -18,7 +25,7 @@ export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint, 
 
   const geoJsonLine = useMemo(() => (gpxPoints ? {type: "FeatureCollection", features: [{type: "Feature", geometry: {type: "LineString", coordinates: gpxPoints}}]} : null), [gpxPoints]);
   const geoJsonPoints = useMemo(() => {
-    const inBounds = (point) => {
+    const inBounds = (point: SimplePoint) => {
       let coords = point[1];
       const maxBound = bounds.ne;
       const minBound = bounds.sw;
@@ -28,7 +35,7 @@ export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint, 
       return true;
     }
 
-    return gpxPoints?.map((point, index) => [index, [point[1], point[0]]])?.filter(inBounds);
+    return gpxPoints?.map((point, index) => [index, [point[1], point[0]]] as SimplePoint)?.filter(inBounds);
   }, [gpxPoints, bounds]);
 
 
@@ -43,7 +50,7 @@ export default function GpxMap({ gpxPoints, mapMode, moveGeoPoint, delGeoPoint, 
 
 
   useEffect(() => {
-    if (panValue === null) return;
+    if (!panValue) return;
 
     const ewChange = (bounds.sw[1] - bounds.ne[1]) / 12;
     const nsChange = (bounds.ne[0] - bounds.sw[0]) / 10;

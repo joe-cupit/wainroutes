@@ -1,5 +1,7 @@
+import { GPXPoint } from "../hooks/useOpenGpx";
 
-export default function buildXML(gpxpoints) {
+
+export default function buildXML(gpxpoints: GPXPoint[]) {
   let gpxText = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
   gpxText += "\n<gpx version=\"1.1\" creator=\"wainroutes.co.uk\" xmlns=\"http://www.topografix.com/GPX/1/1\">";
   // add metadata

@@ -1,15 +1,15 @@
-import "./index.css"
+import "./index.css";
 
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useState, useMemo } from "react";
 
-import setPageTitle from "../../hooks/setPageTitle"
-import useUndoStack from "./hooks/useUndoStack"
-import useOpenGpx from "./hooks/useOpenGpx"
+import setPageTitle from "../../hooks/setPageTitle";
+import useUndoStack from "./hooks/useUndoStack";
+import useOpenGpx, { GPXPoint } from "./hooks/useOpenGpx";
 
-import haversine from "../../utils/haversine"
-import buildXML from "./utils/buildXML"
+import GpxMap from "./components/GpxMap";
 
-import GpxMap from "./components/GpxMap"
+import haversine from "../../utils/haversine";
+import buildXML from "./utils/buildXML";
 
 import UploadIcon from "./assets/upload-icon.svg?react";
 import DownloadIcon from "./assets/download-icon.svg?react";
@@ -26,23 +26,24 @@ export default function EditorApp() {
   setPageTitle("GPX Editor");
 
   // gpx file states
-  const [gpxName, setGpxName] = useState(null);
-  const [gpxFile, setGpxFile] = useState(null);
+  const [gpxName, setGpxName] = useState<string>();
+  const [gpxFile, setGpxFile] = useState<File>();
   const gpxPoints = useOpenGpx(gpxFile);
 
-  const [gpxNodeList, setGpxNodeList] = useState(null);
-  const fullPoints = useMemo(() => {
-    return gpxNodeList?.map(node => node.coordinates);
+  const [gpxNodeList, setGpxNodeList] = useState<GPXPoint[]>();
+  const fullPoints : [number, number][] = useMemo(() => {
+    if (gpxNodeList) return gpxNodeList.map(node => node.coordinates);
+    else return [];
   }, [gpxNodeList]);
 
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>();
 
   // user-controlled options
   const [mapMode, setMapMode] = useState("move")
   const undoStack = useUndoStack()
 
   useEffect(() => {
-    if (gpxPoints == null) return;
+    if (!gpxPoints) return;
     let geoPoints = [];
 
     let prevP = null;
@@ -64,7 +65,7 @@ export default function EditorApp() {
 
     undoStack.reset();
     setGpxNodeList(geoPoints);
-    setGpxName(gpxFile.name);
+    setGpxName(gpxFile?.name ?? "");
   }, [gpxPoints])
 
 
@@ -72,7 +73,7 @@ export default function EditorApp() {
     if (gpxNodeList == null) return [0, 0];
 
     let dist = 0, elevation = 0;
-    let prevP = null, prevE = null;
+    let prevP = null, prevE = 0;
     for (let node of gpxNodeList) {
       let point = node.coordinates;
       let ele = node.elevation;
@@ -90,7 +91,7 @@ export default function EditorApp() {
 
   // // gpx point editing functions
   const reverseGpxDirection = () => {
-    if (gpxNodeList === null) return;
+    if (!gpxNodeList) return;
 
     undoStack.push([...gpxNodeList]);
     setGpxNodeList([...gpxNodeList].reverse());
@@ -99,14 +100,15 @@ export default function EditorApp() {
       setSelectedIndex(gpxNodeList.length - selectedIndex - 1);
     }
   }
-  const moveGeoPoint = (index, anchor) => {
+  const moveGeoPoint = (index: number, anchor: [number, number]) => {
+    if (!gpxNodeList) return;
+
     let newGeoCoords = [...gpxNodeList];
-    const newPoint = [Number(anchor[1].toFixed(6)), Number(anchor[0].toFixed(6))];
+    const newPoint : [number, number] = [Number(anchor[1].toFixed(6)), Number(anchor[0].toFixed(6))];
     if (newPoint[0] !== newGeoCoords[index].coordinates[0] || newPoint[1] !== newGeoCoords[index].coordinates[1]) {
       let newNode = {
         coordinates: newPoint,
-        elevation: null,
-      }
+      } as GPXPoint
       if (gpxNodeList[index].waypoint) newNode.waypoint = gpxNodeList[index].waypoint;
       newGeoCoords[index] = newNode;
 
@@ -116,15 +118,19 @@ export default function EditorApp() {
 
     setSelectedIndex(index);
   }
-  const delGeoPoint = (index) => {
+  const delGeoPoint = (index: number) => {
+    if (!gpxNodeList) return;
+
     let newGeoCoords = [...gpxNodeList];
     newGeoCoords.splice(index, 1);
 
     undoStack.push([...gpxNodeList]);
     setGpxNodeList(newGeoCoords);
   }
-  const waypointGeoPoint = (index, name) => {
-    if (index && name && name.length > 0) {
+  const waypointGeoPoint = (index: number, name: string) => {
+    if (!gpxNodeList) return;
+
+    if (name.length > 0) {
       let newGeoCoords = [...gpxNodeList];
       newGeoCoords[index].waypoint = name;
 
@@ -135,21 +141,25 @@ export default function EditorApp() {
 
 
   // gpx file upload and download handlers
-  const handleUploadFile = (e) => {
-    setGpxFile(e.target.files[0])
+  const handleUploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGpxFile(e.target?.files?.[0]);
   }
   const handleDownloadFile = () => {
-    let gpxText = buildXML(gpxNodeList)
+    if (!gpxNodeList) return;
 
-    const url = window.URL.createObjectURL(new Blob([gpxText], {type: "text/xml"}))
-    let a = document.createElement("a")
-    a.href = url
-    a.download = gpxName;
-    a.click()
+    let gpxText = buildXML(gpxNodeList);
+
+    const url = window.URL.createObjectURL(new Blob([gpxText], {type: "text/xml"}));
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = gpxName ?? "gpx_file";
+    a.click();
   }
 
 
   function fillGaps() {
+    if (!gpxNodeList) return;
+
     let newFullPoints = [...gpxNodeList];
     var extraPoints = 0;
 
@@ -180,10 +190,10 @@ export default function EditorApp() {
   }
 
 
-  const [panValue, setPanValue] = useState(null)
+  const [panValue, setPanValue] = useState<string | null>(null);
 
-  function keyListener(e) {
-    if (!e.isTrusted) return
+  function keyListener(e: KeyboardEvent) {
+    if (!e.isTrusted) return;
 
     switch (e.key.toLowerCase()) {
       // case "m":
@@ -205,8 +215,8 @@ export default function EditorApp() {
       //   break;
       case "z":
         if (e.ctrlKey) {
-          if (e.shiftKey) document.getElementById("redo-button").click();
-          else document.getElementById("undo-button").click();
+          if (e.shiftKey) document.getElementById("redo-button")?.click();
+          else document.getElementById("undo-button")?.click();
           break;
         }
       case "arrowup":
@@ -231,8 +241,8 @@ export default function EditorApp() {
   }
 
   useEffect(() => {
-    document.addEventListener("keyup", keyListener)
-    return () => {document.removeEventListener("keyup", keyListener)}
+    document.addEventListener("keyup", keyListener);
+    return () => {document.removeEventListener("keyup", keyListener)};
   }, [])
 
 
@@ -247,7 +257,7 @@ export default function EditorApp() {
 
           <div className="editor__controls-group">
             <input type="file" id="editor-upload" onChange={handleUploadFile} style={{display: "none"}} />
-            <button onClick={() => {document.getElementById("editor-upload").click()}}>
+            <button onClick={() => {document.getElementById("editor-upload")?.click()}}>
               Upload Raw GPX <UploadIcon />
             </button>
           </div>
@@ -257,21 +267,23 @@ export default function EditorApp() {
               ? <b>Upload a file</b>
               : <input
                   className="editor__controls-title"
-                  placeholder={gpxFile.name}
+                  placeholder={gpxFile?.name}
                   value={gpxName}
                   onChange={e => setGpxName(e.target.value)}
-                  onBlur={e => {if (e.target.value === "") setGpxName(gpxFile.name); else if (!e.target.value.endsWith(".gpx")) setGpxName(e.target.value + ".gpx")}}
+                  onBlur={e => {if (e.target.value === "") setGpxName(gpxFile?.name); else if (!e.target.value.endsWith(".gpx")) setGpxName(e.target.value + ".gpx")}}
                 />
             }
             <p>Distance: {(distance/1000).toFixed(2)}km</p>
             <p>Elevation: {elevation.toFixed(0)}m</p>
           </div>
 
-          <CurrentPoint
-            index={selectedIndex}
-            point={gpxNodeList?.[selectedIndex]}
-            waypointGeoPoint={waypointGeoPoint}
-          />
+          {selectedIndex &&
+            <CurrentPoint
+              index={selectedIndex}
+              point={gpxNodeList?.[selectedIndex]}
+              waypointGeoPoint={waypointGeoPoint}
+            />
+          }
 
           <div className="editor__controls-group">
             <h2>Edit mode</h2>
@@ -327,10 +339,10 @@ export default function EditorApp() {
           </div>
 
           <div className="editor__controls-group">
-            <button id="undo-button" onClick={() => setGpxNodeList(undoStack.undo(gpxNodeList))} disabled={undoStack.undoSize === 0}>
+            <button id="undo-button" onClick={() => setGpxNodeList(undoStack.undo(gpxNodeList ?? []))} disabled={undoStack.undoSize === 0}>
               <UndoIcon /> Undo
             </button>
-            <button id="redo-button" onClick={() => setGpxNodeList(undoStack.redo(gpxNodeList))} disabled={undoStack.redoSize === 0}>
+            <button id="redo-button" onClick={() => setGpxNodeList(undoStack.redo(gpxNodeList ?? []))} disabled={undoStack.redoSize === 0}>
               <RedoIcon /> Redo
             </button>
           </div>
@@ -359,12 +371,12 @@ export default function EditorApp() {
 }
 
 
-function CurrentPoint({ index, point, waypointGeoPoint }) {
+function CurrentPoint({ index, point, waypointGeoPoint } : { index: number; point?: GPXPoint; waypointGeoPoint: CallableFunction }) {
 
   const [inputVal, setInputVal] = useState("");
 
 
-  if (index) {
+  if (index && point) {
     return (
       <div className="editor__controls-group editor__controls-selected">
         <h2>{"Point " + index + (point?.waypoint ? " ("+point?.waypoint+")" : "") + ":"}</h2>

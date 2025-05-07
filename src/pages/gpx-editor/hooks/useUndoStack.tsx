@@ -1,18 +1,19 @@
 import { useState } from "react"
+import { GPXPoint } from "./useOpenGpx";
 
 
 export default function useUndoStack() {
 
-  const [undoStack, setUndoStack] = useState([]);
-  const [redoStack, setRedoStack] = useState([]);
+  const [undoStack, setUndoStack] = useState<GPXPoint[][]>([]);
+  const [redoStack, setRedoStack] = useState<GPXPoint[][]>([]);
 
 
-  const pushToUndoStack = (newItem) => {
+  const pushToUndoStack = (newItem: GPXPoint[]) => {
     setRedoStack([]);
     setUndoStack(prev => [...prev, newItem]);    
   }
 
-  const popFromUndoStack = (currentState) => {
+  const popFromUndoStack = (currentState: GPXPoint[]) => {
     if (undoStack.length === 0) return;
 
     let prevStack = [...undoStack];
@@ -22,7 +23,7 @@ export default function useUndoStack() {
     return popped;
   }
 
-  const popFromRedoStack = (currentState) => {
+  const popFromRedoStack = (currentState: GPXPoint[]) => {
     if (redoStack.length === 0) return;
 
     let prevStack = [...redoStack];
