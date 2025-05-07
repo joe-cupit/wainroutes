@@ -39,7 +39,7 @@ export const useHillMarkers = (filters?: string[]) => {
 export const useWalkMarkers = () => {
   const walkData = useWalks();
 
-  const walkMarkers = useMemo(() => walkData 
+  return walkData 
     ? Object.values(walkData)
       .map(walk => (
         walk.startLocation
@@ -53,8 +53,5 @@ export const useWalkMarkers = () => {
           }
         : null))
       .filter(walk => walk) as MapMarker[]
-    : []
-  , [walkData]);
-
-  return walkMarkers;
+    : [];
 }

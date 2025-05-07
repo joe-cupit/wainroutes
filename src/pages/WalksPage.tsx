@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 
 import setPageTitle from "../hooks/setPageTitle";
 import { useWalks } from "../hooks/useWalks";
-import { useWalkMarkers } from "../hooks/useMarkers";
+import { MapMarker, useWalkMarkers } from "../hooks/useMarkers";
 
 import { Walk } from "./WalkPage/WalkPage";
 
@@ -26,42 +26,91 @@ type Locations = {
   [name : string]: Location;
 }
 
+type WalkObject = {
+  slug: string;
+  walk: Walk;
+  marker: MapMarker;
+  dist?: number;
+}
+
 
 export function WalksPage() {
-
+  
   useEffect(() => {
     setPageTitle("Lake District Walks");
   }, [])
 
-  const walkMarkers = useWalkMarkers();
-  const [walkData, setWalkData] = useState<Walk[]>(Object.values(useWalks()));
+  const maximumDist = 8;
+  const locations : Locations = useMemo(() => ({
+    "keswick": {name: "Keswick", coords: [-3.1347, 54.6013]},
+    "ambleside": {name: "Ambleside", coords: [-2.9613, 54.4287]},
+    "grasmere": {name: "Grasmere", coords: [-3.0244, 54.4597]},
+    "buttermere": {name: "Buttermere", coords: [-3.2766, 54.5413]},
+    "borrowdale": {name: "Borrowdale", coords: [-3.1486, 54.5028]},
+    "coniston": {name: "Coniston", coords: [-3.0759, 54.3691]},
+    "glenridding": {name: "Glenridding", coords: [-2.9498, 54.5448]},
+    "windermere": {name: "Windermere", coords: [-2.9068, 54.3807]},
+
+    "dungeon-ghyll": {name: "Dungeon Ghyll", coords: [-3.0942, 54.4461]},
+    "kentmere": {name: "Kentmere", coords: [-2.8402, 54.4302]},
+    "seatoller": {name: "Seatoller", coords: [-3.1678, 54.5142]},
+    "braithwaite": {name: "Braithwaite", coords: [-3.1923, 54.6026]},
+    "wasdale": {name: "Wasdale", coords: [-3.2966, 54.4660]},
+    "thirlmere": {name: "Thirlmere", coords: [-3.0642, 54.5365]},
+    "thornthwaite": {name: "Thornthwaite", coords: [-3.2029, 54.6173]},
+    "rosthwaite": {name: "Rosthwaite", coords: [-3.1466, 54.5228]},
+    "whinlatter-pass": {name: "Whinlatter Pass", coords: [-3.2256, 54.6082]},
+    "threlkeld": {name: "Threlkeld", coords: [-3.0543, 54.6190]},
+    "dodd-wood": {name: "Dodd Wood", coords: [-3.1868, 54.6428]},
+  }), [])
+
   const [sortValue, setSortValue] = useState("recommended");
-  const [nearLocation, setNearLocation] = useState<Location>(null)
+  const [nearLocation, setNearLocation] = useState<Location>();
+  const [hoveredWalk, setHoveredWalk] = useState<string | null>(null);
 
+  const [walkObjects, setWalkObjects] = useState<WalkObject[]>();
   useEffect(() => {
-    let newWalkData = [...walkData]
-    if (nearLocation !== null) {
-      for (let walk of newWalkData) {
-        walk.distance = haversine([walk.startLocation?.longitude ?? 0, walk.startLocation?.latitude ?? 0], nearLocation?.coords) / 1000
-      }
-      setPageTitle("Lake District Walks Near " + nearLocation?.name);
-    }
-    else {
-      setPageTitle("Lake District Walks");
-    }
+    const walkData = useWalks() as {[slug : string]: Walk};
+    const walkMarkers = Object.fromEntries(useWalkMarkers().map(marker => [marker.properties.slug, marker]));
 
-    setWalkData(newWalkData)
-  }, [nearLocation])
+    let newWalkObjects = Object.keys(walkData).map(slug => ({
+      slug: slug,
+      walk: walkData[slug],
+      marker: walkMarkers[slug]
+    } as WalkObject));
 
-  const sortedWalkData = useMemo(() => {
-    let filteredWalkData = [...walkData]
+    setWalkObjects(newWalkObjects);
+  }, [])
+
+  const [filteredWalks, setFilteredWalks] = useState<Walk[]>([]);
+  const [filteredMarkers, setFilteredMarkers] = useState<MapMarker[]>([]);
+  useEffect(() => {
     if (nearLocation) {
-      filteredWalkData = filteredWalkData.filter(a => a.distance && (a.distance < 10))
+      setPageTitle("Lake District Walks in " + nearLocation?.name);
+
+      if (walkObjects) {
+        for (let walk of walkObjects) {
+          walk.dist = haversine([walk.walk.startLocation?.longitude ?? 0, walk.walk.startLocation?.latitude ?? 0], nearLocation?.coords) / 1000;
+        }
+      }
+    }
+    else setPageTitle("Lake District Walks");
+
+    if (walkObjects) {
+      let filteredWalkObjects = [...walkObjects];
+      if (nearLocation) {
+        filteredWalkObjects = filteredWalkObjects.filter(w => (w.dist ?? 0) < maximumDist);
+      }
+      setFilteredWalks(filteredWalkObjects.map(w => ({...w.walk, distance: w.dist})));
+      setFilteredMarkers(filteredWalkObjects.map(w => w.marker));
     }
 
-    if (sortValue === null || sortValue === "recommended") return filteredWalkData;
+  }, [walkObjects, nearLocation])
 
-    let newWalkData = [...filteredWalkData];
+  const sortedWalks = useMemo(() => {
+    let newWalkData = [...filteredWalks];
+    if (sortValue === "recommended") return newWalkData;
+
     const [type, dir] = sortValue.split("-");
     switch (type) {
       case "closest":
@@ -83,66 +132,35 @@ export function WalksPage() {
         break;
     }
 
-    if (dir === "dsc") {
-      newWalkData.reverse();
-    }
+    if (dir === "dsc") newWalkData.reverse();
 
     return newWalkData;
-  }, [walkData, sortValue]);
+  }, [sortValue, filteredWalks])
 
-  const [hovered, setHovered] = useState<string | null>(null);
 
-  const locations = useMemo(() => ({
-    "keswick": {name: "Keswick", coords: [-3.1347, 54.6013]},
-    "ambleside": {name: "Ambleside", coords: [-2.9613, 54.4287]},
-    "grasmere": {name: "Grasmere", coords: [-3.0244, 54.4597]},
-    "buttermere": {name: "Buttermere", coords: [-3.2766, 54.5413]},
-    "borrowdale": {name: "Borrowdale", coords: [-3.1486, 54.5028]},
-    "coniston": {name: "Coniston", coords: [-3.0759, 54.3691]},
-    "glenridding": {name: "Glenridding", coords: [-2.9498, 54.5448]},
-    "windermere": {name: "Windermere", coords: [-2.9068, 54.3807]},
 
-    "dungeon-ghyll": {name: "Dungeon Ghyll", coords: [-3.0942, 54.4461]},
-    "kentmere": {name: "Kentmere", coords: [-2.8402, 54.4302]},
-    "seatoller": {name: "Seatoller", coords: [-3.1678, 54.5142]},
-    "braithwaite": {name: "Braithwaite", coords: [-3.1923, 54.6026]},
-    "wasdale": {name: "Wasdale", coords: [-3.2966, 54.4660]},
-    "thirlmere": {name: "Thirlmere", coords: [-3.0642, 54.5365]},
-    "thornthwaite": {name: "Thornthwaite", coords: [-3.2029, 54.6173]},
-    "rosthwaite": {name: "Rosthwaite", coords: [-3.1466, 54.5228]},
-    "whinlatter-pass": {name: "Whinlatter Pass", coords: [-3.2256, 54.6082]},
-    "threlkeld": {name: "Threlkeld", coords: [-3.0543, 54.6190]},
-    "dodd-wood": {name: "Dodd Wood", coords: [-3.1868, 54.6428]},
-  } as Locations), [])
-
-  const [searchParams, setSearchParams] = useSearchParams()
-  
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [openLocationPicker, setOpenLocationPicker] = useState(false);
   function setNewLocation(label : string) {
-    // let newParams = new URLSearchParams()
-    // newParams.set("nearto", label)
     searchParams.set("nearto", label)
     setSearchParams(searchParams)
-
-    // window.location.replace("/walks?nearto="+label)
   }
 
   useEffect(() => {
     if (searchParams.has("nearto")) {
       let nearto = (searchParams.get("nearto") ?? "").toLowerCase();
       if (nearto in locations) {
-        setNearLocation(locations[nearto])
+        setNearLocation(locations[nearto]);
       }
       else {
-        searchParams.delete("nearto")
-        setSearchParams(searchParams)
+        searchParams.delete("nearto");
+        setSearchParams(searchParams);
       }
     }
     else {
-      setNearLocation(null)
+      setNearLocation(null);
     }
   }, [searchParams])
-
-  const [openLocationPicker, setOpenLocationPicker] = useState(false)
 
 
   return (
@@ -168,7 +186,7 @@ export function WalksPage() {
             />
           </span>
           {nearLocation
-            ? <p>Explore the best walks over the Wainwrights within {displayDistance(10, 0)} of {nearLocation?.name}.</p>
+            ? <p>Explore the best walks over the Wainwrights within {displayDistance(maximumDist, 0)} of {nearLocation?.name}.</p>
             : <p>Show me walks near <button className="walks__places-link" onClick={() => setNewLocation("keswick")}>Keswick</button>, <button className="walks__places-link" onClick={() => setNewLocation("ambleside")}>Ambleside</button>, <button className="walks__places-link" onClick={() => setNewLocation("borrowdale")}>Borrowdale</button>, <button className="walks__places-link" onClick={() => setNewLocation("windermere")}>Windermere</button> (<button className="walks__places-link">show more</button>)</p>
           }
           <div className="walks-page_body flex-row wrap-none">
@@ -178,14 +196,14 @@ export function WalksPage() {
                 <WalkSortSelect allowClosest={nearLocation !== null} setGlobalSortValue={setSortValue} />
               </div>
               <div className="walks-page-list flex-column">
-                {(sortedWalkData.length > 0)
-                ? sortedWalkData?.map((walk, key) => {
+                {(sortedWalks.length > 0)
+                ? sortedWalks?.map((walk, key) => {
                     return (
                       <WalkCardWide key={key} walk={walk}
                         distFrom={nearLocation?.coords}
                         onHover={(mouseEnter=false) => {
-                          if (mouseEnter) setHovered(walk?.slug)
-                          else setHovered(null)
+                          if (mouseEnter) setHoveredWalk(walk?.slug)
+                          else setHoveredWalk(null)
                         }}
                       />
                     )
@@ -194,17 +212,17 @@ export function WalksPage() {
                 }
               </div>
               <p className="subtext" style={{marginInline: "auto", marginBlock: "0.5em 1em"}}>
-                {nearLocation ? "• Showing all our Lake District walks within "+displayDistance(10, 0)+" of "+nearLocation?.name+" •" : ""}
+                {nearLocation ? "• Showing all our Lake District walks within "+displayDistance(maximumDist, 0)+" of "+nearLocation?.name+" •" : ""}
               </p>
             </div>
             <div className="walks-page-map">
               <LakeMap
-                mapMarkers={walkMarkers}
-                activePoint={hovered}
+                mapMarkers={filteredMarkers}
+                activePoint={hoveredWalk}
               />
             </div>
           </div>
-        </div>        
+        </div>
       </section>
 
     </main>
@@ -212,7 +230,7 @@ export function WalksPage() {
 }
 
 
-function LocationSelect({ open, setOpen, locations, nearLocation, setSearchParams } : { open: boolean; setOpen: CallableFunction; locations: Locations; nearLocation: Location; setSearchParams: CallableFunction }) {
+function LocationSelect({ open, setOpen, locations, nearLocation, setSearchParams } : { open: boolean; setOpen: CallableFunction; locations: Locations; nearLocation?: Location; setSearchParams: CallableFunction }) {
 
   function changeLocation(label: string) {
     let newParams = new URLSearchParams()
@@ -237,7 +255,7 @@ function LocationSelect({ open, setOpen, locations, nearLocation, setSearchParam
       {/* <h2 className="heading">Select a location</h2> */}
 
       {/* <div className="flex-column gap-0"> */}
-      <label className={"walks-page_place-popup_option" + (nearLocation === null ? " current" : "")}>
+      <label className={"walks-page_place-popup_option" + (!nearLocation ? " current" : "")}>
         <input type="radio"
           checked={nearLocation === null}
           onChange={() => changeLocation("all")}
