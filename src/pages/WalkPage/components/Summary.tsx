@@ -8,15 +8,17 @@ import { useHills } from "../../../hooks/useHills";
 import { displayDistance, displayElevation } from "../../../utils/unitConversions";
 
 
-export function Summary({ secRef, wainwrights, length, elevation, intro } : { secRef: React.RefObject<HTMLDivElement>; wainwrights: Walk["wainwrights"]; length: Walk["length"]; elevation: Walk["elevation"]; intro: Walk["intro"] }) {
+export function Summary({ secRef, title, titleRef, wainwrights, length, elevation, intro } : { secRef: React.RefObject<HTMLDivElement>; title: Walk["title"]; titleRef: React.RefObject<HTMLHeadingElement>; wainwrights: Walk["wainwrights"]; length: Walk["length"]; elevation: Walk["elevation"]; intro: Walk["intro"] }) {
 
   const hillData = useHills() as {[slug : string] : Hill};
 
   return (
     <div className="walk-page_summary" ref={secRef}>
+      <h1 className="title" ref={titleRef}>{title}</h1>
+
       <h2 className="subheading visually-hidden" id="walk_overview">Summary</h2>
       <div className="walks-page_section flex-column">
-        <div>
+        <div className={(wainwrights?.length ?? 0) === 1 ? "walk-page_summary_horizontal-group" : ""}>
           <h3 className="smallheading">Wainwrights: </h3>
           <p className="walk-page_wainwrights">
             {wainwrights?.map((hill, index) => {

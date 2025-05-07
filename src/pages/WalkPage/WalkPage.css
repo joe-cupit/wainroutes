@@ -3,17 +3,18 @@ html {
 }
 
 .walk-page {
+  --_main-width: calc(68ch + 5.5rem);
+  --_aside-width: clamp(14rem, 25vw, 22rem);
+  --_body-gap: clamp(1rem, 2vw, 2rem);
+  --_image-overflow: 3rem;
+  
+  --_max-section-width: calc((2 * var(--_image-overflow)) + var(--_main-width) + var(--_aside-width) + var(--_body-gap));
+
   background: var(--clr-white-400);
 }
-
 .walk-page section {
-  --_main-width: 70ch;
-  --_aside-width: 18rem;
-
-  --_max-section-width: calc(var(--_main-width) + var(--_aside-width));
-
   padding-block-end: 1em;
-  max-width: calc(var(--_main-width) + var(--_aside-width));
+  max-width: var(--_max-section-width);
   margin-inline: auto;
 }
 
@@ -124,6 +125,7 @@ html {
   position: relative;
   background: var(--clr-black-300);
   overflow: hidden;
+  margin-block-end: 0.5rem;
 
   @media (max-width: 68rem) {
     grid-column: full-width;
@@ -151,8 +153,12 @@ html {
 .walk-page_top-image {
   flex: 1;
   width: 100%;
-  height: min(20rem, 42vw);
+  height: min(24rem, 30vw);
   object-fit: cover;
+
+  @media (max-width: 68rem) {
+    height: max(35vw, 13rem);
+  }
 }
 .walk-page_top-block {
   height: min(2em, 5vw);
@@ -160,24 +166,33 @@ html {
 }
 
 
-.walk-page_heading {
-  margin-bottom: var(--gap-400);
-}
-
 .walk-page_body {
-  gap: var(--gap-600);
-  grid-template-columns: 7fr 3fr;
+  gap: var(--_body-gap);
+  grid-template-columns: repeat(2, auto);
+  margin-inline: auto;
+
+  padding-inline: 1rem;
+
+  @media (max-width: 68rem) {
+    padding-inline: 0;
+  }
 }
 
 .walk-page_main {
   gap: var(--gap-500);
-  order: -1;
+
+  max-width: var(--_main-width);
 }
 .walk-page_main > div {
   width: 100%;
 }
-.walk-page_summary h3,
-.walk-page_summary p {
+
+.walk-page_summary .title {
+  margin-block-end: 0.5rem;
+}
+
+.walk-page_summary_horizontal-group h3,
+.walk-page_summary_horizontal-group p {
   display: inline;
 }
 
@@ -227,7 +242,12 @@ html {
 
 
 .walk-page_aside {
-  order: 1;
+  max-width: var(--_aside-width);
+  /* margin-inline-start: auto; */
+
+  @media (max-width: 52rem) {
+    max-width: 100%;
+  }
 }
 
 .walk-page_aside-tabs {
@@ -262,6 +282,10 @@ html {
   aspect-ratio: 1.5;
   border-radius: var(--gap-300);
   overflow: hidden;
+}
+
+.walk-page_aside-section {
+  width: 100%;
 }
 
 .walk-page_locations {

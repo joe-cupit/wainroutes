@@ -64,12 +64,22 @@ export function Route({ secRef, wainwrights, center, slug } : { secRef: React.Re
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/gpx/" + slug + ".gpx";
+    link.download = slug + ".gpx";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
 
   return (
     <div ref={secRef}>
       <div className="walk-page_route-title flex-row flex-apart">
         <h2 className="subheading" id="walk_route">Route</h2>
-        <button className="primary small bottom-left button">
+        <button className="primary small bottom-left button" title="Download GPX file" onClick={handleDownload}>
           Download GPX
         </button>
       </div>

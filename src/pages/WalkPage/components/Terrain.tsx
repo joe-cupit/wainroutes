@@ -14,9 +14,9 @@ export function Terrain({ selected, walkTerrain } : { selected: boolean; walkTer
             <li>{walkTerrain?.path && <TerrainPathIcon level={walkTerrain?.path} />}</li>
             <li>{walkTerrain?.exposure && <TerrainExposureIcon level={walkTerrain?.exposure} />}</li>
           </ul>
-          <p>{(walkTerrain?.desc?.length ?? 0) > 0 ? walkTerrain?.desc : "No details"}</p>
+          {(walkTerrain?.desc?.length ?? 0) > 0 ? <p>{walkTerrain?.desc}</p> : <></>}
 
-          <p className="subtext">*terrain badges are merely a suggestion, always properly prepare for changing weather conditions</p>
+          {/* <p className="subtext">*terrain badges are merely a suggestion, always properly prepare for changing weather conditions</p> */}
         </div>
       : <p>No information available</p>}
     </div>

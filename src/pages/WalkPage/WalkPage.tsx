@@ -223,6 +223,36 @@ function Walk({ walkData, slug } : { walkData: Walk; slug: string }) {
 
       <section>
         <div className="walk-page_body grid-two">
+          <div className="walk-page_main flex-column flex-1">
+            <Summary secRef={overviewRef}
+              title={walkData?.title}
+              titleRef={titleRef}
+              wainwrights={walkData?.wainwrights}
+              length={walkData?.length}
+              elevation={walkData?.elevation}
+              intro={walkData?.intro}
+            />
+
+            <Route secRef={routeRef}
+              wainwrights={walkData?.wainwrights}
+              center={[walkData?.startLocation?.latitude ?? 0, walkData?.startLocation?.longitude ?? 0]}
+              slug={slug}
+            />
+
+            <Waypoints secRef={waypointsRef}
+              waypoints={walkData?.waypoints}
+            />
+
+            <Photos secRef={photosRef}
+              slug={walkData?.slug}
+              galleryData={walkData?.gallery}
+            />
+
+            <Weather secRef={weatherRef}
+              weatherLoc={walkData?.weatherLoc}
+            />
+          </div>
+
           <div className="walk-page_aside flex-column">
             <div className="walk-page_aside-tabs flex-row gap-0">
               <button
@@ -252,7 +282,7 @@ function Walk({ walkData, slug } : { walkData: Walk; slug: string }) {
               />
             </div>
 
-            <div className={"walk-page_aside-content" + ([1, 2, 3].includes(asideTabIndex) ? " visible" : "")}>
+            <div className={"walk-page_aside-content flex-column" + ([1, 2, 3].includes(asideTabIndex) ? " visible" : "")}>
               <StartingLocation selected={asideTabIndex === 1}
                 startLocation={walkData?.startLocation}
                 busRoutes={walkData?.busConnections}
@@ -264,36 +294,6 @@ function Walk({ walkData, slug } : { walkData: Walk; slug: string }) {
                 walkTerrain={walkData?.terrain}
               />
             </div>
-          </div>
-
-          <div className="walk-page_main flex-column flex-1">
-            <h1 className="title" ref={titleRef}>{walkData?.title}</h1>
-
-            <Summary secRef={overviewRef}
-              wainwrights={walkData?.wainwrights}
-              length={walkData?.length}
-              elevation={walkData?.elevation}
-              intro={walkData?.intro}
-            />
-
-            <Route secRef={routeRef}
-              wainwrights={walkData?.wainwrights}
-              center={[walkData?.startLocation?.latitude ?? 0, walkData?.startLocation?.longitude ?? 0]}
-              slug={slug}
-            />
-
-            <Waypoints secRef={waypointsRef}
-              waypoints={walkData?.waypoints}
-            />
-
-            <Photos secRef={photosRef}
-              slug={walkData?.slug}
-              galleryData={walkData?.gallery}
-            />
-
-            <Weather secRef={weatherRef}
-              weatherLoc={walkData?.weatherLoc}
-            />
           </div>
         </div>
       </section>

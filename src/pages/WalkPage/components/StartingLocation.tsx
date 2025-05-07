@@ -10,7 +10,7 @@ export function StartingLocation({ selected, startLocation, busRoutes } : { sele
 
         <div className="flex-row flex-apart">
           <h3>Location</h3>
-          <span className="bold">{startLocation?.location ?? "Unavailable"}</span>
+          <span className="bold">{startLocation?.location ?? "N/A"}</span>
         </div>
 
         <div className="flex-row flex-apart">
@@ -23,14 +23,14 @@ export function StartingLocation({ selected, startLocation, busRoutes } : { sele
               >
                 {startLocation?.postCode}
               </a>
-            : "Unavailable"
+            : "N/A"
             }
           </span>
         </div>
 
         <div className="flex-row flex-apart">
           <h3>Grid Ref</h3>
-          <span className="bold">{startLocation?.gridRef ?? "Unavailable"}</span>
+          <span className="bold">{startLocation?.gridRef ?? "N/A"}</span>
         </div>
 
         {/* <div className="flex-row flex-apart">
