@@ -1,204 +1,53 @@
-.walks-page section {
-  padding-block: 1rem;
+
+.walks-page {
+  margin-block: 2rem;
 }
 
-.walks-page_title {
-  position: relative;
-}
-.walks-page_place-button {
-  border-block-end: 0.075em dashed currentColor;
-
-  transition: color 100ms;
-}
-.walks-page_place-button:hover,
-.walks-page_place-button.hovered {
-  color: var(--clr-primary-400);
-}
-
-.walks-page_place-popup {
-  position: absolute;
-  top: 105%;
-  right: 0;
-  z-index: calc(infinity);
-
-  font-size: var(--fs-400);
-  font-weight: var(--fw-medium);
-
-  border-radius: 0.5em;
-  padding-block: 0.25em;
-  overflow: hidden;
-
-  background: var(--clr-white-400);
-  filter: drop-shadow(2px 2px 7px #0008);
-}
-.walks-page_place-popup_option {
-  cursor: pointer;
+.walks__main {
   width: 100%;
-  padding-inline: 0.5em;
-  padding-block: 0.25em;
-}
-.walks-page_place-popup_option:hover {
-  background: var(--clr-white-600);
-}
-.walks-page_place-popup_option.current {
-  color: var(--clr-primary-400);
-}
-.walks-page_place-popup_option input {
-  display: none;
 }
 
-.walks-page_place-dist {
-  margin-block-start: 0.5em;
-  margin-inline-start: auto;
-  width: fit-content;
+.walks__grid {
+  flex: 1;
 }
-
-.walks-page_body {
-  container-type: inline-size;
-  width: 100%;
-  gap: min(2vw, 2rem);
-}
-
-.walks-page_body-header,
-.walks-page-map {
-  position: sticky;
-  top: 0;
-  padding-block-start: 1rem;
-  z-index: 2;
-}
-
-.walks-page-list {
+.walks__grid-grid {
   display: grid;
-  gap: var(--gap-400);
-
-  max-width: 800px;
-  margin-inline: auto;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  
 }
 
-@container (min-width: 60rem) {
-  .walks-page-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+.walks-card {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
 
+  max-width: 20rem;
+  height: 23rem;
 
-.walks-page-map {
-  flex: 1;
-  min-width: 350px;
-  height: max(95vh, 20rem);
-}
-@media (max-width: 50rem) {
-  .walks-page_body {
-    flex-direction: column-reverse;
-  }
-
-  .walks-page-main,
-  .walks-page-map {
-    width: 100%;
-  }
-  .walks-page-map {
-    position: initial;
-    width: 100%;
-    min-height: 50vw;
-    max-height: 50vw;
-  }
-
-  .walks-page-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 41rem) {
-  .walks-page-list {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-.walks-page_body-header {
-  width: 100%;
-  padding-block-end: 2.5%;
-
-  background: var(--clr-white-500);
-}
-.walk-page_search-bar {
-  flex: 1;
-  padding-block: 0.375em 0.25em;
-  padding-inline: 0.375em;
-  min-width: 5rem;
-}
-
-.walks-page_sort {
-  position: relative;
-  margin-inline-start: auto;
-}
-
-.walks-page_sort-button {
-  gap: 0.25em;
-  min-width: 16ch;
-
-  border: 1px solid var(--clr-black-300);
-  border-radius: 0.25em;
-  background: var(--clr-white-400);
-
-  padding-block: 0.375em 0.25em;
-  padding-inline: 0.5em 0.25em;
-
-  font-weight: var(--fw-medium);
-}
-.walks-page_sort-button svg {
-  rotate: 90deg;
-  transition: rotate 150ms;
-}
-.walks-page_sort.active .walks-page_sort-button svg {
-  rotate: -90deg;
-}
-
-.walks-page_sort-popup {
-  position: absolute;
-  top: 105%;
-  left: 0;
-  z-index: calc(infinity);
-
-  width: 100%;
-
-  background: var(--clr-white-400);
-  border-radius: 0.25em;
-
-  filter: drop-shadow(2px 2px 4px #0005);
-
+  background: var(--clr-white-600);
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 
-
-.walks-page_sort-options {
-  height: fit-content;
-  width: 100%;
-
-  overflow-y: auto;
-  gap: 0;
-
-  font-weight: var(--fw-medium);
+.walks-card__image {
+  min-height: 45%;
+  max-height: 45%;
 }
-.walks-page_sort-options_option {
-  gap: 0.5em;
-  cursor: pointer;
-  white-space: nowrap;
+.walks-card__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 
-  width: 100%;
+  background: var(--clr-white-400);
 
-  padding-block: 0.25em;
-  padding-inline: 0.5em;
+  padding: 0.75rem;
 }
-.walks-page_sort-options_option:hover {
-  background: var(--clr-white-600);
+.walks-card__text .button {
+  margin-block-start: auto;
+  margin-inline-start: auto;
 }
-.walks-page_sort-options_option.checked {
-  background: var(--clr-primary-400);
-}
-.walks-page_sort-options_option input {
-  display: none;
-}
-.walks-page_sort-options_option.disabled {
-  color: var(--clr-black-200);
-  cursor: default;
+
+.walks__filters {
+  width: clamp(10rem, 20vw, 18rem);
 }

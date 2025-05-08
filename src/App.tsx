@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import { NotFoundPage } from './pages/error/NotFoundPage';
 
 import { HomePage } from './pages/HomePage';
-import { WalksPage } from './pages/WalksPage';
+import WalksPage from './pages/WalksPage';
 import { WalkPage } from './pages/WalkPage/WalkPage';
 import { HillsPage } from './pages/HillsPage';
 import { HillPage } from './pages/HillPage';
