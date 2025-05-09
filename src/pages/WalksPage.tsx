@@ -12,6 +12,7 @@ import { useWalks } from "../hooks/useWalks";
 import haversineDistance from "../utils/haversine";
 import { displayDistance, displayElevation } from "../utils/unitConversions";
 import { ElevationIcon, HikingIcon, MountainIcon } from "../components/Icons";
+import { CheckboxFilter, CheckboxFilterGroup, FilterGroup, RadioFilterGroup, SearchBoxFilter, SelectFilter } from "../components/Filters";
 
 
 type WalkObject = {
@@ -40,17 +41,17 @@ const locations : Locations = {
   "glenridding": {name: "Glenridding", coords: [-2.9498, 54.5448]},
   "windermere": {name: "Windermere", coords: [-2.9068, 54.3807]},
 
-  "dungeon-ghyll": {name: "Dungeon Ghyll", coords: [-3.0942, 54.4461]},
-  "kentmere": {name: "Kentmere", coords: [-2.8402, 54.4302]},
-  "seatoller": {name: "Seatoller", coords: [-3.1678, 54.5142]},
-  "braithwaite": {name: "Braithwaite", coords: [-3.1923, 54.6026]},
-  "wasdale": {name: "Wasdale", coords: [-3.2966, 54.4660]},
-  "thirlmere": {name: "Thirlmere", coords: [-3.0642, 54.5365]},
-  "thornthwaite": {name: "Thornthwaite", coords: [-3.2029, 54.6173]},
-  "rosthwaite": {name: "Rosthwaite", coords: [-3.1466, 54.5228]},
-  "whinlatter-pass": {name: "Whinlatter Pass", coords: [-3.2256, 54.6082]},
-  "threlkeld": {name: "Threlkeld", coords: [-3.0543, 54.6190]},
-  "dodd-wood": {name: "Dodd Wood", coords: [-3.1868, 54.6428]},
+  // "dungeon-ghyll": {name: "Dungeon Ghyll", coords: [-3.0942, 54.4461]},
+  // "kentmere": {name: "Kentmere", coords: [-2.8402, 54.4302]},
+  // "seatoller": {name: "Seatoller", coords: [-3.1678, 54.5142]},
+  // "braithwaite": {name: "Braithwaite", coords: [-3.1923, 54.6026]},
+  // "wasdale": {name: "Wasdale", coords: [-3.2966, 54.4660]},
+  // "thirlmere": {name: "Thirlmere", coords: [-3.0642, 54.5365]},
+  // "thornthwaite": {name: "Thornthwaite", coords: [-3.2029, 54.6173]},
+  // "rosthwaite": {name: "Rosthwaite", coords: [-3.1466, 54.5228]},
+  // "whinlatter-pass": {name: "Whinlatter Pass", coords: [-3.2256, 54.6082]},
+  // "threlkeld": {name: "Threlkeld", coords: [-3.0543, 54.6190]},
+  // "dodd-wood": {name: "Dodd Wood", coords: [-3.1868, 54.6428]},
 }
 
 
@@ -240,6 +241,31 @@ function Filters() {
   return (
     <div className="walks__filters">
       <h2 className="subheading">Filter walks</h2>
+
+      <FilterGroup title="Near to town">
+        <SelectFilter
+          defaultValue="any"
+          optionData={Object.fromEntries([["any", "Any"]].concat(Object.keys(locations).map(loc => [loc, locations[loc]?.name ?? ""])))}
+        />
+      </FilterGroup>
+
+      <FilterGroup title="Wainwrights">
+        <SearchBoxFilter placeholder="find a wainwright" />
+        <CheckboxFilterGroup>
+          <CheckboxFilter name="Helvellyn" />
+          <CheckboxFilter name="Scafell Pike" />
+          <CheckboxFilter name="Fairfield" />
+          <CheckboxFilter name="Skiddaw" />
+          <button>view all...</button>
+        </CheckboxFilterGroup>
+      </FilterGroup>
+
+      <FilterGroup title="Distance">
+        <RadioFilterGroup
+          groupId="distance"
+          names={["Any", "<5km", "5-10km", "10-20km", ">20km"]}
+        />
+      </FilterGroup>
     </div>
   )
 }

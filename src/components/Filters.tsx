@@ -3,6 +3,16 @@ import "./Filters.css";
 import { ChangeEventHandler, useState } from "react";
 
 
+export function FilterGroup({ title, children } : { title?: string; children?: React.ReactNode }) {
+  return (
+    <div className="filter__group">
+      <h3>{title}</h3>
+      {children}
+    </div>
+  )
+}
+
+
 export function CheckboxFilter({ name } : { name: string }) {
   return (
     <label className="filter__checkbox">
@@ -12,24 +22,32 @@ export function CheckboxFilter({ name } : { name: string }) {
   )
 }
 
-export function RadioFilter({ group, name, value, onChange } : { group: string; name: string; value: boolean; onChange: ChangeEventHandler }) {
+export function CheckboxFilterGroup({ children } : { children?: React.ReactNode }) {
+  return (
+    <div className="filter__checkbox-group">
+      {children}
+    </div>
+  )
+}
+
+
+export function RadioFilter({ groupId, name, value, onChange } : { groupId: string; name: string; value: boolean; onChange: ChangeEventHandler }) {
   return (
     <label className="filter__radio">
-      <input name={group} type="radio" checked={value} onChange={onChange} />
+      <input name={groupId} type="radio" checked={value} onChange={onChange} />
       {name}
     </label>
   )
 }
 
-export function RadioFilterGroup({ defaultValue, groupTitle, groupName, names } : { defaultValue?: string; groupTitle?: string; groupName: string; names: string[] }) {
+export function RadioFilterGroup({ defaultValue, groupId, names } : { defaultValue?: string; groupId: string; names: string[] }) {
   const [value, setValue] = useState<string>(defaultValue ?? names[0]);
 
   return (
     <div className="filter__radio-group">
-      {groupTitle && <h3>{groupTitle}</h3>}
       {names.map((name, index) =>
         <RadioFilter key={index}
-          group={groupName}
+          groupId={groupId}
           name={name}
           value={value === name}
           onChange={() => setValue(name)}
@@ -42,10 +60,11 @@ export function RadioFilterGroup({ defaultValue, groupTitle, groupName, names } 
 
 export function SearchBoxFilter({ placeholder } : { placeholder?: string }) {
   return (
-    <input type="text"
-      className="filter__search"
-      placeholder={placeholder}
-    />
+    <div className="filter__search">
+      <input type="text"
+        placeholder={placeholder}
+      />
+    </div>
   )
 }
 
