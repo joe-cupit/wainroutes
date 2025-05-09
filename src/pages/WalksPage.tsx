@@ -155,7 +155,7 @@ export default function WalksPage() {
         <div className="flex-column">
           <h1 className="title">Walks in the Lake District</h1>
 
-          <div className="walks__main flex-row">
+          <div className="walks__main">
             <Filters />
             <WalkGrid
               walks={sortedWalks}
@@ -205,11 +205,16 @@ function WalkGrid({ walks, sortControl } : { walks: Walk[]; sortControl: {value:
 function WalkCard({ walk } : { walk: Walk }) {
   return (
     <article className="walks-card">
-      <Image name="invalid" className="walks-card__image" />
+      <Image
+        className="walks-card__image"
+        name={walk?.slug + "_" + walk?.gallery?.coverId}
+        sizes="(min-width: 22rem) 22rem, 100vw"
+        maxWidth={512}
+      />
 
       <div className="walks-card__text">
         <h3 className="subheading">{walk.title}</h3>
-        <div className="walks-card__icons flex-column gap-0">
+        <div className="walks-card__icons flex-row">
           <div className="flex-row gap-0 align-center">
             <HikingIcon />
             {displayDistance(walk.length, 1)}
