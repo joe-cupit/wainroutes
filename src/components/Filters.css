@@ -1,0 +1,89 @@
+
+.filter__checkbox,
+.filter__radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-inline-start: 0.25rem;
+  
+  font-weight: var(--fw-medium);
+  
+  /* user-select: none; */
+  cursor: pointer;
+}
+.filter__checkbox:has(input:focus-visible),
+.filter__radio:has(input:focus-visible) {
+  outline-offset: 0.125rem;
+  outline: 0.125rem solid var(--clr-black-400);
+  border-radius: 0.125rem;
+}
+
+.filter__checkbox::before,
+.filter__radio::before {
+  content: "";
+  width: 1.125rem;
+  height: 1.125rem;
+
+  color: var(--clr-white-400);
+  border: 0.2rem solid var(--clr-black-400);
+  border-radius: 0.375rem;
+}
+.filter__checkbox:has(input:checked)::before,
+.filter__radio:has(input:checked)::before {
+  background: var(--clr-black-400);
+}
+.filter__checkbox input,
+.filter__radio input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.filter__checkbox::before {
+  scale: 0.9;
+}
+.filter__checkbox:has(input:checked)::before {
+  content: '';
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="-80 -80 670 670" xmlns="http://www.w3.org/2000/svg" fill="white"><path d="m173.898 439.404-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0l112.095 112.094 240.095-240.094c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>');
+}
+
+.filter__radio::before {
+  border-radius: 100%;
+}
+.filter__radio:has(input:checked)::before {
+  box-shadow: inset 0 0 0 2px var(--clr-white-400);
+}
+
+.filter__radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+
+.filter__search,
+.filter__select,
+.filter__button {
+  width: 100%;
+}
+
+.filter__search {
+  background: none;
+  border: none;
+  border-block-end: 0.125rem solid var(--clr-black-400);
+
+  padding-inline: 0.25rem;
+  padding-block: 0.25rem 0.125rem;
+}
+
+.filter__select {
+  padding-inline: 0.125rem;
+  padding-block: 0.0125rem;
+}
+
