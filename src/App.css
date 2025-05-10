@@ -178,6 +178,14 @@ p {
   --_button-background: var(--clr-black-300);
 }
 
+.button.underlined {
+  background: none;
+  padding: 0;
+
+  color: currentColor;
+  text-decoration: underline;
+}
+
 .button.primary {
   --_button-color: var(--clr-white-400);
   --_button-background: var(--clr-primary-400);

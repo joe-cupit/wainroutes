@@ -2,7 +2,7 @@
 .filter__checkbox,
 .filter__radio {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   gap: 0.5rem;
   margin-inline-start: 0.25rem;
   width: fit-content;
@@ -46,12 +46,21 @@
   border: 0;
 }
 
+.filter__checkbox {
+  margin-inline-start: 0.125rem;
+}
 .filter__checkbox::before {
   scale: 0.9;
 }
 .filter__checkbox:has(input:checked)::before {
   content: '';
   background-image: url('data:image/svg+xml;utf8,<svg viewBox="-80 -80 670 670" xmlns="http://www.w3.org/2000/svg" fill="white"><path d="m173.898 439.404-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0l112.095 112.094 240.095-240.094c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>');
+}
+.filter__checkbox-link {
+  text-decoration: underline;
+  text-align: left;
+  width: fit-content;
+  padding-inline: 0.5rem;
 }
 
 .filter__radio::before {
@@ -64,6 +73,7 @@
 
 .filter__group,
 .filter__search,
+.filter__search input,
 .filter__select,
 .filter__button {
   width: 100%;
@@ -79,6 +89,15 @@
 .filter__radio-group,
 .filter__checkbox-group {
   gap: 0.25rem;
+}
+
+.filter__checkbox-group {
+  min-height: 7rem;
+  overflow: hidden;
+}
+.filter__checkbox-group.expanded {
+  height: 13rem;
+  overflow-y: auto;
 }
 
 .filter__group h3 {
@@ -111,4 +130,16 @@
 .filter__select {
   padding-inline: 0.125rem;
   padding-block: 0.0125rem;
+}
+
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  border-radius: 0.375rem;
+  background: var(--clr-white-400);
+  padding-block: 0.5rem 1.5rem;
+  padding-inline: 0.75rem 1rem;
 }

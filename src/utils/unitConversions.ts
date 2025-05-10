@@ -3,11 +3,11 @@ const useFeet = false
 const useFarenheit = false
 
 
-export function getDistanceValue(kilometers : number | undefined) {
+export function getDistanceValue(kilometers : number | undefined, roundTo=4) {
   if (!kilometers) return 0;
 
-  if (useMiles) return Number((kilometers / 1.609344).toFixed(4))
-  else return Number(Number(kilometers).toFixed(4))
+  if (useMiles) return Number((kilometers / 1.609344).toFixed(roundTo));
+  else return Number(Number(kilometers).toFixed(roundTo));
 }
 export function getDistanceUnit() {
   if (useMiles) return "mi"
