@@ -42,51 +42,18 @@
   }
 }
 
-.walks-card {
-  display: flex;
-  flex-direction: column;
-
-  width: clamp(var(--_card-min-width), 100%, var(--_card-max-width));
-  height: 21rem;
-
-  background: var(--clr-white-600);
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.walks-card__image {
-  min-height: 48%;
-  max-height: 48%;
-}
-.walks-card__text {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-
-  background: var(--clr-white-400);
-
-  padding-block: 0.5rem 1rem;
-  padding-inline: 1rem;
-}
-.walks-card__text .subheading {
-  height: 2.2lh;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.walks-card__text .button {
-  margin-block-start: auto;
-  margin-inline-start: auto;
-}
-
 .walks__filters {
   width: 15rem;
-  height: calc(100vh - 3rem);
+  height: fit-content;
+  /* height: calc(100vh - 3rem); */
   /* min-height: fit-content; */
   /* width: clamp(10rem, 20vw, 18rem); */
-  
+
   /* overflow-y: auto; */
   margin-block-start: 2rem;
 
   position: sticky;
   top: 1.5rem;
+
+  z-index: 1;
 }

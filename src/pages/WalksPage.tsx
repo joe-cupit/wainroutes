@@ -1,18 +1,17 @@
 import "./WalksPage.css";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import { Walk } from "./WalkPage/WalkPage";
 import { MapMarker, useWalkMarkers } from "../hooks/useMarkers";
 
 import setPageTitle from "../hooks/setPageTitle";
-import Image from "../components/Image";
 import { useWalks } from "../hooks/useWalks";
 import haversineDistance from "../utils/haversine";
-import { displayDistance, displayElevation, getDistanceUnit, getDistanceValue } from "../utils/unitConversions";
-import { ElevationIcon, HikingIcon, MountainIcon } from "../components/Icons";
-import { CheckboxFilterGroup, FilterData, FilterGroup, Filters, RadioFilterGroup, SearchBoxFilter, SelectFilter } from "../components/Filters";
+import { getDistanceUnit, getDistanceValue } from "../utils/unitConversions";
+import { FilterData, Filters } from "../components/Filters";
+import WalkCard from "../components/WalkCard";
 import { useHills } from "../hooks/useHills";
 import { Hill } from "./HillPage";
 
@@ -65,6 +64,7 @@ export default function WalksPage() {
   }, [])
 
   const [locationParam, setLocationParam] = useState<Location | null>(null);
+  const [locationSelectEntries, setLocationSelectEntries] = useState<string[]>(["keswick", "ambleside", "grasmere", "buttermere", "borrowdale", "coniston", "glenridding", "windermere"]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const setLocationName = (name: string) => {
@@ -79,6 +79,21 @@ export default function WalksPage() {
       setLocationParam(null)
     }
   }
+
+  useEffect(() => {
+    if (searchParams.has("nearto")) {
+      let newNearTo = searchParams.get("nearto") ?? "";
+      if (newNearTo in locations) {
+        setLocationParam(locations[newNearTo]);
+
+        if (!locationSelectEntries.includes(newNearTo)) {
+          setLocationSelectEntries(prev => [...prev, newNearTo]);
+        }
+      }
+
+    }
+    else setLocationParam(null);
+  }, [searchParams])
 
 
   const maximumDist = 8;
@@ -175,7 +190,7 @@ export default function WalksPage() {
     title: "Near to town",
     type: "select",
     data: {
-      values: Object.fromEntries([["any", "Any"]].concat(["keswick", "ambleside", "grasmere", "buttermere", "borrowdale", "coniston", "glenridding", "windermere"].map(loc => [loc, locations[loc]?.name ?? ""]))),
+      values: Object.fromEntries([["any", "Any"]].concat(locationSelectEntries.map(loc => [loc, locations[loc]?.name ?? ""]))),
       currentValue: locationParam?.slug ?? "any",
       setValue: setLocationName
     }
@@ -226,6 +241,7 @@ export default function WalksPage() {
     townSelect.data.setValue("any");
     wainChoose.data.setActiveValues([]);
     distRadios.data.setValue("any");
+    setSearchTerm("");
   }, [])
 
 
@@ -246,6 +262,7 @@ export default function WalksPage() {
               className="walks__filters"
               title="Filter walks"
               filterData={filters}
+              resetFilters={resetFilters}
             />
             <WalkGrid
               walks={sortedWalks}
@@ -289,51 +306,18 @@ function WalkGrid({ walks, hasLocationParam, sortControl, resetFilters } : { wal
           <option value="dist-asc">Shortest</option>
           <option value="ele-dsc">Most Elevation</option>
           <option value="ele-asc">Least Elevation</option>
+          <option value="recent">Recently Added</option>
         </select>
       </div>
 
       {walks.length > 0
         ? <div className="walks__grid-grid">
             {walks.map((walk, index) => {
-              return <WalkCard key={index} walk={walk} />
+              return <WalkCard key={index} walk={walk} showDistance={hasLocationParam} />
             })}
           </div>
         : <p>No walks match your filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
       }
     </div>
-  )
-}
-
-
-function WalkCard({ walk } : { walk: Walk }) {
-  return (
-    <article className="walks-card">
-      <Image
-        className="walks-card__image"
-        name={walk?.slug + "_" + walk?.gallery?.coverId}
-        sizes="(min-width: 22rem) 22rem, 100vw"
-        maxWidth={512}
-      />
-
-      <div className="walks-card__text">
-        <h3 className="subheading">{walk.title}</h3>
-        <div className="walks-card__icons flex-row">
-          <div className="flex-row gap-0 align-center">
-            <HikingIcon />
-            {displayDistance(walk.length, 1)}
-          </div>
-          <div className="flex-row gap-0 align-center">
-            <ElevationIcon />
-            {displayElevation(walk.elevation)}
-          </div>
-          <div className="flex-row gap-0 align-center">
-            <MountainIcon />
-            {walk.wainwrights?.length ?? "N/A"}
-          </div>
-        </div>
-
-        <Link to={"/walks/"+walk.slug} className="button">View walk</Link>
-      </div>
-    </article>
   )
 }

@@ -163,16 +163,16 @@ export function SelectFilter({ data } : { data: SelectData }) {
 }
 
 
-export function FilterButton({ text } : { text: string }) {
+export function FilterButton({ text, onClick } : { text: string; onClick?: CallableFunction }) {
   return (
-    <button className="button filter__button">
+    <button className="button filter__button" onClick={() => onClick && onClick()}>
       {text}
     </button>
   )
 }
 
 
-export function Filters({ filterData, title, className } : { filterData: FilterData[]; title?: string; className?: string }) {
+export function Filters({ filterData, title, className, resetFilters } : { filterData: FilterData[]; title?: string; className?: string; resetFilters?: CallableFunction }) {
   return (
     <div className={"filters" + (className ? " "+className : "")}>
       {title && <h2 className="subheading">{title}</h2>}
@@ -205,6 +205,8 @@ export function Filters({ filterData, title, className } : { filterData: FilterD
           </FilterGroup>
         )
       })}
+
+      {resetFilters && <FilterButton text="Reset filters" onClick={resetFilters} />}
     </div>
   )
 }

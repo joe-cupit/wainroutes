@@ -178,6 +178,10 @@ p {
   --_button-background: var(--clr-black-300);
 }
 
+.button:not(.primary):not(.secondary) {
+  outline-color: var(--clr-primary-200);
+}
+
 .button.underlined {
   background: none;
   padding: 0;
