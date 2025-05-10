@@ -36,19 +36,18 @@
 .filter__checkbox input,
 .filter__radio input {
   position: absolute;
+  inset: 0;
   width: 1px;
   height: 1px;
+  margin: 0;
   padding: 0;
-  margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
 
-.filter__checkbox {
-  margin-inline-start: 0.125rem;
-}
 .filter__checkbox::before {
   scale: 0.9;
 }
@@ -89,6 +88,7 @@
 .filter__radio-group,
 .filter__checkbox-group {
   gap: 0.25rem;
+  padding-block: 0.25rem;
 }
 
 .filter__checkbox-group {
@@ -115,8 +115,10 @@
   border: none;
   
   padding-inline: 0.25rem;
-  padding-block: 0.125rem;
+  padding-block: 0.25rem 0.125rem;
   margin-block: 0 0.25rem;
+
+  outline: none
 }
 .filter__search::after {
   content: "";
@@ -124,7 +126,11 @@
   inset: 0;
 
   border-block-end: 0.125rem solid var(--clr-black-400);
-  z-index: -1;
+  pointer-events: none;
+  /* z-index: -1; */
+}
+.filter__search:has(input:focus-visible)::after {
+  border-width: 0.25rem;
 }
 
 .filter__select {
