@@ -31,8 +31,11 @@ export type FilterData = CheckboxFilterData | SearchableCheckboxFilterData | Rad
 
 type CheckboxData = {
   values: {[key: string]: string};
+  enabledValues?: string[];
   activeValues: string[];
   setActiveValues: CallableFunction;
+
+  groupName?: string;
 }
 type RadioData = {
   values: {[key: string]: string};
@@ -58,10 +61,10 @@ export function FilterGroup({ title, children } : { title?: string; children?: R
 }
 
 
-export function CheckboxFilter({ name, checked, onChange } : { name: string; checked: boolean; onChange: ChangeEventHandler }) {
+export function CheckboxFilter({ name, checked, disabled, onChange } : { name: string; checked: boolean; disabled?: boolean; onChange: ChangeEventHandler }) {
   return (
     <label className="filter__checkbox">
-      <input type="checkbox" checked={checked} onChange={onChange} />
+      <input type="checkbox" checked={checked} disabled={disabled} onChange={onChange} />
       {name}
     </label>
   )
@@ -69,15 +72,18 @@ export function CheckboxFilter({ name, checked, onChange } : { name: string; che
 
 export function CheckboxFilterGroup({ data, expandable } : { data: CheckboxData; expandable?: boolean }) {
   
+  const minEntries = 4;
   const [expanded, setExpanded] = useState(false);
 
 
   return (
     <>
-      <div className={"filter__checkbox-group" + (expanded ? " expanded" : "")}>
+      <div className={"filter__checkbox-group" + ((expanded && Object.keys(data.values).length > minEntries) ? " expanded" : "")}>
         {Object.keys(data.values).length > 0
         ? Object.keys(data.values)
-            .splice(0, (expanded ? 999 : 4))
+            // .sort((a, b) => (data.activeValues.includes(a) && !data.activeValues.includes(b)) ? -1 : 1)
+            .sort((a, b) => data.enabledValues ? ((data.enabledValues.includes(a) && !data.enabledValues.includes(b)) ? -1 : 1) : 0)
+            .splice(0, (expanded ? 999 : minEntries))
             .map((key, index) => {
               return (
                 <CheckboxFilter key={index}
@@ -90,13 +96,14 @@ export function CheckboxFilterGroup({ data, expandable } : { data: CheckboxData;
                       else data.setActiveValues(data.activeValues.filter(k => k !== key))
                     }
                   }}
+                  disabled={data.enabledValues ? !data.enabledValues.includes(key) : false }
                 />
               )
           })
-        : <i>No Wainwrights</i>
+        : <i className="filter__checkbox-info">{data.groupName ? "No matching "+data.groupName : "No matching entries"}</i>
         }
       </div>
-      {(expandable && Object.keys(data.values).length > 4) &&
+      {(expandable && Object.keys(data.values).length > minEntries) &&
         <button className="filter__checkbox-link" onClick={() => setExpanded(prev => !prev)}>
           {expanded ? "view less" : "view more"}
         </button>

@@ -113,12 +113,27 @@ export default function WalksPage() {
   const [distanceFilter, setDistanceFilter] = useState("any");
   const [wainFiltered, setWainFiltered] = useState<string[]>([]);
 
-  const [filteredWalks, filteredMarkers] = useMemo(() => {
+  const locationsWalkObjects = useMemo(() => {
     if (locationParam) setPageTitle("Lake District Walks in " + locationParam?.name);
     else setPageTitle("Lake District Walks");
 
-    if (walkObjects) {
+    
+    if (locationParam) {
       let filteredWalkObjects = [...walkObjects];
+
+      for (let walk of filteredWalkObjects) {
+        walk.dist = haversineDistance([walk.walk.startLocation?.longitude ?? 0, walk.walk.startLocation?.latitude ?? 0], locationParam?.coords) / 1000;
+      }
+
+      return filteredWalkObjects.filter(w => (w.dist ?? maximumDist+1) < maximumDist);
+    }
+    else return [...walkObjects];
+  }, [locationParam, walkObjects])
+
+  const [filteredWalks, filteredMarkers] = useMemo(() => {
+
+    if (locationsWalkObjects) {
+      let filteredWalkObjects = [...locationsWalkObjects];
 
       switch (distanceFilter) {
         case "<5":
@@ -141,18 +156,17 @@ export default function WalksPage() {
         filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.wainwrights?.some(w => wainFiltered.includes(w)))
       }
 
-      if (locationParam) {
-        for (let walk of walkObjects) {
-          walk.dist = haversineDistance([walk.walk.startLocation?.longitude ?? 0, walk.walk.startLocation?.latitude ?? 0], locationParam?.coords) / 1000;
-        }
-
-        filteredWalkObjects = filteredWalkObjects.filter(w => (w.dist ?? maximumDist+1) < maximumDist);
-      }
-
       return [filteredWalkObjects.map(w => ({...w.walk, distance: w.dist})), filteredWalkObjects.map(w => w.marker)];
     }
     else return [[] as Walk[], [] as MapMarker[]]
-  }, [locationParam, walkObjects, distanceFilter, wainFiltered])
+  }, [locationsWalkObjects, distanceFilter, wainFiltered])
+
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const enabledWainwrights = useMemo(() => {
+    return [...new Set(locationsWalkObjects.flatMap(walk => walk.walk.wainwrights ?? []).concat(wainFiltered))];
+  }, [locationsWalkObjects, searchTerm])
+
 
   const [sortValue, setSortValue] = useState("recommended");
   const sortedWalks = useMemo(() => {
@@ -196,21 +210,21 @@ export default function WalksPage() {
     }
   }
 
-  const [searchTerm, setSearchTerm] = useState<string>("");
   const wainChoose : FilterData = {
     title: "Wainwrights",
     type: "searchable-checkbox",
     data: {
       values: Object.fromEntries(
-                Object.values(useHills() as {[slug: string]: Hill})
-                  .filter(hill => hill.hasWalk)
-                  .filter(hill => hill.name.toLowerCase().indexOf(searchTerm) >= 0)
-                  // .sort((a, b) => b.height - a.height)
-                  .sort((a, b) => a.name.toLowerCase().indexOf(searchTerm) - b.name.toLowerCase().indexOf(searchTerm))
-                  .map(hill => [hill.slug, hill.name])
-              ),
+        Object.values(useHills() as {[slug: string]: Hill})
+          .filter(hill => hill.name.toLowerCase().indexOf(searchTerm) >= 0)
+          // .sort((a, b) => b.height - a.height)
+          .sort((a, b) => a.name.toLowerCase().indexOf(searchTerm) - b.name.toLowerCase().indexOf(searchTerm))
+          .map(hill => [hill.slug, hill.name])
+      ),
+      enabledValues: enabledWainwrights,
       activeValues: wainFiltered,
       setActiveValues: setWainFiltered,
+      groupName: "fells"
     },
     placeholder: "filter fells",
     searchTerm: searchTerm,
@@ -218,7 +232,7 @@ export default function WalksPage() {
   }
 
   const distRadios : FilterData = {
-    title: "Distance",
+    title: "Walk length",
     type: "radio",
     data: {
       groupId: "distance",
