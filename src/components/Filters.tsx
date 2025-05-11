@@ -61,7 +61,7 @@ export function FilterGroup({ title, children } : { title?: string; children?: R
 }
 
 
-export function CheckboxFilter({ name, checked, disabled, onChange } : { name: string; checked: boolean; disabled?: boolean; onChange: ChangeEventHandler }) {
+export function CheckboxFilter({ name, checked, disabled, onChange } : { name: string; checked: boolean; disabled?: boolean; onChange: ChangeEventHandler<HTMLInputElement> }) {
   return (
     <label className="filter__checkbox">
       <input type="checkbox" checked={checked} disabled={disabled} onChange={onChange} />
@@ -89,8 +89,7 @@ export function CheckboxFilterGroup({ data, expandable } : { data: CheckboxData;
                 <CheckboxFilter key={index}
                   name={data.values[key]}
                   checked={data.activeValues.includes(key)}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    console.log(e.target.checked)
+                  onChange={e => {
                     if (e.target) {
                       if (e.target.checked) data.setActiveValues(data.activeValues.concat([key]));
                       else data.setActiveValues(data.activeValues.filter(k => k !== key))
@@ -179,7 +178,7 @@ export function FilterButton({ text, onClick } : { text: string; onClick?: Calla
 }
 
 
-export function Filters({ filterData, title, className, resetFilters } : { filterData: FilterData[]; title?: string; className?: string; resetFilters?: CallableFunction }) {
+export function Filters({ filterData, title, className, resetFilters, children } : { filterData: FilterData[]; title?: string; className?: string; resetFilters?: CallableFunction; children?: React.ReactNode }) {
   return (
     <div className={"filters" + (className ? " "+className : "")}>
       {title && <h2 className="subheading">{title}</h2>}
@@ -212,6 +211,8 @@ export function Filters({ filterData, title, className, resetFilters } : { filte
           </FilterGroup>
         )
       })}
+
+      {children}
 
       {resetFilters && <FilterButton text="Reset filters" onClick={resetFilters} />}
     </div>

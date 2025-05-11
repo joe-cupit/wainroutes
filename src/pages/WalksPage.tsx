@@ -10,7 +10,7 @@ import setPageTitle from "../hooks/setPageTitle";
 import { useWalks } from "../hooks/useWalks";
 import haversineDistance from "../utils/haversine";
 import { getDistanceUnit, getDistanceValue } from "../utils/unitConversions";
-import { FilterData, Filters } from "../components/Filters";
+import { CheckboxFilter, FilterData, FilterGroup, Filters } from "../components/Filters";
 import WalkCard from "../components/WalkCard";
 import { useHills } from "../hooks/useHills";
 import { Hill } from "./HillPage";
@@ -112,6 +112,7 @@ export default function WalksPage() {
 
   const [distanceFilter, setDistanceFilter] = useState("any");
   const [wainFiltered, setWainFiltered] = useState<string[]>([]);
+  const [accessibleByBus, setAccessibleByBus] = useState(false);
 
   const locationsWalkObjects = useMemo(() => {
     if (locationParam) setPageTitle("Lake District Walks in " + locationParam?.name);
@@ -134,6 +135,11 @@ export default function WalksPage() {
 
     if (locationsWalkObjects) {
       let filteredWalkObjects = [...locationsWalkObjects];
+
+      console.log(accessibleByBus)
+      if (accessibleByBus) {
+        filteredWalkObjects = filteredWalkObjects.filter(walk => Object.keys(walk.walk.busConnections ?? {}).length > 0);
+      }
 
       switch (distanceFilter) {
         case "<5":
@@ -159,7 +165,7 @@ export default function WalksPage() {
       return [filteredWalkObjects.map(w => ({...w.walk, distance: w.dist})), filteredWalkObjects.map(w => w.marker)];
     }
     else return [[] as Walk[], [] as MapMarker[]]
-  }, [locationsWalkObjects, distanceFilter, wainFiltered])
+  }, [locationsWalkObjects, accessibleByBus, distanceFilter, wainFiltered])
 
 
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -277,7 +283,16 @@ export default function WalksPage() {
               title="Filter walks"
               filterData={filters}
               resetFilters={resetFilters}
-            />
+            >
+              <FilterGroup>
+                <CheckboxFilter
+                  name="Accessible by bus"
+                  checked={accessibleByBus}
+                  onChange={e => setAccessibleByBus(e.target.checked)}
+                />
+              </FilterGroup>
+            </Filters>
+
             <WalkGrid
               walks={sortedWalks}
               hasLocationParam={locationParam !== null}
