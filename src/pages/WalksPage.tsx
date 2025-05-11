@@ -261,6 +261,7 @@ export default function WalksPage() {
     townSelect.data.setValue("any");
     wainChoose.data.setActiveValues([]);
     distRadios.data.setValue("any");
+    setAccessibleByBus(false);
     setSearchTerm("");
   }, [])
 
@@ -300,6 +301,12 @@ export default function WalksPage() {
                 value: sortValue,
                 set: setSortValue
               }}
+              activeFilters={
+                (townSelect.data.currentValue !== "any" ? 1 : 0) +
+                (wainChoose.data.activeValues.length > 0 ? 1 : 0) +
+                (distRadios.data.currentValue !== "any" ? 1 : 0) +
+                (accessibleByBus ? 1 : 0)
+              }
               resetFilters={resetFilters}
             />
           </div>
@@ -311,7 +318,7 @@ export default function WalksPage() {
 }
 
 
-function WalkGrid({ walks, hasLocationParam, sortControl, resetFilters } : { walks: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; resetFilters: CallableFunction }) {
+function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, resetFilters } : { walks: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; activeFilters?: number; resetFilters: CallableFunction }) {
 
   useEffect(() => {
     if (hasLocationParam && sortControl.value === "recommended") sortControl.set("closest");
@@ -339,14 +346,20 @@ function WalkGrid({ walks, hasLocationParam, sortControl, resetFilters } : { wal
         </select>
       </div>
 
-      {walks.length > 0
-        ? <div className="walks__grid-grid">
-            {walks.map((walk, index) => {
-              return <WalkCard key={index} walk={walk} showDistance={hasLocationParam} />
-            })}
-          </div>
-        : <p>No walks match your filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
+      {(activeFilters > 0 || walks.length === 0) &&
+        <div className="walks__grid-filters">
+          {walks.length > 0
+            ? <p>Showing <b>{walks.length}</b> walks matching {activeFilters + " filter" + (activeFilters === 1 ? "" : "s")}. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
+            : <p>No walks match the current filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
+          }
+        </div>
       }
+
+      <div className="walks__grid-grid">
+        {walks.map((walk, index) => {
+          return <WalkCard key={index} walk={walk} showDistance={hasLocationParam} />
+        })}
+      </div>
     </div>
   )
 }
