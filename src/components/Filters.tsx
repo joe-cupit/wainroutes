@@ -82,7 +82,7 @@ export function CheckboxFilterGroup({ data, expandable } : { data: CheckboxData;
         {Object.keys(data.values).length > 0
         ? Object.keys(data.values)
             // .sort((a, b) => (data.activeValues.includes(a) && !data.activeValues.includes(b)) ? -1 : 1)
-            .sort((a, b) => data.enabledValues ? ((data.enabledValues.includes(a) && !data.enabledValues.includes(b)) ? -1 : 1) : 0)
+            .sort((a, b) => data.enabledValues ? ((!data.enabledValues.includes(a) && data.enabledValues.includes(b)) ? 1 : 0) : 0)
             .splice(0, (expanded ? 999 : minEntries))
             .map((key, index) => {
               return (

@@ -18,7 +18,7 @@ export function Summary({ secRef, title, titleRef, wainwrights, length, elevatio
 
       <h2 className="subheading visually-hidden" id="walk_overview">Summary</h2>
       <div className="walks-page_section flex-column">
-        <div className={(wainwrights?.length ?? 0) === 1 ? "walk-page_summary_horizontal-group" : ""}>
+        <div className={(wainwrights?.length ?? 0) <= 2 ? "walk-page_summary_horizontal-group" : ""}>
           <h3 className="smallheading">Wainwrights: </h3>
           <p className="walk-page_wainwrights">
             {wainwrights?.map((hill, index) => {

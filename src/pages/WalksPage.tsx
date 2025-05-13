@@ -349,7 +349,7 @@ function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, reset
       {(activeFilters > 0 || walks.length === 0) &&
         <div className="walks__grid-filters">
           {walks.length > 0
-            ? <p>Showing <b>{walks.length}</b> walks matching {activeFilters + " filter" + (activeFilters === 1 ? "" : "s")}. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
+            ? <p>Showing <b>{walks.length + " walk" + (walks.length === 1 ? "" : "s")}</b> matching {activeFilters + " filter" + (activeFilters === 1 ? "" : "s")}. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
             : <p>No walks match the current filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
           }
         </div>
