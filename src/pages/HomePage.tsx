@@ -27,11 +27,12 @@ export function HomePage() {
           <h1 className="title">Step Into Walks All Over The Lake District</h1>
           <input type="text"
             className="home__hero-search"
-            placeholder="Search for a walk"
+            placeholder="Search for a route, fell, or town"
           />
           <Link to="/walks" className="button underlined">View all walks</Link>
         </div>
 
+        <div className="home__hero-image-overlay" />
         <Image
           className="home__hero-image"
           name="home_01"

@@ -1,7 +1,7 @@
 import "./Navbar.css";
 
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 
 export function Navbar() {
@@ -19,9 +19,11 @@ export function Navbar() {
     else document.removeEventListener("mouseup", clickListener);
   }
 
+  const { pathname } = useLocation();
+
 
   return (
-    <header className="navbar">
+    <header className={"navbar" + (pathname === "/" ? " float" : "")}>
 
       <div className="flex-row align-center justify-apart">
 
