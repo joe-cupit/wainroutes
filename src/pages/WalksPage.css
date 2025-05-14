@@ -17,9 +17,6 @@
 }
 
 .walks__grid {
-  --_card-min-width: 16rem;
-  --_card-max-width: 22rem;
-
   container-type: inline-size;
 
   display: flex;
