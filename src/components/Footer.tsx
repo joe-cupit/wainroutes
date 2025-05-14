@@ -1,51 +1,40 @@
-import { Link } from "react-router-dom";
 import "./Footer.css";
+
+import { Link } from "react-router-dom";
 
 
 export default function Footer() {
   return (
-    <footer className="page-footer">
-
-      <div className="page-footer_main flex-row justify-apart">
-        <div className="page-footer_find flex-column gap-0">
-          Find your next route:
-          <div className="page-footer_input flex-row align-center">
-            <input // type="text"
-              placeholder="Search walks..."
+    <footer className="footer">
+      <div className="footer__grid">
+        <div className="footer__main">
+          <div className="footer__main-left">
+            <h2 className="heading">wainroutes</h2>
+            <input type="text"
+              className="footer__search-bar"
+              placeholder="Find a walk"
             />
-            <button className="primary small bottom-left button">Search</button>
           </div>
-          <Link to="/walks">View all walks</Link>
+          <div className="footer__main-right">
+            <div className="footer__main-links">
+              <h3 className="subheading">Explore</h3>
+              <Link to="/walks">Walks</Link>
+              <Link to="/walks">Map</Link>
+              <Link to="/wainwrights">Wainwrights</Link>
+              <Link to="/weather">Weather</Link>
+            </div>
+            <div className="footer__main-links">
+              <h3 className="subheading">Discover</h3>
+              <Link to="/">Home</Link>
+              <Link to="/about">About</Link>
+              <Link to="/contact">Contact</Link>
+            </div>
+          </div>
         </div>
 
-        <div className="page-footer_links flex-column">
-          <Link to="/">Home</Link>
-          <Link to="/walks">Walks</Link>
-          <Link to="/wainwrights">Wainwrights</Link>
-          <Link to="/weather">Weather</Link>
-          <Link to="/travel">Travel</Link>
-        </div>
-      </div>
-
-      <div className="page-footer_base flex-column gap-0">
-
-        <div className="page-footer_links flex-row flex-apart">
-          <Link to="/">Home</Link>
-          <Link to="/walks">Walks</Link>
-          <Link to="/wainwrights">Wainwrights</Link>
-          <Link to="/weather">Weather</Link>
-          <Link to="/travel">Travel</Link>
-        </div>
-        
-        <Link to="/" className="page-footer_title">wainroutes</Link>
-
-        <div className="page-footer_bottom flex-row flex-apart">
-          <div>
-            &#169; 2025 <Link to="/about">Wainroutes</Link>
-          </div>
-          <div>
-            A site by <a href="https://www.google.com" target="_blank">Joe Cupit</a>.
-          </div>
+        <div className="footer__base">
+          <p>&#169; 2025 <Link to="/about">Wainroutes</Link></p>
+          <p>A site by <a href="https://www.google.com" target="_blank">Joe Cupit</a>.</p>
         </div>
       </div>
     </footer>
