@@ -14,14 +14,14 @@ export function NearbyWalks({ location, currentSlug } : { location: [number, num
 
     for (let walkSlug of Object.keys(walks)) {
       if (walkSlug === currentSlug) {
-        walks[walkSlug].distanceFromLocation = Infinity;
+        walks[walkSlug].distance = Infinity;
         continue;
       }
 
-      walks[walkSlug].distanceFromLocation = haversineDistance(location, [walks[walkSlug].startLocation?.longitude ?? 0, walks[walkSlug].startLocation?.latitude ?? 0]);
+      walks[walkSlug].distance = haversineDistance(location, [walks[walkSlug].startLocation?.longitude ?? 0, walks[walkSlug].startLocation?.latitude ?? 0]) / 1000;
     }
 
-    const orderedWalks = Object.values(walks).sort((a, b) => (a.distanceFromLocation ?? 99999) - (b.distanceFromLocation ?? 99999));
+    const orderedWalks = Object.values(walks).sort((a, b) => (a.distance ?? 99999) - (b.distance ?? 99999));
     return orderedWalks.slice(0, 3);
   }, [location])
 
@@ -36,7 +36,7 @@ export function NearbyWalks({ location, currentSlug } : { location: [number, num
             return (
               <WalkCard key={index}
                 walk={walk} // link={false}
-                distFrom={location}
+                showDistance={true}
               />
             )
           })}
