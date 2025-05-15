@@ -11,7 +11,7 @@
 
   width: 100%;
 
-  @media (max-width: 59rem) {
+  @media (max-width: 55.5rem) {
     flex-direction: column;
   }
 }
@@ -34,18 +34,14 @@
   padding-inline: 1rem;
   margin-block-end: 0.5rem;
 }
+.walks__grid-filters .button {
+  display: inline-block;
+}
 .walks__grid-grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
   justify-items: center;
-
-  @container (max-width: 51rem) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @container (max-width: 35rem) {
-    grid-template-columns: repeat(1, 1fr);
-  }
 }
 
 .walks__filters {
@@ -62,4 +58,8 @@
   top: 1.5rem;
 
   z-index: 1;
+
+  @media (max-width: 55.5rem) {
+    position: revert;
+  }
 }

@@ -163,6 +163,10 @@ p {
   transition: color var(--_button-duration) ease,
               background-color var(--_button-duration) ease;
 
+  display: flex;
+  gap: 0.25em;
+  align-items: center;
+
   padding: 0.5em 1em;
   border-radius: 0.25em;
   /* border-top-right-radius: 0; */
@@ -210,7 +214,7 @@ p {
 }
 
 button.small {
-  padding: 0.25em 0.5em;
+  padding: 0.25em 0.625em;
 }
 
 button.bottom-left {

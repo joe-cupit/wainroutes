@@ -8,6 +8,7 @@ import ElevationChart, { ElevationPoint } from "../../../components/ElevationCha
 
 import haversineDistance from "../../../utils/haversine";
 import { getDistanceValue, getElevationValue } from "../../../utils/unitConversions";
+import { DownloadIcon } from "../../../components/Icons";
 
 
 export function Route({ secRef, wainwrights, center, slug } : { secRef: React.RefObject<HTMLDivElement>; wainwrights: Walk["wainwrights"]; center: [number, number]; slug: string }) {
@@ -79,8 +80,8 @@ export function Route({ secRef, wainwrights, center, slug } : { secRef: React.Re
     <div ref={secRef}>
       <div className="walk-page_route-title flex-row flex-apart">
         <h2 className="subheading" id="walk_route">Route</h2>
-        <button className="primary small bottom-left button" title="Download GPX file" onClick={handleDownload}>
-          Download GPX
+        <button className="button primary small" title="Download GPX file" onClick={handleDownload}>
+          <DownloadIcon /> Download GPX
         </button>
       </div>
       <div className="walks-page_section flex-column">

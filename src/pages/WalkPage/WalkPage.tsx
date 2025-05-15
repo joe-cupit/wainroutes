@@ -76,7 +76,7 @@ export type Walk = {
   tags: string[];
 
   distance?: number;
-  distanceFromLocation?: number;
+  // distanceFromLocation?: number;
 }
 
 
@@ -222,7 +222,7 @@ function Walk({ walkData, slug } : { walkData: Walk; slug: string }) {
       </section>
 
       <section>
-        <div className="walk-page_body grid-two">
+        <div className="walk-page_body">
           <div className="walk-page_main flex-column flex-1">
             <Summary secRef={overviewRef}
               title={walkData?.title}

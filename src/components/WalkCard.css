@@ -1,6 +1,6 @@
 .walks-card {
   --_card-min-width: 16rem;
-  --_card-max-width: 22rem;
+  --_card-max-width: 25rem;
 
   display: flex;
   flex-direction: column;
