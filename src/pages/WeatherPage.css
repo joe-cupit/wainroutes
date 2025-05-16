@@ -4,22 +4,7 @@
 .weather-page section {
   padding-block: var(--gap-400);
 }
-.weather-main {
-  gap: var(--gap-600);
-}
-
-.weather-days {
-  gap: var(--gap-700);
-}
-.weather-day {
-  gap: var(--gap-500);
-  flex: 1;
-}
-.weather-day.future {
-  gap: var(--gap-300);
-}
-
-.weather-page h3,
+.weather-page h3:not(.subheading),
 .weather-page h4 {
   font-size: var(--fs-400);
   font-weight: var(--fw-bold);
@@ -33,107 +18,134 @@
 }
 .weather-page ul {
   list-style: square inside;
-  margin-inline-start: 0.5rem;
+}
+
+.weather__current-day,
+.weather__mountain-hazards-list {
+  display: flex;
+  gap: var(--gap-400);
+}
+.weather__mountain-hazards-list {
+  flex-wrap: wrap;
+}
+
+.weather__main,
+.weather__days,
+.weather__day,
+.weather__extra-details,
+.weather__mountain-hazards,
+.weather__further-days {
+  display: grid;
+  gap: var(--gap-400);
+
+  height: fit-content;
+}
+.weather__main,
+.weather__days {
+  gap: var(--gap-600);
+}
+.weather__further-days {
+  gap: var(--gap-500);
+}
+.weather__day.future,
+.weather__mountain-hazards,
+.weather__mountain-hazards-list {
+  gap: var(--gap-300);
 }
 
 
-.weather-page .forecast {
+.weather__forecast {
   max-width: 90vw;
   overflow-x: auto;
 }
 
-.forecast-table {
+.weather__forecast-table {
   --_padding-inline: var(--gap-400);
   margin-block: var(--gap-200);
 }
-.forecast-table th,
-.forecast-table td {
+.weather__forecast-table th,
+.weather__forecast-table td {
   padding-inline: var(--_padding-inline);
   text-align: center;
   text-wrap: nowrap;
 }
-.forecast-table th:first-child,
-.forecast-table td:first-child {
+.weather__forecast-table th:first-child,
+.weather__forecast-table td:first-child {
   text-align: left;
   padding-inline: 0 var(--_padding-inline);
 }
-.forecast-table th,
-.forecast-table td {
+.weather__forecast-table th,
+.weather__forecast-table td {
   padding-top: var(--gap-200);
   min-width: fit-content;
 }
-.forecast-table .primary-row th,
-.forecast-table .primary-row td {
+.weather__forecast-table .primary-row th,
+.weather__forecast-table .primary-row td {
   padding-top: var(--gap-400);
 }
-.forecast-table .secondary-row {
+.weather__forecast-table .secondary-row {
   color: var(--clr-black-300);
 }
-.forecast-table td.image-cell {
+.weather__forecast-table td.image-cell {
   --_image-height: calc(2.5 * var(--fs-600));
 
   height: var(--_image-height);
 }
-.forecast-table td.image-cell img {
+.weather__forecast-table td.image-cell img {
   min-width: var(--_image-height);
   max-width: var(--_image-height);
 }
 
 
-.weather-extra-details {
+.weather__extra-details {
+  position: sticky;
+  top: 1rem;
+
   max-width: 300px;
 }
-.mountain-hazards,
-.mountain-hazards-list {
-  gap: var(--gap-300);
+.weather__mountain-hazards-list ul {
+  list-style: none;
 }
-.mountain-hazards-list > div {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: var(--gap-200);
-}
-.mountain-hazard,
-.meteorologist {
+.weather__mountain-hazard,
+.weather__meteorologist-view {
   padding-inline: 0.5rem;
   padding-block: 0.3125rem 0.1875rem;
   display: inline-block;
 }
-.mountain-hazard.low {
+.weather__mountain-hazard.low {
   background: #F1D46340;
   border-inline-start: 0.25rem solid #F1D463;
 }
-.mountain-hazard.medium {
+.weather__mountain-hazard.medium {
   background: #F6B24340;
   border-inline-start: 0.25rem solid #F6B243;
 }
-.mountain-hazard.high {
+.weather__mountain-hazard.high {
   background: #F3693740;
   border-inline-start: 0.25rem solid #F36937;
 }
-.meteorologist {
+.weather__meteorologist-view {
   background: #6DAAC340;
   border-inline-start: 0.25rem solid #6DAAC3;
 }
 
 @media (max-width: 1100px) {
-  .weather-extra-details {
+  .weather__current-day {
+    flex-wrap: wrap-reverse;
+  }
+  .weather__extra-details {
+    position: revert;
     max-width: none;
   }
-  .forecast-table {
-    --_padding-inline: var(--gap-300)
-  }
-  .mountain-hazards {
+  .weather__mountain-hazards {
     gap: 0;
   }
-  .mountain-hazards-list {
+  .weather__mountain-hazards-list {
     flex-direction: row;
     width: 100%;
   }
-  .mountain-hazards-list > div {
-    display: contents;
-  }
-  .mountain-hazards-list h4 {
-    display: none;
+
+  .weather__forecast-table {
+    --_padding-inline: var(--gap-300)
   }
 }
