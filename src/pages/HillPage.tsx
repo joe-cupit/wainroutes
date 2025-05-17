@@ -15,7 +15,7 @@ import haversineDistance from "../utils/haversine";
 const BookNumbers : {[book : number]: string} = {
   1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven"
 }
-const BookTitles : {[book : number]: string} = {
+export const BookTitles : {[book : number]: string} = {
   1: "The Eastern Fells", 2: "The Far Eastern Fells", 3: "The Central Fells", 4: "The Southern Fells", 5: "The Northern Fells", 6: "The North Western Fells", 7: "The Western Fells"
 }
 

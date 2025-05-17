@@ -91,7 +91,13 @@
   font-size: var(--fs-500);
   line-height: 1;
 }
-.walk-search__result .secondary-text {
+.walk-search__result-details {
+  display: flex;
+  gap: calc(var(--gap-300) * 0.9);
+  row-gap: 0;
+  flex-wrap: wrap;
+
+  font-size: var(--fs-300);
   color: var(--clr-black-300);
 }
 
