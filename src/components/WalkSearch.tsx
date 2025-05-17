@@ -44,7 +44,6 @@ type SearchOption = WalkOption | FellOption | TownOption
 export default function WalkSearch({ reversed, small, placeholder, className } : { reversed?: boolean; small?: boolean; placeholder?: string; className?: string }) {
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [showResults, setShowResults] = useState(false);
 
   const searchOptions = useMemo(() => {
     var newSearchOptions : SearchOption[] = [];
@@ -104,14 +103,12 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
         placeholder={placeholder ? placeholder : "Search for a route, fell, or town"}
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
-        onBlur={() => setTimeout(() => {setShowResults(false)}, 100)}
-        onFocus={() => setShowResults(true)}
       />
       {searchTerm.length > 0 &&
         <div
           className="walk-search__results"
           data-reversed={reversed}
-          data-show={showResults}
+          onMouseDown={e => e.preventDefault()}
         >
           {filteredSearchOptions.length > 0
             ? filteredSearchOptions.map((option, index) => {

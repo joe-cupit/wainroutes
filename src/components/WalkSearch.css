@@ -108,9 +108,11 @@
 
   margin-block-start: calc(var(--gap-400) / 2);
   padding-inline: var(--gap-400);
+
+  cursor: default;
 }
 
 
-.walk-search__results[data-show="false"] {
+.walk-search:not(:has(input:focus-visible)) .walk-search__results {
   display: none;
 }
