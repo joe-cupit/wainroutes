@@ -6,8 +6,8 @@ body {
   font-weight: var(--fw-regular);
   font-optical-sizing: auto;
 
-  color: var(--clr-black-400);
-  background: var(--clr-white-500);
+  color: var(--clr-neutral-400);
+  background: var(--clr-neutral-900);
 }
 
 #root {
@@ -146,7 +146,7 @@ p {
 }
 
 .secondary-text {
-  color: var(--clr-black-300);
+  color: var(--clr-neutral-600);
   font-size: var(--fs-300);
 }
 
@@ -156,8 +156,8 @@ p {
 
 
 .button {
-  --_button-color: var(--clr-white-400);
-  --_button-background: var(--clr-black-400);
+  --_button-color: var(--clr-neutral-900);
+  --_button-background: var(--clr-neutral-400);
 
   --_button-duration: 100ms;
   transition: color var(--_button-duration) ease,
@@ -182,11 +182,11 @@ p {
   background: var(--_button-background);
 }
 .button:hover {
-  --_button-background: var(--clr-black-300);
+  --_button-background: var(--clr-neutral-450);
 }
 
 .button:not(.primary):not(.secondary) {
-  outline-color: var(--clr-primary-200);
+  outline-color: var(--clr-primary-500);
 }
 
 .button.underlined {
@@ -198,19 +198,19 @@ p {
 }
 
 .button.primary {
-  --_button-color: var(--clr-white-400);
+  --_button-color: var(--clr-neutral-900);
   --_button-background: var(--clr-primary-400);
 }
 .button.primary:hover {
-  --_button-background: var(--clr-primary-500);
+  --_button-background: var(--clr-primary-300);
 }
 
 .button.secondary {
-  --_button-color: var(--clr-black-400);
-  --_button-background: var(--clr-white-600);
+  --_button-color: var(--clr-neutral-400);
+  --_button-background: var(--clr-neutral-700);
 }
 .button.secondary:hover {
-  --_button-background: var(--clr-black-100);
+  --_button-background: var(--clr-neutral-600);
 }
 
 button.small {

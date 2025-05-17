@@ -8,31 +8,32 @@
   width: 100%;
   height: 100%;
 
-  /* border: 0.1rem solid var(--clr-white-600); */
+  /* border: 0.1rem solid var(--clr-neutral-700); */
   border-radius: 0.5rem;
   overflow: hidden;
 }
 
 
 .lake-map--route {
-  stroke: var(--clr-primary-500);
+  /* stroke: var(--clr-primary-300); */
+  stroke: #f7ece4;
   stroke-width: 5;
-  filter: drop-shadow(0.0625rem 0 0 var(--clr-primary-800))
-          drop-shadow(0 0.0625rem 0 var(--clr-primary-800))
-          drop-shadow(-0.0625rem 0 0 var(--clr-primary-800))
-          drop-shadow(0 -0.0625rem 0 var(--clr-primary-800));
+  filter: drop-shadow(1px 0 0 var(--clr-neutral-400))
+          drop-shadow(0 1px 0 var(--clr-neutral-400))
+          drop-shadow(-1px 0 0 var(--clr-neutral-400))
+          drop-shadow(0 -1px 0 var(--clr-neutral-400));
   cursor: default;
 
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .lake-map--hovered-point {
-  /* fill: var(--clr-primary-500); */
+  /* fill: var(--clr-primary-300); */
   /* stroke: white; */
   /* stroke-width: 1; */
   /* filter: drop-shadow(0 0 0.125rem #0007); */
-  fill: var(--clr-white-500);
-  stroke: var(--clr-primary-800);
+  fill: var(--clr-neutral-800);
+  stroke: var(--clr-primary-0);
   stroke-width: 3;
 }
 
@@ -41,6 +42,9 @@
   fill: var(--clr-primary-400);
   stroke: black;
   stroke-width: 1;
+}
+.lake-map--hill-marker {
+  scale: 0.85;
 }
 
 
@@ -66,42 +70,42 @@
   z-index: 10;
 }
 .lake-map--cluster svg:nth-child(2) {
-  opacity: 0.8;
+  opacity: 0.89;
   z-index: 9;
-  transform: translate(3px, -1px) scale(0.95);
+  transform: translate(4px, -1px) scale(0.98);
 }
 .lake-map--cluster svg:nth-child(3) {
-  opacity: 0.7;
+  opacity: 0.84;
   z-index: 8;
-  transform: translate(5px, -1px) scale(0.9);
+  transform: translate(7px, -2px) scale(0.95);
 }
 .lake-map--cluster svg:nth-child(4) {
-  opacity: 0.4;
+  opacity: 0.8;
   z-index: 7;
-  transform: translate(6px, -1px) scale(0.85);
+  transform: translate(9px, -2px) scale(0.9);
 }
 
 
 .wain-book-1 {
-  fill: var(--wain-book-1);
+  fill: var(--clr-wain-book-1);
 }
 .wain-book-2 {
-  fill: var(--wain-book-2);
+  fill: var(--clr-wain-book-2);
 }
 .wain-book-3 {
-  fill: var(--wain-book-3);
+  fill: var(--clr-wain-book-3);
 }
 .wain-book-4 {
-  fill: var(--wain-book-4);
+  fill: var(--clr-wain-book-4);
 }
 .wain-book-5 {
-  fill: var(--wain-book-5);
+  fill: var(--clr-wain-book-5);
 }
 .wain-book-6 {
-  fill: var(--wain-book-6);
+  fill: var(--clr-wain-book-6);
 }
 .wain-book-7 {
-  fill: var(--wain-book-7);
+  fill: var(--clr-wain-book-7);
 }
 
 .walk-marker {
@@ -112,7 +116,7 @@
   cursor: default;
 }
 .lake-map--attribution a {
-  color: var(--clr-black-500);
+  color: var(--clr-neutral-200);
   font-weight: var(--fw-bold);
 }
 .lake-map--attribution a:hover {

@@ -84,7 +84,7 @@
   padding-top: var(--gap-400);
 }
 .weather__forecast-table .secondary-row {
-  color: var(--clr-black-300);
+  color: var(--clr-neutral-500);
 }
 .weather__forecast-table td.image-cell {
   --_image-height: calc(2.5 * var(--fs-600));

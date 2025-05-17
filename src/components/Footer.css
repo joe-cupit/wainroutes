@@ -2,8 +2,8 @@
   --content-max-width: 1350px;
   --section-padding: 2rem;
 
-  color: var(--clr-white-400);
-  background: var(--clr-black-500);
+  color: var(--clr-neutral-1000);
+  background: var(--clr-neutral-200);
 
   padding-block: 1.5rem 1rem;
 }
@@ -49,14 +49,14 @@
 
 
 .footer__base {
-  color: var(--clr-white-800);
+  color: var(--clr-neutral-600);
   font-size: var(--fs-300);
 }
 .footer__base a {
   transition: color 100ms;
 }
 .footer__base a:hover {
-  color: var(--clr-white-600);
+  color: var(--clr-neutral-1000);
   text-decoration: underline;
 }
 

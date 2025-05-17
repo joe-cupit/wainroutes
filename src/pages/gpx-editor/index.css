@@ -27,7 +27,7 @@
 
   padding: 1rem;
 
-  background: var(--clr-white-400);
+  background: var(--clr-neutral-900);
   width: clamp(250px, 25vw, 300px);
   height: 100%;
 
@@ -64,7 +64,7 @@
   font-style: italic;
 }
 .editor__controls-title:focus {
-  background: hsl(from var(--clr-white-500) h s l / 60%);
+  background: hsl(from var(--clr-neutral-900) h s l / 60%);
 }
 
 .editor__controls-group {
@@ -90,31 +90,31 @@
 
   font-weight: var(--fw-medium);
 
-  background: var(--clr-white-600);
+  background: var(--clr-neutral-700);
   cursor: pointer;
 
   width: fit-content;
 }
 .editor__controls button:hover,
 .editor__controls label[role="button"]:hover {
-  background: var(--clr-white-700);
+  background: var(--clr-neutral-700);
 }
 
 .editor__controls label[role="button"].active {
-  color: var(--clr-white-400);
-  background: var(--clr-primary-500);
+  color: var(--clr-neutral-900);
+  background: var(--clr-primary-300);
 }
 
 .editor__controls button:disabled {
-  color: var(--clr-black-200);
-  background: var(--clr-black-100);
+  color: var(--clr-neutral-600);
+  background: var(--clr-neutral-600);
   cursor: default;
 }
 
 
 .editor__controls-selected {
-  background: var(--clr-white-500);
-  border: 1px solid var(--clr-white-700);
+  background: var(--clr-neutral-900);
+  border: 1px solid var(--clr-neutral-700);
   border-radius: 0.25rem;
   padding: 0.5rem;
 
@@ -149,7 +149,7 @@ button.editor__controls-close {
   padding-inline: 0.25rem;
 
   font-weight: var(--fw-medium);
-  background: var(--clr-white-400);
+  background: var(--clr-neutral-900);
   border-radius: 0.125rem;
 
   box-shadow: 1px 1px 5px #0006;
@@ -162,8 +162,8 @@ button.editor__controls-close {
 
 
 .editor-map_route {
-  --_gpx-line-colour: var(--clr-primary-500);
-  --_gpx-line-stroke: var(--clr-primary-800);
+  --_gpx-line-colour: var(--clr-primary-300);
+  --_gpx-line-stroke: var(--clr-primary-0);
 
   stroke: var(--_gpx-line-colour);
   stroke-width: 5;
@@ -182,7 +182,7 @@ button.editor__controls-close {
   aspect-ratio: 1;
   background: rgb(222, 161, 21);
   border-radius: 30%;
-  border: 1px solid var(--clr-primary-800);
+  border: 1px solid var(--clr-primary-0);
 }
 .editor-map_point:hover {
   transform: scale(1.75);

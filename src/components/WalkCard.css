@@ -9,7 +9,7 @@
   width: clamp(var(--_card-min-width), 100%, var(--_card-max-width));
   height: 21rem;
 
-  background: var(--clr-white-600);
+  background: var(--clr-neutral-700);
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -24,7 +24,7 @@
   top: 0.75rem;
   right: 0.75rem;
 
-  background: var(--clr-white-400);
+  background: var(--clr-neutral-900);
   border-radius: 0.25rem;
   padding-inline: 0.5rem;
   padding-block: 0.25rem 0.125rem;
@@ -41,7 +41,7 @@
   flex: 1;
   gap: 0.25rem;
 
-  background: var(--clr-white-400);
+  background: var(--clr-neutral-1000);
 
   padding-block: 0.5rem 1rem;
   padding-inline: 1rem;
