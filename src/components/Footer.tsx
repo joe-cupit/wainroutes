@@ -1,6 +1,7 @@
 import "./Footer.css";
 
 import { Link } from "react-router-dom";
+import WalkSearch from "./WalkSearch";
 
 
 export default function Footer() {
@@ -10,7 +11,9 @@ export default function Footer() {
         <div className="footer__main">
           <div className="footer__main-left">
             <h2 className="heading">wainroutes</h2>
-            <input type="text"
+            <WalkSearch
+              reversed={true}
+              small={true}
               className="footer__search-bar"
               placeholder="Find a walk"
             />

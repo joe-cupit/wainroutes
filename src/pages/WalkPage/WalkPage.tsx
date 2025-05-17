@@ -212,7 +212,7 @@ function Walk({ walkData, slug } : { walkData: Walk; slug: string }) {
             sizes="(min-width: 1100px) 1100px, 100vw"
           />
           <div className="walk-page_top-block"></div>
-          <Link to={"/walks?nearto=" + walkData?.startLocation?.location?.toLowerCase().replaceAll(" ", "-")}
+          <Link to={"/walks?town=" + walkData?.startLocation?.location?.toLowerCase().replaceAll(" ", "-")}
             className="walk-page_top-link"
             aria-label={"Walks near " + walkData?.startLocation?.location}
           >

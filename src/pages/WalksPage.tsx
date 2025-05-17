@@ -33,7 +33,7 @@ type Locations = {
   [name : string]: Location;
 }
 
-const locations : Locations = {
+export const locations : Locations = {
   "keswick": {slug: "keswick", name: "Keswick", coords: [-3.1347, 54.6013]},
   "ambleside": {slug: "ambleside", name: "Ambleside", coords: [-2.9613, 54.4287]},
   "grasmere": {slug: "grasmere", name: "Grasmere", coords: [-3.0244, 54.4597]},
@@ -70,19 +70,19 @@ export default function WalksPage() {
   const setLocationName = (name: string) => {
     if (name in locations) {
       setLocationParam(locations[name]);
-      searchParams.set("nearto", name);
+      searchParams.set("town", name);
       setSearchParams(searchParams);
     }
     else {
-      searchParams.delete("nearto");
+      searchParams.delete("town");
       setSearchParams(searchParams);
       setLocationParam(null)
     }
   }
 
   useEffect(() => {
-    if (searchParams.has("nearto")) {
-      let newNearTo = searchParams.get("nearto") ?? "";
+    if (searchParams.has("town")) {
+      let newNearTo = searchParams.get("town") ?? "";
       if (newNearTo in locations) {
         setLocationParam(locations[newNearTo]);
 
@@ -136,7 +136,6 @@ export default function WalksPage() {
     if (locationsWalkObjects) {
       let filteredWalkObjects = [...locationsWalkObjects];
 
-      console.log(accessibleByBus)
       if (accessibleByBus) {
         filteredWalkObjects = filteredWalkObjects.filter(walk => Object.keys(walk.walk.busConnections ?? {}).length > 0);
       }

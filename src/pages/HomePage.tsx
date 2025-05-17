@@ -10,6 +10,7 @@ import { LakeMap } from "../components/map";
 
 import { useWalks } from "../hooks/useWalks";
 import setPageTitle from "../hooks/setPageTitle";
+import WalkSearch from "../components/WalkSearch";
 
 
 export function HomePage() {
@@ -24,11 +25,8 @@ export function HomePage() {
     <main className="home-page">
       <section className="home__hero-section">
         <div className="home__hero">
-          <h1 className="title">Step Into Walks All Over The Lake District</h1>
-          <input type="text"
-            className="home__hero-search"
-            placeholder="Search for a route, fell, or town"
-          />
+          <h1 className="title">Your Guide to Walking The Wainwrights</h1>
+          <WalkSearch className="home__hero-search" />
           <Link to="/walks" className="button underlined">View all walks</Link>
         </div>
 
@@ -42,7 +40,7 @@ export function HomePage() {
       <section>
         <div className="home__featured">
           <div className="home__featured-title">
-            <h2 className="heading">Start Walking The Wainwrights</h2>
+            <h2 className="heading">Walk The Lake District</h2>
             <p>Check out today's featured routes:</p>
           </div>
 
@@ -52,7 +50,7 @@ export function HomePage() {
             })}
           </div>
 
-          <Link to="/walks" className="button">View all walks</Link>
+          <Link to="/walks" className="button primary">View more walks</Link>
         </div>
       </section>
 

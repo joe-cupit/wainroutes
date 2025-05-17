@@ -10,23 +10,17 @@
   gap: var(--gap-600);
   justify-content: center;
   align-items: center;
+  z-index: 2;
 
   color: var(--clr-white-400);
 }
 .home__hero .title {
-  max-width: 20ch;
+  max-width: 18ch;
   text-align: center;
 }
 .home__hero-search {
-  color: var(--clr-black-400);
-  background: var(--clr-white-400);
-
-  border: none;
-  border-radius: 999rem;
   width: min(38rem, 80%);
-
-  padding-inline: var(--gap-500);
-  padding-block: var(--gap-400);
+  z-index: 1;
 }
 
 .home__hero-image,
@@ -34,14 +28,13 @@
   position: absolute;
   inset: 0;
   grid-column: full-width;
-  z-index: -1;
-}
-.home__hero-image {
-  z-index: -2;
 }
 .home__hero-image-overlay {
   background: var(--clr-black-400);
   opacity: 0.1;
+
+  z-index: 1;
+  pointer-events: none;
 }
 
 
@@ -58,8 +51,10 @@
 }
 .home__featured-walks {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(min(22rem, 90%), 1fr));
   gap: 1rem;
+  justify-items: center;
+  align-content: center;
 
   max-width: 100%;
   overflow-x: auto;
