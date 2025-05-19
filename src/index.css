@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 :root {
   /*  fonts & styles  */
@@ -12,10 +12,11 @@
   /* --ff-heading: "Urbanist", sans-serif; */
   --ff-heading: "Lora", serif;
   --ff-body: "DM Sans", sans-serif;
+  --ff-mono: "DM Mono", monospace;
 
   --fs-200: clamp(0.8125rem, 1.25vw, 0.9375rem);
   --fs-300: clamp(0.9375rem, 1.5vw, 1rem);
-  --fs-400: clamp(1rem, 2vw, 1.125rem);
+  --fs-400: clamp(1rem, 2.25vw, 1.125rem);
   --fs-500: clamp(1.125rem, 2.5vw, 1.25rem);
   --fs-600: clamp(1.25rem, 3.5vw, 1.5rem);
   --fs-800: clamp(1.825rem, 4vw, 2.625rem);
@@ -34,7 +35,8 @@
   --gap-500: clamp(1.25rem, 1.5vw, 1.5rem);
   --gap-600: clamp(1.5rem, 2vw, 2rem);
   --gap-700: clamp(2rem, 2vw, 4rem);
-  --gap-800: clamp(4rem, 4vw, 6rem);
+  --gap-800: clamp(3rem, 3vw, 5rem);
+  --gap-900: clamp(4rem, 4vw, 6rem);
 
   /*  colours  */
   color-scheme: light;

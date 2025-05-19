@@ -2,27 +2,53 @@
   padding-block: var(--gap-400);
 }
 
-.hills-page-map {
-  width: 100%;
-  height: min(35rem, 95vw);
+.hills_header {
+  display: grid;
+  gap: var(--gap-400);
+
+  margin-block: var(--gap-300) var(--gap-500);
+}
+
+.hills__main {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--gap-900);
+  row-gap: var(--gap-600);
+}
+
+.hills__list {
+  flex: 1.5;
+  max-width: 50rem;
+  flex-basis: min(33rem, 100%);
+}
+.hills__map {
+  position: sticky;
+  top: var(--gap-400);
+
+  flex: 1;
+  flex-basis: 31rem;
+  height: max(35rem, calc(100vh - 2 * var(--gap-400)));
 }
 
 
-.hills-page input {
-  margin-block-end: 1rem;
-  padding: 0.125rem 0.25rem;
+.hills__search {
+  width: min(24ch, 100%);
+  margin-block-end: calc(1rem + 1px);
 
-  width: 12ch;
+  border-bottom: 2px solid var(--clr-neutral-600);
+}
+.hills__search input {
+  padding: 0.125rem 0.25rem;
 
   font-size: var(--fs-600);
 
   background: none;
   border: none;
   outline: none;
-  border-bottom: 2px solid var(--clr-neutral-600);
 }
-.hills-page input:focus {
-  border-bottom: 2px solid var(--clr-neutral-400);
+.hills__search:has(input:focus-visible) {
+  margin-block-end: 1rem;
+  border-bottom: 3px solid var(--clr-neutral-400);
 }
 .hills-page a:hover {
   text-decoration: underline;
@@ -30,18 +56,36 @@
 
 
 .hills-page table {
-  --inner-gap: 1.5rem;
+  width: 100%;
 
+  --_book-col-width: 6ch;
+  --_height-col-width: 7ch;
+
+  border-spacing: 0 var(--gap-300);
   @media (max-width: 700px) {
-    --inner-gap: 0.25rem;
+    border-spacing: 0 var(--gap-400);
   }
-
-  border-spacing: var(--inner-gap) 0.5rem;
-  margin-inline: calc(var(--inner-gap)*-1);
 }
 .hills-page table thead {
   font-weight: var(--fw-bold);
+  font-size: var(--fs-500);
   cursor: pointer;
+}
+
+.hills-page table thead td:first-child {
+  width: var(--_book-col-width);
+}
+.hills-table__mountain {
+  width: calc(100% - var(--_book-col-width) - var(--_height-col-width));
+}
+.hills-page table thead td:last-child {
+  width: var(--_height-col-width);
+}
+
+@media (max-width: 700px) {
+  .hills-page table thead td:first-child {
+    padding-inline-end: var(--gap-300);
+  }
 }
 .hills-page .table-arrow {
   color: var(--clr-neutral-600);
@@ -49,8 +93,11 @@
 .hills-page .table-arrow.active {
   color: var(--clr-neutral-400);
 }
-.hills-page table tbody td:last-child {
+.hills-page table td:last-child {
   text-align: right;
+}
+.hills-page table tbody td:last-child {
+  font-family: var(--ff-mono);
 }
 
 
@@ -59,7 +106,7 @@
 
   display: grid;
   gap: 0;
-  margin: auto;
+  margin-inline: var(--gap-300) auto;
 
   width: 2rem;
   height: 2.5rem;

@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { Hill } from "./HillPage";
 import { useHills } from "../hooks/useHills";
 import setPageTitle from "../hooks/setPageTitle";
-import FlatMap from "../components/FlatMap";
 import { displayElevation } from "../utils/unitConversions";
+import { LakeMap } from "../components/map";
+import { useHillMarkers } from "../hooks/useMarkers";
 
 
 const titles : {[book : number]: string} = {
@@ -18,7 +19,7 @@ const titles : {[book : number]: string} = {
 export function HillsPage() {
   setPageTitle("The Wainwrights");
 
-  // const hillMarkers = useHillMarkers();
+  const hillMarkers = useHillMarkers();
   const hillData : Hill[] = Object.values(useHills()).sort((a, b) => b.height-a.height);
   const [hillList, setHillList] = useState(hillData);
 
@@ -71,58 +72,68 @@ export function HillsPage() {
   }
 
   const filteredHills = useMemo(() => {
-    return [...hillList].filter(hill => hill.name.toLowerCase().includes(filterTerm.toLowerCase()))
+    const filterTermLower = filterTerm.toLowerCase();
+    return [...hillList].filter(hill => hill.name.toLowerCase().includes(filterTermLower));
   }, [hillList, filterTerm])
 
   return (
     <main className="hills-page">
 
       <section>
-        <div className="flex-column">
+        <div className="hills_header">
           <h1 className="title">The 214 Wainwrights</h1>
-          <p>Click on a mountain for more details</p>
-          <FlatMap width={700} height={830} />
+          <p>214 fells within The Lake District, as described in A. Wainwright's <i>Pictorial Guides to the Lakeland Fells</i>.</p>
         </div>
       </section>
 
       <section>
-        <div>
-          <input type="text" placeholder="Search..." value={filterTerm} onChange={e => setFilterTerm(e.target.value)} />
+        <div className="hills__main">
+          <div className="hills__list">
+            <div className="hills__search">
+              <input type="text" placeholder="search for a fell" value={filterTerm} onChange={e => setFilterTerm(e.target.value)} />
+            </div>
 
-          <table>
-            <thead>
-              <tr>
-                <td onClick={() => sortHillData("book")}>Book <span className={"table-arrow" + (sortMode==="book" ? " active" : "")}>{sortStates[0] ? "↓": "↑"}</span></td>
-                <td onClick={() => sortHillData("mountain")}>Mountain <span className={"table-arrow" + (sortMode==="mountain" ? " active" : "")}>{sortStates[1] ? "↓": "↑"}</span></td>
-                <td onClick={() => sortHillData("height")} className="hill-card_height">Height <span className={"table-arrow" + (sortMode==="height" ? " active" : "")}>{sortStates[2] ? "↓": "↑"}</span></td>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredHills.length > 0
-              ? filteredHills?.map((hill, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>
-                        <div className="wainwright-book-top" data-book={hill.book}>
-                          <div className="wainwright-book-top-color" />
-                        </div>
-                      </td>
-                      <td className="flex-column gap-0">
-                        <h2 className="subheading">
-                          <Link to={`/wainwrights/${hill.slug}`}>{hill.name}{hill.name_secondary ? <span className="secondary-text"> ({hill.name_secondary})</span> : ""}</Link>
-                        </h2>
-                        <span className="secondary-text">{titles[hill.book]}</span>
-                      </td>
-                      <td className="text-center">{displayElevation(hill.height)}</td>
-                    </tr>
-                  )
-                })
-              : `No mountains matching '${filterTerm}'`
-              }
-            </tbody>
-          </table>
+            <table>
+              <thead>
+                <tr>
+                  <td role="button" onClick={() => sortHillData("book")}>Book <span className={"table-arrow" + (sortMode==="book" ? " active" : "")}>{sortStates[0] ? "↓": "↑"}</span></td>
+                  <td role="button" onClick={() => sortHillData("mountain")} className="hills-table__mountain">Mountain <span className={"table-arrow" + (sortMode==="mountain" ? " active" : "")}>{sortStates[1] ? "↓": "↑"}</span></td>
+                  <td role="button" onClick={() => sortHillData("height")}>Height <span className={"table-arrow" + (sortMode==="height" ? " active" : "")}>{sortStates[2] ? "↓": "↑"}</span></td>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredHills.length > 0 &&
+                  filteredHills?.map((hill, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>
+                          <div className="wainwright-book-top" data-book={hill.book} title={titles[hill.book]}>
+                            <div className="wainwright-book-top-color" />
+                          </div>
+                        </td>
+                        <td className="flex-column gap-0">
+                          <h2 className="subheading">
+                            <Link to={`/wainwrights/${hill.slug}`}>{hill.name}{hill.name_secondary ? <span className="secondary-text"> ({hill.name_secondary})</span> : ""}</Link>
+                          </h2>
+                          <span className="secondary-text">{titles[hill.book]}</span>
+                        </td>
+                        <td className="text-center">{displayElevation(hill.height)}</td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+            {filterTerm && <i>{filteredHills.length === 0 ? "No" : "Showing all"} Wainwrights matching '{filterTerm}'</i>}
+          </div>
+
+          <div className="hills__map">
+            <LakeMap mapMarkers={hillMarkers} />
+          </div>
         </div>
       </section>
+
+      <div style={{height: "5rem"}}></div>
 
     </main>
   )
