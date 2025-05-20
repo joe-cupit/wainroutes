@@ -1,3 +1,7 @@
+.home-page section {
+  --content-max-width: 1200px;
+}
+
 .home__hero-section {
   position: relative;
 
@@ -11,11 +15,12 @@
   justify-content: center;
   align-items: center;
   z-index: 2;
+  grid-column: full-width;
 
   color: var(--clr-neutral-900);
 }
 .home__hero .title {
-  max-width: 18ch;
+  max-width: min(18ch, 100%);
   text-align: center;
 }
 .home__hero-search {
@@ -44,7 +49,7 @@
   flex-direction: column;
   align-items: center;
 
-  margin-block: 3.5rem;
+  margin-block: var(--gap-800);
 }
 .home__featured-title {
   text-align: center;
@@ -58,6 +63,10 @@
 
   max-width: 100%;
   overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.home__featured-walks > .walks-card {
+  scroll-snap-align: center;
 }
 
 
@@ -65,19 +74,91 @@
   background: #e7dcd5;
 }
 .home__wainwrights {
+  --_map-min-height: 35rem;
+
   display: grid;
-  gap: 2rem;
+  gap: var(--gap-700);
   grid-template-columns: repeat(2, 1fr);
 
-  width: min(1100px, 100%);
-  margin-inline: auto;
+  margin-block: var(--gap-800);
 
-  margin-block: 3.5rem;
+  @media (max-width: 55rem) {
+    --_map-min-height: 23rem;
+
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--gap-800);
+  }
 }
 .home__wainwrights-text {
   display: grid;
-  gap: 2rem;
+  gap: var(--gap-400);
+
+  margin-block: var(--gap-500) var(--gap-600);
 }
 .home__wainwrights-map {
-  height: 100%;
+  min-height: var(--_map-min-height);
+}
+
+
+.home__faq {
+  display: grid;
+  gap: var(--gap-500);
+  justify-items: center;
+
+  margin-block: var(--gap-800);
+
+  width: min(800px, 100%);
+  margin-inline: auto;
+}
+
+
+.faq {
+  display: grid;
+  grid-auto-flow: row;
+
+  width: 100%;
+}
+
+.faq-block {
+  --_border-radius: 0.5rem;
+
+  display: grid;
+
+  width: 100%;
+  overflow: hidden;
+
+  background: var(--clr-neutral-800);
+  border: 1px solid var(--clr-neutral-700);
+}
+.faq-block:first-child {
+  border-start-start-radius: var(--_border-radius);
+  border-start-end-radius: var(--_border-radius);
+}
+.faq-block:last-child {
+  border-end-start-radius: var(--_border-radius);
+  border-end-end-radius: var(--_border-radius);
+}
+.faq-block:not(:last-child) {
+  border-block-end: none;
+}
+
+.faq__question,
+.faq__answer {
+  padding-block: var(--gap-300);
+  padding-inline: var(--gap-400);
+}
+
+.faq__question {
+  cursor: pointer;
+}
+
+.faq__answer {
+  display: none;
+
+  padding-block: var(--gap-400);
+  border-block-start: 1px solid var(--clr-neutral-700);
+  background: var(--clr-neutral-1000);
+}
+.faq-block[data-open="true"] .faq__answer {
+  display: block;
 }

@@ -1,6 +1,6 @@
 import "./HomePage.css";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Image from "../components/Image";
@@ -10,6 +10,7 @@ import { LakeMap } from "../components/map";
 
 import { useWalks } from "../hooks/useWalks";
 import setPageTitle from "../hooks/setPageTitle";
+import { useHillMarkers } from "../hooks/useMarkers";
 import WalkSearch from "../components/WalkSearch";
 
 
@@ -17,8 +18,10 @@ export function HomePage() {
 
   setPageTitle("");
 
-  const walks = useMemo(() => useWalks() as { [slug: string] : Walk }, [])
-  const featuredWalks = useMemo(() => ["helvellyn-via-striding-edge", "a-coledale-horseshoe", "the-old-man-of-coniston"], [])
+  const walks = useMemo(() => useWalks() as { [slug: string] : Walk }, []);
+  const featuredWalks = useMemo(() => ["helvellyn-via-striding-edge", "wansfell-baystones", "the-kentmere-horseshoe"], []);
+
+  const hillMarkers = useHillMarkers();
 
 
   return (
@@ -40,8 +43,7 @@ export function HomePage() {
       <section>
         <div className="home__featured">
           <div className="home__featured-title">
-            <h2 className="heading">Walk The Lake District</h2>
-            <p>Check out today's featured routes:</p>
+            <h2 className="heading">Featured Routes</h2>
           </div>
 
           <div className="home__featured-walks">
@@ -56,22 +58,68 @@ export function HomePage() {
 
       <section className="home__wainwrights-section">
         <div className="home__wainwrights">
-          <div className="home__wainwrights-text">
+          <div>
             <h2 className="heading">The 214 Wainwrights</h2>
 
-            <p></p>
-            <p></p>
-            <p></p>
-            <Link to="/wainwrights" className="button">Learn more about A. Wainwright &nbsp; ➤</Link>
+            <div className="home__wainwrights-text">
+              <p>
+                The Wainwrights are 214 fells in the Lake District collected by A. Wainwright in his seven-volume <i>Pictorial Guide to the Lakeland Fells</i>. Each book covers a different region, with hand-drawn maps, route details, and notes on the landscape.
+              </p>
+              <p>
+                Since the first volume was published in 1955, Wainwright's writing has inspired many to get out and explore the Lakes, with plenty of walkers aiming to summit the full set.
+              </p>
+              <p>
+                Here you'll find a collection of routes I've used so far on my own journey to complete the Wainwrights. Whether you're aiming for all 214 or just looking for your next day out in the fells, I hope these walks help you enjoy the Lakes.
+              </p>
+            </div>
+            <Link to="/wainwrights" className="button">Learn more about The Wainwrights</Link>
           </div>
 
           <div className="home__wainwrights-map">
-            <LakeMap />
+            <LakeMap mapMarkers={hillMarkers} />
           </div>
         </div>
       </section>
 
-      <div style={{height: "10rem"}}></div>
+      <section>
+        <div className="home__faq">
+          <h2 className="heading">FAQ</h2>
+
+          <div className="faq">
+            <FaqQuestion
+              question="Are there dog friendly walks?"
+              answer="Yes, many walks in the Lake District are suitable for fit dogs. As an owner, you have to be aware of the many Herdwick sheep that roam freely on the mountains and steep terrain."
+            />
+            <FaqQuestion
+              question="Are the walks suitable for beginners?"
+              answer="Yes, many walks provide an easier climb. The Wainwrights range in both height and steepness, so there a fell for everyone. Each route shows what might make it hard."
+            />
+          </div>
+        </div>
+      </section>
+
+      <div style={{height: "5rem"}}></div>
     </main>
+  )
+}
+
+
+function FaqQuestion({ question, answer } : { question: string; answer: string }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      className="faq-block"
+      data-open={open}
+    >
+      <h3
+        className="faq__question"
+        onClick={() => setOpen(prev => !prev)}
+      >
+        {question}
+      </h3>
+
+      <p className="faq__answer">{answer}</p>
+    </div>
   )
 }
