@@ -1,6 +1,6 @@
 import "./HillsPage.css"
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Hill } from "./HillPage";
@@ -9,6 +9,7 @@ import setPageTitle from "../hooks/setPageTitle";
 import { displayElevation } from "../utils/unitConversions";
 import { LakeMap } from "../components/map";
 import { useHillMarkers } from "../hooks/useMarkers";
+import { BackToTopIcon } from "../components/Icons";
 
 
 const titles : {[book : number]: string} = {
@@ -76,6 +77,25 @@ export function HillsPage() {
     return [...hillList].filter(hill => hill.name.toLowerCase().includes(filterTermLower));
   }, [hillList, filterTerm])
 
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  useEffect(() => {
+    function toggleOverlay() {
+      if ((document.scrollingElement?.scrollTop ?? 0) < 400) {
+        setShowScrollTop(false);
+      }
+      else {
+        setShowScrollTop(true);
+      }
+    }
+
+    window.addEventListener("scroll", toggleOverlay);
+    return () => {
+      window.removeEventListener("scroll", toggleOverlay);
+    }
+  }, [])
+
+
   return (
     <main className="hills-page">
 
@@ -89,6 +109,14 @@ export function HillsPage() {
       <section>
         <div className="hills__main">
           <div className="hills__list">
+            <button
+              className="hills__top-button"
+              onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}
+              data-show={showScrollTop}
+            >
+              <BackToTopIcon />
+            </button>
+
             <div className="hills__search">
               <input type="text" placeholder="search for a fell" value={filterTerm} onChange={e => setFilterTerm(e.target.value)} />
             </div>
