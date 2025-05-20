@@ -66,6 +66,12 @@ export function DownloadIcon() {
   )
 }
 
+export function BackToTopIcon() {
+  return (
+    <GoogleIcon d="M440-80v-647L256-544l-56-56 280-280 280 280-56 57-184-184v647h-80Z" />
+  )
+}
+
 
 function TerrainIcon({ bgColour, children, label } : { bgColour: string; children: React.ReactNode; label: string }) {
   return (
