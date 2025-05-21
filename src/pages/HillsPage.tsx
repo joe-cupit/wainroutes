@@ -141,7 +141,7 @@ export function HillsPage() {
                         </td>
                         <td className="flex-column gap-0">
                           <h2 className="subheading">
-                            <Link to={`/wainwrights/${hill.slug}`}>{hill.name}{hill.name_secondary ? <span className="secondary-text"> ({hill.name_secondary})</span> : ""}</Link>
+                            <Link to={`/wainwrights/${hill.slug}`}>{hill.name}{hill.secondaryName ? <span className="secondary-text"> ({hill.secondaryName})</span> : ""}</Link>
                           </h2>
                           <span className="secondary-text">{titles[hill.book]}</span>
                         </td>

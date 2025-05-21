@@ -52,7 +52,7 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
       newSearchOptions.push({
         type: "fell",
         name: hill.name,
-        secondaryName: hill.name_secondary,
+        secondaryName: hill.secondaryName,
         link: "/walks?wainwrights="+hill.slug,
         hill: {
           height: hill.height,

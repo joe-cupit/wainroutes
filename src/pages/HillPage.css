@@ -12,7 +12,7 @@
 
 .hill__breadcrumbs a:hover,
 .home__nearby-list a:hover,
-.home__stats a:hover {
+.hill__stats a:hover {
   text-decoration: underline;
 }
 
@@ -29,17 +29,28 @@
   font-weight: var(--fw-regular);
 }
 
-.home__group {
+.hill__group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.home__stats {
+.hill__stats {
   display: grid;
   column-gap: var(--gap-600);
   grid-template-columns: repeat(2, auto);
   max-width: fit-content;
+}
+
+.hill__classifications {
+  list-style: none;
+}
+.hill__classifications li {
+  display: inline-block;
+}
+.hill__classifications li:not(:last-child)::after {
+  content: "/";
+  margin-inline: 0.5ch;
 }
 
 .hill__walks {

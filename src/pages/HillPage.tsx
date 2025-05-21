@@ -1,14 +1,14 @@
 import "./HillPage.css";
 
+import { Fragment, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { useHills } from "../hooks/useHills";
 import setPageTitle from "../hooks/setPageTitle";
-import { displayElevation } from "../utils/unitConversions";
-import { Fragment, useMemo } from "react";
 import { useWalks } from "../hooks/useWalks";
 import { Walk } from "./WalkPage/WalkPage";
 import WalkCard from "../components/WalkCard";
+import { displayElevation } from "../utils/unitConversions";
 import haversineDistance from "../utils/haversine";
 
 
@@ -19,21 +19,33 @@ export const BookTitles : {[book : number]: string} = {
   1: "The Eastern Fells", 2: "The Far Eastern Fells", 3: "The Central Fells", 4: "The Southern Fells", 5: "The Northern Fells", 6: "The North Western Fells", 7: "The Western Fells"
 }
 
+const Classifications : { [code: string]: string } = {
+  "Ma": "Marilyn",
+  "Hew": "Hewitt",
+  "B": "Birkett",
+  "N": "Nuttall",
+  "Sim": "Simm",
+  "5": "Dodd",
+  "F": "Furth",
+}
+
 
 export type Hill = {
   slug: string;
   name: string;
-  name_secondary?: string;
+  secondaryName?: string;
+
   height: number;
   prominence: number;
+
+  gridRef: string;
   latitude: number;
   longitude: number;
-  gridReference: string;
-  book: 1 | 2 | 3 | 4 | 5 | 6 | 7;
-  hasWalk: boolean;
-  nearbyFells?: string[];
 
-  distance?: number;
+  classifications: (keyof typeof Classifications)[];
+  book: 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+  tempDistance?: number;
 }
 
 
@@ -56,14 +68,14 @@ export function HillPage() {
 
     for (let hillSlug of Object.keys(hills)) {
       if (hillSlug === slug) {
-        hills[hillSlug].distance = Infinity;
+        hills[hillSlug].tempDistance = Infinity;
         continue;
       }
 
-      hills[hillSlug].distance = haversineDistance([hillData.longitude, hillData.latitude], [hills[hillSlug].longitude ?? 0, hills[hillSlug].latitude ?? 0]) / 1000;
+      hills[hillSlug].tempDistance = haversineDistance([hillData.longitude, hillData.latitude], [hills[hillSlug].longitude ?? 0, hills[hillSlug].latitude ?? 0]) / 1000;
     }
 
-    const orderedHills = Object.values(hills).sort((a, b) => (a.distance ?? 99999) - (b.distance ?? 99999));
+    const orderedHills = Object.values(hills).sort((a, b) => (a.tempDistance ?? 99999) - (b.tempDistance ?? 99999));
     return orderedHills.slice(0, 4);
   }, [hillData])
 
@@ -79,8 +91,7 @@ export function HillPage() {
           <div>
             <p className="hill__breadcrumbs"><Link to="/wainwrights">Wainwrights</Link> / <Link to={"/wainwrights?book="+bookNum}>{BookTitles[bookNum]}</Link></p>
             <div className="hill__title">
-              <h1 className="title">{hillData.name}</h1>
-              <p className="hill__title-elevation">{displayElevation(hillData.height)}</p>
+              <h1 className="title">{hillData.name} <span className="hill__title-elevation">{displayElevation(hillData.height)}</span></h1>
             </div>
           </div>
 
@@ -88,9 +99,9 @@ export function HillPage() {
             A few sentences about the mountain, maybe a fun fact or two. Historical/cultural moments to talk about. Unique features too, with possible common ways people climb it.
           </p>
 
-          <div className="home__group">
+          <div className="hill__group">
             <h2 className="subheading">Stats</h2>
-            <div className="home__stats">
+            <div className="hill__stats">
               <h3>Book</h3>
               <p><Link to={"/wainwrights/?book="+bookNum}>{BookTitles[bookNum]}</Link></p>
               <h3>Height</h3>
@@ -98,11 +109,21 @@ export function HillPage() {
               <h3>Prominence</h3>
               <p>{displayElevation(hillData.prominence)}</p>
               <h3>Grid Ref.</h3>
-              <p>{hillData.gridReference}</p>
+              <p>{hillData.gridRef}</p>
+              <h3>Other Classifications</h3>
+              {hillData.classifications.length > 0
+              ? <ul className="hill__classifications">
+                  {Object.keys(Classifications).map((code, index) => {
+                    console.log(code)
+                    if (hillData.classifications.includes(code)) return <li key={index}>{Classifications[code]}</li>
+                  })}
+                </ul>
+              : <p>N/A</p>
+              }
             </div>
           </div>
 
-          <div className="home__group">
+          <div className="hill__group">
             <h2 className="subheading">Walk This Fell</h2>
             {Object.keys(walkData).length > 0
               ? <div className="hill__walks">
@@ -115,7 +136,7 @@ export function HillPage() {
           </div>
 
           {closestWalks.length > 0 &&
-            <div className="home__group">
+            <div className="hill__group">
               <h2 className="subheading">Some Nearby Wainwrights</h2>
               <p className="home__nearby-list">
                 {closestWalks.map((fell, index) => {
