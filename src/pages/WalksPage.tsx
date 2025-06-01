@@ -56,6 +56,19 @@ export const locations : Locations = {
   "dodd-wood": {slug: "dodd-wood", name: "Dodd Wood", coords: [-3.1868, 54.6428]},
 }
 
+const walkDelimiters = [0, 8, 16, 24];
+const walkDistances = Object.fromEntries(walkDelimiters.map((k, i) => (i + 1 < walkDelimiters.length) ? [k + "-" + walkDelimiters[i+1], [k, walkDelimiters[i+1]]] : [k+"+", [k]]));
+const distanceOptions = {
+  "any": "Any",
+  ...Object.fromEntries(Object.entries(walkDistances).map(([k, v]) =>
+    [k, (v[0] == 0
+        ? "<"+getDistanceValue(v[1], 0)
+        : getDistanceValue(v[0], 0) + (v.length > 1 ? "-"+getDistanceValue(v[1], 0) : "")
+        ) + getDistanceUnit() + (v.length == 1 ? "+" : "")
+    ]
+  ))
+}
+
 
 export default function WalksPage() {
 
@@ -65,22 +78,63 @@ export default function WalksPage() {
 
   const [locationParam, setLocationParam] = useState<Location | null>(null);
   const [locationSelectEntries, setLocationSelectEntries] = useState<string[]>(["keswick", "ambleside", "grasmere", "buttermere", "borrowdale", "coniston", "glenridding", "windermere"]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setURLSearchParams] = useSearchParams();
+
+  const setSearchParams = (searchParams?: URLSearchParams) => {
+    setURLSearchParams(searchParams ?? {}, { replace: true })
+  }
+
+  const [distanceFilter, setDistanceFilter] = useState("any");
+  const [wainFiltered, setWainFiltered] = useState<string[]>([]);
+  const [accessibleByBus, setAccessibleByBus] = useState(false);
 
   const setLocationName = (name: string) => {
     if (name in locations) {
-      setLocationParam(locations[name]);
       searchParams.set("town", name);
       setSearchParams(searchParams);
     }
     else {
       searchParams.delete("town");
       setSearchParams(searchParams);
-      setLocationParam(null)
     }
   }
 
+  const setWainwrightSlugs = (wainwrights: string[]) => {
+    if (wainwrights.length > 0) {
+      searchParams.set("wainwrights", wainwrights.join(","));
+      setSearchParams(searchParams);
+    }
+    else {
+      searchParams.delete("wainwrights");
+      setSearchParams(searchParams);
+    }
+  }
+
+  const setDistanceValue = (val: string) => {
+    if (val != "any") {
+      searchParams.set("distance", val);
+      setSearchParams(searchParams);
+    }
+    else {
+      searchParams.delete("distance");
+      setSearchParams(searchParams);
+    }
+  }
+
+  const setAccessibleByBusBool = (val: boolean) => {
+    if (val) {
+      searchParams.set("by-bus", "true");
+      setSearchParams(searchParams);
+    }
+    else {
+      searchParams.delete("by-bus");
+      setSearchParams(searchParams);
+    }
+  }
+
+
   useEffect(() => {
+    // update town
     if (searchParams.has("town")) {
       let newNearTo = searchParams.get("town") ?? "";
       if (newNearTo in locations) {
@@ -90,9 +144,29 @@ export default function WalksPage() {
           setLocationSelectEntries(prev => [...prev, newNearTo]);
         }
       }
-
+      else {
+        searchParams.delete("town");
+      }
     }
     else setLocationParam(null);
+
+    // update wainwrights
+    setWainFiltered(searchParams.get("wainwrights")?.split(",") ?? []);
+
+    // update length
+    if (searchParams.has("distance")) {
+      let newDistance = searchParams.get("distance") ?? "any";
+      if (newDistance in distanceOptions) {
+        setDistanceFilter(newDistance);
+      }
+      else {
+        searchParams.delete("distance");
+      }
+    }
+    else setDistanceFilter("any");
+
+    // update accessible by bus
+    setAccessibleByBus(searchParams.get("by-bus") ? true : false)
   }, [searchParams])
 
 
@@ -109,10 +183,6 @@ export default function WalksPage() {
 
     return newWalkObjects;
   }, [])
-
-  const [distanceFilter, setDistanceFilter] = useState("any");
-  const [wainFiltered, setWainFiltered] = useState<string[]>([]);
-  const [accessibleByBus, setAccessibleByBus] = useState(false);
 
   const locationsWalkObjects = useMemo(() => {
     if (locationParam) setPageTitle("Lake District Walks in " + locationParam?.name);
@@ -140,21 +210,14 @@ export default function WalksPage() {
         filteredWalkObjects = filteredWalkObjects.filter(walk => Object.keys(walk.walk.busConnections ?? {}).length > 0);
       }
 
-      switch (distanceFilter) {
-        case "<5":
-          filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.length && (walk.walk.length <= 5));
-          break;
-        case "5-10":
-          filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.length && (walk.walk.length >= 5 && walk.walk.length <= 10));
-          break;
-        case "10-20":
-          filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.length && (walk.walk.length >= 10 && walk.walk.length <= 20));
-          break;
-        case ">20":
-          filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.length && (walk.walk.length >= 20));
-          break;
-        default:
-          break;
+      if (distanceFilter != "any" && distanceFilter in walkDistances) {
+        let minmax = walkDistances[distanceFilter] ?? [];
+        if (minmax.length > 1) {
+          filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.length && (walk.walk.length >= minmax[0] && walk.walk.length <= minmax[1]));
+        }
+        else if (minmax.length > 0) {
+          filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.length && (walk.walk.length >= minmax[0]));
+        }
       }
 
       if (wainFiltered.length > 0) {
@@ -228,7 +291,7 @@ export default function WalksPage() {
       ),
       enabledValues: enabledWainwrights,
       activeValues: wainFiltered,
-      setActiveValues: setWainFiltered,
+      setActiveValues: setWainwrightSlugs,
       groupName: "fells"
     },
     placeholder: "filter fells",
@@ -241,15 +304,9 @@ export default function WalksPage() {
     type: "radio",
     data: {
       groupId: "distance",
-      values: {
-        "any": "Any",
-        "<5": "<"+getDistanceValue(5, 0)+getDistanceUnit(),
-        "5-10": getDistanceValue(5, 0)+"-"+getDistanceValue(10, 0)+getDistanceUnit(),
-        "10-20": getDistanceValue(10, 0)+"-"+getDistanceValue(20, 0)+getDistanceUnit(),
-        ">20": ">"+getDistanceValue(20, 0)+getDistanceUnit()
-      },
+      values: distanceOptions,
       currentValue: distanceFilter,
-      setValue: setDistanceFilter
+      setValue: setDistanceValue
     },
   }
 
@@ -257,11 +314,12 @@ export default function WalksPage() {
 
 
   const resetFilters = useCallback(() => {
-    townSelect.data.setValue("any");
-    wainChoose.data.setActiveValues([]);
-    distRadios.data.setValue("any");
-    setAccessibleByBus(false);
-    setSearchTerm("");
+    // townSelect.data.setValue("any");
+    // wainChoose.data.setActiveValues([]);
+    // distRadios.data.setValue("any");
+    // setAccessibleByBus(false);
+    // setSearchTerm("");
+    setSearchParams();
   }, [])
 
 
@@ -288,7 +346,7 @@ export default function WalksPage() {
                 <CheckboxFilter
                   name="Accessible by bus"
                   checked={accessibleByBus}
-                  onChange={e => setAccessibleByBus(e.target.checked)}
+                  onChange={e => setAccessibleByBusBool(e.target.checked)}
                 />
               </FilterGroup>
             </Filters>
