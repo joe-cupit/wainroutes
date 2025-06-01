@@ -56,6 +56,7 @@
 .hills__top-button[data-show="true"] {
   display: flex;
   opacity: 1;
+  z-index: calc(infinity);
 
   @starting-style {
     opacity: 0;
@@ -131,6 +132,14 @@
 }
 .hills-page table tbody td:last-child {
   font-family: var(--ff-mono);
+}
+
+.hills__table-height {
+  font-size: calc(var(--fs-400) * 1.05);
+}
+
+.hills__list-note {
+  margin-block-start: var(--gap-400);
 }
 
 

@@ -81,8 +81,9 @@ export function CheckboxFilterGroup({ data, expandable } : { data: CheckboxData;
       <div className={"filter__checkbox-group" + ((expanded && Object.keys(data.values).length > minEntries) ? " expanded" : "")}>
         {Object.keys(data.values).length > 0
         ? Object.keys(data.values)
-            // .sort((a, b) => (data.activeValues.includes(a) && !data.activeValues.includes(b)) ? -1 : 1)
+            .sort()
             .sort((a, b) => data.enabledValues ? ((!data.enabledValues.includes(a) && data.enabledValues.includes(b)) ? 1 : 0) : 0)
+            .sort((a, b) => (!data.activeValues.includes(a) && data.activeValues.includes(b)) ? 1 : 0)
             .splice(0, (expanded ? 999 : minEntries))
             .map((key, index) => {
               return (
@@ -95,7 +96,7 @@ export function CheckboxFilterGroup({ data, expandable } : { data: CheckboxData;
                       else data.setActiveValues(data.activeValues.filter(k => k !== key))
                     }
                   }}
-                  disabled={data.enabledValues ? !data.enabledValues.includes(key) : false }
+                  disabled={!data.activeValues.includes(key) && (data.enabledValues ? !data.enabledValues.includes(key) : false) }
                 />
               )
           })

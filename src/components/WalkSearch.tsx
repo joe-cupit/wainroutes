@@ -48,6 +48,17 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
   const searchOptions = useMemo(() => {
     var newSearchOptions : SearchOption[] = [];
 
+    for (let walk of Object.values(useWalks() as { [slug: string] : Walk })) {
+      newSearchOptions.push({
+        type: "walk",
+        name: walk.title,
+        link: "/walks/"+walk.slug,
+        walk: {
+          length: walk.length ?? 0,
+          wainwrights: walk.wainwrights?.length ?? 0
+        }
+      });
+    }
     for (let hill of Object.values(useHills() as { [slug: string] : Hill })) {
       newSearchOptions.push({
         type: "fell",
@@ -57,17 +68,6 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
         hill: {
           height: hill.height,
           book: BookTitles[hill.book]
-        }
-      });
-    }
-    for (let walk of Object.values(useWalks() as { [slug: string] : Walk })) {
-      newSearchOptions.push({
-        type: "walk",
-        name: walk.title,
-        link: "/walks/"+walk.slug,
-        walk: {
-          length: walk.length ?? 0,
-          wainwrights: walk.wainwrights?.length ?? 0
         }
       });
     }
@@ -90,7 +90,8 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
     const lowerSearchTerm = searchTerm.trim().toLowerCase();
     return searchOptions
             .filter(option => option.name.toLowerCase().includes(lowerSearchTerm))
-            .sort((a, b) => a.name.toLowerCase().indexOf(lowerSearchTerm) - b.name.toLowerCase().indexOf(lowerSearchTerm));
+            .sort((a, b) => a.name.toLowerCase().indexOf(lowerSearchTerm) - b.name.toLowerCase().indexOf(lowerSearchTerm))
+            .sort((a, b) => (b.name.toLowerCase() === lowerSearchTerm) ? 1 : 0);
   }, [searchTerm, searchOptions])
 
 

@@ -145,14 +145,14 @@ export function HillsPage() {
                           </h2>
                           <span className="secondary-text">{titles[hill.book]}</span>
                         </td>
-                        <td className="text-center">{displayElevation(hill.height)}</td>
+                        <td className="hills__table-height">{displayElevation(hill.height)}</td>
                       </tr>
                     )
                   })
                 }
               </tbody>
             </table>
-            {filterTerm && <i>{filteredHills.length === 0 ? "No" : "Showing all"} Wainwrights matching '{filterTerm}'</i>}
+            {filterTerm && <p className="hills__list-note">{filteredHills.length === 0 ? "No" : "Showing all"} Wainwrights matching <i>{"'"+filterTerm+"'"}</i></p>}
           </div>
 
           <div className="hills__map">

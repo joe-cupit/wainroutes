@@ -126,7 +126,7 @@ html {
   overflow: hidden;
   margin-block-end: 0.5rem;
 
-  @media (max-width: 68rem) {
+  @media (max-width: 83rem) {
     grid-column: full-width;
   }
 }
@@ -175,7 +175,7 @@ html {
   padding-inline: 1rem;
   width: 100%;
 
-  @media (max-width: 68rem) {
+  @media (max-width: 83rem) {
     padding-inline: 0;
   }
 }

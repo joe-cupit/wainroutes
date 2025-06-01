@@ -1,5 +1,5 @@
 .weather-page {
-  margin-bottom: var(--gap-800);
+  margin-bottom: var(--gap-900);
 }
 .weather-page section {
   padding-block: var(--gap-400);
