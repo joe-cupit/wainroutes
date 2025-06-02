@@ -1,7 +1,6 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import AllWeatherData from "../../../assets/individual_weather.json";
 import { displayDistance, displayElevation, displaySpeed, displayTemperature } from "../../../utils/unitConversions";
 
 
@@ -49,14 +48,25 @@ type IndividualWeather = {
 export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLDivElement>; weatherLoc: string | undefined }) {
   if (!weatherLoc) return <></>;
 
-  const weatherData = (AllWeatherData as {[name : string]: IndividualWeather})[weatherLoc];
+  const [weatherData, setWeatherData] = useState<IndividualWeather | null>(null);
+  useEffect(() => {
+    console.log(encodeURIComponent(weatherLoc))
+
+    fetch('https://data.wainroutes.co.uk/weather_points.json?loc='+encodeURIComponent(weatherLoc))
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch walk weather')
+        return res.json()
+      })
+      .then((data) => setWeatherData(data))
+      .catch((err) => {throw new Error(err.message)})
+  }, [])
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const [selectedDayIndex, setSelectedDayIndex] = useState(0);
 
   const selectedDayWeather = useMemo(() =>
     weatherData ? weatherData?.days?.[selectedDayIndex] : null
-  , [selectedDayIndex])
+  , [selectedDayIndex, weatherData])
 
   const formatDate = useCallback((dateString : string | undefined) => {
     if (!dateString) return "";

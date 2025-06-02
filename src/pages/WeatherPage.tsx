@@ -1,9 +1,8 @@
 import "./WeatherPage.css";
 
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import setPageTitle from "../hooks/setPageTitle";
 
-import weatherDataJson from "../assets/weather.json";
 const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg");
 let WeatherSymbols : { [name: string] : any } = {};
 for (const path in WeatherSymbolsFolder) {
@@ -62,7 +61,16 @@ export function WeatherPage() {
 
   setPageTitle("Lake District Weather");
 
-  const weatherData : Weather = weatherDataJson;
+  const [weatherData, setWeatherData] = useState<Weather>();
+  useEffect(() => {
+    fetch('https://data.wainroutes.co.uk/weather.json')
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch')
+        return res.json()
+      })
+      .then((data) => setWeatherData(data))
+      .catch((err) => {throw new Error(err.message)})
+  }, [])
 
 
   return (
