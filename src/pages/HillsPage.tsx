@@ -3,7 +3,6 @@ import "./HillsPage.css"
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Hill } from "./HillPage";
 import { useHills } from "../hooks/useHills";
 import setPageTitle from "../hooks/setPageTitle";
 import { displayElevation } from "../utils/unitConversions";
@@ -21,56 +20,53 @@ export function HillsPage() {
   setPageTitle("The Wainwrights");
 
   const hillMarkers = useHillMarkers();
-  const hillData : Hill[] = Object.values(useHills()).sort((a, b) => b.height-a.height);
-  const [hillList, setHillList] = useState(hillData);
+  const hillData = useHills();
 
   const [filterTerm, setFilterTerm] = useState("");
 
   const [sortMode, setSortMode] = useState("height");
   const [sortStates, setSortStates] = useState([false, false, true]);
 
-  function sortHillData(sortBy: string) {
-    switch (sortBy) {
-      case "book":
-        if (sortMode === "book") {
-          if (sortStates[0]) setHillList([...hillList].sort((a, b) => a.book-b.book));
-          else setHillList([...hillList].sort((b, a) => a.book-b.book));
-          setSortStates([!sortStates[0], sortStates[1], sortStates[2]]);          
-        }
-        else {
-          if (!sortStates[0]) setHillList([...hillList].sort((a, b) => a.book-b.book));
-          else setHillList([...hillList].sort((b, a) => a.book-b.book));
-        }
-        setSortMode("book");
-        break;
-      case "mountain":
-        if (sortMode === "mountain") {
-          if (sortStates[1]) setHillList([...hillList].sort((a, b) => a.name.localeCompare(b.name)));
-          else setHillList([...hillList].sort((b, a) => a.name.localeCompare(b.name)));
-          setSortStates([sortStates[0], !sortStates[1], sortStates[2]]);          
-        }
-        else {
-          if (!sortStates[1]) setHillList([...hillList].sort((a, b) => a.name.localeCompare(b.name)));
-          else setHillList([...hillList].sort((b, a) => a.name.localeCompare(b.name)));
-        }
-        setSortMode("mountain");
-        break;
-      case "height":
-        if (sortMode === "height") {
-          if (sortStates[2]) setHillList([...hillList].sort((a, b) => a.height-b.height));
-          else setHillList([...hillList].sort((b, a) => a.height-b.height));
+
+  function updateSortMode(newSortMode: string) {
+    if (newSortMode == sortMode) {
+      switch (newSortMode) {
+        case "book":
+          setSortStates([!sortStates[0], sortStates[1], sortStates[2]]);
+          break;
+        case "mountain":
+          setSortStates([sortStates[0], !sortStates[1], sortStates[2]]);
+          break;
+        case "height":
           setSortStates([sortStates[0], sortStates[1], !sortStates[2]]);
-        }
-        else {
-          if (!sortStates[2]) setHillList([...hillList].sort((a, b) => a.height-b.height));
-          else setHillList([...hillList].sort((b, a) => a.height-b.height));
-        }
-        setSortMode("height");
-        break;
-      default:
-        break;
+          break;
+        default:
+          break;
+      }
+    }
+    else {
+      setSortMode(newSortMode);
     }
   }
+
+  const hillList = useMemo(() => {
+    if (!hillData) return [];
+
+    switch (sortMode) {
+      case "book":
+        if (!sortStates[0]) return [...hillData].sort((a, b) => a.book-b.book);
+        else return [...hillData].sort((b, a) => a.book-b.book);
+      case "mountain":
+        if (!sortStates[1]) return [...hillData].sort((a, b) => a.name.localeCompare(b.name));
+        else return [...hillData].sort((b, a) => a.name.localeCompare(b.name));
+      case "height":
+        if (!sortStates[2]) return [...hillData].sort((a, b) => a.height-b.height);
+        else return [...hillData].sort((b, a) => a.height-b.height);
+      default:
+        return [];
+    }
+  }, [hillData, sortMode, sortStates])
+
 
   const filteredHills = useMemo(() => {
     const filterTermLower = filterTerm.toLowerCase();
@@ -124,9 +120,9 @@ export function HillsPage() {
             <table>
               <thead>
                 <tr>
-                  <td role="button" onClick={() => sortHillData("book")}>Book <span className={"table-arrow" + (sortMode==="book" ? " active" : "")}>{sortStates[0] ? "↓": "↑"}</span></td>
-                  <td role="button" onClick={() => sortHillData("mountain")} className="hills-table__mountain">Mountain <span className={"table-arrow" + (sortMode==="mountain" ? " active" : "")}>{sortStates[1] ? "↓": "↑"}</span></td>
-                  <td role="button" onClick={() => sortHillData("height")}>Height <span className={"table-arrow" + (sortMode==="height" ? " active" : "")}>{sortStates[2] ? "↓": "↑"}</span></td>
+                  <td role="button" onClick={() => updateSortMode("book")}>Book <span className={"table-arrow" + (sortMode==="book" ? " active" : "")}>{sortStates[0] ? "↓": "↑"}</span></td>
+                  <td role="button" onClick={() => updateSortMode("mountain")} className="hills-table__mountain">Mountain <span className={"table-arrow" + (sortMode==="mountain" ? " active" : "")}>{sortStates[1] ? "↓": "↑"}</span></td>
+                  <td role="button" onClick={() => updateSortMode("height")}>Height <span className={"table-arrow" + (sortMode==="height" ? " active" : "")}>{sortStates[2] ? "↓": "↑"}</span></td>
                 </tr>
               </thead>
               <tbody>

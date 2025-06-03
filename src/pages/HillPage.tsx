@@ -3,13 +3,12 @@ import "./HillPage.css";
 import { Fragment, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { useHills } from "../hooks/useHills";
+import { useHill } from "../hooks/useHills";
 import setPageTitle from "../hooks/setPageTitle";
 import { useWalks } from "../hooks/useWalks";
-import { Walk } from "./WalkPage/WalkPage";
 import WalkCard from "../components/WalkCard";
 import { displayElevation } from "../utils/unitConversions";
-import haversineDistance from "../utils/haversine";
+import { NotFoundPage } from "./error/NotFoundPage";
 
 
 const BookNumbers : {[book : number]: string} = {
@@ -45,38 +44,24 @@ export type Hill = {
   classifications: (keyof typeof Classifications)[];
   book: 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
-  tempDistance?: number;
+  nearbyHills?: {slug: string, name: string}[];
 }
 
 
 export function HillPage() {
   const { slug } = useParams();
-  const hillData = useHills(slug) as Hill;
-  const walkData = useWalks()?.filter(walk => walk.wainwrights?.includes(slug ?? ""));
-
+  const hillData = useHill(slug);
+  
   setPageTitle(hillData?.name ?? "The Wainwrights");
   
+  if (hillData) return <Hill hillData={hillData} />
+  else return <NotFoundPage />
+}
+
+
+function Hill({ hillData } : { hillData: Hill }) {
+  const walkData = useWalks()?.filter(walk => walk.wainwrights?.includes(hillData.slug ?? ""));
   const bookNum = useMemo(() => hillData?.book, [hillData]);
-
-
-  const closestWalks = useMemo(() => {
-    if (!hillData) return [];
-
-    let hills = useHills() as {[slug : string]: Hill};
-
-    for (let hillSlug of Object.keys(hills)) {
-      if (hillSlug === slug) {
-        hills[hillSlug].tempDistance = Infinity;
-        continue;
-      }
-
-      hills[hillSlug].tempDistance = haversineDistance([hillData.longitude, hillData.latitude], [hills[hillSlug].longitude ?? 0, hills[hillSlug].latitude ?? 0]) / 1000;
-    }
-
-    const orderedHills = Object.values(hills).sort((a, b) => (a.tempDistance ?? 99999) - (b.tempDistance ?? 99999));
-    return orderedHills.slice(0, 4);
-  }, [hillData])
-
 
   return (
     <main className="hill-page">
@@ -132,15 +117,15 @@ export function HillPage() {
             }
           </div>
 
-          {closestWalks.length > 0 &&
+          {hillData.nearbyHills && hillData.nearbyHills.length > 0 &&
             <div className="hill__group">
               <h2 className="subheading">Some Nearby Wainwrights</h2>
               <p className="home__nearby-list">
-                {closestWalks.map((fell, index) => {
+                {hillData.nearbyHills.map((fell, index) => {
                   return (
                     <Fragment key={index}>
                       <Link to={"/wainwrights/"+fell.slug}>{fell.name}</Link>
-                      {index+1 < closestWalks.length && ", "}
+                      {hillData.nearbyHills && index+1 < hillData.nearbyHills.length && ", "}
                     </Fragment>
                   )
                 })}

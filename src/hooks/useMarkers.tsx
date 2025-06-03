@@ -18,7 +18,7 @@ export const useHillMarkers = (filters?: string[]) => {
   const hillData = useHills();
 
   const hillMarkers = useMemo(() => hillData 
-    ? Object.values(hillData)
+    ? hillData
         .map(hill => ({
           coordinates: [hill.latitude, hill.longitude],
           properties: {

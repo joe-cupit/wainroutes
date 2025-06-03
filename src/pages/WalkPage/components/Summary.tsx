@@ -1,8 +1,7 @@
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 import { Walk } from "../WalkPage";
-import { Hill } from "../../HillPage";
 
 import { useHills } from "../../../hooks/useHills";
 import { displayDistance, displayElevation } from "../../../utils/unitConversions";
@@ -10,7 +9,12 @@ import { displayDistance, displayElevation } from "../../../utils/unitConversion
 
 export function Summary({ secRef, title, titleRef, wainwrights, length, elevation, intro } : { secRef: React.RefObject<HTMLDivElement>; title: Walk["title"]; titleRef: React.RefObject<HTMLHeadingElement>; wainwrights: Walk["wainwrights"]; length: Walk["length"]; elevation: Walk["elevation"]; intro: Walk["intro"] }) {
 
-  const hillData = useHills() as {[slug : string] : Hill};
+  const hillsData = useHills();
+  const hillNames = useMemo(() => {
+    if (!hillsData) return;
+
+    return Object.fromEntries(hillsData.map(hill => [hill.slug, hill.name]))
+  }, [hillsData])
 
   return (
     <div className="walk-page_summary" ref={secRef}>
@@ -25,7 +29,7 @@ export function Summary({ secRef, title, titleRef, wainwrights, length, elevatio
               return (
                 <Fragment key={index}>
                   <span>
-                    <Link to={"/wainwrights/"+hill}>{hillData?.[hill]?.name}</Link>
+                    <Link to={"/wainwrights/"+hill}>{hillNames?.[hill]}</Link>
                     {(index+1 < wainwrights?.length ? "," : "")}
                   </span>
                   {(index+2 === wainwrights?.length ? " and " : " ")}

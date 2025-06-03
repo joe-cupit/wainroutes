@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import { useHills } from "../hooks/useHills";
 import { useWalks } from "../hooks/useWalks";
 import { locations } from "../pages/WalksPage";
-import { Walk } from "../pages/WalkPage/WalkPage";
-import { BookTitles, Hill } from "../pages/HillPage";
+import { BookTitles } from "../pages/HillPage";
 
 import { HikingIcon, LocationIcon, MountainIcon } from "./Icons";
 import { displayDistance, displayElevation } from "../utils/unitConversions";
@@ -46,6 +45,7 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
   const [searchTerm, setSearchTerm] = useState("");
 
   const walksData = useWalks();
+  const hillsData = useHills();
   const searchOptions = useMemo(() => {
     var newSearchOptions : SearchOption[] = [];
 
@@ -62,17 +62,19 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
         });
       }
     }
-    for (let hill of Object.values(useHills() as { [slug: string] : Hill })) {
-      newSearchOptions.push({
-        type: "fell",
-        name: hill.name,
-        secondaryName: hill.secondaryName,
-        link: "/walks?wainwrights="+hill.slug,
-        hill: {
-          height: hill.height,
-          book: BookTitles[hill.book]
-        }
-      });
+    if (hillsData) {
+      for (let hill of hillsData) {
+        newSearchOptions.push({
+          type: "fell",
+          name: hill.name,
+          secondaryName: hill.secondaryName,
+          link: "/walks?wainwrights="+hill.slug,
+          hill: {
+            height: hill.height,
+            book: BookTitles[hill.book]
+          }
+        });
+      }
     }
     for (let town of Object.values(locations)) {
       if (town) {

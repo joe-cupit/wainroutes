@@ -279,17 +279,22 @@ export default function WalksPage() {
     }
   }
 
+  const hillsData = useHills();
+  const wainValues = useMemo(() => {
+    if (!hillsData) return {}
+    else return (
+      Object.fromEntries(hillsData
+        .filter(hill => hill.name.toLowerCase().indexOf(searchTerm) >= 0)
+        // .sort((a, b) => b.height - a.height)
+        .sort((a, b) => a.name.toLowerCase().indexOf(searchTerm) - b.name.toLowerCase().indexOf(searchTerm))
+        .map(hill => [hill.slug, hill.name]))
+      )
+  }, [hillsData])
   const wainChoose : FilterData = {
     title: "Wainwrights",
     type: "searchable-checkbox",
     data: {
-      values: Object.fromEntries(
-        Object.values(useHills() as {[slug: string]: Hill})
-          .filter(hill => hill.name.toLowerCase().indexOf(searchTerm) >= 0)
-          // .sort((a, b) => b.height - a.height)
-          .sort((a, b) => a.name.toLowerCase().indexOf(searchTerm) - b.name.toLowerCase().indexOf(searchTerm))
-          .map(hill => [hill.slug, hill.name])
-      ),
+      values: wainValues,
       enabledValues: enabledWainwrights,
       activeValues: wainFiltered,
       setActiveValues: setWainwrightSlugs,
