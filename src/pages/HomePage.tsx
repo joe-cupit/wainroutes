@@ -1,25 +1,26 @@
 import "./HomePage.css";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Image from "../components/Image";
-import { Walk } from "./WalkPage/WalkPage";
 import WalkCard from "../components/WalkCard";
 import { LakeMap } from "../components/map";
 
-import { useWalks } from "../hooks/useWalks";
+import { useWalk } from "../hooks/useWalks";
 import setPageTitle from "../hooks/setPageTitle";
 import { useHillMarkers } from "../hooks/useMarkers";
 import WalkSearch from "../components/WalkSearch";
+
+
+const featuredWalkSlugs = ["helvellyn-via-striding-edge", "wansfell-baystones", "the-kentmere-horseshoe"];
 
 
 export function HomePage() {
 
   setPageTitle("");
 
-  const walks = useMemo(() => useWalks() as { [slug: string] : Walk }, []);
-  const featuredWalks = useMemo(() => ["helvellyn-via-striding-edge", "wansfell-baystones", "the-kentmere-horseshoe"], []);
+  const featuredWalks = featuredWalkSlugs.map(slug => useWalk(slug));
 
   const hillMarkers = useHillMarkers();
 
@@ -47,9 +48,11 @@ export function HomePage() {
           </div>
 
           <div className="home__featured-walks">
-            {featuredWalks.map((walk, index) => {
-              return <WalkCard key={index} walk={walks[walk]} />
-            })}
+            {!featuredWalks.some(v => v === undefined) &&
+              featuredWalks.map((walk, index) => {
+                return walk && <WalkCard key={index} walk={walk} />
+              })
+            }
           </div>
 
           <Link to="/walks" className="button primary">View more walks</Link>

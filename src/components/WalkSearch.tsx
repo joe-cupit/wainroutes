@@ -45,19 +45,22 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
 
   const [searchTerm, setSearchTerm] = useState("");
 
+  const walksData = useWalks();
   const searchOptions = useMemo(() => {
     var newSearchOptions : SearchOption[] = [];
 
-    for (let walk of Object.values(useWalks() as { [slug: string] : Walk })) {
-      newSearchOptions.push({
-        type: "walk",
-        name: walk.title,
-        link: "/walks/"+walk.slug,
-        walk: {
-          length: walk.length ?? 0,
-          wainwrights: walk.wainwrights?.length ?? 0
-        }
-      });
+    if (walksData) {
+      for (let walk of walksData) {
+        newSearchOptions.push({
+          type: "walk",
+          name: walk.title,
+          link: "/walks/"+walk.slug,
+          walk: {
+            length: walk.length ?? 0,
+            wainwrights: walk.wainwrights?.length ?? 0
+          }
+        });
+      }
     }
     for (let hill of Object.values(useHills() as { [slug: string] : Hill })) {
       newSearchOptions.push({
@@ -82,7 +85,7 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
     }
 
     return newSearchOptions;
-  }, [])
+  }, [walksData])
 
   const filteredSearchOptions = useMemo(() => {
     if (searchTerm === "") return [];

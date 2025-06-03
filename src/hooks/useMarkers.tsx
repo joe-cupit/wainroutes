@@ -40,7 +40,7 @@ export const useWalkMarkers = () => {
   const walkData = useWalks();
 
   return walkData 
-    ? Object.values(walkData)
+    ? walkData
       .map(walk => (
         walk.startLocation
         ? {

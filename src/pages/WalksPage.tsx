@@ -169,20 +169,21 @@ export default function WalksPage() {
     setAccessibleByBus(searchParams.get("by-bus") ? true : false)
   }, [searchParams])
 
+  const walkData = useWalks();
+  const walkMarkers = Object.fromEntries(useWalkMarkers().map(marker => [marker.properties.slug, marker]));
 
   const maximumDist = 8;
   const walkObjects = useMemo(() => {
-    const walkData = useWalks() as {[slug : string]: Walk};
-    const walkMarkers = Object.fromEntries(useWalkMarkers().map(marker => [marker.properties.slug, marker]));
+    if (!walkData || !walkMarkers) return [];
 
-    let newWalkObjects = Object.keys(walkData).map(slug => ({
-      slug: slug,
-      walk: walkData[slug],
-      marker: walkMarkers[slug]
+    let newWalkObjects = walkData.map(walk => ({
+      slug: walk.slug,
+      walk: walk,
+      marker: walkMarkers[walk.slug]
     } as WalkObject));
 
     return newWalkObjects;
-  }, [])
+  }, [walkData])
 
   const locationsWalkObjects = useMemo(() => {
     if (locationParam) setPageTitle("Lake District Walks in " + locationParam?.name);

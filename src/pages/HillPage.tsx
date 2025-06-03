@@ -52,9 +52,7 @@ export type Hill = {
 export function HillPage() {
   const { slug } = useParams();
   const hillData = useHills(slug) as Hill;
-  const walkData = Object.fromEntries(
-    Object.entries(useWalks() as {[slug: string]: Walk}).filter(([walkSlug, walk]) => walk.wainwrights?.includes(slug ?? ""))
-  );
+  const walkData = useWalks()?.filter(walk => walk.wainwrights?.includes(slug ?? ""));
 
   setPageTitle(hillData?.name ?? "The Wainwrights");
   
@@ -114,7 +112,6 @@ export function HillPage() {
               {hillData.classifications.length > 0
               ? <ul className="hill__classifications">
                   {Object.keys(Classifications).map((code, index) => {
-                    console.log(code)
                     if (hillData.classifications.includes(code)) return <li key={index}>{Classifications[code]}</li>
                   })}
                 </ul>
@@ -125,9 +122,9 @@ export function HillPage() {
 
           <div className="hill__group">
             <h2 className="subheading">Walk This Fell</h2>
-            {Object.keys(walkData).length > 0
+            {walkData && walkData.length > 0
               ? <div className="hill__walks">
-                  {Object.values(walkData).map((walk, index) => {
+                  {walkData.map((walk, index) => {
                     return <WalkCard key={index} walk={walk} />
                   })}
                 </div>

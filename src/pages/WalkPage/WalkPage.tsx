@@ -22,6 +22,7 @@ import { EstimatedTime } from "./components/EstimatedTime";
 import { Terrain } from "./components/Terrain";
 
 import { NearbyWalks } from "./components/NearbyWalks";
+import { useWalk } from "../../hooks/useWalks";
 
 
 export type WalkGallery = {
@@ -82,10 +83,9 @@ export type Walk = {
 
 export function WalkPage() {
   const { slug } = useParams();
-  const walkData = useWalks(slug) as Walk;
+  const walkData = useWalk(slug);
 
   setPageTitle(walkData?.title ?? "A Lake District Walk");
-
 
   if (walkData && slug) return <Walk walkData={walkData} slug={slug} />
   else return <NotFoundPage />
