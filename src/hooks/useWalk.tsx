@@ -2,26 +2,17 @@ import { useEffect, useState } from "react";
 import { Walk } from "../pages/WalkPage/WalkPage";
 
 
-export const useWalks = () => {
-  const [walksData, setWalksData] = useState<Walk[]>();
-  useEffect(() => {
-    fetch('https://data.wainroutes.co.uk/walks')
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch')
-        return res.json()
-      })
-      .then((data) => setWalksData(data))
-      .catch((err) => {throw new Error(err.message)})
-  }, [])
-
-  return walksData;
-}
-
-
 export const useWalk = (slug?: string) => {
   const [walkData, setWalkData] = useState<Walk>();
+  const [walkLoading, setWalkLoading] = useState(true);
+
   useEffect(() => {
-    if (!slug || slug.length == 0) return;
+    if (!slug || slug.length == 0) {
+      setWalkData(undefined);
+      setWalkLoading(false);
+      return;
+    }
+    setWalkLoading(true);
 
     fetch('https://data.wainroutes.co.uk/walks/'+slug)
       .then((res) => {
@@ -30,7 +21,8 @@ export const useWalk = (slug?: string) => {
       })
       .then((data) => setWalkData(data))
       .catch((err) => {throw new Error(err.message)})
+      .finally(() => setWalkLoading(false))
   }, [slug])
 
-  return walkData;
+  return { walkData, walkLoading };
 }

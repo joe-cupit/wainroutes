@@ -3,12 +3,12 @@ import "./HillsPage.css"
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useHills } from "../hooks/useHills";
 import setPageTitle from "../hooks/setPageTitle";
 import { displayElevation } from "../utils/unitConversions";
 import { LakeMap } from "../components/map";
 import { useHillMarkers } from "../hooks/useMarkers";
 import { BackToTopIcon } from "../components/Icons";
+import { useHills } from "../contexts/HillsContext";
 
 
 const titles : {[book : number]: string} = {
@@ -20,7 +20,7 @@ export function HillsPage() {
   setPageTitle("The Wainwrights");
 
   const hillMarkers = useHillMarkers();
-  const hillData = useHills();
+  const hillData = useHills().hills;
 
   const [filterTerm, setFilterTerm] = useState("");
 

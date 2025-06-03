@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
-import { useWalks } from "../../../hooks/useWalks";
 import WalkCard from "../../../components/WalkCard";
 import haversineDistance from "../../../utils/haversine";
+import { useWalks } from "../../../contexts/WalksContext";
 
 
 export function NearbyWalks({ location, currentSlug } : { location: [number, number]; currentSlug: string }) {
 
-  const allWalks = useWalks();
+  const allWalks = useWalks().walks;
   const closestWalks = useMemo(() => {
     if (!allWalks) return [];
 

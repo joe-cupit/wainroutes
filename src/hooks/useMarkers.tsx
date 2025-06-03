@@ -1,6 +1,6 @@
 import { useMemo } from "react"
-import { useHills } from "./useHills";
-import { useWalks } from "./useWalks";
+import { useWalks } from "../contexts/WalksContext";
+import { useHills } from "../contexts/HillsContext";
 
 
 export type MapMarker = {
@@ -15,7 +15,7 @@ export type MapMarker = {
 
 
 export const useHillMarkers = (filters?: string[]) => {
-  const hillData = useHills();
+  const hillData = useHills().hills;
 
   const hillMarkers = useMemo(() => hillData 
     ? hillData
@@ -37,10 +37,10 @@ export const useHillMarkers = (filters?: string[]) => {
 
 
 export const useWalkMarkers = () => {
-  const walkData = useWalks();
+  const walksData = useWalks().walks;
 
-  return walkData 
-    ? walkData
+  return walksData 
+    ? walksData
       .map(walk => (
         walk.startLocation
         ? {

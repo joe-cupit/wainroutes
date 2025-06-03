@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { NotFoundPage } from "../error/NotFoundPage";
 
-import { useWalks } from "../../hooks/useWalks";
+import { useWalk } from "../../hooks/useWalk";
 import setPageTitle from "../../hooks/setPageTitle";
 import { BackIcon, ElevationIcon, HikingIcon, LocationIcon, MountainIcon } from "../../components/Icons";
 import Image from "../../components/Image";
@@ -22,7 +22,6 @@ import { EstimatedTime } from "./components/EstimatedTime";
 import { Terrain } from "./components/Terrain";
 
 import { NearbyWalks } from "./components/NearbyWalks";
-import { useWalk } from "../../hooks/useWalks";
 
 
 export type WalkGallery = {
@@ -83,16 +82,19 @@ export type Walk = {
 
 export function WalkPage() {
   const { slug } = useParams();
-  const walkData = useWalk(slug);
+  const { walkData, walkLoading } = useWalk(slug);
 
   setPageTitle(walkData?.title ?? "A Lake District Walk");
 
-  if (walkData && slug) return <Walk walkData={walkData} slug={slug} />
-  else return <NotFoundPage />
+  if (walkLoading) return <WalkSkeleton />
+  else {
+    if (walkData) return <Walk walkData={walkData} />
+    else return <NotFoundPage />
+  }
 }
 
 
-function Walk({ walkData, slug } : { walkData: Walk; slug: string }) {
+function Walk({ walkData } : { walkData: Walk }) {
 
   function scrollToSection(section: string) {
     if (section == "overview") {
@@ -236,7 +238,7 @@ function Walk({ walkData, slug } : { walkData: Walk; slug: string }) {
             <Route secRef={routeRef}
               wainwrights={walkData?.wainwrights}
               center={[walkData?.startLocation?.latitude ?? 0, walkData?.startLocation?.longitude ?? 0]}
-              slug={slug}
+              slug={walkData?.slug}
             />
 
             <Waypoints secRef={waypointsRef}
@@ -300,8 +302,48 @@ function Walk({ walkData, slug } : { walkData: Walk; slug: string }) {
 
       <NearbyWalks
         location={[walkData?.startLocation?.longitude ?? 0, walkData?.startLocation?.latitude ?? 0]}
-        currentSlug={slug}
+        currentSlug={walkData?.slug}
       />
+    </main>
+    </>
+  )
+}
+
+
+function WalkSkeleton() {
+  return (
+    <>
+    <main className="walk-page">
+
+      <section>
+        <div className="walk-page_top">
+          <div className="walk-page_top-image" />
+          <div className="walk-page_top-block"></div>
+        </div>
+      </section>
+
+      <section>
+        <div className="walk-page_body">
+          <div className="walk-page_main flex-column flex-1">
+
+          </div>
+
+          <div className="walk-page_aside flex-column">
+            <div className="walk-page_aside-tabs flex-row gap-0">
+
+            </div>
+
+            <div className="walk-page_aside-image">
+
+            </div>
+
+            <div className={"walk-page_aside-content flex-column"}>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
     </>
   )

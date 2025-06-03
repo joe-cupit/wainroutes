@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 import { Walk } from "../WalkPage";
 
-import { useHills } from "../../../hooks/useHills";
+import { useHills } from "../../../contexts/HillsContext";
 import { displayDistance, displayElevation } from "../../../utils/unitConversions";
 
 
 export function Summary({ secRef, title, titleRef, wainwrights, length, elevation, intro } : { secRef: React.RefObject<HTMLDivElement>; title: Walk["title"]; titleRef: React.RefObject<HTMLHeadingElement>; wainwrights: Walk["wainwrights"]; length: Walk["length"]; elevation: Walk["elevation"]; intro: Walk["intro"] }) {
 
-  const hillsData = useHills();
+  const hillsData = useHills().hills;
   const hillNames = useMemo(() => {
     if (!hillsData) return;
 

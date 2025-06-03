@@ -3,12 +3,12 @@ import "./HillPage.css";
 import { Fragment, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { useHill } from "../hooks/useHills";
+import { useHill } from "../hooks/useHill";
 import setPageTitle from "../hooks/setPageTitle";
-import { useWalks } from "../hooks/useWalks";
 import WalkCard from "../components/WalkCard";
 import { displayElevation } from "../utils/unitConversions";
 import { NotFoundPage } from "./error/NotFoundPage";
+import { useWalks } from "../contexts/WalksContext";
 
 
 const BookNumbers : {[book : number]: string} = {
@@ -50,17 +50,20 @@ export type Hill = {
 
 export function HillPage() {
   const { slug } = useParams();
-  const hillData = useHill(slug);
+  const { hillData, hillLoading } = useHill(slug);
   
   setPageTitle(hillData?.name ?? "The Wainwrights");
   
-  if (hillData) return <Hill hillData={hillData} />
-  else return <NotFoundPage />
+  if (hillLoading) return <></>
+  else {
+    if (hillData) return <Hill hillData={hillData} />
+    else return <NotFoundPage />
+  }
 }
 
 
 function Hill({ hillData } : { hillData: Hill }) {
-  const walkData = useWalks()?.filter(walk => walk.wainwrights?.includes(hillData.slug ?? ""));
+  const walkData = useWalks().walks?.filter(walk => walk.wainwrights?.includes(hillData.slug ?? ""));
   const bookNum = useMemo(() => hillData?.book, [hillData]);
 
   return (

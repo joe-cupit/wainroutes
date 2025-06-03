@@ -7,7 +7,7 @@ import Image from "../components/Image";
 import WalkCard from "../components/WalkCard";
 import { LakeMap } from "../components/map";
 
-import { useWalk } from "../hooks/useWalks";
+import { useWalk } from "../hooks/useWalk";
 import setPageTitle from "../hooks/setPageTitle";
 import { useHillMarkers } from "../hooks/useMarkers";
 import WalkSearch from "../components/WalkSearch";
@@ -20,7 +20,7 @@ export function HomePage() {
 
   setPageTitle("");
 
-  const featuredWalks = featuredWalkSlugs.map(slug => useWalk(slug));
+  const featuredWalks = featuredWalkSlugs.map(slug => useWalk(slug).walkData);
 
   const hillMarkers = useHillMarkers();
 

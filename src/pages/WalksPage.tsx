@@ -7,13 +7,12 @@ import { Walk } from "./WalkPage/WalkPage";
 import { MapMarker, useWalkMarkers } from "../hooks/useMarkers";
 
 import setPageTitle from "../hooks/setPageTitle";
-import { useWalks } from "../hooks/useWalks";
 import haversineDistance from "../utils/haversine";
 import { getDistanceUnit, getDistanceValue } from "../utils/unitConversions";
 import { CheckboxFilter, FilterData, FilterGroup, Filters } from "../components/Filters";
 import WalkCard from "../components/WalkCard";
-import { useHills } from "../hooks/useHills";
-import { Hill } from "./HillPage";
+import { useWalks } from "../contexts/WalksContext";
+import { useHills } from "../contexts/HillsContext";
 
 
 type WalkObject = {
@@ -169,7 +168,7 @@ export default function WalksPage() {
     setAccessibleByBus(searchParams.get("by-bus") ? true : false)
   }, [searchParams])
 
-  const walkData = useWalks();
+  const walkData = useWalks().walks;
   const walkMarkers = Object.fromEntries(useWalkMarkers().map(marker => [marker.properties.slug, marker]));
 
   const maximumDist = 8;
@@ -279,7 +278,7 @@ export default function WalksPage() {
     }
   }
 
-  const hillsData = useHills();
+  const hillsData = useHills().hills;
   const wainValues = useMemo(() => {
     if (!hillsData) return {}
     else return (

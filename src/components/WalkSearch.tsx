@@ -3,13 +3,13 @@ import "./WalkSearch.css";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useHills } from "../hooks/useHills";
-import { useWalks } from "../hooks/useWalks";
 import { locations } from "../pages/WalksPage";
 import { BookTitles } from "../pages/HillPage";
 
 import { HikingIcon, LocationIcon, MountainIcon } from "./Icons";
 import { displayDistance, displayElevation } from "../utils/unitConversions";
+import { useWalks } from "../contexts/WalksContext";
+import { useHills } from "../contexts/HillsContext";
 
 
 type WalkOption = {
@@ -44,8 +44,8 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const walksData = useWalks();
-  const hillsData = useHills();
+  const walksData = useWalks().walks;
+  const hillsData = useHills().hills;
   const searchOptions = useMemo(() => {
     var newSearchOptions : SearchOption[] = [];
 
@@ -87,7 +87,7 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
     }
 
     return newSearchOptions;
-  }, [walksData])
+  }, [walksData, hillsData])
 
   const filteredSearchOptions = useMemo(() => {
     if (searchTerm === "") return [];
