@@ -1,13 +1,13 @@
-import { useMemo } from "react"
+import { useMemo } from "react";
 
 
 export default function Image({ name, className, sizes="100vw", alt="", maxWidth=null, blurLoad=true } : { name: string; className?: string; sizes?: string; alt?: string; maxWidth?: number | null; blurLoad?: boolean }) {
 
-  const path = "/images/wainroutes_" + name
-  const ext = ".webp"
-  const src = path + "_1024w" + ext
+  const path = "https://images.wainroutes.co.uk/wainroutes_" + name; 
+  const ext = ".webp";
+  const src = path + "_1024w" + ext;
 
-  const imgWidths = ["256", "512", "1024", "2048"]
+  const imgWidths = ["256", "512", "1024", "2048"];
   const srcset = useMemo(() => {
     return (
       imgWidths
@@ -29,7 +29,7 @@ export default function Image({ name, className, sizes="100vw", alt="", maxWidth
 
 
   if (blurLoad) {
-    const srcSmall = `url(${path}_32w${ext})`
+    const srcSmall = `url(${path}_32w${ext})`;
 
     return (
       <div
