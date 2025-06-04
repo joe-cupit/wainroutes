@@ -7,7 +7,7 @@ import Image from "../components/Image";
 import WalkCard from "../components/WalkCard";
 import { LakeMap } from "../components/map";
 
-import { useWalk } from "../hooks/useWalk";
+import { useWalk } from "../contexts/WalksContext";
 import setPageTitle from "../hooks/setPageTitle";
 import { useHillMarkers } from "../hooks/useMarkers";
 import WalkSearch from "../components/WalkSearch";

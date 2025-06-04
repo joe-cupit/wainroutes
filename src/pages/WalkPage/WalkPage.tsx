@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { NotFoundPage } from "../error/NotFoundPage";
 
-import { useWalk } from "../../hooks/useWalk";
+import { useWalk } from "../../contexts/WalksContext";
 import setPageTitle from "../../hooks/setPageTitle";
 import { BackIcon, ElevationIcon, HikingIcon, LocationIcon, MountainIcon } from "../../components/Icons";
 import Image from "../../components/Image";

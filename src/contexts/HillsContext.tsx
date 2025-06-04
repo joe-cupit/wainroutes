@@ -17,6 +17,12 @@ export const useHills = () => {
   return context;
 }
 
+export const useHill = (slug?: string) => {
+  const { hills, loading } = useHills();
+  return { hillData: hills?.find(h => h.slug == slug), hillLoading: loading }
+}
+
+
 export const HillsProvider = ({ children } : { children : ReactNode}) => {
 
   const [hills, setHills] = useState<Hill[]>();
@@ -24,7 +30,7 @@ export const HillsProvider = ({ children } : { children : ReactNode}) => {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    fetch('https://data.wainroutes.co.uk/hills')
+    fetch('https://data.wainroutes.co.uk/hills.json')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch')
         return res.json()

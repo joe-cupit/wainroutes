@@ -17,6 +17,12 @@ export const useWalks = () => {
   return context;
 }
 
+export const useWalk = (slug?: string) => {
+  const { walks, loading } = useWalks();
+  return { walkData: walks?.find(w => w.slug == slug), walkLoading: loading }
+}
+
+
 export const WalksProvider = ({ children } : { children : ReactNode}) => {
 
   const [walks, setWalks] = useState<Walk[]>();
@@ -24,7 +30,7 @@ export const WalksProvider = ({ children } : { children : ReactNode}) => {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    fetch('https://data.wainroutes.co.uk/walks')
+    fetch('https://data.wainroutes.co.uk/walks.json')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch')
         return res.json()

@@ -3,7 +3,7 @@ import "./HillPage.css";
 import { Fragment, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { useHill } from "../hooks/useHill";
+import { useHill } from "../contexts/HillsContext";
 import setPageTitle from "../hooks/setPageTitle";
 import WalkCard from "../components/WalkCard";
 import { displayElevation } from "../utils/unitConversions";
@@ -63,7 +63,7 @@ export function HillPage() {
 
 
 function Hill({ hillData } : { hillData: Hill }) {
-  const walkData = useWalks().walks?.filter(walk => walk.wainwrights?.includes(hillData.slug ?? ""));
+  const walkData = useWalks().walks?.filter(walk => walk.wainwrights?.includes(hillData.slug));
   const bookNum = useMemo(() => hillData?.book, [hillData]);
 
   return (
