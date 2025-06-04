@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { displayDistance, displayElevation, displaySpeed, displayTemperature } from "../../../utils/unitConversions";
+import { usePointWeather } from "../../../contexts/WeatherContext";
 
 
 const WeatherSymbolsFolder = import.meta.glob("../../../assets/images/weather/*.svg");
@@ -13,53 +14,10 @@ for (const path in WeatherSymbolsFolder) {
 }
 
 
-type IndividualWeatherDay = {
-  date: string;
-  weather_type: string[];
-  temp: {
-    screen: number[];
-    max: number[];
-    min: number[];
-    feels: number[];
-  }
-  precipitation: {
-    prob: number[];
-    type: string[];
-  }
-  wind: {
-    speed: number[];
-    gusts: number[];
-  }
-  visibility: {
-    m: number[];
-    text: string[];
-  }
-}
-
-type IndividualWeather = {
-  request_date: string;
-  name: string;
-  elevation: number;
-  coordinates: number[];
-  days: IndividualWeatherDay[];
-}
-
-
 export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLDivElement>; weatherLoc: string | undefined }) {
   if (!weatherLoc) return <></>;
 
-  const [weatherData, setWeatherData] = useState<IndividualWeather | null>(null);
-  useEffect(() => {
-    console.log(encodeURIComponent(weatherLoc))
-
-    fetch('https://data.wainroutes.co.uk/weather_points.json?loc='+encodeURIComponent(weatherLoc))
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch walk weather')
-        return res.json()
-      })
-      .then((data) => setWeatherData(data))
-      .catch((err) => {throw new Error(err.message)})
-  }, [])
+  const { weatherData } = usePointWeather(weatherLoc);
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const [selectedDayIndex, setSelectedDayIndex] = useState(0);
@@ -146,7 +104,7 @@ export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLD
                 <div className="walks-page_weather-grid_box">
                   <h4>Visibility</h4>
                   <p className="default-value">{selectedDayWeather?.visibility?.text?.[displayNightData]}</p>
-                  <p className="hover-value">{displayDistance(selectedDayWeather?.visibility?.m?.[displayNightData] ?? 0 / 1000, 0)}</p>
+                  <p className="hover-value">{displayDistance((selectedDayWeather?.visibility?.m?.[displayNightData] ?? 0) / 1000, 0)}</p>
                 </div>
               </div>
             </div>

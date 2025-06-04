@@ -1,7 +1,8 @@
 import "./WeatherPage.css";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import setPageTitle from "../hooks/setPageTitle";
+import { DistrictWeatherDayForecast, DistrictWeatherDay, useWeather } from "../contexts/WeatherContext";
 
 const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg");
 let WeatherSymbols : { [name: string] : any } = {};
@@ -12,65 +13,15 @@ for (const path in WeatherSymbolsFolder) {
 }
 
 
-type DayForecast = {
-  time: string[];
-  type?: string[];
-  precip?: string[];
-  wind_speed?: string[];
-  wind_gust?: string[];
-  wind_dir?: string[];
-  temp?: string[];
-  feel_temp?: string[];
-}
-
-type WeatherDay = {
-  type: string;
-  date?: string;
-  sunrise?: string;
-  sunset?: string;
-  hazards?: {
-    [level: string]: {[name: string] : string}
-  };
-  meteorologist_view?: string;
-  summary?: string;
-  cloud_free_top?: string;
-  visibility?: string;
-  ground_conditions?: string;
-  weather?: string;
-  forecast?: DayForecast;
-  max_wind?: string;
-  temperature?: {
-    [height: string]: string;
-  }
-  days?: {
-    date: string;
-    sunrise?: string;
-    sunset?: string;
-    summary?: string;
-  }[]
-}
-
-type Weather = {
-  update_time: string;
-  confidence?: string;
-  days: WeatherDay[];
-}
-
-
 export function WeatherPage() {
 
   setPageTitle("Lake District Weather");
 
-  const [weatherData, setWeatherData] = useState<Weather>();
+  const { weather: weatherData, refresh: fetchWeather } = useWeather();
+
   useEffect(() => {
-    fetch('https://data.wainroutes.co.uk/weather.json')
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch')
-        return res.json()
-      })
-      .then((data) => setWeatherData(data))
-      .catch((err) => {throw new Error(err.message)})
-  }, [])
+    fetchWeather();
+  }, [fetchWeather])
 
 
   return (
@@ -102,7 +53,7 @@ export function WeatherPage() {
 }
 
 
-function CurrentDayWeather({ weather } : { weather : WeatherDay }) {
+function CurrentDayWeather({ weather } : { weather : DistrictWeatherDay }) {
 
   return (
     <div className="weather__current-day">
@@ -197,7 +148,7 @@ function TypeRow({ title, data, className } : { title: string; data: string[]; c
   )
 }
 
-function ForecastTable({ forecast } : { forecast: DayForecast | undefined }) {
+function ForecastTable({ forecast } : { forecast: DistrictWeatherDayForecast | undefined }) {
 
   if (forecast === undefined) return <></>
 
@@ -224,7 +175,7 @@ function ForecastTable({ forecast } : { forecast: DayForecast | undefined }) {
 }
 
 
-function TomorrowsWeather({ weather } : { weather: WeatherDay }) {
+function TomorrowsWeather({ weather } : { weather: DistrictWeatherDay }) {
   return (
     <div className="flex-column weather__day">
       <div>
@@ -263,7 +214,7 @@ function TomorrowsWeather({ weather } : { weather: WeatherDay }) {
   )
 }
 
-function FutureWeather({ weather } : { weather: WeatherDay }) {
+function FutureWeather({ weather } : { weather: DistrictWeatherDay }) {
   const weekdayDict = {
     "Mon": "Monday", "Tue": "Tuesday", "Wed": "Wednesday", "Thu": "Thursday", "Fri": "Friday", "Sat": "Saturday", "Sun": "Sunday" 
   } as { [shorthand : string] : string }
