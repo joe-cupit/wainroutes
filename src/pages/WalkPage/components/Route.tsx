@@ -16,9 +16,12 @@ export function Route({ secRef, wainwrights, center, slug } : { secRef: React.Re
   const hillMarkers = useHillMarkers(wainwrights);
 
   const [gpxPoints, setGpxPoints] = useState<[number, number][]>([]);
+  const [gpxLoading, setGpxLoading] = useState(true);
   const [elevationData, setElevationData] = useState<ElevationPoint[]>([]);
   useEffect(() => {
-    fetch(`/gpx/${slug}.gpx`)
+    setGpxLoading(true);
+
+    fetch(`https://data.wainroutes.co.uk/gpx/${slug}.gpx`)
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
       .then(doc => {
@@ -40,8 +43,8 @@ export function Route({ secRef, wainwrights, center, slug } : { secRef: React.Re
           coordinates.push(point);
 
           let ele : ElevationPoint = {
-            "dist": getDistanceValue((dist / 1000)),
-            "ele": getElevationValue(Number(node.getElementsByTagName("ele")[0]?.textContent ?? prevEle))
+            "dist": getDistanceValue((dist / 1000)) ?? 0,
+            "ele": getElevationValue(Number(node.getElementsByTagName("ele")[0]?.textContent ?? prevEle)) ?? 0
           }
           if (node.getElementsByTagName("name").length > 0) {
             ele["waypoint"] = node.getElementsByTagName("name")[0]?.textContent ?? "";
@@ -60,7 +63,8 @@ export function Route({ secRef, wainwrights, center, slug } : { secRef: React.Re
 
         setGpxPoints(coordinates);
         setElevationData(elevations);
-      });
+      })
+      .finally(() => setGpxLoading(false));
   }, [slug]);
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -87,7 +91,7 @@ export function Route({ secRef, wainwrights, center, slug } : { secRef: React.Re
       <div className="walks-page_section flex-column">
         <div className="walk-page_map">
           <LakeMap
-            gpxPoints={gpxPoints} mapMarkers={hillMarkers}
+            gpxPoints={gpxLoading ? undefined : gpxPoints} mapMarkers={hillMarkers}
             defaultCenter={center} defaultZoom={14} >
               <GeoRoute points={gpxPoints} activeIndex={hoveredIndex} />
           </LakeMap>
