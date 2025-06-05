@@ -3,7 +3,7 @@ import "./HomePage.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import Image from "../components/Image";
+import { Picture } from "../components/Image";
 import WalkCard from "../components/WalkCard";
 import { LakeMap } from "../components/map";
 
@@ -35,9 +35,11 @@ export function HomePage() {
         </div>
 
         <div className="home__hero-image-overlay" />
-        <Image
+        <Picture
           className="home__hero-image"
-          name="home_01"
+          names={["home_01", "home_02"]}
+          widths={[700]}
+          sizes="200vw"
         />
       </section>
 

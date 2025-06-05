@@ -110,6 +110,10 @@ img {
   object-fit: cover;
   object-position: center;
 }
+picture img {
+  width: 100%;
+  height: 100%;
+}
 a {
   color: inherit;
   text-decoration: none;
