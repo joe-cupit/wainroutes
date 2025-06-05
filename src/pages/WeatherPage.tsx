@@ -4,7 +4,7 @@ import { Fragment, useEffect } from "react";
 import setPageTitle from "../hooks/setPageTitle";
 import { DistrictWeatherDayForecast, DistrictWeatherDay, useWeather } from "../contexts/WeatherContext";
 
-const WeatherSymbolsFolder = import.meta.glob("../assets/images/weather/*.svg");
+const WeatherSymbolsFolder = import.meta.glob("../assets/weather-icons/*.svg");
 let WeatherSymbols : { [name: string] : any } = {};
 for (const path in WeatherSymbolsFolder) {
   WeatherSymbolsFolder[path]().then((mod : any) => {
