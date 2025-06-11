@@ -9,9 +9,13 @@ import { ElevationIcon, HikingIcon, MountainIcon } from "./Icons";
 import { displayDistance, displayElevation, getDistanceUnit, getDistanceValue } from "../utils/unitConversions";
 
 
-export default function WalkCard({ walk, showDistance } : { walk: Walk; showDistance?: boolean }) {
+export default function WalkCard({ walk, showDistance, hoverEvent } : { walk: Walk; showDistance?: boolean, hoverEvent?: CallableFunction }) {
   return (
-    <article className="walks-card">
+    <article
+      className="walks-card"
+      onMouseEnter={() => hoverEvent && hoverEvent(walk.slug)}
+      onMouseLeave={() => hoverEvent && hoverEvent(null)}
+    >
       <div className="walks-card__image">
         <Image
           name={walk?.slug + "_" + walk?.gallery?.coverId}

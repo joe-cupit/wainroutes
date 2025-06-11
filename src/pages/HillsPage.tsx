@@ -27,6 +27,8 @@ export function HillsPage() {
   const [sortMode, setSortMode] = useState("height");
   const [sortStates, setSortStates] = useState([false, false, true]);
 
+  const [hoveredSlug, setHoveredSlug] = useState<string|null>(null);
+
 
   function updateSortMode(newSortMode: string) {
     if (newSortMode == sortMode) {
@@ -137,7 +139,13 @@ export function HillsPage() {
                         </td>
                         <td className="flex-column gap-0">
                           <h2 className="subheading">
-                            <Link to={`/wainwrights/${hill.slug}`}>{hill.name}{hill.secondaryName ? <span className="secondary-text"> ({hill.secondaryName})</span> : ""}</Link>
+                            <Link
+                              to={`/wainwrights/${hill.slug}`}
+                              onMouseEnter={() => setHoveredSlug(hill.slug)}
+                              onMouseLeave={() => setHoveredSlug(null)}
+                            >
+                              {hill.name}{hill.secondaryName ? <span className="secondary-text"> ({hill.secondaryName})</span> : ""}
+                            </Link>
                           </h2>
                           <span className="secondary-text">{titles[hill.book]}</span>
                         </td>
@@ -152,7 +160,10 @@ export function HillsPage() {
           </div>
 
           <div className="hills__map">
-            <LakeMap mapMarkers={hillMarkers} />
+            <LakeMap
+              mapMarkers={hillMarkers}
+              activePoint={hoveredSlug}
+            />
           </div>
         </div>
       </section>

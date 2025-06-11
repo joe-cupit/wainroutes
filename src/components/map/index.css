@@ -49,18 +49,52 @@
 
 
 .lake-map--cluster {
+  position: relative;
   transition: transform 100ms, fill 100ms;
 }
-.lake-map--cluster:hover {
+.lake-map--cluster:hover,
+.focussed-cluster {
   transform: scale(1.2) translateY(-5px);
 }
+.lake-map--cluster_tooltip {
+  display: none;
 
-.focussed-cluster {
-  transform: scale(1.5) translateY(-9px);
-  fill: green;
+  position: absolute;
+  bottom: calc(100% + var(--gap-200));
+  left: 50%;
+  translate: -50% 0;
+
+  font-weight: var(--fw-medium);
+
+  width: max-content;
+  text-align: center;
+
+  background: var(--clr-neutral-1000);
+  padding: var(--gap-300) var(--gap-400);
+  border-radius: var(--gap-300);
 }
-.focussed-cluster:hover {
-  transform: scale(1.8) translateY(-11px);
+.lake-map--cluster_tooltip-tip {
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-300);
+}
+.lake-map--cluster_tooltip::after {
+  content: "";
+  --_width: var(--gap-300);
+  width: var(--_width);
+  height: var(--_width);
+  rotate: 45deg;
+
+  position: absolute;
+  top: calc(100% - var(--_width) / 2);
+  left: 50%;
+  translate: -50% 0;
+  background: inherit;
+}
+
+
+.lake-map--cluster:hover .lake-map--cluster_tooltip,
+.focussed-cluster .lake-map--cluster_tooltip {
+  display: block;
 }
 
 .lake-map--cluster svg {

@@ -13,6 +13,7 @@ import { CheckboxFilter, FilterData, FilterGroup, Filters } from "../components/
 import WalkCard from "../components/WalkCard";
 import { useWalks } from "../contexts/WalksContext";
 import { useHills } from "../contexts/HillsContext";
+import { LakeMap } from "../components/map";
 
 
 type WalkObject = {
@@ -78,6 +79,8 @@ export default function WalksPage() {
   const [locationParam, setLocationParam] = useState<Location | null>(null);
   const [locationSelectEntries, setLocationSelectEntries] = useState<string[]>(["keswick", "ambleside", "grasmere", "buttermere", "borrowdale", "coniston", "glenridding", "windermere"]);
   const [searchParams, setURLSearchParams] = useSearchParams();
+
+  const [hoveredSlug, setHoveredSlug] = useState<string|null>(null);
 
   const setSearchParams = (searchParams?: URLSearchParams) => {
     setURLSearchParams(searchParams ?? {}, { replace: true })
@@ -340,6 +343,13 @@ export default function WalksPage() {
             }
           </h1>
 
+          <div className="walks__map">
+            <LakeMap
+              mapMarkers={filteredMarkers}
+              activePoint={hoveredSlug}
+            />
+          </div>
+
           <div className="walks__main">
             <Filters
               className="walks__filters"
@@ -370,6 +380,7 @@ export default function WalksPage() {
                 (accessibleByBus ? 1 : 0)
               }
               resetFilters={resetFilters}
+              setHoveredSlug={setHoveredSlug}
             />
           </div>
         </div>
@@ -380,7 +391,7 @@ export default function WalksPage() {
 }
 
 
-function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, resetFilters } : { walks: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; activeFilters?: number; resetFilters: CallableFunction }) {
+function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, resetFilters, setHoveredSlug } : { walks: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; activeFilters?: number; resetFilters: CallableFunction, setHoveredSlug?: CallableFunction }) {
 
   useEffect(() => {
     if (hasLocationParam && sortControl.value === "recommended") sortControl.set("closest");
@@ -419,7 +430,11 @@ function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, reset
 
       <div className="walks__grid-grid">
         {walks.map((walk, index) => {
-          return <WalkCard key={index} walk={walk} showDistance={hasLocationParam} />
+          return <WalkCard key={index}
+                    walk={walk}
+                    showDistance={hasLocationParam}
+                    hoverEvent={setHoveredSlug}
+                 />
         })}
       </div>
     </div>
