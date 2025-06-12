@@ -6,8 +6,47 @@
 }
 
 .walks__map {
+  --_map-open-height: max(30rem, 60vh);
+
+  position: relative;
   width: 100%;
-  height: 20rem;
+  overflow: hidden;
+  height: var(--_map-open-height);
+  border-radius: 0.5rem;
+  
+  transition: height 200ms ease-out;
+}
+.walks__map .lake-map--container {
+  height: var(--_map-open-height);
+}
+
+.walks__map[data-open="false"] {
+  height: 4rem;
+}
+.walks__map[data-open="false"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(0.5em);
+}
+
+.walks__map-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 1;
+
+  box-shadow: 2px 2px 2px #1114;
+}
+.walks__map[data-open="true"] .walks__map-button {
+  top: calc(100% - var(--fs-200));
+  translate: -50% -120%;
+  opacity: 0.75;
+  transition: opacity 50ms;
+}
+.walks__map[data-open="true"] .walks__map-button:hover {
+  opacity: 1;
 }
 
 .walks__main {

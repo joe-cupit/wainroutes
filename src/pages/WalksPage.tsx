@@ -343,12 +343,10 @@ export default function WalksPage() {
             }
           </h1>
 
-          <div className="walks__map">
-            <LakeMap
-              mapMarkers={filteredMarkers}
-              activePoint={hoveredSlug}
-            />
-          </div>
+          <WalkMap
+            mapMarkers={filteredMarkers}
+            activePoint={hoveredSlug}
+          />
 
           <div className="walks__main">
             <Filters
@@ -437,6 +435,29 @@ function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, reset
                  />
         })}
       </div>
+    </div>
+  )
+}
+
+
+function WalkMap({mapMarkers, activePoint} : {mapMarkers: MapMarker[], activePoint: string | null}) {
+
+  const [open, setOpen] = useState(false);
+
+
+  return (
+    <div className="walks__map" data-open={open}>
+      <LakeMap
+        mapMarkers={mapMarkers}
+        activePoint={activePoint}
+      />
+
+      <button
+        className="button primary round small walks__map-button"
+        onClick={() => setOpen(prev => !prev)}
+      >
+        {open ? "Close map" : "Open map"}
+      </button>
     </div>
   )
 }
