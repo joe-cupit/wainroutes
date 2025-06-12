@@ -70,7 +70,7 @@ export function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCenter, de
     const mapBounds = document.getElementById("lake-map")?.getBoundingClientRect();
     if (mapBounds) {
       let newcenter = [(minLat+maxLat)/2, (minLong+maxLong)/2] as [number, number];
-      let newzoom = -Math.max(Math.log((maxLat-minLat)/(mapBounds.height-100))/Math.log(2), Math.log((maxLong-minLong)/(mapBounds.width))/Math.log(2));
+      let newzoom = Math.min(-Math.max(Math.log((maxLat-minLat)/(mapBounds.height-100))/Math.log(2), Math.log((maxLong-minLong)/(mapBounds.width))/Math.log(2)), 14);
   
       setCenter(newcenter);
       setZoom(newzoom*0.98);
@@ -118,12 +118,14 @@ export function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCenter, de
                   }
                 }}
         >
-          <div className={"lake-map--cluster" + (focussed ? " focussed-cluster" : "")}>
-            {clusterItems.map((item, index) => {
-              return item.properties.type === "hill"
-                ? <HillIcon key={index} book={item.properties.book as number} />
-                : <WalkIcon key={index} />
-            })}
+          <>
+            <div className={"lake-map--cluster" + (focussed ? " focussed-cluster" : "")}>
+              {clusterItems.map((item, index) => {
+                return item.properties.type === "hill"
+                  ? <HillIcon key={index} book={item.properties.book as number} />
+                  : <WalkIcon key={index} />
+              })}
+            </div>
             <div className="lake-map--cluster_tooltip">
               {clusterItems.length > 1
                 ? clusterItems.length + " " + clusterItems[0].properties.type + "s"
@@ -135,12 +137,12 @@ export function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCenter, de
                   </>
               }
             </div>
-          </div>
+          </>
         </Marker>
       )
 
     } catch (e) {
-      console.log("cluster error\n", e);
+      console.error("Error rendering marker.\n", e);
       return <Fragment key={key}></Fragment>;
     }
   }

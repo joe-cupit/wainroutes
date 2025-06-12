@@ -38,6 +38,7 @@
 }
 
 .lake-map--marker {
+  position: relative;
   width: 32px;
   fill: var(--clr-primary-400);
   stroke: black;
@@ -49,29 +50,31 @@
 
 
 .lake-map--cluster {
-  position: relative;
-  transition: transform 100ms, fill 100ms;
+  transition-property: transform, fill;
+  transition-duration: 50ms;
 }
-.lake-map--cluster:hover,
+.lake-map--marker:hover .lake-map--cluster,
 .focussed-cluster {
-  transform: scale(1.2) translateY(-5px);
+  transform: scale(1.2) translateY(-4px);
 }
 .lake-map--cluster_tooltip {
   display: none;
 
   position: absolute;
-  bottom: calc(100% + var(--gap-200));
+  bottom: 100%;
   left: 50%;
-  translate: -50% 0;
+  translate: -50% calc(-2.5 * var(--gap-200));
 
   font-weight: var(--fw-medium);
 
   width: max-content;
   text-align: center;
 
-  background: var(--clr-neutral-1000);
+  background: var(--clr-neutral-900);
   padding: var(--gap-300) var(--gap-400);
   border-radius: var(--gap-300);
+
+  box-shadow: 3px 3px #1113;
 }
 .lake-map--cluster_tooltip-tip {
   font-weight: var(--fw-regular);
@@ -89,11 +92,13 @@
   left: 50%;
   translate: -50% 0;
   background: inherit;
+
+  box-shadow: inherit;
 }
 
 
-.lake-map--cluster:hover .lake-map--cluster_tooltip,
-.focussed-cluster .lake-map--cluster_tooltip {
+.lake-map--marker:hover .lake-map--cluster_tooltip,
+.lake-map--marker:has(.focussed-cluster) .lake-map--cluster_tooltip {
   display: block;
 }
 
