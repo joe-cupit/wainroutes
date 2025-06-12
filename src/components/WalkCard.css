@@ -18,6 +18,7 @@
   position: relative;
   min-height: 48%;
   max-height: 48%;
+  overflow: hidden;
 }
 .walks-card__dist {
   position: absolute;
@@ -56,4 +57,20 @@
 .walks-card__text .button {
   margin-block-start: auto;
   margin-inline-start: auto;
+}
+
+
+.walks-card__group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(min(22rem, 90%), 1fr));
+  gap: 1rem;
+  justify-items: center;
+  align-content: center;
+
+  max-width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.walks-card__group > .walks-card {
+  scroll-snap-align: center;
 }

@@ -55,21 +55,6 @@
 .home__featured-title {
   text-align: center;
 }
-.home__featured-walks {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(min(22rem, 90%), 1fr));
-  gap: 1rem;
-  justify-items: center;
-  align-content: center;
-
-  max-width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-}
-.home__featured-walks > .walks-card {
-  scroll-snap-align: center;
-}
-
 
 .home__wainwrights-section {
   background: #e7dcd5;

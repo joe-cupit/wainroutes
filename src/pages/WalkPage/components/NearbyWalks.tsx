@@ -31,7 +31,7 @@ export function NearbyWalks({ location, currentSlug } : { location: [number, num
       <div className="flex-column align-center">
         <h2 className="heading">Nearby Walks</h2>
 
-        <div className="walk-page_nearby-walks">
+        <div className="walks-card__group walk-page__nearby-walks">
           {closestWalks.map((walk, index) => {
             return (
               <WalkCard key={index}

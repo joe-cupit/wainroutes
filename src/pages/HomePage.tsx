@@ -49,7 +49,7 @@ export function HomePage() {
             <h2 className="heading">Featured Routes</h2>
           </div>
 
-          <div className="home__featured-walks">
+          <div className="walks-card__group">
             {!featuredWalks.some(v => v === undefined) &&
               featuredWalks.map((walk, index) => {
                 return walk && <WalkCard key={index} walk={walk} />

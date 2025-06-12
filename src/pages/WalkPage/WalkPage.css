@@ -531,11 +531,8 @@ section.walk-page_nearby {
 
   background: var(--clr-neutral-800);
 }
-.walk-page_nearby-walks {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
+.walk-page__nearby-walks {
+  max-width: min(70rem, 100%);
 }
 
 
