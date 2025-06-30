@@ -70,7 +70,7 @@ export function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCenter, de
     const mapBounds = document.getElementById("lake-map")?.getBoundingClientRect();
     if (mapBounds) {
       let newcenter = [(minLat+maxLat)/2, (minLong+maxLong)/2] as [number, number];
-      let newzoom = Math.min(-Math.max(Math.log((maxLat-minLat)/(mapBounds.height-100))/Math.log(2), Math.log((maxLong-minLong)/(mapBounds.width))/Math.log(2)), 14);
+      let newzoom = Math.max(Math.min(-Math.max(Math.log((maxLat-minLat)/(mapBounds.height-100))/Math.log(2), Math.log((maxLong-minLong)/(mapBounds.width))/Math.log(2)), 14), 8);
   
       setCenter(newcenter);
       setZoom(newzoom*0.98);
@@ -128,7 +128,9 @@ export function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCenter, de
             </div>
             <div className="lake-map--cluster_tooltip">
               {clusterItems.length > 1
-                ? clusterItems.length + " " + clusterItems[0].properties.type + "s"
+                ? clusterItems.length + " "
+                  + (clusterItems[0].properties.type === "walk" ? "routes" : "")
+                  + (clusterItems[0].properties.type === "hill" ? "Wainwrights" : "")
                 : <>
                     {clusterItems[0].properties.name}
                     {clusterItems[0].properties.type == "hill" &&

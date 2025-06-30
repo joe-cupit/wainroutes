@@ -28,7 +28,7 @@ footer {
   --content-max-width: 1300px;
 
   @media (max-width: 41rem) {
-    --section-padding: 1rem;
+    --section-padding: 1.25rem;
   }
 
   display: grid;
@@ -215,7 +215,7 @@ p {
 }
 
 button.small {
-  padding: 0.25em 0.625em;
+  padding: 0.375em 0.75em;
 }
 
 button.bottom-left {
@@ -307,7 +307,7 @@ button.bottom-left {
   position: absolute;
   inset: 0;
 
-  /* animation: pulse 2.5s infinite; */
+  animation: pulse 2.5s infinite;
 }
 .image_blur-load.loaded::after {
   content: none;

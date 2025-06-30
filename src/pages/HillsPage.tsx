@@ -111,6 +111,8 @@ export function HillsPage() {
               className="hills__top-button"
               onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}
               data-show={showScrollTop}
+              aria-label="Back to top"
+              title="Back to top"
             >
               <BackToTopIcon />
             </button>

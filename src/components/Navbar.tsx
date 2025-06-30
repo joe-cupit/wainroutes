@@ -63,6 +63,7 @@ export function Navbar() {
 
         <nav>
           <ul className="flex-column heading">
+            <li onClick={() => openCloseMobile(false)}><Link to="/">home</Link></li>
             <li onClick={() => openCloseMobile(false)}><Link to="/walks">walks</Link></li>
             <li onClick={() => openCloseMobile(false)}><Link to="/wainwrights">wainwrights</Link></li>
             <li onClick={() => openCloseMobile(false)}><Link to="/weather">weather</Link></li>

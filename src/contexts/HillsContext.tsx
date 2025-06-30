@@ -23,7 +23,7 @@ export const useHill = (slug?: string) => {
 }
 
 
-export const HillsProvider = ({ children } : { children : ReactNode}) => {
+export const HillsProvider = ({ children } : { children : ReactNode }) => {
 
   const [hills, setHills] = useState<Hill[]>();
   const [loading, setLoading] = useState(true);

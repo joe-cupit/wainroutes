@@ -256,7 +256,11 @@ export default function EditorApp() {
           <h1>GPX Editor</h1>
 
           <div className="editor__controls-group">
-            <input type="file" id="editor-upload" onChange={handleUploadFile} style={{display: "none"}} />
+            <input type="file"
+              id="editor-upload"
+              onChange={handleUploadFile} style={{display: "none"}}
+              accept=".gpx"
+            />
             <button onClick={() => {document.getElementById("editor-upload")?.click()}}>
               Upload Raw GPX <UploadIcon />
             </button>

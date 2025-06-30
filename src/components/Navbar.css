@@ -1,11 +1,7 @@
 .navbar {
   --content-max-width: 1350px;
-  /* position: sticky;
-  top: 0; */
-  isolation: isolate;
-  z-index: calc(infinity);
 
-  padding-block: 0.825rem 0.5rem;
+  padding-block: calc(0.75 * var(--gap-400)) var(--gap-300);
   padding-inline: var(--gap-500);
 
   font-size: calc((var(--fs-400) + var(--fs-600)) / 2);
@@ -16,6 +12,7 @@
 .navbar.float {
   position: absolute;
   top: 0;
+  z-index: calc(infinity);
   background: none;
 }
 
@@ -59,6 +56,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: calc(infinity);
 
   padding: var(--gap-500);
 

@@ -1,6 +1,6 @@
 
 const baseTitle = "Wainroutes";
-const separator = "—";
+const separator = "|";
 
 
 export default function setPageTitle(pageTitle: string | undefined) { 

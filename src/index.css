@@ -81,6 +81,10 @@
   --clr-bus-X5: #009FE3;
 }
 
+html {
+  background-color: var(--clr-neutral-400);
+}
+
 
 /* Style resets */
 

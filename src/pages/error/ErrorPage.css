@@ -42,14 +42,14 @@
 }
 
 .error-page_svg-background {
-  fill: var(--clr-neutral-400);
+  fill: var(--clr-neutral-500);
 
   bottom: calc(+1rem - 20vw);
   left: max(10rem, 20vw);
   width: max(40rem, 80vw);
 }
 .error-page_svg-foreground {
-  fill: var(--clr-neutral-200);
+  fill: var(--clr-neutral-400);
 
   bottom: calc(-20vw);
   left: calc(-12rem + 5vw);

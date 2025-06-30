@@ -23,7 +23,7 @@ export const useWalk = (slug?: string) => {
 }
 
 
-export const WalksProvider = ({ children } : { children : ReactNode}) => {
+export const WalksProvider = ({ children } : { children : ReactNode }) => {
 
   const [walks, setWalks] = useState<Walk[]>();
   const [loading, setLoading] = useState(true);

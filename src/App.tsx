@@ -13,6 +13,8 @@ import { WalkPage } from './pages/WalkPage/WalkPage';
 import { HillsPage } from './pages/HillsPage';
 import { HillPage } from './pages/HillPage';
 import { WeatherPage } from './pages/WeatherPage';
+import TravelPage from './pages/TravelPage';
+
 import ContextProvider from './contexts/ContextProvider';
 
 
@@ -43,6 +45,8 @@ export default function App() {
           <Route path="/wainwrights/:slug" element={<HillPage />} />
 
           <Route path="/weather/" element={<WeatherPage />} />
+
+          <Route path="/travel/" element={<TravelPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
