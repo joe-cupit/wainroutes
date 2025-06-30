@@ -1,9 +1,6 @@
 .weather-page {
   margin-bottom: var(--gap-900);
 }
-.weather-page section {
-  padding-block: var(--gap-400);
-}
 .weather-page h3:not(.subheading),
 .weather-page h4 {
   font-size: var(--fs-400);

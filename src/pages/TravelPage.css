@@ -1,5 +1,5 @@
 .travel-page {
-  margin-block: var(--gap-600) calc(var(--gap-800) * 2);
+  margin-block-end: calc(var(--gap-800) * 2);
 }
 
 .travel__main {

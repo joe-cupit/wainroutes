@@ -1,12 +1,8 @@
-.hills-page section {
-  padding-block: var(--gap-400);
-}
-
 .hills_header {
   display: grid;
   gap: var(--gap-400);
 
-  margin-block: var(--gap-300) var(--gap-500);
+  margin-block-end: var(--gap-500);
 }
 
 .hills__main {

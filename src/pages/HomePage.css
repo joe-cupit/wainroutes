@@ -1,3 +1,7 @@
+.home-page {
+  margin-block: 0;
+}
+
 .home-page section {
   --content-max-width: 1200px;
 }
@@ -6,7 +10,6 @@
   position: relative;
 
   height: max(min(max(82vh, 40rem), 50vw), 30rem);
-  overflow: hidden;
 }
 
 .home__hero {

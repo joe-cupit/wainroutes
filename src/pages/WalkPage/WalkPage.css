@@ -11,6 +11,7 @@ html {
   --_max-section-width: calc((2 * var(--_image-overflow)) + var(--_main-width) + var(--_aside-width) + var(--_body-gap));
 
   background: var(--clr-neutral-900);
+  margin-block-start: 0;
 }
 .walk-page section {
   max-width: var(--_max-section-width);

@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
 
-  margin-top: 3em;
+  margin-block: var(--gap-800) 0;
   min-height: max(35rem, 40vw);
 }
 
