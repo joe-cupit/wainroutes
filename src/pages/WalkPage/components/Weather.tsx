@@ -3,15 +3,7 @@ import { Link } from "react-router-dom";
 
 import { displayElevation, displaySpeed, displayTemperature, getDistanceUnit, getDistanceValue } from "../../../utils/unitConversions";
 import { usePointWeather } from "../../../contexts/WeatherContext";
-
-
-const WeatherSymbolsFolder = import.meta.glob("/src/assets/weather-icons/*.svg", { eager: true, import: "ReactComponent" });
-let WeatherSymbols = Object.fromEntries(
-  Object.entries(WeatherSymbolsFolder).map(([path, module]) => {
-    const name = path.split("/").pop()?.replace(".svg", "");
-    return [name, module];
-  })
-)
+import { WeatherIcon } from "../../../components/Icons";
 
 
 export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLDivElement>; weatherLoc: string | undefined }) {
@@ -122,14 +114,6 @@ export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLD
       <p className="walks-page_weather-link">For the district-wide forecast, see the <Link to="/weather">mountain weather forecast</Link>.</p>
     </div>
   )
-}
-
-
-function WeatherIcon(name: string) {
-  const SvgIcon = WeatherSymbols[name];
-
-  if (!SvgIcon) return null;
-  return <SvgIcon />;
 }
 
 

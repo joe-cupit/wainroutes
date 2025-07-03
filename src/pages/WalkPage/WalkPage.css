@@ -296,6 +296,7 @@ html {
 }
 .walk-page_locations > div {
   row-gap: 0;
+  align-items: start;
 }
 .walk-page_locations h3 {
   font-size: inherit;
@@ -310,6 +311,8 @@ html {
   list-style: none;
   gap: 0.25em;
   font-weight: var(--fw-medium);
+  max-width: 70%;
+  justify-content: right;
 }
 
 .walk-page_bus-number {

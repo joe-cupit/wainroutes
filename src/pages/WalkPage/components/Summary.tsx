@@ -50,10 +50,12 @@ export function Summary({ secRef, title, titleRef, wainwrights, length, elevatio
           </div>
         </div>
 
-        <div>
-          <h3 className="smallheading" style={{display: "block"}}>Overview: </h3>
-          <p>{intro ?? "N/A"}</p>
-        </div>
+        {intro && 
+          <div>
+            <h3 className="smallheading" style={{display: "block"}}>Overview: </h3>
+            <p>{intro}</p>
+          </div>
+        }
       </div>
     </div>
   )

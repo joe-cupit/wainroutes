@@ -241,9 +241,11 @@ function Walk({ walkData } : { walkData: Walk }) {
               slug={walkData?.slug}
             />
 
-            <Waypoints secRef={waypointsRef}
-              waypoints={walkData?.waypoints}
-            />
+            {Object.keys(walkData?.waypoints ?? {}).length > 0 &&
+              <Waypoints secRef={waypointsRef}
+                waypoints={walkData?.waypoints}
+              />
+            }
 
             <Photos secRef={photosRef}
               slug={walkData?.slug}

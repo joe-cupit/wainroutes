@@ -47,7 +47,7 @@ export function StartingLocation({ selected, startLocation, busRoutes } : { sele
           <h3>Busses</h3>
           <ul className="walk-page_busses flex-row">
             {(busRoutes && Object.keys(busRoutes).length > 0)
-            ? Object.keys(busRoutes).map((bus, index) => {
+            ? Object.keys(busRoutes).sort((a, b) => parseInt(a) - parseInt(b)).map((bus, index) => {
                 return (
                   <li key={index}
                     className="walk-page_bus-number"
