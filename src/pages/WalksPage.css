@@ -57,6 +57,10 @@
   }
 }
 
+.walks__main select {
+  padding-inline: var(--gap-200);
+}
+
 .walks__grid {
   container-type: inline-size;
 
@@ -83,6 +87,15 @@
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
   justify-items: center;
+}
+.walks__grid-end-text {
+  align-self: center;
+  text-align: center;
+  padding-block-start: 1rem;
+}
+.walks__grid-end-text button {
+  text-decoration: underline;
+  font-weight: var(--fw-medium);
 }
 
 .walks__filters {

@@ -86,7 +86,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section>
+      {/* <section>
         <div className="home__faq">
           <h2 className="heading">FAQ</h2>
 
@@ -99,9 +99,13 @@ export function HomePage() {
               question="Are the walks suitable for beginners?"
               answer="Yes, many walks provide an easier climb. The Wainwrights range in both height and steepness, so there a fell for everyone. Each route shows what might make it hard."
             />
+            <FaqQuestion
+              question="What is a GPX file?"
+              answer="A GPX file contains the route, waypoint, and elevation data for a walk. Each walk's GPX file can be downloaded and uploaded to route tracking apps like Strava, OS Maps and AllTrails so you can follow it."
+            />
           </div>
         </div>
-      </section>
+      </section> */}
 
       <div style={{height: "5rem"}}></div>
     </main>

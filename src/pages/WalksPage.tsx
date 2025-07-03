@@ -188,7 +188,7 @@ export default function WalksPage() {
   }, [walkData])
 
   const locationsWalkObjects = useMemo(() => {
-    if (locationParam) setPageTitle("Lake District Walks in " + locationParam?.name);
+    if (locationParam) setPageTitle("Lake District Walks near " + locationParam?.name);
     else setPageTitle("Lake District Walks");
 
     
@@ -242,7 +242,6 @@ export default function WalksPage() {
   const [sortValue, setSortValue] = useState("recommended");
   const sortedWalks = useMemo(() => {
     let newWalkData = [...filteredWalks];
-    if (sortValue === "recommended") return newWalkData;
 
     const [type, dir] = sortValue.split("-");
     switch (type) {
@@ -262,6 +261,7 @@ export default function WalksPage() {
         newWalkData.sort((a, b) => (a.length ?? 0) - (b.length ?? 0));
         break;
       default:
+        newWalkData.sort((a, b) => a.title.localeCompare(b.title));
         break;
     }
 
@@ -338,15 +338,15 @@ export default function WalksPage() {
         <div className="flex-column">
           <h1 className="title">
             {locationParam
-              ? <>Walks in {locationParam.name}</>
+              ? <>Walks near {locationParam.name}</>
               : <>Walks in the Lake District</>
             }
           </h1>
 
-          <WalkMap
+          {/* <WalkMap
             mapMarkers={filteredMarkers}
             activePoint={hoveredSlug}
-          />
+          /> */}
 
           <div className="walks__main">
             <Filters
@@ -435,6 +435,21 @@ function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, reset
                  />
         })}
       </div>
+
+      {walks.length > 0 &&
+        <p className="walks__grid-end-text">
+          {activeFilters > 0
+            ? <>Showing {walks.length} walks matching {activeFilters + " filter" + (activeFilters === 1 ? "" : "s")}. </>
+            : <>Showing all {walks.length} walks. </>
+          }
+          <button
+            onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}
+            title="Scroll to top"
+          >
+            Back to top
+          </button>.
+        </p>
+      }
     </div>
   )
 }
@@ -448,7 +463,7 @@ function WalkMap({mapMarkers, activePoint} : {mapMarkers: MapMarker[], activePoi
   return (
     <div className="walks__map" data-open={open}>
       <LakeMap
-        mapMarkers={mapMarkers}
+        mapMarkers={open ? mapMarkers: []}
         activePoint={activePoint}
       />
 

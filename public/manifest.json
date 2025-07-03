@@ -1,8 +1,8 @@
 {
-  "short_name": "wainroutes",
-  "name": "Wainwright Walks Website",
-  "start_url": ".",
+  "name": "Wainroutes Lake District Walks",
+  "short_name": "Wainroutes",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#eb873c",
-  "background_color": "#2a2622"
+  "theme_color": "#bd520f",
+  "background_color": "#0d0d0c"
 }

@@ -1,0 +1,18 @@
+.notice-banner {
+  width: 100%;
+  background: var(--clr-primary-500);
+
+  padding: var(--gap-300);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-wrap: balance;
+
+  font-weight: var(--fw-medium);
+}
+
+.notice-banner a:hover {
+  text-decoration: underline;
+}

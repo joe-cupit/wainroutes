@@ -82,7 +82,7 @@ function Hill({ hillData } : { hillData: Hill }) {
           </div>
 
           <p>
-            A few sentences about the mountain, maybe a fun fact or two. Historical/cultural moments to talk about. Unique features too, with possible common ways people climb it.
+            More information coming soon.
           </p>
 
           <div className="hill__group">

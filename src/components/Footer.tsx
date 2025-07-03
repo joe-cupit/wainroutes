@@ -36,8 +36,9 @@ export default function Footer() {
         </div>
 
         <div className="footer__base">
-          <p>&#169; 2025 <Link to="/about">Wainroutes</Link></p>
-          <p>A site by <a href="https://www.google.com" target="_blank">Joe Cupit</a>.</p>
+          <p>&#169; 2025 Wainroutes</p>
+          <p>A site by Joe Cupit.</p>
+          {/* <p>A site by <a href="https://www.google.com" target="_blank">Joe Cupit</a>.</p> */}
         </div>
       </div>
     </footer>
