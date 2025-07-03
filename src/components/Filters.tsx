@@ -1,6 +1,7 @@
 import "./Filters.css";
 
 import { ChangeEventHandler, useState } from "react";
+import { PlusIcon } from "./Icons";
 
 
 type CheckboxFilterData = {
@@ -180,42 +181,66 @@ export function FilterButton({ text, onClick } : { text: string; onClick?: Calla
 
 
 export function Filters({ filterData, title, className, resetFilters, children } : { filterData: FilterData[]; title?: string; className?: string; resetFilters?: CallableFunction; children?: React.ReactNode }) {
+
+  const [open, setOpen] = useState(window.innerWidth >= 880);
+
+
   return (
-    <div className={"filters" + (className ? " "+className : "")}>
-      {title && <h2 className="subheading">{title}</h2>}
+    <div
+      className={"filters" + (className ? " "+className : "")}
+      data-open={open}
+    >
+      <div className="filters__heading">
+        {title && <h2 className="subheading">{title}</h2>}
+        <button
+          className="filters__open-close"
+          onClick={() => setOpen(prev => !prev)}
+          title={open ? "Close filters" : "Open filters"}
+        >
+          <PlusIcon />
+        </button>
+      </div>
 
-      {filterData.map((filter, index) => {
-        return (
-          <FilterGroup key={index} title={filter.title}>
-            {filter.type === "checkbox" &&
-              <CheckboxFilterGroup data={filter.data} />
-            }
-            {filter.type === "searchable-checkbox" &&
-              <>
-              <SearchBoxFilter
-                placeholder={filter.placeholder}
-                value={filter.searchTerm}
-                onChange={filter.setSearchTerm}
-              />
-              <CheckboxFilterGroup
-                data={filter.data}
-                expandable={true}
-              />
-              </>
-            }
-            {filter.type === "radio" &&
-              <RadioFilterGroup data={filter.data} />
-            }
-            {filter.type === "select" &&
-              <SelectFilter data={filter.data} />
-            }
-          </FilterGroup>
-        )
-      })}
+      <div className="filters__main">
+        {filterData.map((filter, index) => {
+          return (
+            <FilterGroup key={index} title={filter.title}>
+              {filter.type === "checkbox" &&
+                <CheckboxFilterGroup data={filter.data} />
+              }
+              {filter.type === "searchable-checkbox" &&
+                <>
+                <SearchBoxFilter
+                  placeholder={filter.placeholder}
+                  value={filter.searchTerm}
+                  onChange={filter.setSearchTerm}
+                />
+                <CheckboxFilterGroup
+                  data={filter.data}
+                  expandable={true}
+                />
+                </>
+              }
+              {filter.type === "radio" &&
+                <RadioFilterGroup data={filter.data} />
+              }
+              {filter.type === "select" &&
+                <SelectFilter data={filter.data} />
+              }
+            </FilterGroup>
+          )
+        })}
 
-      {children}
+        {children}
 
-      {resetFilters && <FilterButton text="Reset filters" onClick={resetFilters} />}
+        {resetFilters && <FilterButton text="Reset filters" onClick={resetFilters} />}
+      </div>
+
+      {open &&
+        <button className="filters__open-close_bottom" onClick={() => setOpen(prev => !prev)}>
+          close filters
+        </button>
+      }
     </div>
   )
 }

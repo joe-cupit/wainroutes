@@ -98,9 +98,8 @@
   position: sticky;
   top: 1.5rem;
 
-  z-index: 1;
-
   @media (max-width: 55.5rem) {
     position: revert;
+    width: 100%;
   }
 }
