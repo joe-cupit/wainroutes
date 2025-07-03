@@ -460,8 +460,9 @@ html {
 }
 
 .walks-page_weather-symbol {
-  width: calc(var(--fs-800) * 4);
-  aspect-ratio: 1;
+  --_width: calc(var(--fs-800) * 4);
+  width: var(--_width);
+  height: var(--_width);
   overflow: hidden;
 }
 .walks-page_weather-symbol svg {
