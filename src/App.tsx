@@ -25,10 +25,10 @@ export default function App() {
     setLastPoppedPage(e?.state?.key)
   }
 
-  const { key } = useLocation();
+  const { key, pathname } = useLocation();
   useEffect(() => {
     if (key !== lastPoppedPage) window.scrollTo(0, 0);
-  }, [key]);
+  }, [pathname]);
 
 
   return (
