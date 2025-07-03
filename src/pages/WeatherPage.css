@@ -88,9 +88,10 @@
 
   height: var(--_image-height);
 }
-.weather__forecast-table td.image-cell img {
+.weather__forecast-table td.image-cell svg {
   min-width: var(--_image-height);
   max-width: var(--_image-height);
+  max-height: var(--_image-height);
 }
 
 

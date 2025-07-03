@@ -3,14 +3,7 @@ import "./WeatherPage.css";
 import { Fragment, useEffect } from "react";
 import setPageTitle from "../hooks/setPageTitle";
 import { DistrictWeatherDayForecast, DistrictWeatherDay, useWeather } from "../contexts/WeatherContext";
-
-const WeatherSymbolsFolder = import.meta.glob("../assets/weather-icons/*.svg");
-let WeatherSymbols : { [name: string] : any } = {};
-for (const path in WeatherSymbolsFolder) {
-  WeatherSymbolsFolder[path]().then((mod : any) => {
-    WeatherSymbols[path.split("/").at(-1) ?? ""] = mod.default;
-  })
-}
+import { WeatherIcon } from "../components/Icons";
 
 
 export function WeatherPage() {
@@ -139,8 +132,8 @@ function TypeRow({ title, data, className } : { title: string; data: string[]; c
       {data.map((entry, index) => {
         const slug = entry.toLowerCase().replaceAll(" ", "-").replaceAll(/[()]/g, "");
         return (
-          <td key={index} className="image-cell">
-            <img src={WeatherSymbols[`${slug}.svg`]} alt={entry} title={entry} />
+          <td key={index} className="image-cell" title={entry}>
+            {WeatherIcon(slug)}
           </td>
         )
       })}

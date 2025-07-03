@@ -1,3 +1,19 @@
+const WeatherSymbolsFolder = import.meta.glob("/src/assets/weather-icons/*.svg", { eager: true, import: "ReactComponent" });
+const WeatherSymbols = Object.fromEntries(
+  Object.entries(WeatherSymbolsFolder).map(([path, module]) => {
+    const name = path.split("/").pop()?.replace(".svg", "");
+    return [name, module];
+  })
+)
+
+export function WeatherIcon(name: string) {
+  const SvgIcon = WeatherSymbols[name];
+
+  if (!SvgIcon) return null;
+  return <SvgIcon />;
+}
+
+
 function GoogleIcon({ d } : { d: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 -960 960 960" height="24px" width="24px">
@@ -69,6 +85,12 @@ export function DownloadIcon() {
 export function BackToTopIcon() {
   return (
     <GoogleIcon d="M440-80v-647L256-544l-56-56 280-280 280 280-56 57-184-184v647h-80Z" />
+  )
+}
+
+export function PlusIcon() {
+  return (
+    <GoogleIcon d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z" />
   )
 }
 
