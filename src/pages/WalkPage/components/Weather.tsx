@@ -5,13 +5,13 @@ import { displayElevation, displaySpeed, displayTemperature, getDistanceUnit, ge
 import { usePointWeather } from "../../../contexts/WeatherContext";
 
 
-const WeatherSymbolsFolder = import.meta.glob("../../../assets/weather-icons/*.svg");
-let WeatherSymbols : { [name: string] : any } = {};
-for (const path in WeatherSymbolsFolder) {
-  WeatherSymbolsFolder[path]().then((mod : any) => {
-    WeatherSymbols[path.split("/").at(-1) ?? ""] = mod.default;
+const WeatherSymbolsFolder = import.meta.glob("/src/assets/weather-icons/*.svg", { eager: true, import: "ReactComponent" });
+let WeatherSymbols = Object.fromEntries(
+  Object.entries(WeatherSymbolsFolder).map(([path, module]) => {
+    const name = path.split("/").pop()?.replace(".svg", "");
+    return [name, module];
   })
-}
+)
 
 
 export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLDivElement>; weatherLoc: string | undefined }) {
@@ -44,7 +44,7 @@ export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLD
       ? <>
           <p>Forecast for <b>{weatherLoc} ({displayElevation(weatherData.elevation)})</b></p>
 
-          <div className="walk-page_weather-tabs flex-row justify-apart">
+          <div className="walk-page_weather-tabs">
             {weatherData.days.map((day, index: number) => {
               let dayDate = new Date(day.date)
 
@@ -81,8 +81,8 @@ export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLD
                     </div>
                   </div>
 
-                  <div className="walks-page_weather-symbol">
-                    <img src={WeatherSymbols[`${(selectedDayWeather.weather_type[displayNightData]).toLowerCase().replaceAll(" ", "-").replaceAll(/[()]/g, "")}.svg`]} alt={selectedDayWeather.weather_type[displayNightData]} title={selectedDayWeather.weather_type[displayNightData]} />
+                  <div className="walks-page_weather-symbol" title={selectedDayWeather.weather_type[displayNightData]}>
+                    {WeatherIcon(selectedDayWeather.weather_type[displayNightData].toLowerCase().replaceAll(" ", "-").replaceAll(/[()]/g, ""))}
                   </div>
                 </div>
 
@@ -110,9 +110,9 @@ export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLD
                 </div>
               </div>
 
-              <p className="walks-page_weather-info subtext">
+              {/* <p className="walks-page_weather-info subtext">
                 Provided by the <a href="https://www.metoffice.gov.uk/" target="_blank">Met Office</a> under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">Open Government Licence</a>.
-              </p>
+              </p> */}
             </div>
           }
         </>
@@ -122,6 +122,14 @@ export function Weather({ secRef, weatherLoc } : { secRef: React.RefObject<HTMLD
       <p className="walks-page_weather-link">For the district-wide forecast, see the <Link to="/weather">mountain weather forecast</Link>.</p>
     </div>
   )
+}
+
+
+function WeatherIcon(name: string) {
+  const SvgIcon = WeatherSymbols[name];
+
+  if (!SvgIcon) return null;
+  return <SvgIcon />;
 }
 
 
