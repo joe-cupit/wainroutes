@@ -1,18 +1,37 @@
 .notice-banner {
   width: 100%;
-  background: var(--clr-primary-500);
+  background: #20B2AA;
 
-  padding: var(--gap-300);
+  padding-block: 0.625em;
+  padding-inline: var(--gap-400);
 
+  display: flex;
+  gap: var(--gap-300);
+  align-items: center;
+  text-align: center;
+
+  font-weight: var(--fw-medium);
+
+  @media (max-width: 25rem) {
+    padding-inline: var(--gap-300);
+    gap: var(--gap-200);
+  }
+}
+
+.notice-banner p {
+  flex: 1;
+  max-width: none;
+}
+.notice-banner a:hover {
+  text-decoration: underline;
+}
+
+.notice-banner__close {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  text-wrap: balance;
-
-  font-weight: var(--fw-medium);
 }
-
-.notice-banner a:hover {
-  text-decoration: underline;
+.notice-banner__close svg {
+  rotate: 45deg;
+  scale: 0.7;
 }
