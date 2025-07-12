@@ -14,6 +14,7 @@ import WalkCard from "../components/WalkCard";
 import { useWalks } from "../contexts/WalksContext";
 import { useHills } from "../contexts/HillsContext";
 import { LakeMap } from "../components/map";
+import BackToTopButton from "../components/BackToTopButton";
 
 
 type WalkObject = {
@@ -333,6 +334,8 @@ export default function WalksPage() {
 
   return (
     <main className="walks-page">
+
+      <BackToTopButton minHeight={300} />
 
       <section>
         <div className="flex-column">
