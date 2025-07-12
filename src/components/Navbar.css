@@ -10,7 +10,7 @@
   --content-max-width: 1350px;
 
   position: sticky;
-  top: -100%;
+  top: 0;
   z-index: calc(infinity);
 
   transition-property: top, translate, background-color;
@@ -26,13 +26,15 @@
 .navbar.float {
   position: fixed;
   top: 0;
-  translate: 0 -100%;
-}
-.navbar.float.sticky {
-  translate: 0;
 }
 .navbar.float.invisible {
   background: none;
+}
+
+@media (max-width: 34.5rem) {
+  .navbar {
+    top: -100%;
+  }
 }
 
 .navbar ul {

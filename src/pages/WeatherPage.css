@@ -97,7 +97,7 @@
 
 .weather__extra-details {
   position: sticky;
-  top: 1rem;
+  top: 7rem;
 
   max-width: 300px;
 }

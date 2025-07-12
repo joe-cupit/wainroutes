@@ -22,15 +22,23 @@ export function Navbar() {
   const { pathname } = useLocation();
 
 
-  const [stickyNav, setStickyNav] = useState(true);
+  const [stickyNav, setStickyNav] = useState(false);
   const [invisibleNav, setInvisibleNav] = useState(pathname === "/");
   const lastScrollY = useRef(0);
 
   const checkScroll = () => {
-    setStickyNav(lastScrollY.current - window.scrollY > 0);
-    if (pathname === "/") setInvisibleNav(window.scrollY < 100);
+    setInvisibleNav(window.scrollY < 50);
+    if (window.innerWidth >= 552) return;
 
-    lastScrollY.current = Math.max(window.scrollY, 10);
+    console.log(lastScrollY.current, window.scrollY, lastScrollY.current - window.scrollY)
+
+    if (window.scrollY <= 0) {
+      setStickyNav(false);
+      lastScrollY.current = 0;
+    }
+    else setStickyNav(lastScrollY.current - window.scrollY > 0);
+
+    lastScrollY.current = window.scrollY;
   }
 
   useEffect(() => {

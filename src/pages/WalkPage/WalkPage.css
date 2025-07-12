@@ -1,5 +1,5 @@
 html {
-  scroll-padding-top: 4rem;
+  scroll-padding-top: 10rem;
 }
 
 .walk-page {
@@ -25,7 +25,7 @@ html {
   padding-block: 0;
 
   isolation: isolate;
-  z-index: calc(infinity);
+  z-index: 999999;
 
   background: var(--clr-neutral-900);
 
@@ -39,7 +39,7 @@ html {
 }
 .walk-page_overlay.show {
   display: block;
-  top: 0;
+  top: 5.125rem;
 
   @starting-style {
     top: -5rem;
