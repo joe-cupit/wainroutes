@@ -1,15 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+/* lora regular */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/lora-v36-latin-regular.woff2') format('woff2'),
+       url('/fonts/lora-v36-latin-regular.ttf') format('truetype');
+}
+/* lora 600 */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/lora-v36-latin-600.woff2') format('woff2'),
+       url('/fonts/lora-v36-latin-600.ttf') format('truetype');
+}
+/* lora 700 */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/lora-v36-latin-700.woff2') format('woff2'),
+       url('/fonts/lora-v36-latin-700.ttf') format('truetype');
+}
+
+/* dm sans 300 */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/dm-sans-v16-latin-300.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-300.ttf') format('truetype');
+}
+/* dm sans regular */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/dm-sans-v16-latin-regular.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-regular.ttf') format('truetype');
+}
+/* dm sans italic */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/dm-sans-v16-latin-italic.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-italic.ttf') format('truetype');
+}
+/* dm sans 600 */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/dm-sans-v16-latin-600.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-600.ttf') format('truetype');
+}
+/* dm sans 800 */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/dm-sans-v16-latin-800.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-800.ttf') format('truetype');
+}
+/* dm sans 900 */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/fonts/dm-sans-v16-latin-900.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-900.ttf') format('truetype');
+}
+
+/* dm mono regular */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/dm-mono-v15-latin-regular.woff2') format('woff2'),
+       url('/fonts/dm-mono-v15-latin-regular.ttf') format('truetype');
+}
+
 
 :root {
   /*  fonts & styles  */
-  /* --ff-title: "Urbanist", sans-serif; */
-  /* --ff-heading: "DM Serif Display", serif; */
-  /* --ff-heading: "DM Sans", sans-serif; */
-  /* --ff-cursive: "Caveat", cursive; */
-  /* --ff-hand: "Dekko", cursive; */
-  /* --ff-heading: "Urbanist", sans-serif; */
   --ff-heading: "Lora", serif;
   --ff-body: "DM Sans", sans-serif;
   --ff-mono: "DM Mono", monospace;
