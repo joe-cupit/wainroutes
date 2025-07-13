@@ -1,13 +1,15 @@
+.walks-card__container {
+  container-type: inline-size;
+  width: 100%;
+  overflow: hidden;
+}
+
 .walks-card {
-  --_card-min-width: 16rem;
-  --_card-max-width: 25rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 
-  display: flex;
-  flex-direction: column;
-
-  min-width: var(--_card-min-width);
-  width: clamp(var(--_card-min-width), 100%, var(--_card-max-width));
-  height: 21rem;
+  max-width: 100%;
+  height: 100%;
 
   background: var(--clr-neutral-700);
   border-radius: 0.5rem;
@@ -16,9 +18,13 @@
 
 .walks-card__image {
   position: relative;
-  min-height: 48%;
-  max-height: 48%;
   overflow: hidden;
+}
+.walks-card__image img {
+  transition: scale 100ms;
+}
+.walks-card:hover .walks-card__image img {
+  scale: 1.05;
 }
 .walks-card__dist {
   position: absolute;
@@ -39,20 +45,47 @@
 .walks-card__text {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1;
-  gap: 0.25rem;
+  gap: 1rem;
 
   background: var(--clr-neutral-1000);
 
-  padding-block: 0.5rem 1rem;
+  padding-block: 0.75rem 1rem;
   padding-inline: 1rem;
 }
 .walks-card__text .subheading {
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 100ms;
+}
+.walks-card:hover .walks-card__text .subheading {
+  color: var(--clr-primary-400);
 }
 .walks-card__icons {
+  display: flex;
   font-weight: var(--fw-medium);
+
+  width: 100%;
+}
+.walks-card__icons-icon {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.25rem;
+
+  min-width: 1px;
+  flex: 1;
+
+  border-inline-end: 1px solid var(--clr-neutral-700);
+}
+.walks-card__icons-icon:first-child {
+  padding-inline-start: 0;
+}
+.walks-card__icons-icon:last-child {
+  padding-block-end: 0;
+  border-inline-end: none;
 }
 .walks-card__text .button {
   margin-block-start: auto;
@@ -67,10 +100,25 @@
   justify-items: center;
   align-content: center;
 
-  max-width: 100%;
+  width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
 }
-.walks-card__group > .walks-card {
+.walks-card__group > .walks-card__container {
   scroll-snap-align: center;
+}
+
+
+@container (max-width: 30rem) {
+  .walks-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .walks-card__image {
+    height: 11rem;
+  }
+  .walks-card__text {
+    padding-block-start: 0.625rem;
+  }
 }
