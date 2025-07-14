@@ -1,6 +1,6 @@
 import "./WalkPage.css";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { NotFoundPage } from "../error/NotFoundPage";
@@ -84,7 +84,7 @@ export function WalkPage() {
   const { slug } = useParams();
   const { walkData, walkLoading } = useWalk(slug);
 
-  setPageTitle(walkData?.title ?? "A Lake District Walk");
+  setPageTitle((walkData?.title ?? "") + " - A Lake District Walk");
 
   if (walkLoading) return <WalkSkeleton />
   else {
@@ -179,7 +179,7 @@ function Walk({ walkData } : { walkData: Walk }) {
           <div className="walk-page_overlay-wrapper flex-row flex-apart wrap-none">
             <div className="walk-page_overlay-left flex-1 flex-row align-center wrap-none" // className="flex-1 flex-row align-center wrap-none"
             >
-              <button title="Back" aria-label="Back to walks" onClick={() => history.back()}><BackIcon /></button>
+              <button className="flex-row" title="Back to walks" aria-label="Back to walks" onClick={() => history.back()}><BackIcon /></button>
               <div className="walk-page_overlay-title flex-column gap-0">
                 <button className="subheading" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>{walkData?.title}</button>
                 <div className="walk-page_overlay-details flex-row">
@@ -192,7 +192,7 @@ function Walk({ walkData } : { walkData: Walk }) {
 
             <div className="walk-page_overlay-nav flex-row wrap-none">
               {sections.map((sec, index) => {
-                return (
+                if (sec.ref.current) return (
                   <button key={index} 
                     onClick={() => scrollToSection(sec.section)}
                     className={(currentSection == sec.section ? "active" : "")}
@@ -200,6 +200,7 @@ function Walk({ walkData } : { walkData: Walk }) {
                     {sec.section.charAt(0).toUpperCase() + sec.section.slice(1)}
                   </button>
                 )
+                else return <Fragment key={index}></Fragment>
               })}
             </div>
           </div>
