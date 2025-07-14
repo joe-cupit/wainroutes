@@ -1,6 +1,6 @@
 import "./WalksPage.css";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { Walk } from "./WalkPage/WalkPage";
@@ -15,6 +15,7 @@ import { useWalks } from "../contexts/WalksContext";
 import { useHills } from "../contexts/HillsContext";
 import { LakeMap } from "../components/map";
 import BackToTopButton from "../components/BackToTopButton";
+import { BusIconSmall, CloseIconSmall, DistanceIconSmall, FilterIcon, MountainIconSmall, SearchIcon, TownIconSmall } from "../components/Icons";
 
 
 type WalkObject = {
@@ -90,6 +91,7 @@ export default function WalksPage() {
   const [distanceFilter, setDistanceFilter] = useState("any");
   const [wainFiltered, setWainFiltered] = useState<string[]>([]);
   const [accessibleByBus, setAccessibleByBus] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("")
 
   const setLocationName = (name: string) => {
     if (name in locations) {
@@ -210,6 +212,10 @@ export default function WalksPage() {
     if (locationsWalkObjects) {
       let filteredWalkObjects = [...locationsWalkObjects];
 
+      if (searchTerm) {
+        filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.title.toLowerCase().includes(searchTerm.toLowerCase()));
+      }
+
       if (accessibleByBus) {
         filteredWalkObjects = filteredWalkObjects.filter(walk => Object.keys(walk.walk.busConnections ?? {}).length > 0);
       }
@@ -231,13 +237,13 @@ export default function WalksPage() {
       return [filteredWalkObjects.map(w => ({...w.walk, distance: w.dist})), filteredWalkObjects.map(w => w.marker)];
     }
     else return [[] as Walk[], [] as MapMarker[]]
-  }, [locationsWalkObjects, accessibleByBus, distanceFilter, wainFiltered])
+  }, [locationsWalkObjects, accessibleByBus, distanceFilter, wainFiltered, searchTerm])
 
 
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [wainSearchTerm, setWainSearchTerm] = useState<string>("");
   const enabledWainwrights = useMemo(() => {
     return [...new Set(locationsWalkObjects.flatMap(walk => walk.walk.wainwrights ?? []).concat(wainFiltered))];
-  }, [locationsWalkObjects, searchTerm])
+  }, [locationsWalkObjects, wainSearchTerm])
 
 
   const [sortValue, setSortValue] = useState("recommended");
@@ -287,9 +293,9 @@ export default function WalksPage() {
     if (!hillsData) return {}
     else return (
       Object.fromEntries(hillsData
-        .filter(hill => hill.name.toLowerCase().indexOf(searchTerm) >= 0)
+        .filter(hill => hill.name.toLowerCase().indexOf(wainSearchTerm) >= 0)
         // .sort((a, b) => b.height - a.height)
-        .sort((a, b) => a.name.toLowerCase().indexOf(searchTerm) - b.name.toLowerCase().indexOf(searchTerm))
+        .sort((a, b) => a.name.toLowerCase().indexOf(wainSearchTerm) - b.name.toLowerCase().indexOf(wainSearchTerm))
         .map(hill => [hill.slug, hill.name]))
       )
   }, [hillsData])
@@ -304,8 +310,8 @@ export default function WalksPage() {
       groupName: "fells"
     },
     placeholder: "filter fells",
-    searchTerm: searchTerm,
-    setSearchTerm: setSearchTerm
+    searchTerm: wainSearchTerm,
+    setSearchTerm: setWainSearchTerm
   }
 
   const distRadios : FilterData = {
@@ -327,9 +333,12 @@ export default function WalksPage() {
     // wainChoose.data.setActiveValues([]);
     // distRadios.data.setValue("any");
     // setAccessibleByBus(false);
-    // setSearchTerm("");
+    // setWainSearchTerm("");
     setSearchParams();
   }, [])
+
+  const [showFilters, setShowFilters] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
 
 
   return (
@@ -352,20 +361,44 @@ export default function WalksPage() {
           /> */}
 
           <div className="walks__main">
-            <Filters
-              className="walks__filters"
-              title="Filter walks"
-              filterData={filters}
-              resetFilters={resetFilters}
-            >
-              <FilterGroup>
-                <CheckboxFilter
-                  name="Accessible by bus"
-                  checked={accessibleByBus}
-                  onChange={e => setAccessibleByBusBool(e.target.checked)}
+            <div className="walks__filter-search">
+              <div
+                className="walks__search-bar"
+                onClick={() => searchRef.current?.focus()}
+              >
+                <SearchIcon />
+                <input
+                  ref={searchRef}
+                  placeholder="Search for a walk"
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
                 />
-              </FilterGroup>
-            </Filters>
+              </div>
+              <button
+                className="walks__filter-button"
+                onClick={() => setShowFilters(prev => !prev)}
+              >
+                <span>Filters</span>
+                <FilterIcon />
+              </button>
+            </div>
+
+            {showFilters &&
+              <Filters
+                className="walks__filters"
+                title="Filter walks"
+                filterData={filters}
+                resetFilters={resetFilters}
+              >
+                <FilterGroup>
+                  <CheckboxFilter
+                    name="Accessible by bus"
+                    checked={accessibleByBus}
+                    onChange={e => setAccessibleByBusBool(e.target.checked)}
+                  />
+                </FilterGroup>
+              </Filters>
+            }
 
             <WalkGrid
               walks={sortedWalks}
@@ -374,14 +407,21 @@ export default function WalksPage() {
                 value: sortValue,
                 set: setSortValue
               }}
-              activeFilters={
-                (townSelect.data.currentValue !== "any" ? 1 : 0) +
-                (wainChoose.data.activeValues.length > 0 ? 1 : 0) +
-                (distRadios.data.currentValue !== "any" ? 1 : 0) +
-                (accessibleByBus ? 1 : 0)
-              }
-              resetFilters={resetFilters}
+              activeFilters={{
+                town: locations[townSelect.data.currentValue]?.name,
+                wainwrights: wainChoose.data.activeValues.map(slug => [slug, wainChoose.data.values[slug]]),
+                distance: distRadios.data.currentValue !== "any" ? distRadios.data.values[distRadios.data.currentValue] : undefined,
+                byBus: accessibleByBus
+              }}
+              resetFilters={{
+                town: () => townSelect.data.setValue("any"),
+                wainwrights: (wain: string) => wainChoose.data.setActiveValues(wainChoose.data.activeValues.filter(w => w != wain)),
+                distance: () => distRadios.data.setValue("any"),
+                byBus: () => setAccessibleByBusBool(false)
+              }}
               setHoveredSlug={setHoveredSlug}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
             />
           </div>
         </div>
@@ -392,7 +432,20 @@ export default function WalksPage() {
 }
 
 
-function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, resetFilters, setHoveredSlug } : { walks: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; activeFilters?: number; resetFilters: CallableFunction, setHoveredSlug?: CallableFunction }) {
+type GridFilters = {
+  town?: string,
+  wainwrights?: [string, string][],
+  distance?: string,
+  byBus?: boolean
+}
+type GridFilterResets = {
+  town: CallableFunction,
+  wainwrights: CallableFunction,
+  distance: CallableFunction,
+  byBus: CallableFunction
+}
+
+function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters, resetFilters, setHoveredSlug, searchTerm, setSearchTerm } : { walks: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; activeFilters: GridFilters; resetFilters: GridFilterResets, setHoveredSlug?: CallableFunction, searchTerm: string, setSearchTerm: CallableFunction }) {
 
   useEffect(() => {
     if (hasLocationParam && sortControl.value === "recommended") sortControl.set("closest");
@@ -402,8 +455,18 @@ function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, reset
 
   return (
     <div className="walks__grid">
-      <div className="flex-row justify-apart align-center">
-        <h2 className="heading">All walks</h2>
+      <div className="walks__grid-top">
+        {/* <h2 className="heading">All walks</h2> */}
+        <div>
+          <ul className="walks__grid-filters-list">
+            {activeFilters.town && <FilterTag reset={resetFilters.town} Icon={<TownIconSmall />} text={activeFilters.town} />}
+            {activeFilters.wainwrights?.map((wain, index) => {
+              return <FilterTag reset={() => resetFilters.wainwrights(wain[0])} key={index} Icon={<MountainIconSmall />} text={wain[1]} />
+            })}
+            {(activeFilters.distance && activeFilters.distance !== "any") && <FilterTag reset={resetFilters.distance} Icon={<DistanceIconSmall />} text={activeFilters.distance} />}
+            {activeFilters.byBus && <FilterTag reset={resetFilters.byBus} Icon={<BusIconSmall />} text={"By Bus"} />}
+          </ul>
+        </div>
         <select
           value={sortControl.value}
           onChange={e => sortControl.set(e.target.value)}
@@ -420,14 +483,14 @@ function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, reset
         </select>
       </div>
 
-      {(activeFilters > 0 || walks.length === 0) &&
+      {/* {(activeFilters || walks.length === 0) &&
         <div className="walks__grid-filters">
           {walks.length > 0
-            ? <p>Showing <b>{walks.length + " walk" + (walks.length === 1 ? "" : "s")}</b> matching {activeFilters + " filter" + (activeFilters === 1 ? "" : "s")}. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
+            ? <p>Showing <b>{walks.length + " walk" + (walks.length === 1 ? "" : "s")}</b> matching filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
             : <p>No walks match the current filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></p>
           }
         </div>
-      }
+      } */}
 
       <div className="walks__grid-grid">
         {walks.map((walk, index) => {
@@ -441,8 +504,8 @@ function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, reset
 
       {walks.length > 0 &&
         <p className="walks__grid-end-text">
-          {activeFilters > 0
-            ? <>Showing {walks.length} walks matching {activeFilters + " filter" + (activeFilters === 1 ? "" : "s")}. </>
+          {activeFilters
+            ? <>Showing {walks.length} walks matching filters. </>
             : <>Showing all {walks.length} walks. </>
           }
           <button
@@ -454,6 +517,20 @@ function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters=0, reset
         </p>
       }
     </div>
+  )
+}
+
+
+function FilterTag({ reset, Icon, text } : { reset: CallableFunction; Icon: ReactNode; text: string }) {
+  
+  return (
+    <li>
+      <button onClick={() => reset()} title="Remove filter">
+        <CloseIconSmall />
+      </button>
+      {Icon}
+      {text}
+    </li>
   )
 }
 
