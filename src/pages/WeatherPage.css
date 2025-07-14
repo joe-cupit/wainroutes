@@ -147,3 +147,53 @@
     --_padding-inline: var(--gap-300)
   }
 }
+
+
+.weather-page.skeleton {
+  --_max-width: 67ch;
+}
+
+.weather-page.skeleton h2,
+.weather-page.skeleton h3,
+.weather-page.skeleton p,
+.weather-page.skeleton li {
+  display: block;
+  background: var(--clr-neutral-800);
+  width: min(100%, var(--_max-width));
+  height: 1lh;
+  border: none;
+  margin-block: 0.25rem;
+  opacity: 0.8;
+}
+
+.weather-page.skeleton h2 {
+  width: min(100%, var(--gap-600) * 12.5, var(--_max-width));
+  background: var(--clr-neutral-600);
+}
+.weather-page.skeleton h3 {
+  width: min(100%, var(--gap-600) * 9, var(--_max-width));;
+  background: var(--clr-neutral-700);
+}
+.weather-page.skeleton p {
+  height: 2.1lh;
+}
+.weather-page.skeleton ul {
+  list-style: none;
+}
+.weather-page.skeleton li {
+  width: min(100%, 10rem, var(--_max-width));
+}
+.weather-page.skeleton .secondary-text {
+  max-width: min(100%, 15rem, var(--_max-width));
+  height: 0.8lh;
+  background: var(--clr-neutral-800);
+}
+.weather-page.skeleton .weather__extra-details p {
+  max-width: 320px;
+}
+.weather-page.skeleton .weather__table {
+  height: 18rem;
+}
+.weather-page.skeleton .weather__current-day div {
+  width: min(100%, var(--_max-width));
+}

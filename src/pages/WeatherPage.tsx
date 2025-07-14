@@ -8,22 +8,23 @@ import { WeatherIcon } from "../components/Icons";
 
 export function WeatherPage() {
 
-  setPageTitle("Lake District Weather");
+  setPageTitle("Lake District Weather Forecast");
 
-  const { weather: weatherData, refresh: fetchWeather } = useWeather();
+  const { weather: weatherData, refresh: fetchWeather, loading, error } = useWeather();
 
   useEffect(() => {
     fetchWeather();
   }, [fetchWeather])
 
 
-  return (
+  if (loading) return (<WeatherSkeleton />)
+  else return (
     <main className="weather-page">
 
       <section>
         <div className="flex-column weather__main">
           <div className="weather__header">
-            <h1 className="title">Lake District Weather</h1>
+            <h1 className="title">Lake District Weather Forecast</h1>
             <p className="secondary-text">{`Updated at: ${weatherData?.update_time}`}</p>
           </div>
 
@@ -250,4 +251,132 @@ function DateTitle(dateString : string | undefined) {
   var date = new Date(dateString);
 
   return [weekday[date.getDay()], date.getDate(), month[date.getMonth()]].join(" ");
+}
+
+
+function WeatherSkeleton() {
+  return (
+    <main className="weather-page skeleton">
+
+      <section>
+        <div className="flex-column weather__main">
+          <div className="weather__header">
+            <h1 className="title">Lake District Weather Forecast</h1>
+            <p className="secondary-text"></p>
+          </div>
+
+          <div className="flex-column weather__days">
+            <div className="weather__current-day">
+              <div className="flex-column">
+                <div>
+                  <h2 className="heading"></h2>
+                  <p className="secondary-text"></p>
+                </div>
+
+                  <div className="weather__day">
+                    <p></p>
+
+                    <div className="weather__forecast">
+                      <h3></h3>
+                      <p className="weather__table"></p>
+                    </div>
+
+                    <div>
+                      <h3></h3>
+                      <p></p>
+                    </div>
+
+                    <div>
+                      <h3></h3>
+                      <p></p>
+                    </div>
+
+                    <div>
+                      <h3></h3>
+                      <p></p>
+                    </div>
+                  </div>
+              </div>
+
+              <div className="weather__extra-details">
+                <div className="weather__mountain-hazards">
+                  <h3 className="subheading"></h3>
+                  <p className="weather__mountain-hazards-list"></p>
+                </div>
+
+                <div className="weather__mountain-hazards">
+                  <h3 className="subheading"></h3>
+                  <p className="weather__meteorologist-view"></p>
+                </div>
+
+              </div>
+            </div>
+
+            <div className="flex-column weather__day">
+              <div>
+                <h2 className="heading"></h2>
+                <p className="secondary-text"></p>
+              </div>
+
+              <p></p>
+
+              <div>
+                <h3></h3>
+                <p></p>
+              </div>
+
+              <div>
+                <h3></h3>
+                <p></p>
+              </div>
+
+              <div>
+                <h3></h3>
+                <p></p>
+              </div>
+
+              <div>
+                <h3></h3>
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="heading"></h2>
+
+              <div className="weather__further-days">
+                <div className="flex-column future weather__day">
+                  <div>
+                    <h3 className="subheading"></h3>
+                    <p className="secondary-text"></p>
+                  </div>
+                  <p></p>
+                </div>
+                <div className="flex-column future weather__day">
+                  <div>
+                    <h3 className="subheading"></h3>
+                    <p className="secondary-text"></p>
+                  </div>
+                  <p></p>
+                </div>
+                <div className="flex-column future weather__day">
+                  <div>
+                    <h3 className="subheading"></h3>
+                    <p className="secondary-text"></p>
+                  </div>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+  )
 }
