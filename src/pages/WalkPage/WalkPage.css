@@ -48,6 +48,11 @@ html {
 .walk-page_overlay section {
   padding: 0;
 }
+@media (max-width: 34.5rem) {
+  body:not(:has(.navbar.sticky)) .walk-page_overlay.show {
+    top: 0;
+  }
+}
 
 .walk-page_overlay-left {
   text-align: left;
