@@ -8,14 +8,14 @@ import { MapMarker, useWalkMarkers } from "../hooks/useMarkers";
 
 import setPageTitle from "../hooks/setPageTitle";
 import haversineDistance from "../utils/haversine";
-import { getDistanceUnit, getDistanceValue } from "../utils/unitConversions";
+import { getDistanceUnit, getDistanceValue, getElevationUnit, getElevationValue } from "../utils/unitConversions";
 import { CheckboxFilter, FilterData, FilterGroup, Filters } from "../components/Filters";
 import WalkCard from "../components/WalkCard";
 import { useWalks } from "../contexts/WalksContext";
 import { useHills } from "../contexts/HillsContext";
 import { LakeMap } from "../components/map";
 import BackToTopButton from "../components/BackToTopButton";
-import { BusIconSmall, CloseIconSmall, DistanceIconSmall, FilterIcon, MountainIconSmall, SearchIcon, TownIconSmall } from "../components/Icons";
+import { BusIconSmall, CloseIconSmall, DistanceIconSmall, ElevationIconSmall, FilterIcon, MountainIconSmall, SearchIcon, TownIconSmall } from "../components/Icons";
 
 
 type WalkObject = {
@@ -70,6 +70,21 @@ const distanceOptions = {
     ]
   ))
 }
+const roundNearest100 = (n: number) => {
+  return Math.round(n / 100) * 100
+}
+const elevationDelimiters = [0, 300, 600, 900];
+const elevationValues = Object.fromEntries(elevationDelimiters.map((k, i) => (i + 1 < elevationDelimiters.length) ? [k + "-" + elevationDelimiters[i+1], [k, elevationDelimiters[i+1]]] : [k+"+", [k]]));
+const elevationOptions = {
+  "any": "Any",
+  ...Object.fromEntries(Object.entries(elevationValues).map(([k, v]) =>
+    [k, (v[0] == 0
+        ? "<"+roundNearest100(getElevationValue(v[1])!)
+        : roundNearest100(getElevationValue(v[0])!) + (v.length > 1 ? "-"+roundNearest100(getElevationValue(v[1])!) : "")
+        ) + getElevationUnit() + (v.length == 1 ? "+" : "")
+    ]
+  ))
+}
 
 
 export default function WalksPage() {
@@ -89,6 +104,7 @@ export default function WalksPage() {
   }
 
   const [distanceFilter, setDistanceFilter] = useState("any");
+  const [elevationFilter, setElevationFilter] = useState("any");
   const [wainFiltered, setWainFiltered] = useState<string[]>([]);
   const [accessibleByBus, setAccessibleByBus] = useState(false);
   const [searchTerm, setSearchTerm] = useState("")
@@ -122,6 +138,17 @@ export default function WalksPage() {
     }
     else {
       searchParams.delete("distance");
+      setSearchParams(searchParams);
+    }
+  }
+
+  const setElevationValue = (val: string) => {
+    if (val != "any") {
+      searchParams.set("elevation", val);
+      setSearchParams(searchParams);
+    }
+    else {
+      searchParams.delete("elevation");
       setSearchParams(searchParams);
     }
   }
@@ -169,6 +196,18 @@ export default function WalksPage() {
       }
     }
     else setDistanceFilter("any");
+
+    // update elevation
+    if (searchParams.has("elevation")) {
+      let newDistance = searchParams.get("elevation") ?? "any";
+      if (newDistance in elevationOptions) {
+        setElevationFilter(newDistance);
+      }
+      else {
+        searchParams.delete("elevation");
+      }
+    }
+    else setElevationFilter("any");
 
     // update accessible by bus
     setAccessibleByBus(searchParams.get("by-bus") ? true : false)
@@ -230,6 +269,16 @@ export default function WalksPage() {
         }
       }
 
+      if (elevationFilter != "any" && elevationFilter in elevationValues) {
+        let minmax = elevationValues[elevationFilter] ?? [];
+        if (minmax.length > 1) {
+          filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.elevation && (walk.walk.elevation >= minmax[0] && walk.walk.elevation <= minmax[1]));
+        }
+        else if (minmax.length > 0) {
+          filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.elevation && (walk.walk.elevation >= minmax[0]));
+        }
+      }
+
       if (wainFiltered.length > 0) {
         filteredWalkObjects = filteredWalkObjects.filter(walk => walk.walk.wainwrights?.some(w => wainFiltered.includes(w)))
       }
@@ -237,7 +286,7 @@ export default function WalksPage() {
       return [filteredWalkObjects.map(w => ({...w.walk, distance: w.dist})), filteredWalkObjects.map(w => w.marker)];
     }
     else return [[] as Walk[], [] as MapMarker[]]
-  }, [locationsWalkObjects, accessibleByBus, distanceFilter, wainFiltered, searchTerm])
+  }, [locationsWalkObjects, accessibleByBus, distanceFilter, elevationFilter, wainFiltered, searchTerm])
 
 
   const [wainSearchTerm, setWainSearchTerm] = useState<string>("");
@@ -324,8 +373,18 @@ export default function WalksPage() {
       setValue: setDistanceValue
     },
   }
+  const eleRadios : FilterData = {
+    title: "Elevation gain",
+    type: "radio",
+    data: {
+      groupId: "elevation",
+      values: elevationOptions,
+      currentValue: elevationFilter,
+      setValue: setElevationValue
+    },
+  }
 
-  const filters : FilterData[] = [townSelect, wainChoose, distRadios];
+  const filters : FilterData[] = [townSelect, wainChoose, distRadios, eleRadios];
 
 
   const resetFilters = useCallback(() => {
@@ -411,12 +470,14 @@ export default function WalksPage() {
                 town: locations[townSelect.data.currentValue]?.name,
                 wainwrights: wainChoose.data.activeValues.map(slug => [slug, wainChoose.data.values[slug]]),
                 distance: distRadios.data.currentValue !== "any" ? distRadios.data.values[distRadios.data.currentValue] : undefined,
+                elevation: eleRadios.data.currentValue !== "any" ? eleRadios.data.values[eleRadios.data.currentValue] : undefined,
                 byBus: accessibleByBus
               }}
               resetFilters={{
                 town: () => townSelect.data.setValue("any"),
                 wainwrights: (wain: string) => wainChoose.data.setActiveValues(wainChoose.data.activeValues.filter(w => w != wain)),
                 distance: () => distRadios.data.setValue("any"),
+                elevation: () => eleRadios.data.setValue("any"),
                 byBus: () => setAccessibleByBusBool(false)
               }}
               setHoveredSlug={setHoveredSlug}
@@ -436,12 +497,14 @@ type GridFilters = {
   town?: string,
   wainwrights?: [string, string][],
   distance?: string,
+  elevation?: string,
   byBus?: boolean
 }
 type GridFilterResets = {
   town: CallableFunction,
   wainwrights: CallableFunction,
   distance: CallableFunction,
+  elevation: CallableFunction,
   byBus: CallableFunction
 }
 
@@ -464,6 +527,7 @@ function WalkGrid({ walks, hasLocationParam, sortControl, activeFilters, resetFi
               return <FilterTag reset={() => resetFilters.wainwrights(wain[0])} key={index} Icon={<MountainIconSmall />} text={wain[1]} />
             })}
             {(activeFilters.distance && activeFilters.distance !== "any") && <FilterTag reset={resetFilters.distance} Icon={<DistanceIconSmall />} text={activeFilters.distance} />}
+            {(activeFilters.elevation && activeFilters.elevation !== "any") && <FilterTag reset={resetFilters.elevation} Icon={<ElevationIconSmall />} text={activeFilters.elevation} />}
             {activeFilters.byBus && <FilterTag reset={resetFilters.byBus} Icon={<BusIconSmall />} text={"By Bus"} />}
           </ul>
         </div>
