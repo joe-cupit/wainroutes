@@ -30,6 +30,7 @@ type Location = {
   slug: string;
   name: string;
   coords: [number, number];
+  distScale?: number;
 } | null
 type Locations = {
   [name : string]: Location;
@@ -41,12 +42,12 @@ export const locations : Locations = {
   "grasmere": {slug: "grasmere", name: "Grasmere", coords: [-3.0244, 54.4597]},
   "buttermere": {slug: "buttermere", name: "Buttermere", coords: [-3.2766, 54.5413]},
   "borrowdale": {slug: "borrowdale", name: "Borrowdale", coords: [-3.1486, 54.5028]},
-  "coniston": {slug: "coniston", name: "Coniston", coords: [-3.0759, 54.3691]},
+  "coniston": {slug: "coniston", name: "Coniston", coords: [-3.0759, 54.3691], distScale: 1.5},
   "glenridding": {slug: "glenridding", name: "Glenridding", coords: [-2.9498, 54.5448]},
-  "windermere": {slug: "windermere", name: "Windermere", coords: [-2.9068, 54.3807]},
+  "windermere": {slug: "windermere", name: "Windermere", coords: [-2.9068, 54.3807], distScale: 1.5},
 
   "dungeon-ghyll": {slug: "dungeon-ghyll", name: "Dungeon Ghyll", coords: [-3.0942, 54.4461]},
-  "kentmere": {slug: "kentmere", name: "Kentmere", coords: [-2.8402, 54.4302]},
+  "kentmere": {slug: "kentmere", name: "Kentmere", coords: [-2.8402, 54.4302], distScale: 1.25},
   "seatoller": {slug: "seatoller", name: "Seatoller", coords: [-3.1678, 54.5142]},
   "braithwaite": {slug: "braithwaite", name: "Braithwaite", coords: [-3.1923, 54.6026]},
   "wasdale": {slug: "wasdale", name: "Wasdale", coords: [-3.2966, 54.4660]},
@@ -56,6 +57,13 @@ export const locations : Locations = {
   "whinlatter-pass": {slug: "whinlatter-pass", name: "Whinlatter Pass", coords: [-3.2256, 54.6082]},
   "threlkeld": {slug: "threlkeld", name: "Threlkeld", coords: [-3.0543, 54.6190]},
   "dodd-wood": {slug: "dodd-wood", name: "Dodd Wood", coords: [-3.1868, 54.6428]},
+
+  "penrith": {slug: "penrith", name: "Penrith", coords: [-2.7584, 54.6619], distScale: 2.5},
+  "cockermouth": {slug: "cockermouth", name: "Cockermouth", coords: [-3.3647, 54.6623], distScale: 2},
+  "kendal": {slug: "kendal", name: "Kendal", coords: [-2.7403, 54.3321], distScale: 2.5},
+  "stavely": {slug: "stavely", name: "Stavely", coords: [-2.8184, 54.3756], distScale: 1.75},
+  "oxenholme": {slug: "oxenholme", name: "Oxenholme", coords: [-2.7216, 54.3048], distScale: 2.75},
+  "bassenthwaite": {slug: "bassenthwaite", name: "Bassenthwaite", coords: [-3.1953, 54.6795]},
 }
 
 const walkDelimiters = [0, 8, 16, 24];
@@ -216,7 +224,7 @@ export default function WalksPage() {
   const walkData = useWalks().walks;
   const walkMarkers = Object.fromEntries(useWalkMarkers().map(marker => [marker.properties.slug, marker]));
 
-  const maximumDist = 8;
+  const maximumDist = 10;
   const walkObjects = useMemo(() => {
     if (!walkData || !walkMarkers) return [];
 
@@ -241,7 +249,8 @@ export default function WalksPage() {
         walk.dist = haversineDistance([walk.walk.startLocation?.longitude ?? 0, walk.walk.startLocation?.latitude ?? 0], locationParam?.coords) / 1000;
       }
 
-      return filteredWalkObjects.filter(w => (w.dist ?? maximumDist+1) < maximumDist);
+      let maxDist = maximumDist * (locationParam.distScale ?? 1);
+      return filteredWalkObjects.filter(w => (w.dist ?? maxDist+1) < maxDist);
     }
     else return [...walkObjects];
   }, [locationParam, walkObjects])
