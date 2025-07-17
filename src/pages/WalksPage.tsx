@@ -441,6 +441,15 @@ export default function WalksPage() {
                   value={searchTerm}
                   onChange={e => setSearchTerm(e.target.value)}
                 />
+                {searchTerm.length > 0 &&
+                  <button
+                    className="walks__search-bar-button"
+                    onClick={() => setSearchTerm("")}
+                    title="Clear text"
+                  >
+                    <CloseIconSmall />
+                  </button>
+                }
               </div>
               <button
                 className="walks__filter-button"

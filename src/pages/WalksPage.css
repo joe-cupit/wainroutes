@@ -211,6 +211,11 @@
   padding: 0;
   margin: 0;
 }
+.walks__search-bar-button {
+  display: flex;
+  height: 100%;
+  padding-inline: 0.25rem;
+}
 
 .walks__filter-button {
   background: var(--clr-neutral-1000);
