@@ -3,7 +3,7 @@ import "./WalkSearch.css";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { locations } from "../pages/WalksPage";
+import { locations } from "../pages/WalksPage/WalksPage";
 import { BookTitles } from "../pages/HillPage";
 
 import { HikingIcon, LocationIcon, MountainIcon } from "./Icons";

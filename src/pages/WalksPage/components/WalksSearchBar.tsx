@@ -1,16 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { FilterData, Filters } from "./Filters";
-import { CloseIconSmall, FilterIcon, SearchIcon } from "./Icons";
+import { CloseIconSmall, FilterIcon, SearchIcon } from "../../../components/Icons";
 import Fuse from "fuse.js";
-import { Walk } from "../pages/WalkPage/WalkPage";
-import { useWalks } from "../contexts/WalksContext";
-import { MapMarker } from "../hooks/useMarkers";
-import { useHills } from "../contexts/HillsContext";
+import { Walk } from "../../WalkPage/WalkPage";
+import { useWalks } from "../../../contexts/WalksContext";
+import { MapMarker } from "../../../hooks/useMarkers";
+import { useHills } from "../../../contexts/HillsContext";
 import { useSearchParams } from "react-router-dom";
-import { getDistanceUnit, getDistanceValue, getElevationUnit, getElevationValue } from "../utils/unitConversions";
-import { locations } from "../pages/WalksPage";
-import haversineDistance from "../utils/haversine";
+import { getDistanceUnit, getDistanceValue, getElevationUnit, getElevationValue } from "../../../utils/unitConversions";
+import { locations } from "../WalksPage";
+import haversineDistance from "../../../utils/haversine";
 
 
 export type WalkObject = {

@@ -154,6 +154,7 @@
 .walks__filters {
   width: 15rem;
   height: fit-content;
+  margin-block-start: 0.25rem;
   /* height: calc(100vh - 3rem); */
   /* min-height: fit-content; */
   /* width: clamp(10rem, 20vw, 18rem); */
@@ -172,7 +173,6 @@
 
 .walks__filter-search {
   display: flex;
-  align-items: center;
   gap: var(--gap-400);
 
   width: 100%;
@@ -215,6 +215,7 @@
   display: flex;
   height: 100%;
   padding-inline: 0.25rem;
+  margin-inline: -0.25rem;
 }
 
 .walks__filter-button {
@@ -228,8 +229,9 @@
   display: flex;
   align-items: center;
   gap: var(--gap-300);
-
-  height: 100%;
+}
+.walks__filter-button[data-open="true"] {
+  background: var(--clr-neutral-800);
 }
 @media (max-width: 35rem) {
   .walks__filter-button span {

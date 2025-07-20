@@ -1,7 +1,7 @@
 import "./Filters.css";
 
 import { ChangeEventHandler, useEffect, useRef, useState } from "react";
-import { PlusIcon } from "./Icons";
+import { PlusIcon } from "../../../components/Icons";
 
 
 type CheckboxFilterData = {

@@ -3,15 +3,15 @@ import "./WalksPage.css";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { Walk } from "./WalkPage/WalkPage";
-import { MapMarker } from "../hooks/useMarkers";
+import { Walk } from "../WalkPage/WalkPage";
+import { MapMarker } from "../../hooks/useMarkers";
 
-import setPageTitle from "../hooks/setPageTitle";
-import WalkCard from "../components/WalkCard";
-import { LakeMap } from "../components/map";
-import BackToTopButton from "../components/BackToTopButton";
-import { BusIconSmall, CloseIconSmall, DistanceIconSmall, ElevationIconSmall, FilterIcon, MountainIconSmall, SearchIcon, TownIconSmall } from "../components/Icons";
-import WalksSearchBar from "../components/WalksSearchBar";
+import setPageTitle from "../../hooks/setPageTitle";
+import WalkCard from "../../components/WalkCard";
+import { LakeMap } from "../../components/map";
+import BackToTopButton from "../../components/BackToTopButton";
+import { BusIconSmall, CloseIconSmall, DistanceIconSmall, ElevationIconSmall, FilterIcon, MountainIconSmall, SearchIcon, TownIconSmall } from "../../components/Icons";
+import WalksSearchBar from "./components/WalksSearchBar";
 
 
 type Location = {
@@ -56,6 +56,12 @@ export const locations : Locations = {
 
 
 export default function WalksPage() {
+
+  // TODO: create a filter context here for all child elements probably
+  // then change anywhere in this file where it uses the search params probably
+  // move default definitions and that here i suppose
+
+  // maybe even store sorted by in search params
 
   useEffect(() => {
     setPageTitle("Lake District Walks");
