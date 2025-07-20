@@ -1,10 +1,16 @@
 import { ReactNode, useEffect } from "react";
-import { CloseIconSmall } from "../../../components/Icons";
+
+import { BusIconSmall, CloseIconSmall, DistanceIconSmall, ElevationIconSmall, MountainIconSmall, TownIconSmall } from "../../../components/Icons";
 import WalkCard from "../../../components/WalkCard";
 import { Walk } from "../../WalkPage/WalkPage";
+import { useFilters } from "../contexts/FilterContext";
+import { distanceOptions, elevationOptions, locations } from "../utils/FilterValues";
+import { useHill } from "../../../contexts/HillsContext";
 
 
 export default function WalkGrid({ walks, hasLocationParam, sortControl, setHoveredSlug } : { walks: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; setHoveredSlug?: CallableFunction }) {
+
+  const { filterObjects } = useFilters();
 
   useEffect(() => {
     if (hasLocationParam && sortControl.value === "recommended") sortControl.set("closest");
@@ -17,15 +23,15 @@ export default function WalkGrid({ walks, hasLocationParam, sortControl, setHove
       <div className="walks__grid-top">
         {/* <h2 className="heading">All walks</h2> */}
         <div>
-          {/* <ul className="walks__grid-filters-list">
-            {activeFilters.town && <FilterTag reset={resetFilters.town} Icon={<TownIconSmall />} text={activeFilters.town} />}
-            {activeFilters.wainwrights?.map((wain, index) => {
-              return <FilterTag reset={() => resetFilters.wainwrights(wain[0])} key={index} Icon={<MountainIconSmall />} text={wain[1]} />
+          <ul className="walks__grid-filters-list">
+            {(filterObjects.town.currentValue !== "any") && <FilterTag reset={filterObjects.town.setCurrentValue} Icon={<TownIconSmall />} text={locations[filterObjects.town.currentValue]?.name} />}
+            {filterObjects.wainwrights.currentValues.map((wain, index) => {
+              return <FilterTag reset={() => filterObjects.wainwrights.setCurrentValues(filterObjects.wainwrights.currentValues.filter(w => w != wain))} key={index} Icon={<MountainIconSmall />} text={useHill(wain).hillData?.name ?? ""} />
             })}
-            {(activeFilters.distance && activeFilters.distance !== "any") && <FilterTag reset={resetFilters.distance} Icon={<DistanceIconSmall />} text={activeFilters.distance} />}
-            {(activeFilters.elevation && activeFilters.elevation !== "any") && <FilterTag reset={resetFilters.elevation} Icon={<ElevationIconSmall />} text={activeFilters.elevation} />}
-            {activeFilters.byBus && <FilterTag reset={resetFilters.byBus} Icon={<BusIconSmall />} text={"By Bus"} />}
-          </ul> */}
+            {(filterObjects.distance.currentValue !== "any") && <FilterTag reset={filterObjects.distance.setCurrentValue} Icon={<DistanceIconSmall />} text={distanceOptions[filterObjects.distance.currentValue]} />}
+            {(filterObjects.elevation.currentValue !== "any") && <FilterTag reset={filterObjects.elevation.setCurrentValue} Icon={<ElevationIconSmall />} text={elevationOptions[filterObjects.elevation.currentValue]} />}
+            {(filterObjects.byBus.currentValue === "byBus") && <FilterTag reset={filterObjects.byBus.setCurrentValue} Icon={<BusIconSmall />} text={"By Bus"} />}
+          </ul>
         </div>
         <select
           value={sortControl.value}
@@ -65,10 +71,7 @@ export default function WalkGrid({ walks, hasLocationParam, sortControl, setHove
 
       {walks.length > 0 &&
         <p className="walks__grid-end-text">
-          {/* {activeFilters
-            ? <>Showing {walks.length} walks matching filters. </>
-            : <>Showing all {walks.length} walks. </>
-          } */}
+          Showing {walks.length + " walk" + (walks.length !== 1 ? "s" : "")} in the Lake District.&nbsp;
           <button
             onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}
             title="Scroll to top"
@@ -82,9 +85,10 @@ export default function WalkGrid({ walks, hasLocationParam, sortControl, setHove
 }
 
 
-function FilterTag({ reset, Icon, text } : { reset: CallableFunction; Icon: ReactNode; text: string }) {
-  
-  return (
+function FilterTag({ reset, Icon, text } : { reset: CallableFunction; Icon: ReactNode; text?: string }) {
+
+  if (text === undefined) return <></>
+  else return (
     <li>
       <button onClick={() => reset()} title="Remove filter">
         <CloseIconSmall />

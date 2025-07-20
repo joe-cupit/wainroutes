@@ -5,39 +5,15 @@ import { CloseIconSmall, FilterIcon, SearchIcon } from "../../../components/Icon
 import Fuse from "fuse.js";
 import { Walk } from "../../WalkPage/WalkPage";
 import { useWalks } from "../../../contexts/WalksContext";
-import { MapMarker } from "../../../hooks/useMarkers";
 import { useSearchParams } from "react-router-dom";
 import haversineDistance from "../../../utils/haversine";
 import { useFilters } from "../contexts/FilterContext";
 import { distanceValues, elevationValues, locations } from "../utils/FilterValues";
 
 
-export type WalkObject = {
-  slug: string;
-  walk: Walk;
-  marker: MapMarker;
-  dist?: number;
-  score: number;
-}
-
-type FilterState = {
-  town: string,
-  distance: string,
-  elevation: string,
-  wainwrights: string[],
-  byBus: boolean
-}
-const initialFilterState : FilterState = {
-  town: "any",
-  distance: "any",
-  elevation: "any",
-  wainwrights: [],
-  byBus: false
-}
-
-
 export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks: CallableFunction }) {
   
+  const allWalks = useWalks().walks;
   const { filters, filterObjects } = useFilters();
 
   const [urlSearchParams, setUrlSearchParams] = useSearchParams();
@@ -60,9 +36,10 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
   const [showFilters, setShowFilters] = useState(false);
 
   const walkData : Walk[] = useMemo(() => {
-    let newWalkData = useWalks().walks ?? [];
+    if (!allWalks) return [];
+    let newWalkData = [...allWalks];
 
-    if (filters.town in locations) {
+    if (locations[filters.town]) {
       const centerLoc = locations[filters.town];
       if (centerLoc) {
         for (let walk of newWalkData) {
@@ -73,7 +50,7 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
     }
 
     return newWalkData;
-  }, [filters.town]);
+  }, [allWalks, filters.town]);
 
   const searchableWalks = useMemo(() => {
     if (!walkData) return;
@@ -85,17 +62,18 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
     })
   }, [walkData, filters.town])
 
-  const searchedWalkObjects : {walk: Walk, score: number}[] = useMemo(() => {
-    if (!searchableWalks || !walkData) return [];
+  const [searchedWalkObjects, setSearchedWalkObjects] = useState<{walk: Walk, score: number}[]>([]);
+  useEffect(() => {
+    if (!searchableWalks || !walkData) return;
     if (!debouncedSearchTerm) {
       urlSearchParams.delete("query");
       setUrlSearchParams(urlSearchParams);
-      return walkData?.map(walk => ({walk: walk, score: 0}));
+      setSearchedWalkObjects(walkData?.map(walk => ({walk: walk, score: 0})));
     }
     else {
       urlSearchParams.set("query", debouncedSearchTerm);
       setUrlSearchParams(urlSearchParams);
-      return searchableWalks.search(debouncedSearchTerm).map(res => ({walk: res.item, score: (res.score ?? 0)}));
+      setSearchedWalkObjects(searchableWalks.search(debouncedSearchTerm).map(res => ({walk: res.item, score: (res.score ?? 0)})));
     }
   }, [searchableWalks, debouncedSearchTerm])
 

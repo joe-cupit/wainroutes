@@ -46,7 +46,7 @@ export const locations : Locations = {
 
 
 export const distanceValues = Object.fromEntries(distanceDelimiters.map((k, i) => (i + 1 < distanceDelimiters.length) ? [k + "-" + distanceDelimiters[i+1], [k, distanceDelimiters[i+1]]] : [k+"+", [k]]));
-export const distanceOptions = {
+export const distanceOptions : {[key: string]: string} = {
   "any": "Any",
   ...Object.fromEntries(Object.entries(distanceValues).map(([k, v]) =>
     [k, (v[0] == 0
@@ -60,7 +60,7 @@ export const distanceOptions = {
 }
 
 export const elevationValues = Object.fromEntries(elevationDelimiters.map((k, i) => (i + 1 < elevationDelimiters.length) ? [k + "-" + elevationDelimiters[i+1], [k, elevationDelimiters[i+1]]] : [k+"+", [k]]));
-export const elevationOptions = {
+export const elevationOptions : {[key: string]: string} = {
   "any": "Any",
   ...Object.fromEntries(Object.entries(elevationValues).map(([k, v]) =>
     [k, (v[0] == 0

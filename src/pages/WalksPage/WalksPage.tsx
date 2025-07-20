@@ -1,33 +1,42 @@
 import "./WalksPage.css";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
 import { Walk } from "../WalkPage/WalkPage";
-import { MapMarker } from "../../hooks/useMarkers";
-
 import setPageTitle from "../../hooks/setPageTitle";
+import { MapMarker } from "../../hooks/useMarkers";
 import { LakeMap } from "../../components/map";
 import BackToTopButton from "../../components/BackToTopButton";
+
 import WalksSearchBar from "./components/WalksSearchBar";
-import { FiltersProvider } from "./contexts/FilterContext";
 import WalkGrid from "./components/WalkGrid";
+import { FiltersProvider, useFilters } from "./contexts/FilterContext";
 import { locations } from "./utils/FilterValues";
 
 
 export default function WalksPage() {
 
-  // TODO: create a filter context here for all child elements probably
-  // then change anywhere in this file where it uses the search params probably
-  // move default definitions and that here i suppose
-
-  // maybe even store sorted by in search params
-
   useEffect(() => {
     setPageTitle("Lake District Walks");
   }, [])
 
-  const [searchParams, setURLSearchParams] = useSearchParams();
+
+  return (
+    <FiltersProvider>
+      <main className="walks-page">
+
+        <BackToTopButton minHeight={300} />
+        <WalksPageMain />
+
+      </main>
+    </FiltersProvider>
+  )
+}
+
+
+function WalksPageMain() {
+
+  const { town: currentTown } = useFilters().filters;
   const [filteredWalks, setFilteredWalks] = useState<Walk[]>([]);
 
   const [sortValue, setSortValue] = useState("recommended");
@@ -63,42 +72,34 @@ export default function WalksPage() {
 
 
   return (
-    <FiltersProvider>
-      <main className="walks-page">
+    <section>
+      <div className="flex-column">
+        <h1 className="title">
+          {locations[currentTown]
+            ? <>Walks near {locations[currentTown].name}</>
+            : <>Walks in the Lake District</>
+          }
+        </h1>
 
-        <BackToTopButton minHeight={300} />
+        {/* <WalkMap
+          mapMarkers={filteredMarkers}
+          activePoint={hoveredSlug}
+        /> */}
 
-        <section>
-          <div className="flex-column">
-            <h1 className="title">
-              {(searchParams.get("town") ?? "") in locations
-                ? <>Walks near {locations[searchParams.get("town") ?? ""]?.name}</>
-                : <>Walks in the Lake District</>
-              }
-            </h1>
+        <div className="walks__main">
+          <WalksSearchBar setFilteredWalks={setFilteredWalks} />
 
-            {/* <WalkMap
-              mapMarkers={filteredMarkers}
-              activePoint={hoveredSlug}
-            /> */}
-
-            <div className="walks__main">
-              <WalksSearchBar setFilteredWalks={setFilteredWalks} />
-
-              <WalkGrid
-                walks={sortedWalks}
-                hasLocationParam={searchParams.has("town") !== null}
-                sortControl={{
-                  value: sortValue,
-                  set: setSortValue
-                }}
-              />
-            </div>
-          </div>
-        </section>
-
-      </main>
-    </FiltersProvider>
+          <WalkGrid
+            walks={sortedWalks}
+            hasLocationParam={(currentTown in locations)}
+            sortControl={{
+              value: sortValue,
+              set: setSortValue
+            }}
+          />
+        </div>
+      </div>
+    </section>
   )
 }
 

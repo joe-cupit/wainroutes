@@ -1,57 +1,30 @@
 import "./Filters.css";
 
 import { ChangeEventHandler, useEffect, useRef, useState } from "react";
-import { PlusIcon } from "../../../components/Icons";
 
 
-export type CheckboxFilterData = {
-  type: "checkbox";
-  data: CheckboxData;
-  title?: string;
-}
-export type SearchableCheckboxFilterData = {
-  type: "searchable-checkbox";
-  data: CheckboxData;
-  title?: string;
-  placeholder?: string;
-  searchTerm: string;
-  setSearchTerm: CallableFunction;
-}
-export type RadioFilterData = {
-  type: "radio";
-  data: RadioData;
-  title?: string;
+export type MultiSelectFilterData = {
+  type: "multi-select";
+  title: string;
+  values: {[key: string]: string};
+  currentValues: string[];
+  setCurrentValues: CallableFunction;
+
+  enabledValues?: string[];
+  isSearchable?: boolean;
 }
 export type SelectFilterData = {
   type: "select";
-  data: SelectData;
-  title?: string;
-}
-export type FilterData = CheckboxFilterData | SearchableCheckboxFilterData | RadioFilterData | SelectFilterData;
-
-
-type CheckboxData = {
-  values: {[key: string]: string};
-  enabledValues?: string[];
-  activeValues: string[];
-  setActiveValues: CallableFunction;
-
-  groupName?: string;
-}
-type RadioData = {
+  title: string;
   values: {[key: string]: string};
   currentValue: string;
-  setValue: (v: string) => void;
+  setCurrentValue: (v?: string) => void;
 
   groupId: string;
+  isRadio?: boolean;
+  isSearchable?: boolean;
 }
-type SelectData = {
-  values: {[key: string]: string};
-  currentValue: string;
-  setValue: (v: string) => void;
-
-  groupId: string;
-}
+// type FilterData = MultiSelectFilterData | SelectFilterData;
 
 
 export function FilterGroup({ title, children } : { title?: string; children?: React.ReactNode }) {
@@ -73,35 +46,50 @@ export function CheckboxFilter({ name, checked, disabled, onChange } : { name: s
   )
 }
 
-export function CheckboxFilterGroup({ data } : { data: CheckboxData }) {
+export function CheckboxFilterGroup({ filter } : { filter: MultiSelectFilterData }) {
   
-  const minEntries = 4;
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredValues, setFilteredValues] = useState(Object.keys(filter.values));
+
+  useEffect(() => {
+    if (searchTerm && searchTerm.length > 0) {
+      setFilteredValues(Object.keys(filter.values).filter(key => key.replace("-", " ").includes(searchTerm.toLowerCase())))
+    }
+    else setFilteredValues(Object.keys(filter.values));
+  }, [searchTerm])
 
 
   return (
     <>
+      {filter.isSearchable &&
+        <SearchBoxFilter
+          placeholder={"Search"}
+          value={searchTerm}
+          setValue={(newTerm: string) => {console.log(newTerm); setSearchTerm(newTerm)}}
+        />
+      }
       <div className="filter__checkbox-group">
-        {Object.keys(data.values).length > 0
-        ? Object.keys(data.values)
+        {filteredValues.length > 0
+        ? filteredValues
             .sort()
-            .sort((a, b) => data.enabledValues ? ((!data.enabledValues.includes(a) && data.enabledValues.includes(b)) ? 1 : 0) : 0)
-            .sort((a, b) => (!data.activeValues.includes(a) && data.activeValues.includes(b)) ? 1 : 0)
+            .sort((a, b) => filter.enabledValues ? ((!filter.enabledValues.includes(a) && filter.enabledValues.includes(b)) ? 1 : 0) : 0)
+            .sort((a, b) => (!filter.currentValues.includes(a) && filter.currentValues.includes(b)) ? 1 : 0)
             .map((key, index) => {
               return (
                 <CheckboxFilter key={index}
-                  name={data.values[key]}
-                  checked={data.activeValues.includes(key)}
+                  name={filter.values[key]}
+                  checked={filter.currentValues.includes(key)}
                   onChange={e => {
                     if (e.target) {
-                      if (e.target.checked) data.setActiveValues(data.activeValues.concat([key]));
-                      else data.setActiveValues(data.activeValues.filter(k => k !== key))
+                      if (e.target.checked) filter.setCurrentValues(filter.currentValues.concat([key]));
+                      else filter.setCurrentValues(filter.currentValues.filter(k => k !== key))
                     }
                   }}
-                  disabled={!data.activeValues.includes(key) && (data.enabledValues ? !data.enabledValues.includes(key) : false) }
+                  disabled={!filter.currentValues.includes(key) && (filter.enabledValues ? !filter.enabledValues.includes(key) : false) }
                 />
               )
           })
-        : <i className="filter__checkbox-info">{data.groupName ? "No matching "+data.groupName : "No matching entries"}</i>
+        : <i className="filter__checkbox-info">No entries matching '{searchTerm}'</i>
         }
       </div>
     </>
@@ -109,7 +97,7 @@ export function CheckboxFilterGroup({ data } : { data: CheckboxData }) {
 }
 
 
-export function SearchableCheckboxFilterGroup({ data, placeholder } : { data: CheckboxData; placeholder?: string }) {
+export function SearchableCheckboxFilterGroup({ data, placeholder } : { data: MultiSelectFilterData; placeholder?: string }) {
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -126,7 +114,7 @@ export function SearchableCheckboxFilterGroup({ data, placeholder } : { data: Ch
         setValue={(newTerm: string) => {console.log(newTerm); setSearchTerm(newTerm)}}
       />
       <CheckboxFilterGroup
-        data={data}
+        filter={data}
       />
     </>
   )
@@ -142,7 +130,7 @@ export function RadioFilter({ groupId, name, checked, className, onChange } : { 
   )
 }
 
-export function RadioFilterGroup({ data } : { data: RadioData }) {
+export function RadioFilterGroup({ data } : { data: SelectFilterData }) {
   return (
     <div className="filter__radio-group">
       {Object.keys(data.values).map((key, index) =>
@@ -150,7 +138,7 @@ export function RadioFilterGroup({ data } : { data: RadioData }) {
           groupId={data.groupId}
           name={data.values[key]}
           checked={data.currentValue === key}
-          onChange={() => data.setValue(key)}
+          onChange={() => data.setCurrentValue(key)}
         />
       )}
     </div>
@@ -171,7 +159,7 @@ export function SearchBoxFilter({ placeholder, value, setValue } : { placeholder
 }
 
 
-export function SelectFilter({ data } : { data: SelectData }) {
+export function SelectFilter({ data } : { data: SelectFilterData }) {
   return (
     <div className="filter__select">
       {Object.keys(data.values).map((key, index) => {
@@ -180,7 +168,7 @@ export function SelectFilter({ data } : { data: SelectData }) {
           groupId={data.groupId}
           name={data.values[key]}
           checked={data.currentValue === key}
-          onChange={() => data.setValue(key)}
+          onChange={() => data.setCurrentValue(key)}
         />
       })}
     </div>
@@ -188,12 +176,12 @@ export function SelectFilter({ data } : { data: SelectData }) {
 }
 
 
-export function SelectFilterOld({ data } : { data: SelectData }) {
+export function SelectFilterOld({ data } : { data: SelectFilterData }) {
   return (
     <select
       className="filter__select"
       value={data.currentValue}
-      onChange={e => data.setValue(e.target.value)}
+      onChange={e => data.setCurrentValue(e.target.value)}
     >
       {Object.keys(data.values).map((key, index) => {
         return (
@@ -216,63 +204,7 @@ export function FilterButton({ text, onClick } : { text: string; onClick?: Calla
 }
 
 
-export function CloseableFilters({ filterData, title, className, resetFilters, children } : { filterData: FilterData[]; title?: string; className?: string; resetFilters?: CallableFunction; children?: React.ReactNode }) {
-
-  const [open, setOpen] = useState(true);
-
-
-  return (
-    <div
-      className={"filters" + (className ? " "+className : "")}
-      data-open={open}
-    >
-      <div className="filters__heading">
-        {title && <h2 className="subheading">{title}</h2>}
-        <button
-          className="filters__open-close"
-          onClick={() => setOpen(prev => !prev)}
-          title={open ? "Close filters" : "Open filters"}
-        >
-          <PlusIcon />
-        </button>
-      </div>
-
-      <div className="filters__main">
-        {filterData.map((filter, index) => {
-          return (
-            <FilterGroup key={index} title={filter.title}>
-              {filter.type === "checkbox" &&
-                <CheckboxFilterGroup data={filter.data} />
-              }
-              {filter.type === "searchable-checkbox" &&
-                <SearchableCheckboxFilterGroup data={filter.data} />
-              }
-              {filter.type === "radio" &&
-                <RadioFilterGroup data={filter.data} />
-              }
-              {filter.type === "select" &&
-                <SelectFilter data={filter.data} />
-              }
-            </FilterGroup>
-          )
-        })}
-
-        {children}
-
-        {resetFilters && <FilterButton text="Reset filters" onClick={resetFilters} />}
-      </div>
-
-      {open &&
-        <button className="filters__open-close_bottom" onClick={() => setOpen(prev => !prev)}>
-          close filters
-        </button>
-      }
-    </div>
-  )
-}
-
-
-export function Filters({ filterData, title, className, resetFilters, closeSelf, children } : { filterData: FilterData[]; title?: string; className?: string; resetFilters?: CallableFunction; closeSelf?: CallableFunction; children?: React.ReactNode }) {
+export function Filters({ filterData, title, className, resetFilters, closeSelf, children } : { filterData: (MultiSelectFilterData | SelectFilterData)[]; title?: string; className?: string; resetFilters?: CallableFunction; closeSelf?: CallableFunction; children?: React.ReactNode }) {
 
   return (
     <div
@@ -286,25 +218,7 @@ export function Filters({ filterData, title, className, resetFilters, closeSelf,
       }
 
       <div className="filters__main">
-        {filterData.map((filter, index) => {
-          return (
-            <NewFilterGroup key={index} filter={filter} />
-            // <FilterGroup key={index} title={filter.title}>
-            //   {filter.type === "checkbox" &&
-            //     <CheckboxFilterGroup data={filter.data} />
-            //   }
-            //   {filter.type === "searchable-checkbox" &&
-            //     <SearchableCheckboxFilterGroup data={filter.data} />
-            //   }
-            //   {filter.type === "radio" &&
-            //     <RadioFilterGroup data={filter.data} />
-            //   }
-            //   {filter.type === "select" &&
-            //     <SelectFilter data={filter.data} />
-            //   }
-            // </FilterGroup>
-          )
-        })}
+        {filterData.map((filter, index) => (<NewFilterGroup key={index} filter={filter} />))}
 
         {children}
 
@@ -321,7 +235,7 @@ export function Filters({ filterData, title, className, resetFilters, closeSelf,
 }
 
 
-export function NewFilterGroup({ filter } : { filter: FilterData }) {
+export function NewFilterGroup({ filter } : { filter: MultiSelectFilterData | SelectFilterData }) {
 
   const [open, setOpen] = useState(false);
   const FilterRef = useRef<HTMLDivElement>(null);
@@ -339,7 +253,7 @@ export function NewFilterGroup({ filter } : { filter: FilterData }) {
 
   useEffect(() => {
     openCloseFilter(false);
-  }, [((filter.type !== "checkbox" && filter.type !== "searchable-checkbox") && filter.data.currentValue)])
+  }, [(filter.type === "select" && filter.currentValue)])
 
 
   return (
@@ -348,27 +262,30 @@ export function NewFilterGroup({ filter } : { filter: FilterData }) {
       ref={FilterRef}
       data-open={open}
       data-active={
-        ((filter.type === "radio" || filter.type === "select") && filter.data.currentValue !== "any") ||
-        ((filter.type === "checkbox" || filter.type === "searchable-checkbox") && filter.data.activeValues.length > 0)
+        (filter.type === "select" && filter.currentValue !== "any") ||
+        (filter.type === "multi-select" && filter.currentValues.length > 0)
       }
     >
       <button className="new-filter-group__button" onClick={() => openCloseFilter(!open)}>
         <h3>{filter.title}</h3>
         <p className="new-filter-group__active-value">
-          {(filter.type === "radio" || filter.type === "select") &&
-            filter.data.values[filter.data.currentValue]
+          {filter.type === "select" &&
+            filter.values[filter.currentValue]
           }
-          {(filter.type === "checkbox" || filter.type === "searchable-checkbox") &&
-            filter.data.activeValues.length + " selected"
+          {filter.type === "multi-select" &&
+            filter.currentValues.length + " selected"
           }
         </p>
       </button>
 
       <div className="new-filter-group__main">
-        {filter.type === "radio" && <RadioFilterGroup data={filter.data} />}
-        {filter.type === "checkbox" && <CheckboxFilterGroup data={filter.data} />}
-        {filter.type === "searchable-checkbox" && <SearchableCheckboxFilterGroup data={filter.data} />}
-        {filter.type === "select" && <SelectFilter data={filter.data} />}
+        {filter.type === "select" &&
+          (filter.isRadio
+            ? <RadioFilterGroup data={filter} />
+            : <SelectFilter data={filter} />
+          )
+        }
+        {filter.type === "multi-select" && <CheckboxFilterGroup filter={filter} />}
       </div>
     </div>
   )
