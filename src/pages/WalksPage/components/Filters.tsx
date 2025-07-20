@@ -4,12 +4,12 @@ import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import { PlusIcon } from "../../../components/Icons";
 
 
-type CheckboxFilterData = {
+export type CheckboxFilterData = {
   type: "checkbox";
   data: CheckboxData;
   title?: string;
 }
-type SearchableCheckboxFilterData = {
+export type SearchableCheckboxFilterData = {
   type: "searchable-checkbox";
   data: CheckboxData;
   title?: string;
@@ -17,12 +17,12 @@ type SearchableCheckboxFilterData = {
   searchTerm: string;
   setSearchTerm: CallableFunction;
 }
-type RadioFilterData = {
+export type RadioFilterData = {
   type: "radio";
   data: RadioData;
   title?: string;
 }
-type SelectFilterData = {
+export type SelectFilterData = {
   type: "select";
   data: SelectData;
   title?: string;
@@ -277,7 +277,7 @@ export function Filters({ filterData, title, className, resetFilters, closeSelf,
   return (
     <div
       className={"filters" + (className ? " "+className : "")}
-      data-open={open}
+      // data-open={open}
     >
       {title &&
         <div className="filters__heading">

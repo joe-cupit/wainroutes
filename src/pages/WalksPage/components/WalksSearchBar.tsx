@@ -1,16 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { FilterData, Filters } from "./Filters";
+import { Filters } from "./Filters";
 import { CloseIconSmall, FilterIcon, SearchIcon } from "../../../components/Icons";
 import Fuse from "fuse.js";
 import { Walk } from "../../WalkPage/WalkPage";
 import { useWalks } from "../../../contexts/WalksContext";
 import { MapMarker } from "../../../hooks/useMarkers";
-import { useHills } from "../../../contexts/HillsContext";
 import { useSearchParams } from "react-router-dom";
-import { getDistanceUnit, getDistanceValue, getElevationUnit, getElevationValue } from "../../../utils/unitConversions";
-import { locations } from "../WalksPage";
 import haversineDistance from "../../../utils/haversine";
+import { useFilters } from "../contexts/FilterContext";
+import { distanceValues, elevationValues, locations } from "../utils/FilterValues";
 
 
 export type WalkObject = {
@@ -39,6 +38,8 @@ const initialFilterState : FilterState = {
 
 export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks: CallableFunction }) {
   
+  const { filters, filterObjects } = useFilters();
+
   const [urlSearchParams, setUrlSearchParams] = useSearchParams();
 
   const searchRef = useRef<HTMLInputElement>(null);
@@ -56,7 +57,6 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
     return () => clearTimeout(handler);
   }, [searchTerm])
   
-  const [filters, setFilters] = useState<FilterState>(initialFilterState);
   const [showFilters, setShowFilters] = useState(false);
 
   const walkData : Walk[] = useMemo(() => {
@@ -172,211 +172,13 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
         </button>
       </div>
       
-      <WalksSearchFilters
-        filters={filters}
-        setFilters={setFilters}
-        isOpen={showFilters}
-        closeSelf={() => setShowFilters(false)}
-      />
+      {showFilters &&
+        <Filters
+          filterData={Object.values(filterObjects)}
+          className="walks__filters"
+          closeSelf={() => setShowFilters(false)}
+        />
+      }
     </div>
   )
-}
-
-
-const distanceDelimiters = [0, 6, 12, 18];
-const distanceValues = Object.fromEntries(distanceDelimiters.map((k, i) => (i + 1 < distanceDelimiters.length) ? [k + "-" + distanceDelimiters[i+1], [k, distanceDelimiters[i+1]]] : [k+"+", [k]]));
-const distanceOptions = {
-  "any": "Any",
-  ...Object.fromEntries(Object.entries(distanceValues).map(([k, v]) =>
-    [k, (v[0] == 0
-        ? "<"+getDistanceValue(v[1], 0)
-        : getDistanceValue(v[0], 0) + (v.length > 1 ? "-"+getDistanceValue(v[1], 0) : "")
-        ) + getDistanceUnit() + (v.length == 1 ? "+" : "")
-    ]
-  ))
-}
-const roundNearest100 = (n: number) => {
-  return Math.round(n / 100) * 100
-}
-const elevationDelimiters = [0, 300, 600, 900];
-const elevationValues = Object.fromEntries(elevationDelimiters.map((k, i) => (i + 1 < elevationDelimiters.length) ? [k + "-" + elevationDelimiters[i+1], [k, elevationDelimiters[i+1]]] : [k+"+", [k]]));
-const elevationOptions = {
-  "any": "Any",
-  ...Object.fromEntries(Object.entries(elevationValues).map(([k, v]) =>
-    [k, (v[0] == 0
-        ? "<"+roundNearest100(getElevationValue(v[1])!)
-        : roundNearest100(getElevationValue(v[0])!) + (v.length > 1 ? "-"+roundNearest100(getElevationValue(v[1])!) : "")
-        ) + getElevationUnit() + (v.length == 1 ? "+" : "")
-    ]
-  ))
-}
-
-
-function WalksSearchFilters({ filters, setFilters, isOpen, closeSelf } : { filters: FilterState; setFilters: React.Dispatch<React.SetStateAction<FilterState>>; isOpen: boolean; closeSelf: CallableFunction }) {
-
-  // const [filters, setFilters] = useState(initialFilterState);
-  const [urlSearchParams, setUrlSearchParams] = useSearchParams();
-  const replaceSearchParams = (searchParams?: URLSearchParams) => {
-    console.log(searchParams)
-    setUrlSearchParams(searchParams ?? {}, { replace: true })
-  }
-
-  useEffect(() => {
-    const params = Object.fromEntries(urlSearchParams.entries());
-    let newFilters = {...initialFilterState} as FilterState;
-
-    // update town
-    if (params.town && params.town in locations) {
-      if (!locationSelectEntries.includes(params.town)) {
-        setLocationSelectEntries(prev => [...prev, params.town]);
-      }
-      newFilters.town = params.town;
-    }
-
-    // update wainwrights
-    newFilters.wainwrights = params.wainwrights?.split(" ") ?? [];
-
-    // update distance
-    if (params.distance && params.distance in distanceOptions) {
-      newFilters.distance = params.distance;
-    }
-
-    // update elevation
-    if (params.elevation && params.elevation in elevationOptions) {
-      newFilters.elevation = params.elevation;
-    }
-
-    // update accessible by bus
-    newFilters.byBus = (params.byBus === "yes");
-
-    console.log(newFilters);
-    setFilters(newFilters);
-  }, [urlSearchParams])
-
-  // useEffect(() => {
-  //   let params = Object.fromEntries(urlSearchParams.entries());
-
-  //   if (filters.town !== "any") params.town = filters.town;
-  //   else delete params.town;
-
-  //   if (filters.distance !== "any") params.distance = filters.distance;
-  //   else delete params.distance;
-
-  //   if (filters.elevation !== "any") params.elevation = filters.elevation;
-  //   else delete params.elevation;
-
-  //   if (filters.wainwrights.length > 0) params.wainwrights = filters.wainwrights.join(",");
-  //   else delete params.wainwrights;
-
-  //   if (filters.byBus) params.byBus = "yes";
-  //   else delete params.byBus;
-
-  //   console.log(params)
-  //   setUrlSearchParams(params);
-  // }, [filters])
-
-
-  const [locationSelectEntries, setLocationSelectEntries] = useState<string[]>(["keswick", "ambleside", "grasmere", "buttermere", "borrowdale", "coniston", "glenridding", "windermere"]);
-  const townSelect : FilterData = {
-    title: "Near to town",
-    type: "select",
-    data: {
-      groupId: "town",
-      values: Object.fromEntries([["any", "Any"]].concat(locationSelectEntries.map(loc => [loc, locations[loc]?.name ?? ""]))),
-      currentValue: filters.town,
-      setValue: (newTown: string) => {
-        if (newTown === "any") urlSearchParams.delete("town");
-        else urlSearchParams.set("town", newTown);
-
-        replaceSearchParams(urlSearchParams);
-      }
-    }
-  }
-
-  const hillsData = useHills().hills;
-  const wainValues = useMemo(() => {
-    if (hillsData) return Object.fromEntries(hillsData.map(hill => [hill.slug, hill.name]));
-    else return {};
-  }, [hillsData])
-  const wainChoose : FilterData = {
-    title: "Wainwrights",
-    type: "searchable-checkbox",
-    data: {
-      values: wainValues,
-      enabledValues: Object.keys(wainValues),
-      activeValues: filters.wainwrights,
-      setActiveValues: (newWainwrights: string[]) => {
-        if (newWainwrights.length > 0) urlSearchParams.set("wainwrights", newWainwrights.join(" "));
-        else urlSearchParams.delete("wainwrights");
-
-        replaceSearchParams(urlSearchParams);
-      },
-      groupName: "fells"
-    },
-    placeholder: "filter fells",
-    searchTerm: "",
-    setSearchTerm: () => {}
-  }
-
-  const distRadios : FilterData = {
-    title: "Walk length",
-    type: "radio",
-    data: {
-      groupId: "distance",
-      values: distanceOptions,
-      currentValue: filters.distance,
-      setValue: (newDist: string) => {
-        if (newDist === "any") urlSearchParams.delete("distance");
-        else urlSearchParams.set("distance", newDist);
-
-        replaceSearchParams(urlSearchParams);
-      }
-    },
-  }
-  const eleRadios : FilterData = {
-    title: "Elevation gain",
-    type: "radio",
-    data: {
-      groupId: "elevation",
-      values: elevationOptions,
-      currentValue: filters.elevation,
-      setValue: (newEle: string) => {
-        if (newEle === "any") urlSearchParams.delete("elevation");
-        else urlSearchParams.set("elevation", newEle);
-
-        replaceSearchParams(urlSearchParams);
-      }
-    },
-  }
-  const transportRadios : FilterData = {
-    title: "Transport access",
-    type: "radio",
-    data: {
-      groupId: "by-bus",
-      values: {
-        "any": "Any",
-        "byBus": "By bus"
-      },
-      currentValue: filters.byBus ? "byBus" : "any",
-      setValue: (val: string) => {
-        if (val === "byBus") urlSearchParams.set("byBus", "yes");
-        else urlSearchParams.delete("byBus");
-
-        replaceSearchParams(urlSearchParams);
-      }
-    },
-  }
-
-  const filterObjects : FilterData[] = [townSelect, distRadios, eleRadios, wainChoose, transportRadios];
-
-
-  if (isOpen) return (
-    <Filters
-      className="walks__filters"
-      filterData={filterObjects}
-      resetFilters={() => setFilters(initialFilterState)}
-      closeSelf={closeSelf}
-    />
-  )
-  else return <></>
 }

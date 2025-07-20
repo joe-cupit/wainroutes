@@ -3,13 +3,13 @@ import "./WalkSearch.css";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { locations } from "../pages/WalksPage/WalksPage";
 import { BookTitles } from "../pages/HillPage";
 
 import { HikingIcon, LocationIcon, MountainIcon } from "./Icons";
 import { displayDistance, displayElevation } from "../utils/unitConversions";
 import { useWalks } from "../contexts/WalksContext";
 import { useHills } from "../contexts/HillsContext";
+import { locations } from "../pages/WalksPage/utils/FilterValues";
 
 
 type WalkOption = {
@@ -76,14 +76,12 @@ export default function WalkSearch({ reversed, small, placeholder, className } :
         });
       }
     }
-    for (let town of Object.values(locations)) {
-      if (town) {
-        newSearchOptions.push({
-          type: "town",
-          name: town.name,
-          link: "/walks?town=" + town.slug
-        })
-      }
+    for (let townKey of Object.keys(locations)) {
+      newSearchOptions.push({
+        type: "town",
+        name: locations[townKey]!.name,
+        link: "/walks?town=" + townKey
+      })
     }
 
     return newSearchOptions;
