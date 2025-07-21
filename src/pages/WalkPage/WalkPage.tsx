@@ -43,9 +43,9 @@ export type Walk = {
   title: string;
   type?: string;
   summary?: string;
-  wainwrights?: string[];
-  length?: number;
-  elevation?: number;
+  wainwrights: string[];
+  length: number;
+  elevation: number;
   estimatedTime?: string;
   date?: string;
 

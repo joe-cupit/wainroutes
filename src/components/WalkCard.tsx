@@ -25,8 +25,8 @@ export default function WalkCard({ walk, showDistance, hoverEvent } : { walk: Wa
           />
           {(showDistance && walk.distance) &&
             <div className="walks-card__dist">
-              {getDistanceValue(walk.distance) < 1
-                ? "Less than 1" + getDistanceUnit()
+              {(getDistanceValue(walk.distance) ?? 1) < 1
+                ? "Less than 1" + getDistanceUnit() + " away"
                 : displayDistance(walk.distance, 1) + " away"
               }
             </div>
@@ -35,14 +35,15 @@ export default function WalkCard({ walk, showDistance, hoverEvent } : { walk: Wa
         <div className="walks-card__text">
           <div>
             <h3 className="subheading">{walk.title}</h3>
-            <p>This is a lovely walk, with a simple-ish description of the route and some cool things that you will be able to see on the route.</p>
+            <p style={{minHeight: "0.5lh"}}></p>
+            {/* <p>This is a lovely walk, with a simple-ish description of the route and some cool things that you will be able to see on the route.</p> */}
           </div>
           <div className="walks-card__icons">
-            <div className="walks-card__icons-icon">
+            <div className="walks-card__icons-icon wide">
               <HikingIcon />
               {displayDistance(walk.length, 1)}
             </div>
-            <div className="walks-card__icons-icon">
+            <div className="walks-card__icons-icon wide">
               <ElevationIcon />
               {displayElevation(walk.elevation)}
             </div>

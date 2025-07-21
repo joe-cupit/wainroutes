@@ -80,6 +80,9 @@
 
   border-inline-end: 1px solid var(--clr-neutral-700);
 }
+.walks-card__icons-icon.wide {
+  flex: 1.5;
+}
 .walks-card__icons-icon:first-child {
   padding-inline-start: 0;
 }

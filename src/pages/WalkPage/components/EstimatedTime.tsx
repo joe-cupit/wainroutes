@@ -5,7 +5,7 @@ import { displayDistance } from "../../../utils/unitConversions"
 export function EstimatedTime({ selected, walkLengthInKm } : { selected: boolean; walkLengthInKm: number | undefined }) {
   if (!walkLengthInKm) return <></>;
 
-  const [speedInKm, setSpeedInKm] = useState<number>(3);
+  const [speedInKm, setSpeedInKm] = useState<number>(2.5);
 
   const timeTaken = useMemo(() => {
     let time = (walkLengthInKm ?? 0) / speedInKm;
