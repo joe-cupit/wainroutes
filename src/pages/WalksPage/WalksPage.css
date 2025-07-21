@@ -69,15 +69,15 @@
 
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 
   flex: 1;
 }
 .walks__grid-top {
   display: flex;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: end;
+  align-items: center;
   gap: var(--gap-400);
 }
 .walks__grid-filters-list {
@@ -85,41 +85,53 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap-300);
+  min-height: 2.125rem;
+  /* min-width: 18rem; */
 }
 .walks__grid-filters-list li {
+  display: flex;
+  gap: 1px;
+
+  border-radius: 0.25rem;
+  overflow: hidden;
+  cursor: default;
+}
+.walks__grid-filters-list li button,
+.walks__grid-filters-list li div {
+  background: var(--clr-neutral-800);
+}
+.walks__grid-filters-list li button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  width: 2rem;
+
+  transition: background-color 100ms;
+}
+.walks__grid-filters-list li button:hover {
+  background: var(--clr-neutral-700);
+}
+.walks__grid-filters-list li div {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 
   font-size: var(--fs-300);
   font-weight: var(--fw-medium);
-  background: var(--clr-neutral-800);
   padding-inline: 0.625rem;
   padding-block: 0.375rem;
-  border-radius: 0.25rem;
-  cursor: default;
 
   min-width: fit-content;
 
   transition: background-color 50ms;
-}
-.walks__grid-filters-list li button {
-  display: flex;
-  padding-inline: 0.125rem;
-  margin-inline: -0.125rem;
 }
 .walks__grid-filters-list li svg {
   max-height: 1.75ch;
   max-width: 1.75ch;
   margin-inline: -0.125rem;
 }
-.walks__grid-filters-list li:hover {
-  background: var(--clr-neutral-700);
-}
-/* .walks__grid-filters-list li::before {
-  content: "x";
-  cursor: pointer;
-} */
 
 .walks__grid-filters {
   text-align: center;
@@ -138,8 +150,6 @@
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr));
   justify-items: center;
-
-  margin-block-start: 1rem;
 }
 .walks__grid-end-text {
   align-self: center;
@@ -154,7 +164,7 @@
 .walks__filters {
   width: 15rem;
   height: fit-content;
-  margin-block-start: 0.25rem;
+  margin-block-start: var(--gap-400);
   /* height: calc(100vh - 3rem); */
   /* min-height: fit-content; */
   /* width: clamp(10rem, 20vw, 18rem); */
@@ -229,9 +239,6 @@
   display: flex;
   align-items: center;
   gap: var(--gap-300);
-}
-.walks__filter-button[data-open="true"] {
-  background: var(--clr-neutral-800);
 }
 @media (max-width: 35rem) {
   .walks__filter-button span {

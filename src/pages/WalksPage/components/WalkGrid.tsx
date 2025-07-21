@@ -10,7 +10,7 @@ import { useHill } from "../../../contexts/HillsContext";
 
 export default function WalkGrid({ walks, hasLocationParam, sortControl, setHoveredSlug } : { walks: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; setHoveredSlug?: CallableFunction }) {
 
-  const { filterObjects } = useFilters();
+  const { filterObjects, reset } = useFilters();
 
   useEffect(() => {
     if (hasLocationParam && sortControl.value === "recommended") sortControl.set("closest");
@@ -30,7 +30,7 @@ export default function WalkGrid({ walks, hasLocationParam, sortControl, setHove
             })}
             {(filterObjects.distance.currentValue !== "any") && <FilterTag reset={filterObjects.distance.setCurrentValue} Icon={<DistanceIconSmall />} text={distanceOptions[filterObjects.distance.currentValue]} />}
             {(filterObjects.elevation.currentValue !== "any") && <FilterTag reset={filterObjects.elevation.setCurrentValue} Icon={<ElevationIconSmall />} text={elevationOptions[filterObjects.elevation.currentValue]} />}
-            {(filterObjects.byBus.currentValue === "byBus") && <FilterTag reset={filterObjects.byBus.setCurrentValue} Icon={<BusIconSmall />} text={"By Bus"} />}
+            {(filterObjects.byBus.currentValue === "byBus") && <FilterTag reset={filterObjects.byBus.setCurrentValue} Icon={<BusIconSmall />} text={"By bus"} />}
           </ul>
         </div>
         <select
@@ -51,7 +51,7 @@ export default function WalkGrid({ walks, hasLocationParam, sortControl, setHove
 
       {(walks.length === 0) &&
         <div className="walks__grid-filters">
-          <>No walks match the current filters. <button className="button underlined">Reset filters</button></>
+          <>No walks match the current filters. <button className="button underlined" onClick={() => reset()}>Reset filters</button></>
           {/* {walks.length > 0
             ? <>Showing <b>{walks.length + " walk" + (walks.length === 1 ? "" : "s")}</b> matching filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></>
             : <>No walks match the current filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></>
@@ -90,11 +90,13 @@ function FilterTag({ reset, Icon, text } : { reset: CallableFunction; Icon: Reac
   if (text === undefined) return <></>
   else return (
     <li>
+      <div>
+        {Icon}
+        {text}
+      </div>
       <button onClick={() => reset()} title="Remove filter">
         <CloseIconSmall />
       </button>
-      {Icon}
-      {text}
     </li>
   )
 }

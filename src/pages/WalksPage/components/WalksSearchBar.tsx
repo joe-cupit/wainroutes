@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Filters } from "./Filters";
-import { CloseIconSmall, FilterIcon, SearchIcon } from "../../../components/Icons";
+import { CloseIcon, CloseIconSmall, FilterIcon, SearchIcon } from "../../../components/Icons";
 import Fuse from "fuse.js";
 import { Walk } from "../../WalkPage/WalkPage";
 import { useWalks } from "../../../contexts/WalksContext";
@@ -117,7 +117,7 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
 
 
   return (
-    <div>
+    <div style={{zIndex: "9999"}}>
       <div className="walks__filter-search">
         <div
           className="walks__search-bar"
@@ -125,6 +125,7 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
         >
           <SearchIcon />
           <input
+            type="search"
             ref={searchRef}
             placeholder="Search for a walk"
             value={searchTerm}
@@ -146,7 +147,10 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
           data-open={showFilters}
         >
           <span>Filters</span>
-          <FilterIcon />
+          {showFilters
+            ? <CloseIcon />
+            : <FilterIcon />
+          }
         </button>
       </div>
       

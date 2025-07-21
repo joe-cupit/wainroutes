@@ -1,6 +1,7 @@
 import "./Filters.css";
 
 import { ChangeEventHandler, useEffect, useRef, useState } from "react";
+import { DropdownIcon } from "../../../components/Icons";
 
 
 export type MultiSelectFilterData = {
@@ -225,11 +226,11 @@ export function Filters({ filterData, title, className, resetFilters, closeSelf,
         {/* {resetFilters && <FilterButton text="Reset filters" onClick={resetFilters} />} */}
       </div>
 
-      {closeSelf &&
-        <button className="filters__open-close_bottom" onClick={() => closeSelf()}>
-          close filters
+      {/* {closeSelf &&
+        <button className="accent small button filters__open-close_bottom" onClick={() => closeSelf()}>
+          Close filters
         </button>
-      }
+      } */}
     </div>
   )
 }
@@ -267,15 +268,19 @@ export function NewFilterGroup({ filter } : { filter: MultiSelectFilterData | Se
       }
     >
       <button className="new-filter-group__button" onClick={() => openCloseFilter(!open)}>
-        <h3>{filter.title}</h3>
-        <p className="new-filter-group__active-value">
-          {filter.type === "select" &&
-            filter.values[filter.currentValue]
-          }
-          {filter.type === "multi-select" &&
-            filter.currentValues.length + " selected"
-          }
-        </p>
+        <div className="new-filter-group__button-main">
+          <h3>{filter.title}</h3>
+          <p className="new-filter-group__active-value">
+            {filter.type === "select" &&
+              filter.values[filter.currentValue]
+            }
+            {filter.type === "multi-select" &&
+              filter.currentValues.length + " selected"
+            }
+          </p>
+        </div>
+
+        <DropdownIcon />
       </button>
 
       <div className="new-filter-group__main">

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { MultiSelectFilterData, SelectFilterData } from "../components/Filters";
 import { useHills } from "../../../contexts/HillsContext";
@@ -24,6 +24,7 @@ type FilterType = {
 type FilterContextType = {
   filters: FilterState;
   filterObjects: FilterType;
+  reset: () => void;
 }
 
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
@@ -50,7 +51,6 @@ export const FiltersProvider = ({ children } : { children : ReactNode }) => {
 
   const [urlSearchParams, setUrlSearchParams] = useSearchParams();
   const replaceSearchParams = (searchParams?: URLSearchParams) => {
-    console.log(searchParams)
     setUrlSearchParams(searchParams ?? {}, { replace: true })
   }
 
@@ -180,8 +180,19 @@ export const FiltersProvider = ({ children } : { children : ReactNode }) => {
   };
 
 
+  const resetFilters = useCallback(() => {
+    const sortValue = urlSearchParams.get("sort");
+    if (sortValue) {
+      const newSearchParams = new URLSearchParams();
+      newSearchParams.set("sort", sortValue);
+      replaceSearchParams(newSearchParams);
+    }
+    else replaceSearchParams();
+  }, [setUrlSearchParams])
+
+
   return (
-    <FilterContext.Provider value={{ filters, filterObjects }}>
+    <FilterContext.Provider value={{ filters, filterObjects, reset: resetFilters }}>
       {children}
     </FilterContext.Provider>
   )
