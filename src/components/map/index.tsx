@@ -113,7 +113,6 @@ export function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCenter, de
                   setCenter(point.geometry.coordinates as [number, number]);
                   if (clusterItems.length > 1) setZoom((supercluster?.getClusterExpansionZoom(Number(point.id)) ?? 10)+1);
                   else {
-                    console.log("show details for", point?.properties?.name);
                     if (zoom < 13) setZoom(13);
                   }
                 }}

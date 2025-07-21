@@ -15,7 +15,6 @@ export default function NoticeBanner() {
   }, [])
 
   const closeBanner = useCallback(() => {
-    console.log("helo")
     localStorage.setItem("user-has-closed-banner", "true");
     setDisplay(false);
   }, [])

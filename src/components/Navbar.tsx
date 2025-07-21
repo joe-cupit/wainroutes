@@ -30,8 +30,6 @@ export function Navbar() {
     setInvisibleNav(window.scrollY < 50);
     if (window.innerWidth >= 552) return;
 
-    console.log(lastScrollY.current, window.scrollY, lastScrollY.current - window.scrollY)
-
     if (window.scrollY <= 0) {
       setStickyNav(false);
       lastScrollY.current = 0;

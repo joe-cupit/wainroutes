@@ -66,7 +66,7 @@ export function CheckboxFilterGroup({ filter } : { filter: MultiSelectFilterData
         <SearchBoxFilter
           placeholder={"Search"}
           value={searchTerm}
-          setValue={(newTerm: string) => {console.log(newTerm); setSearchTerm(newTerm)}}
+          setValue={(newTerm: string) => setSearchTerm(newTerm)}
         />
       }
       <div className="filter__checkbox-group">
@@ -112,7 +112,7 @@ export function SearchableCheckboxFilterGroup({ data, placeholder } : { data: Mu
       <SearchBoxFilter
         placeholder={placeholder}
         value={searchTerm}
-        setValue={(newTerm: string) => {console.log(newTerm); setSearchTerm(newTerm)}}
+        setValue={(newTerm: string) => setSearchTerm(newTerm)}
       />
       <CheckboxFilterGroup
         filter={data}
