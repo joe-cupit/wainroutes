@@ -1,6 +1,7 @@
 import "./WalksPage.css";
 
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { Walk } from "../WalkPage/WalkPage";
 import setPageTitle from "../../hooks/setPageTitle";
@@ -39,7 +40,21 @@ function WalksPageMain() {
   const { town: currentTown } = useFilters().filters;
   const [filteredWalks, setFilteredWalks] = useState<Walk[]>([]);
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const [sortValue, setSortValue] = useState("recommended");
+
+  const updateSortSearchParam = (newSort?: string) => {
+    if (newSort && newSort !== "recommended") {
+      searchParams.set("sort", newSort);
+    }
+    else searchParams.delete("sort");
+
+    setSearchParams(searchParams);
+  }
+  useEffect(() => {
+    setSortValue(searchParams.get("sort") ?? "recommended")
+  }, [searchParams.get("sort")])
+
   const sortedWalks = useMemo(() => {
     let newWalkData = [...filteredWalks];
 
@@ -94,7 +109,7 @@ function WalksPageMain() {
             hasLocationParam={(currentTown in locations)}
             sortControl={{
               value: sortValue,
-              set: setSortValue
+              set: updateSortSearchParam
             }}
           />
         </div>
