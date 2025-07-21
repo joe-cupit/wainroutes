@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from "react";
 
-import { BusIconSmall, CloseIconSmall, DistanceIconSmall, ElevationIconSmall, MountainIconSmall, TownIconSmall } from "../../../components/Icons";
+import { BusIcon, CloseIconSmall, ElevationIcon, HikingIcon, LocationIcon, MountainIcon } from "../../../components/Icons";
 import WalkCard from "../../../components/WalkCard";
 import { Walk } from "../../WalkPage/WalkPage";
 import { useFilters } from "../contexts/FilterContext";
@@ -24,13 +24,13 @@ export default function WalkGrid({ walks, hasLocationParam, sortControl, setHove
         {/* <h2 className="heading">All walks</h2> */}
         <div>
           <ul className="walks__grid-filters-list">
-            {(filterObjects.town.currentValue !== "any") && <FilterTag reset={filterObjects.town.setCurrentValue} Icon={<TownIconSmall />} text={locations[filterObjects.town.currentValue]?.name} />}
+            {(filterObjects.town.currentValue !== "any") && <FilterTag reset={filterObjects.town.setCurrentValue} Icon={<LocationIcon />} text={locations[filterObjects.town.currentValue]?.name} />}
+            {(filterObjects.distance.currentValue !== "any") && <FilterTag reset={filterObjects.distance.setCurrentValue} Icon={<HikingIcon />} text={distanceOptions[filterObjects.distance.currentValue]} />}
+            {(filterObjects.elevation.currentValue !== "any") && <FilterTag reset={filterObjects.elevation.setCurrentValue} Icon={<ElevationIcon />} text={elevationOptions[filterObjects.elevation.currentValue]} />}
             {filterObjects.wainwrights.currentValues.map((wain, index) => {
-              return <FilterTag reset={() => filterObjects.wainwrights.setCurrentValues(filterObjects.wainwrights.currentValues.filter(w => w != wain))} key={index} Icon={<MountainIconSmall />} text={useHill(wain).hillData?.name ?? ""} />
+              return <FilterTag reset={() => filterObjects.wainwrights.setCurrentValues(filterObjects.wainwrights.currentValues.filter(w => w != wain))} key={index} Icon={<MountainIcon />} text={useHill(wain).hillData?.name ?? ""} />
             })}
-            {(filterObjects.distance.currentValue !== "any") && <FilterTag reset={filterObjects.distance.setCurrentValue} Icon={<DistanceIconSmall />} text={distanceOptions[filterObjects.distance.currentValue]} />}
-            {(filterObjects.elevation.currentValue !== "any") && <FilterTag reset={filterObjects.elevation.setCurrentValue} Icon={<ElevationIconSmall />} text={elevationOptions[filterObjects.elevation.currentValue]} />}
-            {(filterObjects.byBus.currentValue === "byBus") && <FilterTag reset={filterObjects.byBus.setCurrentValue} Icon={<BusIconSmall />} text={"By bus"} />}
+            {(filterObjects.byBus.currentValue === "byBus") && <FilterTag reset={filterObjects.byBus.setCurrentValue} Icon={<BusIcon />} text={"By bus"} />}
           </ul>
         </div>
         <select

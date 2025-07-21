@@ -128,8 +128,8 @@
   transition: background-color 50ms;
 }
 .walks__grid-filters-list li svg {
-  max-height: 1.75ch;
-  max-width: 1.75ch;
+  max-height: 1.825ch;
+  max-width: 1.825ch;
   margin-inline: -0.125rem;
 }
 
