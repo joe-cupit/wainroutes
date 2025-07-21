@@ -23,18 +23,8 @@
   top: 0;
 }
 
-.navbar.float {
-  position: fixed;
-  top: 0;
-}
 .navbar.float.invisible {
   background: none;
-}
-
-@media (max-width: 34.5rem) {
-  .navbar {
-    top: -100%;
-  }
 }
 
 .navbar ul {
@@ -102,6 +92,7 @@
 
 @media (max-width: 34.5rem) {
   .navbar {
+    top: -100%;
     padding-block: 1.25rem;
     padding-inline: 0.25rem;
   }
