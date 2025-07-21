@@ -2,12 +2,16 @@ import { useMemo, useState } from "react"
 import { displayDistance } from "../../../utils/unitConversions"
 
 
+const localStorageName = "user-set-hiking-speed";
+
 export function EstimatedTime({ selected, walkLengthInKm } : { selected: boolean; walkLengthInKm: number | undefined }) {
   if (!walkLengthInKm) return <></>;
 
-  const [speedInKm, setSpeedInKm] = useState<number>(2.5);
+  const [speedInKm, setSpeedInKm] = useState<number>(Number(localStorage.getItem(localStorageName) ?? "2.5"));
 
   const timeTaken = useMemo(() => {
+    localStorage.setItem(localStorageName, String(speedInKm));
+
     let time = (walkLengthInKm ?? 0) / speedInKm;
 
     if (time < 1) return (time * 60).toFixed(0) + " mins";
