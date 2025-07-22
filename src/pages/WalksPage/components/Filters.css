@@ -113,6 +113,13 @@
   font-style: italic;
   margin-inline-start: 0.375rem;
 }
+.filter__checkbox-bottom {
+  margin-block-start: var(--gap-300);
+  width: 100%;
+}
+.filter__checkbox-bottom .button {
+  margin-inline-start: auto;
+}
 
 .filter__group h3 {
   font-size: var(--fs-400);

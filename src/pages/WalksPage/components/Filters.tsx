@@ -93,6 +93,9 @@ export function CheckboxFilterGroup({ filter } : { filter: MultiSelectFilterData
         : <i className="filter__checkbox-info">No entries matching '{searchTerm}'</i>
         }
       </div>
+      <div className="filter__checkbox-bottom">
+        <button className="small accent button" onClick={() => filter.setCurrentValues([])}>Clear all</button>
+      </div>
     </>
   )
 }
