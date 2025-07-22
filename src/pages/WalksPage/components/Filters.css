@@ -224,8 +224,8 @@
 
   /* gap: var(--gap-400); */
 
-  @container (max-width: 35rem) {
-    flex-direction: column;
+  @container (max-width: 30rem) {
+    grid-template-columns: 1fr;
   }
 }
 .filters[data-open="false"] .filters__main {
@@ -251,9 +251,6 @@
   width: fit-content;
   margin-inline: auto;
   font-size: var(--fs-300);
-}
-.filters__open-close_bottom:hover {
-  /* text-decoration: underline; */
 }
 
 

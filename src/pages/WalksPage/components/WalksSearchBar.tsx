@@ -20,7 +20,7 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
 
   const searchRef = useRef<HTMLInputElement>(null);
   const [searchTerm, setSearchTerm] = useState(urlSearchParams.get("query") ?? "");
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(urlSearchParams.get("query") ?? "");
   useEffect(() => {
     if (searchTerm === "") {
       setDebouncedSearchTerm("")
@@ -115,6 +115,10 @@ export default function WalksSearchBar({ setFilteredWalks } : { setFilteredWalks
     setFilteredWalks(filteredWalkObjects);
   }, [filters, searchedWalkObjects])
 
+  useEffect(() => {
+    const query = urlSearchParams.get("query");
+    if (query !== debouncedSearchTerm) setSearchTerm(query ?? "");
+  }, [urlSearchParams.get("query")])
 
   return (
     <div style={{zIndex: "9999"}}>

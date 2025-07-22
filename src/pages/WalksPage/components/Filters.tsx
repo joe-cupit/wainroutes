@@ -74,7 +74,7 @@ export function CheckboxFilterGroup({ filter } : { filter: MultiSelectFilterData
         ? filteredValues
             .sort()
             .sort((a, b) => filter.enabledValues ? ((!filter.enabledValues.includes(a) && filter.enabledValues.includes(b)) ? 1 : 0) : 0)
-            .sort((a, b) => (!filter.currentValues.includes(a) && filter.currentValues.includes(b)) ? 1 : 0)
+            // .sort((a, b) => (!filter.currentValues.includes(a) && filter.currentValues.includes(b)) ? 1 : 0)
             .map((key, index) => {
               return (
                 <CheckboxFilter key={index}

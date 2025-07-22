@@ -76,14 +76,14 @@ function WalksPageMain() {
         newWalkData.sort((a, b) => (a.length ?? 0) - (b.length ?? 0));
         break;
       default:
-        // newWalkData.sort((a, b) => a.title.localeCompare(b.title));
+        if (!searchParams.get("query")) newWalkData.sort((a, b) => a.title.localeCompare(b.title));
         break;
     }
 
     if (dir === "dsc") newWalkData.reverse();
 
     return newWalkData;
-  }, [sortValue, filteredWalks])
+  }, [sortValue, filteredWalks, searchParams.get("query")])
 
 
   return (

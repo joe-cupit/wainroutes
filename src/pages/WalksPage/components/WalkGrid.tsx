@@ -5,7 +5,6 @@ import WalkCard from "../../../components/WalkCard";
 import { Walk } from "../../WalkPage/WalkPage";
 import { useFilters } from "../contexts/FilterContext";
 import { distanceOptions, elevationOptions, locations } from "../utils/FilterValues";
-import { useHill } from "../../../contexts/HillsContext";
 
 
 export default function WalkGrid({ walks, hasLocationParam, sortControl, setHoveredSlug } : { walks: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; setHoveredSlug?: CallableFunction }) {
@@ -28,7 +27,7 @@ export default function WalkGrid({ walks, hasLocationParam, sortControl, setHove
             {(filterObjects.distance.currentValue !== "any") && <FilterTag reset={filterObjects.distance.setCurrentValue} Icon={<HikingIcon />} text={distanceOptions[filterObjects.distance.currentValue]} />}
             {(filterObjects.elevation.currentValue !== "any") && <FilterTag reset={filterObjects.elevation.setCurrentValue} Icon={<ElevationIcon />} text={elevationOptions[filterObjects.elevation.currentValue]} />}
             {filterObjects.wainwrights.currentValues.map((wain, index) => {
-              return <FilterTag reset={() => filterObjects.wainwrights.setCurrentValues(filterObjects.wainwrights.currentValues.filter(w => w != wain))} key={index} Icon={<MountainIcon />} text={useHill(wain).hillData?.name ?? ""} />
+              return <FilterTag reset={() => filterObjects.wainwrights.setCurrentValues(filterObjects.wainwrights.currentValues.filter(w => w != wain))} key={index} Icon={<MountainIcon />} text={filterObjects.wainwrights.values[wain] ?? ""} />
             })}
             {(filterObjects.byBus.currentValue === "byBus") && <FilterTag reset={filterObjects.byBus.setCurrentValue} Icon={<BusIcon />} text={"By bus"} />}
           </ul>

@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <BrowserRouter>
     <NoticeBanner />
-    <div style={{position: "relative", minHeight: "100dvh"}}>
+    <div style={{display: "flex", flexDirection: "column", position: "relative", minHeight: "100dvh"}}>
       <App />
     </div>
   </BrowserRouter>
