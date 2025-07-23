@@ -296,6 +296,34 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://wainroutes.co.uk/walks/binsey</loc>
+    <lastmod>2025-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://wainroutes.co.uk/walks/scafell-pike-and-lingmell-via-mickledore</loc>
+    <lastmod>2025-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://wainroutes.co.uk/walks/rannerdale-knotts-from-buttermere</loc>
+    <lastmod>2025-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://wainroutes.co.uk/walks/little-and-great-mell-fell</loc>
+    <lastmod>2025-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 
   <url>
     <loc>https://wainroutes.co.uk/wainwrights/allen-crags</loc>
