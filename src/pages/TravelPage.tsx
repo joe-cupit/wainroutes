@@ -1,15 +1,19 @@
-import { ReactNode } from 'react';
-import setPageTitle from '../hooks/setPageTitle';
 import './TravelPage.css';
+
+import { ReactNode } from 'react';
+import WainroutesHelmet from '../components/WainroutesHelmet';
 
 
 export default function TravelPage() {
 
-  setPageTitle("Lake District Travel");
-
-
   return (
     <main className="travel-page">
+      <WainroutesHelmet
+        title="Lake District Travel"
+        description="Find bus times, hostel accommodation, lake boats, and travel tips for your next Lake District visit."
+        canonical="/travel"
+      />
+
       <section>
         <div className='travel__main'>
           <div>
