@@ -2,9 +2,9 @@ import "./HillPage.css";
 
 import { Fragment, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
+import WainroutesHelmet from "../components/WainroutesHelmet";
 
 import { useHill } from "../contexts/HillsContext";
-import setPageTitle from "../hooks/setPageTitle";
 import WalkCard from "../components/WalkCard";
 import { displayElevation } from "../utils/unitConversions";
 import { NotFoundPage } from "./error/NotFoundPage";
@@ -51,9 +51,7 @@ export type Hill = {
 export function HillPage() {
   const { slug } = useParams();
   const { hillData, hillLoading } = useHill(slug);
-  
-  setPageTitle(hillData?.name ?? "The Wainwrights");
-  
+
   if (hillLoading) return <></>
   else {
     if (hillData) return <Hill hillData={hillData} />
@@ -68,6 +66,11 @@ function Hill({ hillData } : { hillData: Hill }) {
 
   return (
     <main className="hill-page">
+      <WainroutesHelmet
+        title={hillData.name ?? "The Wainwrights"}
+        description={"A Wainwright fell in the Lake District."}
+        canonical={hillData.slug ? ("/wainwrights/"+hillData.slug) : "/wainwrights"}
+      />
 
       <section>
 

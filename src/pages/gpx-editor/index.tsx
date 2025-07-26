@@ -1,8 +1,8 @@
 import "./index.css";
 
 import { useEffect, useState, useMemo } from "react";
+import WainroutesHelmet from "../../components/WainroutesHelmet";
 
-import setPageTitle from "../../hooks/setPageTitle";
 import useUndoStack from "./hooks/useUndoStack";
 import useOpenGpx, { GPXPoint } from "./hooks/useOpenGpx";
 
@@ -22,8 +22,6 @@ import ReverseIcon from "./assets/reverse-icon.svg?react";
 
 
 export default function EditorApp() {
-
-  setPageTitle("GPX Editor");
 
   // gpx file states
   const [gpxName, setGpxName] = useState<string>();
@@ -251,6 +249,12 @@ export default function EditorApp() {
 
   return (
     <main className="editor-page">
+      <WainroutesHelmet
+        title="GPX editor"
+        description="GPX route editor app."
+        canonical="/editor"
+      />
+
       <aside className="editor__controls" data-open={editorOpen}>
         <div className="editor__controls-wrapper">
           <h1>GPX Editor</h1>

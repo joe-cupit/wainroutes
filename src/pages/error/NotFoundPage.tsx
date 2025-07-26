@@ -1,16 +1,17 @@
 import "./ErrorPage.css";
 
 import { Link } from "react-router-dom";
-import setPageTitle from "../../hooks/setPageTitle";
+import WainroutesHelmet from "../../components/WainroutesHelmet";
 
 
 export function NotFoundPage() {
 
-  setPageTitle("404 Page Not Found");
-
-
   return (
     <main className="error-page flex-column">
+      <WainroutesHelmet
+        title="404 Page Not Found"
+      />
+
       <section>
         <div className="error-page_text flex-column align-center">
           <h1 className="error-page_code title">404</h1>

@@ -2,13 +2,13 @@ import "./HomePage.css";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import WainroutesHelmet from "../components/WainroutesHelmet";
 
 import { Picture } from "../components/Image";
 import WalkCard from "../components/WalkCard";
 import { LakeMap } from "../components/map";
 
 import { useWalk } from "../contexts/WalksContext";
-import setPageTitle from "../hooks/setPageTitle";
 import { useHillMarkers } from "../hooks/useMarkers";
 import WalkSearch from "../components/WalkSearch";
 
@@ -18,8 +18,6 @@ const featuredWalkSlugs = ["helvellyn-via-striding-edge", "wansfell-baystones", 
 
 export function HomePage() {
 
-  setPageTitle("");
-
   const featuredWalks = featuredWalkSlugs.map(slug => useWalk(slug).walkData);
 
   const hillMarkers = useHillMarkers();
@@ -27,6 +25,11 @@ export function HomePage() {
 
   return (
     <main className="home-page">
+      <WainroutesHelmet
+        description="Lake District walks across the 214 Wainwrights."
+        canonical=""
+      />
+
       <section className="home__hero-section">
         <div className="home__hero">
           <h1 className="title">Your Guide to Walking The Wainwrights</h1>

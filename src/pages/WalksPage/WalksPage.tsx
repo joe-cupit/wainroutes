@@ -2,9 +2,9 @@ import "./WalksPage.css";
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import WainroutesHelmet from "../../components/WainroutesHelmet";
 
 import { Walk } from "../WalkPage/WalkPage";
-import setPageTitle from "../../hooks/setPageTitle";
 import { MapMarker } from "../../hooks/useMarkers";
 import { LakeMap } from "../../components/map";
 import BackToTopButton from "../../components/BackToTopButton";
@@ -17,14 +17,14 @@ import { locations } from "./utils/FilterValues";
 
 export default function WalksPage() {
 
-  useEffect(() => {
-    setPageTitle("Lake District Walks");
-  }, [])
-
-
   return (
     <FiltersProvider>
       <main className="walks-page">
+        <WainroutesHelmet
+          title="Lake District Walks"
+          description="Walks and hikes in the Lake District over the Wainwrights."
+          canonical="/walks"
+        />
 
         <BackToTopButton minHeight={300} />
         <WalksPageMain />
