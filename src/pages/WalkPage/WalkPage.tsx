@@ -2,11 +2,11 @@ import "./WalkPage.css";
 
 import { useState, useEffect, useRef, Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
+import WainroutesHelmet from "../../components/WainroutesHelmet";
 
 import { NotFoundPage } from "../error/NotFoundPage";
 
 import { useWalk } from "../../contexts/WalksContext";
-import setPageTitle from "../../hooks/setPageTitle";
 import { BackIcon, ElevationIcon, HikingIcon, LocationIcon, MountainIcon } from "../../components/Icons";
 import Image from "../../components/Image";
 import { displayDistance, displayElevation } from "../../utils/unitConversions";
@@ -83,8 +83,6 @@ export type Walk = {
 export function WalkPage() {
   const { slug } = useParams();
   const { walkData, walkLoading } = useWalk(slug);
-
-  setPageTitle((walkData?.title ?? "") + " - A Lake District Walk");
 
   if (walkLoading) return <WalkSkeleton />
   else {
@@ -173,6 +171,26 @@ function Walk({ walkData } : { walkData: Walk }) {
   return (
     <>
     <main className="walk-page">
+      <WainroutesHelmet
+        title={walkData.title + " (" + walkData.length.toFixed(1) + "km) – Lake District Walk & Route Guide"}
+        description={
+          "Route details for "
+          + walkData.title
+          + ", a Lake District walk featuring "
+          + walkData.wainwrights.length
+          + " Wainwright" + (walkData.wainwrights.length !== 1 ? "s" : "")
+          + ", with maps, terrain info, and photos."
+        }
+        canonical={walkData.slug ? ("/walks/"+walkData.slug) : "/walks"}
+
+        imageUrl={
+          "https://images.wainroutes.co.uk/wainroutes_"
+          + walkData?.slug
+          + "_"
+          + walkData?.gallery?.coverId
+          + "_1024w.webp"
+        }
+      />
 
       <div className={"walk-page_overlay" + (showOverlay ? " show" : "")}>
         <section>

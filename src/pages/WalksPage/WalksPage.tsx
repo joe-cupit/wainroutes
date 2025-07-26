@@ -2,9 +2,9 @@ import "./WalksPage.css";
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import WainroutesHelmet from "../../components/WainroutesHelmet";
 
 import { Walk } from "../WalkPage/WalkPage";
-import setPageTitle from "../../hooks/setPageTitle";
 import { MapMarker } from "../../hooks/useMarkers";
 import { LakeMap } from "../../components/map";
 import BackToTopButton from "../../components/BackToTopButton";
@@ -16,11 +16,6 @@ import { locations } from "./utils/FilterValues";
 
 
 export default function WalksPage() {
-
-  useEffect(() => {
-    setPageTitle("Lake District Walks");
-  }, [])
-
 
   return (
     <FiltersProvider>
@@ -88,6 +83,27 @@ function WalksPageMain() {
 
   return (
     <section>
+      <WainroutesHelmet
+        title={locations[currentTown]
+          ? "Lake District Walks near " + locations[currentTown].name
+          : "Lake District Walks"
+        }
+        description={locations[currentTown]
+          ? (
+              "Find your next Wainwright bagging walk within "
+              + ((locations[currentTown].distScale ?? 1) * 10)
+              + "km of "
+              + locations[currentTown].name
+              + ", filtered by distance, elevation, and public transport access."
+            )
+          : "Find your next Wainwright bagging walk in the Lake District, filtered by distance, elevation, and public transport access."
+        }
+        canonical={locations[currentTown]
+          ? "/walks?town=" + currentTown
+          : "/walks"
+        }
+      />
+      
       <div className="flex-column">
         <h1 className="title">
           {locations[currentTown]

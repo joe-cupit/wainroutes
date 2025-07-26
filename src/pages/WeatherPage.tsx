@@ -1,14 +1,13 @@
 import "./WeatherPage.css";
 
 import { Fragment, useEffect } from "react";
-import setPageTitle from "../hooks/setPageTitle";
+import WainroutesHelmet from "../components/WainroutesHelmet";
+
 import { DistrictWeatherDayForecast, DistrictWeatherDay, useWeather } from "../contexts/WeatherContext";
 import { WeatherIcon } from "../components/Icons";
 
 
 export function WeatherPage() {
-
-  setPageTitle("Lake District Weather Forecast");
 
   const { weather: weatherData, refresh: fetchWeather, loading, error } = useWeather();
 
@@ -20,6 +19,11 @@ export function WeatherPage() {
   if (loading) return (<WeatherSkeleton />)
   else return (
     <main className="weather-page">
+      <WainroutesHelmet
+        title="Lake District Mountain Weather Forecast"
+        description="Get the latest 5-day mountain weather forecast for the Lake District, with summit visibility and current mountain hazards."
+        canonical="/weather"
+      />
 
       <section>
         <div className="flex-column weather__main">

@@ -2,8 +2,8 @@ import "./HillsPage.css"
 
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import WainroutesHelmet from "../components/WainroutesHelmet";
 
-import setPageTitle from "../hooks/setPageTitle";
 import { displayElevation } from "../utils/unitConversions";
 import { LakeMap } from "../components/map";
 import { useHillMarkers } from "../hooks/useMarkers";
@@ -17,7 +17,6 @@ const titles : {[book : number]: string} = {
 
 
 export function HillsPage() {
-  setPageTitle("The Wainwrights");
 
   const hillMarkers = useHillMarkers();
   const hillData = useHills().hills;
@@ -78,6 +77,11 @@ export function HillsPage() {
 
   return (
     <main className="hills-page">
+      <WainroutesHelmet
+        title="The 214 Wainwrights"
+        description="Discover all 214 Wainwrights in the Lake District with an interactive map and searchable list of fells."
+        canonical="/wainwrights"
+      />
 
       <section>
         <div className="hills_header">

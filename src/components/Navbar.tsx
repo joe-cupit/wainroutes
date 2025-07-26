@@ -23,7 +23,7 @@ export function Navbar() {
 
 
   const [stickyNav, setStickyNav] = useState(false);
-  const [invisibleNav, setInvisibleNav] = useState(pathname === "/");
+  const [invisibleNav, setInvisibleNav] = useState(pathname === "/" && window.scrollY < 50);
   const lastScrollY = useRef(0);
 
   const checkScroll = () => {
