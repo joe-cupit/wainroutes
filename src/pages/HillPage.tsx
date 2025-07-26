@@ -89,7 +89,7 @@ function Hill({ hillData } : { hillData: Hill }) {
             <h2 className="subheading">Stats</h2>
             <div className="hill__stats">
               <h3>Book</h3>
-              <p><Link to={"/wainwrights/?book="+bookNum}>{BookTitles[bookNum]}</Link></p>
+              <p><Link to={"/wainwrights?book="+bookNum}>{BookTitles[bookNum]}</Link></p>
               <h3>Height</h3>
               <p>{displayElevation(hillData.height)}</p>
               <h3>Prominence</h3>
