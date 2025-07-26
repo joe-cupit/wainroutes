@@ -21,7 +21,7 @@ export function WeatherPage() {
     <main className="weather-page">
       <WainroutesHelmet
         title="Lake District Mountain Weather Forecast"
-        description="Mountain weather forecast for fells in the Lake District."
+        description="Get the latest 5-day mountain weather forecast for the Lake District, with summit visibility and current mountain hazards."
         canonical="/weather"
       />
 

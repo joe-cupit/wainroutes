@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Helmet } from 'react-helmet'
 
 
-export default function WainroutesHelmet({ title, description, canonical, imageUrl } : { title?: string; description?: string; canonical?: string, imageUrl?: string }) {
+export default function WainroutesHelmet({ title, description, canonical, imageUrl, noindex } : { title?: string; description?: string; canonical?: string, imageUrl?: string, noindex?: boolean }) {
 
   const fullTitle = useMemo(() => {
     if (title && title.length > 0) return title + " | Wainroutes";
@@ -22,19 +22,23 @@ export default function WainroutesHelmet({ title, description, canonical, imageU
       <meta name="twitter:title" content={fullTitle} />
 
       {description && [
-        <meta name="description" content={description} />,
-        <meta property="og:description" content={description} />,
-        <meta name="twitter:description" content={description} />
+        <meta key="desc" name="description" content={description} />,
+        <meta key="og:desc" property="og:description" content={description} />,
+        <meta key="twitter:desc" name="twitter:description" content={description} />
       ]}
       {canonicalUrl && [
-        <link rel="canonical" href={canonicalUrl} />,
-        <meta property="og:url" content={canonicalUrl} />
+        <link key="url" rel="canonical" href={canonicalUrl} />,
+        <meta key="og:url" property="og:url" content={canonicalUrl} />
       ]}
 
       {imageUrl && [
-        <meta property="og:image" content={imageUrl} />,
-        <meta name="twitter:image" content={imageUrl} />
+        <meta key="og:image" property="og:image" content={imageUrl} />,
+        <meta key="twitter:image" name="twitter:image" content={imageUrl} />
       ]}
+
+      {noindex &&
+        <meta name="robots" content="noindex" />
+      }
     </Helmet>
   )
 }

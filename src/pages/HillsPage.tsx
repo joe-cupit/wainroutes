@@ -78,8 +78,8 @@ export function HillsPage() {
   return (
     <main className="hills-page">
       <WainroutesHelmet
-        title="The Wainwrights"
-        description="A list of the 214 Wainwrights in the Lake District."
+        title="The 214 Wainwrights"
+        description="Discover all 214 Wainwrights in the Lake District with an interactive map and searchable list of fells."
         canonical="/wainwrights"
       />
 

@@ -172,9 +172,24 @@ function Walk({ walkData } : { walkData: Walk }) {
     <>
     <main className="walk-page">
       <WainroutesHelmet
-        title={(walkData.title ?? "") + " - A Lake District Walk"}
-        description="A Lake District walk."
+        title={walkData.title + " (" + walkData.length.toFixed(1) + "km) – Lake District Walk & Route Guide"}
+        description={
+          "Route details for "
+          + walkData.title
+          + ", a Lake District walk featuring "
+          + walkData.wainwrights.length
+          + " Wainwright" + (walkData.wainwrights.length !== 1 ? "s" : "")
+          + ", with maps, terrain info, and photos."
+        }
         canonical={walkData.slug ? ("/walks/"+walkData.slug) : "/walks"}
+
+        imageUrl={
+          "https://images.wainroutes.co.uk/wainroutes_"
+          + walkData?.slug
+          + "_"
+          + walkData?.gallery?.coverId
+          + "_1024w.webp"
+        }
       />
 
       <div className={"walk-page_overlay" + (showOverlay ? " show" : "")}>

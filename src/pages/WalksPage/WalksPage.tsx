@@ -20,11 +20,6 @@ export default function WalksPage() {
   return (
     <FiltersProvider>
       <main className="walks-page">
-        <WainroutesHelmet
-          title="Lake District Walks"
-          description="Walks and hikes in the Lake District over the Wainwrights."
-          canonical="/walks"
-        />
 
         <BackToTopButton minHeight={300} />
         <WalksPageMain />
@@ -88,6 +83,27 @@ function WalksPageMain() {
 
   return (
     <section>
+      <WainroutesHelmet
+        title={locations[currentTown]
+          ? "Lake District Walks near " + locations[currentTown].name
+          : "Lake District Walks"
+        }
+        description={locations[currentTown]
+          ? (
+              "Find your next Wainwright bagging walk within "
+              + ((locations[currentTown].distScale ?? 1) * 10)
+              + "km of "
+              + locations[currentTown].name
+              + ", filtered by distance, elevation, and public transport access."
+            )
+          : "Find your next Wainwright bagging walk in the Lake District, filtered by distance, elevation, and public transport access."
+        }
+        canonical={locations[currentTown]
+          ? "/walks?town=" + currentTown
+          : "/walks"
+        }
+      />
+      
       <div className="flex-column">
         <h1 className="title">
           {locations[currentTown]

@@ -67,8 +67,14 @@ function Hill({ hillData } : { hillData: Hill }) {
   return (
     <main className="hill-page">
       <WainroutesHelmet
-        title={hillData.name ?? "The Wainwrights"}
-        description={"A Wainwright fell in the Lake District."}
+        title={hillData.name + " (" + hillData.height + "m) – Wainwright Routes & Details"}
+        description={
+          "Details for "
+          + hillData.name
+          + " ("
+          + hillData.height
+          + "m), a Wainwright in the Lake District, with walking routes, details, and nearby fells."
+        }
         canonical={hillData.slug ? ("/wainwrights/"+hillData.slug) : "/wainwrights"}
       />
 

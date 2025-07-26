@@ -10,6 +10,7 @@ export function NotFoundPage() {
     <main className="error-page flex-column">
       <WainroutesHelmet
         title="404 Page Not Found"
+        noindex={true}
       />
 
       <section>

@@ -10,7 +10,7 @@ export default function TravelPage() {
     <main className="travel-page">
       <WainroutesHelmet
         title="Lake District Travel"
-        description="Travel information for the Lake District."
+        description="Find bus times, hostel accommodation, lake boats, and travel tips for your next Lake District visit."
         canonical="/travel"
       />
 

@@ -26,7 +26,8 @@ export function HomePage() {
   return (
     <main className="home-page">
       <WainroutesHelmet
-        description="Lake District walks across the 214 Wainwrights."
+        title=""
+        description="Walk the Wainwrights in the Lake District with detailed routes, mountain forecasts, and travel info."
         canonical=""
       />
 
