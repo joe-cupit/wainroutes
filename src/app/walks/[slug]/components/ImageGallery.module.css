@@ -1,0 +1,155 @@
+.imageGallery {
+  --_gallery-gap: var(--gap-300);
+
+  display: grid;
+  gap: var(--_gallery-gap);
+  grid-template-columns: repeat(3, 1fr);
+
+  border-radius: 0.25em;
+  overflow: hidden;
+}
+
+.galleryImage {
+  /* display: flex; */
+  position: relative;
+  background: var(--clr-neutral-600);
+
+  /* overflow: hidden; */
+  /* width: 100%; */
+  /* height: 100%;*/
+
+  cursor: pointer;
+  overflow: hidden;
+}
+.galleryImage img {
+  object-fit: cover;
+  transition: scale 100ms;
+}
+.galleryImage img:hover {
+  scale: 1.05;
+}
+.lockRatio {
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+
+
+.galleryColumn {
+  display: grid;
+  gap: var(--_gallery-gap);
+  grid-template-columns: 1fr;
+  height: fit-content;
+}
+.galleryRow {
+  display: contents;
+}
+
+.galleryRowOne {
+  grid-column: 1 / 4;
+  display: grid;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+.galleryRowTwo {
+  grid-column: 1 / 4;
+
+  display: grid;
+  gap: var(--_gallery-gap);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+.galleryRowWideLeft .gallerySpanTwo {
+  grid-column: 1 / 3;
+}
+.galleryRowWideRight .gallerySpanTwo {
+  grid-column: 2 / 4;
+}
+
+
+
+.galleryCarousel {
+  position: fixed;
+  inset: 0;
+  z-index: calc(infinity);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  align-items: center;
+  justify-content: center;
+
+  padding-block: 2em;
+
+  background: #000D;
+}
+.galleryCarouselClose {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5em;
+  padding: 0.25em;
+  z-index: 9999;
+
+  color: var(--clr-neutral-900);
+  background: #000B;
+  transition: background-color 100ms;
+}
+.galleryCarouselClose:hover {
+  background: #000;
+}
+.galleryCarouselClose svg {
+  width: 2em;
+  height: 2em;
+}
+
+.galleryCarouselLeft,
+.galleryCarouselRight {
+  position: absolute;
+  top: calc(50% - 2em);
+
+  display: flex;
+  color: var(--clr-neutral-900);
+  background: #000B;
+
+  padding-inline-start: 0.5em;
+  padding-block: 1em;
+
+  transition: background-color 100ms;
+}
+.galleryCarouselLeft:hover,
+.galleryCarouselRight:hover {
+  background: #000;
+}
+.galleryCarouselLeft {
+  left: 0.25em;
+}
+.galleryCarouselRight {
+  padding-inline-start: 0.25em;
+  padding-inline-end: 0.25em;
+  right: 0.25em;
+}
+
+.galleryCarouselImage {
+  position: relative;
+  overflow: hidden;
+
+  display: inline-block;
+  width: 95%;
+  height: 95%;
+}
+
+.galleryCarouselCaption {
+  color: var(--clr-neutral-900);
+  background: #000B;
+
+  padding: 0.5em 1em;
+  max-width: 50ch;
+  text-align: center;
+
+  margin-inline: 2em;
+}

@@ -1,0 +1,228 @@
+import styles from "./Walk.module.css";
+
+import Image from "next/image";
+import Link from "next/link";
+
+import Summary from "./components/Summary";
+import Route from "./components/Route";
+import Waypoints from "./components/Waypoints";
+import Photos from "./components/Photos";
+import Weather from "./components/Weather";
+import StartingLocation from "./components/StartingLocation";
+import EstimatedTime from "./components/EstimatedTime";
+import Terrain from "./components/Terrain";
+import NearbyWalks from "./components/NearbyWalks";
+import Overlay from "./components/Overlay";
+
+import { displayDistance, displayElevation } from "@/utils/unitConversions";
+import { LocationIcon } from "@/icons/WalkIcons";
+
+import tempwalks from "@/data/walks.json";
+
+
+export type WalkGallery = {
+  imageIds: string[];
+  imageData: {
+    title: string;
+    caption: string;
+  }[]
+  coverId: string;
+  sections: {
+    type: number;
+    indexes: number[]
+  }[]
+}
+
+export type Walk = {
+  slug: string;
+
+  title: string;
+  type?: string;
+  summary?: string;
+  wainwrights: string[];
+  length: number;
+  elevation: number;
+  estimatedTime?: string;
+  date?: string;
+
+  startLocation?: {
+    location: string;
+    latitude?: number;
+    longitude?: number;
+    postCode?: string;
+    gridRef?: string;
+  }
+  busConnections?: {
+    [number: string]: string;
+  }
+  terrain?: {
+    gradient?: number;
+    path?: number;
+    exposure?: number;
+    desc?: string;
+  }
+
+  intro?: string;
+  waypoints?: {
+    [name: string]: string;
+  }
+  gallery?: WalkGallery;
+
+  weatherLoc?: string;
+  tags: string[];
+
+  distance?: number;
+  // distanceFromLocation?: number;
+}
+
+
+type WalkProps = {
+  params: Promise<{ slug: string }>
+}
+
+
+export default async function Walk({ params } : WalkProps) {
+
+  const { slug }  = await params;
+
+  const walkData = (tempwalks as unknown as Walk[]).find(w => w.slug === slug);
+
+
+  // const [asideTabIndex, setAsideTabIndex] = useState(-1)
+  // function toggleAsideTab(newIndex: number) {
+  //   if (newIndex === asideTabIndex) {
+  //     setAsideTabIndex(-1)
+  //   }
+  //   else {
+  //     setAsideTabIndex(newIndex)
+  //   }
+  // }
+
+
+  return (
+    <>
+    <main className={styles.walk}>
+
+      <Overlay
+        walkData={{
+          title: walkData?.title ?? "",
+          wainwrightCount: walkData?.wainwrights.length ?? 0,
+          lengthString: displayDistance(walkData?.length),
+          elevationString: displayElevation(walkData?.elevation)
+        }}
+      />
+
+      <section>
+        <div className={styles.top}>
+          <div className={styles.topImage}>
+            <Image
+              src={"https://images.wainroutes.co.uk/wainroutes_" + walkData?.slug + "_" + walkData?.gallery?.coverId + "_2048w.webp"}
+              alt=""
+              fill
+            />
+          </div>
+          {/* <Image
+            className={styles.top-image}
+            name={walkData?.slug + "_" + walkData?.gallery?.coverId}
+            sizes="(min-width: 1100px) 1100px, 100vw"
+          /> */}
+          <div className={styles.topBlock}></div>
+          {walkData?.startLocation?.location && 
+            <Link href={"/walks?town=" + walkData.startLocation.location.toLowerCase().replaceAll(" ", "-")}
+              className={styles.topLink}
+              aria-label={"Walks near " + walkData.startLocation.location}
+            >
+              <LocationIcon /> {walkData.startLocation.location}
+            </Link>
+          }
+        </div>
+      </section>
+
+      <section>
+        <div className={styles.body}>
+          <div className={styles.main}>
+            <Summary
+              title={walkData?.title ?? ""}
+              wainwrights={walkData?.wainwrights ?? []}
+              length={walkData?.length ?? 0}
+              elevation={walkData?.elevation ?? 0}
+              intro={walkData?.intro}
+            />
+
+            <Route
+              wainwrights={walkData?.wainwrights ?? []}
+              center={[walkData?.startLocation?.latitude ?? 0, walkData?.startLocation?.longitude ?? 0]}
+              slug={slug}
+            />
+
+            {Object.keys(walkData?.waypoints ?? {}).length > 0 &&
+              <Waypoints
+                waypoints={walkData?.waypoints}
+              />
+            }
+
+            <Photos
+              slug={slug}
+              galleryData={walkData?.gallery}
+            />
+
+            {walkData?.weatherLoc &&
+              <Weather
+                weatherLoc={walkData?.weatherLoc}
+              />
+            }
+          </div>
+
+          <div className={styles.aside}>
+            <div className={styles.asideTabs}>
+              <button
+                className={`${styles.asideTab} ${styles.selected}`}
+                // onClick={() => toggleAsideTab(1)}
+              >
+                Start Loc
+              </button>
+              <button 
+                className={styles.asideTab}
+                // onClick={() => toggleAsideTab(2)}
+              >
+                Est Time
+              </button>
+              <button 
+                className={styles.asideTab}
+                // onClick={() => toggleAsideTab(3)}
+              >
+                Terrain
+              </button>
+            </div>
+
+            {/* <div className={styles.asideImage}>
+              <Image
+                name={walkData?.slug + "_" + walkData?.gallery?.coverId}
+                sizes="(min-width: 300px) 300px, 90vw"
+              />
+            </div> */}
+
+            <div className={styles.asideContent}>
+              <StartingLocation selected={true}
+                startLocation={walkData?.startLocation}
+                busRoutes={walkData?.busConnections}
+              />
+              <EstimatedTime selected={false}
+                walkLengthInKm={walkData?.length}
+              />
+              <Terrain selected={false}
+                walkTerrain={walkData?.terrain}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <NearbyWalks
+        location={[walkData?.startLocation?.longitude ?? 0, walkData?.startLocation?.latitude ?? 0]}
+        currentSlug={slug}
+      />
+    </main>
+    </>
+  )
+}
