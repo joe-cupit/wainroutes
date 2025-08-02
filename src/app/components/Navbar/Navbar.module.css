@@ -1,0 +1,132 @@
+.navbar,
+.mobile {
+  font-size: calc((var(--fs-400) + var(--fs-600)) / 2);
+  font-weight: var(--fw-medium);
+  color: var(--clr-neutral-1000);
+  background: var(--clr-neutral-200);
+}
+
+.navbar {
+  --content-max-width: 1350px;
+
+  position: sticky;
+  top: 0;
+  z-index: calc(infinity);
+
+  transition-property: top, translate, background-color;
+  transition-duration: 200ms;
+
+  padding-block: var(--gap-400) var(--gap-400);
+  padding-inline: var(--gap-500);
+}
+.navbar.sticky {
+  top: 0;
+}
+
+.navbar.float.invisible {
+  background: none;
+}
+
+.navbar ul {
+  list-style: none;
+}
+
+.navbar .heading {
+  padding-bottom: var(--gap-200);
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainLeft {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.nav {
+  display: flex;
+  gap: var(--gap-400);
+}
+.navbar nav a {
+  transition: opacity 150ms ease;
+}
+.navbar nav:has(a:hover) a:not(:hover) {
+  opacity: 0.5;
+}
+
+.mainRight {
+  display: flex;
+  gap: var(--gap-500);
+  align-items: center;
+}
+
+.button {
+  width: 30px;
+  height: 30px;
+  transition: rotate 200ms;
+}
+.mainRight .button:hover {
+  rotate: 90deg;
+}
+
+.mobileOnly,
+.mobile {
+  display: none;
+}
+
+.mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: calc(infinity);
+
+  padding-block: var(--gap-700);
+  padding-inline: var(--gap-600) var(--gap-800);
+
+  min-width: min(55%, 500px);
+  height: 100vh;
+
+  transform: translateX(-100%);
+  transition-property: display transform;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+.mobile nav {
+  margin-block: var(--gap-600);
+}
+.mobile ul {
+  gap: var(--gap-500);
+  list-style: none;
+}
+
+
+@media (max-width: 34.5rem) {
+  .navbar {
+    top: -100%;
+    padding-block: 1.25rem;
+    padding-inline: 0.25rem;
+  }
+  .nav {
+    display: none;
+  }
+  .mobileOnly,
+  .mobile.active {
+    display: block;
+  }
+  .mobile.active {
+    transform: translateX(0);
+    transition-duration: 250ms;
+  
+    @starting-style {
+      transform: translateX(-100%);
+    }
+  }
+
+  .mainLeft {
+    gap: var(--gap-400);
+  }
+}
