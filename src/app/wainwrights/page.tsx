@@ -1,14 +1,34 @@
 import styles from "./Wainwrights.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
+import Hill from "@/types/Hill";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 import BackToTopButton from "@/app/components/BackToTopButton/BackToTopButton";
 import LakeMap from "@/app/components/Map/Map";
 
 import WainwrightList from "./components/WainwrightList";
 
+import wainsJson from "@/data/hills.json";
+
+
+export type SimplifiedHill = {
+  slug: Hill["slug"];
+  name: Hill["name"];
+  secondaryName: Hill["secondaryName"];
+  height: Hill["height"];
+  book: Hill["book"];
+}
+
 
 export default function Wainwrights() {
+
+  const simplifiedHillData = (wainsJson as Hill[]).map(hill => ({
+    slug: hill.slug,
+    name: hill.name,
+    secondaryName: hill.secondaryName,
+    height: hill.height,
+    book: hill.book
+  } as SimplifiedHill));
 
   const hillMarkers = useHillMarkers();
 
@@ -27,7 +47,7 @@ export default function Wainwrights() {
         <div className={styles.main}>
           <BackToTopButton minHeight={400} />
 
-          <WainwrightList />
+          <WainwrightList simplifiedHills={simplifiedHillData} />
 
           <div className={styles.map}>
             <LakeMap

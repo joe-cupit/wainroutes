@@ -3,22 +3,40 @@
 import styles from "../Wainwrights.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Fuse from "fuse.js";
 
-import Hill, { BookTitles } from "@/types/Hill";
+import { BookTitles } from "@/types/Hill";
+import { SimplifiedHill } from "../page";
 import { displayElevation } from "@/utils/unitConversions";
 
-import wainsJson from "@/data/hills.json";
 
+export default function WainwrightList({ simplifiedHills } : { simplifiedHills: SimplifiedHill[] }) {
 
-export default function WainwrightList() {
-
-  const hillData = wainsJson as Hill[];
-
+  const [inputValue, setInputValue] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
+  useEffect(() => {
+    if (inputValue === "") {
+      setFilterTerm("")
+      return;
+    }
+
+    const handler = setTimeout(() => {
+      setFilterTerm(inputValue);
+    }, 250);
+    return () => clearTimeout(handler);
+  }, [inputValue])
+
   const [sortMode, setSortMode] = useState("height");
   const [sortStates, setSortStates] = useState([false, false, true]);
+
+  const searchableHills = useMemo(() => {
+    return new Fuse(simplifiedHills, {
+      keys: ["name"],
+      threshold: 0.25
+    })
+  }, [simplifiedHills])
 
 
   function updateSortMode(newSortMode: string) {
@@ -42,29 +60,28 @@ export default function WainwrightList() {
     }
   }
 
-  const hillList = useMemo(() => {
-    if (!hillData) return [];
+  const filteredHills = useMemo(() => {
+    if (filterTerm.length > 0) {
+      return searchableHills.search(filterTerm).map(res => res.item);
+    }
+    else return simplifiedHills;
+  }, [simplifiedHills, searchableHills, filterTerm])
 
+  const sortedHills = useMemo(() => {
     switch (sortMode) {
       case "book":
-        if (!sortStates[0]) return [...hillData].sort((a, b) => a.book-b.book);
-        else return [...hillData].sort((b, a) => a.book-b.book);
+        if (!sortStates[0]) return [...filteredHills].sort((a, b) => a.book-b.book);
+        else return [...filteredHills].sort((b, a) => a.book-b.book);
       case "mountain":
-        if (!sortStates[1]) return [...hillData].sort((a, b) => a.name.localeCompare(b.name));
-        else return [...hillData].sort((b, a) => a.name.localeCompare(b.name));
+        if (!sortStates[1]) return [...filteredHills].sort((a, b) => a.name.localeCompare(b.name));
+        else return [...filteredHills].sort((b, a) => a.name.localeCompare(b.name));
       case "height":
-        if (!sortStates[2]) return [...hillData].sort((a, b) => a.height-b.height);
-        else return [...hillData].sort((b, a) => a.height-b.height);
+        if (!sortStates[2]) return [...filteredHills].sort((a, b) => a.height-b.height);
+        else return [...filteredHills].sort((b, a) => a.height-b.height);
       default:
         return [];
     }
-  }, [hillData, sortMode, sortStates])
-
-
-  const filteredHills = useMemo(() => {
-    const filterTermLower = filterTerm.toLowerCase();
-    return [...hillList].filter(hill => hill.name.toLowerCase().includes(filterTermLower));
-  }, [hillList, filterTerm])
+  }, [filteredHills, sortMode, sortStates])
 
 
   return (
@@ -73,8 +90,8 @@ export default function WainwrightList() {
       <div className={styles.search}>
         <input type="text"
           placeholder="search for a fell"
-          value={filterTerm}
-          onChange={e => setFilterTerm(e.target.value)}
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
         />
       </div>
 
@@ -102,8 +119,8 @@ export default function WainwrightList() {
           </tr>
         </thead>
         <tbody>
-          {filteredHills.length > 0 &&
-            filteredHills?.map((hill, index) => {
+          {sortedHills.length > 0 &&
+            sortedHills?.map((hill, index) => {
               return (
                 <tr key={index}>
                   <td>
