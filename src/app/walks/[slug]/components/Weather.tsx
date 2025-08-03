@@ -66,7 +66,7 @@ export default function Weather({ weatherLoc } : { weatherLoc: string }) {
 
 
   return (
-    <div>
+    <div id="walk-weather">
       <h2 className={fontStyles.subheading} id="walk_weather">Weather</h2>
 
       {weatherData

@@ -7,7 +7,7 @@ import Walk from "@/types/Walk";
 export default function Waypoints({ waypoints } : { waypoints: Walk["waypoints"] }) {
 
   return (
-    <div>
+    <div id="walk-waypoints">
       <h2 className={fontStyles.subheading} id="walk_waypoints">Waypoints</h2>
       <div className={styles.section}>
         {waypoints

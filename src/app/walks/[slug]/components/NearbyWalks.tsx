@@ -33,7 +33,7 @@ export default function NearbyWalks({ location, currentSlug } : { location: [num
 
 
   return (
-    <section className={styles.nearby}>
+    <section id="nearby-walks" className={styles.nearby}>
       <div className={styles.nearbyMain}>
         <h2 className={fontStyles.heading}>Nearby Walks</h2>
 

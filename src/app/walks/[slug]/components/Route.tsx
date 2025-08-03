@@ -27,7 +27,7 @@ import path from 'path';
 
 export default function Route({ wainwrights, center, slug } : { wainwrights: Walk["wainwrights"]; center: [number, number]; slug: string }) {
 
-  const filePath = path.join(process.cwd(), 'src', 'data', `${slug}.gpx`);
+  const filePath = path.join(process.cwd(), 'src', 'data', 'gpx', `${slug}.gpx`);
   const gpxStr = readFileSync(filePath, 'utf-8');
 
   const hillMarkers = useHillMarkers(wainwrights);
@@ -78,7 +78,7 @@ export default function Route({ wainwrights, center, slug } : { wainwrights: Wal
 
 
   return (
-    <div>
+    <div id="walk-route">
       <div className={styles.routeTitle}>
         <h2 className={fontStyles.subheading} id="walk_route">Route</h2>
         <button className={`${buttonStyles.button} ${buttonStyles.primary} ${buttonStyles.small}`} title="Download GPX file"

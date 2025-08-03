@@ -11,7 +11,7 @@ export default function Photos({ slug, galleryData } : { slug: string; galleryDa
   if (slug) {}
 
   return (
-    <div>
+    <div id="walk-photos">
       <h2 className={fontStyles.subheading} id={styles.photos}>Photos</h2>
 
       <ImageGallery

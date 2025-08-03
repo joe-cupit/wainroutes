@@ -17,7 +17,7 @@ export default function Summary({ title, wainwrights, length, elevation, intro }
   const hillNames = Object.fromEntries(hillsData.map(hill => [hill.slug, hill.name]));
 
   return (
-    <div className={styles.summary}>
+    <div id="walk-summary" className={styles.summary}>
       <h1 className={fontStyles.title}>{title}</h1>
 
       <h2 className={`${fontStyles.subheading} visually-hidden`} id="walk_overview">Summary</h2>
