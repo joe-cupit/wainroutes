@@ -3,14 +3,15 @@ import fontStyles from "@/app/fonts.module.css";
 
 import { Fragment } from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import Walk from "@/types/Walk";
 import Hill, { BookTitles, Classifications } from "@/types/Hill";
 import { displayElevation } from "@/utils/unitConversions";
 import WalkCard from "@/app/components/WalkCard/WalkCard";
 
-import temphills from "@/data/hills.json";
-import tempwalks from "@/data/walks.json";
+import wainsJson from "@/data/hills.json";
+import walksJson from "@/data/walks.json";
 
 
 type WainProps = {
@@ -18,13 +19,23 @@ type WainProps = {
 }
 
 
+export function generateStaticParams() {
+  const wains = wainsJson as unknown as Hill[];
+
+  return wains.map(wain => ({slug: wain.slug}));
+}
+
+
 export default async function Wainwright({ params } : WainProps) {
 
   const { slug }  = await params;
-  
-  const hillData = (temphills as unknown as Hill[]).find(w => w.slug === slug);
 
-  const walkData = (tempwalks as unknown as Walk[]).filter(walk => walk.wainwrights?.includes(slug));
+  const hillData = (wainsJson as unknown as Hill[]).find(w => w.slug === slug);
+  if (!hillData) {
+    return notFound();
+  }
+
+  const walkData = (walksJson as unknown as Walk[]).filter(walk => walk.wainwrights?.includes(slug));
   const bookNum = hillData?.book;
 
   return (

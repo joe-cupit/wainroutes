@@ -3,96 +3,30 @@ import fontStyles from "@/app/fonts.module.css";
 
 import { Fragment } from "react";
 
+import { DistrictWeather, DistrictWeatherDay, DistrictWeatherDayForecast } from "@/types/Weather";
 import formatDateString from "@/utils/formatDateString";
 import WeatherIcons from "@/icons/WeatherIcons";
 
-import tempweather from "@/data/weather.json";
 
+async function getWeather() {
+  const res = await fetch(
+    "https://data.wainroutes.co.uk/weather.json",
+    {next: { revalidate: 1800 }}
+  );
 
-export type DistrictWeatherDayForecast = {
-  time: string[];
-  type?: string[];
-  precip?: string[];
-  wind_speed?: string[];
-  wind_gust?: string[];
-  wind_dir?: string[];
-  temp?: string[];
-  feel_temp?: string[];
+  if (!res.ok) {
+    console.error("Failed to fetch weather data:", res);
+    return {};
+  }
+
+  return res.json();
 }
-
-export type DistrictWeatherDay = {
-  type: string;
-  date?: string;
-  sunrise?: string;
-  sunset?: string;
-  hazards?: {
-    [level: string]: {[name: string] : string}
-  };
-  meteorologist_view?: string;
-  summary?: string;
-  cloud_free_top?: string;
-  visibility?: string;
-  ground_conditions?: string;
-  weather?: string;
-  forecast?: DistrictWeatherDayForecast;
-  max_wind?: string;
-  temperature?: {
-    [height: string]: string;
-  }
-  days?: {
-    date: string;
-    sunrise?: string;
-    sunset?: string;
-    summary?: string;
-  }[]
-}
-
-export type DistrictWeather = {
-  update_time: string;
-  confidence?: string;
-  days: DistrictWeatherDay[];
-}
-
-export type PointWeatherDay = {
-  date: string;
-  weather_type: string[];
-  temp: {
-    screen: number[];
-    max: number[];
-    min: number[];
-    feels: number[];
-  }
-  precipitation: {
-    prob: number[];
-    type: string[];
-  }
-  wind: {
-    speed: number[];
-    gusts: number[];
-  }
-  visibility: {
-    m: number[];
-    text: string[];
-  }
-}
-
-
-// async function getWeather() {
-//   const res = await fetch("https://data.wainroutes.co.uk/weather.json");
-
-//   if (!res.ok) {
-//     console.error("Failed to fetch weather data:", res);
-//     return {};
-//   }
-
-//   return res.json();
-// }
 
 
 export default async function  WeatherPage() {
 
-  // const weatherData : DistrictWeather = await getWeather();
-  const weatherData = tempweather;
+  const weatherData : DistrictWeather = await getWeather();
+
 
   return (
     <main className={styles.weather}>

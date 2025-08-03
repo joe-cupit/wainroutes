@@ -2,6 +2,7 @@ import styles from "./Walk.module.css";
 
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import Summary from "./components/Summary";
 import Route from "./components/Route";
@@ -14,66 +15,11 @@ import Terrain from "./components/Terrain";
 import NearbyWalks from "./components/NearbyWalks";
 import Overlay from "./components/Overlay";
 
+import Walk from "@/types/Walk";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
 import { LocationIcon } from "@/icons/WalkIcons";
 
-import tempwalks from "@/data/walks.json";
-
-
-export type WalkGallery = {
-  imageIds: string[];
-  imageData: {
-    title: string;
-    caption: string;
-  }[]
-  coverId: string;
-  sections: {
-    type: number;
-    indexes: number[]
-  }[]
-}
-
-export type Walk = {
-  slug: string;
-
-  title: string;
-  type?: string;
-  summary?: string;
-  wainwrights: string[];
-  length: number;
-  elevation: number;
-  estimatedTime?: string;
-  date?: string;
-
-  startLocation?: {
-    location: string;
-    latitude?: number;
-    longitude?: number;
-    postCode?: string;
-    gridRef?: string;
-  }
-  busConnections?: {
-    [number: string]: string;
-  }
-  terrain?: {
-    gradient?: number;
-    path?: number;
-    exposure?: number;
-    desc?: string;
-  }
-
-  intro?: string;
-  waypoints?: {
-    [name: string]: string;
-  }
-  gallery?: WalkGallery;
-
-  weatherLoc?: string;
-  tags: string[];
-
-  distance?: number;
-  // distanceFromLocation?: number;
-}
+import walksJson from "@/data/walks.json";
 
 
 type WalkProps = {
@@ -81,12 +27,21 @@ type WalkProps = {
 }
 
 
-export default async function Walk({ params } : WalkProps) {
+export function generateStaticParams() {
+  const walks = walksJson as unknown as Walk[];
+
+  return walks.map(walk => ({slug: walk.slug}));
+}
+
+
+export default async function WalkPage({ params } : WalkProps) {
 
   const { slug }  = await params;
 
-  const walkData = (tempwalks as unknown as Walk[]).find(w => w.slug === slug);
-
+  const walkData = (walksJson as unknown as Walk[]).find(w => w.slug === slug);
+  if (!walkData) {
+    return notFound()
+  }
 
   // const [asideTabIndex, setAsideTabIndex] = useState(-1)
   // function toggleAsideTab(newIndex: number) {
@@ -100,7 +55,6 @@ export default async function Walk({ params } : WalkProps) {
 
 
   return (
-    <>
     <main className={styles.walk}>
 
       <Overlay
@@ -223,6 +177,5 @@ export default async function Walk({ params } : WalkProps) {
         currentSlug={slug}
       />
     </main>
-    </>
   )
 }
