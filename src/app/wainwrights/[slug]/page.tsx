@@ -4,6 +4,7 @@ import fontStyles from "@/app/fonts.module.css";
 import { Fragment } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { createPageMetadata } from "@/utils/metadata";
 
 import Walk from "@/types/Walk";
 import Hill, { BookTitles, Classifications } from "@/types/Hill";
@@ -19,9 +20,24 @@ type WainProps = {
 }
 
 
+export async function generateMetadata({ params } : WainProps) {
+  const { slug }  = await params;
+  const hillData = (wainsJson as unknown as Hill[]).find(w => w.slug === slug);
+  if (!hillData) return {};
+
+  const title = `${hillData.name} (${hillData.height}m) – Wainwright Routes & Details`;
+  const description = `Details for ${hillData.name} (${hillData.height}m), a Wainwright in the Lake District, with walking routes, details, and nearby fells.`
+  const path = `/wainwrights/${hillData.slug}`;
+
+  return createPageMetadata({
+    title, description, path
+  });
+}
+
+
 export function generateStaticParams() {
   const wains = wainsJson as unknown as Hill[];
-
+  
   return wains.map(wain => ({slug: wain.slug}));
 }
 

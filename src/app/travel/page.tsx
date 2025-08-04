@@ -1,6 +1,17 @@
 import styles from './Travel.module.css';
 import fontStyles from "@/app/fonts.module.css";
 
+import { createPageMetadata } from '@/utils/metadata';
+
+
+export function generateMetadata() {
+  return createPageMetadata({
+    title: "Lake District Travel",
+    description: "Find bus times, hostel accommodation, lake boats, and travel tips for your next Lake District visit.",
+    path: "/travel",
+  });
+}
+
 
 export default function Travel() {
 

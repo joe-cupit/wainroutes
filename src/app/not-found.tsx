@@ -3,6 +3,15 @@ import fontStyles from "@/app/fonts.module.css";
 import buttonStyles from "@/app/buttons.module.css";
 
 import Link from "next/link";
+import { createPageMetadata } from "@/utils/metadata";
+
+
+export function generateMetadata() {
+  return createPageMetadata({
+    title: "404 Page Not Found",
+    description: "You've wandered off track, this page doesn't exist."
+  });
+}
 
 
 export default function NotFoundPage() {

@@ -4,6 +4,7 @@ import buttonStyles from "@/app/buttons.module.css";
 
 import Link from "next/link";
 import Image from "next/image";
+import { createPageMetadata } from "@/utils/metadata";
 
 import SiteSearchBar from "@/app/components/SiteSearchBar/SiteSearchBar";
 import WalkCard from "@/app/components/WalkCard/WalkCard";
@@ -14,6 +15,13 @@ import Walk from "@/types/Walk";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 
 import tempwalks from "@/data/walks.json";
+
+
+export function generateMetadata() {
+  return createPageMetadata({
+    title: "Wainroutes Lake District Walks",
+  });
+}
 
 
 export default function Home() {

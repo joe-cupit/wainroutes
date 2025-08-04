@@ -1,6 +1,8 @@
 import styles from "./Wainwrights.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
+import { createPageMetadata } from "@/utils/metadata";
+
 import Hill from "@/types/Hill";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 import BackToTopButton from "@/app/components/BackToTopButton/BackToTopButton";
@@ -9,6 +11,15 @@ import LakeMap from "@/app/components/Map/Map";
 import WainwrightList from "./components/WainwrightList";
 
 import wainsJson from "@/data/hills.json";
+
+
+export function generateMetadata() {
+  return createPageMetadata({
+    title: "The 214 Wainwrights",
+    description: "Discover all 214 Wainwrights in the Lake District with an interactive map and searchable list of fells.",
+    path: "/wainwrights",
+  });
+}
 
 
 export type SimplifiedHill = {

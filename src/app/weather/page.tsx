@@ -2,10 +2,20 @@ import styles from "./Weather.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
 import { Fragment } from "react";
+import { createPageMetadata } from "@/utils/metadata";
 
 import { DistrictWeather, DistrictWeatherDay, DistrictWeatherDayForecast } from "@/types/Weather";
 import formatDateString from "@/utils/formatDateString";
 import WeatherIcons from "@/icons/WeatherIcons";
+
+
+export function generateMetadata() {
+  return createPageMetadata({
+    title: "Lake District Mountain Weather Forecast",
+    description: "Get the latest 5-day mountain weather forecast for the Lake District, with summit visibility and current mountain hazards.",
+    path: "/weather",
+  });
+}
 
 
 async function getWeather() {

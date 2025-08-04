@@ -1,14 +1,21 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 import Navbar from "@/app/components/Navbar/Navbar";
 import Footer from "@/app/components/Footer/Footer";
 
 
-export const metadata: Metadata = {
-  title: "Wainroutes",
-  description: "Wainroutes Lake District Walks",
+export const metadata : Metadata = {
+  title: {
+    default: "Wainroutes Lake District Walks",
+    template: "%s | Wainroutes",
+  },
+  description: "Walk the Wainwrights in the Lake District with detailed routes, mountain forecasts, and travel info.",
 };
+
+export const viewport : Viewport = {
+  themeColor: "#0d0d0c"
+}
 
 export default function RootLayout({
   children,

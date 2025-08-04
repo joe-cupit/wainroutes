@@ -3,6 +3,7 @@ import styles from "./Walk.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { createPageMetadata } from "@/utils/metadata";
 
 import Summary from "./components/Summary";
 import Route from "./components/Route";
@@ -24,6 +25,22 @@ import walksJson from "@/data/walks.json";
 
 type WalkProps = {
   params: Promise<{ slug: string }>
+}
+
+
+export async function generateMetadata({ params } : WalkProps) {
+  const { slug }  = await params;
+  const walkData = (walksJson as unknown as Walk[]).find(w => w.slug === slug);
+  if (!walkData) return {};
+
+  const title = `${walkData.title} (${walkData.length}km) – Lake District Walk & Route Guide`;
+  const description = `Route details for ${walkData.title}, a Lake District walk featuring ${walkData.wainwrights.length} Wainwright${walkData.wainwrights.length !== 1 ? "s" : ""}, with maps, terrain info, and photos.`
+  const path = `/walks/${walkData.slug}`;
+  const imageURL = `https://images.wainroutes.co.uk/wainroutes_${walkData.slug}_${walkData.gallery?.coverId}_1024w.webp`;
+
+  return createPageMetadata({
+    title, description, path, imageURL
+  });
 }
 
 
