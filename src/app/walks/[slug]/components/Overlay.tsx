@@ -41,6 +41,9 @@ export default function Overlay({ walkData } : { walkData: {title: string, wainw
 
 
   useEffect(() => {
+    const navbar = document.getElementById("navbar");
+    const overlay = document.getElementById("walk-overlay");
+
     function toggleOverlay() {
       const currentScroll = document.scrollingElement?.scrollTop ?? 0;
 
@@ -50,6 +53,13 @@ export default function Overlay({ walkData } : { walkData: {title: string, wainw
       }
       else {
         setShowOverlay(true);
+
+        if (window.innerWidth < 552 && navbar && overlay) {
+          if (navbar?.classList.contains("sticky")) {
+            overlay?.classList.remove(styles.stickyTop);
+          }
+          else overlay?.classList.add(styles.stickyTop);
+        }
 
         if (sections) {
           const selected = sections.find(({ ref }) => {
@@ -64,6 +74,7 @@ export default function Overlay({ walkData } : { walkData: {title: string, wainw
       }
     }
 
+    toggleOverlay();
     window.addEventListener("scroll", toggleOverlay)
     return () => {
       window.removeEventListener("scroll", toggleOverlay)
@@ -71,7 +82,7 @@ export default function Overlay({ walkData } : { walkData: {title: string, wainw
   }, [sections])
 
   return (
-    <div className={`${styles.overlay} ${showOverlay ? styles.show : ""}`}>
+    <div id="walk-overlay" className={`${styles.overlay} ${showOverlay ? styles.show : ""}`}>
       <section>
         <div className={styles.overlayWrapper}>
           <div className={styles.overlayLeft}>

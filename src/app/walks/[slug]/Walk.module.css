@@ -30,25 +30,24 @@
 
   display: none;
   top: -5rem;
-  transition-property: display opacity;
-  transition-duration: 300ms;
+  transition-property: top, display, opacity;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
   transition-behavior: allow-discrete;
 }
 .overlay.show {
-  display: block;
-  top: 5.125rem;
+  display: initial;
+  top: 5rem;
 
   @starting-style {
     top: -5rem;
   }
 }
+.overlay.show.stickyTop {
+  top: 0;
+}
 .overlay section {
   padding: 0;
-}
-@media (max-width: 34.5rem) {
-  body:not(:has(.navbar.sticky)) .overlay.show {
-    top: 0;
-  }
 }
 
 .overlayWrapper {

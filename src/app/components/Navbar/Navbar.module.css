@@ -13,11 +13,12 @@
   top: 0;
   z-index: calc(infinity);
 
-  transition-property: top, translate, background-color;
+  transition-property: top, background-color;
   transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
 
-  padding-block: var(--gap-400) var(--gap-400);
   padding-inline: var(--gap-500);
+  height: 5rem;
 }
 
 .navbar.invisible {
@@ -46,6 +47,7 @@
 .nav {
   display: flex;
   gap: var(--gap-400);
+  margin-block-start: var(--gap-300);
 }
 .navbar .nav a {
   transition: opacity 150ms ease;
@@ -119,11 +121,11 @@
 
 @media (max-width: 34.5rem) {
   .navbar {
-    top: -100%;
+    top: -5rem;
     padding-block: 1.25rem;
     padding-inline: 0.25rem;
   }
-  .navbar.sticky {
+  :global(#navbar.sticky) {
     top: 0;
   }
   .nav {

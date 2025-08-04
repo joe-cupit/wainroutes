@@ -28,12 +28,12 @@ export default function NavbarClient({ targetId } : { targetId: string }) {
       // check for scroll up on mobile
       if (window.innerWidth < 552) {
         if (window.scrollY > 0 && window.scrollY < lastScrollY.current) {
-          navbar.classList.add(styles.sticky);
+          navbar.classList.add("sticky");
         }
         else {
-          navbar.classList.remove(styles.sticky);
+          navbar.classList.remove("sticky");
         }
-  
+
         lastScrollY.current = Math.max(window.scrollY, 0);
       }
     }
