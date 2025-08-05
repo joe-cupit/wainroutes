@@ -9,7 +9,15 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ]
-  }
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/download/gpx/:slug',
+        destination: '/api/download-gpx/:slug',
+      },
+    ]
+  },
 };
 
 export default nextConfig;

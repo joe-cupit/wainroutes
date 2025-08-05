@@ -1,11 +1,9 @@
-import styles from "../Walk.module.css";
+import styles from "../../Walk.module.css";
 import fontStyles from "@/app/fonts.module.css";
-import buttonStyles from "@/app/buttons.module.css";
 
 import { XMLParser } from "fast-xml-parser";
 
 import Walk from "@/types/Walk";
-import { DownloadIcon } from "@/icons/WalkIcons";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 import { getDistanceValue, getElevationValue } from "@/utils/unitConversions";
 import haversineDistance from "@/utils/haversineDistance";
@@ -23,6 +21,7 @@ type ElevationPoint = {
 
 import { readFileSync } from 'fs';
 import path from 'path';
+import DownloadButton from "./Components/DownloadButton";
 
 
 export default function Route({ wainwrights, center, slug } : { wainwrights: Walk["wainwrights"]; center: [number, number]; slug: string }) {
@@ -81,11 +80,7 @@ export default function Route({ wainwrights, center, slug } : { wainwrights: Wal
     <div id="walk-route">
       <div className={styles.routeTitle}>
         <h2 className={fontStyles.subheading} id="walk_route">Route</h2>
-        <button className={`${buttonStyles.button} ${buttonStyles.primary} ${buttonStyles.small}`} title="Download GPX file"
-          // onClick={handleDownload}
-        >
-          <DownloadIcon /> Download GPX
-        </button>
+        <DownloadButton slug={slug} />
       </div>
       <div className={styles.section}>
         <div className={styles.map}>
