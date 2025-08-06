@@ -6,9 +6,17 @@ import Image from "next/image";
 import Walk from "@/types/Walk";
 import { ElevationIcon, HikingIcon, MountainIcon } from "@/icons/WalkIcons";
 import { displayDistance, displayElevation, getDistanceUnit, getDistanceValue } from "@/utils/unitConversions";
+import { SimpleWalk } from "@/app/walks/page";
 
 
-export default function WalkCard({ walk, showDistance, hoverEvent } : { walk: Walk; showDistance?: boolean, hoverEvent?: CallableFunction }) {
+type WalkCardProps = {
+  walk: Walk | SimpleWalk;
+  showDistance?: boolean;
+  hoverEvent?: CallableFunction;
+}
+
+
+export default function WalkCard({ walk, showDistance, hoverEvent } : WalkCardProps) {
   
   if (hoverEvent) {}
   

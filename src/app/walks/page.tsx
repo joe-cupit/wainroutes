@@ -1,11 +1,13 @@
 import styles from "./Walks.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
+import type Walk from "@/types/Walk";
 import { createPageMetadata } from "@/utils/metadata";
 
 import BackToTopButton from "@/app/components/BackToTopButton/BackToTopButton";
-import WalkGrid from "./components/WalkGrid";
-import WalksSearchBar from "./components/WalkSearchBar";
+import WalksClient from "./components/WalksClient";
+
+import walksJson from "@/data/walks.json";
 
 
 export function generateMetadata() {
@@ -17,32 +19,45 @@ export function generateMetadata() {
 }
 
 
+export type SimpleWalk = {
+  slug: string;
+  title: string;
+  wainwrights: string[];
+  length: number;
+  elevation: number;
+  date?: string,
+  gallery: {
+    coverId?: string;
+  }
+  distance?: number;
+}
+
 
 export default function WalksPage() {
+
+  const walksData = (walksJson as unknown as Walk[]).map(walk => ({
+    slug: walk.slug,
+    title: walk.title,
+    wainwrights: walk.wainwrights,
+    length: walk.length,
+    elevation: walk.elevation,
+    date: walk.date,
+    gallery: {
+      coverId: walk.gallery?.coverId
+    }
+  } as SimpleWalk));
+
 
   return (
     <main className={styles.walks}>
       <BackToTopButton minHeight={600} />
 
       <section>
-      
         <div className="flex-column">
           <h1 className={fontStyles.title}>Walks in the Lake District</h1>
-          {/* <WalkMap
-            mapMarkers={filteredMarkers}
-            activePoint={hoveredSlug}
-          /> */}
-          <div className={styles.main}>
-            <WalksSearchBar/>
-            <WalkGrid
-              // walks={sortedWalks}
-              // hasLocationParam={(currentTown in locations)}
-              // sortControl={{
-              //   value: sortValue,
-              //   set: updateSortSearchParam
-              // }}
-            />
-          </div>
+          <WalksClient
+            initialWalks={walksData}
+          />
         </div>
       </section>
     </main>

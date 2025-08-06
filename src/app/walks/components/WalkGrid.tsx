@@ -1,17 +1,52 @@
+"use client";
+
 import styles from "../Walks.module.css";
 import buttonStyles from "@/app/buttons.module.css";
 
-import Walk from "@/types/Walk";
+import { useMemo, useState } from "react";
+
+import type { SimpleWalk } from "../page";
 import WalkCard from "@/app/components/WalkCard/WalkCard";
 
-import tempwalks from "@/data/walks.json";
+
+type WalkGridProps = {
+  walks: SimpleWalk[];
+  resetFilters: CallableFunction;
+}
 
 
-export default function WalkGrid() {
-  // { walks, hasLocationParam, sortControl, setHoveredSlug } : { walks?: Walk[]; hasLocationParam?: boolean; sortControl: {value: string; set: CallableFunction}; setHoveredSlug?: CallableFunction }) {
+export default function WalkGrid({ walks, resetFilters } : WalkGridProps) {
+  const [sortValue, setSortValue] = useState("recommended")
 
-  const walks = tempwalks as unknown as Walk[];
-  // const sortControl : {value: string; set: CallableFunction} = {value: "", set: () => {}}
+  const sortedWalks = useMemo(() => {
+    let newWalkData = [...walks];
+
+    const [type, dir] = sortValue.split("-");
+    switch (type) {
+      case "closest":
+        newWalkData.sort((a, b) => (a.distance ?? 9999) - (b.distance ?? 9999))
+        break;
+      case "recent":
+        newWalkData.sort((a, b) => new Date(b.date ?? "").getTime() - new Date(a.date ?? "").getTime());
+        break;
+      case "hills":
+        newWalkData.sort((a, b) => (a.wainwrights?.length ?? 0) - (b.wainwrights?.length ?? 0));
+        break;
+      case "ele":
+        newWalkData.sort((a, b) => (a.elevation ?? 0) - (b.elevation ?? 0));
+        break;
+      case "dist":
+        newWalkData.sort((a, b) => (a.length ?? 0) - (b.length ?? 0));
+        break;
+      default:
+        // newWalkData.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+    }
+
+    if (dir === "dsc") newWalkData.reverse();
+
+    return newWalkData;
+  }, [walks, sortValue])
 
   const hasLocationParam = false;
 
@@ -31,8 +66,8 @@ export default function WalkGrid() {
           </ul>
         </div> */}
         <select
-          // value={sortControl.value}
-          // onChange={e => sortControl.set(e.target.value)}
+          value={sortValue}
+          onChange={e => setSortValue(e.target.value)}
         >
           <option value="recommended">Recommended</option>
           {hasLocationParam && <option value="closest">Closest</option>}
@@ -48,7 +83,15 @@ export default function WalkGrid() {
 
       {(walks.length === 0) &&
         <div className={styles.gridFilters}>
-          <>No walks match the current filters. <button className={`${buttonStyles.button} ${buttonStyles.underlined}`}>Reset filters</button></>
+          <>
+            No walks match the current filters.&nbsp;
+            <button
+              className={`${buttonStyles.button} ${buttonStyles.underlined}`}
+              onClick={() => resetFilters()}
+            >
+              Reset filters
+            </button>
+          </>
           {/* {walks.length > 0
             ? <>Showing <b>{walks.length + " walk" + (walks.length === 1 ? "" : "s")}</b> matching filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></>
             : <>No walks match the current filters. <button className="button underlined" onClick={() => resetFilters()}>Reset filters</button></>
@@ -57,7 +100,7 @@ export default function WalkGrid() {
       }
 
       <div className={styles.gridGrid}>
-        {walks.map((walk, index) => {
+        {sortedWalks.map((walk, index) => {
           return <WalkCard key={index}
                     walk={walk}
                     showDistance={hasLocationParam}
@@ -69,7 +112,7 @@ export default function WalkGrid() {
         <p className={styles.gridEndText}>
           Showing {walks.length + " walk" + (walks.length !== 1 ? "s" : "")} in the Lake District.&nbsp;
           <button
-            // onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}
+            onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}
             title="Scroll to top"
           >
             Back to top
