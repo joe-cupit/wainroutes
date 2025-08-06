@@ -2,14 +2,16 @@ import styles from "../../Walk.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
 import { XMLParser } from "fast-xml-parser";
+import { readFileSync } from 'fs';
+import path from 'path';
 
-import Walk from "@/types/Walk";
+import type Walk from "@/types/Walk";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 import { getDistanceValue, getElevationValue } from "@/utils/unitConversions";
 import haversineDistance from "@/utils/haversineDistance";
 
-import LakeMap, { GeoRoute } from "@/app/components/Map/Map";
-import ElevationChart from "@/app/components/ElevationChart/ElevationChart";
+import DownloadButton from "./Components/DownloadButton";
+import InteractiveRoute from "./Components/InteractiveRoute";
 
 
 type ElevationPoint = {
@@ -18,13 +20,13 @@ type ElevationPoint = {
   waypoint?: string
 }
 
+export type ParsedGPX = {
+  gpxPoints: [number, number][];
+  elevationData: ElevationPoint[];
+}
 
-import { readFileSync } from 'fs';
-import path from 'path';
-import DownloadButton from "./Components/DownloadButton";
 
-
-export default function Route({ wainwrights, center, slug } : { wainwrights: Walk["wainwrights"]; center: [number, number]; slug: string }) {
+export default function Route({ wainwrights, defaultCenter, slug } : { wainwrights: Walk["wainwrights"]; defaultCenter: [number, number]; slug: string }) {
 
   const filePath = path.join(process.cwd(), 'src', 'data', 'gpx', `${slug}.gpx`);
   const gpxStr = readFileSync(filePath, 'utf-8');
@@ -82,22 +84,11 @@ export default function Route({ wainwrights, center, slug } : { wainwrights: Wal
         <h2 className={fontStyles.subheading} id="walk_route">Route</h2>
         <DownloadButton slug={slug} />
       </div>
-      <div className={styles.section}>
-        <div className={styles.map}>
-          <LakeMap
-            gpxPoints={gpx.gpxPoints} mapMarkers={hillMarkers}
-            defaultCenter={center} defaultZoom={14} >
-              <GeoRoute points={gpx.gpxPoints} activeIndex={null} />
-          </LakeMap>
-        </div>
-        <div className={styles.elevation}>
-          <ElevationChart
-            data={gpx.elevationData}
-            setActiveIndex={undefined}
-            showHillMarkers={true}
-          />
-        </div>
-      </div>
+      <InteractiveRoute
+        gpx={gpx}
+        hillMarkers={hillMarkers}
+        defaultCenter={defaultCenter}
+      />
     </div>
   )
 }

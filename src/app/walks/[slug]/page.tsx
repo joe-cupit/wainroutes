@@ -16,7 +16,7 @@ import Terrain from "./components/Terrain";
 import NearbyWalks from "./components/NearbyWalks";
 import Overlay from "./components/Overlay";
 
-import Walk from "@/types/Walk";
+import type Walk from "@/types/Walk";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
 import { LocationIcon } from "@/icons/WalkIcons";
 
@@ -122,7 +122,7 @@ export default async function WalkPage({ params } : WalkProps) {
 
             <Route
               wainwrights={walkData?.wainwrights ?? []}
-              center={[walkData?.startLocation?.latitude ?? 0, walkData?.startLocation?.longitude ?? 0]}
+              defaultCenter={[walkData?.startLocation?.latitude ?? 0, walkData?.startLocation?.longitude ?? 0]}
               slug={slug}
             />
 
