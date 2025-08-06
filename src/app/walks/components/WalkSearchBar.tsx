@@ -5,10 +5,15 @@ import styles from "../Walks.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { CloseIconSmall, FilterIcon, SearchIcon } from "@/icons/WalkIcons";
+import { CloseIcon, CloseIconSmall, FilterIcon, SearchIcon } from "@/icons/WalkIcons";
 
 
-export default function WalksSearchBar() {
+type WalkSearchBarProps = {
+  showFilters: boolean;
+  setShowFilters: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function WalksSearchBar({ showFilters, setShowFilters } : WalkSearchBarProps) {
 
   const searchParams = useSearchParams();
   const searchRef = useRef<HTMLInputElement>(null);
@@ -32,8 +37,7 @@ export default function WalksSearchBar() {
     if (searchTerm) params.set("query", searchTerm);
     else params.delete("query");
 
-    // router.replace(`?${params.toString()}`);
-    window.history.replaceState({}, "", `/walks?${params.toString()}`)
+    window.history.replaceState({}, "", `/walks?${params.toString()}`);
   }, [searchTerm])
 
   useEffect(() => {
@@ -44,50 +48,41 @@ export default function WalksSearchBar() {
 
 
   return (
-    <div style={{zIndex: "9999"}}>
-      <div className={styles.filterSearch}>
-        <div
-          className={styles.searchBar}
-          onClick={() => searchRef.current?.focus()}
-        >
-          <SearchIcon />
-          <input
-            type="search"
-            ref={searchRef}
-            placeholder="Search for a walk"
-            value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
-          />
-          {inputValue.length > 0 &&
-            <button
-              className={styles.searchBarButton}
-              onClick={() => setInputValue("")}
-              title="Clear text"
-            >
-              <CloseIconSmall />
-            </button>
-          }
-        </div>
-        <button
-          className={styles.filterButton}
-          // onClick={() => setShowFilters(prev => !prev)}
-          // data-open={showFilters}
-        >
-          <span>Filters</span> <FilterIcon />
-          {/* {showFilters
-            ? <CloseIcon />
-            : <FilterIcon />
-          } */}
-        </button>
-      </div>
-      
-      {/* {showFilters &&
-        <Filters
-          filterData={Object.values(filterObjects)}
-          className={styles.filters}
-          closeSelf={() => setShowFilters(false)}
+    <div className={styles.filterSearch}>
+      <div
+        className={styles.searchBar}
+        onClick={() => searchRef.current?.focus()}
+      >
+        <SearchIcon />
+        <input
+          type="search"
+          ref={searchRef}
+          placeholder="Search for a walk"
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
         />
-      } */}
+        {inputValue.length > 0 &&
+          <button
+            className={styles.searchBarButton}
+            onClick={() => setInputValue("")}
+            title="Clear text"
+          >
+            <CloseIconSmall />
+          </button>
+        }
+      </div>
+      <button
+        className={styles.filterButton}
+        onClick={() => setShowFilters(prev => !prev)}
+        data-open={showFilters}
+        title="Toggle filter visibility"
+      >
+        <span>Filters</span>
+        {showFilters
+          ? <CloseIcon />
+          : <FilterIcon />
+        }
+      </button>
     </div>
   )
 }

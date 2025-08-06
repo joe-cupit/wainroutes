@@ -25,7 +25,8 @@ export type SimpleWalk = {
   wainwrights: string[];
   length: number;
   elevation: number;
-  date?: string,
+  date?: string;
+  busConnections?: Walk["busConnections"];
   gallery: {
     coverId?: string;
   }
@@ -42,6 +43,7 @@ export default function WalksPage() {
     length: walk.length,
     elevation: walk.elevation,
     date: walk.date,
+    busConnections: walk.busConnections,
     gallery: {
       coverId: walk.gallery?.coverId
     }
