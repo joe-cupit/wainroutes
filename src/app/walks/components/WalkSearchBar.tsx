@@ -38,13 +38,14 @@ export default function WalksSearchBar({ showFilters, setShowFilters } : WalkSea
     else params.delete("query");
 
     window.history.replaceState({}, "", `/walks?${params.toString()}`);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm])
 
   useEffect(() => {
     const query = searchParams.get("query") ?? "";
     setSearchTerm(query);
     setInputValue(query);
-  }, [searchParams.get("query")])
+  }, [searchParams])
 
 
   return (

@@ -78,7 +78,7 @@ export default function WalkFilters({ title, className } : WalkFilterProps) {
 
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries());
-    let newFilters = {...initialFilterState} as FilterState;
+    const newFilters = {...initialFilterState} as FilterState;
 
     // update town
     if (params.town && params.town in locations) {
@@ -105,6 +105,7 @@ export default function WalkFilters({ title, className } : WalkFilterProps) {
     newFilters.byBus = (params.byBus === "yes");
 
     setFilters(newFilters);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams])
 
 
@@ -221,35 +222,42 @@ export function Filters({ filterData, children } : FilterProps) {
 function FilterGroup({ filter } : { filter: MultiSelectFilterData | SelectFilterData }) {
 
   const [open, setOpen] = useState(false);
-  const FilterRef = useRef<HTMLDivElement>(null);
-
-  const clickListener = (e: MouseEvent) => {
-    if (FilterRef.current && !e.composedPath().includes(FilterRef.current)) openCloseFilter(false);
-  }
-
-  const openCloseFilter = (open: boolean) => {
-    setOpen(open);
-
-    if (open) document.addEventListener("mouseup", clickListener);
-    else document.removeEventListener("mouseup", clickListener);
-  }
+  const filterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    openCloseFilter(false);
-  }, [(filter.type === "select" && filter.currentValue)])
+    if (!open) return;
+
+    const clickListener = (e: MouseEvent) => {
+      console.log("click!")
+      if (filterRef.current && !e.composedPath().includes(filterRef.current)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mouseup", clickListener);
+    return () => {
+      document.removeEventListener("mouseup", clickListener);
+    }
+  }, [open])
+
+
+  const currentValue = filter.type === "select" ? filter.currentValue : undefined;
+  useEffect(() => {
+    setOpen(false);
+  }, [currentValue])
 
 
   return (
     <div
       className={styles.group}
-      ref={FilterRef}
+      ref={filterRef}
       data-open={open}
       data-active={
         (filter.type === "select" && filter.currentValue !== "any") ||
         (filter.type === "multi-select" && filter.currentValues.length > 0)
       }
     >
-      <button className={styles.group__button} onClick={() => openCloseFilter(!open)}>
+      <button className={styles.group__button} onClick={() => setOpen(!open)}>
         <div className={styles.group__buttonMain}>
           <h3>{filter.title}</h3>
           <p className={styles.group__activeValue}>
@@ -298,7 +306,7 @@ function CheckboxFilterGroup({ filter } : { filter: MultiSelectFilterData }) {
       setFilteredValues(Object.keys(filter.values).filter(key => key.replace("-", " ").includes(searchTerm.toLowerCase())))
     }
     else setFilteredValues(Object.keys(filter.values));
-  }, [searchTerm])
+  }, [searchTerm, filter.values])
 
 
   return (
@@ -331,7 +339,7 @@ function CheckboxFilterGroup({ filter } : { filter: MultiSelectFilterData }) {
                 />
               )
           })
-        : <i className={styles.checkboxInfo}>No entries matching '{searchTerm}'</i>
+        : <i className={styles.checkboxInfo}>No entries matching &apos;{searchTerm}&apos;</i>
         }
       </div>
       <div className={styles.checkboxBottom}>

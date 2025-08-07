@@ -8,14 +8,34 @@ import BackToTopButton from "@/app/components/BackToTopButton/BackToTopButton";
 import WalksClient from "./components/WalksClient";
 
 import walksJson from "@/data/walks.json";
+import { locations } from "./components/WalkFilterValues";
 
 
-export function generateMetadata() {
-  return createPageMetadata({
-    title: "Lake District Walks",
-    description: "Find your next Wainwright bagging walk in the Lake District, filtered by distance, elevation, and public transport access.",
-    path: "/walks",
-  });
+type MetadataProps = {
+  searchParams: Promise<{
+    [key: string]: string | undefined;
+  }>
+}
+
+export async function generateMetadata({ searchParams } : MetadataProps) {
+
+  const { town } = await searchParams;
+
+  if (town && locations[town]) {
+    const location = locations[town];
+    return createPageMetadata({
+      title: `Lake District Walks near ${location.name}`,
+      description: `Find your next Wainwright bagging walk near ${location.name}, filtered by distance, elevation, and public transport access.`,
+      path: `/walks?town=${town}`,
+    });
+  }
+  else {
+    return createPageMetadata({
+      title: "Lake District Walks",
+      description: "Find your next Wainwright bagging walk in the Lake District, filtered by distance, elevation, and public transport access.",
+      path: "/walks",
+    });
+  }
 }
 
 
@@ -26,6 +46,10 @@ export type SimpleWalk = {
   length: number;
   elevation: number;
   date?: string;
+  startLocation?: {
+    latitude?: number;
+    longitude?: number;
+  }
   busConnections?: Walk["busConnections"];
   gallery: {
     coverId?: string;
@@ -34,19 +58,25 @@ export type SimpleWalk = {
 }
 
 
-export default function WalksPage() {
+export default async function WalksPage({ searchParams } : MetadataProps) {
 
-  const walksData = (walksJson as unknown as Walk[]).map(walk => ({
+  const { town } = await searchParams;
+
+  const simplifiedWalks = (walksJson as unknown as Walk[]).map(walk => ({
     slug: walk.slug,
     title: walk.title,
     wainwrights: walk.wainwrights,
     length: walk.length,
     elevation: walk.elevation,
     date: walk.date,
+    startLocation: {
+      latitude: walk.startLocation?.latitude,
+      longitude: walk.startLocation?.longitude,
+    },
     busConnections: walk.busConnections,
     gallery: {
       coverId: walk.gallery?.coverId
-    }
+    },
   } as SimpleWalk));
 
 
@@ -56,9 +86,17 @@ export default function WalksPage() {
 
       <section>
         <div className="flex-column">
-          <h1 className={fontStyles.title}>Walks in the Lake District</h1>
+          <h1
+            id="walks-title"
+            className={fontStyles.title}
+          >
+            {(town && locations[town])
+              ? `Walks near ${locations[town].name}`
+              : "Walks in the Lake District"
+            }
+          </h1>
           <WalksClient
-            initialWalks={walksData}
+            allWalks={simplifiedWalks}
           />
         </div>
       </section>

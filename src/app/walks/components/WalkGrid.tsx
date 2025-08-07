@@ -3,7 +3,7 @@
 import styles from "../Walks.module.css";
 import buttonStyles from "@/app/buttons.module.css";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import type { SimpleWalk } from "../page";
 import WalkCard from "@/app/components/WalkCard/WalkCard";
@@ -12,14 +12,26 @@ import WalkCard from "@/app/components/WalkCard/WalkCard";
 type WalkGridProps = {
   walks: SimpleWalk[];
   resetFilters: CallableFunction;
+  showDistances: boolean;
 }
 
 
-export default function WalkGrid({ walks, resetFilters } : WalkGridProps) {
-  const [sortValue, setSortValue] = useState("recommended")
+export default function WalkGrid({ walks, resetFilters, showDistances } : WalkGridProps) {
+  const [sortValue, setSortValue] = useState("recommended");
+
+  useEffect(() => {
+    if (showDistances && sortValue === "recommended") {
+      setSortValue("closest");
+    }
+    else if (!showDistances && sortValue === "closest") {
+      setSortValue("recommended");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showDistances])
+
 
   const sortedWalks = useMemo(() => {
-    let newWalkData = [...walks];
+    const newWalkData = [...walks];
 
     const [type, dir] = sortValue.split("-");
     switch (type) {
@@ -48,8 +60,6 @@ export default function WalkGrid({ walks, resetFilters } : WalkGridProps) {
     return newWalkData;
   }, [walks, sortValue])
 
-  const hasLocationParam = false;
-
   return (
     <div className={styles.grid}>
       <div className={styles.gridTop}>
@@ -70,7 +80,7 @@ export default function WalkGrid({ walks, resetFilters } : WalkGridProps) {
           onChange={e => setSortValue(e.target.value)}
         >
           <option value="recommended">Recommended</option>
-          {hasLocationParam && <option value="closest">Closest</option>}
+          {showDistances && <option value="closest">Closest</option>}
           <option value="hills-dsc">Most Wainwrights</option>
           <option value="hills-asc">Least Wainwrights</option>
           <option value="dist-dsc">Longest</option>
@@ -103,7 +113,7 @@ export default function WalkGrid({ walks, resetFilters } : WalkGridProps) {
         {sortedWalks.map((walk, index) => {
           return <WalkCard key={index}
                     walk={walk}
-                    showDistance={hasLocationParam}
+                    showDistance={showDistances}
                  />
         })}
       </div>
