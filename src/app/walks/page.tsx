@@ -8,6 +8,7 @@ import BackToTopButton from "@/app/components/BackToTopButton/BackToTopButton";
 import WalksClient from "./components/WalksClient";
 
 import walksJson from "@/data/walks.json";
+import wainsJson from "@/data/hills.json";
 import { locations } from "./components/WalkFilterValues";
 
 
@@ -97,6 +98,7 @@ export default async function WalksPage({ searchParams } : MetadataProps) {
           </h1>
           <WalksClient
             allWalks={simplifiedWalks}
+            wainNames={wainNames}
           />
         </div>
       </section>

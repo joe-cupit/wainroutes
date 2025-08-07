@@ -9,9 +9,7 @@ import { useSearchParams } from "next/navigation";
 
 import { DropdownIcon } from "@/icons/WalkIcons";
 
-import wainsJson from "@/data/hills.json";
 import { distanceOptions, elevationOptions, locations } from "./WalkFilterValues";
-const wainValues = Object.fromEntries(wainsJson.map(hill => [hill.slug, hill.name]));
 
 
 export type MultiSelectFilterData = {
@@ -57,13 +55,12 @@ const initialFilterState : FilterState = {
 
 
 type WalkFilterProps = {
+  wainNames: {[slug : string]: string};
   title?: string;
   className?: string;
-  resetFilters?: CallableFunction;
-  closeSelf?: CallableFunction;
 }
 
-export default function WalkFilters({ title, className } : WalkFilterProps) {
+export default function WalkFilters({ wainNames, title, className } : WalkFilterProps) {
 
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState<FilterState>(initialFilterState);
@@ -125,13 +122,13 @@ export default function WalkFilters({ title, className } : WalkFilterProps) {
   const wainChoose : MultiSelectFilterData = {
     type: "multi-select",
     title: "Wainwrights",
-    values: wainValues,
+    values: wainNames,
     currentValues: filters.wainwrights,
     setCurrentValues: (newWainwrights: string[]) => {
       updateParam("wainwrights", newWainwrights.join(" "));
     },
 
-    enabledValues: Object.keys(wainValues),
+    enabledValues: Object.keys(wainNames),
     isSearchable: true,
   }
 

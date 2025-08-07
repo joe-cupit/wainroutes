@@ -16,9 +16,10 @@ import haversineDistance from "@/utils/haversineDistance";
 
 type WalksClientProps = {
   allWalks: SimpleWalk[];
+  wainNames: {[slug : string]: string};
 }
 
-export default function WalksClient({ allWalks } : WalksClientProps) {
+export default function WalksClient({ allWalks, wainNames } : WalksClientProps) {
 
   const searchParams = useSearchParams();
 
@@ -113,12 +114,13 @@ export default function WalksClient({ allWalks } : WalksClientProps) {
         {showFilters &&
           <WalkFilters
             className={styles.filters}
-            resetFilters={resetFilters}
+            wainNames={wainNames}
           />
         }
       </div>
       <WalkGrid
         walks={filteredWalks}
+        wainNames={wainNames}
         resetFilters={resetFilters}
         showDistances={Boolean(townParam && locations[townParam])}
       />

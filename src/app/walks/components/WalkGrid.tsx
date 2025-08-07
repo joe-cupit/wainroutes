@@ -7,16 +7,20 @@ import { useEffect, useMemo, useState } from "react";
 
 import type { SimpleWalk } from "../page";
 import WalkCard from "@/app/components/WalkCard/WalkCard";
+import { BusIcon, CloseIconSmall, ElevationIcon, HikingIcon, LocationIcon, MountainIcon } from "@/icons/WalkIcons";
+import { useSearchParams } from "next/navigation";
+import { distanceOptions, elevationOptions, locations } from "./WalkFilterValues";
 
 
 type WalkGridProps = {
   walks: SimpleWalk[];
+  wainNames: {[slug : string]: string};
   resetFilters: CallableFunction;
   showDistances: boolean;
 }
 
 
-export default function WalkGrid({ walks, resetFilters, showDistances } : WalkGridProps) {
+export default function WalkGrid({ walks, wainNames, resetFilters, showDistances } : WalkGridProps) {
   const [sortValue, setSortValue] = useState("recommended");
 
   useEffect(() => {
@@ -60,21 +64,81 @@ export default function WalkGrid({ walks, resetFilters, showDistances } : WalkGr
     return newWalkData;
   }, [walks, sortValue])
 
+
+  const updateParam = (key: string, value?: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (value && value.length > 0) params.set(key, value);
+    else params.delete(key);
+
+    window.history.replaceState({}, "", `/walks?${params.toString()}`)
+  }
+
+
+  const searchParams = useSearchParams();
+  const filterValues = useMemo(() => {
+    const town = searchParams.get("town");
+    const distance = searchParams.get("distance");
+    const elevation = searchParams.get("elevation");
+    const wainwrights = searchParams.get("wainwrights");
+    const byBus = searchParams.get("byBus");
+
+
+    return {
+      town: town ? locations[town]?.name : undefined,
+      distance: distance ? distanceOptions[distance] : undefined,
+      elevation: elevation ? elevationOptions[elevation] : undefined,
+      wainwrights: wainwrights?.split(" ") ?? [],
+      byBus: byBus === "yes",
+    }
+  }, [searchParams])
+
+
   return (
     <div className={styles.grid}>
       <div className={styles.gridTop}>
         {/* <h2 className="heading">All walks</h2> */}
-        {/* <div>
-          <ul className={styles.grid-filters-list}>
-            {(filterObjects.town.currentValue !== "any") && <FilterTag reset={filterObjects.town.setCurrentValue} Icon={<LocationIcon />} text={locations[filterObjects.town.currentValue]?.name} />}
-            {(filterObjects.distance.currentValue !== "any") && <FilterTag reset={filterObjects.distance.setCurrentValue} Icon={<HikingIcon />} text={distanceOptions[filterObjects.distance.currentValue]} />}
-            {(filterObjects.elevation.currentValue !== "any") && <FilterTag reset={filterObjects.elevation.setCurrentValue} Icon={<ElevationIcon />} text={elevationOptions[filterObjects.elevation.currentValue]} />}
-            {filterObjects.wainwrights.currentValues.map((wain, index) => {
-              return <FilterTag reset={() => filterObjects.wainwrights.setCurrentValues(filterObjects.wainwrights.currentValues.filter(w => w != wain))} key={index} Icon={<MountainIcon />} text={filterObjects.wainwrights.values[wain] ?? ""} />
+        <div>
+          <ul className={styles.gridFiltersList}>
+            {filterValues.town &&
+              <FilterTag
+                Icon={<LocationIcon />}
+                text={filterValues.town}
+                reset={() => updateParam("town")}
+              />
+            }
+            {filterValues.distance &&
+              <FilterTag
+                Icon={<HikingIcon />}
+                text={filterValues.distance}
+                reset={() => updateParam("distance")}
+              />
+            }
+            {filterValues.elevation &&
+              <FilterTag
+                Icon={<ElevationIcon />}
+                text={filterValues.elevation}
+                reset={() => updateParam("elevation")}
+              />
+              }
+            {filterValues.wainwrights.map((wain, index) => {
+              return (
+                <FilterTag
+                  key={index}
+                  Icon={<MountainIcon />}
+                  text={wainNames[wain]}
+                  reset={() => updateParam("wainwrights", filterValues.wainwrights.filter(w => w != wain).join(" "))}
+                />
+              )
             })}
-            {(filterObjects.byBus.currentValue === "byBus") && <FilterTag reset={filterObjects.byBus.setCurrentValue} Icon={<BusIcon />} text={"By bus"} />}
+            {filterValues.byBus &&
+              <FilterTag
+                Icon={<BusIcon />}
+                text={"By bus"}
+                reset={() => updateParam("byBus")}
+              />
+            }
           </ul>
-        </div> */}
+        </div>
         <select
           value={sortValue}
           onChange={e => setSortValue(e.target.value)}
@@ -134,18 +198,18 @@ export default function WalkGrid({ walks, resetFilters, showDistances } : WalkGr
 }
 
 
-// function FilterTag({ reset, Icon, text } : { reset: CallableFunction; Icon: ReactNode; text?: string }) {
+function FilterTag({ Icon, text, reset } : { Icon: React.ReactNode; text?: string; reset?: CallableFunction }) {
 
-//   if (text === undefined) return <></>
-//   else return (
-//     <li>
-//       <div>
-//         {Icon}
-//         {text}
-//       </div>
-//       <button onClick={() => reset()} title="Remove filter">
-//         <CloseIconSmall />
-//       </button>
-//     </li>
-//   )
-// }
+  if (text === undefined) return <></>
+  else return (
+    <li>
+      <div>
+        {Icon}
+        {text}
+      </div>
+      <button onClick={() => {if (reset) reset()}} title="Remove filter">
+        <CloseIconSmall />
+      </button>
+    </li>
+  )
+}
