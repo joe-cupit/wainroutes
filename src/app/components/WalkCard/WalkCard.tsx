@@ -1,12 +1,13 @@
 import styles from "./WalkCard.module.css";
 
 import Link from "next/link";
-import Image from "next/image";
 
 import Walk from "@/types/Walk";
-import { ElevationIcon, HikingIcon, MountainIcon } from "@/icons/WalkIcons";
+import type { SimpleWalk } from "@/app/walks/page";
+
+import LazyImage from "@/app/components/LazyImage/LazyImage";
 import { displayDistance, displayElevation, getDistanceUnit, getDistanceValue } from "@/utils/unitConversions";
-import { SimpleWalk } from "@/app/walks/page";
+import { ElevationIcon, HikingIcon, MountainIcon } from "@/icons/WalkIcons";
 
 
 type WalkCardProps = {
@@ -28,16 +29,11 @@ export default function WalkCard({ walk, showDistance, hoverEvent } : WalkCardPr
     >
       <Link href={"/walks/"+walk.slug} className={styles.walkCard}>
         <div className={styles.image}>
-          <Image
-            src={"https://images.wainroutes.co.uk/wainroutes_" + walk?.slug + "_" + walk?.gallery?.coverId + "_2048w.webp"}
-            alt=""
-            fill
-          />
-          {/* <Image
+          <LazyImage
             name={walk?.slug + "_" + walk?.gallery?.coverId}
             sizes="(min-width: 22rem) 22rem, 100vw"
             maxWidth={512}
-          /> */}
+          />
           {(showDistance && walk.distance) &&
             <div className={styles.dist}>
               {(getDistanceValue(walk.distance) ?? 1) < 1

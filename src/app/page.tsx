@@ -3,7 +3,6 @@ import fontStyles from "@/app/fonts.module.css";
 import buttonStyles from "@/app/buttons.module.css";
 
 import Link from "next/link";
-import Image from "next/image";
 import { createPageMetadata } from "@/utils/metadata";
 
 import SiteSearchBar from "@/app/components/SiteSearchBar/SiteSearchBar";
@@ -15,6 +14,7 @@ import Walk from "@/types/Walk";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 
 import tempwalks from "@/data/walks.json";
+import LazyPicture from "./components/LazyImage/LazyPicture";
 
 
 export function generateMetadata() {
@@ -44,20 +44,22 @@ export default function Home() {
         </div>
 
         <div className={styles.heroImageOverlay} />
-        <Image
+        {/* <Image
           className={styles.heroImage}
           src="https://images.wainroutes.co.uk/wainroutes_home_01_2048w.webp"
           alt=""
           fill
           sizes="100vw"
           priority
-        />
-        {/* <Picture
-          className={styles.heroImage}
-          names={["home_01", "home_02"]}
-          widths={[700]}
-          sizes="200vw"
         /> */}
+        <div className={styles.heroImage}>
+          <LazyPicture
+            names={["home_01", "home_02"]}
+            widths={[700]}
+            sizes="200vw"
+            eager={true}
+          />
+        </div>
       </section>
 
       <section>

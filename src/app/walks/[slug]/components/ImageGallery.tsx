@@ -4,9 +4,9 @@ import styles from "./ImageGallery.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import Image from "next/image";
 
 import { WalkGallery } from "@/types/Walk";
+import LazyImage from "@/app/components/LazyImage/LazyImage";
 import { CloseIcon, LeftIcon, RightIcon } from "@/icons/WalkIcons";
 
 
@@ -152,12 +152,8 @@ function CorouselImage({ index } : { index: number }) {
 
   return (
     <div className={styles.galleryCarouselImage}>
-      {/* <Image name={galleryContext?.images?.[index]} /> */}
-      <Image
-        src={"https://images.wainroutes.co.uk/wainroutes_" + galleryContext?.images?.[index] + "_2048w.webp"}
-        alt={galleryContext?.imageData?.[index]?.title ?? ""}
-        fill
-        style={{objectFit: "contain"}}
+      <LazyImage
+        name={galleryContext?.images?.[index]}
       />
     </div>
   )
@@ -173,15 +169,13 @@ function GalleryImage({ index, className, big=false } : { index: number, classNa
       className={`${styles.galleryImage} ${big ? "" : styles.lockRatio} ${className ? className : ""}`}
       onClick={() => galleryContext?.openCarousel(index)}
     >
-      {/* <Image
+      <LazyImage
         name={galleryContext?.images?.[index]}
-        sizes={big ? "(min-width: 1000px) 1000px, (min-width: 840px) 50vw, 90vw" : "(min-width: 1000px) 500px, (min-width: 1000px) 25vw, 40vw"}
-        maxWidth={big ? null : 1024}
-      /> */}
-      <Image
-        src={"https://images.wainroutes.co.uk/wainroutes_" + galleryContext?.images?.[index] + "_2048w.webp"}
-        alt={galleryContext?.imageData?.[index]?.title ?? ""}
-        fill
+        sizes={big
+          ? "(min-width: 1000px) 1000px, (min-width: 840px) 50vw, 90vw"
+          : "(min-width: 1000px) 500px, (min-width: 1000px) 25vw, 40vw"
+        }
+        maxWidth={big ? undefined : 1024}
       />
     </div>
   )

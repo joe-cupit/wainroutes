@@ -265,18 +265,6 @@
 }
 
 
-.walks-page_photos img {
-  transition: scale 100ms, border-radius 100ms;
-  cursor: pointer;
-
-  border-radius: var(--gap-200);
-}
-.walks-page_photos img:hover {
-  scale: 1.05;
-  border-radius: 0;
-}
-
-
 .bold {
   font-weight: var(--fw-bold);
 }

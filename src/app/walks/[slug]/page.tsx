@@ -1,6 +1,5 @@
 import styles from "./Walk.module.css";
 
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createPageMetadata } from "@/utils/metadata";
@@ -17,6 +16,7 @@ import NearbyWalks from "./components/NearbyWalks";
 import Overlay from "./components/Overlay";
 
 import type Walk from "@/types/Walk";
+import LazyImage from "@/app/components/LazyImage/LazyImage";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
 import { LocationIcon } from "@/icons/WalkIcons";
 
@@ -86,17 +86,11 @@ export default async function WalkPage({ params } : WalkProps) {
       <section>
         <div className={styles.top}>
           <div className={styles.topImage}>
-            <Image
-              src={"https://images.wainroutes.co.uk/wainroutes_" + walkData?.slug + "_" + walkData?.gallery?.coverId + "_2048w.webp"}
-              alt=""
-              fill
+            <LazyImage
+              name={walkData?.slug + "_" + walkData?.gallery?.coverId}
+              sizes="(min-width: 1100px) 1100px, 100vw"
             />
           </div>
-          {/* <Image
-            className={styles.top-image}
-            name={walkData?.slug + "_" + walkData?.gallery?.coverId}
-            sizes="(min-width: 1100px) 1100px, 100vw"
-          /> */}
           <div className={styles.topBlock}></div>
           {walkData?.startLocation?.location && 
             <Link href={"/walks?town=" + walkData.startLocation.location.toLowerCase().replaceAll(" ", "-")}
@@ -167,7 +161,7 @@ export default async function WalkPage({ params } : WalkProps) {
             </div>
 
             {/* <div className={styles.asideImage}>
-              <Image
+              <LazyImage
                 name={walkData?.slug + "_" + walkData?.gallery?.coverId}
                 sizes="(min-width: 300px) 300px, 90vw"
               />
