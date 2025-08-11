@@ -1,11 +1,12 @@
-import { createReadStream, statSync } from "fs";
 import { NextRequest, NextResponse } from "next/server";
+import { createReadStream, statSync } from "fs";
 import { join } from "path";
 
 
 const ALLOWED_ORIGINS = [
   "https://wainroutes.co.uk",
   "http://localhost:3000",
+  "http://192.168.0.102:3000",
 ]
 
 type RouteProps = {
@@ -25,7 +26,7 @@ export async function GET(req: NextRequest, { params } : RouteProps) {
     const stat = statSync(filePath);
     const stream = createReadStream(filePath);
 
-    return new NextResponse(stream as any, {
+    return new NextResponse(stream as unknown as BodyInit, {
       status: 200,
       headers: {
         "Content-Type": "application/gpx+xml",
@@ -35,6 +36,7 @@ export async function GET(req: NextRequest, { params } : RouteProps) {
       }
     })
   } catch (err) {
+    console.error(err);
     return NextResponse.json({ error: "File not found" }, { status: 404 });
   }
 }

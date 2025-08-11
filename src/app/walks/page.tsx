@@ -80,6 +80,8 @@ export default async function WalksPage({ searchParams } : MetadataProps) {
     },
   } as SimpleWalk));
 
+  const wainNames = Object.fromEntries(wainsJson.map(hill => [hill.slug, hill.name]));
+
 
   return (
     <main className={styles.walks}>

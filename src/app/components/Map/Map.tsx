@@ -97,15 +97,9 @@ export default function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCe
       const clusterItems = (point?.properties?.cluster || false)
         ? supercluster?.getLeaves(Number(point.id), Infinity)
         : [point];
-      
       if (!clusterItems) return;
-      
-      let focussed = false;
-      if (activePoint) {
-        for (const marker of clusterItems) {
-          if (activePoint === marker.properties.slug) focussed = true;
-        }
-      }
+
+      const focussed = activePoint && clusterItems.some(marker => marker.properties.slug === activePoint);
 
       return (
         <Marker key={key} className={styles.marker}

@@ -530,6 +530,7 @@
 
 .weatherMain {
   display: flex;
+  flex-wrap: wrap;
   gap: 2em;
   row-gap: 0;
   align-items: center;
@@ -578,6 +579,9 @@
 .weatherInfo {
   color: var(--clr-neutral-500);
   margin-block-start: 1.5em;
+}
+.weatherBody {
+  overflow: hidden;
 }
 .weatherBody.nightView .weatherInfo {
   color: var(--clr-neutral-700);

@@ -274,6 +274,12 @@ p {
 }
 
 
+/* global css */
+
+#navbar.sticky {
+  top: 0;
+}
+
 /* regular css */
 
 .visually-hidden {

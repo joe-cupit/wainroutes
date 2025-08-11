@@ -125,9 +125,6 @@
     padding-block: 1.25rem;
     padding-inline: 0.25rem;
   }
-  :global(#navbar.sticky) {
-    top: 0;
-  }
   .nav {
     display: none;
   }
