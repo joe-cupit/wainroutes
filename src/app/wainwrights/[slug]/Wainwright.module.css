@@ -1,0 +1,70 @@
+.page section {
+  --content-max-width: 1200px;
+}
+
+.main {
+  display: grid;
+  gap: var(--gap-500);
+}
+
+.breadcrumbs a:hover,
+.nearbyList a:hover,
+.stats a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs {
+  line-height: 1;
+  margin-block-end: 0.5rem;
+}
+.title {
+  line-height: 1;
+}
+.titleElevation {
+  font-family: var(--ff-body);
+  font-size: var(--fs-600);
+  font-weight: var(--fw-regular);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stats {
+  display: grid;
+  column-gap: var(--gap-600);
+  grid-template-columns: repeat(2, auto);
+  max-width: fit-content;
+}
+
+.classifications {
+  list-style: none;
+}
+.classifications li {
+  display: inline-block;
+}
+.classifications li:not(:last-child)::after {
+  content: "/";
+  margin-inline: 0.5ch;
+}
+
+.walks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-items: center;
+  align-content: center;
+
+  max-width: 100%;
+  overflow-x: auto;
+}
+.walks > * {
+  --_card-min-width: 20rem;
+  --_card-max-width: min(25rem, 100%);
+
+  flex-basis: var(--_card-min-width);
+  flex: 1;
+  max-width: var(--_card-max-width);
+}

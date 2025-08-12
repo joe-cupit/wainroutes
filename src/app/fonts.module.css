@@ -1,0 +1,32 @@
+.title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-1000);
+  font-weight: var(--fw-black);
+  line-height: 1.1;
+}
+
+.heading {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-800);
+  font-weight: var(--fw-black);
+  line-height: 1.2;
+}
+.subheading {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-600);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  padding-block: var(--gap-200);
+}
+.smallheading {
+  font-family: var(--ff-body);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.7;
+}
+
+.subtext {
+  font-family: var(--ff-body);
+  font-size: var(--fs-300);
+  line-height: 1.3;
+}
