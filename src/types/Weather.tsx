@@ -64,3 +64,11 @@ export type PointWeatherDay = {
     text: string[];
   }
 }
+
+export type PointWeather = {
+  request_date: string;
+  name: string;
+  elevation: number;
+  coordinates: number[];
+  days: PointWeatherDay[];
+}
