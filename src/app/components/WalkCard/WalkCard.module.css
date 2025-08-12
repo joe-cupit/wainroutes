@@ -95,9 +95,12 @@
   margin-inline-start: auto;
 }
 
-
+section > div:has(.group) {
+  grid-column: full-width;
+}
 .group {
   display: grid;
+  max-width: 75rem;
   grid-template-columns: repeat(3, minmax(min(22rem, 90%), 1fr));
   gap: 1rem;
   justify-items: center;
@@ -106,6 +109,10 @@
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  padding-inline: var(--section-padding);
+  margin-inline: calc(-1 * var(--section-padding));
 }
 .group > .container {
   scroll-snap-align: center;
