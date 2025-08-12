@@ -1,4 +1,4 @@
-import styles from "../Walk.module.css";
+import styles from "../../../Walk.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
 import Walk from "@/types/Walk";
@@ -8,7 +8,7 @@ import { TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "@/ico
 export default function Terrain({ selected, walkTerrain } : { selected: boolean; walkTerrain: Walk["terrain"] }) {
 
   return (
-    <div className={`${styles.terrain} ${styles.asideSection} + ${selected ? styles.selected : ""}`}>
+    <div className={`${styles.terrain} ${styles.asideSection} ${selected ? styles.selected : ""}`}>
       <h2 className={fontStyles.subheading}>Terrain</h2>
       {walkTerrain
       ? <div className={styles.terrainMain}>

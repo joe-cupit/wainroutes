@@ -1,6 +1,6 @@
 "use client"
 
-import styles from "../Walk.module.css";
+import styles from "../../../Walk.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
 import { useEffect, useMemo, useState } from "react";
@@ -31,7 +31,7 @@ export default function EstimatedTime({ selected, walkLengthInKm } : { selected:
 
 
   return (
-    <div className={`${styles.estimatedTime} ${styles.asideSection} + ${selected ? styles.selected : ""}`}>
+    <div className={`${styles.estimatedTime} ${styles.asideSection} ${selected ? styles.selected : ""}`}>
       <h2 className={fontStyles.subheading}>Estimated Time</h2>
       <p aria-live="polite">An average hiking pace of <b>{displayDistance(speedInKm, 1) + "/h"}</b> completes this walk in <b>{timeTaken}</b></p>
       <input type="range"

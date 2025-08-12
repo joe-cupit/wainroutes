@@ -1,4 +1,4 @@
-import styles from "../Walk.module.css";
+import styles from "../../../Walk.module.css";
 import fontStyles from "@/app/fonts.module.css";
 
 import Walk from "@/types/Walk";
@@ -7,7 +7,7 @@ import Walk from "@/types/Walk";
 export default function StartingLocation({ selected, startLocation, busRoutes } : { selected: boolean; startLocation: Walk["startLocation"]; busRoutes: Walk["busConnections"] }) {
 
   return (
-    <div className={`${styles.asideSection} + ${selected ? styles.selected : ""}`}>
+    <div className={`${styles.asideSection} ${selected ? styles.selected : ""}`}>
       <h2 className={fontStyles.subheading}>Starting Location</h2>
       <div className={styles.locations}>
 

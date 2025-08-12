@@ -436,8 +436,8 @@
     border-end-end-radius: var(--_aside-border-radius);
     border-end-start-radius: var(--_aside-border-radius);
 
-    padding: 0.5em 1em;
-    padding-block-end: 1em;
+    padding-inline: var(--gap-400);
+    padding-block: var(--gap-400) calc(2 * var(--gap-300));
   }
 }
 
