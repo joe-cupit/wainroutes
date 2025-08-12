@@ -118,23 +118,7 @@
 }
 
 .filters {
-  width: 15rem;
-  height: fit-content;
   margin-block-start: var(--gap-400);
-  /* height: calc(100vh - 3rem); */
-  /* min-height: fit-content; */
-  /* width: clamp(10rem, 20vw, 18rem); */
-
-  /* overflow-y: auto; */
-  /* margin-block-start: 2rem; */
-
-  /* position: sticky;
-  top: 6.5rem; */
-
-  @media (max-width: 55.5rem) {
-    position: revert;
-    width: 100%;
-  }
 }
 
 .filterSearch {

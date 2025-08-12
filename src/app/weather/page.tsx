@@ -79,7 +79,7 @@ function CurrentDayWeather({ weather } : { weather : DistrictWeatherDay }) {
           <div className={styles.day}>
             <p>{weather.weather}</p>
 
-            <div className={styles.forecast}>
+            <div>
               <h3 className={styles.subheading}>Mountain Weather Forecast (800m)</h3>
               <ForecastTable forecast={weather.forecast} />
             </div>
@@ -167,24 +167,24 @@ function ForecastTable({ forecast } : { forecast: DistrictWeatherDayForecast | u
   if (forecast === undefined) return <></>
 
   return (
-    <table className={styles.forecastTable}>
-      <thead>
-        <tr>
-          <th></th>
-          {forecast.time.map((time, index) => <th key={index}>{time}</th>)}
-        </tr>
-      </thead>
-      <tbody>
-        {forecast.type && <TypeRow title="Weather type" data={forecast.type} className={styles.primaryRow} />}
-        {forecast.precip && <ForecastRow title="Precipitation %" data={forecast.precip} />}
-
-        {forecast.temp && <ForecastRow title="Temperature (°C)" data={forecast.temp} postText={"°"} className={styles.primaryRow} />}
-        {forecast.feel_temp && <ForecastRow title="Feels-like" data={forecast.feel_temp} postText={"°"} className={styles.secondaryRow} />}
-
-        {forecast.wind_speed && <ForecastRow title="Wind speed (mph)" data={forecast.wind_speed} className={styles.primaryRow} />}
-        {forecast.wind_gust && <ForecastRow title="Wind gusts" data={forecast.wind_gust} className={styles.secondaryRow} />}
-      </tbody>
-    </table>
+    <div className={styles.forecast}>
+      <table className={styles.forecastTable}>
+        <thead>
+          <tr>
+            <th></th>
+            {forecast.time.map((time, index) => <th key={index}>{time}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {forecast.type && <TypeRow title="Weather type" data={forecast.type} className={styles.primaryRow} />}
+          {forecast.precip && <ForecastRow title="Precipitation %" data={forecast.precip} />}
+          {forecast.temp && <ForecastRow title="Temperature (°C)" data={forecast.temp} postText={"°"} className={styles.primaryRow} />}
+          {forecast.feel_temp && <ForecastRow title="Feels-like" data={forecast.feel_temp} postText={"°"} className={styles.secondaryRow} />}
+          {forecast.wind_speed && <ForecastRow title="Wind speed (mph)" data={forecast.wind_speed} className={styles.primaryRow} />}
+          {forecast.wind_gust && <ForecastRow title="Wind gusts" data={forecast.wind_gust} className={styles.secondaryRow} />}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
