@@ -15,7 +15,7 @@ export function createPageMetadata({
 
   const ogtitle = title ?? "Wainroutes Lake District Walks";
   const canonical = (path)
-    ? "https://wainroutes.co.uk" + (path ?? "")
+    ? "https://wainroutes.co.uk" + (path !== "/" ? path : "")
     : undefined;
 
   if (!description) {

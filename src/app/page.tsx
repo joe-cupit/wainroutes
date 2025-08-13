@@ -20,6 +20,7 @@ import LazyPicture from "./components/LazyImage/LazyPicture";
 export function generateMetadata() {
   return createPageMetadata({
     title: "Wainroutes Lake District Walks",
+    path: "/",
   });
 }
 
