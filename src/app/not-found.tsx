@@ -1,14 +1,13 @@
-import styles from "./not-found.module.css";
+import styles from "./error.module.css";
 import fontStyles from "@/app/fonts.module.css";
-import buttonStyles from "@/app/buttons.module.css";
 
-import Link from "next/link";
 import { createPageMetadata } from "@/utils/metadata";
+import BackButton from "./components/BackButton/BackButton";
 
 
 export function generateMetadata() {
   return createPageMetadata({
-    title: "404 Page Not Found",
+    title: "Page Not Found",
     description: "You've wandered off track, this page doesn't exist."
   });
 }
@@ -24,7 +23,7 @@ export default function NotFoundPage() {
           <p className={styles.message}>
             You&apos;ve wandered off track, this page doesn&apos;t exist.
           </p>
-          <Link href="/walks" className={`${buttonStyles.button} ${buttonStyles.primary}`}>back to walks</Link>
+          <BackButton />
         </div>
 
         <BackgroundSVG />

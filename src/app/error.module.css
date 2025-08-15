@@ -6,7 +6,8 @@
   min-height: max(35rem, 40vw);
 }
 
-.main {
+.main,
+.simple {
   display: flex;
   gap: var(--gap-400);
   flex-direction: column;
@@ -15,8 +16,10 @@
   margin-block-start: var(--gap-400);
   text-align: center;
 }
+
+
 @media (max-width: 47rem) {
-  .message {
+  .main .message {
     max-width: 20ch;
   }
 }
@@ -28,12 +31,25 @@
   }
 }
 
+
 .errorCode {
   font-size: 8em !important;
-  line-height: 0.8;
+  line-height: 0.8 !important;
 }
 .message {
-  font-size: var(--fs-600);
+  font-size: var(--fs-600) !important;
+}
+.link {
+  display: inline-block;
+  color: var(--clr-primary-300);
+  text-decoration: underline;
+}
+.link:hover {
+  color: var(--clr-primary-0);
+}
+
+.simple p {
+  max-width: 45ch;
 }
 
 .svg {
