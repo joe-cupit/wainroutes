@@ -9,6 +9,11 @@
   margin-block-start: auto;
 }
 
+.footer a:focus-visible {
+  outline: 2px solid var(--clr-neutral-800);
+  outline-offset: 3px;
+}
+
 .grid {
   display: grid;
   gap: 4rem;

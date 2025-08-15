@@ -25,6 +25,11 @@
   background: none;
 }
 
+.navbar a:focus-visible {
+  outline: 3px solid var(--clr-neutral-800);
+  outline-offset: 0.25rem;
+}
+
 .navbar ul {
   list-style: none;
 }

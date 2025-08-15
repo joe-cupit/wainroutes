@@ -148,8 +148,7 @@
   padding-block: 0.5rem;
   padding-inline: 0.5rem;
 }
-.searchBar:has(input:focus),
-.searchBar:has(input:focus-visible) {
+.searchBar:has(input:focus) {
   border-color: var(--clr-neutral-400);
 }
 
@@ -188,4 +187,9 @@
 
 .filterButton:hover {
   border-color: var(--clr-neutral-400);
+}
+
+.filterButton:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }

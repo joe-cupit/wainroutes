@@ -27,6 +27,11 @@
 .button:hover {
   --_button-background: var(--clr-neutral-450);
 }
+.button:focus-visible {
+  outline: 3px solid var(--clr-neutral-400);
+  outline-offset: 2px;
+  transition: none;
+}
 
 .button:not(.primary):not(.secondary) {
   outline-color: var(--clr-primary-500);
@@ -38,6 +43,10 @@
 
   color: currentColor;
   text-decoration: underline;
+
+  border-radius: 0;
+  outline-color: currentColor;
+  outline-offset: 3px;
 }
 
 .button.primary {
