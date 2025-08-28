@@ -170,7 +170,7 @@ const ActiveDot = ({ payload, setActiveIndex } : { payload: ActiveDotProps; setA
           fontSize: "var(--fs-300)",
           fontWeight: "var(--fw-medium)",
           paintOrder: "stroke",
-          stroke: "white",
+          stroke: "var(--_clr-chart-background)",
           strokeWidth: "3px",
           strokeLinecap: "butt",
           strokeLinejoin: "miter",

@@ -130,16 +130,22 @@
   --clr-primary-400: hsl(23, 85%, 40%);
   --clr-primary-500: hsl(23, 80%, 60%);
 
-  --clr-neutral-200: hsl(23, 5%, 2%);
-  --clr-neutral-400: hsl(23, 5%, 5%);
-  --clr-neutral-450: hsl(23, 5%, 19%);
-  --clr-neutral-500: hsl(23, 5%, 32%);
-  --clr-neutral-600: hsl(23, 5%, 50%);
-  --clr-neutral-700: hsl(23, 5%, 80%);
-  --clr-neutral-800: hsl(23, 5%, 90%);
-  --clr-neutral-900: hsl(23, 5%, 94%);
-  --clr-neutral-1000: hsl(23, 5%, 99%);
+  --clr-bg-black: oklch(0.05 0.03 97);
+  --clr-bg-darker: oklch(0.87 0.015 95);
+  --clr-bg-dark: oklch(0.92 0.015 95);
+  --clr-bg: oklch(0.96 0.015 95);
+  --clr-bg-light: oklch(1 0.015 95);
+  --clr-bg-white: oklch(1 0.015 98);
 
+  --clr-text-white: oklch(1 0.015 97);
+  --clr-text-white-muted: oklch(0.66 0.05 95);
+  --clr-text-black: oklch(0.15 0.03 95);
+  --clr-text-black-muted: oklch(0.4 0.03 95);
+  --clr-text: oklch(0.15 0.03 95);
+  --clr-text-muted: oklch(0.4 0.03 95);
+
+  --clr-border: oklch(0.6 0.03 95);
+  --clr-border-muted: oklch(0.7 0.03 95);
 
   --clr-wain-book-1: #6c8f40;
   --clr-wain-book-2: #d1304d;
@@ -166,7 +172,7 @@
 }
 
 html {
-  background-color: var(--clr-neutral-400);
+  background-color: var(--clr-bg-black);
   scroll-padding: 9.5rem;
 }
 
@@ -176,8 +182,8 @@ body {
   font-weight: var(--fw-regular);
   font-optical-sizing: auto;
 
-  color: var(--clr-neutral-400);
-  background: var(--clr-neutral-900);
+  color: var(--clr-text);
+  background: var(--clr-bg-dark);
 
   display: flex;
   flex-direction: column;
@@ -234,7 +240,7 @@ input, select {
   color: inherit;
 }
 select:focus-visible {
-  accent-color: var(--clr-neutral-400);
+  accent-color: currentColor;
 }
 button {
   font: inherit;
@@ -263,7 +269,7 @@ a {
   text-decoration: none;
 }
 a:focus-visible {
-  outline: 2px solid var(--clr-neutral-400);
+  outline: 2px solid currentColor;
   outline-offset: 1px;
 }
 
@@ -276,11 +282,11 @@ p {
 /* User select */
 
 ::selection {
-  color: var(--clr-neutral-1000);
+  color: var(--clr-text-white);
   background: hsl(from var(--clr-primary-300) h s l / 80%);
 }
 ::-moz-selection {
-  color: var(--clr-neutral-1000);
+  color: var(--clr-text-white);
   background: var(--clr-primary-400);
 }
 

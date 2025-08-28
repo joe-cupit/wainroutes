@@ -133,12 +133,13 @@ export default async function WalkPage({ params } : WalkProps) {
             terrain={walkData.terrain}
           />
         </div>
+
+        <NearbyWalks
+          location={[walkData.startLocation?.longitude ?? 0, walkData.startLocation?.latitude ?? 0]}
+          currentSlug={slug}
+        />
       </section>
 
-      <NearbyWalks
-        location={[walkData.startLocation?.longitude ?? 0, walkData.startLocation?.latitude ?? 0]}
-        currentSlug={slug}
-      />
     </main>
   )
 }

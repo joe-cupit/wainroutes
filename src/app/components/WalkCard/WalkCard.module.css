@@ -10,12 +10,12 @@
   max-width: 100%;
   height: 100%;
 
-  background: var(--clr-neutral-700);
+  background: var(--clr-bg);
   border-radius: 0.5rem;
   overflow: hidden;
 }
 .walkCard:focus-visible {
-  outline: 3px solid var(--clr-neutral-400);
+  outline: 3px solid currentColor;
   outline-offset: 2px;
 }
 
@@ -36,7 +36,7 @@
   top: 0.75rem;
   right: 0.75rem;
 
-  background: var(--clr-neutral-900);
+  background: var(--clr-bg-light);
   border-radius: 0.25rem;
   padding-inline: 0.5rem;
   padding-block: 0.25rem 0.125rem;
@@ -54,7 +54,7 @@
   flex: 1;
   gap: 1rem;
 
-  background: var(--clr-neutral-1000);
+  background: var(--clr-bg-light);
 
   padding-block: 0.75rem 1rem;
   padding-inline: 1rem;
@@ -63,9 +63,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   transition: color 100ms;
-}
-.walkCard:hover .text .subheading {
-  color: var(--clr-primary-400);
 }
 .icons {
   display: flex;
@@ -83,7 +80,7 @@
   min-width: 1px;
   flex: 1;
 
-  border-inline-end: 1px solid var(--clr-neutral-700);
+  border-inline-end: 1px solid var(--clr-text-muted);
 }
 .iconsIcon.wide {
   flex: 1.5;

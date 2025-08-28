@@ -8,11 +8,11 @@
   right: 1.5rem;
 
   border-radius: 50%;
-  background: var(--clr-neutral-1000);
+  background: var(--clr-bg-light);
   width: 3.25rem;
   height: 3.25rem;
 
-  box-shadow: 1px 1px 2px 0 hsl(from var(--clr-neutral-400) h s l / .3);
+  box-shadow: 1px 1px 2px 0 oklch(from var(--clr-text) l c h / .3);
 
   display: none;
   opacity: 0;

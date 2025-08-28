@@ -12,7 +12,7 @@
 .galleryImage {
   /* display: flex; */
   position: relative;
-  background: var(--clr-neutral-600);
+  background: var(--clr-bg-dark);
 
   /* overflow: hidden; */
   /* width: 100%; */
@@ -84,6 +84,21 @@
 
   background: #000D;
 }
+
+.galleryCarouselClose,
+.galleryCarouselLeft,
+.galleryCarouselRight,
+.galleryCarouselCaption {
+  color: var(--clr-text-white);
+  background: oklch(from var(--clr-bg-black) l c h / .6);
+  transition: background-color 100ms;
+}
+.galleryCarouselLeft:hover,
+.galleryCarouselRight:hover,
+.galleryCarouselClose:hover {
+  background: var(--clr-bg-black);
+}
+
 .galleryCarouselClose {
   position: absolute;
   top: 1em;
@@ -95,13 +110,9 @@
   border-radius: 0.5em;
   padding: 0.25em;
   z-index: 9999;
-
-  color: var(--clr-neutral-900);
-  background: #000B;
-  transition: background-color 100ms;
 }
 .galleryCarouselClose:hover {
-  background: #000;
+  background: var(--clr-bg-black);
 }
 .galleryCarouselClose svg {
   width: 2em;
@@ -114,17 +125,8 @@
   top: calc(50% - 2em);
 
   display: flex;
-  color: var(--clr-neutral-900);
-  background: #000B;
-
   padding-inline-start: 0.5em;
   padding-block: 1em;
-
-  transition: background-color 100ms;
-}
-.galleryCarouselLeft:hover,
-.galleryCarouselRight:hover {
-  background: #000;
 }
 .galleryCarouselLeft {
   left: 0.25em;
@@ -144,8 +146,7 @@
 }
 
 .galleryCarouselCaption {
-  color: var(--clr-neutral-900);
-  background: #000B;
+  background: oklch(from var(--clr-bg-black) l c h / .9);
 
   padding: 0.5em 1em;
   max-width: 50ch;

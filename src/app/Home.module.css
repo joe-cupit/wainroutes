@@ -22,7 +22,7 @@
   z-index: 2;
   grid-column: full-width;
 
-  color: var(--clr-neutral-900);
+  color: var(--clr-text-white);
 }
 .title {
   max-width: min(18ch, 100%);
@@ -40,7 +40,7 @@
   grid-column: full-width;
 }
 .heroImageOverlay {
-  background: var(--clr-neutral-400);
+  background: var(--clr-text);
   opacity: 0.1;
 
   z-index: 1;
@@ -61,7 +61,7 @@
 }
 
 .wainwrightsSection {
-  background: #e7dcd5;
+  background: var(--clr-bg-darker);
 }
 .wainwrights {
   --_map-min-height: 35rem;
