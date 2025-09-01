@@ -48,7 +48,7 @@ export default function Route({ wainwrights, defaultCenter, slug } : { wainwrigh
     let prevPoint = null;
     let prevEle = 0;
 
-    const nodes = doc.gpx.trk.trkpt;
+    const nodes = doc.gpx.trk.trkseg.trkpt;
     for (const node of nodes) {
       const point : [number, number] = [parseFloat(node.lon), parseFloat(node.lat)];
       coordinates.push(point);
