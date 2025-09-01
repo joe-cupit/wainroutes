@@ -19,12 +19,12 @@ export default function StartingLocation({ selected, startLocation, busRoutes } 
         <div className={styles.locationsRow}>
           <h3>Postcode</h3>
           <span className={styles.bold}>
-            {startLocation?.postCode
+            {startLocation?.postcode
             ? <a href={"https://www.google.com/maps/dir/?api=1&destination="+startLocation?.latitude+","+startLocation?.longitude}
                  target="_blank"
-                 aria-label={startLocation?.postCode + " on Google Maps"}
+                 aria-label={startLocation?.postcode + " on Google Maps"}
               >
-                {startLocation?.postCode}
+                {startLocation?.postcode}
               </a>
             : "N/A"
             }

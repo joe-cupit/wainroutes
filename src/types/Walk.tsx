@@ -27,7 +27,7 @@ type Walk = {
     location: string;
     latitude?: number;
     longitude?: number;
-    postCode?: string;
+    postcode?: string;
     gridRef?: string;
   }
   busConnections?: {
