@@ -55,7 +55,9 @@ export default function WalkGrid({ walks, wainNames, resetFilters, showDistances
         newWalkData.sort((a, b) => (a.length ?? 0) - (b.length ?? 0));
         break;
       default:
-        // newWalkData.sort((a, b) => a.title.localeCompare(b.title));
+        newWalkData
+          .sort((a, b) => a.title.localeCompare(b.title))
+          .sort((a, b) => (b.recommendedScore ?? 0) - (a.recommendedScore ?? 0));
         break;
     }
 

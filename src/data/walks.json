@@ -2,6 +2,7 @@
   {
     "slug": "the-fairfield-horseshoe",
     "title": "The Fairfield Horseshoe",
+    "recommendedScore": 94,
     "type": "Horseshoe",
     "summary": "",
     "wainwrights": [
@@ -57,6 +58,7 @@
   {
     "slug": "helvellyn-via-striding-edge",
     "title": "Helvellyn via Striding Edge",
+    "recommendedScore": 99,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["birkhouse-moor", "helvellyn", "catstycam"],
@@ -141,6 +143,7 @@
   {
     "slug": "the-fells-south-of-buttermere",
     "title": "The Fells South of Buttermere",
+    "recommendedScore": 97,
     "type": "Point-to-point",
     "summary": "",
     "wainwrights": ["red-pike-b", "high-stile", "high-crag", "haystacks"],
@@ -213,6 +216,7 @@
   {
     "slug": "the-langdale-pikes",
     "title": "The Langdale Pikes",
+    "recommendedScore": 85,
     "type": "Circular",
     "summary": "",
     "wainwrights": [
@@ -274,6 +278,7 @@
   {
     "slug": "the-kentmere-horseshoe",
     "title": "The Kentmere Horseshoe",
+    "recommendedScore": 98,
     "type": "Horseshoe",
     "summary": "",
     "wainwrights": [
@@ -359,6 +364,7 @@
   {
     "slug": "great-gable",
     "title": "Great Gable",
+    "recommendedScore": 92,
     "type": "Circular",
     "summary": "",
     "wainwrights": [
@@ -401,6 +407,7 @@
   {
     "slug": "a-coledale-horseshoe",
     "title": "A Coledale Horseshoe",
+    "recommendedScore": 88,
     "type": "Horseshoe",
     "summary": "",
     "wainwrights": [
@@ -453,6 +460,7 @@
   {
     "slug": "borrowdale-to-dungeon-ghyll",
     "title": "Borrowdale to Dungeon Ghyll",
+    "recommendedScore": 82,
     "type": "Point-to-point",
     "summary": "",
     "wainwrights": [
@@ -496,6 +504,7 @@
   {
     "slug": "scafell-pike",
     "title": "Scafell Pike",
+    "recommendedScore": 78,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["scafell-pike"],
@@ -528,6 +537,7 @@
   {
     "slug": "the-four-summits-of-dodd-wood",
     "title": "The Four Summits of Dodd Wood",
+    "recommendedScore": 73,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["ullock-pike", "long-side", "carl-side", "dodd"],
@@ -563,6 +573,7 @@
   {
     "slug": "a-grasmere-round",
     "title": "A Grasmere Round",
+    "recommendedScore": 87,
     "type": "Circular",
     "summary": "",
     "wainwrights": [
@@ -608,6 +619,7 @@
   {
     "slug": "the-old-man-of-coniston",
     "title": "The Old Man of Coniston",
+    "recommendedScore": 91,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["coniston-old-man", "dow-crag", "brim-fell"],
@@ -683,6 +695,7 @@
   {
     "slug": "raven-crag",
     "title": "Raven Crag",
+    "recommendedScore": 73,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["raven-crag"],
@@ -728,6 +741,7 @@
   {
     "slug": "grisedale-tarn-with-surrounding-mountains",
     "title": "Grisedale Tarn with Surrounding Mountains",
+    "recommendedScore": 64,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["dollywaggon-pike", "nethermost-pike", "seat-sandal"],
@@ -763,6 +777,7 @@
   {
     "slug": "skiddaw",
     "title": "Skiddaw and Little Man",
+    "recommendedScore": 76,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["skiddaw-little-man", "skiddaw"],
@@ -808,6 +823,7 @@
   {
     "slug": "helvellyns-west-face",
     "title": "Helvellyn's West Face",
+    "recommendedScore": 69,
     "type": "Point-to-point",
     "summary": "",
     "wainwrights": ["helvellyn"],
@@ -840,6 +856,7 @@
   {
     "slug": "walla-crag",
     "title": "Walla Crag",
+    "recommendedScore": 66,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["walla-crag"],
@@ -897,6 +914,7 @@
   {
     "slug": "north-whinlatter-woods",
     "title": "North Whinlatter Woods",
+    "recommendedScore": 45,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["barf", "lords-seat", "broom-fell"],
@@ -928,6 +946,7 @@
   {
     "slug": "loughrigg-fell-with-rydal-cave",
     "title": "Loughrigg Fell with Rydal Cave",
+    "recommendedScore": 77,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["loughrigg-fell"],
@@ -977,6 +996,7 @@
   {
     "slug": "catbells-from-keswick",
     "title": "Catbells from Keswick",
+    "recommendedScore": 66,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["catbells"],
@@ -1021,6 +1041,7 @@
   {
     "slug": "latrigg",
     "title": "Latrigg",
+    "recommendedScore": 78,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["latrigg"],
@@ -1065,6 +1086,7 @@
   {
     "slug": "castle-crag-with-millican-daltons-cave",
     "title": "Castle Crag with Millican Dalton's Cave",
+    "recommendedScore": 72,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["castle-crag"],
@@ -1129,6 +1151,7 @@
   {
     "slug": "bessyboot-rosthwaite-fell",
     "title": "Bessyboot (Rosthwaite Fell)",
+    "recommendedScore": 61,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["rosthwaite-fell"],
@@ -1160,6 +1183,7 @@
   {
     "slug": "gowbarrow-fell-with-aira-force",
     "title": "Gowbarrow Fell with Aira Force",
+    "recommendedScore": 63,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["gowbarrow-fell"],
@@ -1194,6 +1218,7 @@
   {
     "slug": "whinlatter-peak",
     "title": "Whinlatter Peak",
+    "recommendedScore": 44,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["whinlatter"],
@@ -1238,6 +1263,7 @@
   {
     "slug": "blencathra-via-halls-fell-ridge",
     "title": "Blencathra via Hall's Fell Ridge",
+    "recommendedScore": 86,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["blencathra"],
@@ -1275,6 +1301,7 @@
   {
     "slug": "grange-fell",
     "title": "Grange Fell",
+    "recommendedScore": 34,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["grange-fell"],
@@ -1326,6 +1353,7 @@
   {
     "slug": "wansfell-baystones",
     "title": "Wansfell (Baystones)",
+    "recommendedScore": 52,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["wansfell"],
@@ -1364,6 +1392,7 @@
   {
     "slug": "stone-arthur",
     "title": "Stone Arthur",
+    "recommendedScore": 56,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["stone-arthur"],
@@ -1400,6 +1429,7 @@
   {
     "slug": "binsey",
     "title": "Binsey",
+    "recommendedScore": 62,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["binsey"],
@@ -1430,6 +1460,7 @@
   {
     "slug": "scafell-pike-and-lingmell-via-mickledore",
     "title": "Scafell Pike and Lingmell via Mickledore",
+    "recommendedScore": 95,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["scafell-pike", "lingmell"],
@@ -1461,6 +1492,7 @@
   {
     "slug": "rannerdale-knotts-from-buttermere",
     "title": "Rannerdale Knotts from Buttermere",
+    "recommendedScore": 70,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["rannerdale-knotts"],
@@ -1497,6 +1529,7 @@
   {
     "slug": "little-and-great-mell-fell",
     "title": "Little and Great Mell Fell",
+    "recommendedScore": 58,
     "type": "Point-to-point",
     "summary": "",
     "wainwrights": ["little-mell-fell", "great-mell-fell"],

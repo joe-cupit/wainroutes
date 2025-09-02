@@ -43,6 +43,7 @@ export async function generateMetadata({ searchParams } : MetadataProps) {
 export type SimpleWalk = {
   slug: string;
   title: string;
+  recommendedScore?: number;
   wainwrights: string[];
   length: number;
   elevation: number;
@@ -66,6 +67,7 @@ export default async function WalksPage({ searchParams } : MetadataProps) {
   const simplifiedWalks = (walksJson as unknown as Walk[]).map(walk => ({
     slug: walk.slug,
     title: walk.title,
+    recommendedScore: walk.recommendedScore,
     wainwrights: walk.wainwrights,
     length: walk.length,
     elevation: walk.elevation,

@@ -15,6 +15,7 @@ type Walk = {
   slug: string;
 
   title: string;
+  recommendedScore?: number;
   type?: string;
   summary?: string;
   wainwrights: string[];
