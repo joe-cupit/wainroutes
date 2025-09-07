@@ -36,15 +36,17 @@
 }
 .overlay.show {
   display: initial;
-  top: 5rem;
+  top: var(--navbar-height);
 
   @starting-style {
     top: -5rem;
   }
+
+  &.stickyTop {
+    top: 0;
+  }
 }
-.overlay.show.stickyTop {
-  top: 0;
-}
+
 .overlay section {
   padding: 0;
 }

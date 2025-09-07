@@ -122,6 +122,8 @@
   --gap-800: clamp(3rem, 3vw, 5rem);
   --gap-900: clamp(4rem, 4vw, 6rem);
 
+  --navbar-height: 4.5rem;
+
   /*  colours  */
   color-scheme: light;
 

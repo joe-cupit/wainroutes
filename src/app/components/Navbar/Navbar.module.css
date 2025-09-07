@@ -18,7 +18,7 @@
   transition-timing-function: ease-in-out;
 
   padding-inline: var(--gap-500);
-  height: 5rem;
+  height: var(--navbar-height);
 }
 
 .navbar.invisible {
