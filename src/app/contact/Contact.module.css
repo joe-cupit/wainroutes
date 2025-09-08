@@ -1,0 +1,26 @@
+.main > section {
+  --content-max-width: 70ch;
+}
+
+
+.contact {
+  display: grid;
+  gap: var(--gap-400);
+}
+
+.contact h1 {
+  margin-block-end: var(--gap-300);
+}
+.contact h2 {
+  margin-block-start: calc(1.5 * var(--gap-400));
+}
+
+.contact a {
+  color: var(--clr-primary-300);
+  text-decoration: underline;
+}
+.contact a:hover {
+  color: var(--clr-primary-0)
+}
+
+
