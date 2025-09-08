@@ -191,6 +191,11 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+@media (max-width: 46rem) {
+  body.mobile-nav-open {
+    overflow: hidden;
+  }
+}
 
 main {
   flex: 1;
