@@ -6,7 +6,7 @@ import fontStyles from "@/app/fonts.module.css";
 import { useEffect } from "react";
 
 import Link from "next/link";
-import BackButton from "./components/BackButton/BackButton";
+import BackButton from "@/components/BackButton/BackButton";
 
  
 export default function Error({ error }: { error: Error & { digest?: string } }) {

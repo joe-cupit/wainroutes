@@ -6,7 +6,7 @@ import fontStyles from "@/app/fonts.module.css";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 import { WalkGallery } from "@/types/Walk";
-import LazyImage from "@/app/components/LazyImage/LazyImage";
+import LazyImage from "@/components/LazyImage/LazyImage";
 import { CloseIcon, LeftIcon, RightIcon } from "@/icons/WalkIcons";
 
 

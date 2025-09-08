@@ -9,7 +9,7 @@ import { createPageMetadata } from "@/utils/metadata";
 import Walk from "@/types/Walk";
 import Hill, { BookTitles, Classifications } from "@/types/Hill";
 import { displayElevation } from "@/utils/unitConversions";
-import WalkCard from "@/app/components/WalkCard/WalkCard";
+import WalkCard from "@/components/WalkCard/WalkCard";
 
 import wainsJson from "@/data/hills.json";
 import walksJson from "@/data/walks.json";

@@ -6,7 +6,7 @@ import buttonStyles from "@/app/buttons.module.css";
 import { useEffect, useMemo, useState } from "react";
 
 import type { SimpleWalk } from "../page";
-import WalkCard from "@/app/components/WalkCard/WalkCard";
+import WalkCard from "@/components/WalkCard/WalkCard";
 import { BusIcon, CloseIconSmall, ElevationIcon, HikingIcon, LocationIcon, MountainIcon } from "@/icons/WalkIcons";
 import { useSearchParams } from "next/navigation";
 import { distanceOptions, elevationOptions, locations } from "./WalkFilterValues";

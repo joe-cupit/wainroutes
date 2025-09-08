@@ -3,8 +3,8 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 
-import Navbar from "@/app/components/Navbar/Navbar";
-import Footer from "@/app/components/Footer/Footer";
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
 
 
 export const metadata : Metadata = {

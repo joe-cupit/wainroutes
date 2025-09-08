@@ -14,7 +14,7 @@ import Overlay from "./components/Overlay";
 import WalkAside from "./components/Aside";
 
 import type Walk from "@/types/Walk";
-import LazyImage from "@/app/components/LazyImage/LazyImage";
+import LazyImage from "@/components/LazyImage/LazyImage";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
 import { LocationIcon } from "@/icons/WalkIcons";
 

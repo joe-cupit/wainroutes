@@ -6,8 +6,8 @@ import Link from "next/link";
 
 import Walk from "@/types/Walk";
 import haversineDistance from "@/utils/haversineDistance";
-import WalkCard from "@/app/components/WalkCard/WalkCard";
-import WalkCardStyles from "@/app/components/WalkCard/WalkCard.module.css";
+import WalkCard from "@/components/WalkCard/WalkCard";
+import WalkCardStyles from "@/components/WalkCard/WalkCard.module.css";
 
 import tempwalks from "@/data/walks.json";
 

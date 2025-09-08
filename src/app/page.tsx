@@ -5,16 +5,16 @@ import buttonStyles from "@/app/buttons.module.css";
 import Link from "next/link";
 import { createPageMetadata } from "@/utils/metadata";
 
-import SiteSearchBar from "@/app/components/SiteSearchBar/SiteSearchBar";
-import WalkCard from "@/app/components/WalkCard/WalkCard";
-import WalkCardStyles from "@/app/components/WalkCard/WalkCard.module.css";
-import LakeMap from "@/app/components/Map/Map";
+import SiteSearchBar from "@/components/SiteSearchBar/SiteSearchBar";
+import WalkCard from "@/components/WalkCard/WalkCard";
+import WalkCardStyles from "@/components/WalkCard/WalkCard.module.css";
+import LakeMap from "@/components/Map/Map";
 
 import Walk from "@/types/Walk";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 
 import tempwalks from "@/data/walks.json";
-import LazyPicture from "./components/LazyImage/LazyPicture";
+import LazyPicture from "@/components/LazyImage/LazyPicture";
 
 
 export function generateMetadata() {

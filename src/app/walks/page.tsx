@@ -4,7 +4,7 @@ import fontStyles from "@/app/fonts.module.css";
 import type Walk from "@/types/Walk";
 import { createPageMetadata } from "@/utils/metadata";
 
-import BackToTopButton from "@/app/components/BackToTopButton/BackToTopButton";
+import BackToTopButton from "@/components/BackToTopButton/BackToTopButton";
 import WalksClient from "./components/WalksClient";
 
 import walksJson from "@/data/walks.json";
