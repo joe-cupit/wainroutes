@@ -1,7 +1,7 @@
 "use client"
 
 import styles from "../../Walk.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import React, { useCallback, useMemo, useState } from "react";
 

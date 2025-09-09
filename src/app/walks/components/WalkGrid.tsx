@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "../Walks.module.css";
-import buttonStyles from "@/app/buttons.module.css";
+import buttonStyles from "@/styles/buttons.module.css";
 
 import { useEffect, useMemo, useState } from "react";
 

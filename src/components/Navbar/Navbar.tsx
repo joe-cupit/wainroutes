@@ -1,5 +1,5 @@
 import styles from "./Navbar.module.css";
-import fonts from "@/app/fonts.module.css";
+import fonts from "@/styles/fonts.module.css";
 
 import Link from "next/link";
 

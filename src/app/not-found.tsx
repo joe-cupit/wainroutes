@@ -1,5 +1,5 @@
-import styles from "./error.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import styles from "@/styles/error.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { createPageMetadata } from "@/utils/metadata";
 import BackButton from "@/components/BackButton/BackButton";

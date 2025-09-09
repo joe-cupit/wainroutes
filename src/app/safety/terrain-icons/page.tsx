@@ -1,6 +1,6 @@
 import { TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "@/icons/WalkIcons";
 import styles from "./Terrain.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import { exposureLevels, gradientLevels, pathLevels, terrainTitles } from "./consts";

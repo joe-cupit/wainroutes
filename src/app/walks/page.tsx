@@ -1,5 +1,5 @@
 import styles from "./Walks.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import type Walk from "@/types/Walk";
 import { createPageMetadata } from "@/utils/metadata";

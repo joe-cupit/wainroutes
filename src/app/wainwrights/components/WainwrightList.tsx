@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "../Wainwrights.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 "use client"
 
 import styles from "./ImageGallery.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 

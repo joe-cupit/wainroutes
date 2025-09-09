@@ -1,8 +1,8 @@
 "use client";
 
 import styles from "../Walk.module.css";
-import fontStyles from "@/app/fonts.module.css";
-import buttonStyles from "@/app/buttons.module.css";
+import fontStyles from "@/styles/fonts.module.css";
+import buttonStyles from "@/styles/buttons.module.css";
 
 import { Fragment, useEffect, useState } from "react";
 

@@ -1,5 +1,5 @@
 import styles from "./Wainwright.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { Fragment } from "react";
 import Link from "next/link";

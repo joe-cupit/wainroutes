@@ -1,6 +1,6 @@
 "use client";
 
-import buttonStyles from "@/app/buttons.module.css";
+import buttonStyles from "@/styles/buttons.module.css";
 import { useCallback } from "react";
 import { DownloadIcon } from "@/icons/WalkIcons";
 

@@ -1,5 +1,5 @@
 import styles from "./Breadcrumbs.module.css"
-import fontStyles from "@/app/fonts.module.css"
+import fontStyles from "@/styles/fonts.module.css"
 
 import Link from "next/link"
 import { Fragment } from "react"

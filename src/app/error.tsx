@@ -1,7 +1,7 @@
 "use client";
 
-import styles from "./error.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import styles from "@/styles/error.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { useEffect } from "react";
 
