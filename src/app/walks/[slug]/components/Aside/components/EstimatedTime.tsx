@@ -35,7 +35,7 @@ export default function EstimatedTime({ selected, walkLengthInKm } : { selected:
       <h2 className={fontStyles.subheading}>Estimated Time</h2>
       <p aria-live="polite">An average hiking pace of <b>{displayDistance(speedInKm, 1) + "/h"}</b> completes this walk in <b>{timeTaken}</b></p>
       <input type="range"
-        min={1} max={6} step={0.1}
+        min={1} max={5} step={0.1}
         value={speedInKm} onChange={e => setSpeedInKm(Number(e.target.value))}
         aria-label="Walking speed"
       />

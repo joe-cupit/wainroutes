@@ -45,7 +45,7 @@ export default function WalkCard({ walk, showDistance, hoverEvent } : WalkCardPr
         </div>
         <div className={styles.text}>
           <div>
-            <h3 className="subheading">{walk.title}</h3>
+            <h3 className={`${styles.subheading}`}>{walk.title}</h3>
             <p style={{minHeight: "0.5lh"}}></p>
             {/* <p>This is a lovely walk, with a simple-ish description of the route and some cool things that you will be able to see on the route.</p> */}
           </div>
