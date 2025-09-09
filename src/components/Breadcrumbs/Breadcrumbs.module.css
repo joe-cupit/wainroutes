@@ -1,0 +1,14 @@
+.breadcrumbs {
+  display: flex;
+  gap: var(--gap-300);
+  color: var(--clr-text-muted);
+  cursor: default;
+}
+
+.breadcrumbs a {
+  font-weight: var(--fw-medium);
+}
+.breadcrumbs a:hover {
+  color: var(--clr-text);
+  text-decoration: underline;
+}
