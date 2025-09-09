@@ -206,6 +206,10 @@ export function TerrainPathIcon({ level=1 } : { level: number }) {
           <path fill="var(--clr-terrain-icon-highlight)" d="M15 75L16 77H18.5L22.5 77.5L24 76.5L23.5 76L22 75.5V74.5L20 73.5H17.5L15 75Z" />
           <path fill="var(--clr-terrain-icon-highlight)" d="M106.5 75.5L100.5 75L97 75.1542L98 73.5L103.5 73L107.5 72L110.5 73L110 74L109.5 75L106.5 75.5Z" />
         </>)
+      case 4:
+        return (<>
+          <path fill="var(--clr-terrain-icon-color)" d="M53.5 70L57.5 70.5L59 71L61 70.5L64 71L68 70.75L70.5 70.5L71 70H72.5L76 69.5L82.5 69L89 69.5H97L100.5 68L112.5 69.5L117 70.5L119 69.5L122.5 70.5L120.5 81L114.5 100L105 111.5L96 116L92 118L89.5 118.5L85 120L66 123L37.5 119.5L35 118L28.5 113.5L16.5 102.5L7 90L3 72L6 71L10.5 69.5L15 71L23.5 71.5L30.5 72L35 70.5L46.5 70H53.5Z" />
+        </>)
       default:
         return (<></>)
     }
