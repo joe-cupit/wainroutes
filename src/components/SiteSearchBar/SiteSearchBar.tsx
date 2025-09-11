@@ -3,15 +3,17 @@
 import styles from "./SiteSearchBar.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 
 import tempwalks from "@/data/walks.json";
 import temphills from "@/data/hills.json";
+import { locations } from "@/app/walks/components/WalkFilterValues";
 import Walk from "@/types/Walk";
 import Hill from "@/types/Hill";
-import { HikingIcon, LocationIcon, MountainIcon } from "@/icons/MaterialIcons";
+import { CloseIconSmall, HikingIcon, LocationIcon, MountainIcon } from "@/icons/MaterialIcons";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
+import Fuse from "fuse.js";
 
 
 type WalkOption = {
@@ -48,9 +50,29 @@ const BookTitles : {[book : number]: string} = {
 }
 
 
+function scoreResult(res : {item: SearchOption, score?: number}) {
+  let score = res.score ?? 1;
+
+  switch (res.item.type) {
+    case "walk":
+      return score * 0.5;
+    case "town":
+      return score * 0.8;
+    default:
+      return score * 1.2;
+  }
+}
+
+
 export default function SiteSearchBar({ reversed, small, placeholder, className } : { reversed?: boolean; small?: boolean; placeholder?: string; className?: string }) {
 
   const [searchTerm, setSearchTerm] = useState("");
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  const closeInput = useCallback(() => {
+    inputRef.current?.blur();
+    setSearchTerm("");
+  }, [inputRef, setSearchTerm])
 
   const walksData = tempwalks as unknown as Walk[];
   const hillsData = temphills as Hill[];
@@ -84,25 +106,29 @@ export default function SiteSearchBar({ reversed, small, placeholder, className 
         });
       }
     }
-    // for (let townKey of Object.keys(locations)) {
-    //   newSearchOptions.push({
-    //     type: "town",
-    //     name: locations[townKey]!.name,
-    //     link: "/walks?town=" + townKey
-    //   })
-    // }
+    for (let townKey of Object.keys(locations)) {
+      newSearchOptions.push({
+        type: "town",
+        name: locations[townKey]!.name,
+        link: "/walks?town=" + townKey
+      })
+    }
 
-    return newSearchOptions;
+    return new Fuse(newSearchOptions, {
+      keys: ["name"],
+      threshold: 0.3,
+      distance: 200,
+      includeScore: true,
+    })
   }, [walksData, hillsData])
 
   const filteredSearchOptions = useMemo(() => {
     if (searchTerm === "") return [];
 
-    const lowerSearchTerm = searchTerm.trim().toLowerCase();
     return searchOptions
-            .filter(option => option.name.toLowerCase().includes(lowerSearchTerm))
-            .sort((a, b) => a.name.toLowerCase().indexOf(lowerSearchTerm) - b.name.toLowerCase().indexOf(lowerSearchTerm))
-            .sort((a, b) => (b.name.toLowerCase() === lowerSearchTerm) ? 1 : 0);
+            .search(searchTerm, {limit: 20})
+            .sort((a, b) => scoreResult(a) - scoreResult(b))
+            .map(res => res.item)
   }, [searchTerm, searchOptions])
 
 
@@ -111,11 +137,27 @@ export default function SiteSearchBar({ reversed, small, placeholder, className 
       className={`${styles.siteSearch} ${className ?? ""}`}
       data-small={small}
     >
-      <input type="text"
-        placeholder={placeholder ? placeholder : "Search for a route, fell, or town"}
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-      />
+      <div
+        className={styles.siteSearchBar}
+        onClick={() => inputRef.current?.focus()}
+      >
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder={placeholder ? placeholder : "Search for a route, fell, or town"}
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+        {searchTerm.length > 0 &&
+          <button
+            className={styles.siteSearchBarButton}
+            onClick={() => setSearchTerm("")}
+            title="Clear text"
+          >
+            <CloseIconSmall />
+          </button>
+        }
+      </div>
       {searchTerm.length > 0 &&
         <div
           className={styles.results}
@@ -124,7 +166,7 @@ export default function SiteSearchBar({ reversed, small, placeholder, className 
         >
           {filteredSearchOptions.length > 0
             ? filteredSearchOptions.map((option, index) => {
-                return <SearchResult key={index} option={option} />
+                return <SearchResult key={index} option={option} closeInput={closeInput} />
               })
             : <div className={styles.noResults}>No matching routes, fells, or towns</div>
           }
@@ -135,9 +177,13 @@ export default function SiteSearchBar({ reversed, small, placeholder, className 
 }
 
 
-function SearchResult({ option } : { option : SearchOption }) {
+function SearchResult({ option, closeInput } : { option: SearchOption, closeInput: CallableFunction }) {
   return (
-    <Link href={option.link} className={styles.result}>
+    <Link
+      href={option.link}
+      className={styles.result}
+      onClick={() => closeInput()}
+    >
       <div className={styles.resultType}>
         {option.type === "fell" && <MountainIcon />}
         {option.type === "walk" && <HikingIcon />}
