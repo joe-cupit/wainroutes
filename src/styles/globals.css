@@ -171,6 +171,15 @@
   --clr-bus-599: #3fa535;
   --clr-bus-X4: #312783;
   --clr-bus-X5: #009FE3;
+
+  --clr-terrain-icon-color: var(--clr-text);
+  --clr-terrain-icon-highlight: var(--clr-text-white-muted);
+  --clr-terrain-level-1: #57B493;
+  --clr-terrain-level-2: #b48b32;
+  --clr-terrain-level-3: #a03b3b;
+  --clr-terrain-level-4: #7b284a;
+
+  --footer-mountain-height: max(min(5vw, 6rem), 3rem);
 }
 
 html {
@@ -199,7 +208,7 @@ body {
 
 main {
   flex: 1;
-  margin-block: var(--gap-600);
+  margin-block: var(--gap-600) calc(var(--gap-600) + var(--footer-mountain-height));
 }
 
 section,

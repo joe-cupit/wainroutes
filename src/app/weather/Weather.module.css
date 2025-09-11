@@ -1,6 +1,3 @@
-.weather {
-  margin-bottom: var(--gap-900);
-}
 .weather > section {
   --content-max-width: 1150px;
 }
