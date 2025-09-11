@@ -4,7 +4,7 @@ import fontStyles from "@/styles/fonts.module.css";
 import Link from "next/link";
 
 import Walk from "@/types/Walk";
-import { TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "@/icons/WalkIcons";
+import { TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "@/icons/TerrainIcons";
 import { exposureLevels, gradientLevels, pathLevels, terrainTitles } from "@/app/safety/terrain-icons/consts";
 
 
@@ -21,7 +21,7 @@ export default function Terrain({ selected, walkTerrain } : { selected: boolean;
           <ul className={styles.terrainBadges}>
             {walkTerrain?.gradient &&
               <li className={styles.terrainBadge}>
-                <Link href="/about/terrain-icons#gradient">
+                <Link href="/safety/terrain-icons#gradient">
                   <TerrainGradientIcon level={walkTerrain.gradient} />
                 </Link>
                 <div>
@@ -32,7 +32,7 @@ export default function Terrain({ selected, walkTerrain } : { selected: boolean;
             }
             {walkTerrain?.path &&
               <li className={styles.terrainBadge}>
-                <Link href="/about/terrain-icons#path">
+                <Link href="/safety/terrain-icons#path">
                   <TerrainPathIcon level={walkTerrain.path} />
                 </Link>
                 <div>
@@ -43,7 +43,7 @@ export default function Terrain({ selected, walkTerrain } : { selected: boolean;
             }
             {walkTerrain?.exposure &&
               <li className={styles.terrainBadge}>
-                <Link href="/about/terrain-icons#exposure">
+                <Link href="/safety/terrain-icons#exposure">
                   <TerrainExposureIcon level={walkTerrain.exposure} />
                 </Link>
                 <div>

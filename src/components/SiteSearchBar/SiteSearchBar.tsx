@@ -10,7 +10,7 @@ import tempwalks from "@/data/walks.json";
 import temphills from "@/data/hills.json";
 import Walk from "@/types/Walk";
 import Hill from "@/types/Hill";
-import { HikingIcon, LocationIcon, MountainIcon } from "@/icons/WalkIcons";
+import { HikingIcon, LocationIcon, MountainIcon } from "@/icons/MaterialIcons";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
 
 

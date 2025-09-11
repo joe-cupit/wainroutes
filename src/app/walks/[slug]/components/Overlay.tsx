@@ -6,7 +6,7 @@ import buttonStyles from "@/styles/buttons.module.css";
 
 import { Fragment, useEffect, useState } from "react";
 
-import { BackIcon, ElevationIcon, HikingIcon, MountainIcon } from "@/icons/WalkIcons";
+import { BackIcon, ElevationIcon, HikingIcon, MountainIcon } from "@/icons/MaterialIcons";
 
 
 export default function Overlay({ walkData } : { walkData: {title: string, wainwrightCount: number, lengthString: string, elevationString: string}}) {

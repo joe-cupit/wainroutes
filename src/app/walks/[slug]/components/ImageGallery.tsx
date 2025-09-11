@@ -7,7 +7,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 
 import { WalkGallery } from "@/types/Walk";
 import LazyImage from "@/components/LazyImage/LazyImage";
-import { CloseIcon, LeftIcon, RightIcon } from "@/icons/WalkIcons";
+import { CloseIcon, LeftIcon, RightIcon } from "@/icons/MaterialIcons";
 
 
 const GalleryContext = createContext<{images: string[]; imageData: WalkGallery["imageData"] | null; openCarousel: CallableFunction}>({images: [], imageData: null, openCarousel: () => {}})

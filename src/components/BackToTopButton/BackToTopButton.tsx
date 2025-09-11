@@ -4,7 +4,7 @@ import styles from "./BackToTopButton.module.css";
 
 import { useEffect, useState } from "react";
 
-import { BackToTopIcon } from "@/icons/WalkIcons";
+import { BackToTopIcon } from "@/icons/MaterialIcons";
 
 
 export default function BackToTopButton({ minHeight = 400 }) {

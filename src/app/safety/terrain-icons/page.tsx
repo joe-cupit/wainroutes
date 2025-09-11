@@ -1,10 +1,13 @@
-import { TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "@/icons/WalkIcons";
 import styles from "./Terrain.module.css";
 import fontStyles from "@/styles/fonts.module.css";
+
 import Link from "next/link";
-import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
-import { exposureLevels, gradientLevels, pathLevels, terrainTitles } from "./consts";
+
 import { createPageMetadata } from "@/utils/metadata";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+
+import { exposureLevels, gradientLevels, pathLevels, terrainTitles } from "./consts";
+import { TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "@/icons/TerrainIcons";
 
 
 export function generateMetadata() {
@@ -28,7 +31,7 @@ export default function page() {
             <Breadcrumbs
               crumbs={{
                 "Safety": "/safety",
-                "Terrain Icons": "/about/terrain-icons",
+                "Terrain Icons": "/safety/terrain-icons",
               }}
             />
             <h1 className={fontStyles.title}>Walk Terrain Icons</h1>

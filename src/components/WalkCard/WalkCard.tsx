@@ -7,7 +7,7 @@ import type { SimpleWalk } from "@/app/walks/page";
 
 import LazyImage from "@/components/LazyImage/LazyImage";
 import { displayDistance, displayElevation, getDistanceUnit, getDistanceValue } from "@/utils/unitConversions";
-import { ElevationIcon, HikingIcon, MountainIcon } from "@/icons/WalkIcons";
+import { ElevationIcon, HikingIcon, MountainIcon } from "@/icons/MaterialIcons";
 
 
 type WalkCardProps = {
