@@ -7,7 +7,7 @@
   
   --_max-section-width: calc((2 * var(--_image-overflow)) + var(--_main-width) + var(--_aside-width) + var(--_body-gap));
 
-  margin-block: 0;
+  margin-block-start: 0;
 }
 .walk section {
   max-width: min(var(--_max-section-width), 100vw);
@@ -387,18 +387,48 @@
 
 
 .terrain {
-  gap: var(--gap-300);
+  gap: 0.5rem;
+}
+.terrainTitle {
+  display: flex;
+  gap: 1ch;
+  align-items: center;
+
+  & a {
+    width: 1.5ch;
+    height: 1.5ch;
+    color: var(--clr-text-muted);
+
+    transition-property: color, scale;
+    transition-duration: 100ms;
+  }
+  & a:hover {
+    color: var(--clr-text);
+    scale: 1.1;
+  }
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 .terrainMain {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-300);
+  gap: 1rem;
 }
 .terrainBadges {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: var(--gap-300);
+
+  & svg {
+    cursor: pointer;
+    transition: scale 100ms;
+  }
+  & svg:hover {
+    scale: 1.075;
+  }
 }
 .terrainBadge {
   display: grid;
@@ -412,12 +442,16 @@
   font-size: var(--fs-500);
   font-weight: var(--fw-medium);
 }
-.terrain svg {
-  cursor: pointer;
-  transition: scale 100ms;
-}
-.terrain svg:hover {
-  scale: 1.075;
+.walkTerrainNote {
+  display: flex;
+  gap: 0.5ch;
+  padding-inline-start: 0.5ch;
+
+  color: var(--clr-text-muted);
+
+  &::before {
+    content: "*";
+  }
 }
 
 

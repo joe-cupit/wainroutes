@@ -5,16 +5,22 @@ import Link from "next/link";
 
 import Walk from "@/types/Walk";
 import { TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "@/icons/TerrainIcons";
-import { exposureLevels, gradientLevels, pathLevels, terrainTitles } from "@/app/safety/terrain-icons/consts";
+import { exposureLevels, exposureTitles, gradientLevels, gradientTitles, pathLevels, pathTitles } from "@/app/safety/terrain-icons/consts";
+import { InfoIcon } from "@/icons/MaterialIcons";
 
 
 export default function Terrain({ selected, walkTerrain } : { selected: boolean; walkTerrain: Walk["terrain"] }) {
 
   return (
     <div className={`${styles.terrain} ${styles.asideSection} ${selected ? styles.selected : ""}`}>
-      <div>
-        <h2 className={fontStyles.subheading}>Terrain</h2>
-        <p>The terrain walk and stuff</p>
+      <div className={styles.terrainTitle}>
+        <h2 className={fontStyles.subheading}>Walk Terrain</h2>
+        <Link
+          href="/safety/terrain-icons"
+          title="Find out more about terrain icons"
+        >
+          <InfoIcon />
+        </Link>
       </div>
       {walkTerrain
       ? <div className={styles.terrainMain}>
@@ -25,7 +31,7 @@ export default function Terrain({ selected, walkTerrain } : { selected: boolean;
                   <TerrainGradientIcon level={walkTerrain.gradient} />
                 </Link>
                 <div>
-                  <h3>{terrainTitles[walkTerrain.gradient] + " steepness"}</h3>
+                  <h3>{gradientTitles[walkTerrain.gradient]}</h3>
                   <p>{gradientLevels[walkTerrain.gradient]}</p>
                 </div>
               </li>
@@ -36,7 +42,7 @@ export default function Terrain({ selected, walkTerrain } : { selected: boolean;
                   <TerrainPathIcon level={walkTerrain.path} />
                 </Link>
                 <div>
-                  <h3>{terrainTitles[walkTerrain.path] + " path visibility"}</h3>
+                  <h3>{pathTitles[walkTerrain.path]}</h3>
                   <p>{pathLevels[walkTerrain.path]}</p>
                 </div>
               </li>
@@ -47,15 +53,17 @@ export default function Terrain({ selected, walkTerrain } : { selected: boolean;
                   <TerrainExposureIcon level={walkTerrain.exposure} />
                 </Link>
                 <div>
-                  <h3>{terrainTitles[walkTerrain.exposure] + " exposure"}</h3>
+                  <h3>{exposureTitles[walkTerrain.exposure]}</h3>
                   <p>{exposureLevels[walkTerrain.exposure]}</p>
                 </div>
               </li>
             }
           </ul>
-          {(walkTerrain?.desc?.length ?? 0) > 0 ? <p>{walkTerrain?.desc}</p> : <></>}
+          {/* {(walkTerrain?.desc?.length ?? 0) > 0 ? <p>{walkTerrain?.desc}</p> : <></>} */}
 
-          {/* <p className={fontStyles.subtext}>*terrain badges are merely a suggestion, always properly prepare for changing weather conditions</p> */}
+          <p className={`${styles.walkTerrainNote} ${fontStyles.subtext}`}>
+            These ratings are based on my own experience and are for guidance only.
+          </p>
         </div>
       : <p>No information available</p>}
     </div>
