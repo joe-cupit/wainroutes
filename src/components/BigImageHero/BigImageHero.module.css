@@ -1,0 +1,27 @@
+.heroSection {
+  position: relative;
+  height: max(13rem, min(53rem, max(70vh, 30rem), 40vw));
+}
+
+.hero {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+
+  & > * {
+    line-height: 1.1;
+  }
+  & img {
+    user-select: none;
+  }
+  & .title {
+    padding-block: 0.05lh;
+    padding-inline: 0.5ch;
+    margin-block-end: 0.5lh;
+    border-radius: var(--gap-300);
+    
+    text-align: center;
+    color: var(--clr-text-white);
+    backdrop-filter: blur(0.25rem);
+  }
+}

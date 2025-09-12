@@ -1,9 +1,8 @@
 import styles from "./About.module.css";
-import fontStyles from "@/styles/fonts.module.css";
 
-import Image from "next/image";
 import { createPageMetadata } from "@/utils/metadata";
 
+import BigImageHero from "@/components/BigImageHero/BigImageHero";
 import Intro from "./components/Intro";
 import ImageGrid from "./components/ImageGrid";
 import Story from "./components/Story";
@@ -25,17 +24,11 @@ export default function About() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroContainer}>
-          <Image
-            src="/images/terrain.jpg"
-            fill={true}
-            sizes="100vw"
-            alt="Derwentwater"
-          />
-          <h1 className={`${styles.title} ${fontStyles.title}`}>About Wainroutes</h1>
-        </div>
-      </section>
+      <BigImageHero
+        title="About Wainroutes"
+        src="/images/terrain.jpg"
+        alt="Derwentwater"
+      />
 
       <Intro />
       <ImageGrid />
