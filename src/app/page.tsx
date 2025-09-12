@@ -15,6 +15,7 @@ import { useHillMarkers } from "@/hooks/useMapMarkers";
 
 import tempwalks from "@/data/walks.json";
 import LazyPicture from "@/components/LazyImage/LazyPicture";
+import { ArrowRightIcon } from "@/icons/MaterialIcons";
 
 
 export function generateMetadata() {
@@ -27,7 +28,7 @@ export function generateMetadata() {
 
 export default function Home() {
 
-  const featuredWalkSlugs = ["scafell-pike-and-lingmell-via-mickledore", "helvellyn-via-striding-edge", "rannerdale-knotts-from-buttermere"];
+  const featuredWalkSlugs = ["the-four-summits-of-dodd-wood", "castle-crag-with-millican-daltons-cave", "the-kentmere-horseshoe"];
   const walks = tempwalks as unknown as Walk[];
   const featuredWalks = featuredWalkSlugs.map(slug => walks.find(w => w.slug === slug));
 
@@ -39,7 +40,7 @@ export default function Home() {
     <main className={styles.home}>
       <section className={styles.heroSection}>
         <div className={styles.hero}>
-          <h1 className={`${fontStyles.title} ${styles.title}`}>Your Guide to Walking The Wainwrights</h1>
+          <h1 className={`${fontStyles.title} ${styles.title}`}>A Walker's Guide to the Wainwrights</h1>
           <SiteSearchBar className={styles.heroSearch} />
           <Link href="/walks" className={`${buttonStyles.button} ${buttonStyles.underlined}`}>View all walks</Link>
         </div>
@@ -76,7 +77,13 @@ export default function Home() {
             }
           </div>
 
-          <Link href="/walks" className={`${buttonStyles.button} ${buttonStyles.primary}`}>View more walks</Link>
+          <Link
+            href="/walks"
+            className={`${buttonStyles.button} ${buttonStyles.primary}`}
+            draggable="false"
+          >
+            View all walks
+          </Link>
         </div>
       </section>
 
@@ -96,7 +103,13 @@ export default function Home() {
                 Here you&apos;ll find a collection of routes I&apos;ve used so far on my own journey to complete the Wainwrights. Whether you&apos;re aiming for all 214 or just looking for your next day out in the fells, I hope these walks help you enjoy the Lakes.
               </p>
             </div>
-            <Link href="/wainwrights" className={buttonStyles.button}>Learn more about The Wainwrights</Link>
+            <Link
+              href="/wainwrights"
+              className={`${buttonStyles.button} ${buttonStyles.arrow}`}
+              draggable="false"
+            >
+              Go to list of Wainwrights <ArrowRightIcon />
+            </Link>
           </div>
 
           <div className={styles.wainwrightsMap}>

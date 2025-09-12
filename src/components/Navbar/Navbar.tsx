@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import MobileNavbarButton from "./components/MobileNavbarButton";
 import NavbarClient from "./NavbarClient";
-import WainroutesLogo from "../Logo/Logo";
+import WainroutesLogo from "@/components/Logo/Logo";
 
 const navbarId = "navbar";
 
@@ -33,8 +33,8 @@ export default async function Navbar() {
           <nav id="navbar-nav" className={styles.nav}>
             <Link href="/walks">Find a walk</Link>
             <Link href="/about">About</Link>
-            <Link href="/wainwrights">Wainwrights</Link>
             <Link href="/weather">Weather</Link>
+            <Link href="/wainwrights">Wainwrights</Link>
           </nav>
 
           <MobileNavbarButton />

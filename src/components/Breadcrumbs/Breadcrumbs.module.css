@@ -1,14 +1,15 @@
 .breadcrumbs {
   display: flex;
-  gap: var(--gap-300);
+  gap: 0.75ch;
+
   color: var(--clr-text-muted);
   cursor: default;
-}
 
-.breadcrumbs a {
-  font-weight: var(--fw-medium);
-}
-.breadcrumbs a:hover {
-  color: var(--clr-text);
-  text-decoration: underline;
+  & a {
+    font-weight: var(--fw-medium);
+  }
+  & a:hover {
+    color: var(--clr-text);
+    text-decoration: underline;
+  }
 }

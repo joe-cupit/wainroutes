@@ -27,6 +27,7 @@
   
   color: var(--clr-bg-black);
   overflow: hidden;
+  pointer-events: none;
 
   & svg {
     min-height: 110%;

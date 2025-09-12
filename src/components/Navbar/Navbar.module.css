@@ -122,7 +122,7 @@
 
   transform: translateX(-100%);
   transition-property: display transform;
-  transition-duration: 300ms;
+  transition-duration: 200ms;
   transition-timing-function: ease-out;
   transition-behavior: allow-discrete;
 }
