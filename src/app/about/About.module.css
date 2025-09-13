@@ -1,5 +1,6 @@
 .page {
-  margin-block-start: 0;
+  padding-block-start: 0;
+  background: var(--clr-bg);
 
   & section:not(:first-child) {
     margin-block: var(--gap-900);

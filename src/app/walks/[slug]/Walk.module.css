@@ -7,7 +7,7 @@
   
   --_max-section-width: calc((2 * var(--_image-overflow)) + var(--_main-width) + var(--_aside-width) + var(--_body-gap));
 
-  margin-block-start: 0;
+  padding-block-start: 0;
 }
 .walk section {
   max-width: min(var(--_max-section-width), 100vw);

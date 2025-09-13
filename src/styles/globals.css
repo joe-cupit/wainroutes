@@ -208,7 +208,7 @@ body {
 
 main {
   flex: 1;
-  margin-block: var(--gap-600) calc(var(--gap-600) + var(--footer-mountain-height));
+  padding-block: var(--gap-600) calc(var(--gap-600) + var(--footer-mountain-height));
 }
 
 section,
