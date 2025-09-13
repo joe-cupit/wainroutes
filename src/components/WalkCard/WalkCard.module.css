@@ -13,6 +13,7 @@
   background: var(--clr-bg);
   /* border-radius: 0.5rem; */
   overflow: hidden;
+  text-align: left;
 }
 .walkCard:focus-visible {
   outline: 3px solid currentColor;

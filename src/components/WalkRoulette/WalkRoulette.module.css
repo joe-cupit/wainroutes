@@ -1,0 +1,12 @@
+.roulette {
+  display: flex;
+  gap: var(--gap-400);
+  flex-direction: column;
+  align-items: center;
+
+  width: min(100%, 45rem);
+}
+
+.walk {
+  width: 100%;
+}
