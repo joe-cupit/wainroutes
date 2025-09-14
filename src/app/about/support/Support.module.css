@@ -1,0 +1,45 @@
+.page section {
+  --content-max-width: 1200px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr clamp(20rem, 33vw, 23rem);
+  column-gap: var(--gap-800);
+  row-gap: var(--gap-700);
+
+  & iframe {
+    justify-self: center;
+  }
+
+  @media (max-width: 50rem) {
+    grid-template-columns: 1fr;
+
+    & .image {
+      display: none;
+    }
+  }
+}
+
+.text {
+  display: grid;
+  gap: var(--gap-400);
+
+  height: fit-content;
+
+  & h1 {
+    margin-block-end: var(--gap-300);
+  }
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: clamp(13rem, 30vw, 18rem);
+
+  border-radius: 1.5rem;
+  overflow: hidden;
+
+  margin-block-start: var(--gap-600);
+  margin-inline: auto;
+}
