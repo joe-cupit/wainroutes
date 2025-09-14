@@ -15,7 +15,7 @@ import Support from "./components/Support";
 export function generateMetadata() {
   return createPageMetadata({
     title: "About",
-    description: "Wainroutes is the passion project of Lake District lover Joe Cupit.",
+    description: "Wainroutes makes planning walks in the Lake District easier and more enjoyable, with detailed routes and maps, mountain weather forecasts, and photos.",
     path: "/about",
     imageURL: "/images/terrain.jpg",
   });

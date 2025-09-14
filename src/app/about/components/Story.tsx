@@ -18,10 +18,9 @@ export default function Story() {
           </div>
           <div className={styles.story}>
             <h2 className={fontStyles.heading}>The Story Behind Wainroutes</h2>
-            <p>During my final year of university in Manchester, I started taking regular day-trips to the Lake District. Before that, I'd only visited once, but discovering the 5am train made it easy to keep returning. The Lakes became a place to relax, explore, and distract from my work.</p>
-            <p>It didn't take long before I found out about Alfred Wainwright and his series of books on the Lakeland Fells, and I set myself the challenge of climbing them all 214, both to satisfy my inner completionist and as an excuse to see as much of the Lakes as possible. I'd spend evenings reading about the fells, planning routes, and dreaming up my next trip.</p>
-            <p>Wainroutes grew out of that passion. I wanted to bring together all the resources and information I use into one place, where I could share my routes, photos, and tips.</p>
-            <p>I hope it proves useful for fellow walkers as well.</p>
+            <p>During my final year of university, I started taking regular day-trips to the Lake District. Before that, I'd only visited once, but discovering the 5am train made the fells feel within reach. The Lakes became a place for me to relax, explore, and distract from my work.</p>
+            <p>It didn't take long before I found out about Alfred Wainwright and his series of books on the Lakeland Fells, and I decided to set myself the challenge of climbing all 214, both to satisfy my inner completionist and as an excuse to see as much of the Lakes as possible. I'd spend evenings reading about the fells and planning routes, and weekends introducing everyone I could to them.</p>
+            <p>That idea grew into what has become Wainroutes. I wanted a place to bring together all the resources and information I use, and share my routes and photos. Now my aim is to help others discover and enjoy the Lakes as much as I have.</p>
           </div>
         </div>
       </section>

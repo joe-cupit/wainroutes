@@ -9,7 +9,6 @@
   & img {
     border: none;
     height: calc(2.5 * var(--fs-400));
-    width: fit-content;
   }
 
   &:hover {
