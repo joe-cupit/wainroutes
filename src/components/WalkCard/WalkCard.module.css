@@ -112,13 +112,13 @@ section > div:has(.group) {
   max-width: 75rem;
   grid-template-columns: repeat(3, minmax(min(22rem, 90%), 1fr));
   gap: 1rem;
-  justify-items: center;
-  align-content: center;
 
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
 
+  padding-block: 0.5rem;
+  margin-block: -0.5rem;
   padding-inline: var(--section-padding);
   margin-inline: calc(-1 * var(--section-padding));
 }
