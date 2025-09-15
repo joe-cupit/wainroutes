@@ -36,7 +36,7 @@ export default function PageLinkGrid({ title, pages } : OtherPagesProps ) {
 
 function PageCard({ page } : { page: Page }) {
   return (
-    <Link href={page.href} className={styles.card}>
+    <Link href={page.href} className={styles.card} title={page.title}>
       <div className={styles.cardImage}>
         <Image
           src={page.imageSrc}
