@@ -51,7 +51,7 @@ const BookTitles : {[book : number]: string} = {
 
 
 function scoreResult(res : {item: SearchOption, score?: number}) {
-  let score = res.score ?? 1;
+  const score = res.score ?? 1;
 
   switch (res.item.type) {
     case "walk":
@@ -106,7 +106,7 @@ export default function SiteSearchBar({ reversed, small, placeholder, className 
         });
       }
     }
-    for (let townKey of Object.keys(locations)) {
+    for (const townKey of Object.keys(locations)) {
       newSearchOptions.push({
         type: "town",
         name: locations[townKey]!.name,

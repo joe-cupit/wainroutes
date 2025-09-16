@@ -37,7 +37,7 @@ export default function page() {
                 However, there are costs involved in hosting the site, providing GPX files, and continuing to develop new guides and features.
               </p>
               <p>
-                If you've enjoyed using the site or found the routes useful and would like to support its growth and upkeep, you can donate using the widget below or by <TipLink>following this link</TipLink>.
+                If you&apos;ve enjoyed using the site or found the routes useful and would like to support its growth and upkeep, you can donate using the widget below or by <TipLink>following this link</TipLink>.
                 Every contribution helps me to continue adding routes, guides, and new resources.
               </p>
               <div>

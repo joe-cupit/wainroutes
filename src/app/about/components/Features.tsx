@@ -9,7 +9,7 @@ export default function Features() {
     <section>
       <div>
         <div className={styles.features}>
-          <h2 className={fontStyles.heading}>What's on Wainroutes</h2>
+          <h2 className={fontStyles.heading}>What&apos;s on Wainroutes</h2>
           {/* <p>Everything on the site is designed to be useful for fellow walkers.</p> */}
           <div className={styles.featureGridContainer}>
             <ul className={styles.featureGrid}>
@@ -31,12 +31,12 @@ export default function Features() {
               <li>
                 <PhotoIcon />
                 <h3 className={fontStyles.subheading}>Walk photos</h3>
-                <p>A selection of my favourite photos I've taken on each route.</p>
+                <p>A selection of my favourite photos I&apos;ve taken on each route.</p>
               </li>
               <li>
                 <MoreIcon />
                 <h3 className={fontStyles.subheading}>More to come</h3>
-                <p>I'm constantly adding new walks and site features, so Wainroutes will continue to grow.</p>
+                <p>I&apos;m constantly adding new walks and site features, so Wainroutes will continue to grow.</p>
               </li>
             </ul>
           </div>

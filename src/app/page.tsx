@@ -2,7 +2,7 @@ import styles from "./Home.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 import buttonStyles from "@/styles/buttons.module.css";
 
-import Head from "next/head";
+import Script from "next/script";
 import Link from "next/link";
 import { createPageMetadata } from "@/utils/metadata";
 
@@ -35,27 +35,26 @@ export default function Home() {
 
   const hillMarkers = useHillMarkers();
 
-  const websiteStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Wainroutes",
-    "url": "https://wainroutes.co.uk/"
-  }
-
 
   return (
     <>
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{__html: JSON.stringify(websiteStructuredData)}}
-        />
-      </Head>
+      <Script
+        id="website-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: `{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Wainroutes",
+            "url": "https://wainroutes.co.uk/"
+          }`
+        }}
+      />
 
       <main className={styles.home}>
         <section className={styles.heroSection}>
           <div className={styles.hero}>
-            <h1 className={`${fontStyles.title} ${styles.title}`}>A Walker's Guide to the Wainwrights</h1>
+            <h1 className={`${fontStyles.title} ${styles.title}`}>A Walker&apos;s Guide to the Wainwrights</h1>
             <SiteSearchBar className={styles.heroSearch} />
             <Link href="/walks" className={`${buttonStyles.button} ${buttonStyles.underlined}`}>View all walks</Link>
           </div>
