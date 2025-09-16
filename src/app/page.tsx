@@ -105,7 +105,7 @@ export default function Home() {
             </div>
             <Link
               href="/wainwrights"
-              className={`${buttonStyles.button} ${buttonStyles.arrow}`}
+              className={`${buttonStyles.button} ${buttonStyles.animate}`}
               draggable="false"
             >
               Go to list of Wainwrights <ArrowRightIcon />

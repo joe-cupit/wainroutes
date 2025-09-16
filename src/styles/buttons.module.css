@@ -1,94 +1,110 @@
 .button {
-  --_button-color: var(--clr-neutral-900);
-  --_button-background: var(--clr-neutral-400);
-
-  --_button-duration: 100ms;
-  transition: color var(--_button-duration) ease,
-              background-color var(--_button-duration) ease;
+  --_transition-duration: 100ms;
 
   display: flex;
-  gap: 0.25em;
+  gap: 1ch;
+  justify-content: center;
   align-items: center;
-
-  padding: 0.5em 1em;
-  border-radius: 0.25em;
-  /* border-top-right-radius: 0; */
-  cursor: pointer;
 
   width: fit-content;
   height: fit-content;
 
+  padding-block: 0.58lh 0.5lh;
+  padding-inline: 2ch;
+  
+  border-radius: 0.5rem;
+
+  color: var(--clr-text-white);
+  background: oklch(from var(--clr-text-black) 0.05 c h);
+
   font-family: var(--ff-body);
   font-size: var(--fs-400);
   font-weight: var(--fw-medium);
-  color: var(--_button-color);
-  background: var(--_button-background);
-}
-.button:hover {
-  --_button-background: var(--clr-neutral-450);
-}
-.button:focus-visible {
-  outline: 3px solid var(--clr-neutral-400);
-  outline-offset: 2px;
-  transition: none;
+
+  touch-action: manipulation;
+  user-select: none;
+  
+  transition-property: background-color;
+  transition-duration: var(--_transition-duration);
+
+  & svg {
+    max-width: 2ch;
+    max-height: 2ch;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--clr-bg-black);
+    outline-offset: 3px;
+  }
+  &:hover {
+    background: var(--clr-text-black);
+  }
 }
 
-.button:not(.primary):not(.secondary) {
-  outline-color: var(--clr-primary-500);
-}
-
-.button.underlined {
-  background: none;
-  padding: 0;
-
-  color: currentColor;
-  text-decoration: underline;
-
-  border-radius: 0;
-  outline-color: currentColor;
-  outline-offset: 3px;
-}
 
 .button.primary {
-  --_button-color: var(--clr-neutral-900);
-  --_button-background: var(--clr-primary-400);
-}
-.button.primary:hover {
-  --_button-background: var(--clr-primary-300);
+  color: var(--clr-text-white);
+  background: var(--clr-primary-400);
+
+  &:hover {
+    background: var(--clr-primary-300);
+  }
 }
 
 .button.secondary {
-  --_button-color: var(--clr-neutral-400);
-  --_button-background: var(--clr-neutral-700);
-}
-.button.secondary:hover {
-  --_button-background: var(--clr-neutral-600);
+  color: var(--clr-text);
+  background: var(--clr-bg-light);
+
+  &:hover {
+    background: var(--clr-bg);
+  }
 }
 
-button.small {
-  padding: 0.375em 0.75em;
+
+.button.small {
+  gap: 0.5ch;
+  padding-block: 0.35lh;
+  padding-inline: 1.25ch;
 }
 
-button.bottom-left {
-  border-radius: 0.5em;
-  border-bottom-left-radius: 0;
-}
 
-.button.empty {
+.button.underlined {
+  position: relative;
+
+  padding: 0;
+
   background: none;
-  border: 2px solid var(--_button-background);
-}
-.button.empty:hover {
-  color: var(--_button-color);
-  background: var(--_button-background);
+  border-radius: 0;
+  outline-color: currentColor;
+  outline-offset: 3px;
+
+  color: currentColor;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: -2%;
+
+    width: 104%;
+    height: 2px;
+    background: currentColor;
+
+    transition-property: top height;
+    transition-duration: var(--_transition-duration);
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
-.button.round {
-  border-radius: 9999px;
-}
 
-.iconButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.button.animate {
+  & svg {
+    transition: translate var(--_transition-duration);
+  }
+  &:hover svg {
+    translate: 0.5ch;
+  }
 }
