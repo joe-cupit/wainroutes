@@ -23,6 +23,7 @@
 .mountainHazardsList {
   display: flex;
   gap: var(--gap-400);
+  align-content: center;
 }
 .currentDayMain {
   flex-direction: column;
@@ -116,6 +117,7 @@
   padding-inline: 0.5rem;
   padding-block: 0.3125rem 0.1875rem;
   display: inline-block;
+  height: fit-content;
 }
 .mountainHazardLow {
   background: #F1D46340;

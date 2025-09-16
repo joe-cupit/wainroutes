@@ -63,7 +63,7 @@
   display: grid;
   column-gap: var(--gap-800);
   row-gap: var(--gap-700);
-  grid-template-columns: 2fr 1.2fr;
+  grid-template-columns: 2fr 1.3fr;
   align-items: center;
 }
 

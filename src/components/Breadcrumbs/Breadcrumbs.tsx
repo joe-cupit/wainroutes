@@ -12,13 +12,15 @@ type BreadcrumbsProps = {
 
 export default function Breadcrumbs({crumbs} : BreadcrumbsProps) {
   return (
-    <div className={`${styles.breadcrumbs} ${fontStyles.subtext}`}>
+    <ol className={`${styles.breadcrumbs} ${fontStyles.subtext}`}>
       {Object.keys(crumbs).map((link, index) => (
         <Fragment key={index}>
-          <Link href={crumbs[link]}>{link}</Link>
+          <li>
+            <Link href={crumbs[link]}>{link}</Link>
+          </li>
           {(index + 1) < Object.keys(crumbs).length && "/"}
         </Fragment>
       ))}
-    </div>
+    </ol>
   )
 }

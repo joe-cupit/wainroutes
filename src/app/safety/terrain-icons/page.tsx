@@ -98,8 +98,8 @@ export default function page() {
               <h2 className={fontStyles.heading}>A Note on These Ratings</h2>
             </div>
             <p>These ratings are based on my own experience and are intended only as a guide. Terrain and conditions in the Lake District can change quickly, and everyone's confidence levels and abilities are different.</p>
-            <p>If you're planning a walk, you must judge for yourself whether you and everyone you are going with are prepared and are confident in your abilities. Always bring the right gear, plenty of food and water, check the weather conditions, and be aware of the risks in mountain walking.</p>
-            <p>More information on how to best prepare can be found on our <Link href="/safety">safety page</Link> and many freely available resources on the internet.</p>
+            <p>If you're planning a walk, you must judge for yourself whether you and everyone you are going with are prepared and are confident in their abilities. Always bring the right gear, plenty of food and water, check the weather conditions, and be aware of the risks involved in mountain walking.</p>
+            <p>More information on how to best prepare can be found on the <Link href="/safety">safety page</Link> and many freely available resources on the internet.</p>
           </div>
 
         <div className={styles.noteImage}>

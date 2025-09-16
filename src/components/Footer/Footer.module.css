@@ -22,7 +22,7 @@
   position: absolute;
   bottom: 100%;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: var(--footer-mountain-height);
   
   color: var(--clr-bg-black);

@@ -37,8 +37,8 @@ export default function MobileNavbar({ open, setOpen } : { open: boolean; setOpe
             <h2>Lake District</h2>
             <li><Link href="/weather">Weather</Link></li>
             <li><Link href="/wainwrights">Wainwrights</Link></li>
-            <li><Link href="/travel">Travel</Link></li>
             <li><Link href="/safety">Safety</Link></li>
+            <li><Link href="/travel">Travel</Link></li>
           </div>
         </ul>
       </nav>
