@@ -20,7 +20,6 @@
   justify-content: center;
   align-items: center;
   z-index: 2;
-  /* grid-column: full-width; */
 
   color: var(--clr-text-white);
 }
@@ -67,8 +66,9 @@
   --_map-min-height: 35rem;
 
   display: grid;
-  gap: var(--gap-700);
+  gap: var(--gap-800);
   grid-template-columns: repeat(2, 1fr);
+  align-items: center;
 
   margin-block: var(--gap-800);
 
@@ -86,5 +86,44 @@
   margin-block: var(--gap-500) var(--gap-600);
 }
 .wainwrightsMap {
-  min-height: var(--_map-min-height);
+  height: var(--_map-min-height);
+}
+
+
+.about {
+  display: grid;
+  column-gap: var(--gap-800);
+  row-gap: var(--gap-700);
+  grid-template-columns: 1fr 1.4fr;
+  align-items: center;
+
+  margin-block: var(--gap-800);
+
+  @media (max-width: 50rem) {
+    grid-template-columns: 1fr;
+
+    & .aboutImage {
+      margin-inline: auto;
+      width: 100%;
+      height: clamp(10rem, 35vw, 15rem);
+    }
+  }
+}
+
+.aboutImage {
+  position: relative;
+  width: 100%;
+  height: 22rem;
+}
+.aboutText {
+  display: grid;
+  gap: var(--gap-400);
+  height: fit-content;
+
+  & h2 {
+    margin-block-end: 0.125lh;
+  }
+  & a {
+    margin-block-start: 0.5lh;
+  }
 }
