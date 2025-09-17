@@ -138,6 +138,14 @@ export default async function WalkPage({ params } : WalkProps) {
           location={[walkData.startLocation?.longitude ?? 0, walkData.startLocation?.latitude ?? 0]}
           currentSlug={slug}
         />
+
+        <div className={styles.note}>
+          <p>
+            These routes are for guidance only.
+            Always check the weather, wear appropriate clothing, and know your limits.
+            See the <Link href="/safety">safety page</Link> for the more advice before setting out.
+          </p>
+        </div>
       </section>
 
     </main>

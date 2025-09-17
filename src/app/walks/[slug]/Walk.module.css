@@ -183,7 +183,8 @@
 }
 
 
-.body {
+.body,
+.note {
   display: flex;
   gap: var(--_body-gap);
   justify-content: space-between;
@@ -197,6 +198,24 @@
 
   @media (max-width: 83rem) {
     grid-column: full-width;
+  }
+}
+.note {
+  padding-block-end: calc(var(--gap-500) + var(--footer-mountain-height));
+
+  font-style: italic;
+  
+  & p {
+    max-width: 63ch;
+    margin-inline: auto;
+    text-align: center;
+    text-wrap: balance;
+  }
+  & a {
+    text-decoration: underline;
+  }
+  & a:hover {
+    color: var(--clr-primary-300);
   }
 }
 
