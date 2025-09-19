@@ -1,10 +1,9 @@
 import styles from "./Safety.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
-import Image from "next/image";
-
 import { createPageMetadata } from "@/utils/metadata";
 
+import LazyImage from "@/components/LazyImage/LazyImage";
 import BigImageHero from "@/components/BigImageHero/BigImageHero";
 import PageLinkGrid from "@/components/PageLinkGrid/PageLinkGrid";
 
@@ -14,7 +13,7 @@ export function generateMetadata() {
     title: "Safety in the Lake District",
     description: "Tips for staying safe on the fells of the Lake District, including preparation, clothing, equipment, and navigation tips for your walks.",
     path: "/safety",
-    imageURL: "/images/safety-1.JPEG",
+    imageURL: `https://images.wainroutes.co.uk/safety/walker-scrambling-the-final-section-of-striding-edge-thumb_1024w.webp`,
   });
 }
 
@@ -25,7 +24,8 @@ export default async function Safety() {
     <main className={styles.page}>
       <BigImageHero
         title="Safety in the Lake District"
-        src="/images/safety-1.JPEG"
+        src="safety/walker-scrambling-the-final-section-of-striding-edge.webp"
+        srcSmall="safety/walker-scrambling-the-final-section-of-striding-edge-mobile.webp"
         alt="A climber scrambling the final section of Striding Edge"
       />
 
@@ -90,10 +90,10 @@ export default async function Safety() {
               </b>
             </div>
             <div className={styles.image}>
-              <Image
-                src="/images/safety-3.JPEG"
-                fill={true}
-                sizes="(min-width: 832px): 480px, 100vw"
+              <LazyImage
+                newBase={true}
+                name="safety/sun-setting-on-lake-district-fells.webp"
+                sizes="(min-width: 832px) 480px, 100vw"
                 alt="On a mountain top looking towards a setting sun"
               />
             </div>
@@ -101,10 +101,10 @@ export default async function Safety() {
 
           <div className={`${styles.group} ${styles.reversed}`}>
             <div className={styles.image}>
-              <Image
-                src="/images/safety-2.JPEG"
-                fill={true}
-                sizes="(min-width: 832px): 480px, 100vw"
+              <LazyImage
+                newBase={true}
+                name="safety/hiker-in-full-winter-gear-on-a-snow-covered-lake-district-fell.webp"
+                sizes="(min-width: 832px) 480px, 100vw"
                 alt="A well prepared walker on top of a snow-covered mountain"
               />
             </div>
@@ -136,10 +136,10 @@ export default async function Safety() {
               </b>
             </div>
             <div className={styles.image}>
-              <Image
-                src="/images/about-8.JPEG"
-                fill={true}
-                sizes="(min-width: 832px): 480px, 100vw"
+              <LazyImage
+                newBase={true}
+                name="safety/walker-navigating-a-foggy-lake-district-mountain-top.webp"
+                sizes="(min-width: 832px) 480px, 100vw"
                 alt="A walker navigating through a foggy mountaintop"
               />
             </div>
@@ -153,25 +153,79 @@ export default async function Safety() {
             title: "Terrain Icons",
             description: "Learn about the icons used to describe the terrain of each walk.",
             href: "/safety/terrain-icons",
-            imageSrc: "/images/about-6.JPEG",
+            imageSrc: "safety/wainroutes-terrain-icons.webp",
             imageAlt: ""
           },
           {
             title: "Weather Forecast",
             description: "Check the current 5-day mountain weather forecast from the Met Office.",
             href: "/weather",
-            imageSrc: "/images/about-8.JPEG",
+            imageSrc: "safety/buttermere-lake-with-fleetwith-pike-viewed-from-above.webp",
             imageAlt: ""
           },
           {
             title: "Coming Soon",
             description: "More information and resources are coming to this page soon.",
-            href: "",
-            imageSrc: "/images/about-4.JPEG",
-            imageAlt: "A gang of curious sheep on a mountainside"
+            href: "#",
+            imageSrc: "safety/herdwick-sheep-in-the-mist.webp",
+            imageAlt: ""
           },
         ]}
       />
+
+
+      {/* <section className={styles.linksSection}>
+        <div className={styles.links}>
+          <h2 className={fontStyles.subheading}>Quick links:</h2>
+          <ul>
+            <li><a href="https://www.ldsamra.org.uk/_files/ugd/2feb15_39b0289eec314a41a62142942c24e3f3.pdf" target="_blank">#BeAdventureSmart Safety Leaflet</a></li>
+            <li><a href="https://www.ldsamra.org.uk/" target="_blank">Lake District Search and Mountain Rescue Association</a></li>
+            <li><a href="https://www.lakedistrict.gov.uk/visiting/plan-your-visit/countryside-code" target="_blank">The Countryside Code</a></li>
+            <li><a href="https://www.thebmc.co.uk/en/hill-walking" target="_blank">BMC Hill Walking Advice</a></li>
+          </ul>
+        </div>
+      </section> */}
+
+
+      {/* <section>
+        <div>
+          <h2 className={fontStyles.heading}>In an Emergency</h2>
+          <p>Walking in the Lake District is generally safe, but hiking in the mountains has its risks and those getting involved should be aware and prepared for them.</p>
+        </div>
+      </section> */}
+
+
+      {/* <section>
+        <div className={styles.checklist}>
+          <div>
+            <h2 className={fontStyles.heading}>The mountain rescue checklist</h2>
+            <p>Ask yourself these three questions before every walk in the Lake District.</p>
+          </div>
+          <div className={styles.horizontal}>
+            <div>
+              <h3 className={fontStyles.subheading}>Do I have the right gear?</h3>
+              <p>Boots, layers, and other stuff.</p>
+            </div>
+            <div>
+              <h3 className={fontStyles.subheading}>Do I know what the weather will be like?</h3>
+              <p>Check <Link href="/weather">the mountain weather forecast</Link> the day before and morning of your planned walk.</p>
+            </div>
+            <div>
+              <h3 className={fontStyles.subheading}>Am I confident that I have the knowledge and skills for the day?</h3>
+              <p>Do you know what you&apos;re doing, and confident you can do it.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className={fontStyles.heading}>In an emergency</h2>
+          <h3 className={fontStyles.subheading}>Make note of relevant details</h3>
+          <p></p>
+
+          <h3 className={fontStyles.subheading}>Dial 999</h3>
+
+        </div>
+      </section> */}
 
     </main>
   )

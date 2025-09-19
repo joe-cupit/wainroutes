@@ -2,21 +2,44 @@ import LazyPictureClient from "./components/LazyPictureClient";
 import generateSrcSet from "./utils/generateSrcSet";
 
 
-const BASE_PATH = "https://images.wainroutes.co.uk/wainroutes_";
-const ext = ".webp";
+const BASE_PATH = "https://images.wainroutes.co.uk/";
 
 
-export default function LazyPicture({ names, widths, className, sizes="100vw", alt="", maxWidth, eager=false } : { names: string[]; widths: number[]; className?: string; sizes?: string; alt?: string; maxWidth?: number; eager?: boolean }) {
+type LazyPictureProps = {
+  names: string[]
+  widths: number[]
+  className?: string
+  sizes?: string
+  alt?: string
+  maxWidth?: number
+  eager?: boolean
+  newBase?: boolean
+}
 
-  const src = BASE_PATH + names[0] + "_1024w" + ext;
-  const blurURL = "url(" + BASE_PATH + names[0] + "_32w" + ext + ")";
+
+export default function LazyPicture({ names, widths, className, sizes="100vw", alt="", maxWidth, eager=false, newBase=false } : LazyPictureProps) {
+
+  let base_path: string;
+  let extension: string;
+  if (newBase) {
+    const [src, ext] = names[0].split(".");
+    base_path = BASE_PATH;
+    extension = `.${ext}`;
+  }
+  else {
+    base_path = BASE_PATH + "wainroutes_";
+    extension = ".webp";
+  }
+
+  const src = base_path + names[0].split(".")[0] + "_1024w" + extension;
+  const blurURL = "url(" + base_path + names[0].split(".")[0] + "_32w" + extension + ")";
 
   const SourceElements = names.slice(1).map((name, index) => {
     return (
       <source
         key={index}
         media={"(max-width: " + widths[index] + "px)"}
-        srcSet={generateSrcSet((BASE_PATH + name), ext, maxWidth)}
+        srcSet={generateSrcSet((base_path + name + (newBase ? "" : ".webp")), maxWidth)}
         sizes={sizes}
         type="image/webp"
       />
@@ -29,7 +52,7 @@ export default function LazyPicture({ names, widths, className, sizes="100vw", a
       className={className}
       SourceElements={SourceElements}
       fallbackSrc={src}
-      fallbackSrcSet={generateSrcSet(BASE_PATH + names[0], ext, maxWidth)}
+      fallbackSrcSet={generateSrcSet((base_path + names[0] + (newBase ? "" : ".webp")), maxWidth)}
       sizes={sizes}
       alt={alt}
       blurURL={blurURL}

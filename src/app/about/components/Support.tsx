@@ -2,8 +2,9 @@ import styles from "../About.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
 import Link from "next/link";
+
+import LazyImage from "@/components/LazyImage/LazyImage";
 import TipButton from "@/components/Tips/TipButton";
-import Image from "next/image";
 
 
 export default function Support() {
@@ -16,11 +17,11 @@ export default function Support() {
           <TipButton />
         </div>
         <div className={styles.supportImage}>
-          <Image
-            src="/images/about-support.JPEG"
-            fill={true}
-            sizes="(min-width: 832px): 480px, 100vw"
-            alt="sheep"
+          <LazyImage
+            newBase={true}
+            name="about/a-herdwick-sheep-on-a-hillside.webp"
+            sizes="(min-width: 832px) 480px, 100vw"
+            alt="A Herdwick sheep on a hillside"
           />
         </div>
       </div>

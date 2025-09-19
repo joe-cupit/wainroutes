@@ -1,6 +1,13 @@
-.heroSection {
+.section {
   position: relative;
   height: max(13rem, min(53rem, max(70vh, 30rem), 40vw));
+  background: var(--clr-border);
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
 }
 
 .hero {
@@ -16,11 +23,12 @@
   }
   & .title {
     padding-block: 0.05lh;
-    padding-inline: 0.5ch;
-    margin-block-end: 0.5lh;
+    padding-inline: 0.375ch;
+    margin-block-end: 0.625lh;
     border-radius: var(--gap-300);
     
     text-align: center;
+    text-wrap: balance;
     color: var(--clr-text-white);
     backdrop-filter: blur(0.25rem);
   }

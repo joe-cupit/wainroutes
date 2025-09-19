@@ -1,7 +1,7 @@
 import styles from "../About.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
-import Image from "next/image";
+import LazyPicture from "@/components/LazyImage/LazyPicture";
 
 
 export default function Story() {
@@ -9,11 +9,12 @@ export default function Story() {
       <section>
         <div className={styles.storyContainer}>
           <div className={styles.storyImage}>
-            <Image
-              src="/images/about-story.JPEG"
-              fill={true}
-              sizes="(min-width: 640px): 300px, 100vw"
-              alt="ME"
+            <LazyPicture
+              newBase={true}
+              names={["about/walla-crag-summit-view-portrait.webp", "about/walla-crag-summit-view-landscape.webp"]}
+              widths={[769]}
+              sizes="(min-width: 640px) 300px, 100vw"
+              alt="Me admiring the view from Walla Crag summit"
             />
           </div>
           <div className={styles.story}>

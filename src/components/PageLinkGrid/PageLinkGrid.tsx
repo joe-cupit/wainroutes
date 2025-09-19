@@ -1,8 +1,9 @@
 import styles from "./PageLinkGrid.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from 'next/link';
+
+import LazyImage from "../LazyImage/LazyImage";
 
 
 type Page = {
@@ -38,11 +39,11 @@ function PageCard({ page } : { page: Page }) {
   return (
     <Link href={page.href} className={styles.card} title={page.title}>
       <div className={styles.cardImage}>
-        <Image
-          src={page.imageSrc}
-          fill={true}
-          sizes="(min-width: 752px): 26rem, 100vw"
-          alt={page.imageAlt ?? ""}
+        <LazyImage
+          newBase={true}
+          name={page.imageSrc}
+          sizes="(min-width: 47rem) 26rem, 100vw"
+          alt={page.imageAlt}
         />
       </div>
       <div className={styles.cardBody}>

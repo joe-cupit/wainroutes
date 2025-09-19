@@ -1,5 +1,6 @@
 import styles from "../About.module.css";
-import Image from "next/image";
+
+import LazyImage from "@/components/LazyImage/LazyImage";
 
 
 export default function ImageGrid() {
@@ -10,45 +11,45 @@ export default function ImageGrid() {
         <div className={styles.imageGroup}>
           <div className={styles.imageGroupLeft}>
             <div className={`${styles.image} ${styles.twoRow}`}>
-              <Image
-                src="/images/about-3.JPEG"
-                fill={true}
-                sizes="(min-width: 1100px): 720px, (min-width: 670px): 70vw, 100vw"
+              <LazyImage
+                newBase={true}
+                name="about/a-walker-admiring-a-lake-district-view-in-winter-conditions.webp"
+                sizes="(min-width: 1100px) 720px, (min-width: 670px) 70vw, 100vw"
                 alt="The Fairfield Horseshoe in winter conditions"
               />
             </div>
             <div className={`${styles.image}`}>
-              <Image
-                src="/images/about-17.JPEG"
-                fill={true}
-                sizes="(min-width: 1100px): 350px, (min-width: 670px): 40vw, 100vw"
-                alt="Looking over Buttermere towards Fleetwith Pike"
+              <LazyImage
+                newBase={true}
+                name="about/fleetwith-pike-at-the-end-of-buttermere-lake.webp"
+                sizes="(min-width: 1100px) 350px, (min-width: 670px) 40vw, 100vw"
+                alt="Looking over Buttermere lake towards Fleetwith Pike"
               />
             </div>
             <div className={`${styles.image}`}>
-              <Image
-                src="/images/about-18.JPEG"
-                fill={true}
-                sizes="(min-width: 1100px): 350px, (min-width: 670px): 40vw, 100vw"
-                alt="A misty Helvellyn summit"
+              <LazyImage
+                newBase={true}
+                name="about/hikers-on-helvellyn-summit-in-fog.webp"
+                sizes="(min-width: 1100px) 350px, (min-width: 670px) 40vw, 100vw"
+                alt="Walkers on a foggy Helvellyn summit"
               />
             </div>
           </div>
           <div className={styles.imageGroupRight}>
             <div className={`${styles.image}`}>
-              <Image
-                src="/images/P1000074.JPEG"
-                fill={true}
-                sizes="(min-width: 1100px): 240px, (min-width: 670px): 30vw, 100vw"
-                alt="Highland cow"
+              <LazyImage
+                newBase={true}
+                name="about/a-young-highland-cow-in-the-lake-district.webp"
+                sizes="(min-width: 1100px) 260px, (min-width: 670px) 30vw, 100vw"
+                alt="A young highland cow in the Lake District"
               />
             </div>
             <div className={`${styles.image}`}>
-              <Image
-                src="/images/about-11.JPEG"
-                fill={true}
-                sizes="(min-width: 1100px): 240px, (min-width: 670px): 30vw, 100vw"
-                alt="Seatoller direction sign"
+              <LazyImage
+                newBase={true}
+                name="about/seatoller-old-direction-post.webp"
+                sizes="(min-width: 1100px) 260px, (min-width: 670px) 30vw, 100vw"
+                alt="Seatoller direction post"
               />
             </div>
           </div>

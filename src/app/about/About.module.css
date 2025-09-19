@@ -31,25 +31,23 @@
 .images {
   display: grid;
   gap: var(--gap-400);
-  width: 100%;
   justify-items: center;
   /* align-content: center; */
 }
 .imageGroup {
-  width: min(60rem, 100%);
-  /* height: min(40rem, 80vw); */
-  aspect-ratio: 5 / 3.25;
-  /* margin-inline: auto; */
-
   display: grid;
   gap: var(--gap-400);
   grid-template-columns: 3fr 1fr;
+
+  width: min(60rem, 100%);
+  aspect-ratio: 5 / 3.25;
 }
 
 .imageGroupLeft,
 .imageGroupRight {
   display: grid;
   gap: inherit;
+  overflow: hidden;
 }
 .imageGroupLeft {
   grid-template-rows: 2fr 1fr;
@@ -74,14 +72,9 @@
   }
 }
 
-.imageGroup img {
-  /* border-radius: var(--gap-300); */
-}
-
 .image {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
+  /* border-radius: var(--gap-300); */
 
   &.twoRow {
     grid-column: span 2;
@@ -102,7 +95,7 @@
   width: fit-content;
   margin-inline: auto;
 
-  @media (max-width: 45rem) {
+  @media (max-width: 48rem) {
     flex-direction: column-reverse;
 
     & .storyImage {
@@ -122,10 +115,9 @@
   }
 }
 .storyImage {
-  position: relative;
   /* margin-inline: auto; */
   min-width: clamp(15rem, 30vw, 20rem);
-  aspect-ratio: 3 / 4;
+  height: clamp(23rem, 30vw, 25rem);
   overflow: hidden;
 
   & img {
@@ -223,7 +215,6 @@
   height: fit-content;
 }
 .supportImage {
-  position: relative;
   min-width: clamp(20rem, 40vw, 30rem);
   height: clamp(15rem, 30vw,18rem);
   overflow: hidden;

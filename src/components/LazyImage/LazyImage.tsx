@@ -2,8 +2,7 @@ import LazyImageClient from "./components/LazyImageClient";
 import generateSrcSet from "./utils/generateSrcSet";
 
 
-const BASE_PATH = "https://images.wainroutes.co.uk/wainroutes_";
-const ext = ".webp";
+const BASE_PATH = "https://images.wainroutes.co.uk/";
 
 
 type LazyImageProps = {
@@ -12,14 +11,26 @@ type LazyImageProps = {
   sizes?: string;
   alt?: string;
   maxWidth?: number;
+  newBase?: boolean;
 }
 
-export default function LazyImage({ name, className, sizes="100vw", alt="", maxWidth } : LazyImageProps) {
+export default function LazyImage({ name, className, sizes="100vw", alt="", maxWidth, newBase=false } : LazyImageProps) {
 
-  const path = BASE_PATH + name; 
+  let path: string;
+  let extension: string;
+  if (newBase) {
+    const [src, ext] = name.split(".");
+    path = BASE_PATH + src;
+    extension = `.${ext}`;
+  }
+  else {
+    path = BASE_PATH + "wainroutes_" + name;
+    extension = ".webp";
+  }
 
-  const src = path + "_1024w" + ext;
-  const srcSet = generateSrcSet(path, ext, maxWidth);
+  const src = path + "_1024w" + extension;
+  const srcSet = generateSrcSet(path + extension, maxWidth);
+
 
   return (
     <LazyImageClient
@@ -28,7 +39,7 @@ export default function LazyImage({ name, className, sizes="100vw", alt="", maxW
       srcSet={srcSet}
       sizes={sizes}
       alt={alt}
-      blurURL={`url(${path}_32w${ext})`}
+      blurURL={`url(${path}_32w${extension})`}
     />
   )
 }

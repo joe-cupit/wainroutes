@@ -17,7 +17,7 @@ export function generateMetadata() {
     title: "About",
     description: "Wainroutes makes planning walks in the Lake District easier and more enjoyable, with detailed routes and maps, mountain weather forecasts, and photos.",
     path: "/about",
-    imageURL: "/images/terrain.jpg",
+    imageURL: "https://images.wainroutes.co.uk/about/walking-the-dog-on-derwentwater-at-sunset_1024w.webp",
   });
 }
 
@@ -28,7 +28,7 @@ export default function About() {
     <main className={styles.page}>
       <BigImageHero
         title="About Wainroutes"
-        src="/images/terrain.jpg"
+        src="about/walking-the-dog-on-derwentwater-at-sunset.webp"
         alt="Derwentwater"
       />
 
@@ -44,21 +44,21 @@ export default function About() {
             title: "Safety in the Lakes",
             description: "Learn more about staying safe in the mountains in all weather conditions.",
             href: "/safety",
-            imageSrc: "/images/safety-1.JPEG",
+            imageSrc: "safety/walker-scrambling-the-final-section-of-striding-edge-thumb.webp",
             imageAlt: "A climber scrambling the final section of Striding Edge"
           },
           {
             title: "Alfred Wainwright",
             description: "Find out about the man behind the books.",
             href: "/about/alfred-wainwright",
-            imageSrc: "/images/about-wainwright.jpg",
-            imageAlt: "Alfred Wainwright and his friend sitting on a rock in front a lake"
+            imageSrc: "about/innominate-tarn-on-a-sunny-day.webp",
+            imageAlt: "Innominate Tarn on a sunny day"
           },
           {
             title: "Get in Touch",
             description: "Get in touch about the website or ask a question.",
             href: "/contact",
-            imageSrc: "/images/about-contact-4.jpg",
+            imageSrc: "contact/curious-sheep-on-a-lake-district-mountainside-thumb.webp",
             imageAlt: "A gang of curious sheep on a mountainside"
           },
         ]}

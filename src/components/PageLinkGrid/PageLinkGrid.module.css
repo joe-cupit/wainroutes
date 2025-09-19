@@ -34,6 +34,7 @@
   height: 11rem;
 
   user-select: none;
+  overflow: hidden;
 }
 .cardBody {
   padding-block: var(--gap-400);
