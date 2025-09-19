@@ -133,21 +133,21 @@
   --clr-primary-500: hsl(23, 80%, 60%);
 
   --clr-bg-black: oklch(0.05 0.03 97);
-  --clr-bg-darker: oklch(0.87 0.015 95);
-  --clr-bg-dark: oklch(0.92 0.015 95);
-  --clr-bg: oklch(0.96 0.015 95);
-  --clr-bg-light: oklch(1 0.015 95);
-  --clr-bg-white: oklch(1 0.015 98);
+  --clr-bg-darker: oklch(0.87 0.012 95);
+  --clr-bg-dark: oklch(0.92 0.012 95);
+  --clr-bg: oklch(0.96 0.012 95);
+  --clr-bg-light: oklch(1 0.012 95);
+  --clr-bg-white: oklch(1 0.012 98);
 
-  --clr-text-white: oklch(1 0.015 97);
+  --clr-text-white: oklch(0.98 0.012 97);
   --clr-text-white-muted: oklch(62.64% 0.01953 92.798);
   --clr-text-black: oklch(0.15 0.03 95);
   --clr-text-black-muted: oklch(0.4 0.03 95);
-  --clr-text: oklch(0.15 0.03 95);
-  --clr-text-muted: oklch(0.4 0.03 95);
+  --clr-text: oklch(0.15 0.025 95);
+  --clr-text-muted: oklch(0.4 0.025 95);
 
-  --clr-border: oklch(0.6 0.03 95);
-  --clr-border-muted: oklch(0.7 0.03 95);
+  --clr-border: oklch(0.6 0.025 95);
+  --clr-border-muted: oklch(0.7 0.025 95);
 
   --clr-wain-book-1: #6c8f40;
   --clr-wain-book-2: #d1304d;
@@ -180,6 +180,7 @@
   --clr-terrain-level-4: #7b284a;
 
   --footer-mountain-height: max(min(5vw, 6rem), 3rem);
+  --footer-padding: calc(var(--gap-600) + var(--footer-mountain-height));
 }
 
 html {
@@ -208,7 +209,7 @@ body {
 
 main {
   flex: 1;
-  padding-block: var(--gap-600) calc(var(--gap-600) + var(--footer-mountain-height));
+  padding-block: var(--gap-600) var(--footer-padding);
 }
 
 section,

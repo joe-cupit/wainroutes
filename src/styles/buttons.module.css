@@ -9,7 +9,7 @@
   width: fit-content;
   height: fit-content;
 
-  padding-block: 0.58lh 0.5lh;
+  padding-block: 0.5lh;
   padding-inline: 2ch;
   
   border-radius: 0.5rem;
@@ -52,11 +52,11 @@
 }
 
 .button.secondary {
-  color: var(--clr-text);
-  background: var(--clr-bg-light);
+  color: var(--clr-text-black);
+  background: var(--clr-text-white);
 
   &:hover {
-    background: var(--clr-bg);
+    background: oklch(from var(--clr-text-white) 0.97 c h);
   }
 }
 
