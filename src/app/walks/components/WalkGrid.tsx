@@ -1,13 +1,13 @@
 "use client";
 
 import styles from "../Walks.module.css";
-import buttonStyles from "@/app/buttons.module.css";
+import buttonStyles from "@/styles/buttons.module.css";
 
 import { useEffect, useMemo, useState } from "react";
 
 import type { SimpleWalk } from "../page";
-import WalkCard from "@/app/components/WalkCard/WalkCard";
-import { BusIcon, CloseIconSmall, ElevationIcon, HikingIcon, LocationIcon, MountainIcon } from "@/icons/WalkIcons";
+import WalkCard from "@/components/WalkCard/WalkCard";
+import { BusIcon, CloseIconSmall, ElevationIcon, HikingIcon, LocationIcon, MountainIcon } from "@/icons/MaterialIcons";
 import { useSearchParams } from "next/navigation";
 import { distanceOptions, elevationOptions, locations } from "./WalkFilterValues";
 
@@ -55,7 +55,9 @@ export default function WalkGrid({ walks, wainNames, resetFilters, showDistances
         newWalkData.sort((a, b) => (a.length ?? 0) - (b.length ?? 0));
         break;
       default:
-        // newWalkData.sort((a, b) => a.title.localeCompare(b.title));
+        newWalkData
+          .sort((a, b) => a.title.localeCompare(b.title))
+          .sort((a, b) => (b.recommendedScore ?? 0) - (a.recommendedScore ?? 0));
         break;
     }
 

@@ -1,13 +1,13 @@
 "use client"
 
 import styles from "./ImageGallery.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 import { WalkGallery } from "@/types/Walk";
-import LazyImage from "@/app/components/LazyImage/LazyImage";
-import { CloseIcon, LeftIcon, RightIcon } from "@/icons/WalkIcons";
+import LazyImage from "@/components/LazyImage/LazyImage";
+import { CloseIcon, LeftIcon, RightIcon } from "@/icons/MaterialIcons";
 
 
 const GalleryContext = createContext<{images: string[]; imageData: WalkGallery["imageData"] | null; openCarousel: CallableFunction}>({images: [], imageData: null, openCarousel: () => {}})

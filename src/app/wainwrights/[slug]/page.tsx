@@ -1,5 +1,5 @@
 import styles from "./Wainwright.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { Fragment } from "react";
 import Link from "next/link";
@@ -9,10 +9,11 @@ import { createPageMetadata } from "@/utils/metadata";
 import Walk from "@/types/Walk";
 import Hill, { BookTitles, Classifications } from "@/types/Hill";
 import { displayElevation } from "@/utils/unitConversions";
-import WalkCard from "@/app/components/WalkCard/WalkCard";
+import WalkCard from "@/components/WalkCard/WalkCard";
 
 import wainsJson from "@/data/hills.json";
 import walksJson from "@/data/walks.json";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
 
 type WainProps = {
@@ -63,10 +64,13 @@ export default async function Wainwright({ params } : WainProps) {
           {/* <HillBook bookNum={bookNum} /> */}
 
           <div>
-            <p className={styles.breadcrumbs}><Link href="/wainwrights">Wainwrights</Link> / <Link href={"/wainwrights?book="+bookNum}>{BookTitles[hillData?.book ?? 1]}</Link></p>
-            <div>
-              <h1 className={`${fontStyles.title} ${styles.title}`}>{hillData?.name} <span className={styles.titleElevation}>{displayElevation(hillData?.height)}</span></h1>
-            </div>
+            <Breadcrumbs
+              crumbs={{
+                "Wainwrights": "/wainwrights",
+                [BookTitles[hillData?.book ?? 1]]: "/wainwrights?book="+bookNum,
+              }}
+            />
+            <h1 className={`${fontStyles.title} ${styles.title}`}>{hillData?.name} <span className={styles.titleElevation}>{displayElevation(hillData?.height)}</span></h1>
           </div>
 
           <p>

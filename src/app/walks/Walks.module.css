@@ -54,7 +54,7 @@
 }
 .gridFiltersList li button,
 .gridFiltersList li div {
-  background: var(--clr-neutral-800);
+  background: var(--clr-bg-light);
 }
 .gridFiltersList li button {
   display: flex;
@@ -67,7 +67,7 @@
   transition: background-color 100ms;
 }
 .gridFiltersList li button:hover {
-  background: var(--clr-neutral-700);
+  background: var(--clr-bg);
 }
 .gridFiltersList li div {
   display: flex;
@@ -93,7 +93,7 @@
   text-align: center;
 
   border-radius: 0.25rem;
-  background: var(--clr-neutral-800);
+  background: var(--clr-bg);
   padding-block: 0.75rem;
   padding-inline: 1rem;
   margin-block-end: 0.5rem;
@@ -128,6 +128,14 @@
   width: 100%;
 }
 
+.searchBar,
+.filterButton {
+  background: var(--clr-bg-light);
+
+  border: 1px solid var(--clr-border-muted);
+  border-radius: 0.25rem;
+}
+
 .searchBar {
   position: relative;
   flex: 1;
@@ -139,18 +147,13 @@
 
   font-size: inherit;
   color: inherit;
-  background: var(--clr-neutral-1000);
-
-  border: 1px solid var(--clr-neutral-700);
-  /* border-bottom: 2px solid currentColor; */
-  border-radius: 0.25rem;
 
   padding-block: 0.5rem;
   padding-inline: 0.5rem;
 }
 .searchBar:has(input:focus),
-.searchBar:has(input:focus-visible) {
-  border-color: var(--clr-neutral-400);
+.filterButton:hover {
+  border-color: currentColor;
 }
 
 .searchBar input {
@@ -169,11 +172,9 @@
 }
 
 .filterButton {
-  background: var(--clr-neutral-1000);
   padding-block: var(--gap-200);
   padding-inline: var(--gap-400);
   border-radius: 0.25rem;
-  border: 1px solid var(--clr-neutral-700);
 
   font-weight: var(--fw-medium);
   display: flex;
@@ -186,6 +187,7 @@
   }
 }
 
-.filterButton:hover {
-  border-color: var(--clr-neutral-400);
+.filterButton:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }

@@ -1,12 +1,12 @@
 import styles from "./Wainwrights.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { createPageMetadata } from "@/utils/metadata";
 
 import Hill from "@/types/Hill";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
-import BackToTopButton from "@/app/components/BackToTopButton/BackToTopButton";
-import LakeMap from "@/app/components/Map/Map";
+import BackToTopButton from "@/components/BackToTopButton/BackToTopButton";
+import LakeMap from "@/components/Map/Map";
 
 import WainwrightList from "./components/WainwrightList";
 

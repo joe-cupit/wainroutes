@@ -1,5 +1,5 @@
 import styles from "../Walk.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { Fragment } from "react";
 import Link from "next/link";
@@ -22,7 +22,7 @@ export default function Summary({ title, wainwrights, length, elevation, intro }
 
       <h2 className={`${fontStyles.subheading} visually-hidden`} id="walk_overview">Summary</h2>
       <div className={styles.section}>
-        <div className={(wainwrights?.length ?? 0) <= 2 ? styles.summary_horizontalGroup : ""}>
+        <div className={(wainwrights?.length ?? 0) <= 2 ? styles.summary_horizontalGroupSmall : ""}>
           <h3 className={fontStyles.smallheading}>Wainwrights: </h3>
           <p className={styles.wainwrights}>
             {wainwrights?.map((hill, index) => {

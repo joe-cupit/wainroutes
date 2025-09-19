@@ -1,0 +1,46 @@
+.pagesSection {
+  background: var(--clr-bg-dark);
+}
+
+.pages {
+  display: grid;
+  gap: var(--gap-500);
+  justify-items: center;
+
+  padding-block: var(--gap-600);
+}
+.pagesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-500);
+
+  @media (max-width: 47rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  max-width: 26rem;
+  background: var(--clr-bg-light);
+  box-shadow: 3px 3px 5px var(--clr-bg-darker);
+
+  &:hover h3 {
+    color: var(--clr-primary-400);
+  }
+}
+
+.cardImage {
+  position: relative;
+  height: 11rem;
+
+  user-select: none;
+  overflow: hidden;
+}
+.cardBody {
+  padding-block: var(--gap-400);
+  padding-inline: var(--gap-500);
+
+  & p {
+    padding-block: var(--gap-200);
+  }
+}

@@ -5,7 +5,7 @@ import styles from "../Walks.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { CloseIcon, CloseIconSmall, FilterIcon, SearchIcon } from "@/icons/WalkIcons";
+import { CloseIcon, CloseIconSmall, FilterIcon, SearchIcon } from "@/icons/MaterialIcons";
 
 
 type WalkSearchBarProps = {

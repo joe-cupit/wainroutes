@@ -1,12 +1,13 @@
 "use client";
 
 import styles from "../Walk.module.css";
-import fontStyles from "@/app/fonts.module.css";
-import buttonStyles from "@/app/buttons.module.css";
+import fontStyles from "@/styles/fonts.module.css";
+import buttonStyles from "@/styles/buttons.module.css";
 
 import { Fragment, useEffect, useState } from "react";
 
-import { BackIcon, ElevationIcon, HikingIcon, MountainIcon } from "@/icons/WalkIcons";
+import { BackIcon, ElevationIcon, HikingIcon, MountainIcon } from "@/icons/MaterialIcons";
+import Link from "next/link";
 
 
 export default function Overlay({ walkData } : { walkData: {title: string, wainwrightCount: number, lengthString: string, elevationString: string}}) {
@@ -86,7 +87,15 @@ export default function Overlay({ walkData } : { walkData: {title: string, wainw
       <section>
         <div className={styles.overlayWrapper}>
           <div className={styles.overlayLeft}>
-            <button className={buttonStyles.iconButton} title="Back to walks" aria-label="Back to walks" onClick={() => history.back()}><BackIcon /></button>
+            {/* <button className={buttonStyles.iconButton} title="Back to walks" aria-label="Back to walks" onClick={() => history.back()}><BackIcon /></button> */}
+            <Link
+              href="/walks"
+              className={buttonStyles.iconButton}
+              title="Back to walks"
+              aria-label="Back to walks"
+            >
+              <BackIcon />
+            </Link>
             <div className={styles.overlayTitle}>
               <button className={fontStyles.subheading} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>{walkData.title}</button>
               <div className={styles.overlayDetails}>

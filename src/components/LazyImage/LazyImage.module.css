@@ -1,0 +1,19 @@
+.blurLoad {
+  width: 100%;
+  height: 100%;
+
+  background-size: cover;
+  background-position: center;
+  transition: filter 150ms ease-out;
+
+  overflow: hidden;
+}
+
+.blurLoad img,
+.blurLoad picture {
+  object-fit: cover;
+  object-position: center;
+
+  width: 100%;
+  height: 100%;
+}

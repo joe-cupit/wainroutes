@@ -6,8 +6,8 @@ import { useState } from "react";
 
 import type { ParsedGPX } from "..";
 import type MapMarker from "@/types/MapMarker";
-import LakeMap, { GeoRoute } from "@/app/components/Map/Map";
-import ElevationChart from "@/app/components/ElevationChart/ElevationChart";
+import LakeMap, { GeoRoute } from "@/components/Map/Map";
+import ElevationChart from "@/components/ElevationChart/ElevationChart";
 
 
 export default function InteractiveRoute({ gpx, hillMarkers, defaultCenter } : { gpx: ParsedGPX, hillMarkers: MapMarker[]; defaultCenter: [number, number] }) {

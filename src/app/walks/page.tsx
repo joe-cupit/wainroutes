@@ -1,10 +1,10 @@
 import styles from "./Walks.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import type Walk from "@/types/Walk";
 import { createPageMetadata } from "@/utils/metadata";
 
-import BackToTopButton from "@/app/components/BackToTopButton/BackToTopButton";
+import BackToTopButton from "@/components/BackToTopButton/BackToTopButton";
 import WalksClient from "./components/WalksClient";
 
 import walksJson from "@/data/walks.json";
@@ -32,7 +32,7 @@ export async function generateMetadata({ searchParams } : MetadataProps) {
   }
   else {
     return createPageMetadata({
-      title: "Lake District Walks",
+      title: "Walks in the Lake District",
       description: "Find your next Wainwright bagging walk in the Lake District, filtered by distance, elevation, and public transport access.",
       path: "/walks",
     });
@@ -43,6 +43,7 @@ export async function generateMetadata({ searchParams } : MetadataProps) {
 export type SimpleWalk = {
   slug: string;
   title: string;
+  recommendedScore?: number;
   wainwrights: string[];
   length: number;
   elevation: number;
@@ -66,6 +67,7 @@ export default async function WalksPage({ searchParams } : MetadataProps) {
   const simplifiedWalks = (walksJson as unknown as Walk[]).map(walk => ({
     slug: walk.slug,
     title: walk.title,
+    recommendedScore: walk.recommendedScore,
     wainwrights: walk.wainwrights,
     length: walk.length,
     elevation: walk.elevation,

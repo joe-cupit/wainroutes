@@ -1,6 +1,7 @@
-.weather {
-  margin-bottom: var(--gap-900);
+.weather > section {
+  --content-max-width: 1150px;
 }
+
 .subheading {
   font-size: var(--fs-400);
   font-weight: var(--fw-bold);
@@ -8,7 +9,7 @@
 }
 .subtext {
   font-size: var(--fs-300);
-  color: var(--clr-neutral-600);
+  color: var(--clr-text-muted);
 }
 .weather p {
   line-height: 1.4;
@@ -22,6 +23,7 @@
 .mountainHazardsList {
   display: flex;
   gap: var(--gap-400);
+  align-content: center;
 }
 .currentDayMain {
   flex-direction: column;
@@ -85,7 +87,7 @@
   padding-top: var(--gap-400);
 }
 .secondaryRow {
-  color: var(--clr-neutral-500);
+  color: var(--clr-text-muted);
 }
 .forecastTable td.imageCell {
   --_image-height: calc(2.5 * var(--fs-600));
@@ -115,6 +117,7 @@
   padding-inline: 0.5rem;
   padding-block: 0.3125rem 0.1875rem;
   display: inline-block;
+  height: fit-content;
 }
 .mountainHazardLow {
   background: #F1D46340;
@@ -152,49 +155,4 @@
   .forecastTable {
     --_padding-inline: var(--gap-300)
   }
-}
-
-
-.weather.skeleton {
-  --_max-width: 67ch;
-}
-
-.weather.skeleton h2,
-.weather.skeleton h3,
-.weather.skeleton p,
-.weather.skeleton li {
-  display: block;
-  background: var(--clr-neutral-800);
-  width: min(100%, var(--_max-width));
-  height: 1lh;
-  border: none;
-  margin-block: 0.25rem;
-  opacity: 0.8;
-}
-
-.weather.skeleton h2 {
-  width: min(100%, var(--gap-600) * 12.5, var(--_max-width));
-  background: var(--clr-neutral-600);
-}
-.weather.skeleton h3 {
-  width: min(100%, var(--gap-600) * 9, var(--_max-width));;
-  background: var(--clr-neutral-700);
-}
-.weather.skeleton p {
-  height: 2.1lh;
-}
-.weather.skeleton ul {
-  list-style: none;
-}
-.weather.skeleton li {
-  width: min(100%, 10rem, var(--_max-width));
-}
-.weather.skeleton .extraDetails p {
-  max-width: 320px;
-}
-.weather.skeleton .table {
-  height: 18rem;
-}
-.weather.skeleton .currentDay div {
-  width: min(100%, var(--_max-width));
 }

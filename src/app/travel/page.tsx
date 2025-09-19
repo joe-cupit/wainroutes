@@ -1,5 +1,5 @@
 import styles from './Travel.module.css';
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { createPageMetadata } from '@/utils/metadata';
 

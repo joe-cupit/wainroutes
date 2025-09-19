@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "../Wainwrights.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -13,6 +13,26 @@ import { displayElevation } from "@/utils/unitConversions";
 
 
 export default function WainwrightList({ simplifiedHills } : { simplifiedHills: SimplifiedHill[] }) {
+
+  useEffect(() => {
+    const navbar = document.getElementById("navbar");
+    const head = document.getElementById("table-head");
+
+    function checkNavbar() {
+      if (window.innerWidth < 552 && navbar && head) {
+        if (navbar.classList.contains("sticky")) {
+          head.classList.remove(styles.stickyTop);
+        }
+        else head.classList.add(styles.stickyTop);
+      }
+    }
+
+    checkNavbar();
+    window.addEventListener("scroll", checkNavbar)
+    return () => {
+      window.removeEventListener("scroll", checkNavbar)
+    }
+  }, [])
 
   const [inputValue, setInputValue] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
@@ -96,7 +116,7 @@ export default function WainwrightList({ simplifiedHills } : { simplifiedHills: 
       </div>
 
       <table>
-        <thead>
+        <thead id="table-head">
           <tr>
             <td role="button" onClick={() => updateSortMode("book")}>
               Book&nbsp;

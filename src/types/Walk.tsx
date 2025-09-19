@@ -11,10 +11,15 @@ export type WalkGallery = {
   }[]
 }
 
+
+type TerrainLevel = 1 | 2 | 3 | 4
+
+
 type Walk = {
   slug: string;
 
   title: string;
+  recommendedScore?: number;
   type?: string;
   summary?: string;
   wainwrights: string[];
@@ -34,9 +39,9 @@ type Walk = {
     [number: string]: string;
   }
   terrain?: {
-    gradient?: number;
-    path?: number;
-    exposure?: number;
+    gradient?: TerrainLevel;
+    path?: TerrainLevel;
+    exposure?: TerrainLevel;
     desc?: string;
   }
 

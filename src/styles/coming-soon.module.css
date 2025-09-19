@@ -1,0 +1,48 @@
+.page {
+  background: var(--clr-bg);
+
+  min-height: 90vh;
+}
+
+.page section {
+  --content-max-width: 950px;
+
+  &:not(:first-child) {
+    margin-block: var(--gap-800);
+  }
+}
+
+.main {
+  display: grid;
+  gap: var(--gap-500);
+  justify-content: center;
+  text-wrap: balance;
+  text-align: center;
+
+  & ul {
+    list-style: none;
+    margin-block-start: var(--gap-400);
+
+    display: grid;
+    gap: var(--gap-300);
+  }
+
+  & a {
+    color: var(--clr-primary-300);
+    text-decoration: underline;
+  }
+  & a:hover {
+    color: var(--clr-primary-400);
+  }
+}
+
+.roulette {
+  display: grid;
+  gap: var(--gap-500);
+  justify-items: center;
+
+  & h2 {
+    text-align: center;
+    text-wrap: balance;
+  }
+}

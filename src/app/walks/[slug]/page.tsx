@@ -14,9 +14,9 @@ import Overlay from "./components/Overlay";
 import WalkAside from "./components/Aside";
 
 import type Walk from "@/types/Walk";
-import LazyImage from "@/app/components/LazyImage/LazyImage";
+import LazyImage from "@/components/LazyImage/LazyImage";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
-import { LocationIcon } from "@/icons/WalkIcons";
+import { LocationIcon } from "@/icons/MaterialIcons";
 
 import walksJson from "@/data/walks.json";
 
@@ -133,12 +133,21 @@ export default async function WalkPage({ params } : WalkProps) {
             terrain={walkData.terrain}
           />
         </div>
+
+        <NearbyWalks
+          location={[walkData.startLocation?.longitude ?? 0, walkData.startLocation?.latitude ?? 0]}
+          currentSlug={slug}
+        />
+
+        <div className={styles.note}>
+          <p>
+            These routes are for guidance only.
+            Always check the weather, wear appropriate clothing, and know your limits.
+            See the <Link href="/safety">safety page</Link> for the more advice before setting out.
+          </p>
+        </div>
       </section>
 
-      <NearbyWalks
-        location={[walkData.startLocation?.longitude ?? 0, walkData.startLocation?.latitude ?? 0]}
-        currentSlug={slug}
-      />
     </main>
   )
 }

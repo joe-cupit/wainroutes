@@ -2,6 +2,7 @@
   {
     "slug": "the-fairfield-horseshoe",
     "title": "The Fairfield Horseshoe",
+    "recommendedScore": 94,
     "type": "Horseshoe",
     "summary": "",
     "wainwrights": [
@@ -57,6 +58,7 @@
   {
     "slug": "helvellyn-via-striding-edge",
     "title": "Helvellyn via Striding Edge",
+    "recommendedScore": 99,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["birkhouse-moor", "helvellyn", "catstycam"],
@@ -141,6 +143,7 @@
   {
     "slug": "the-fells-south-of-buttermere",
     "title": "The Fells South of Buttermere",
+    "recommendedScore": 97,
     "type": "Point-to-point",
     "summary": "",
     "wainwrights": ["red-pike-b", "high-stile", "high-crag", "haystacks"],
@@ -163,7 +166,7 @@
     },
     "terrain": {
       "gradient": 3,
-      "path": 1,
+      "path": 2,
       "exposure": 2,
       "scrambling": 2,
       "desc": ""
@@ -213,6 +216,7 @@
   {
     "slug": "the-langdale-pikes",
     "title": "The Langdale Pikes",
+    "recommendedScore": 85,
     "type": "Circular",
     "summary": "",
     "wainwrights": [
@@ -274,6 +278,7 @@
   {
     "slug": "the-kentmere-horseshoe",
     "title": "The Kentmere Horseshoe",
+    "recommendedScore": 98,
     "type": "Horseshoe",
     "summary": "",
     "wainwrights": [
@@ -294,7 +299,9 @@
     "startLocation": {
       "location": "Kentmere",
       "latitude": 54.429678,
-      "longitude": -2.840358
+      "longitude": -2.840358,
+      "postcode": "LA8 9JL",
+      "gridRef": "NY455041"
     },
     "busConnections": {},
     "terrain": {
@@ -359,6 +366,7 @@
   {
     "slug": "great-gable",
     "title": "Great Gable",
+    "recommendedScore": 92,
     "type": "Circular",
     "summary": "",
     "wainwrights": [
@@ -374,7 +382,9 @@
     "startLocation": {
       "location": "Seatoller",
       "latitude": 54.512828,
-      "longitude": -3.166243
+      "longitude": -3.166243,
+      "postcode": "CA12 5XQ",
+      "gridRef": "NY245136"
     },
     "busConnections": {
       "77": "",
@@ -401,6 +411,7 @@
   {
     "slug": "a-coledale-horseshoe",
     "title": "A Coledale Horseshoe",
+    "recommendedScore": 88,
     "type": "Horseshoe",
     "summary": "",
     "wainwrights": [
@@ -453,6 +464,7 @@
   {
     "slug": "borrowdale-to-dungeon-ghyll",
     "title": "Borrowdale to Dungeon Ghyll",
+    "recommendedScore": 82,
     "type": "Point-to-point",
     "summary": "",
     "wainwrights": [
@@ -469,8 +481,10 @@
     "date": "2024-09-23",
     "startLocation": {
       "location": "Borrowdale",
-      "latitude": 54.518056,
-      "longitude": -3.152874
+      "latitude": 54.517896,
+      "longitude": -3.148622,
+      "postcode": "CA12 5XD",
+      "gridRef": "NY257142"
     },
     "busConnections": {
       "78": "",
@@ -478,8 +492,8 @@
     },
     "terrain": {
       "gradient": 3,
-      "path": 2,
-      "exposure": 1,
+      "path": 3,
+      "exposure": 2,
       "scrambling": 2,
       "desc": ""
     },
@@ -496,6 +510,7 @@
   {
     "slug": "scafell-pike",
     "title": "Scafell Pike",
+    "recommendedScore": 78,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["scafell-pike"],
@@ -505,8 +520,10 @@
     "date": "2021-09-01",
     "startLocation": {
       "location": "Wasdale Head",
-      "latitude": 54.454225,
-      "longitude": -3.25397
+      "latitude": 54.455391,
+      "longitude": -3.261196,
+      "postcode": "CA20 1EX",
+      "gridRef": "NY183074"
     },
     "busConnections": {},
     "terrain": {
@@ -528,6 +545,7 @@
   {
     "slug": "the-four-summits-of-dodd-wood",
     "title": "The Four Summits of Dodd Wood",
+    "recommendedScore": 73,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["ullock-pike", "long-side", "carl-side", "dodd"],
@@ -537,8 +555,10 @@
     "date": "2024-03-27",
     "startLocation": {
       "location": "Dodd Wood",
-      "latitude": 54.643,
-      "longitude": -3.1862
+      "latitude": 54.642906,
+      "longitude": -3.186459,
+      "postcode": "CA12 4QD",
+      "gridRef": "NY235281"
     },
     "busConnections": {
       "553": "",
@@ -563,6 +583,7 @@
   {
     "slug": "a-grasmere-round",
     "title": "A Grasmere Round",
+    "recommendedScore": 87,
     "type": "Circular",
     "summary": "",
     "wainwrights": [
@@ -608,6 +629,7 @@
   {
     "slug": "the-old-man-of-coniston",
     "title": "The Old Man of Coniston",
+    "recommendedScore": 91,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["coniston-old-man", "dow-crag", "brim-fell"],
@@ -683,6 +705,7 @@
   {
     "slug": "raven-crag",
     "title": "Raven Crag",
+    "recommendedScore": 73,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["raven-crag"],
@@ -693,7 +716,9 @@
     "startLocation": {
       "location": "Thirlmere",
       "latitude": 54.562088,
-      "longitude": -3.073203
+      "longitude": -3.073203,
+      "postcode": "CA12 4TG",
+      "gridRef": "NY307190"
     },
     "busConnections": {
       "555": ""
@@ -728,6 +753,7 @@
   {
     "slug": "grisedale-tarn-with-surrounding-mountains",
     "title": "Grisedale Tarn with Surrounding Mountains",
+    "recommendedScore": 64,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["dollywaggon-pike", "nethermost-pike", "seat-sandal"],
@@ -738,7 +764,9 @@
     "startLocation": {
       "location": "Grasmere",
       "latitude": 54.473693,
-      "longitude": -3.026006
+      "longitude": -3.026006,
+      "postcode": "LA22 9RU",
+      "gridRef": "NY336091"
     },
     "busConnections": {
       "555": "",
@@ -763,6 +791,7 @@
   {
     "slug": "skiddaw",
     "title": "Skiddaw and Little Man",
+    "recommendedScore": 76,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["skiddaw-little-man", "skiddaw"],
@@ -808,6 +837,7 @@
   {
     "slug": "helvellyns-west-face",
     "title": "Helvellyn's West Face",
+    "recommendedScore": 69,
     "type": "Point-to-point",
     "summary": "",
     "wainwrights": ["helvellyn"],
@@ -818,7 +848,9 @@
     "startLocation": {
       "location": "Thirlmere",
       "latitude": 54.542307,
-      "longitude": -3.057813
+      "longitude": -3.057813,
+      "postcode": "CA12 4TN",
+      "gridRef": "NY316168"
     },
     "busConnections": { "555": "" },
     "terrain": {
@@ -840,6 +872,7 @@
   {
     "slug": "walla-crag",
     "title": "Walla Crag",
+    "recommendedScore": 66,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["walla-crag"],
@@ -897,6 +930,7 @@
   {
     "slug": "north-whinlatter-woods",
     "title": "North Whinlatter Woods",
+    "recommendedScore": 45,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["barf", "lords-seat", "broom-fell"],
@@ -906,8 +940,10 @@
     "date": "2024-06-11",
     "startLocation": {
       "location": "Thornthwaite",
-      "latitude": 54.626,
-      "longitude": -3.2104
+      "latitude": 54.625981,
+      "longitude": -3.210179,
+      "postcode": "CA12 5SQ",
+      "gridRef": "NY219263"
     },
     "busConnections": { "X5": "" },
     "terrain": {
@@ -928,6 +964,7 @@
   {
     "slug": "loughrigg-fell-with-rydal-cave",
     "title": "Loughrigg Fell with Rydal Cave",
+    "recommendedScore": 77,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["loughrigg-fell"],
@@ -938,7 +975,9 @@
     "startLocation": {
       "location": "Ambleside",
       "latitude": 54.449827,
-      "longitude": -3.003987
+      "longitude": -3.003987,
+      "postcode": "LA22 9SE",
+      "gridRef": "NY349065"
     },
     "busConnections": {
       "555": "",
@@ -977,6 +1016,7 @@
   {
     "slug": "catbells-from-keswick",
     "title": "Catbells from Keswick",
+    "recommendedScore": 66,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["catbells"],
@@ -1006,7 +1046,7 @@
     "terrain": {
       "gradient": 2,
       "path": 1,
-      "exposure": 1,
+      "exposure": 2,
       "scrambling": 2,
       "desc": ""
     },
@@ -1021,6 +1061,7 @@
   {
     "slug": "latrigg",
     "title": "Latrigg",
+    "recommendedScore": 78,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["latrigg"],
@@ -1065,6 +1106,7 @@
   {
     "slug": "castle-crag-with-millican-daltons-cave",
     "title": "Castle Crag with Millican Dalton's Cave",
+    "recommendedScore": 72,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["castle-crag"],
@@ -1129,6 +1171,7 @@
   {
     "slug": "bessyboot-rosthwaite-fell",
     "title": "Bessyboot (Rosthwaite Fell)",
+    "recommendedScore": 61,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["rosthwaite-fell"],
@@ -1138,8 +1181,10 @@
     "date": "2024-09-22",
     "startLocation": {
       "location": "Borrowdale",
-      "latitude": 54.518336,
-      "longitude": -3.152105
+      "latitude": 54.517793,
+      "longitude": -3.148536,
+      "postcode": "CA12 5XE",
+      "gridRef": "NY257142"
     },
     "busConnections": { "78": "" },
     "terrain": {
@@ -1160,6 +1205,7 @@
   {
     "slug": "gowbarrow-fell-with-aira-force",
     "title": "Gowbarrow Fell with Aira Force",
+    "recommendedScore": 63,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["gowbarrow-fell"],
@@ -1169,8 +1215,10 @@
     "date": "2024-03-23",
     "startLocation": {
       "location": "Glenridding",
-      "latitude": 54.576558,
-      "longitude": -2.930229
+      "latitude": 54.572426,
+      "longitude": -2.928381,
+      "postcode": "CA11 0JS",
+      "gridRef": "NY400200"
     },
     "busConnections": {
       "508": "",
@@ -1194,6 +1242,7 @@
   {
     "slug": "whinlatter-peak",
     "title": "Whinlatter Peak",
+    "recommendedScore": 44,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["whinlatter"],
@@ -1204,7 +1253,9 @@
     "startLocation": {
       "location": "Whinlatter Pass",
       "latitude": 54.610051,
-      "longitude": -3.225659
+      "longitude": -3.225659,
+      "postcode": "CA12 5TW",
+      "gridRef": "NY209245"
     },
     "busConnections": { "77": "", "77A": "" },
     "terrain": {
@@ -1238,6 +1289,7 @@
   {
     "slug": "blencathra-via-halls-fell-ridge",
     "title": "Blencathra via Hall's Fell Ridge",
+    "recommendedScore": 86,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["blencathra"],
@@ -1275,6 +1327,7 @@
   {
     "slug": "grange-fell",
     "title": "Grange Fell",
+    "recommendedScore": 34,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["grange-fell"],
@@ -1285,7 +1338,9 @@
     "startLocation": {
       "location": "Borrowdale",
       "latitude": 54.541182,
-      "longitude": -3.155515
+      "longitude": -3.155515,
+      "postcode": "CA12 5XA",
+      "gridRef": "NY253168"
     },
     "busConnections": {
       "77": "",
@@ -1326,6 +1381,7 @@
   {
     "slug": "wansfell-baystones",
     "title": "Wansfell (Baystones)",
+    "recommendedScore": 52,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["wansfell"],
@@ -1364,6 +1420,7 @@
   {
     "slug": "stone-arthur",
     "title": "Stone Arthur",
+    "recommendedScore": 56,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["stone-arthur"],
@@ -1400,6 +1457,7 @@
   {
     "slug": "binsey",
     "title": "Binsey",
+    "recommendedScore": 62,
     "type": "There-and-back",
     "summary": "",
     "wainwrights": ["binsey"],
@@ -1409,7 +1467,9 @@
     "startLocation": {
       "location": "Bassenthwaite",
       "latitude": 54.704932,
-      "longitude": -3.188359
+      "longitude": -3.188359,
+      "postcode": "CA12 4RJ",
+      "gridRef": "NY235350"
     },
     "busConnections": {},
     "terrain": {
@@ -1430,6 +1490,7 @@
   {
     "slug": "scafell-pike-and-lingmell-via-mickledore",
     "title": "Scafell Pike and Lingmell via Mickledore",
+    "recommendedScore": 95,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["scafell-pike", "lingmell"],
@@ -1439,7 +1500,9 @@
     "startLocation": {
       "location": "Wasdale Head",
       "latitude": 54.455680,
-      "longitude": -3.261777
+      "longitude": -3.261777,
+      "postcode": "CA20 1EX",
+      "gridRef": "NY182074"
     },
     "busConnections": {},
     "terrain": {
@@ -1461,6 +1524,7 @@
   {
     "slug": "rannerdale-knotts-from-buttermere",
     "title": "Rannerdale Knotts from Buttermere",
+    "recommendedScore": 70,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["rannerdale-knotts"],
@@ -1497,6 +1561,7 @@
   {
     "slug": "little-and-great-mell-fell",
     "title": "Little and Great Mell Fell",
+    "recommendedScore": 58,
     "type": "Point-to-point",
     "summary": "",
     "wainwrights": ["little-mell-fell", "great-mell-fell"],
@@ -1506,7 +1571,9 @@
     "startLocation": {
       "location": "Matterdale",
       "latitude": 54.603633,
-      "longitude": -2.894144
+      "longitude": -2.894144,
+      "postcode": "CA11 0LS",
+      "gridRef": "NY423235"
     },
     "busConnections": {},
     "terrain": {

@@ -1,5 +1,5 @@
 import styles from "./Weather.module.css";
-import fontStyles from "@/app/fonts.module.css";
+import fontStyles from "@/styles/fonts.module.css";
 
 import { Fragment } from "react";
 import { createPageMetadata } from "@/utils/metadata";

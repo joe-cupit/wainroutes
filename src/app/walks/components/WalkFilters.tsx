@@ -1,13 +1,13 @@
 "use client"
 
 import styles from "./WalkFilters.module.css";
-import fontStyles from "@/app/fonts.module.css";
-import buttonStyles from "@/app/buttons.module.css";
+import fontStyles from "@/styles/fonts.module.css";
+import buttonStyles from "@/styles/buttons.module.css";
 
 import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { DropdownIcon } from "@/icons/WalkIcons";
+import { DropdownIcon } from "@/icons/MaterialIcons";
 
 import { distanceOptions, elevationOptions, locations } from "./WalkFilterValues";
 

@@ -1,0 +1,331 @@
+/* lora regular */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/lora-v36-latin-regular.woff2') format('woff2'),
+       url('/fonts/lora-v36-latin-regular.ttf') format('truetype');
+}
+/* lora 600 */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/lora-v36-latin-600.woff2') format('woff2'),
+       url('/fonts/lora-v36-latin-600.ttf') format('truetype');
+}
+/* lora 700 */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/lora-v36-latin-700.woff2') format('woff2'),
+       url('/fonts/lora-v36-latin-700.ttf') format('truetype');
+}
+
+/* dm sans 300 */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/dm-sans-v16-latin-300.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-300.ttf') format('truetype');
+}
+/* dm sans regular */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/dm-sans-v16-latin-regular.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-regular.ttf') format('truetype');
+}
+/* dm sans italic */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/dm-sans-v16-latin-italic.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-italic.ttf') format('truetype');
+}
+/* dm sans 600 */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/dm-sans-v16-latin-600.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-600.ttf') format('truetype');
+}
+/* dm sans 800 */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/dm-sans-v16-latin-800.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-800.ttf') format('truetype');
+}
+/* dm sans 900 */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/fonts/dm-sans-v16-latin-900.woff2') format('woff2'),
+       url('/fonts/dm-sans-v16-latin-900.ttf') format('truetype');
+}
+
+/* dm mono regular */
+@font-face {
+  font-display: swap;
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/dm-mono-v15-latin-regular.woff2') format('woff2'),
+       url('/fonts/dm-mono-v15-latin-regular.ttf') format('truetype');
+}
+
+
+:root {
+  /*  fonts & styles  */
+  --ff-heading: "Lora", serif;
+  --ff-body: "DM Sans", sans-serif;
+  --ff-mono: "DM Mono", monospace;
+
+  --fs-200: clamp(0.8125rem, 1.25vw, 0.9375rem);
+  --fs-300: clamp(0.9375rem, 1.5vw, 1rem);
+  --fs-400: clamp(1rem, 2.25vw, 1.125rem);
+  --fs-500: clamp(1.125rem, 2.5vw, 1.25rem);
+  --fs-600: clamp(1.375rem, 3.5vw, 1.625rem);
+  --fs-800: clamp(1.75rem, 4.5vw, 2.625rem);
+  --fs-1000: clamp(2rem, 5vw, 3.75rem);
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 600;
+  --fw-bold: 800;
+  --fw-black: 1000;
+
+  /* gaps */
+  --gap-200: clamp(0.125rem, 0.25vw, 0.25rem);
+  --gap-300: clamp(0.25rem, 0.5vw, 0.5rem);
+  --gap-400: clamp(0.75rem, 1vw, 1rem);
+  --gap-500: clamp(1.25rem, 1.5vw, 1.5rem);
+  --gap-600: clamp(1.5rem, 2vw, 2rem);
+  --gap-700: clamp(2rem, 2vw, 4rem);
+  --gap-800: clamp(3rem, 3vw, 5rem);
+  --gap-900: clamp(4rem, 4vw, 6rem);
+
+  --navbar-height: 4.5rem;
+
+  /*  colours  */
+  color-scheme: light;
+
+  --clr-primary-0: hsl(23, 80%, 10%);
+  --clr-primary-300: hsl(23, 80%, 35%);
+  --clr-primary-400: hsl(23, 85%, 40%);
+  --clr-primary-500: hsl(23, 80%, 60%);
+
+  --clr-bg-black: oklch(0.05 0.03 97);
+  --clr-bg-darker: oklch(0.87 0.012 95);
+  --clr-bg-dark: oklch(0.92 0.012 95);
+  --clr-bg: oklch(0.96 0.012 95);
+  --clr-bg-light: oklch(1 0.012 95);
+  --clr-bg-white: oklch(1 0.012 98);
+
+  --clr-text-white: oklch(0.98 0.012 97);
+  --clr-text-white-muted: oklch(62.64% 0.01953 92.798);
+  --clr-text-black: oklch(0.15 0.03 95);
+  --clr-text-black-muted: oklch(0.4 0.03 95);
+  --clr-text: oklch(0.15 0.025 95);
+  --clr-text-muted: oklch(0.4 0.025 95);
+
+  --clr-border: oklch(0.6 0.025 95);
+  --clr-border-muted: oklch(0.7 0.025 95);
+
+  --clr-wain-book-1: #6c8f40;
+  --clr-wain-book-2: #d1304d;
+  --clr-wain-book-3: #208bc1;
+  --clr-wain-book-4: #d55b36;
+  --clr-wain-book-5: #7f4234;
+  --clr-wain-book-6: #edb636;
+  --clr-wain-book-7: #1b8651;
+
+  --clr-bus-77: #ddad00;
+  --clr-bus-77A: #ddad00;
+  --clr-bus-77C: #ddad00;
+  --clr-bus-78: #ec6608;
+  --clr-bus-505: #016067;
+  --clr-bus-508: #814997;
+  --clr-bus-509: #af5742;
+  --clr-bus-516: #a71681;
+  --clr-bus-553: #ef99c1;
+  --clr-bus-554: #ef99c1;
+  --clr-bus-555: #e30613;
+  --clr-bus-599: #3fa535;
+  --clr-bus-X4: #312783;
+  --clr-bus-X5: #009FE3;
+
+  --clr-terrain-icon-color: var(--clr-text);
+  --clr-terrain-icon-highlight: var(--clr-text-white-muted);
+  --clr-terrain-level-1: #57B493;
+  --clr-terrain-level-2: #b48b32;
+  --clr-terrain-level-3: #a03b3b;
+  --clr-terrain-level-4: #7b284a;
+
+  --footer-mountain-height: max(min(5vw, 6rem), 3rem);
+  --footer-padding: calc(var(--gap-600) + var(--footer-mountain-height));
+}
+
+html {
+  background-color: var(--clr-bg-black);
+  scroll-padding: 9.5rem;
+}
+
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-regular);
+  font-optical-sizing: auto;
+
+  color: var(--clr-text);
+  background: var(--clr-bg-dark);
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+@media (max-width: 46rem) {
+  body.mobile-nav-open {
+    overflow: hidden;
+  }
+}
+
+main {
+  flex: 1;
+  padding-block: var(--gap-600) var(--footer-padding);
+}
+
+section,
+header,
+footer {
+  --section-padding: 1.5rem;
+  --content-max-width: 1300px;
+
+  @media (max-width: 41rem) {
+    --section-padding: 1.25rem;
+  }
+
+  display: grid;
+  width: 100%;
+  grid-template-columns:
+    [full-width-start]
+      minmax(var(--section-padding), 1fr)
+    [content-start]
+      min(100% - (var(--section-padding) * 2), var(--content-max-width))
+    [content-end]
+      minmax(var(--section-padding), 1fr)
+    [full-width-end];
+}
+header {
+  --section-padding: 1rem;
+}
+section > *,
+header > *,
+footer > * {
+  grid-column: content;
+}
+
+
+/* Style resets */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1.3;
+}
+
+input, select {
+  font: inherit;
+  color: inherit;
+}
+select:focus-visible {
+  accent-color: currentColor;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+picture img {
+  width: 100%;
+  height: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+p {
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+
+/* User select */
+
+::selection {
+  color: var(--clr-text-white);
+  background: var(--clr-primary-400);
+}
+
+
+/* global css */
+
+#navbar.sticky {
+  top: 0;
+}
+
+/* regular css */
+
+.visually-hidden {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+
+.pigeon-tiles-box {
+  user-select: none;
+}
+.pigeon-zoom-in:focus-visible,
+.pigeon-zoom-out:focus-visible {
+  outline: 2px solid black !important;
+  outline-offset: 0 !important;
+}
