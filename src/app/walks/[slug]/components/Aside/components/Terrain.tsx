@@ -31,7 +31,7 @@ export default function Terrain({ selected, walkTerrain } : { selected: boolean;
                   <TerrainGradientIcon level={walkTerrain.gradient} />
                 </Link>
                 <div>
-                  <h3>{gradientTitles[walkTerrain.gradient]}</h3>
+                  <h3 className={fontStyles.smallheading}>{gradientTitles[walkTerrain.gradient]}</h3>
                   <p>{gradientLevels[walkTerrain.gradient]}</p>
                 </div>
               </li>
@@ -42,7 +42,7 @@ export default function Terrain({ selected, walkTerrain } : { selected: boolean;
                   <TerrainPathIcon level={walkTerrain.path} />
                 </Link>
                 <div>
-                  <h3>{pathTitles[walkTerrain.path]}</h3>
+                  <h3 className={fontStyles.smallheading}>{pathTitles[walkTerrain.path]}</h3>
                   <p>{pathLevels[walkTerrain.path]}</p>
                 </div>
               </li>
@@ -53,7 +53,7 @@ export default function Terrain({ selected, walkTerrain } : { selected: boolean;
                   <TerrainExposureIcon level={walkTerrain.exposure} />
                 </Link>
                 <div>
-                  <h3>{exposureTitles[walkTerrain.exposure]}</h3>
+                  <h3 className={fontStyles.smallheading}>{exposureTitles[walkTerrain.exposure]}</h3>
                   <p>{exposureLevels[walkTerrain.exposure]}</p>
                 </div>
               </li>

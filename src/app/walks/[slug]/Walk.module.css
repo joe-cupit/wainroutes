@@ -462,11 +462,6 @@
       height: min-content;
     }
   }
-
-  & h3 {
-    font-size: var(--fs-500);
-    font-weight: var(--fw-medium);
-  }
 }
 .walkTerrainNote {
   display: flex;

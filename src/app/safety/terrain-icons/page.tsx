@@ -4,11 +4,11 @@ import fontStyles from "@/styles/fonts.module.css";
 import Link from "next/link";
 
 import { createPageMetadata } from "@/utils/metadata";
+import LazyImage from "@/components/LazyImage/LazyImage";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
 import { exposureLevels, exposureTitles, gradientLevels, gradientTitles, pathLevels, pathTitles } from "./consts";
 import { TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "@/icons/TerrainIcons";
-import Image from "next/image";
 
 
 export function generateMetadata() {
@@ -48,7 +48,7 @@ export default function page() {
                 <li key={index}>
                   <TerrainGradientIcon level={index} />
                   <div>
-                    <h3 className={fontStyles.subheading}>{gradientTitles[index]}</h3>
+                    <h3 className={fontStyles.smallheading}>{gradientTitles[index]}</h3>
                     <p>{gradientLevels[index]}</p>
                   </div>
                 </li>
@@ -64,7 +64,7 @@ export default function page() {
                 <li key={index}>
                   <TerrainPathIcon level={index} />
                   <div>
-                    <h3 className={fontStyles.subheading}>{pathTitles[index]}</h3>
+                    <h3 className={fontStyles.smallheading}>{pathTitles[index]}</h3>
                     <p>{pathLevels[index]}</p>
                   </div>
                 </li>
@@ -80,7 +80,7 @@ export default function page() {
                 <li key={index}>
                   <TerrainExposureIcon level={index} />
                   <div>
-                    <h3 className={fontStyles.subheading}>{exposureTitles[index]}</h3>
+                    <h3 className={fontStyles.smallheading}>{exposureTitles[index]}</h3>
                     <p>{exposureLevels[index]}</p>
                   </div>
                 </li>
@@ -94,20 +94,18 @@ export default function page() {
         <div className={styles.noteContainer}>
           <div className={styles.note}>
             <div>
-              <b>Be prepared.</b>
               <h2 className={fontStyles.heading}>A Note on These Ratings</h2>
             </div>
             <p>These ratings are based on my own experience and are intended only as a guide. Terrain and conditions in the Lake District can change quickly, and everyone&apos;s confidence levels and abilities are different.</p>
-            <p>If you&apos;re planning a walk, you must judge for yourself whether you and everyone you are going with are prepared and are confident in their abilities. Always bring the right gear, plenty of food and water, check the weather conditions, and be aware of the risks involved in mountain walking.</p>
             <p>More information on how to best prepare can be found on the <Link href="/safety">safety page</Link> and many freely available resources on the internet.</p>
           </div>
 
         <div className={styles.noteImage}>
-          <Image
-            src="/images/terrain-icons.JPEG"
-            fill={true}
-            sizes="(min-width: 832px): 480px, 100vw"
-            alt="A well prepared walker on top of a snow-covered mountain"
+          <LazyImage
+            newBase={true}
+            name="terrain/jacks-rake-on-pavey-ark.webp"
+            sizes="(min-width: 832px) 480px, 100vw"
+            alt="Jack's Rake on Pavey Ark"
           />
         </div>
         </div>

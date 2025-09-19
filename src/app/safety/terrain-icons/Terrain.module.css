@@ -1,29 +1,38 @@
 .page {
-  background-color: var(--clr-bg);
+  padding-block: 0;
 }
 
 .page section {
-  margin-block-end: var(--gap-800);
+  --content-max-width: 62rem;
+
+  @media (max-width: 62rem) {
+    & > * {
+      grid-column: full-width;
+    }
+  }
 }
 
-.main {
+.main,
+.noteContainer {
   display: grid;
   gap: var(--gap-800);
+  padding-block: var(--gap-600) var(--footer-padding);
+  padding-inline: var(--section-padding);
+  background: var(--clr-bg);
+}
+.main {
+  padding-block-end: var(--gap-800);
 }
 
 .terrainGroup {
   display: grid;
   gap: var(--gap-300);
-
-  & p {
-    max-width: none;
-  }
 }
 
 .iconGroup {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--gap-500);
 
   margin-block-start: var(--gap-400);
@@ -35,11 +44,6 @@
   height: var(--_svg-size);
 }
 
-@media (max-width: 56rem) {
-  .iconGroup {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 @media (max-width: 40rem) {
   .iconGroup {
     grid-template-columns: auto 1fr;
@@ -48,9 +52,6 @@
 
   .iconGroup li {
     display: contents;
-    /* display: flex;
-    gap: var(--gap-500);
-    align-items: center; */
   }
 
   .iconGroup svg {
@@ -85,7 +86,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  aspect-ratio: 4 / 3;
+  overflow: hidden;
 }
 
 @media (max-width: 50rem) {
@@ -94,9 +95,8 @@
   }
 
   .noteImage {
-    grid-row-start: 1;
     max-width: 30rem;
-    aspect-ratio: 5 / 3;
+    aspect-ratio: 2;
 
     margin-inline: auto;
   }
