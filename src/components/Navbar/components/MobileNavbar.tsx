@@ -5,6 +5,7 @@ import styles from "../Navbar.module.css";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SearchIcon } from "@/icons/MaterialIcons";
 
 
 export default function MobileNavbar({ open, setOpen } : { open: boolean; setOpen: Dispatch<SetStateAction<boolean>> }) {
@@ -13,6 +14,19 @@ export default function MobileNavbar({ open, setOpen } : { open: boolean; setOpe
   useEffect(() => {
     setOpen(false);
   }, [pathname, setOpen])
+
+  function renderLink(href: string, name: React.ReactNode) {
+    return (
+      <li>
+        <Link
+          href={href}
+          onClick={() => setOpen(false)}
+        >
+          {name}
+        </Link>
+      </li>
+    )
+  }
 
 
   return (
@@ -23,22 +37,22 @@ export default function MobileNavbar({ open, setOpen } : { open: boolean; setOpe
       <nav>
         <ul>
           <div>
-            <li><Link href="/walks">Find a walk</Link></li>
+            {renderLink("/walks", <>Find a walk <SearchIcon /></>)}
           </div>
 
           <div>
             <h2>Site</h2>
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/about">About</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
+            {renderLink("/", "Home")}
+            {renderLink("/about", "About")}
+            {renderLink("/contact", "Contact")}
           </div>
 
           <div>
             <h2>Lake District</h2>
-            <li><Link href="/weather">Weather</Link></li>
-            <li><Link href="/wainwrights">Wainwrights</Link></li>
-            <li><Link href="/safety">Safety</Link></li>
-            <li><Link href="/travel">Travel</Link></li>
+            {renderLink("/weather", "Weather")}
+            {renderLink("/wainwrights", "Wainwrights")}
+            {renderLink("/safety", "Safety")}
+            {renderLink("/travel", "Travel")}
           </div>
         </ul>
       </nav>

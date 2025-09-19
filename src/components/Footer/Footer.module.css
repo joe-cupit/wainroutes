@@ -70,6 +70,17 @@
   }
 }
 
+@media (max-width: 24rem) {
+  .row.wrappable .group {
+    flex-direction: column;
+    gap: 2lh;
+
+    & .links {
+      justify-items: center;
+    }
+  }
+}
+
 .logo {
   display: grid;
   justify-items: center;

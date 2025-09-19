@@ -26,7 +26,7 @@ export default function NavbarClient({ targetId } : { targetId: string }) {
       }
 
       // check for scroll up on mobile
-      if (window.innerWidth < 552) {
+      if (window.innerWidth < 832) {
         if (window.scrollY > 0 && window.scrollY < lastScrollY.current) {
           navbar.classList.add("sticky");
         }

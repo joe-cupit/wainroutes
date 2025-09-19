@@ -155,26 +155,34 @@
 }
 .mobile ul a {
   transition: opacity 50ms ease;
+  display: flex;
+  gap: 0.375ch;
+  align-items: center;
+
+  & svg {
+    width: 0.825lh;
+    height: 0.825lh;
+    scale: -1 1;
+  }
 }
 .mobile ul a:hover {
   opacity: 0.5;
 }
 
 .mobile .bottomQuote {
-  position: absolute;
-  bottom: 1lh;
-  right: var(--gap-600);
-
+  margin-block-start: auto;
+  margin-block-end: 0.5lh;
+  
+  text-align: right;
   font-size: var(--fs-300);
   font-weight: var(--fw-regular);
   font-style: italic;
 }
 
 
-@media (max-width: 46rem) {
+@media (max-width: 52rem) {
   .navbar {
     top: -5rem;
-    padding-block: 1.25rem;
   }
   .navbar:has(.mobile.active) {
     top: 0 !important;
@@ -188,7 +196,7 @@
   }
   .mobileOnly,
   .mobile.active {
-    display: block;
+    display: grid;
   }
   .mobile.active {
     transform: translateX(0);
