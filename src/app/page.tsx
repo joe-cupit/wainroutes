@@ -121,20 +121,21 @@ export default function Home() {
         <section>
           <div className={styles.about}>
             <div className={styles.aboutImage}>
-              <Image
-                src="/images/about-16.JPEG"
-                fill={true}
-                sizes="(min-width: 1100px): 720px, (min-width: 670px): 70vw, 100vw"
-                alt="The Fairfield Horseshoe in winter conditions"
+              <LazyPicture
+                newBase={true}
+                names={["home/a-hiker-stood-at-the-cairn-on-high-street.webp", "home/a-hiker-stood-at-the-cairn-on-high-street-mobile.webp"]}
+                widths={[800]}
+                sizes="(min-width: 801px) 480px, 100vw"
+                alt="A hiker stood at the cairn on High Street"
               />
             </div>
             <div className={styles.aboutText}>
               <h2 className={fontStyles.heading}>About Wainroutes</h2>
               <p>
-                Wainroutes is a guide to walking the Lake District's Wainwrights, shaped by my own goal to climb all 214. Here I share the routes I've followed, photos I've taken, and resources I rely on when planning walks.
+                Wainroutes is a guide to walking the Lake District&apos;s Wainwrights, shaped by my own goal to climb all 214. Here I share the routes I&apos;ve followed, photos I&apos;ve taken, and resources I rely on when planning walks.
               </p>
               <p>
-                Whether you're bagging Wainwrights or just looking for a day out in the fells, I hope Wainroutes makes it easier to enjoy the Lakes as much as I do.
+                Whether you&apos;re bagging Wainwrights or just looking for a day out in the fells, I hope Wainroutes makes it easier to enjoy the Lakes as much as I do.
               </p>
               <Link href="/about" className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.animate}`}>
                 Read more about Wainroutes <ArrowRightIcon />

@@ -28,7 +28,7 @@
   text-align: center;
 }
 .heroSearch {
-  width: min(38rem, 100%);
+  width: min(14.5 * var(--fs-800), 95%);
   z-index: 2;
 }
 
