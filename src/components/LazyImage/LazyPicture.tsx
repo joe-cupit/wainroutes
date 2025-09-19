@@ -22,7 +22,7 @@ export default function LazyPicture({ names, widths, className, sizes="100vw", a
   let base_path: string;
   let extension: string;
   if (newBase) {
-    const [src, ext] = names[0].split(".");
+    const ext = names[0].split(".")[1];
     base_path = BASE_PATH;
     extension = `.${ext}`;
   }

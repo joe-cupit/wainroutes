@@ -14,7 +14,7 @@ import { TerrainExposureIcon, TerrainGradientIcon, TerrainPathIcon } from "@/ico
 export function generateMetadata() {
   return createPageMetadata({
     title: "Walk Terrain Icons",
-    description: "Details on walk terrain icons.",
+    description: "Wainroutes terrain icons describe the gradients, paths, and exposure you can expect on Lake District walks, so you can plan walks with confidence.",
     path: "/safety/terrain-icons",
   });
 }

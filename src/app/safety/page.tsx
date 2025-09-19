@@ -150,17 +150,17 @@ export default async function Safety() {
       <PageLinkGrid
         pages={[
           {
-            title: "Terrain Icons",
-            description: "Learn about the icons used to describe the terrain of each walk.",
-            href: "/safety/terrain-icons",
-            imageSrc: "safety/wainroutes-terrain-icons.webp",
-            imageAlt: ""
-          },
-          {
             title: "Weather Forecast",
             description: "Check the current 5-day mountain weather forecast from the Met Office.",
             href: "/weather",
             imageSrc: "safety/buttermere-lake-with-fleetwith-pike-viewed-from-above.webp",
+            imageAlt: ""
+          },
+          {
+            title: "Terrain Icons",
+            description: "Learn about the icons used to describe the terrain of each walk.",
+            href: "/safety/terrain-icons",
+            imageSrc: "safety/wainroutes-terrain-icons.webp",
             imageAlt: ""
           },
           {

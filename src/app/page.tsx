@@ -4,7 +4,6 @@ import buttonStyles from "@/styles/buttons.module.css";
 
 import Script from "next/script";
 import Link from "next/link";
-import Image from "next/image";
 import { createPageMetadata } from "@/utils/metadata";
 
 import SiteSearchBar from "@/components/SiteSearchBar/SiteSearchBar";

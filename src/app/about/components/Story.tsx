@@ -12,8 +12,8 @@ export default function Story() {
             <LazyPicture
               newBase={true}
               names={["about/walla-crag-summit-view-portrait.webp", "about/walla-crag-summit-view-landscape.webp"]}
-              widths={[769]}
-              sizes="(min-width: 640px) 300px, 100vw"
+              widths={[768]}
+              sizes="(min-width: 769px) 300px, 100vw"
               alt="Me admiring the view from Walla Crag summit"
             />
           </div>

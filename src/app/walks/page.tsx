@@ -32,7 +32,7 @@ export async function generateMetadata({ searchParams } : MetadataProps) {
   }
   else {
     return createPageMetadata({
-      title: "Lake District Walks",
+      title: "Walks in the Lake District",
       description: "Find your next Wainwright bagging walk in the Lake District, filtered by distance, elevation, and public transport access.",
       path: "/walks",
     });

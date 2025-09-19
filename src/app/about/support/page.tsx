@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/utils/metadata"
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs"
 import TipWidget from "@/components/Tips/TipWidget"
 import TipLink from "@/components/Tips/TipLink"
-import Image from "next/image"
+import LazyImage from "@/components/LazyImage/LazyImage"
 
 
 export function generateMetadata() {
@@ -44,10 +44,10 @@ export default function page() {
                 <p>Thank you for your support, <br/>Joe</p>
               </div>
               <div className={styles.image}>
-                <Image
-                  src="/images/support-2.JPEG"
-                  fill={true}
-                  sizes="100vw"
+                <LazyImage
+                  newBase={true}
+                  name="support/lake-district-fells-on-a-misty-morning.webp"
+                  sizes="(min-width: 1250px) 780px, 70vw"
                   alt="Misty morning mountains behind a cobblestone wall"
                 />
               </div>

@@ -166,7 +166,7 @@
     },
     "terrain": {
       "gradient": 3,
-      "path": 1,
+      "path": 2,
       "exposure": 2,
       "scrambling": 2,
       "desc": ""
@@ -299,7 +299,9 @@
     "startLocation": {
       "location": "Kentmere",
       "latitude": 54.429678,
-      "longitude": -2.840358
+      "longitude": -2.840358,
+      "postcode": "LA8 9JL",
+      "gridRef": "NY455041"
     },
     "busConnections": {},
     "terrain": {
@@ -380,7 +382,9 @@
     "startLocation": {
       "location": "Seatoller",
       "latitude": 54.512828,
-      "longitude": -3.166243
+      "longitude": -3.166243,
+      "postcode": "CA12 5XQ",
+      "gridRef": "NY245136"
     },
     "busConnections": {
       "77": "",
@@ -477,8 +481,10 @@
     "date": "2024-09-23",
     "startLocation": {
       "location": "Borrowdale",
-      "latitude": 54.518056,
-      "longitude": -3.152874
+      "latitude": 54.517896,
+      "longitude": -3.148622,
+      "postcode": "CA12 5XD",
+      "gridRef": "NY257142"
     },
     "busConnections": {
       "78": "",
@@ -486,8 +492,8 @@
     },
     "terrain": {
       "gradient": 3,
-      "path": 2,
-      "exposure": 1,
+      "path": 3,
+      "exposure": 2,
       "scrambling": 2,
       "desc": ""
     },
@@ -514,8 +520,10 @@
     "date": "2021-09-01",
     "startLocation": {
       "location": "Wasdale Head",
-      "latitude": 54.454225,
-      "longitude": -3.25397
+      "latitude": 54.455391,
+      "longitude": -3.261196,
+      "postcode": "CA20 1EX",
+      "gridRef": "NY183074"
     },
     "busConnections": {},
     "terrain": {
@@ -547,8 +555,10 @@
     "date": "2024-03-27",
     "startLocation": {
       "location": "Dodd Wood",
-      "latitude": 54.643,
-      "longitude": -3.1862
+      "latitude": 54.642906,
+      "longitude": -3.186459,
+      "postcode": "CA12 4QD",
+      "gridRef": "NY235281"
     },
     "busConnections": {
       "553": "",
@@ -706,7 +716,9 @@
     "startLocation": {
       "location": "Thirlmere",
       "latitude": 54.562088,
-      "longitude": -3.073203
+      "longitude": -3.073203,
+      "postcode": "CA12 4TG",
+      "gridRef": "NY307190"
     },
     "busConnections": {
       "555": ""
@@ -752,7 +764,9 @@
     "startLocation": {
       "location": "Grasmere",
       "latitude": 54.473693,
-      "longitude": -3.026006
+      "longitude": -3.026006,
+      "postcode": "LA22 9RU",
+      "gridRef": "NY336091"
     },
     "busConnections": {
       "555": "",
@@ -834,7 +848,9 @@
     "startLocation": {
       "location": "Thirlmere",
       "latitude": 54.542307,
-      "longitude": -3.057813
+      "longitude": -3.057813,
+      "postcode": "CA12 4TN",
+      "gridRef": "NY316168"
     },
     "busConnections": { "555": "" },
     "terrain": {
@@ -924,8 +940,10 @@
     "date": "2024-06-11",
     "startLocation": {
       "location": "Thornthwaite",
-      "latitude": 54.626,
-      "longitude": -3.2104
+      "latitude": 54.625981,
+      "longitude": -3.210179,
+      "postcode": "CA12 5SQ",
+      "gridRef": "NY219263"
     },
     "busConnections": { "X5": "" },
     "terrain": {
@@ -957,7 +975,9 @@
     "startLocation": {
       "location": "Ambleside",
       "latitude": 54.449827,
-      "longitude": -3.003987
+      "longitude": -3.003987,
+      "postcode": "LA22 9SE",
+      "gridRef": "NY349065"
     },
     "busConnections": {
       "555": "",
@@ -1026,7 +1046,7 @@
     "terrain": {
       "gradient": 2,
       "path": 1,
-      "exposure": 1,
+      "exposure": 2,
       "scrambling": 2,
       "desc": ""
     },
@@ -1161,8 +1181,10 @@
     "date": "2024-09-22",
     "startLocation": {
       "location": "Borrowdale",
-      "latitude": 54.518336,
-      "longitude": -3.152105
+      "latitude": 54.517793,
+      "longitude": -3.148536,
+      "postcode": "CA12 5XE",
+      "gridRef": "NY257142"
     },
     "busConnections": { "78": "" },
     "terrain": {
@@ -1193,8 +1215,10 @@
     "date": "2024-03-23",
     "startLocation": {
       "location": "Glenridding",
-      "latitude": 54.576558,
-      "longitude": -2.930229
+      "latitude": 54.572426,
+      "longitude": -2.928381,
+      "postcode": "CA11 0JS",
+      "gridRef": "NY400200"
     },
     "busConnections": {
       "508": "",
@@ -1229,7 +1253,9 @@
     "startLocation": {
       "location": "Whinlatter Pass",
       "latitude": 54.610051,
-      "longitude": -3.225659
+      "longitude": -3.225659,
+      "postcode": "CA12 5TW",
+      "gridRef": "NY209245"
     },
     "busConnections": { "77": "", "77A": "" },
     "terrain": {
@@ -1312,7 +1338,9 @@
     "startLocation": {
       "location": "Borrowdale",
       "latitude": 54.541182,
-      "longitude": -3.155515
+      "longitude": -3.155515,
+      "postcode": "CA12 5XA",
+      "gridRef": "NY253168"
     },
     "busConnections": {
       "77": "",
@@ -1439,7 +1467,9 @@
     "startLocation": {
       "location": "Bassenthwaite",
       "latitude": 54.704932,
-      "longitude": -3.188359
+      "longitude": -3.188359,
+      "postcode": "CA12 4RJ",
+      "gridRef": "NY235350"
     },
     "busConnections": {},
     "terrain": {
@@ -1470,7 +1500,9 @@
     "startLocation": {
       "location": "Wasdale Head",
       "latitude": 54.455680,
-      "longitude": -3.261777
+      "longitude": -3.261777,
+      "postcode": "CA20 1EX",
+      "gridRef": "NY182074"
     },
     "busConnections": {},
     "terrain": {
@@ -1539,7 +1571,9 @@
     "startLocation": {
       "location": "Matterdale",
       "latitude": 54.603633,
-      "longitude": -2.894144
+      "longitude": -2.894144,
+      "postcode": "CA11 0LS",
+      "gridRef": "NY423235"
     },
     "busConnections": {},
     "terrain": {
