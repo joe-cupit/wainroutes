@@ -4,16 +4,17 @@ import styles from "./Map.module.css";
 
 import { Fragment, ReactNode, useEffect, useMemo, useState } from "react";
 import { Map, Marker, GeoJson, ZoomControl, GeoJsonFeature } from "pigeon-maps";
-import { useSupercluster } from "./hooks/useSupercluster";
-import Link from "next/link";
-import MapMarker from "@/types/MapMarker";
 import { AnyProps, ClusterFeature, PointFeature } from "supercluster";
+
+import MapMarker from "@/types/MapMarker";
 import { BookTitles } from "@/types/Hill";
+import getMapBounds from "@/utils/getMapBounds";
+
+import { useSupercluster } from "./hooks/useSupercluster";
+
 
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(import.meta.env.VITE_MAP_API_KEY, "topo-v2");
-
-// const geoViewport = require('@mapbox/geo-viewport');
 
 
 type LakeProps = {
@@ -70,12 +71,11 @@ export default function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCe
 
     const mapBounds = document.getElementById("lake-map")?.getBoundingClientRect();
     if (mapBounds) {
-      const newcenter = [(minLat+maxLat)/2, (minLong+maxLong)/2] as [number, number];
-      const newzoom = Math.max(Math.min(-Math.max(Math.log((maxLat-minLat)/(mapBounds.height-100))/Math.log(2), Math.log((maxLong-minLong)/(mapBounds.width))/Math.log(2)), 14), 8);
-  
-      setCenter(newcenter);
-      setZoom(newzoom*0.98);
-      setMinZoom(newzoom*0.75);
+      const newBounds = getMapBounds([minLat, maxLat], [minLong, maxLong], mapBounds.width, mapBounds.height)
+
+      setCenter(newBounds.center);
+      setZoom(newBounds.zoom);
+      setMinZoom(newBounds.zoom*0.8);
     }
 
   }, [mapPoints, gpxPoints]);
@@ -204,7 +204,7 @@ export function GeoRoute ({ points, activeIndex, ...props } : { points: [number,
 function Attribution () {
   return (
     <p className={styles.attribution}>
-      <Link href="https://pigeon-maps.js.org/" target="_blank" aria-label="Pigeon Maps">Pigeon</Link> | © <Link href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</Link> contributors
+      <a href="https://pigeon-maps.js.org/" target="_blank" aria-label="Pigeon Maps">Pigeon</a> | © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors
     </p>
   )
 }

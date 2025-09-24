@@ -9,6 +9,7 @@ import type Walk from "@/types/Walk";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 import { getDistanceValue, getElevationValue } from "@/utils/unitConversions";
 import haversineDistance from "@/utils/haversineDistance";
+import getMapBounds from "@/utils/getMapBounds";
 
 import DownloadButton from "./Components/DownloadButton";
 import InteractiveRoute from "./Components/InteractiveRoute";
@@ -26,7 +27,14 @@ export type ParsedGPX = {
 }
 
 
-export default function Route({ wainwrights, defaultCenter, slug } : { wainwrights: Walk["wainwrights"]; defaultCenter: [number, number]; slug: string }) {
+type RouteProps = {
+  wainwrights: Walk["wainwrights"]
+  defaultCenter: [number, number]
+  slug: string
+}
+
+
+export default function Route({ wainwrights, defaultCenter, slug } : RouteProps) {
 
   const filePath = path.join(process.cwd(), 'src', 'data', 'gpx', `${slug}.gpx`);
   const gpxStr = readFileSync(filePath, 'utf-8');
@@ -77,6 +85,11 @@ export default function Route({ wainwrights, defaultCenter, slug } : { wainwrigh
 
   const gpx = parseGpx(gpxStr);
 
+  const mapBounds = getMapBounds(
+    [Math.min(...gpx.gpxPoints.map(p => p[1])), Math.max(...gpx.gpxPoints.map(p => p[1]))],
+    [Math.min(...gpx.gpxPoints.map(p => p[0])), Math.max(...gpx.gpxPoints.map(p => p[0]))]
+  )
+
 
   return (
     <div id="walk-route">
@@ -87,7 +100,8 @@ export default function Route({ wainwrights, defaultCenter, slug } : { wainwrigh
       <InteractiveRoute
         gpx={gpx}
         hillMarkers={hillMarkers}
-        defaultCenter={defaultCenter}
+        defaultCenter={mapBounds.center}
+        defaultZoom={mapBounds.zoom}
       />
     </div>
   )
