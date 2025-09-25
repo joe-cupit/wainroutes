@@ -115,7 +115,7 @@ export default function WainwrightList({ simplifiedHills } : { simplifiedHills: 
         />
       </div>
 
-      <table>
+      <table className={styles.table}>
         <thead id="table-head">
           <tr>
             <td role="button" onClick={() => updateSortMode("book")}>
@@ -148,26 +148,27 @@ export default function WainwrightList({ simplifiedHills } : { simplifiedHills: 
                       <div className={styles.wainwrightBookTopColour} />
                     </div>
                   </td>
-                  <td className={styles.mountainColumn}>
+                  <td>
                     <h2 className={fontStyles.subheading}>
                       <Link
                         href={`/wainwrights/${hill.slug}`}
                         // onMouseEnter={() => setHoveredSlug(hill.slug)}
                         // onMouseLeave={() => setHoveredSlug(null)}
                       >
-                        {hill.name}{hill.secondaryName ? <span className={fontStyles.subtext}> ({hill.secondaryName})</span> : ""}
+                        {hill.name} {hill.secondaryName ? <span className={`${styles.secondaryName} ${fontStyles.subtext}`}>({hill.secondaryName})</span> : ""}
                       </Link>
                     </h2>
                     <span className={fontStyles.subtext}>{BookTitles[hill.book]}</span>
                   </td>
-                  <td className={styles.tableHeight}>{displayElevation(hill.height)}</td>
+                  <td>{displayElevation(hill.height)}</td>
                 </tr>
               )
             })
           }
+
+          {filterTerm && <tr><td className={styles.listNote} colSpan={3}>{filteredHills.length === 0 ? "No" : "Showing all"} Wainwrights matching <i>{"'"+filterTerm+"'"}</i></td></tr>}
         </tbody>
       </table>
-      {filterTerm && <p className={styles.listNote}>{filteredHills.length === 0 ? "No" : "Showing all"} Wainwrights matching <i>{"'"+filterTerm+"'"}</i></p>}
     </div>
   )
 }
