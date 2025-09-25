@@ -11,6 +11,7 @@ import LakeMap from "@/components/Map/Map";
 import WainwrightList from "./components/WainwrightList";
 
 import wainsJson from "@/data/hills.json";
+import getMapBounds from "@/utils/getMapBounds";
 
 
 export function generateMetadata() {
@@ -43,6 +44,11 @@ export default function Wainwrights() {
 
   const hillMarkers = useHillMarkers();
 
+  const mapBounds = getMapBounds(
+      [Math.min(...hillMarkers.map(p => p.coordinates[0])), Math.max(...hillMarkers.map(p => p.coordinates[0]))],
+      [Math.min(...hillMarkers.map(p => p.coordinates[1])), Math.max(...hillMarkers.map(p => p.coordinates[1]))]
+    )
+
 
   return (
     <main className={styles.wainwrights}>
@@ -64,6 +70,8 @@ export default function Wainwrights() {
             <LakeMap
               mapMarkers={hillMarkers}
               activePoint={null}
+              defaultCenter={mapBounds.center}
+              defaultZoom={mapBounds.zoom}
             />
           </div>
         </div>

@@ -35,23 +35,24 @@
 
 .marker {
   position: relative;
-  width: 32px;
+  width: 24px;
+  aspect-ratio: 1;
   fill: var(--clr-primary-400);
   stroke: black;
-  stroke-width: 1;
+  stroke-width: 2;
+  translate: 20% 50%;
 }
-.hillMarker {
-  scale: 0.85;
-}
-
 
 .cluster {
-  transition-property: transform, fill;
+  transition-property: scale, fill;
   transition-duration: 50ms;
+}
+.marker:hover {
+  z-index: 99;
 }
 .marker:hover .cluster,
 .focussedCluster {
-  transform: scale(1.2) translateY(-4px);
+  scale: 1.2;
 }
 .clusterTooltip {
   display: none;
@@ -70,7 +71,7 @@
   padding: var(--gap-300) var(--gap-400);
   border-radius: var(--gap-300);
 
-  box-shadow: 3px 3px oklch(from var(--clr-text) l c h / .15);
+  box-shadow: 3px 3px 5px oklch(from var(--clr-text) l c h / .15);
 }
 .clusterTooltipTip {
   font-weight: var(--fw-regular);
@@ -105,19 +106,17 @@
   z-index: 10;
 }
 .cluster svg:nth-child(2) {
-  opacity: 0.89;
+  opacity: 0.95;
   z-index: 9;
-  transform: translate(4px, -1px) scale(0.98);
+  transform: translate(5px, -1px) scale(0.95);
 }
 .cluster svg:nth-child(3) {
-  opacity: 0.84;
+  opacity: 0.95;
   z-index: 8;
-  transform: translate(7px, -2px) scale(0.95);
+  transform: translate(-5px, -1px) scale(0.95);
 }
-.cluster svg:nth-child(4) {
-  opacity: 0.8;
-  z-index: 7;
-  transform: translate(9px, -2px) scale(0.9);
+.cluster svg:nth-child(n + 4) {
+  display: none;
 }
 
 

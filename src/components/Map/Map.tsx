@@ -213,10 +213,15 @@ function Attribution () {
 // icons
 function HillIcon({ book }: { book: number}) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 4 4" className={styles.hillMarker} data-book={book}>
+    <svg
+      viewBox="-1 -1 18 18"
+      xmlns="http://www.w3.org/2000/svg"
+      className={styles.hillMarker}
+      data-book={book}
+    >
       <path
-        d="M0 0 2-4 4 0Z"
-        style={{ pointerEvents: "auto", strokeWidth: 0.175 }}
+        d="M9.40299 0.115232C6.62504 -1.14122 4.02295 8.18122 1.12913 13.2782C0.716591 14.0048 1.22828 15 2.06385 15H13.3945C14.1348 15 14.6249 14.2212 14.3379 13.5387C12.0483 8.09234 10.632 0.671093 9.40299 0.115232Z"
+        style={{ pointerEvents: "auto" }}
       />
     </svg>
   )

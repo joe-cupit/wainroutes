@@ -9,7 +9,7 @@ export const useSupercluster = (mapMarkers?: MapMarker[]) => {
   const [supercluster, setSupercluster] = useState<Supercluster>();
 
   useEffect(() => {
-    const index = new Supercluster({ radius: 20 });
+    const index = new Supercluster({ radius: 15 });
 
     index.load(points?.map(point => ({
       type: "Feature",
