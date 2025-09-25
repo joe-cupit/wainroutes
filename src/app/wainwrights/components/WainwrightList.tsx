@@ -14,31 +14,11 @@ import { displayElevation } from "@/utils/unitConversions";
 
 export default function WainwrightList({ simplifiedHills } : { simplifiedHills: SimplifiedHill[] }) {
 
-  useEffect(() => {
-    const navbar = document.getElementById("navbar");
-    const head = document.getElementById("table-head");
-
-    function checkNavbar() {
-      if (window.innerWidth < 552 && navbar && head) {
-        if (navbar.classList.contains("sticky")) {
-          head.classList.remove(styles.stickyTop);
-        }
-        else head.classList.add(styles.stickyTop);
-      }
-    }
-
-    checkNavbar();
-    window.addEventListener("scroll", checkNavbar)
-    return () => {
-      window.removeEventListener("scroll", checkNavbar)
-    }
-  }, [])
-
   const [inputValue, setInputValue] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
   useEffect(() => {
     if (inputValue === "") {
-      setFilterTerm("")
+      setFilterTerm("");
       return;
     }
 
@@ -47,6 +27,31 @@ export default function WainwrightList({ simplifiedHills } : { simplifiedHills: 
     }, 250);
     return () => clearTimeout(handler);
   }, [inputValue])
+
+
+  useEffect(() => {
+    const head = document.getElementById("table-head");
+    const body = document.getElementById("table-body");
+
+    function checkScroll() {
+      console.log(body?.scrollHeight, body?.clientHeight)
+      if (head && body) {
+        if (body.scrollTop > 0) head.classList.add(styles.floating);
+        else head.classList.remove(styles.floating);
+
+        // if (body.scrollHeight <= body.clientHeight) body.classList.remove(styles.floating);
+        if (body.scrollTop >= body.scrollHeight - body.clientHeight) body.classList.remove(styles.floating);
+        else body.classList.add(styles.floating);
+      }
+    }
+
+    checkScroll();
+    body?.addEventListener("scroll", checkScroll);
+    return () => {
+      body?.removeEventListener("scroll", checkScroll);
+    }
+  }, [filterTerm])
+
 
   const [sortMode, setSortMode] = useState("height");
   const [sortStates, setSortStates] = useState([false, false, true]);
@@ -138,7 +143,7 @@ export default function WainwrightList({ simplifiedHills } : { simplifiedHills: 
             </td>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="table-body">
           {sortedHills.length > 0 &&
             sortedHills?.map((hill, index) => {
               return (
