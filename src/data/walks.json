@@ -1590,5 +1590,75 @@
       "sections": [{ "type": 0, "indexes": [0] }]
     },
     "tags": ["point-to-point"]
+  },
+  {
+    "slug": "sour-howes-and-sallows",
+    "title": "Sour Howes and Sallows",
+    "recommendedScore": 83,
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["sour-howes",  "sallows"],
+    "length": 8.31,
+    "elevation": 483,
+    "date": "2025-09-21",
+    "startLocation": {
+      "location": "Troutbeck",
+      "latitude": 54.416524,
+      "longitude": -2.906818,
+      "postcode": "LA23 1PQ",
+      "gridRef": "NY412027"
+    },
+    "busConnections": {
+      "508": ""
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 3,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [],
+      "coverId": "01",
+      "sections": [{ "type": 0, "indexes": [0] }]
+    },
+    "tags": ["circular"]
+  },
+  {
+    "slug": "wetherlam-and-the-northern-coniston-fells",
+    "title": "Wetherlam and the Northern Coniston Fells",
+    "recommendedScore": 87,
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["wetherlam", "swirl-how", "great-carrs", "grey-friar"],
+    "length": 15.37,
+    "elevation": 1122,
+    "date": "2025-09-22",
+    "startLocation": {
+      "location": "Coniston",
+      "latitude": 54.368978,
+      "longitude": -3.075951,
+      "postcode": "LA21 8EN",
+      "gridRef": "NY302975"
+    },
+    "busConnections": {
+      "505": ""
+    },
+    "terrain": {
+      "gradient": 3,
+      "path": 3,
+      "exposure": 2,
+      "scrambling": 1,
+      "desc": ""
+    },
+    "gallery": {
+      "imageIds": ["01"],
+      "imageData": [],
+      "coverId": "01",
+      "sections": [{ "type": 0, "indexes": [0] }]
+    },
+    "tags": ["circular"]
   }
 ]
