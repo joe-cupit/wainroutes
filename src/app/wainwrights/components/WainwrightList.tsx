@@ -12,7 +12,13 @@ import { SimplifiedHill } from "../page";
 import { displayElevation } from "@/utils/unitConversions";
 
 
-export default function WainwrightList({ simplifiedHills } : { simplifiedHills: SimplifiedHill[] }) {
+type WainwrightListProps = {
+  simplifiedHills: SimplifiedHill[]
+  setHoveredSlug: React.Dispatch<React.SetStateAction<string | null>>
+}
+
+
+export default function WainwrightList({ simplifiedHills, setHoveredSlug } : WainwrightListProps) {
 
   const [inputValue, setInputValue] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
@@ -40,7 +46,7 @@ export default function WainwrightList({ simplifiedHills } : { simplifiedHills: 
         else head.classList.remove(styles.floating);
 
         // if (body.scrollHeight <= body.clientHeight) body.classList.remove(styles.floating);
-        if (body.scrollTop >= body.scrollHeight - body.clientHeight) body.classList.remove(styles.floating);
+        if (body.scrollTop >= body.scrollHeight - body.clientHeight - 10) body.classList.remove(styles.floating);
         else body.classList.add(styles.floating);
       }
     }
@@ -157,8 +163,8 @@ export default function WainwrightList({ simplifiedHills } : { simplifiedHills: 
                     <h2 className={fontStyles.subheading}>
                       <Link
                         href={`/wainwrights/${hill.slug}`}
-                        // onMouseEnter={() => setHoveredSlug(hill.slug)}
-                        // onMouseLeave={() => setHoveredSlug(null)}
+                        onMouseEnter={() => setHoveredSlug(hill.slug)}
+                        onMouseLeave={() => setHoveredSlug(null)}
                       >
                         {hill.name} {hill.secondaryName ? <span className={`${styles.secondaryName} ${fontStyles.subtext}`}>({hill.secondaryName})</span> : ""}
                       </Link>

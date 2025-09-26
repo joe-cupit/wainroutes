@@ -2,7 +2,7 @@
 
 import styles from "./Map.module.css";
 
-import { Fragment, ReactNode, useEffect, useMemo, useState } from "react";
+import { Fragment, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Map, Marker, GeoJson, ZoomControl, GeoJsonFeature } from "pigeon-maps";
 import { AnyProps, ClusterFeature, PointFeature } from "supercluster";
 
@@ -46,50 +46,37 @@ export default function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCe
             ...(gpxPoints ?? []).map(p => [p[1], p[0]] as [number, number])]
   }, [mapMarkers, gpxPoints]);
 
-  useEffect(() => {
-    if (!mapPoints || mapPoints.length === 0
-        || !document?.getElementById("lake-map")) return;
 
-    let minLat = 999.0; let maxLat = -999.0;
-    let minLong = 999.0; let maxLong = -999.0;
-    for (const point of mapPoints) {
-      const [lat, long] = point;
-      if (lat < minLat) minLat = lat;
-      if (lat > maxLat) maxLat = lat;
-      if (long < minLong) minLong = long;
-      if (long > maxLong) maxLong = long;
-    }
-
-    // const mapBounds = document.getElementById("lake-map").getBoundingClientRect()
-    // const { center, zoom } = geoViewport.viewport(
-    //   [minLat, minLong, maxLat, maxLong], [mapBounds.width, mapBounds.height], 0, 20, 256, true, true
-    // )
-
-    // setCenter([center[0]+(!gpxPoints ? 0.015 : 0), center[1]]);
-    // setZoom(zoom*0.98);
-    // setMinZoom(zoom*0.83);
+  const resetMapBounds = useCallback(() => {
+    if (!mapPoints || mapPoints.length === 0) return;
 
     const mapBounds = document.getElementById("lake-map")?.getBoundingClientRect();
-    if (mapBounds) {
-      const newBounds = getMapBounds([minLat, maxLat], [minLong, maxLong], mapBounds.width, mapBounds.height)
+    if (!mapBounds) return;
 
-      setCenter(newBounds.center);
-      setZoom(newBounds.zoom);
-      setMinZoom(newBounds.zoom*0.8);
-    }
+    const minLat = Math.min(...mapPoints.map(p => p[0]));
+    const maxLat = Math.max(...mapPoints.map(p => p[0]));
+    const minLon = Math.min(...mapPoints.map(p => p[1]));
+    const maxLon = Math.max(...mapPoints.map(p => p[1]));
 
+    const newBounds = getMapBounds([minLat, maxLat], [minLon, maxLon], mapBounds.width, mapBounds.height);
+
+    setCenter(newBounds.center);
+    setZoom(newBounds.zoom);
+    setMinZoom(newBounds.zoom*0.8);
+  }, [mapPoints])
+
+
+  useEffect(() => {
+    resetMapBounds();
   }, [mapPoints, gpxPoints]);
 
 
   const supercluster = useSupercluster(mapMarkers);
-  const [markers, setMarkers] = useState<(PointFeature<AnyProps> | ClusterFeature<AnyProps>)[]>();
-  useEffect(() => {
-    if (supercluster === null) return;
+  const markers : (PointFeature<AnyProps> | ClusterFeature<AnyProps>)[] = useMemo(() => {
+    if (!supercluster) return [];
 
-    setMarkers(
-      supercluster?.getClusters([54, -4, 55, -2], zoom)
-        ?.sort((a, b) => b?.geometry?.coordinates?.[0] - a?.geometry?.coordinates?.[0])
-    );
+    return supercluster.getClusters([54, -4, 55, -2], zoom)
+        ?.sort((a, b) => b?.geometry?.coordinates?.[0] - a?.geometry?.coordinates?.[0]);
   }, [supercluster, zoom])
 
   const renderMarker = (point: PointFeature<AnyProps> | ClusterFeature<AnyProps>, key: number) => {
@@ -143,6 +130,27 @@ export default function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCe
     }
   }
 
+
+  useEffect(() => {
+    if (!supercluster || !markers || !activePoint) {
+      return;
+    }
+
+    const activeMarker = markers.filter(point => {
+      const clusterItems = (point?.properties?.cluster || false)
+        ? supercluster.getLeaves(Number(point.id), Infinity)
+        : [point];
+      if (!clusterItems) return false;
+
+      return clusterItems.some(marker => marker.properties.slug === activePoint);
+    })[0]
+
+    setCenter([activeMarker.geometry.coordinates[0], activeMarker.geometry.coordinates[1]]);
+    setZoom(12);
+    // setZoom((supercluster.getClusterExpansionZoom(Number(activeMarker.id)) ?? 10)+1);
+  }, [activePoint])
+
+
   useEffect(() => {
     document.getElementsByClassName("pigeon-zoom-in")[0].ariaLabel = "Zoom in";
     document.getElementsByClassName("pigeon-zoom-out")[0].ariaLabel = "Zoom out";
@@ -159,7 +167,7 @@ export default function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCe
           //  provider={maptilerProvider}
       >
         {children}
-        {markers?.map(renderMarker)}
+        {markers.map(renderMarker)}
         <ZoomControl />
       </Map>
     </div>

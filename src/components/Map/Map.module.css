@@ -44,15 +44,17 @@
 }
 
 .cluster {
-  transition-property: scale, fill;
-  transition-duration: 50ms;
+  transition-property: scale, translate, fill;
+  transition-duration: 75ms;
 }
-.marker:hover {
+.marker:hover,
+.marker:has(.focussedCluster) {
   z-index: 99;
 }
 .marker:hover .cluster,
 .focussedCluster {
-  scale: 1.2;
+  scale: 1.3;
+  translate: 0 -5px;
 }
 .clusterTooltip {
   display: none;
@@ -95,7 +97,7 @@
 
 
 .marker:hover .clusterTooltip,
-.marker:has(.focussed-cluster) .clusterTooltip {
+.marker:has(.focussedCluster) .clusterTooltip {
   display: block;
 }
 

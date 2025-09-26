@@ -6,12 +6,10 @@ import { createPageMetadata } from "@/utils/metadata";
 import Hill from "@/types/Hill";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 import BackToTopButton from "@/components/BackToTopButton/BackToTopButton";
-import LakeMap from "@/components/Map/Map";
-
-import WainwrightList from "./components/WainwrightList";
 
 import wainsJson from "@/data/hills.json";
 import getMapBounds from "@/utils/getMapBounds";
+import WainwrightsClient from "./components/WainwrightsClient";
 
 
 export function generateMetadata() {
@@ -64,16 +62,11 @@ export default function Wainwrights() {
         <div className={styles.main}>
           <BackToTopButton minHeight={400} />
 
-          <WainwrightList simplifiedHills={simplifiedHillData} />
-
-          <div className={styles.map}>
-            <LakeMap
-              mapMarkers={hillMarkers}
-              activePoint={null}
-              defaultCenter={mapBounds.center}
-              defaultZoom={mapBounds.zoom}
-            />
-          </div>
+          <WainwrightsClient
+            simplifiedHillData={simplifiedHillData}
+            hillMarkers={hillMarkers}
+            mapBounds={mapBounds}
+          />
         </div>
       </section>
 

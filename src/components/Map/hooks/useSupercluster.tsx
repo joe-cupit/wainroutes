@@ -5,23 +5,28 @@ import MapMarker from "@/types/MapMarker";
 
 
 export const useSupercluster = (mapMarkers?: MapMarker[]) => {
-  const points = useMemo(() => mapMarkers ?? [], [mapMarkers]);
+
   const [supercluster, setSupercluster] = useState<Supercluster>();
 
   useEffect(() => {
+    if (!mapMarkers) return;
+
     const index = new Supercluster({ radius: 15 });
 
-    index.load(points?.map(point => ({
-      type: "Feature",
-      geometry: {
-        coordinates: point.coordinates,
-        type: "Point"
-      },
-      properties: point.properties
-    })));
+    index.load(
+      mapMarkers?.map(point => ({
+        type: "Feature",
+        geometry: {
+          coordinates: point.coordinates,
+          type: "Point"
+        },
+        properties: point.properties
+      }))
+    );
 
     setSupercluster(index);
-  }, [points]);
+  }, [mapMarkers]);
+
 
   return supercluster;
 }
