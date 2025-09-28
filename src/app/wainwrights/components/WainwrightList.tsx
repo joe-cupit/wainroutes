@@ -3,13 +3,14 @@
 import styles from "../Wainwrights.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Fuse from "fuse.js";
 
+import type { SimplifiedHill } from "../page";
 import { BookTitles } from "@/types/Hill";
-import { SimplifiedHill } from "../page";
 import { displayElevation } from "@/utils/unitConversions";
+import { CloseIconSmall, SearchIcon } from "@/icons/MaterialIcons";
 
 
 type WainwrightListProps = {
@@ -20,6 +21,7 @@ type WainwrightListProps = {
 
 export default function WainwrightList({ simplifiedHills, setHoveredSlug } : WainwrightListProps) {
 
+  const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
   useEffect(() => {
@@ -124,12 +126,27 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug } : Wai
   return (
     <div className={styles.list}>
 
-      <div className={styles.search}>
+      <div
+        className={styles.search}
+        onClick={() => inputRef.current?.focus()}
+      >
+        <SearchIcon />
         <input type="text"
-          placeholder="search for a fell"
+          ref={inputRef}
+          placeholder="search the list of fells"
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
         />
+
+        {inputValue.length > 0 &&
+          <button
+            className={styles.searchButton}
+            onClick={() => setInputValue("")}
+            title="Clear search"
+          >
+            <CloseIconSmall />
+          </button>
+        }
       </div>
 
       <button
