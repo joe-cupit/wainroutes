@@ -38,6 +38,7 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug } : Wai
   useEffect(() => {
     const head = document.getElementById("table-head");
     const body = document.getElementById("table-body");
+    const button = document.getElementById("back-to-top-button");
 
     function checkScroll() {
       console.log(body?.scrollHeight, body?.clientHeight)
@@ -48,6 +49,11 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug } : Wai
         // if (body.scrollHeight <= body.clientHeight) body.classList.remove(styles.floating);
         if (body.scrollTop >= body.scrollHeight - body.clientHeight - 10) body.classList.remove(styles.floating);
         else body.classList.add(styles.floating);
+
+        if (button) {
+          if (body.scrollTop > 100) button.classList.add(styles.floating);
+          else button.classList.remove(styles.floating);
+        }
       }
     }
 
@@ -125,6 +131,20 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug } : Wai
           onChange={e => setInputValue(e.target.value)}
         />
       </div>
+
+      <button
+        id="back-to-top-button"
+        className={styles.backToTop}
+        onClick={() => {
+          document.getElementById("table-body")?.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+          });
+        }}
+      >
+        Back to top
+      </button>
 
       <table className={styles.table}>
         <thead id="table-head">
