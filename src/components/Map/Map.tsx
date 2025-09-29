@@ -18,18 +18,21 @@ import { useSupercluster } from "./hooks/useSupercluster";
 
 
 type LakeProps = {
-  mapMarkers?: MapMarker[] | undefined;
-  gpxPoints?: [number, number][] | undefined;
+  primaryMarkers?: MapMarker[];
+  secondaryMarkers?: MapMarker[];
+  gpxPoints?: [number, number][];
   activePoint?: string | null;
   defaultCenter?: [number, number];
   defaultZoom?: number;
 
-  children?: ReactNode | undefined;
+  disableAutomaticMapBounds?: boolean;
+
+  children?: ReactNode;
   className?: string;
 }
 
 
-export default function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCenter, defaultZoom, className, children} : LakeProps) {
+export default function LakeMap ({ primaryMarkers, secondaryMarkers, gpxPoints, activePoint, defaultCenter, defaultZoom, disableAutomaticMapBounds, className, children} : LakeProps) {
 
   const [center, setCenter] = useState<[number, number]>(defaultCenter || [54.55, -3.09]);
   const [zoom, setZoom] = useState<number>(defaultZoom || 11);
@@ -39,36 +42,47 @@ export default function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCe
     setZoom(zoom);
   }
 
-  const mapPoints = useMemo(() => {
-    if (!(mapMarkers || gpxPoints)) return [];
+  const mapMarkers = useMemo(() => (
+    [...(primaryMarkers ?? []), ...(secondaryMarkers ?? [])]
+  ), [primaryMarkers, secondaryMarkers])
+  const secondarySlugs = useMemo(() => (
+    secondaryMarkers
+      ? secondaryMarkers?.map(marker => marker.properties.slug)
+      : []
+  ), [secondaryMarkers])
 
-    return [...(mapMarkers ?? []).map(m => m.coordinates), 
+  const mapBoundPoints = useMemo(() => {
+    if (!(primaryMarkers || gpxPoints)) return [];
+
+    return [...(primaryMarkers ?? []).map(m => m.coordinates), 
             ...(gpxPoints ?? []).map(p => [p[1], p[0]] as [number, number])]
-  }, [mapMarkers, gpxPoints]);
+  }, [primaryMarkers, gpxPoints]);
 
 
   const resetMapBounds = useCallback(() => {
-    if (!mapPoints || mapPoints.length === 0) return;
+    if (!mapBoundPoints || mapBoundPoints.length === 0) return;
 
     const mapBounds = document.getElementById("lake-map")?.getBoundingClientRect();
     if (!mapBounds) return;
 
-    const minLat = Math.min(...mapPoints.map(p => p[0]));
-    const maxLat = Math.max(...mapPoints.map(p => p[0]));
-    const minLon = Math.min(...mapPoints.map(p => p[1]));
-    const maxLon = Math.max(...mapPoints.map(p => p[1]));
+    const minLat = Math.min(...mapBoundPoints.map(p => p[0]));
+    const maxLat = Math.max(...mapBoundPoints.map(p => p[0]));
+    const minLon = Math.min(...mapBoundPoints.map(p => p[1]));
+    const maxLon = Math.max(...mapBoundPoints.map(p => p[1]));
 
     const newBounds = getMapBounds([minLat, maxLat], [minLon, maxLon], mapBounds.width, mapBounds.height);
 
     setCenter(newBounds.center);
     setZoom(newBounds.zoom);
     setMinZoom(newBounds.zoom*0.8);
-  }, [mapPoints])
+  }, [mapBoundPoints])
 
 
   useEffect(() => {
-    resetMapBounds();
-  }, [mapPoints, gpxPoints]);
+    if (!disableAutomaticMapBounds) {
+      resetMapBounds();
+    }
+  }, [mapBoundPoints,  gpxPoints, disableAutomaticMapBounds]);
 
 
   const supercluster = useSupercluster(mapMarkers);
@@ -103,8 +117,8 @@ export default function LakeMap ({ mapMarkers, gpxPoints, activePoint, defaultCe
             <div className={`${styles.cluster} ${focussed ? styles.focussedCluster : ""}`}>
               {clusterItems.map((item, index) => {
                 return item.properties.type === "hill"
-                  ? <HillIcon key={index} book={item.properties.book as number} />
-                  : <WalkIcon key={index} />
+                  ? <HillIcon key={index} isSecondaryMarker={secondarySlugs.includes(item.properties.slug)} book={item.properties.book} />
+                  : <WalkIcon key={index} isSecondaryMarker={secondarySlugs.includes(item.properties.slug)} />
               })}
             </div>
             <div className={styles.clusterTooltip}>
@@ -188,7 +202,8 @@ export function GeoRoute ({ points, activeIndex, ...props } : { points: [number,
 
   const activeData = useMemo(() => {
     if (points === null || activeIndex === null) return null;
-    else return ({
+
+    return ({
       type: "Feature",
       geometry: {
         type: "Point",
@@ -197,14 +212,30 @@ export function GeoRoute ({ points, activeIndex, ...props } : { points: [number,
     })
   }, [points, activeIndex])
 
+  const [startPoint, endPoint] = useMemo(() => {
+    if (points === null) return [null, null];
+
+    return [
+      {type: "Feature", geometry: {type: "Point", coordinates: points[0]}},
+      {type: "Feature", geometry: {type: "Point", coordinates: points[points.length - 1]}}
+    ]
+  }, [points])
+
   return (points && 
     <GeoJson {...props}>
       <GeoJsonFeature feature={data} styleCallback={() => ({ className: styles.route })} />
-      {activeData &&
-        <GeoJsonFeature feature={activeData}
+      {endPoint && <GeoJsonFeature feature={endPoint}
+        svgAttributes={{ r: "5" }}
+        styleCallback={() => ({ className: styles.endPoint })}
+      />}
+      {startPoint && <GeoJsonFeature feature={startPoint}
+        svgAttributes={{ r: "5" }}
+        styleCallback={() => ({ className: styles.startPoint })}
+      />}
+      {activeData && <GeoJsonFeature feature={activeData}
           svgAttributes={{ r: "8" }}
           styleCallback={() => ({ className: styles.hoveredPoint })}
-        />}
+      />}
     </GeoJson>
   )
 }
@@ -219,12 +250,13 @@ function Attribution () {
 
 
 // icons
-function HillIcon({ book }: { book: number}) {
+function HillIcon({ isSecondaryMarker, book }: { isSecondaryMarker: boolean; book: number}) {
   return (
     <svg
       viewBox="-1 -1 18 18"
       xmlns="http://www.w3.org/2000/svg"
       className={styles.hillMarker}
+      data-is-secondary={isSecondaryMarker}
       data-book={book}
     >
       <path
@@ -235,9 +267,13 @@ function HillIcon({ book }: { book: number}) {
   )
 }
 
-function WalkIcon() {
+function WalkIcon({ isSecondaryMarker } : { isSecondaryMarker: boolean;  }) {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      data-is-secondary={isSecondaryMarker}
+    >
       <path
         d="M11.291 21.706 12 21l-.709.706zM12 21l.708.706a1 1 0 0 1-1.417 0l-.006-.007-.017-.017-.062-.063a47.708 47.708 0 0 1-1.04-1.106 49.562 49.562 0 0 1-2.456-2.908c-.892-1.15-1.804-2.45-2.497-3.734C4.535 12.612 4 11.248 4 10c0-4.539 3.592-8 8-8 4.408 0 8 3.461 8 8 0 1.248-.535 2.612-1.213 3.87-.693 1.286-1.604 2.585-2.497 3.735a49.583 49.583 0 0 1-3.496 4.014l-.062.063-.017.017-.006.006L12 21zm0-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
         style={{ pointerEvents: "auto" }}

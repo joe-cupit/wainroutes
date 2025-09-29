@@ -34,7 +34,7 @@ export default function WainwrightsClient({ simplifiedHillData, hillMarkers, map
 
       <div className={styles.map}>
         <LakeMap
-          mapMarkers={hillMarkers}
+          primaryMarkers={hillMarkers}
           activePoint={hoveredSlug}
           defaultCenter={mapBounds.center}
           defaultZoom={mapBounds.zoom}

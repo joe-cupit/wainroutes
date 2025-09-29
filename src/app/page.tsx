@@ -112,7 +112,7 @@ export default function Home() {
               </Link>
             </div>
             <div className={styles.wainwrightsMap}>
-              <LakeMap mapMarkers={hillMarkers} />
+              <LakeMap primaryMarkers={hillMarkers} />
             </div>
           </div>
         </section>

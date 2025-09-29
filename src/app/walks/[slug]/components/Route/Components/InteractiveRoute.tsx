@@ -29,7 +29,7 @@ export default function InteractiveRoute({ gpx, hillMarkers, defaultCenter, defa
       <div className={styles.map}>
         <LakeMap
           gpxPoints={gpx.gpxPoints}
-          mapMarkers={hillMarkers}
+          primaryMarkers={hillMarkers}
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
         >
