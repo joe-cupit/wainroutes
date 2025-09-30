@@ -56,13 +56,11 @@ export default function Wainwrights() {
             <h1 className={fontStyles.title}>The 214 Wainwrights</h1>
             <p>214 fells within The Lake District, as described in A. Wainwright&apos;s <i>Pictorial Guides to the Lakeland Fells</i>.</p>
           </div>
-          <div className={styles.group}>
-            <WainwrightsClient
-              simplifiedHillData={simplifiedHillData}
-              hillMarkers={hillMarkers}
-              mapBounds={mapBounds}
-            />
-          </div>
+          <WainwrightsClient
+            simplifiedHillData={simplifiedHillData}
+            hillMarkers={hillMarkers}
+            mapBounds={mapBounds}
+          />
         </div>
       </section>
 

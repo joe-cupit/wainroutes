@@ -21,7 +21,61 @@
   gap: var(--gap-400);
 
   margin-block-end: var(--gap-500);
-  text-wrap: balance;
+}
+
+
+.books {
+  display: flex;
+  column-gap: var(--gap-600);
+  row-gap: var(--gap-300);
+  /* justify-content: space-evenly; */
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-block-end: var(--gap-600);
+
+  max-width: 51.5rem;
+  margin-inline: auto;
+}
+.books button {
+  display: flex;
+  gap: 0.75ch;
+  align-items: center;
+  width: fit-content;
+
+  &[data-active="true"] {
+    font-weight: var(--fw-medium);
+    text-decoration: underline;
+  }
+
+  &::before {
+    content: "";
+    width: 0.75rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    background: black;
+    border: 3px solid currentColor;
+  }
+  &[data-book="1"]::before {
+    background: var(--clr-wain-book-1);
+  }
+  &[data-book="2"]::before {
+    background: var(--clr-wain-book-2);
+  }
+  &[data-book="3"]::before {
+    background: var(--clr-wain-book-3);
+  }
+  &[data-book="4"]::before {
+    background: var(--clr-wain-book-4);
+  }
+  &[data-book="5"]::before {
+    background: var(--clr-wain-book-5);
+  }
+  &[data-book="6"]::before {
+    background: var(--clr-wain-book-6);
+  }
+  &[data-book="7"]::before {
+    background: var(--clr-wain-book-7);
+  }
 }
 
 .group {

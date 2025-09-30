@@ -16,10 +16,11 @@ import { CloseIconSmall, SearchIcon } from "@/icons/MaterialIcons";
 type WainwrightListProps = {
   simplifiedHills: SimplifiedHill[]
   setHoveredSlug: React.Dispatch<React.SetStateAction<string | null>>
+  book: number
 }
 
 
-export default function WainwrightList({ simplifiedHills, setHoveredSlug } : WainwrightListProps) {
+export default function WainwrightList({ simplifiedHills, setHoveredSlug, book } : WainwrightListProps) {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState("");
@@ -192,9 +193,18 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug } : Wai
               return (
                 <tr key={index}>
                   <td>
-                    <div className={styles.wainwrightBookTop} data-book={hill.book} title={BookTitles[hill.book]}>
+                    <button
+                      onClick={() => window.history.replaceState({}, "",
+                        (hill.book === book)
+                        ? "/wainwrights"
+                        : `/wainwrights?book=${hill.book}`
+                      )}
+                      className={styles.wainwrightBookTop}
+                      data-book={hill.book}
+                      title={BookTitles[hill.book]}
+                    >
                       <div className={styles.wainwrightBookTopColour} />
-                    </div>
+                    </button>
                   </td>
                   <td>
                     <h2 className={fontStyles.subheading}>
