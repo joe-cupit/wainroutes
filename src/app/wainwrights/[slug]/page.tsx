@@ -86,17 +86,21 @@ export default async function Wainwright({ params } : WainProps) {
             <h1 className={`${fontStyles.title} ${styles.title}`}>{hillData?.name} <span className={styles.titleElevation}>{displayElevation(hillData?.height)}</span></h1>
           </div>
 
-          <p>
-            More information coming soon.
-          </p>
 
           <div className={styles.group}>
-            <div>
+            <div className={styles.details}>
               <h2 className="visually-hidden">Details</h2>
+              <p>
+                More information coming soon.
+              </p>
               <div className={styles.stats}>
                 <div>
-                  <h3 className={fontStyles.smallheading}>Book</h3>
-                  <p><Link href={"/wainwrights?book="+bookNum}>{BookTitles[hillData?.book ?? 1]}</Link></p>
+                  <h3 className={fontStyles.smallheading}>Area</h3>
+                  <Link href={"/wainwrights?book="+bookNum}>{`${hillData.book}- ${BookTitles[hillData.book ?? 1]}`}</Link>
+                </div>
+                <div>
+                  <h3 className={fontStyles.smallheading}>Grid Ref.</h3>
+                  <p>{hillData?.gridRef}</p>
                 </div>
                 <div>
                   <h3 className={fontStyles.smallheading}>Height</h3>
@@ -105,10 +109,6 @@ export default async function Wainwright({ params } : WainProps) {
                 <div>
                   <h3 className={fontStyles.smallheading}>Prominence</h3>
                   <p>{displayElevation(hillData?.prominence)}</p>
-                </div>
-                <div>
-                  <h3 className={fontStyles.smallheading}>Grid Ref.</h3>
-                  <p>{hillData?.gridRef}</p>
                 </div>
                 <div>
                   <h3 className={fontStyles.smallheading}>Other Classifications</h3>
@@ -132,24 +132,30 @@ export default async function Wainwright({ params } : WainProps) {
 
                 defaultCenter={[hillMarkers[0].coordinates[0] + 0.0075, hillMarkers[0].coordinates[1]]}
                 defaultZoom={12}
+                defaultMinZoom={9}
 
                 disableAutomaticMapBounds={true}
-              ></LakeMap>
+              />
             </div>
           </div>
 
           <div>
             <h2 className={fontStyles.subheading}>Routes up {hillData.name}</h2>
-            {walkData && walkData.length > 0
+            {(walkData && walkData.length > 0)
               ? <>
-                  <p>Climb one of our walks that includes {hillData.name}.</p>
+                  <p>
+                    {(walkData.length === 1)
+                      ? "There is currently one walk that includes this fell."
+                      : `There are currently ${walkData.length} walks that include this fell.`
+                    }
+                  </p>
                   <div className={styles.walks}>
                     {walkData.map((walk, index) => {
                       return <WalkCard key={index} walk={walk} />
                     })}
                   </div>
                 </>
-              : <p>There are no walks including this fell yet.</p>
+              : <p>There are currently no walks including this fell.</p>
             }
           </div>
 
