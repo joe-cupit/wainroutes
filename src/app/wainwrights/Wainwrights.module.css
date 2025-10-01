@@ -79,24 +79,27 @@
 }
 
 .group {
-  display: flex;
-  flex-wrap: wrap-reverse;
-  column-gap: var(--gap-800);
-  row-gap: var(--gap-800);
-}
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: var(--gap-800);
 
-.list {
-  flex: 1.5;
-  max-width: 40rem;
-  flex-basis: 28rem;
-  margin-inline: auto;
+  @media (max-width: 60rem) {
+    grid-template-columns: 1fr;
 
-  position: relative;
-}
-.map {
-  flex: 1;
-  flex-basis: 31rem;
-  aspect-ratio: 1;
+    & .list {
+      max-width: 35rem;
+      margin-inline: auto;
+    }
+
+    & .map {
+      grid-row: 1;
+
+      width: min(45rem, 100%);
+      aspect-ratio: 1;
+      max-height: 30rem;
+      margin-inline: auto;
+    }
+  }
 }
 
 
@@ -114,8 +117,10 @@
   
   & svg {
     color: var(--clr-text-muted);
-    width: 1.5ch;
-    height: 1.5ch;
+    min-width: 1.5ch;
+    min-height: 1.5ch;
+    max-width: 1.5ch;
+    max-height: 1.5ch;
   }
 }
 .search input {
@@ -149,11 +154,13 @@
 }
 
 
+.list {
+  position: relative;
+}
 .backToTop {
   box-shadow: 2px 2px 6px oklch(from currentColor l c h / .1);
 
   position: absolute;
-  /* top: 7.5rem; */
   top: 5.375lh;
   left: 50%;
   translate: -50% 0;
@@ -223,7 +230,7 @@
 .table tbody {
   display: block;
   width: 100%;
-  max-height: min(41rem, 70vh);
+  height: max(min(41rem, 70vh), 30rem);
   overflow-y: auto;
   padding-inline-end: 1rem;
 
