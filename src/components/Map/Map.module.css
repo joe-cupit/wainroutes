@@ -4,7 +4,7 @@
   height: 100%;
 
   /* border: 0.1rem solid var(--clr-neutral-700); */
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
   overflow: hidden;
 }
 
@@ -12,7 +12,7 @@
 .route {
   /* stroke: var(--clr-primary-300); */
   stroke: currentColor;
-  stroke-width: 5;
+  stroke-width: 4;
   /* --_drop-colour: var(--clr-neutral-800);
   filter: drop-shadow(1px 0 0 var(--_drop-colour))
           drop-shadow(0 1px 0 var(--_drop-colour))
@@ -33,25 +33,44 @@
   stroke-width: 3;
 }
 
+.startPoint,
+.endPointBottom,
+.endPointTop {
+  fill: currentColor;
+  cursor: default;
+}
+.startPoint {
+  fill: oklch(0.75 0.2 143);
+  stroke: currentColor;
+  stroke-width: 2;
+}
+.endPointTop {
+  stroke: var(--clr-bg-light);
+  stroke-width: 1.5;
+}
+
 .marker {
   position: relative;
-  width: 32px;
+  width: 24px;
+  aspect-ratio: 1;
   fill: var(--clr-primary-400);
   stroke: black;
-  stroke-width: 1;
+  stroke-width: 2;
+  translate: 20% 50%;
 }
-.hillMarker {
-  scale: 0.85;
-}
-
 
 .cluster {
-  transition-property: transform, fill;
-  transition-duration: 50ms;
+  transition-property: scale, translate, fill;
+  transition-duration: 75ms;
+}
+.marker:hover,
+.marker:has(.focussedCluster) {
+  z-index: 99;
 }
 .marker:hover .cluster,
 .focussedCluster {
-  transform: scale(1.2) translateY(-4px);
+  scale: 1.3;
+  translate: 0 -5px;
 }
 .clusterTooltip {
   display: none;
@@ -70,7 +89,7 @@
   padding: var(--gap-300) var(--gap-400);
   border-radius: var(--gap-300);
 
-  box-shadow: 3px 3px oklch(from var(--clr-text) l c h / .15);
+  box-shadow: 3px 3px 5px oklch(from var(--clr-text) l c h / .15);
 }
 .clusterTooltipTip {
   font-weight: var(--fw-regular);
@@ -94,30 +113,34 @@
 
 
 .marker:hover .clusterTooltip,
-.marker:has(.focussed-cluster) .clusterTooltip {
+.marker:has(.focussedCluster) .clusterTooltip {
   display: block;
 }
 
 .cluster svg {
   position: absolute;
+
+  &[data-is-secondary="true"] {
+    filter: saturate(0.625);
+    scale: 0.75;
+    translate: -1px 3px;
+  }
 }
 .cluster svg:nth-child(1) {
   z-index: 10;
 }
 .cluster svg:nth-child(2) {
-  opacity: 0.89;
+  opacity: 0.95;
   z-index: 9;
-  transform: translate(4px, -1px) scale(0.98);
+  transform: translate(5px, -1px) scale(0.95);
 }
 .cluster svg:nth-child(3) {
-  opacity: 0.84;
+  opacity: 0.95;
   z-index: 8;
-  transform: translate(7px, -2px) scale(0.95);
+  transform: translate(-5px, -1px) scale(0.95);
 }
-.cluster svg:nth-child(4) {
-  opacity: 0.8;
-  z-index: 7;
-  transform: translate(9px, -2px) scale(0.9);
+.cluster svg:nth-child(n + 4) {
+  display: none;
 }
 
 

@@ -5,12 +5,10 @@ import { createPageMetadata } from "@/utils/metadata";
 
 import Hill from "@/types/Hill";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
-import BackToTopButton from "@/components/BackToTopButton/BackToTopButton";
-import LakeMap from "@/components/Map/Map";
-
-import WainwrightList from "./components/WainwrightList";
 
 import wainsJson from "@/data/hills.json";
+import getMapBounds from "@/utils/getMapBounds";
+import WainwrightsClient from "./components/WainwrightsClient";
 
 
 export function generateMetadata() {
@@ -43,33 +41,28 @@ export default function Wainwrights() {
 
   const hillMarkers = useHillMarkers();
 
+  const mapBounds = getMapBounds(
+      [Math.min(...hillMarkers.map(p => p.coordinates[0])), Math.max(...hillMarkers.map(p => p.coordinates[0]))],
+      [Math.min(...hillMarkers.map(p => p.coordinates[1])), Math.max(...hillMarkers.map(p => p.coordinates[1]))]
+    )
+
 
   return (
-    <main className={styles.wainwrights}>
-
-      <section>
-        <div className={styles.header}>
-          <h1 className={fontStyles.title}>The 214 Wainwrights</h1>
-          <p>214 fells within The Lake District, as described in A. Wainwright&apos;s <i>Pictorial Guides to the Lakeland Fells</i>.</p>
-        </div>
-      </section>
+    <main className={styles.page}>
 
       <section>
         <div className={styles.main}>
-          <BackToTopButton minHeight={400} />
-
-          <WainwrightList simplifiedHills={simplifiedHillData} />
-
-          <div className={styles.map}>
-            <LakeMap
-              mapMarkers={hillMarkers}
-              activePoint={null}
-            />
+          <div className={styles.header}>
+            <h1 className={fontStyles.title}>The 214 Wainwrights</h1>
+            <p>The Wainwrights are a collection of 214 fells in the Lake District, named after Alfred Wainwright's handwritten <i>Pictorial Guide to the Lakeland Fells</i>, written during the 1950s and 60s. Today, they are both a guide and a goal for walkers exploring the Lakes.</p>
           </div>
+          <WainwrightsClient
+            simplifiedHillData={simplifiedHillData}
+            hillMarkers={hillMarkers}
+            mapBounds={mapBounds}
+          />
         </div>
       </section>
-
-      <div style={{height: "5rem"}}></div>
 
     </main>
   )

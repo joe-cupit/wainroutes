@@ -33,6 +33,6 @@ export const exposureTitles = {
 export const exposureLevels = {
   1: "Little to no sense of exposure throughout the walk",
   2: "Some exposed sections, often avoidable with care",
-  3: "Compulsary stretches of significant exposure that require a head for heights",
+  3: "Compulsory stretches of significant exposure that require a head for heights",
   4: "Very exposed ground with a high level of risk only suitable for experienced, confident walkers",
 }

@@ -31,7 +31,7 @@ export async function generateMetadata({ params } : WalkProps) {
   const walkData = (walksJson as unknown as Walk[]).find(w => w.slug === slug);
   if (!walkData) return {};
 
-  const title = `${walkData.title} (${walkData.length}km) – Lake District Walk & Route Guide`;
+  const title = `${walkData.title} (${walkData.length.toFixed(1)}km) – Lake District Walk & Route Guide`;
   const description = `Route details for ${walkData.title}, a Lake District walk featuring ${walkData.wainwrights.length} Wainwright${walkData.wainwrights.length !== 1 ? "s" : ""}, with maps, terrain info, and photos.`
   const path = `/walks/${walkData.slug}`;
   const imageURL = `https://images.wainroutes.co.uk/wainroutes_${walkData.slug}_${walkData.gallery?.coverId}_1024w.webp`;
@@ -104,7 +104,6 @@ export default async function WalkPage({ params } : WalkProps) {
 
             <Route
               wainwrights={walkData.wainwrights ?? []}
-              defaultCenter={[walkData.startLocation?.latitude ?? 0, walkData.startLocation?.longitude ?? 0]}
               slug={slug}
             />
 

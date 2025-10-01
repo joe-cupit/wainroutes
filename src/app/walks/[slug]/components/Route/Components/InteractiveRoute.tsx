@@ -6,11 +6,20 @@ import { useState } from "react";
 
 import type { ParsedGPX } from "..";
 import type MapMarker from "@/types/MapMarker";
+
 import LakeMap, { GeoRoute } from "@/components/Map/Map";
 import ElevationChart from "@/components/ElevationChart/ElevationChart";
 
 
-export default function InteractiveRoute({ gpx, hillMarkers, defaultCenter } : { gpx: ParsedGPX, hillMarkers: MapMarker[]; defaultCenter: [number, number] }) {
+type InteractiveRouteProps = {
+  gpx: ParsedGPX
+  hillMarkers: MapMarker[]
+  defaultCenter: [number, number]
+  defaultZoom: number
+}
+
+
+export default function InteractiveRoute({ gpx, hillMarkers, defaultCenter, defaultZoom } : InteractiveRouteProps) {
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -20,9 +29,9 @@ export default function InteractiveRoute({ gpx, hillMarkers, defaultCenter } : {
       <div className={styles.map}>
         <LakeMap
           gpxPoints={gpx.gpxPoints}
-          mapMarkers={hillMarkers}
+          primaryMarkers={hillMarkers}
           defaultCenter={defaultCenter}
-          defaultZoom={14}
+          defaultZoom={defaultZoom}
         >
           <GeoRoute
             points={gpx.gpxPoints}

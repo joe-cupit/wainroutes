@@ -133,13 +133,13 @@
   --clr-primary-500: hsl(23, 80%, 60%);
 
   --clr-bg-black: oklch(0.05 0.03 97);
-  --clr-bg-darker: oklch(0.87 0.012 95);
-  --clr-bg-dark: oklch(0.92 0.012 95);
-  --clr-bg: oklch(0.96 0.012 95);
-  --clr-bg-light: oklch(1 0.012 95);
-  --clr-bg-white: oklch(1 0.012 98);
+  --clr-bg-darker: oklch(0.87 0.008 95);
+  --clr-bg-dark: oklch(0.92 0.008 95);
+  --clr-bg: oklch(0.96 0.008 95);
+  --clr-bg-light: oklch(1 0.008 95);
+  --clr-bg-white: oklch(1 0.008 98);
 
-  --clr-text-white: oklch(0.98 0.012 97);
+  --clr-text-white: oklch(0.98 0.008 97);
   --clr-text-white-muted: oklch(62.64% 0.01953 92.798);
   --clr-text-black: oklch(0.15 0.03 95);
   --clr-text-black-muted: oklch(0.4 0.03 95);
