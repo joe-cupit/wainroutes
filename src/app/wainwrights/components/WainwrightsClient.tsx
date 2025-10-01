@@ -45,12 +45,6 @@ export default function WainwrightsClient({ simplifiedHillData, hillMarkers, map
   return (
     <>
       <div className={styles.books}>
-        {/* <button
-          onClick={() => window.history.replaceState({}, "", "/wainwrights")}
-          data-active={BookTitles[book] === undefined}
-        >
-          All fells
-        </button> */}
         {Object.keys(BookTitles).map((b, index) => (
           <button key={index}
             onClick={() => window.history.replaceState({}, "",
@@ -61,7 +55,11 @@ export default function WainwrightsClient({ simplifiedHillData, hillMarkers, map
             data-active={Number(b) === book}
             data-book={b}
           >
-            {BookTitles[Number(b)]}
+            <span>
+              <span className={styles.the}>The </span>
+              {BookTitles[Number(b)].slice(4, BookTitles[Number(b)].length - 6)}
+              <span className={styles.fells}> Fells</span>
+            </span>
           </button>
         ))}
       </div>

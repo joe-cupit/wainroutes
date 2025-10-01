@@ -26,21 +26,35 @@
 
 .books {
   display: flex;
-  column-gap: var(--gap-600);
-  row-gap: var(--gap-300);
-  /* justify-content: space-evenly; */
-  justify-content: center;
   flex-wrap: wrap;
-  margin-block-end: var(--gap-600);
+  column-gap: var(--gap-500);
+  row-gap: var(--gap-300);
+  justify-content: center;
 
-  max-width: 51.5rem;
+  padding-block-end: var(--gap-400);
+  margin-block-end: var(--gap-400);
   margin-inline: auto;
+
+  max-width: 75ch;
 }
 .books button {
   display: flex;
   gap: 0.75ch;
   align-items: center;
-  width: fit-content;
+  min-width: fit-content;
+
+  user-select: auto;
+
+  @media (max-width: 35.5rem) {
+    & span.the {
+      display: none;
+    }
+  }
+  @media (max-width: 29rem) {
+    & span.fells {
+      display: none;
+    }
+  }
 
   &[data-active="true"] {
     font-weight: var(--fw-medium);
