@@ -10,7 +10,7 @@ import Hill, { BookTitles, Classifications } from "@/types/Hill";
 
 import wainsJson from "@/data/hills.json";
 import walksJson from "@/data/walks.json";
-import { useHillMarkers } from "@/hooks/useMapMarkers";
+import { getHillMarkers } from "@/utils/getMapMarkers";
 
 import haversineDistance from "@/utils/haversineDistance";
 import directionFromPoint from "@/utils/directionFromPoint";
@@ -57,8 +57,8 @@ export default async function Wainwright({ params } : WainProps) {
     return notFound();
   }
 
-  const hillMarkers = useHillMarkers().filter(hill => hill.properties.slug === hillData.slug);
-  const secondaryMarkers = useHillMarkers().filter(hill => hill.properties.slug !== hillData.slug);
+  const hillMarkers = getHillMarkers().filter(hill => hill.properties.slug === hillData.slug);
+  const secondaryMarkers = getHillMarkers().filter(hill => hill.properties.slug !== hillData.slug);
 
 
   const walkData = (walksJson as unknown as Walk[])

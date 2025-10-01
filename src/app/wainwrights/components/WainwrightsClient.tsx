@@ -39,7 +39,7 @@ export default function WainwrightsClient({ simplifiedHillData, hillMarkers, map
     else return ([
       simplifiedHillData, hillMarkers
     ])
-  }, [book, simplifiedHillData])
+  }, [book, simplifiedHillData, hillMarkers])
 
 
   return (

@@ -4,7 +4,7 @@ import Hill from "@/types/Hill";
 import MapMarker from "@/types/MapMarker";
 
 
-export const useHillMarkers = (filters?: string[]) => {
+export const getHillMarkers = (filters?: string[]) => {
   const hillData = temphills as Hill[];
 
   const hillMarkers = hillData

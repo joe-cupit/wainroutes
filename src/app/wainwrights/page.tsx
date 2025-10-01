@@ -1,10 +1,11 @@
 import styles from "./Wainwrights.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
+import { Suspense } from "react";
 import { createPageMetadata } from "@/utils/metadata";
 
 import Hill from "@/types/Hill";
-import { useHillMarkers } from "@/hooks/useMapMarkers";
+import { getHillMarkers } from "@/utils/getMapMarkers";
 
 import wainsJson from "@/data/hills.json";
 import getMapBounds from "@/utils/getMapBounds";
@@ -39,7 +40,7 @@ export default function Wainwrights() {
     book: hill.book
   } as SimplifiedHill));
 
-  const hillMarkers = useHillMarkers();
+  const hillMarkers = getHillMarkers();
 
   const mapBounds = getMapBounds(
       [Math.min(...hillMarkers.map(p => p.coordinates[0])), Math.max(...hillMarkers.map(p => p.coordinates[0]))],
@@ -54,13 +55,15 @@ export default function Wainwrights() {
         <div className={styles.main}>
           <div className={styles.header}>
             <h1 className={fontStyles.title}>The 214 Wainwrights</h1>
-            <p>The Wainwrights are a collection of 214 fells in the Lake District, named after Alfred Wainwright's handwritten <i>Pictorial Guide to the Lakeland Fells</i>, written during the 1950s and 60s. Today, they are both a guide and a goal for walkers exploring the Lakes.</p>
+            <p>The Wainwrights are a collection of 214 fells in the Lake District, named after Alfred Wainwright&apos;s handwritten <i>Pictorial Guide to the Lakeland Fells</i>, written during the 1950s and 60s. Today, they are both a guide and a goal for walkers exploring the Lakes.</p>
           </div>
-          <WainwrightsClient
-            simplifiedHillData={simplifiedHillData}
-            hillMarkers={hillMarkers}
-            mapBounds={mapBounds}
-          />
+          <Suspense>
+            <WainwrightsClient
+              simplifiedHillData={simplifiedHillData}
+              hillMarkers={hillMarkers}
+              mapBounds={mapBounds}
+            />
+          </Suspense>
         </div>
       </section>
 

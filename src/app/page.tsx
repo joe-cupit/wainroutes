@@ -12,7 +12,7 @@ import WalkCardStyles from "@/components/WalkCard/WalkCard.module.css";
 import LakeMap from "@/components/Map/Map";
 
 import Walk from "@/types/Walk";
-import { useHillMarkers } from "@/hooks/useMapMarkers";
+import { getHillMarkers } from "@/utils/getMapMarkers";
 
 import tempwalks from "@/data/walks.json";
 import LazyPicture from "@/components/LazyImage/LazyPicture";
@@ -33,7 +33,7 @@ export default function Home() {
   const walks = tempwalks as unknown as Walk[];
   const featuredWalks = featuredWalkSlugs.map(slug => walks.find(w => w.slug === slug));
 
-  const hillMarkers = useHillMarkers();
+  const hillMarkers = getHillMarkers();
 
 
   return (

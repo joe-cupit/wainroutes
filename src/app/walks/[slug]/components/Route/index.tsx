@@ -6,7 +6,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 
 import type Walk from "@/types/Walk";
-import { useHillMarkers } from "@/hooks/useMapMarkers";
+import { getHillMarkers } from "@/utils/getMapMarkers";
 import { getDistanceValue, getElevationValue } from "@/utils/unitConversions";
 import haversineDistance from "@/utils/haversineDistance";
 import getMapBounds from "@/utils/getMapBounds";
@@ -38,7 +38,7 @@ export default function Route({ wainwrights, slug } : RouteProps) {
   const filePath = path.join(process.cwd(), 'src', 'data', 'gpx', `${slug}.gpx`);
   const gpxStr = readFileSync(filePath, 'utf-8');
 
-  const hillMarkers = useHillMarkers(wainwrights);
+  const hillMarkers = getHillMarkers(wainwrights);
 
   const parseGpx = (gpx: string) => {
 

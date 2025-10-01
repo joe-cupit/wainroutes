@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Supercluster from 'supercluster';
 
 import MapMarker from "@/types/MapMarker";

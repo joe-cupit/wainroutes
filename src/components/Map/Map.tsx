@@ -83,7 +83,7 @@ export default function LakeMap ({ primaryMarkers, secondaryMarkers, gpxPoints, 
     if (!disableAutomaticMapBounds) {
       resetMapBounds();
     }
-  }, [mapBoundPoints,  gpxPoints, disableAutomaticMapBounds]);
+  }, [resetMapBounds, disableAutomaticMapBounds]);
 
 
   const supercluster = useSupercluster(mapMarkers);
