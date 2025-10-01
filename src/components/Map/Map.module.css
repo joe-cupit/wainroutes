@@ -34,16 +34,19 @@
 }
 
 .startPoint,
-.endPoint {
-  fill: var(--clr-bg-light);
+.endPointBottom,
+.endPointTop {
+  fill: currentColor;
+  cursor: default;
+}
+.startPoint {
+  fill: oklch(0.75 0.2 143);
   stroke: currentColor;
   stroke-width: 2;
 }
-.startPoint {
-  fill: green;
-}
-.endPoint {
-  fill: black;
+.endPointTop {
+  stroke: var(--clr-bg-light);
+  stroke-width: 1.5;
 }
 
 .marker {
@@ -118,8 +121,7 @@
   position: absolute;
 
   &[data-is-secondary="true"] {
-    opacity: 0.75;
-    filter: saturate(0.75);
+    filter: saturate(0.625);
     scale: 0.75;
     translate: -1px 3px;
   }

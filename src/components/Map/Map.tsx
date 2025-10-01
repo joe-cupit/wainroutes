@@ -24,6 +24,7 @@ type LakeProps = {
   activePoint?: string | null;
   defaultCenter?: [number, number];
   defaultZoom?: number;
+  defaultMinZoom?: number;
 
   disableAutomaticMapBounds?: boolean;
 
@@ -32,11 +33,11 @@ type LakeProps = {
 }
 
 
-export default function LakeMap ({ primaryMarkers, secondaryMarkers, gpxPoints, activePoint, defaultCenter, defaultZoom, disableAutomaticMapBounds, className, children} : LakeProps) {
+export default function LakeMap ({ primaryMarkers, secondaryMarkers, gpxPoints, activePoint, defaultCenter, defaultZoom, defaultMinZoom, disableAutomaticMapBounds, className, children} : LakeProps) {
 
   const [center, setCenter] = useState<[number, number]>(defaultCenter || [54.55, -3.09]);
   const [zoom, setZoom] = useState<number>(defaultZoom || 11);
-  const [minZoom, setMinZoom] = useState<number>(3);
+  const [minZoom, setMinZoom] = useState<number>(defaultMinZoom || 3);
   const onBoundsChanged = ({ center, zoom } : { center: [number, number]; zoom: number }) => {
     setCenter(center);
     setZoom(zoom);
@@ -224,18 +225,34 @@ export function GeoRoute ({ points, activeIndex, ...props } : { points: [number,
   return (points && 
     <GeoJson {...props}>
       <GeoJsonFeature feature={data} styleCallback={() => ({ className: styles.route })} />
-      {endPoint && <GeoJsonFeature feature={endPoint}
-        svgAttributes={{ r: "5" }}
-        styleCallback={() => ({ className: styles.endPoint })}
-      />}
-      {startPoint && <GeoJsonFeature feature={startPoint}
-        svgAttributes={{ r: "5" }}
-        styleCallback={() => ({ className: styles.startPoint })}
-      />}
-      {activeData && <GeoJsonFeature feature={activeData}
+      {endPoint &&
+        <GeoJsonFeature
+          feature={endPoint}
+          svgAttributes={{ r: "6" }}
+          styleCallback={() => ({ className: styles.endPointBottom })}
+        />
+      }
+      {endPoint &&
+        <GeoJsonFeature
+          feature={endPoint}
+          svgAttributes={{ r: "4" }}
+          styleCallback={() => ({ className: styles.endPointTop })}
+        />
+      }
+      {startPoint &&
+        <GeoJsonFeature
+          feature={startPoint}
+          svgAttributes={{ r: "5" }}
+          styleCallback={() => ({ className: styles.startPoint })}
+        />
+      }
+      {activeData &&
+        <GeoJsonFeature
+          feature={activeData}
           svgAttributes={{ r: "8" }}
           styleCallback={() => ({ className: styles.hoveredPoint })}
-      />}
+        />
+      }
     </GeoJson>
   )
 }
