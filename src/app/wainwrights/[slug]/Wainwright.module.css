@@ -106,14 +106,27 @@
 
 .nearbyList {
   display: grid;
-  gap: 0.125lh;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--gap-600);
+  row-gap: 0.125lh;
+
   list-style: inside;
-  margin-top: var(--gap-300);
+
+  margin-top: 0.75rem;
+  margin-inline-start: var(--gap-200);
+
+  width: fit-content;
+  font-size: var(--fs-300);
 
   & a {
+    font-size: var(--fs-400);
     font-weight: var(--fw-medium);
   }
   & a:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 31rem) {
+    grid-template-columns: 1fr;
   }
 }

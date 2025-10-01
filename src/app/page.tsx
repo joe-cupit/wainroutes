@@ -29,7 +29,7 @@ export function generateMetadata() {
 
 export default function Home() {
 
-  const featuredWalkSlugs = ["the-four-summits-of-dodd-wood", "castle-crag-with-millican-daltons-cave", "the-kentmere-horseshoe"];
+  const featuredWalkSlugs = ["wetherlam-and-the-northern-coniston-fells", "castle-crag-with-millican-daltons-cave", "the-kentmere-horseshoe"];
   const walks = tempwalks as unknown as Walk[];
   const featuredWalks = featuredWalkSlugs.map(slug => walks.find(w => w.slug === slug));
 

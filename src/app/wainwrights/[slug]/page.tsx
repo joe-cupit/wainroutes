@@ -13,6 +13,7 @@ import walksJson from "@/data/walks.json";
 import { useHillMarkers } from "@/hooks/useMapMarkers";
 
 import haversineDistance from "@/utils/haversineDistance";
+import directionFromPoint from "@/utils/directionFromPoint";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
 
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
@@ -66,9 +67,13 @@ export default async function Wainwright({ params } : WainProps) {
   const bookNum = hillData?.book;
 
   const nearbyHills = (wainsJson as unknown as Hill[])
-                        .map(hill => ({hill: hill, distance: haversineDistance([hill.longitude, hill.latitude], [hillData.longitude, hillData.latitude])}))
+                        .map(hill => ({
+                          hill: hill,
+                          distance: haversineDistance([hillData.longitude, hillData.latitude], [hill.longitude, hill.latitude]),
+                          direction: directionFromPoint([hillData.longitude, hillData.latitude], [hill.longitude, hill.latitude]),
+                        }))
                         .sort((a, b) => a.distance - b.distance)
-                        .slice(1, 10)
+                        .slice(1, 9)
 
   return (
     <main className={styles.page}>
@@ -112,13 +117,13 @@ export default async function Wainwright({ params } : WainProps) {
                 </div>
                 <div>
                   <h3 className={fontStyles.smallheading}>Other Classifications</h3>
-                  {(hillData?.classifications.length ?? 0) > 0
+                  {hillData.classifications.some(code => code in Classifications)
                   ? <ul className={styles.classifications}>
                       {Object.keys(Classifications).map((code, index) => {
-                        if (hillData?.classifications.includes(code)) return <li key={index}>{Classifications[code]}</li>
+                        if (hillData.classifications.includes(code)) return <li key={index}>{Classifications[code]}</li>
                       })}
                     </ul>
-                  : <p>N/A</p>
+                  : <p>None</p>
                   }
                 </div>
               </div>
@@ -161,16 +166,16 @@ export default async function Wainwright({ params } : WainProps) {
 
           <div>
             <h2 className={fontStyles.subheading}>Nearby Wainwrights</h2>
-            <p>The closest ten fells to {hillData.name}.</p>
-            <ul className={styles.nearbyList}>
+            <p>The closest eight fells to {hillData.name}.</p>
+            <ol className={styles.nearbyList}>
               {nearbyHills.map((fell, index) => {
                 return (
                   <li key={index}>
-                    <Link href={"/wainwrights/"+fell.hill.slug}>{fell.hill.name}</Link> ({displayDistance(fell.distance / 1000, 1)} away)
+                    <Link href={"/wainwrights/"+fell.hill.slug}>{fell.hill.name}</Link> ({displayDistance(fell.distance / 1000, 1)} {fell.direction})
                   </li>
                 )
               })}
-            </ul>
+            </ol>
           </div>
 
         </div>

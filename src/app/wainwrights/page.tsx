@@ -54,7 +54,7 @@ export default function Wainwrights() {
         <div className={styles.main}>
           <div className={styles.header}>
             <h1 className={fontStyles.title}>The 214 Wainwrights</h1>
-            <p>214 fells within The Lake District, as described in A. Wainwright&apos;s <i>Pictorial Guides to the Lakeland Fells</i>.</p>
+            <p>The Wainwrights are a collection of 214 fells in the Lake District, named after Alfred Wainwright's handwritten <i>Pictorial Guide to the Lakeland Fells</i>, written during the 1950s and 60s. Today, they are both a guide and a goal for walkers exploring the Lakes.</p>
           </div>
           <WainwrightsClient
             simplifiedHillData={simplifiedHillData}

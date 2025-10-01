@@ -114,28 +114,26 @@ export default function LakeMap ({ primaryMarkers, secondaryMarkers, gpxPoints, 
                   }
                 }}
         >
-          <>
-            <div className={`${styles.cluster} ${focussed ? styles.focussedCluster : ""}`}>
-              {clusterItems.map((item, index) => {
-                return item.properties.type === "hill"
-                  ? <HillIcon key={index} isSecondaryMarker={secondarySlugs.includes(item.properties.slug)} book={item.properties.book} />
-                  : <WalkIcon key={index} isSecondaryMarker={secondarySlugs.includes(item.properties.slug)} />
-              })}
-            </div>
-            <div className={styles.clusterTooltip}>
-              {clusterItems.length > 1
-                ? clusterItems.length + " "
-                  + (clusterItems[0].properties.type === "walk" ? "routes" : "")
-                  + (clusterItems[0].properties.type === "hill" ? "Wainwrights" : "")
-                : <>
-                    {clusterItems[0].properties.name}
-                    {clusterItems[0].properties.type == "hill" &&
-                      <p className={styles.clusterTooltipTip}>{BookTitles[clusterItems[0].properties.book]}</p>
-                    }
-                  </>
-              }
-            </div>
-          </>
+          <div className={`${styles.cluster} ${focussed ? styles.focussedCluster : ""}`}>
+            {clusterItems.map((item, index) => {
+              return item.properties.type === "hill"
+                ? <HillIcon key={index} isSecondaryMarker={secondarySlugs.includes(item.properties.slug)} book={item.properties.book} />
+                : <WalkIcon key={index} isSecondaryMarker={secondarySlugs.includes(item.properties.slug)} />
+            })}
+          </div>
+          <div className={styles.clusterTooltip}>
+            {clusterItems.length > 1
+              ? clusterItems.length + " "
+                + (clusterItems[0].properties.type === "walk" ? "routes" : "")
+                + (clusterItems[0].properties.type === "hill" ? "Wainwrights" : "")
+              : <>
+                  {clusterItems[0].properties.name}
+                  {clusterItems[0].properties.type == "hill" &&
+                    <p className={styles.clusterTooltipTip}>{BookTitles[clusterItems[0].properties.book]}</p>
+                  }
+                </>
+            }
+          </div>
         </Marker>
       )
 

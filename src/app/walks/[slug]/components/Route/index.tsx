@@ -29,12 +29,11 @@ export type ParsedGPX = {
 
 type RouteProps = {
   wainwrights: Walk["wainwrights"]
-  defaultCenter: [number, number]
   slug: string
 }
 
 
-export default function Route({ wainwrights, defaultCenter, slug } : RouteProps) {
+export default function Route({ wainwrights, slug } : RouteProps) {
 
   const filePath = path.join(process.cwd(), 'src', 'data', 'gpx', `${slug}.gpx`);
   const gpxStr = readFileSync(filePath, 'utf-8');
