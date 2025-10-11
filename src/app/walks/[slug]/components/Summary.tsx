@@ -30,7 +30,7 @@ export default function Summary({
 
   return (
     <div id="walk-summary" className={styles.summary}>
-      <h1 className={fontStyles.title}>{title}</h1>
+      <h1 className={fontStyles.heading}>{title}</h1>
 
       <h2
         className={`${fontStyles.subheading} visually-hidden`}

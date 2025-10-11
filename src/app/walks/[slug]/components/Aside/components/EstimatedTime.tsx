@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "../../../Walk.module.css";
+import styles from "../Aside.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
 import { useEffect, useMemo, useState } from "react";

@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "../Walk.module.css";
+import styles from "./Overlay.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 import buttonStyles from "@/styles/buttons.module.css";
 
@@ -67,7 +67,7 @@ export default function Overlay({
       } else {
         setShowOverlay(true);
 
-        if (window.innerWidth < 552 && navbar && overlay) {
+        if (window.innerWidth < 833 && navbar && overlay) {
           if (navbar?.classList.contains("sticky")) {
             overlay?.classList.remove(styles.stickyTop);
           } else overlay?.classList.add(styles.stickyTop);

@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "../../Walk.module.css";
+import styles from "./Aside.module.css";
 
 import { useState } from "react";
 
@@ -60,12 +60,7 @@ export default function WalkAside({
         </button>
       </div>
 
-      {/* <div className={styles.asideImage}>
-        <LazyImage
-          name={slug + "_" + gallery?.coverId}
-          sizes="(min-width: 300px) 300px, 90vw"
-        />
-      </div> */}
+      <div className={styles.asideImage}></div>
 
       <div
         className={`${styles.asideContent} ${

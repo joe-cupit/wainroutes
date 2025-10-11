@@ -105,36 +105,38 @@ export default async function WalkPage({ params }: WalkProps) {
 
       <section>
         <div className={styles.body}>
-          <div className={styles.main}>
-            <Summary
-              title={walkData.title ?? ""}
-              wainwrights={walkData.wainwrights ?? []}
-              length={walkData.length ?? 0}
-              elevation={walkData.elevation ?? 0}
-              intro={walkData.intro}
+          <div className={styles.duo}>
+            <div className={styles.duoLeft}>
+              <Summary
+                title={walkData.title ?? ""}
+                wainwrights={walkData.wainwrights ?? []}
+                length={walkData.length ?? 0}
+                elevation={walkData.elevation ?? 0}
+                intro={walkData.intro}
+              />
+
+              <Route wainwrights={walkData.wainwrights ?? []} slug={slug} />
+
+              {Object.keys(walkData.waypoints ?? {}).length > 0 && (
+                <Waypoints waypoints={walkData.waypoints} />
+              )}
+            </div>
+
+            <WalkAside
+              startLocation={walkData.startLocation}
+              busConnections={walkData.busConnections}
+              walkLength={walkData.length}
+              terrain={walkData.terrain}
             />
-
-            <Route wainwrights={walkData.wainwrights ?? []} slug={slug} />
-
-            {Object.keys(walkData.waypoints ?? {}).length > 0 && (
-              <Waypoints waypoints={walkData.waypoints} />
-            )}
-
-            <Photos slug={slug} galleryData={walkData.gallery} />
-
-            {walkData.weatherLoc && (
-              <Weather weatherLoc={walkData.weatherLoc} />
-            )}
           </div>
 
-          <WalkAside
-            startLocation={walkData.startLocation}
-            busConnections={walkData.busConnections}
-            walkLength={walkData.length}
-            terrain={walkData.terrain}
-          />
-        </div>
+          <Photos slug={slug} galleryData={walkData.gallery} />
 
+          {walkData.weatherLoc && <Weather weatherLoc={walkData.weatherLoc} />}
+        </div>
+      </section>
+
+      <section>
         <NearbyWalks
           location={[
             walkData.startLocation?.longitude ?? 0,
@@ -142,7 +144,9 @@ export default async function WalkPage({ params }: WalkProps) {
           ]}
           currentSlug={slug}
         />
+      </section>
 
+      <section>
         <div className={styles.note}>
           <p>
             These routes are for guidance only. Always check the weather, wear

@@ -1,6 +1,7 @@
-import styles from "../../../Walk.module.css";
+import styles from "../Aside.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
+import Link from "next/link";
 import Walk from "@/types/Walk";
 
 export default function StartingLocation({
@@ -20,9 +21,16 @@ export default function StartingLocation({
       <div className={styles.locations}>
         <div className={styles.locationsRow}>
           <h3>Location</h3>
-          <span className={styles.bold}>
+          <Link
+            href={
+              "/walks?town=" +
+              startLocation?.location.toLowerCase().replaceAll(" ", "-")
+            }
+            aria-label={"Walks near " + startLocation?.location}
+            className={styles.bold}
+          >
             {startLocation?.location ?? "N/A"}
-          </span>
+          </Link>
         </div>
 
         <div className={styles.locationsRow}>
