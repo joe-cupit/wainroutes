@@ -1,4 +1,3 @@
-
 .container {
   width: 100%;
   height: 100%;
@@ -8,6 +7,7 @@
   overflow: hidden;
 }
 
+/*  */
 
 .route {
   /* stroke: var(--clr-primary-300); */
@@ -89,7 +89,7 @@
   padding: var(--gap-300) var(--gap-400);
   border-radius: var(--gap-300);
 
-  box-shadow: 3px 3px 5px oklch(from var(--clr-text) l c h / .15);
+  box-shadow: 3px 3px 5px oklch(from var(--clr-text) l c h / 0.15);
 }
 .clusterTooltipTip {
   font-weight: var(--fw-regular);
@@ -111,6 +111,7 @@
   box-shadow: inherit;
 }
 
+/*  */
 
 .marker:hover .clusterTooltip,
 .marker:has(.focussedCluster) .clusterTooltip {
@@ -143,6 +144,7 @@
   display: none;
 }
 
+/*  */
 
 .hillMarker[data-book="1"] {
   fill: var(--clr-wain-book-1);

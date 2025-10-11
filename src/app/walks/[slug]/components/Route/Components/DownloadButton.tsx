@@ -4,9 +4,7 @@ import buttonStyles from "@/styles/buttons.module.css";
 import { useCallback } from "react";
 import { DownloadIcon } from "@/icons/MaterialIcons";
 
-
-export default function DownloadButton({ slug } : { slug: string }) {
-
+export default function DownloadButton({ slug }: { slug: string }) {
   const handleDownload = useCallback(() => {
     const a = document.createElement("a");
     a.href = `/download/gpx/${slug}`;
@@ -14,8 +12,7 @@ export default function DownloadButton({ slug } : { slug: string }) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-  }, [slug])
-
+  }, [slug]);
 
   return (
     <button
@@ -25,5 +22,5 @@ export default function DownloadButton({ slug } : { slug: string }) {
     >
       <DownloadIcon /> Download GPX
     </button>
-  )
+  );
 }

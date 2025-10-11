@@ -20,88 +20,101 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import WalkCard from "@/components/WalkCard/WalkCard";
 import LakeMap from "@/components/Map/Map";
 
-
 type WainProps = {
-  params: Promise<{ slug: string }>
-}
+  params: Promise<{ slug: string }>;
+};
 
-
-export async function generateMetadata({ params } : WainProps) {
-  const { slug }  = await params;
-  const hillData = (wainsJson as unknown as Hill[]).find(w => w.slug === slug);
+export async function generateMetadata({ params }: WainProps) {
+  const { slug } = await params;
+  const hillData = (wainsJson as unknown as Hill[]).find(
+    (w) => w.slug === slug
+  );
   if (!hillData) return {};
 
   const title = `${hillData.name} (${hillData.height}m) – Wainwright Routes & Details`;
-  const description = `Details for ${hillData.name} (${hillData.height}m), a Wainwright in the Lake District, with walking routes, details, and nearby fells.`
+  const description = `Details for ${hillData.name} (${hillData.height}m), a Wainwright in the Lake District, with walking routes, details, and nearby fells.`;
   const path = `/wainwrights/${hillData.slug}`;
 
   return createPageMetadata({
-    title, description, path
+    title,
+    description,
+    path,
   });
 }
 
-
 export function generateStaticParams() {
   const wains = wainsJson as unknown as Hill[];
-  
-  return wains.map(wain => ({slug: wain.slug}));
+
+  return wains.map((wain) => ({ slug: wain.slug }));
 }
 
+export default async function Wainwright({ params }: WainProps) {
+  const { slug } = await params;
 
-export default async function Wainwright({ params } : WainProps) {
-
-  const { slug }  = await params;
-
-  const hillData = (wainsJson as unknown as Hill[]).find(w => w.slug === slug);
+  const hillData = (wainsJson as unknown as Hill[]).find(
+    (w) => w.slug === slug
+  );
   if (!hillData) {
     return notFound();
   }
 
-  const hillMarkers = getHillMarkers().filter(hill => hill.properties.slug === hillData.slug);
-  const secondaryMarkers = getHillMarkers().filter(hill => hill.properties.slug !== hillData.slug);
-
+  const hillMarkers = getHillMarkers().filter(
+    (hill) => hill.properties.slug === hillData.slug
+  );
+  const secondaryMarkers = getHillMarkers().filter(
+    (hill) => hill.properties.slug !== hillData.slug
+  );
 
   const walkData = (walksJson as unknown as Walk[])
-                      .filter(walk => walk.wainwrights?.includes(slug))
-                      .sort((a, b) => b.wainwrights.length - a.wainwrights.length);
+    .filter((walk) => walk.wainwrights?.includes(slug))
+    .sort((a, b) => b.wainwrights.length - a.wainwrights.length);
   const bookNum = hillData?.book;
 
   const nearbyHills = (wainsJson as unknown as Hill[])
-                        .map(hill => ({
-                          hill: hill,
-                          distance: haversineDistance([hillData.longitude, hillData.latitude], [hill.longitude, hill.latitude]),
-                          direction: directionFromPoint([hillData.longitude, hillData.latitude], [hill.longitude, hill.latitude]),
-                        }))
-                        .sort((a, b) => a.distance - b.distance)
-                        .slice(1, 9)
+    .map((hill) => ({
+      hill: hill,
+      distance: haversineDistance(
+        [hillData.longitude, hillData.latitude],
+        [hill.longitude, hill.latitude]
+      ),
+      direction: directionFromPoint(
+        [hillData.longitude, hillData.latitude],
+        [hill.longitude, hill.latitude]
+      ),
+    }))
+    .sort((a, b) => a.distance - b.distance)
+    .slice(1, 9);
 
   return (
     <main className={styles.page}>
-
       <section>
-
         <div className={styles.main}>
           <div>
             <Breadcrumbs
               crumbs={{
-                "Wainwrights": "/wainwrights",
-                [BookTitles[hillData?.book ?? 1]]: "/wainwrights?book="+bookNum,
+                Wainwrights: "/wainwrights",
+                [BookTitles[hillData?.book ?? 1]]:
+                  "/wainwrights?book=" + bookNum,
               }}
             />
-            <h1 className={`${fontStyles.title} ${styles.title}`}>{hillData?.name} <span className={styles.titleElevation}>{displayElevation(hillData?.height)}</span></h1>
+            <h1 className={`${fontStyles.title} ${styles.title}`}>
+              {hillData?.name}{" "}
+              <span className={styles.titleElevation}>
+                {displayElevation(hillData?.height)}
+              </span>
+            </h1>
           </div>
-
 
           <div className={styles.group}>
             <div className={styles.details}>
               <h2 className="visually-hidden">Details</h2>
-              <p>
-                More information coming soon.
-              </p>
+              <p>More information coming soon.</p>
               <div className={styles.stats}>
                 <div>
                   <h3 className={fontStyles.smallheading}>Area</h3>
-                  <Link href={"/wainwrights?book="+bookNum}>{`${hillData.book}- ${BookTitles[hillData.book ?? 1]}`}</Link>
+                  <Link href={"/wainwrights?book=" + bookNum}>{`${
+                    hillData.book
+                  }- ${BookTitles[hillData.book ?? 1]}`}</Link>
                 </div>
                 <div>
                   <h3 className={fontStyles.smallheading}>Grid Ref.</h3>
@@ -116,15 +129,21 @@ export default async function Wainwright({ params } : WainProps) {
                   <p>{displayElevation(hillData?.prominence)}</p>
                 </div>
                 <div>
-                  <h3 className={fontStyles.smallheading}>Other Classifications</h3>
-                  {hillData.classifications.some(code => code in Classifications)
-                  ? <ul className={styles.classifications}>
+                  <h3 className={fontStyles.smallheading}>
+                    Other Classifications
+                  </h3>
+                  {hillData.classifications.some(
+                    (code) => code in Classifications
+                  ) ? (
+                    <ul className={styles.classifications}>
                       {Object.keys(Classifications).map((code, index) => {
-                        if (hillData.classifications.includes(code)) return <li key={index}>{Classifications[code]}</li>
+                        if (hillData.classifications.includes(code))
+                          return <li key={index}>{Classifications[code]}</li>;
                       })}
                     </ul>
-                  : <p>None</p>
-                  }
+                  ) : (
+                    <p>None</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -134,11 +153,12 @@ export default async function Wainwright({ params } : WainProps) {
                 primaryMarkers={hillMarkers}
                 secondaryMarkers={secondaryMarkers}
                 activePoint={hillData.slug}
-
-                defaultCenter={[hillMarkers[0].coordinates[0] + 0.0075, hillMarkers[0].coordinates[1]]}
+                defaultCenter={[
+                  hillMarkers[0].coordinates[0] + 0.0075,
+                  hillMarkers[0].coordinates[1],
+                ]}
                 defaultZoom={12}
                 defaultMinZoom={9}
-
                 disableAutomaticMapBounds={true}
               />
             </div>
@@ -146,22 +166,22 @@ export default async function Wainwright({ params } : WainProps) {
 
           <div>
             <h2 className={fontStyles.subheading}>Routes up {hillData.name}</h2>
-            {(walkData && walkData.length > 0)
-              ? <>
-                  <p>
-                    {(walkData.length === 1)
-                      ? "There is currently one walk that includes this fell."
-                      : `There are currently ${walkData.length} walks that include this fell.`
-                    }
-                  </p>
-                  <div className={styles.walks}>
-                    {walkData.map((walk, index) => {
-                      return <WalkCard key={index} walk={walk} />
-                    })}
-                  </div>
-                </>
-              : <p>There are currently no walks including this fell.</p>
-            }
+            {walkData && walkData.length > 0 ? (
+              <>
+                <p>
+                  {walkData.length === 1
+                    ? "There is currently one walk that includes this fell."
+                    : `There are currently ${walkData.length} walks that include this fell.`}
+                </p>
+                <div className={styles.walks}>
+                  {walkData.map((walk, index) => {
+                    return <WalkCard key={index} walk={walk} />;
+                  })}
+                </div>
+              </>
+            ) : (
+              <p>There are currently no walks including this fell.</p>
+            )}
           </div>
 
           <div>
@@ -171,16 +191,18 @@ export default async function Wainwright({ params } : WainProps) {
               {nearbyHills.map((fell, index) => {
                 return (
                   <li key={index}>
-                    <Link href={"/wainwrights/"+fell.hill.slug}>{fell.hill.name}</Link> ({displayDistance(fell.distance / 1000, 1)} {fell.direction})
+                    <Link href={"/wainwrights/" + fell.hill.slug}>
+                      {fell.hill.name}
+                    </Link>{" "}
+                    ({displayDistance(fell.distance / 1000, 1)} {fell.direction}
+                    )
                   </li>
-                )
+                );
               })}
             </ol>
           </div>
-
         </div>
       </section>
-
     </main>
-  )
+  );
 }

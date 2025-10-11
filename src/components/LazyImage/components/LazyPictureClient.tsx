@@ -3,7 +3,6 @@
 import styles from "../LazyImage.module.css";
 import { Fragment, JSX, useEffect, useRef, useState } from "react";
 
-
 type LazyPictureClientProps = {
   fallbackSrc: string;
   fallbackSrcSet: string;
@@ -13,11 +12,18 @@ type LazyPictureClientProps = {
   blurURL: string;
   SourceElements: JSX.Element[];
   eager?: boolean;
-}
+};
 
-
-export default function LazyPictureClient({ fallbackSrc, fallbackSrcSet, sizes, alt, blurURL, SourceElements, className, eager=false } : LazyPictureClientProps) {
-
+export default function LazyPictureClient({
+  fallbackSrc,
+  fallbackSrcSet,
+  sizes,
+  alt,
+  blurURL,
+  SourceElements,
+  className,
+  eager = false,
+}: LazyPictureClientProps) {
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -25,8 +31,7 @@ export default function LazyPictureClient({ fallbackSrc, fallbackSrcSet, sizes, 
     if (imgRef.current?.complete) {
       setLoaded(true);
     }
-  }, [])
-
+  }, []);
 
   return (
     <div
@@ -38,7 +43,7 @@ export default function LazyPictureClient({ fallbackSrc, fallbackSrcSet, sizes, 
     >
       <picture>
         {SourceElements.map((Source, index) => {
-          return <Fragment key={index}>{Source}</Fragment>
+          return <Fragment key={index}>{Source}</Fragment>;
         })}
         <img
           ref={imgRef}
@@ -46,14 +51,13 @@ export default function LazyPictureClient({ fallbackSrc, fallbackSrcSet, sizes, 
           srcSet={fallbackSrcSet}
           sizes={sizes}
           alt={alt}
-
           loading={eager ? "eager" : "lazy"}
           onLoad={() => setLoaded(true)}
           style={{
-            opacity: loaded ? 1 : 0
+            opacity: loaded ? 1 : 0,
           }}
         />
       </picture>
     </div>
-  )
+  );
 }

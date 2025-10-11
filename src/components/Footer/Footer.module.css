@@ -18,13 +18,13 @@
 .mountains {
   grid-column: full-width;
   display: grid;
-  
+
   position: absolute;
   bottom: calc(100% - 2px);
   left: 0;
   width: 100%;
   height: var(--footer-mountain-height);
-  
+
   color: var(--clr-bg-black);
   overflow: hidden;
   pointer-events: none;

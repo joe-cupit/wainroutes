@@ -1,11 +1,10 @@
-"use client"
+"use client";
 
 import styles from "./BackToTopButton.module.css";
 
 import { useEffect, useState } from "react";
 
 import { BackToTopIcon } from "@/icons/MaterialIcons";
-
 
 export default function BackToTopButton({ minHeight = 400 }) {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -14,8 +13,7 @@ export default function BackToTopButton({ minHeight = 400 }) {
     function toggleOverlay() {
       if ((document.scrollingElement?.scrollTop ?? 0) < minHeight) {
         setShowScrollTop(false);
-      }
-      else {
+      } else {
         setShowScrollTop(true);
       }
     }
@@ -23,19 +21,18 @@ export default function BackToTopButton({ minHeight = 400 }) {
     window.addEventListener("scroll", toggleOverlay);
     return () => {
       window.removeEventListener("scroll", toggleOverlay);
-    }
-  }, [minHeight])
-
+    };
+  }, [minHeight]);
 
   return (
     <button
       className={styles.button}
-      onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       data-show={showScrollTop}
       aria-label="Back to top"
       title="Back to top"
     >
       <BackToTopIcon />
     </button>
-  )
+  );
 }

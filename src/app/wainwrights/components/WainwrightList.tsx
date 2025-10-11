@@ -12,16 +12,17 @@ import { BookTitles } from "@/types/Hill";
 import { displayElevation } from "@/utils/unitConversions";
 import { CloseIconSmall, SearchIcon } from "@/icons/MaterialIcons";
 
-
 type WainwrightListProps = {
-  simplifiedHills: SimplifiedHill[]
-  setHoveredSlug: React.Dispatch<React.SetStateAction<string | null>>
-  book: number
-}
+  simplifiedHills: SimplifiedHill[];
+  setHoveredSlug: React.Dispatch<React.SetStateAction<string | null>>;
+  book: number;
+};
 
-
-export default function WainwrightList({ simplifiedHills, setHoveredSlug, book } : WainwrightListProps) {
-
+export default function WainwrightList({
+  simplifiedHills,
+  setHoveredSlug,
+  book,
+}: WainwrightListProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
@@ -35,8 +36,7 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
       setFilterTerm(inputValue);
     }, 250);
     return () => clearTimeout(handler);
-  }, [inputValue])
-
+  }, [inputValue]);
 
   useEffect(() => {
     const head = document.getElementById("table-head");
@@ -44,13 +44,14 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
     const button = document.getElementById("back-to-top-button");
 
     function checkScroll() {
-      console.log(body?.scrollHeight, body?.clientHeight)
+      console.log(body?.scrollHeight, body?.clientHeight);
       if (head && body) {
         if (body.scrollTop > 0) head.classList.add(styles.floating);
         else head.classList.remove(styles.floating);
 
         // if (body.scrollHeight <= body.clientHeight) body.classList.remove(styles.floating);
-        if (body.scrollTop >= body.scrollHeight - body.clientHeight - 10) body.classList.remove(styles.floating);
+        if (body.scrollTop >= body.scrollHeight - body.clientHeight - 10)
+          body.classList.remove(styles.floating);
         else body.classList.add(styles.floating);
 
         if (button) {
@@ -64,9 +65,8 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
     body?.addEventListener("scroll", checkScroll);
     return () => {
       body?.removeEventListener("scroll", checkScroll);
-    }
-  }, [filterTerm])
-
+    };
+  }, [filterTerm]);
 
   const [sortMode, setSortMode] = useState("height");
   const [sortStates, setSortStates] = useState([false, false, true]);
@@ -74,10 +74,9 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
   const searchableHills = useMemo(() => {
     return new Fuse(simplifiedHills, {
       keys: ["name"],
-      threshold: 0.25
-    })
-  }, [simplifiedHills])
-
+      threshold: 0.25,
+    });
+  }, [simplifiedHills]);
 
   function updateSortMode(newSortMode: string) {
     if (newSortMode == sortMode) {
@@ -94,52 +93,54 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
         default:
           break;
       }
-    }
-    else {
+    } else {
       setSortMode(newSortMode);
     }
   }
 
   const filteredHills = useMemo(() => {
     if (filterTerm.length > 0) {
-      return searchableHills.search(filterTerm).map(res => res.item);
-    }
-    else return simplifiedHills;
-  }, [simplifiedHills, searchableHills, filterTerm])
+      return searchableHills.search(filterTerm).map((res) => res.item);
+    } else return simplifiedHills;
+  }, [simplifiedHills, searchableHills, filterTerm]);
 
   const sortedHills = useMemo(() => {
     switch (sortMode) {
       case "book":
-        if (!sortStates[0]) return [...filteredHills].sort((a, b) => a.book-b.book);
-        else return [...filteredHills].sort((b, a) => a.book-b.book);
+        if (!sortStates[0])
+          return [...filteredHills].sort((a, b) => a.book - b.book);
+        else return [...filteredHills].sort((b, a) => a.book - b.book);
       case "mountain":
-        if (!sortStates[1]) return [...filteredHills].sort((a, b) => a.name.localeCompare(b.name));
-        else return [...filteredHills].sort((b, a) => a.name.localeCompare(b.name));
+        if (!sortStates[1])
+          return [...filteredHills].sort((a, b) =>
+            a.name.localeCompare(b.name)
+          );
+        else
+          return [...filteredHills].sort((b, a) =>
+            a.name.localeCompare(b.name)
+          );
       case "height":
-        if (!sortStates[2]) return [...filteredHills].sort((a, b) => a.height-b.height);
-        else return [...filteredHills].sort((b, a) => a.height-b.height);
+        if (!sortStates[2])
+          return [...filteredHills].sort((a, b) => a.height - b.height);
+        else return [...filteredHills].sort((b, a) => a.height - b.height);
       default:
         return [];
     }
-  }, [filteredHills, sortMode, sortStates])
-
+  }, [filteredHills, sortMode, sortStates]);
 
   return (
     <div className={styles.list}>
-
-      <div
-        className={styles.search}
-        onClick={() => inputRef.current?.focus()}
-      >
+      <div className={styles.search} onClick={() => inputRef.current?.focus()}>
         <SearchIcon />
-        <input type="text"
+        <input
+          type="text"
           ref={inputRef}
           placeholder="search the list of fells"
           value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
+          onChange={(e) => setInputValue(e.target.value)}
         />
 
-        {inputValue.length > 0 &&
+        {inputValue.length > 0 && (
           <button
             className={styles.searchButton}
             onClick={() => setInputValue("")}
@@ -147,7 +148,7 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
           >
             <CloseIconSmall />
           </button>
-        }
+        )}
       </div>
 
       <button
@@ -157,7 +158,7 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
           document.getElementById("table-body")?.scrollTo({
             top: 0,
             left: 0,
-            behavior: "smooth"
+            behavior: "smooth",
           });
         }}
       >
@@ -169,20 +170,36 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
           <tr>
             <td role="button" onClick={() => updateSortMode("book")}>
               Book&nbsp;
-              <span className={`${styles.tableArrow} ${sortMode==="book" ? styles.active : ""}`}>
-                {sortStates[0] ? "↓": "↑"}
+              <span
+                className={`${styles.tableArrow} ${
+                  sortMode === "book" ? styles.active : ""
+                }`}
+              >
+                {sortStates[0] ? "↓" : "↑"}
               </span>
             </td>
-            <td role="button" onClick={() => updateSortMode("mountain")} className={styles.mountainHeading}>
+            <td
+              role="button"
+              onClick={() => updateSortMode("mountain")}
+              className={styles.mountainHeading}
+            >
               Mountain&nbsp;
-              <span className={`${styles.tableArrow} ${sortMode==="mountain" ? styles.active : ""}`}>
-                {sortStates[1] ? "↓": "↑"}
+              <span
+                className={`${styles.tableArrow} ${
+                  sortMode === "mountain" ? styles.active : ""
+                }`}
+              >
+                {sortStates[1] ? "↓" : "↑"}
               </span>
             </td>
             <td role="button" onClick={() => updateSortMode("height")}>
               Height&nbsp;
-              <span className={`${styles.tableArrow} ${sortMode==="height" ? styles.active : ""}`}>
-                {sortStates[2] ? "↓": "↑"}
+              <span
+                className={`${styles.tableArrow} ${
+                  sortMode === "height" ? styles.active : ""
+                }`}
+              >
+                {sortStates[2] ? "↓" : "↑"}
               </span>
             </td>
           </tr>
@@ -194,11 +211,15 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
                 <tr key={index}>
                   <td>
                     <button
-                      onClick={() => window.history.replaceState({}, "",
-                        (hill.book === book)
-                        ? "/wainwrights"
-                        : `/wainwrights?book=${hill.book}`
-                      )}
+                      onClick={() =>
+                        window.history.replaceState(
+                          {},
+                          "",
+                          hill.book === book
+                            ? "/wainwrights"
+                            : `/wainwrights?book=${hill.book}`
+                        )
+                      }
                       className={styles.wainwrightBookTop}
                       data-book={hill.book}
                       title={BookTitles[hill.book]}
@@ -213,20 +234,37 @@ export default function WainwrightList({ simplifiedHills, setHoveredSlug, book }
                         onMouseEnter={() => setHoveredSlug(hill.slug)}
                         onMouseLeave={() => setHoveredSlug(null)}
                       >
-                        {hill.name} {hill.secondaryName ? <span className={`${styles.secondaryName} ${fontStyles.subtext}`}>({hill.secondaryName})</span> : ""}
+                        {hill.name}{" "}
+                        {hill.secondaryName ? (
+                          <span
+                            className={`${styles.secondaryName} ${fontStyles.subtext}`}
+                          >
+                            ({hill.secondaryName})
+                          </span>
+                        ) : (
+                          ""
+                        )}
                       </Link>
                     </h2>
-                    <span className={fontStyles.subtext}>{BookTitles[hill.book]}</span>
+                    <span className={fontStyles.subtext}>
+                      {BookTitles[hill.book]}
+                    </span>
                   </td>
                   <td>{displayElevation(hill.height)}</td>
                 </tr>
-              )
-            })
-          }
+              );
+            })}
 
-          {filterTerm && <tr><td className={styles.listNote} colSpan={3}>{filteredHills.length === 0 ? "No" : "Showing all"} Wainwrights matching <i>{"'"+filterTerm+"'"}</i></td></tr>}
+          {filterTerm && (
+            <tr>
+              <td className={styles.listNote} colSpan={3}>
+                {filteredHills.length === 0 ? "No" : "Showing all"} Wainwrights
+                matching <i>{"'" + filterTerm + "'"}</i>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
-  )
+  );
 }

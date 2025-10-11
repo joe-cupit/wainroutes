@@ -10,31 +10,56 @@ import { displayDistance, displayElevation } from "@/utils/unitConversions";
 
 import temphills from "@/data/hills.json";
 
-
-export default function Summary({ title, wainwrights, length, elevation, intro } : { title: Walk["title"]; wainwrights: Walk["wainwrights"]; length: Walk["length"]; elevation: Walk["elevation"]; intro: Walk["intro"] }) {
-
+export default function Summary({
+  title,
+  wainwrights,
+  length,
+  elevation,
+  intro,
+}: {
+  title: Walk["title"];
+  wainwrights: Walk["wainwrights"];
+  length: Walk["length"];
+  elevation: Walk["elevation"];
+  intro: Walk["intro"];
+}) {
   const hillsData = temphills as Hill[];
-  const hillNames = Object.fromEntries(hillsData.map(hill => [hill.slug, hill.name]));
+  const hillNames = Object.fromEntries(
+    hillsData.map((hill) => [hill.slug, hill.name])
+  );
 
   return (
     <div id="walk-summary" className={styles.summary}>
       <h1 className={fontStyles.title}>{title}</h1>
 
-      <h2 className={`${fontStyles.subheading} visually-hidden`} id="walk_overview">Summary</h2>
+      <h2
+        className={`${fontStyles.subheading} visually-hidden`}
+        id="walk_overview"
+      >
+        Summary
+      </h2>
       <div className={styles.section}>
-        <div className={(wainwrights?.length ?? 0) <= 2 ? styles.summary_horizontalGroupSmall : ""}>
+        <div
+          className={
+            (wainwrights?.length ?? 0) <= 2
+              ? styles.summary_horizontalGroupSmall
+              : ""
+          }
+        >
           <h3 className={fontStyles.smallheading}>Wainwrights: </h3>
           <p className={styles.wainwrights}>
             {wainwrights?.map((hill, index) => {
               return (
                 <Fragment key={index}>
                   <span>
-                    <Link href={"/wainwrights/"+hill}>{hillNames?.[hill]}</Link>
-                    {(index+1 < wainwrights?.length ? "," : "")}
+                    <Link href={"/wainwrights/" + hill}>
+                      {hillNames?.[hill]}
+                    </Link>
+                    {index + 1 < wainwrights?.length ? "," : ""}
                   </span>
-                  {(index+2 === wainwrights?.length ? " and " : " ")}
+                  {index + 2 === wainwrights?.length ? " and " : " "}
                 </Fragment>
-              )
+              );
             })}
           </p>
         </div>
@@ -50,13 +75,18 @@ export default function Summary({ title, wainwrights, length, elevation, intro }
           </div>
         </div>
 
-        {intro && 
+        {intro && (
           <div>
-            <h3 className={fontStyles.smallheading} style={{display: "block"}}>Overview: </h3>
+            <h3
+              className={fontStyles.smallheading}
+              style={{ display: "block" }}
+            >
+              Overview:{" "}
+            </h3>
             <p>{intro}</p>
           </div>
-        }
+        )}
       </div>
     </div>
-  )
+  );
 }

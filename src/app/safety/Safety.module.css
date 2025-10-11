@@ -7,13 +7,14 @@
   }
 }
 
+/*  */
 
 .intro {
   display: grid;
   justify-items: center;
 
   text-align: center;
-  
+
   @media (max-width: 43rem) {
     text-wrap: balance;
   }
@@ -26,6 +27,7 @@
   }
 }
 
+/*  */
 
 .groupSection {
   --content-max-width: 1200px;
@@ -58,7 +60,7 @@
     display: block;
     margin-block-start: 0.5lh;
   }
-  
+
   @media (max-width: 50rem) {
     &,
     &.reversed {

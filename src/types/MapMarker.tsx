@@ -5,8 +5,7 @@ type MapMarker = {
     slug: string;
     name: string;
     book?: number;
-  }
-}
-
+  };
+};
 
 export default MapMarker;

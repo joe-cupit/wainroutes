@@ -1499,7 +1499,7 @@
     "date": "2025-07-07",
     "startLocation": {
       "location": "Wasdale Head",
-      "latitude": 54.455680,
+      "latitude": 54.45568,
       "longitude": -3.261777,
       "postcode": "CA20 1EX",
       "gridRef": "NY182074"
@@ -1597,7 +1597,7 @@
     "recommendedScore": 83,
     "type": "Circular",
     "summary": "",
-    "wainwrights": ["sour-howes",  "sallows"],
+    "wainwrights": ["sour-howes", "sallows"],
     "length": 8.31,
     "elevation": 483,
     "date": "2025-09-21",

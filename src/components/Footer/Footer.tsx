@@ -6,14 +6,12 @@ import SiteSearchBar from "@/components/SiteSearchBar/SiteSearchBar";
 import LinkList from "./components/LinkList";
 import Mountains from "./components/Mountains";
 
-
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <Mountains />
 
       <div className={styles.grid}>
-
         <div className={styles.row}>
           <div className={styles.logo}>
             <WainroutesLogo />
@@ -46,10 +44,10 @@ export default function Footer() {
             <LinkList
               heading="Wainroutes"
               links={{
-                "Home": "/",
-                "About": "/about",
-                "Contact": "/contact",
-                "Donate": "/about/support",
+                Home: "/",
+                About: "/about",
+                Contact: "/contact",
+                Donate: "/about/support",
               }}
             />
           </div>
@@ -61,5 +59,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

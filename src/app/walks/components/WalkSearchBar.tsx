@@ -5,16 +5,22 @@ import styles from "../Walks.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { CloseIcon, CloseIconSmall, FilterIcon, SearchIcon } from "@/icons/MaterialIcons";
-
+import {
+  CloseIcon,
+  CloseIconSmall,
+  FilterIcon,
+  SearchIcon,
+} from "@/icons/MaterialIcons";
 
 type WalkSearchBarProps = {
   showFilters: boolean;
   setShowFilters: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
-export default function WalksSearchBar({ showFilters, setShowFilters } : WalkSearchBarProps) {
-
+export default function WalksSearchBar({
+  showFilters,
+  setShowFilters,
+}: WalkSearchBarProps) {
   const searchParams = useSearchParams();
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -23,14 +29,14 @@ export default function WalksSearchBar({ showFilters, setShowFilters } : WalkSea
 
   useEffect(() => {
     if (inputValue === "") {
-      setSearchTerm("")
+      setSearchTerm("");
       return;
     }
     const handler = setTimeout(() => {
       setSearchTerm(inputValue);
     }, 300);
     return () => clearTimeout(handler);
-  }, [inputValue])
+  }, [inputValue]);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
@@ -38,15 +44,14 @@ export default function WalksSearchBar({ showFilters, setShowFilters } : WalkSea
     else params.delete("query");
 
     window.history.replaceState({}, "", `/walks?${params.toString()}`);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm]);
 
   useEffect(() => {
     const query = searchParams.get("query") ?? "";
     setSearchTerm(query);
     setInputValue(query);
-  }, [searchParams])
-
+  }, [searchParams]);
 
   return (
     <div className={styles.filterSearch}>
@@ -60,9 +65,9 @@ export default function WalksSearchBar({ showFilters, setShowFilters } : WalkSea
           ref={searchRef}
           placeholder="Search for a walk"
           value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
+          onChange={(e) => setInputValue(e.target.value)}
         />
-        {inputValue.length > 0 &&
+        {inputValue.length > 0 && (
           <button
             className={styles.searchBarButton}
             onClick={() => setInputValue("")}
@@ -70,20 +75,17 @@ export default function WalksSearchBar({ showFilters, setShowFilters } : WalkSea
           >
             <CloseIconSmall />
           </button>
-        }
+        )}
       </div>
       <button
         className={styles.filterButton}
-        onClick={() => setShowFilters(prev => !prev)}
+        onClick={() => setShowFilters((prev) => !prev)}
         data-open={showFilters}
         title="Toggle filter visibility"
       >
         <span>Filters</span>
-        {showFilters
-          ? <CloseIcon />
-          : <FilterIcon />
-        }
+        {showFilters ? <CloseIcon /> : <FilterIcon />}
       </button>
     </div>
-  )
+  );
 }

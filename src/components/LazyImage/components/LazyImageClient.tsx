@@ -3,7 +3,6 @@
 import styles from "../LazyImage.module.css";
 import { useEffect, useRef, useState } from "react";
 
-
 type LazyImageClientProps = {
   src: string;
   srcSet: string;
@@ -13,11 +12,17 @@ type LazyImageClientProps = {
   blurURL: string;
 
   eager?: boolean;
-}
+};
 
-
-export default function LazyImageClient({ src, srcSet, sizes, alt, blurURL, className, eager=false } : LazyImageClientProps) {
-
+export default function LazyImageClient({
+  src,
+  srcSet,
+  sizes,
+  alt,
+  blurURL,
+  className,
+  eager = false,
+}: LazyImageClientProps) {
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -25,8 +30,7 @@ export default function LazyImageClient({ src, srcSet, sizes, alt, blurURL, clas
     if (imgRef.current?.complete) {
       setLoaded(true);
     }
-  }, [])
-
+  }, []);
 
   return (
     <div
@@ -43,13 +47,12 @@ export default function LazyImageClient({ src, srcSet, sizes, alt, blurURL, clas
         srcSet={srcSet}
         sizes={sizes}
         alt={alt}
-
         loading={eager ? "eager" : "lazy"}
         onLoad={() => setLoaded(true)}
         style={{
-          opacity: loaded ? 1 : 0
+          opacity: loaded ? 1 : 0,
         }}
       />
     </div>
-  )
+  );
 }

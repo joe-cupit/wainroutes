@@ -126,6 +126,7 @@ section > div:has(.group) {
   scroll-snap-align: center;
 }
 
+/*  */
 
 @container (max-width: 34rem) {
   .walkCard {

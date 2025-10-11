@@ -1,8 +1,15 @@
-"use client"
+"use client";
 
 import styles from "./Map.module.css";
 
-import { Fragment, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  Fragment,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { Map, Marker, GeoJson, ZoomControl, GeoJsonFeature } from "pigeon-maps";
 import { AnyProps, ClusterFeature, PointFeature } from "supercluster";
 
@@ -12,10 +19,8 @@ import getMapBounds from "@/utils/getMapBounds";
 
 import { useSupercluster } from "./hooks/useSupercluster";
 
-
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(import.meta.env.VITE_MAP_API_KEY, "topo-v2");
-
 
 type LakeProps = {
   primaryMarkers?: MapMarker[];
@@ -30,54 +35,81 @@ type LakeProps = {
 
   children?: ReactNode;
   className?: string;
-}
+};
 
-
-export default function LakeMap ({ primaryMarkers, secondaryMarkers, gpxPoints, activePoint, defaultCenter, defaultZoom, defaultMinZoom, disableAutomaticMapBounds, className, children} : LakeProps) {
-
-  const [center, setCenter] = useState<[number, number]>(defaultCenter || [54.55, -3.09]);
+export default function LakeMap({
+  primaryMarkers,
+  secondaryMarkers,
+  gpxPoints,
+  activePoint,
+  defaultCenter,
+  defaultZoom,
+  defaultMinZoom,
+  disableAutomaticMapBounds,
+  className,
+  children,
+}: LakeProps) {
+  const [center, setCenter] = useState<[number, number]>(
+    defaultCenter || [54.55, -3.09]
+  );
   const [zoom, setZoom] = useState<number>(defaultZoom || 11);
   const [minZoom, setMinZoom] = useState<number>(defaultMinZoom || 3);
-  const onBoundsChanged = ({ center, zoom } : { center: [number, number]; zoom: number }) => {
+  const onBoundsChanged = ({
+    center,
+    zoom,
+  }: {
+    center: [number, number];
+    zoom: number;
+  }) => {
     setCenter(center);
     setZoom(zoom);
-  }
+  };
 
-  const mapMarkers = useMemo(() => (
-    [...(primaryMarkers ?? []), ...(secondaryMarkers ?? [])]
-  ), [primaryMarkers, secondaryMarkers])
-  const secondarySlugs = useMemo(() => (
-    secondaryMarkers
-      ? secondaryMarkers?.map(marker => marker.properties.slug)
-      : []
-  ), [secondaryMarkers])
+  const mapMarkers = useMemo(
+    () => [...(primaryMarkers ?? []), ...(secondaryMarkers ?? [])],
+    [primaryMarkers, secondaryMarkers]
+  );
+  const secondarySlugs = useMemo(
+    () =>
+      secondaryMarkers
+        ? secondaryMarkers?.map((marker) => marker.properties.slug)
+        : [],
+    [secondaryMarkers]
+  );
 
   const mapBoundPoints = useMemo(() => {
     if (!(primaryMarkers || gpxPoints)) return [];
 
-    return [...(primaryMarkers ?? []).map(m => m.coordinates), 
-            ...(gpxPoints ?? []).map(p => [p[1], p[0]] as [number, number])]
+    return [
+      ...(primaryMarkers ?? []).map((m) => m.coordinates),
+      ...(gpxPoints ?? []).map((p) => [p[1], p[0]] as [number, number]),
+    ];
   }, [primaryMarkers, gpxPoints]);
-
 
   const resetMapBounds = useCallback(() => {
     if (!mapBoundPoints || mapBoundPoints.length === 0) return;
 
-    const mapBounds = document.getElementById("lake-map")?.getBoundingClientRect();
+    const mapBounds = document
+      .getElementById("lake-map")
+      ?.getBoundingClientRect();
     if (!mapBounds) return;
 
-    const minLat = Math.min(...mapBoundPoints.map(p => p[0]));
-    const maxLat = Math.max(...mapBoundPoints.map(p => p[0]));
-    const minLon = Math.min(...mapBoundPoints.map(p => p[1]));
-    const maxLon = Math.max(...mapBoundPoints.map(p => p[1]));
+    const minLat = Math.min(...mapBoundPoints.map((p) => p[0]));
+    const maxLat = Math.max(...mapBoundPoints.map((p) => p[0]));
+    const minLon = Math.min(...mapBoundPoints.map((p) => p[1]));
+    const maxLon = Math.max(...mapBoundPoints.map((p) => p[1]));
 
-    const newBounds = getMapBounds([minLat, maxLat], [minLon, maxLon], mapBounds.width, mapBounds.height);
+    const newBounds = getMapBounds(
+      [minLat, maxLat],
+      [minLon, maxLon],
+      mapBounds.width,
+      mapBounds.height
+    );
 
     setCenter(newBounds.center);
     setZoom(newBounds.zoom);
-    setMinZoom(newBounds.zoom*0.8);
-  }, [mapBoundPoints])
-
+    setMinZoom(newBounds.zoom * 0.8);
+  }, [mapBoundPoints]);
 
   useEffect(() => {
     if (!disableAutomaticMapBounds) {
@@ -85,187 +117,266 @@ export default function LakeMap ({ primaryMarkers, secondaryMarkers, gpxPoints, 
     }
   }, [resetMapBounds, disableAutomaticMapBounds]);
 
-
   const supercluster = useSupercluster(mapMarkers);
-  const markers : (PointFeature<AnyProps> | ClusterFeature<AnyProps>)[] = useMemo(() => {
-    if (!supercluster) return [];
+  const markers: (PointFeature<AnyProps> | ClusterFeature<AnyProps>)[] =
+    useMemo(() => {
+      if (!supercluster) return [];
 
-    return supercluster.getClusters([54, -4, 55, -2], zoom)
-        ?.sort((a, b) => b?.geometry?.coordinates?.[0] - a?.geometry?.coordinates?.[0]);
-  }, [supercluster, zoom])
+      return supercluster
+        .getClusters([54, -4, 55, -2], zoom)
+        ?.sort(
+          (a, b) =>
+            b?.geometry?.coordinates?.[0] - a?.geometry?.coordinates?.[0]
+        );
+    }, [supercluster, zoom]);
 
-  const renderMarker = (point: PointFeature<AnyProps> | ClusterFeature<AnyProps>, key: number) => {
+  const renderMarker = (
+    point: PointFeature<AnyProps> | ClusterFeature<AnyProps>,
+    key: number
+  ) => {
     try {
-      const clusterItems = (point?.properties?.cluster || false)
-        ? supercluster?.getLeaves(Number(point.id), Infinity)
-        : [point];
+      const clusterItems =
+        point?.properties?.cluster || false
+          ? supercluster?.getLeaves(Number(point.id), Infinity)
+          : [point];
       if (!clusterItems) return;
 
-      const focussed = activePoint && clusterItems.some(marker => marker.properties.slug === activePoint);
+      const focussed =
+        activePoint &&
+        clusterItems.some((marker) => marker.properties.slug === activePoint);
 
       return (
-        <Marker key={key} className={styles.marker}
-                anchor={point.geometry.coordinates as [number, number]}
-                onClick={() => {
-                  setCenter(point.geometry.coordinates as [number, number]);
-                  if (clusterItems.length > 1) setZoom((supercluster?.getClusterExpansionZoom(Number(point.id)) ?? 10)+1);
-                  else {
-                    if (zoom < 13) setZoom(13);
-                  }
-                }}
+        <Marker
+          key={key}
+          className={styles.marker}
+          anchor={point.geometry.coordinates as [number, number]}
+          onClick={() => {
+            setCenter(point.geometry.coordinates as [number, number]);
+            if (clusterItems.length > 1)
+              setZoom(
+                (supercluster?.getClusterExpansionZoom(Number(point.id)) ??
+                  10) + 1
+              );
+            else {
+              if (zoom < 13) setZoom(13);
+            }
+          }}
         >
-          <div className={`${styles.cluster} ${focussed ? styles.focussedCluster : ""}`}>
+          <div
+            className={`${styles.cluster} ${
+              focussed ? styles.focussedCluster : ""
+            }`}
+          >
             {clusterItems.map((item, index) => {
-              return item.properties.type === "hill"
-                ? <HillIcon key={index} isSecondaryMarker={secondarySlugs.includes(item.properties.slug)} book={item.properties.book} />
-                : <WalkIcon key={index} isSecondaryMarker={secondarySlugs.includes(item.properties.slug)} />
+              return item.properties.type === "hill" ? (
+                <HillIcon
+                  key={index}
+                  isSecondaryMarker={secondarySlugs.includes(
+                    item.properties.slug
+                  )}
+                  book={item.properties.book}
+                />
+              ) : (
+                <WalkIcon
+                  key={index}
+                  isSecondaryMarker={secondarySlugs.includes(
+                    item.properties.slug
+                  )}
+                />
+              );
             })}
           </div>
           <div className={styles.clusterTooltip}>
-            {clusterItems.length > 1
-              ? clusterItems.length + " "
-                + (clusterItems[0].properties.type === "walk" ? "routes" : "")
-                + (clusterItems[0].properties.type === "hill" ? "Wainwrights" : "")
-              : <>
-                  {clusterItems[0].properties.name}
-                  {clusterItems[0].properties.type == "hill" &&
-                    <p className={styles.clusterTooltipTip}>{BookTitles[clusterItems[0].properties.book]}</p>
-                  }
-                </>
-            }
+            {clusterItems.length > 1 ? (
+              clusterItems.length +
+              " " +
+              (clusterItems[0].properties.type === "walk" ? "routes" : "") +
+              (clusterItems[0].properties.type === "hill" ? "Wainwrights" : "")
+            ) : (
+              <>
+                {clusterItems[0].properties.name}
+                {clusterItems[0].properties.type == "hill" && (
+                  <p className={styles.clusterTooltipTip}>
+                    {BookTitles[clusterItems[0].properties.book]}
+                  </p>
+                )}
+              </>
+            )}
           </div>
         </Marker>
-      )
-
+      );
     } catch (e) {
       console.error("Error rendering marker.\n", e);
       return <Fragment key={key}></Fragment>;
     }
-  }
-
+  };
 
   useEffect(() => {
     if (!supercluster || !markers || !activePoint) {
       return;
     }
 
-    const activeMarker = markers.filter(point => {
-      const clusterItems = (point?.properties?.cluster || false)
-        ? supercluster.getLeaves(Number(point.id), Infinity)
-        : [point];
+    const activeMarker = markers.filter((point) => {
+      const clusterItems =
+        point?.properties?.cluster || false
+          ? supercluster.getLeaves(Number(point.id), Infinity)
+          : [point];
       if (!clusterItems) return false;
 
-      return clusterItems.some(marker => marker.properties.slug === activePoint);
-    })[0]
+      return clusterItems.some(
+        (marker) => marker.properties.slug === activePoint
+      );
+    })[0];
 
-    setCenter([activeMarker.geometry.coordinates[0], activeMarker.geometry.coordinates[1]]);
+    setCenter([
+      activeMarker.geometry.coordinates[0],
+      activeMarker.geometry.coordinates[1],
+    ]);
     setZoom(12);
     // setZoom((supercluster.getClusterExpansionZoom(Number(activeMarker.id)) ?? 10)+1);
-  }, [activePoint])
-
+  }, [activePoint]);
 
   useEffect(() => {
     document.getElementsByClassName("pigeon-zoom-in")[0].ariaLabel = "Zoom in";
-    document.getElementsByClassName("pigeon-zoom-out")[0].ariaLabel = "Zoom out";
-  }, [])
-
+    document.getElementsByClassName("pigeon-zoom-out")[0].ariaLabel =
+      "Zoom out";
+  }, []);
 
   return (
-    <div id="lake-map" className={`${styles.container} ${className ?? ""}`} style={{minWidth: "100px", minHeight: "100px"}}>
-      <Map center={center} zoom={zoom}
-           minZoom={minZoom} zoomSnap={false}
-           onBoundsChanged={onBoundsChanged}
-           attributionPrefix={false}
-           attribution={<Attribution />}
-          //  provider={maptilerProvider}
+    <div
+      id="lake-map"
+      className={`${styles.container} ${className ?? ""}`}
+      style={{ minWidth: "100px", minHeight: "100px" }}
+    >
+      <Map
+        center={center}
+        zoom={zoom}
+        minZoom={minZoom}
+        zoomSnap={false}
+        onBoundsChanged={onBoundsChanged}
+        attributionPrefix={false}
+        attribution={<Attribution />}
+        //  provider={maptilerProvider}
       >
         {children}
         {markers.map(renderMarker)}
         <ZoomControl />
       </Map>
     </div>
-  )
+  );
 }
 
-
 // secondary components
-export function GeoRoute ({ points, activeIndex, ...props } : { points: [number, number][]; activeIndex: number | null }) {
-
-  const data = useMemo(() => ({
-    type: "Feature",
-    geometry: {
-      type: "LineString",
-      coordinates: points
-    }
-  }), [points])
+export function GeoRoute({
+  points,
+  activeIndex,
+  ...props
+}: {
+  points: [number, number][];
+  activeIndex: number | null;
+}) {
+  const data = useMemo(
+    () => ({
+      type: "Feature",
+      geometry: {
+        type: "LineString",
+        coordinates: points,
+      },
+    }),
+    [points]
+  );
 
   const activeData = useMemo(() => {
     if (points === null || activeIndex === null) return null;
 
-    return ({
+    return {
       type: "Feature",
       geometry: {
         type: "Point",
-        coordinates: points[activeIndex]
-      }
-    })
-  }, [points, activeIndex])
+        coordinates: points[activeIndex],
+      },
+    };
+  }, [points, activeIndex]);
 
   const [startPoint, endPoint] = useMemo(() => {
     if (points === null) return [null, null];
 
     return [
-      {type: "Feature", geometry: {type: "Point", coordinates: points[0]}},
-      {type: "Feature", geometry: {type: "Point", coordinates: points[points.length - 1]}}
-    ]
-  }, [points])
+      { type: "Feature", geometry: { type: "Point", coordinates: points[0] } },
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: points[points.length - 1] },
+      },
+    ];
+  }, [points]);
 
-  return (points && 
-    <GeoJson {...props}>
-      <GeoJsonFeature feature={data} styleCallback={() => ({ className: styles.route })} />
-      {endPoint &&
+  return (
+    points && (
+      <GeoJson {...props}>
         <GeoJsonFeature
-          feature={endPoint}
-          svgAttributes={{ r: "6" }}
-          styleCallback={() => ({ className: styles.endPointBottom })}
+          feature={data}
+          styleCallback={() => ({ className: styles.route })}
         />
-      }
-      {endPoint &&
-        <GeoJsonFeature
-          feature={endPoint}
-          svgAttributes={{ r: "4" }}
-          styleCallback={() => ({ className: styles.endPointTop })}
-        />
-      }
-      {startPoint &&
-        <GeoJsonFeature
-          feature={startPoint}
-          svgAttributes={{ r: "5" }}
-          styleCallback={() => ({ className: styles.startPoint })}
-        />
-      }
-      {activeData &&
-        <GeoJsonFeature
-          feature={activeData}
-          svgAttributes={{ r: "8" }}
-          styleCallback={() => ({ className: styles.hoveredPoint })}
-        />
-      }
-    </GeoJson>
-  )
+        {endPoint && (
+          <GeoJsonFeature
+            feature={endPoint}
+            svgAttributes={{ r: "6" }}
+            styleCallback={() => ({ className: styles.endPointBottom })}
+          />
+        )}
+        {endPoint && (
+          <GeoJsonFeature
+            feature={endPoint}
+            svgAttributes={{ r: "4" }}
+            styleCallback={() => ({ className: styles.endPointTop })}
+          />
+        )}
+        {startPoint && (
+          <GeoJsonFeature
+            feature={startPoint}
+            svgAttributes={{ r: "5" }}
+            styleCallback={() => ({ className: styles.startPoint })}
+          />
+        )}
+        {activeData && (
+          <GeoJsonFeature
+            feature={activeData}
+            svgAttributes={{ r: "8" }}
+            styleCallback={() => ({ className: styles.hoveredPoint })}
+          />
+        )}
+      </GeoJson>
+    )
+  );
 }
 
-function Attribution () {
+function Attribution() {
   return (
     <p className={styles.attribution}>
-      <a href="https://pigeon-maps.js.org/" target="_blank" aria-label="Pigeon Maps">Pigeon</a> | © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors
+      <a
+        href="https://pigeon-maps.js.org/"
+        target="_blank"
+        aria-label="Pigeon Maps"
+      >
+        Pigeon
+      </a>{" "}
+      | ©{" "}
+      <a href="https://www.openstreetmap.org/copyright" target="_blank">
+        OpenStreetMap
+      </a>{" "}
+      contributors
     </p>
-  )
+  );
 }
 
-
 // icons
-function HillIcon({ isSecondaryMarker, book }: { isSecondaryMarker: boolean; book: number}) {
+function HillIcon({
+  isSecondaryMarker,
+  book,
+}: {
+  isSecondaryMarker: boolean;
+  book: number;
+}) {
   return (
     <svg
       viewBox="-1 -1 18 18"
@@ -279,10 +390,10 @@ function HillIcon({ isSecondaryMarker, book }: { isSecondaryMarker: boolean; boo
         style={{ pointerEvents: "auto" }}
       />
     </svg>
-  )
+  );
 }
 
-function WalkIcon({ isSecondaryMarker } : { isSecondaryMarker: boolean;  }) {
+function WalkIcon({ isSecondaryMarker }: { isSecondaryMarker: boolean }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -294,5 +405,5 @@ function WalkIcon({ isSecondaryMarker } : { isSecondaryMarker: boolean;  }) {
         style={{ pointerEvents: "auto" }}
       />
     </svg>
-  )
+  );
 }

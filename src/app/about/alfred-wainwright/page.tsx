@@ -2,7 +2,6 @@ import { createPageMetadata } from "@/utils/metadata";
 
 import ComingSoon from "@/app/coming-soon";
 
-
 export function generateMetadata() {
   return createPageMetadata({
     title: "Alfred Wainwright",
@@ -11,11 +10,8 @@ export function generateMetadata() {
   });
 }
 
-
 export default function page() {
   return (
-    <ComingSoon
-      description="The page on Alfred Wainwright will be ready soon!"
-    />
-  )
+    <ComingSoon description="The page on Alfred Wainwright will be ready soon!" />
+  );
 }

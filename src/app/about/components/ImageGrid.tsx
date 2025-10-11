@@ -2,7 +2,6 @@ import styles from "../About.module.css";
 
 import LazyImage from "@/components/LazyImage/LazyImage";
 
-
 export default function ImageGrid() {
   return (
     <section>
@@ -56,5 +55,5 @@ export default function ImageGrid() {
         </div>
       </div>
     </section>
-  )
+  );
 }

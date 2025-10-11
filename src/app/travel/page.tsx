@@ -1,28 +1,30 @@
-import styles from './Travel.module.css';
+import styles from "./Travel.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
-import { createPageMetadata } from '@/utils/metadata';
-
+import { createPageMetadata } from "@/utils/metadata";
 
 export function generateMetadata() {
   return createPageMetadata({
     title: "Lake District Travel",
-    description: "Find bus times, hostel accommodation, lake boats, and travel tips for your next Lake District visit.",
+    description:
+      "Find bus times, hostel accommodation, lake boats, and travel tips for your next Lake District visit.",
     path: "/travel",
   });
 }
 
-
 export default function Travel() {
-
   return (
     <main className={styles.travel}>
-
       <section>
         <div className={styles.main}>
           <div>
-            <h1 className={`${fontStyles.title} ${styles.title}`}>Travelling The Lake District</h1>
-            <p>More information is coming to this page soon. For now, you may find these links useful.</p>
+            <h1 className={`${fontStyles.title} ${styles.title}`}>
+              Travelling The Lake District
+            </h1>
+            <p>
+              More information is coming to this page soon. For now, you may
+              find these links useful.
+            </p>
           </div>
 
           <div>
@@ -39,7 +41,9 @@ export default function Travel() {
               </div>
 
               <div className={styles.resourcesGroup}>
-                <h3 className={fontStyles.subheading}>Youth Hostels & Hotels</h3>
+                <h3 className={fontStyles.subheading}>
+                  Youth Hostels & Hotels
+                </h3>
                 <ResourceLink to="https://www.yha.org.uk/places-to-stay/lake-district">
                   YHA Lake District Accomodation
                 </ResourceLink>
@@ -72,14 +76,19 @@ export default function Travel() {
         </div>
       </section>
     </main>
-  )
+  );
 }
 
-
-function ResourceLink({ to, children } : { to: string; children: React.ReactNode }) {
+function ResourceLink({
+  to,
+  children,
+}: {
+  to: string;
+  children: React.ReactNode;
+}) {
   return (
-    <a href={to} target='_blank'>
+    <a href={to} target="_blank">
       {children}
     </a>
-  )
+  );
 }

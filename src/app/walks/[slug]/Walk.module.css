@@ -1,11 +1,13 @@
-
 .walk {
   --_main-width: calc(68ch + 5.5rem);
   --_aside-width: clamp(14rem, 25vw, 22rem);
   --_body-gap: clamp(1rem, 2vw, 2rem);
   --_image-overflow: 3rem;
-  
-  --_max-section-width: calc((2 * var(--_image-overflow)) + var(--_main-width) + var(--_aside-width) + var(--_body-gap));
+
+  --_max-section-width: calc(
+    (2 * var(--_image-overflow)) + var(--_main-width) + var(--_aside-width) +
+      var(--_body-gap)
+  );
 
   padding-block: 0;
 }
@@ -14,6 +16,7 @@
   margin-inline: auto;
 }
 
+/*  */
 
 .overlay {
   width: 100%;
@@ -25,7 +28,7 @@
 
   background: var(--clr-bg);
 
-  box-shadow: 0 2px 5px oklch(from currentColor l c h / .1);
+  box-shadow: 0 2px 5px oklch(from currentColor l c h / 0.1);
 
   display: none;
   top: -5rem;
@@ -101,6 +104,7 @@
   max-width: 1.25em;
 }
 
+/*  */
 
 .overlayNav {
   display: flex;
@@ -138,6 +142,7 @@
   }
 }
 
+/*  */
 
 .top {
   position: relative;
@@ -182,6 +187,7 @@
   background: oklch(from var(--clr-text-black) 0.2 0.02 h);
 }
 
+/*  */
 
 .body,
 .note {
@@ -204,7 +210,7 @@
   padding-block-end: calc(var(--gap-500) + var(--footer-mountain-height));
 
   font-style: italic;
-  
+
   & p {
     max-width: 63ch;
     margin-inline: auto;
@@ -264,6 +270,7 @@
   gap: var(--gap-300);
 }
 
+/*  */
 
 .routeTitle,
 .map,
@@ -289,6 +296,7 @@
   padding-block: var(--gap-200);
 }
 
+/*  */
 
 .bold {
   font-weight: var(--fw-bold);
@@ -371,6 +379,7 @@
   justify-content: space-between;
 }
 
+/*  */
 
 .busses {
   list-style: none;
@@ -391,6 +400,7 @@
   cursor: default;
 }
 
+/*  */
 
 .estimatedTime input {
   width: min(13em, 100%);
@@ -398,6 +408,7 @@
   cursor: pointer;
 }
 
+/*  */
 
 .terrain {
   gap: 0.5rem;
@@ -475,6 +486,7 @@
   }
 }
 
+/*  */
 
 @media (max-width: 52rem) {
   .body {
@@ -516,16 +528,16 @@
   }
 }
 
-
+/*  */
 
 .weatherTabs {
   display: grid;
   grid-auto-flow: column;
   gap: var(--gap-400);
-  
+
   overflow-x: auto;
   padding-inline: var(--gap-200);
-  
+
   margin-block: var(--gap-400);
 }
 .weatherTab {
@@ -535,11 +547,11 @@
 
   padding-block: var(--gap-300);
   padding-inline: var(--gap-400);
-  
+
   color: var(--clr-text-muted);
   border: 2px solid transparent;
   border-radius: 0.375em;
-  
+
   transition: border-color 100ms;
 }
 .weatherTab .weatherDay {
@@ -653,6 +665,7 @@
   display: block;
 }
 
+/*  */
 
 .weatherInfo {
   color: var(--clr-text-muted);
@@ -684,6 +697,7 @@
   text-decoration: none;
 }
 
+/*  */
 
 section.nearby {
   @media (max-width: 83rem) {
@@ -702,9 +716,7 @@ section.nearby {
   max-width: min(70rem, 100%);
 }
 
-
 /*  */
-
 
 .elevation-chart_tooltip {
   font-size: var(--fs-300);

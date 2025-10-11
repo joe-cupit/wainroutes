@@ -59,6 +59,7 @@
   }
 }
 
+/*  */
 
 .noteContainer {
   display: grid;
@@ -78,7 +79,7 @@
     text-decoration: underline;
   }
   & a:hover {
-    color: var(--clr-primary-400)
+    color: var(--clr-primary-400);
   }
 }
 

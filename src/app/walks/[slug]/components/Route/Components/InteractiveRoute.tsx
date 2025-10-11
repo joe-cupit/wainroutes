@@ -10,19 +10,20 @@ import type MapMarker from "@/types/MapMarker";
 import LakeMap, { GeoRoute } from "@/components/Map/Map";
 import ElevationChart from "@/components/ElevationChart/ElevationChart";
 
-
 type InteractiveRouteProps = {
-  gpx: ParsedGPX
-  hillMarkers: MapMarker[]
-  defaultCenter: [number, number]
-  defaultZoom: number
-}
+  gpx: ParsedGPX;
+  hillMarkers: MapMarker[];
+  defaultCenter: [number, number];
+  defaultZoom: number;
+};
 
-
-export default function InteractiveRoute({ gpx, hillMarkers, defaultCenter, defaultZoom } : InteractiveRouteProps) {
-
+export default function InteractiveRoute({
+  gpx,
+  hillMarkers,
+  defaultCenter,
+  defaultZoom,
+}: InteractiveRouteProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
 
   return (
     <div className={styles.section}>
@@ -33,10 +34,7 @@ export default function InteractiveRoute({ gpx, hillMarkers, defaultCenter, defa
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
         >
-          <GeoRoute
-            points={gpx.gpxPoints}
-            activeIndex={hoveredIndex}
-          />
+          <GeoRoute points={gpx.gpxPoints} activeIndex={hoveredIndex} />
         </LakeMap>
       </div>
       <div className={styles.elevation}>
@@ -47,5 +45,5 @@ export default function InteractiveRoute({ gpx, hillMarkers, defaultCenter, defa
         />
       </div>
     </div>
-  )
+  );
 }

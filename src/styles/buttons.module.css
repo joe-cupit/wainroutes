@@ -11,7 +11,7 @@
 
   padding-block: 0.5lh;
   padding-inline: 2ch;
-  
+
   border-radius: 0.5rem;
 
   color: var(--clr-text-white);
@@ -23,7 +23,7 @@
 
   touch-action: manipulation;
   user-select: none;
-  
+
   transition-property: background-color;
   transition-duration: var(--_transition-duration);
 
@@ -41,6 +41,7 @@
   }
 }
 
+/*  */
 
 .button.primary {
   color: var(--clr-text-white);
@@ -60,13 +61,13 @@
   }
 }
 
+/*  */
 
 .button.small {
   gap: 0.5ch;
   padding-block: 0.35lh;
   padding-inline: 1.25ch;
 }
-
 
 .button.underlined {
   position: relative;
@@ -95,7 +96,6 @@
     opacity: 0.8;
   }
 }
-
 
 .button.animate {
   & svg {

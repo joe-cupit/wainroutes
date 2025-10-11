@@ -20,6 +20,8 @@
   margin-inline-start: auto;
 }
 
+/*  */
+
 .grid {
   container-type: inline-size;
 
@@ -116,6 +118,8 @@
   text-decoration: underline;
   font-weight: var(--fw-medium);
 }
+
+/*  */
 
 .filters {
   margin-block-start: var(--gap-400);

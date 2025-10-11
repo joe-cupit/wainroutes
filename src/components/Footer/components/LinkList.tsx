@@ -3,15 +3,12 @@ import fonts from "@/styles/fonts.module.css";
 
 import Link from "next/link";
 
-
 type LinkListProps = {
-  heading: string
-  links: {[name: string] : string}
-}
+  heading: string;
+  links: { [name: string]: string };
+};
 
-
-export default function LinkList({ heading, links } : LinkListProps) {
-
+export default function LinkList({ heading, links }: LinkListProps) {
   return (
     <div className={styles.links}>
       <h2 className={fonts.smallheading}>{heading}</h2>
@@ -23,5 +20,5 @@ export default function LinkList({ heading, links } : LinkListProps) {
         ))}
       </ul>
     </div>
-  )
+  );
 }

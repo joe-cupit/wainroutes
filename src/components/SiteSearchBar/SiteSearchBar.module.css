@@ -17,18 +17,18 @@
   width: 100%;
 
   padding-inline: calc(var(--gap-500) - 1ch) var(--gap-400);
-  
-  box-shadow: 1px 2px 5px 0 hsl(from currentColor h s l / .2);
-  
+
+  box-shadow: 1px 2px 5px 0 hsl(from currentColor h s l / 0.2);
+
   &:has(:focus) {
     background: var(--clr-bg-light);
   }
-  
+
   & input {
     flex: 1;
     padding-block: var(--gap-400);
     padding-inline: 1ch;
-    
+
     background: none;
     border: none;
     outline: none;
@@ -67,7 +67,7 @@
   border-start-start-radius: 0;
   border-start-end-radius: 0;
 
-  box-shadow: 1px 2px 5px 0 hsl(from currentColor h s l / .4);
+  box-shadow: 1px 2px 5px 0 hsl(from currentColor h s l / 0.4);
 }
 .results[data-reversed="true"] {
   padding-block: var(--gap-300) calc(var(--gap-600) * 1.25);
@@ -142,7 +142,6 @@
 
   cursor: default;
 }
-
 
 .siteSearch:not(:has(input:focus-visible)) .results {
   display: none;
