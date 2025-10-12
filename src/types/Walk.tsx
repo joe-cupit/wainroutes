@@ -1,6 +1,13 @@
 type TerrainLevel = 1 | 2 | 3 | 4;
 export type ImageSize = 0 | 1 | 2 | 3 | 4;
 
+export type Image = {
+  slug: string;
+  title: string;
+  caption: string;
+  size: ImageSize;
+};
+
 type Walk = {
   slug: string;
 
@@ -36,12 +43,7 @@ type Walk = {
     [name: string]: string;
   };
 
-  images?: {
-    slug: string;
-    title: string;
-    caption: string;
-    size: ImageSize;
-  }[];
+  images?: Image[];
   coverImage?: string;
 
   weatherLoc?: string;

@@ -11,15 +11,15 @@ import {
   useState,
 } from "react";
 
-import Walk, { ImageSize, WalkGallery } from "@/types/Walk";
+import Walk, { Image, ImageSize } from "@/types/Walk";
 import LazyImage from "@/components/LazyImage/LazyImage";
 import { CloseIcon, LeftIcon, RightIcon } from "@/icons/MaterialIcons";
 
 const GalleryContext = createContext<{
-  images: string[];
-  imageData: WalkGallery["imageData"] | null;
+  slug: string;
+  images: Image[];
   openCarousel: CallableFunction;
-}>({ images: [], imageData: null, openCarousel: () => {} });
+}>({ slug: "", images: [], openCarousel: () => {} });
 
 export default function ImageGallery({
   slug,
@@ -41,8 +41,8 @@ export default function ImageGallery({
   }, []);
 
   const contextValue = {
-    images: images.map((image) => `${slug}_${image.slug}`),
-    imageData: Object.values(images),
+    slug: slug,
+    images: images,
     openCarousel: openCarousel,
   };
 
@@ -164,12 +164,10 @@ function GalleryCarousel({
         <CorouselImage index={currIndex} />
         <div className={styles.galleryCarouselCaption}>
           <h4 className={fontStyles.smallheading}>
-            {galleryContext?.imageData?.[currIndex]?.title ??
+            {galleryContext.images[currIndex]?.title ||
               "Image " + (currIndex + 1)}
           </h4>
-          <p>
-            {galleryContext?.imageData?.[currIndex]?.caption ?? "No caption."}
-          </p>
+          {/* <p>{galleryContext.images[currIndex]?.caption || "No caption"}</p> */}
         </div>
       </div>
     );
@@ -181,7 +179,9 @@ function CorouselImage({ index }: { index: number }) {
 
   return (
     <div className={styles.galleryCarouselImage}>
-      <LazyImage name={galleryContext?.images?.[index]} />
+      <LazyImage
+        name={`${galleryContext.slug}_${galleryContext.images[index].slug}`}
+      />
     </div>
   );
 }
@@ -225,7 +225,7 @@ function GalleryImage({
       className={`${styles.galleryImage} ${
         styles[`image-${sizeMap[size].name}`]
       } ${className ? className : ""}`}
-      name={galleryContext.images?.[index]}
+      name={`${galleryContext.slug}_${galleryContext.images[index].slug}`}
       sizes={sizeMap[size].sizes}
       maxWidth={size === 0 ? 1024 : undefined}
       onClick={() => galleryContext.openCarousel(index)}

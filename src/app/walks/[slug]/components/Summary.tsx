@@ -39,38 +39,34 @@ export default function Summary({
         Summary
       </h2>
       <div className={styles.section}>
-        <div
-          className={
-            (wainwrights?.length ?? 0) <= 2
-              ? styles.summary_horizontalGroupSmall
-              : ""
-          }
-        >
-          <h3 className={fontStyles.smallheading}>Wainwrights: </h3>
+        <div className={`${styles.summaryGroup} ${styles.shouldWrap}`}>
+          <h3 className={fontStyles.smallheading}>
+            Wainwrights {"(" + wainwrights.length + ")"}:
+          </h3>
           <p className={styles.wainwrights}>
-            {wainwrights?.map((hill, index) => {
+            {wainwrights.map((hill, index) => {
               return (
                 <Fragment key={index}>
                   <span>
                     <Link href={"/wainwrights/" + hill}>
                       {hillNames?.[hill]}
                     </Link>
-                    {index + 1 < wainwrights?.length ? "," : ""}
+                    {index + 1 < wainwrights.length ? "," : ""}
                   </span>
-                  {index + 2 === wainwrights?.length ? " and " : " "}
+                  {index + 2 === wainwrights.length ? " and " : " "}
                 </Fragment>
               );
             })}
           </p>
         </div>
 
-        <div className={styles.summary_horizontalGroup}>
-          <div>
-            <h3 className={fontStyles.smallheading}>Distance: </h3>
+        <div className={styles.summaryPair}>
+          <div className={styles.summaryGroup}>
+            <h3 className={fontStyles.smallheading}>Distance:</h3>
             <p>{displayDistance(length)}</p>
           </div>
-          <div>
-            <h3 className={fontStyles.smallheading}>Elevation: </h3>
+          <div className={styles.summaryGroup}>
+            <h3 className={fontStyles.smallheading}>Elevation:</h3>
             <p>{displayElevation(elevation)}</p>
           </div>
         </div>
@@ -81,7 +77,7 @@ export default function Summary({
               className={fontStyles.smallheading}
               style={{ display: "block" }}
             >
-              Overview:{" "}
+              Overview:
             </h3>
             <p>{intro}</p>
           </div>

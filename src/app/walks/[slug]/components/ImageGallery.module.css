@@ -25,12 +25,11 @@
     scale: 1.04;
   }
 }
-
-/*  */
-
 .image-small img:hover {
   scale: 1.1;
 }
+
+/*  */
 
 .image-wide {
   grid-column: span 3;
@@ -47,21 +46,7 @@
 .image-solo {
   grid-column: span 4;
   grid-row: span 3;
-}
-@media (max-width: 55rem) {
-  .imageGallery {
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: clamp(6rem, 14vw, 14rem);
-  }
-
-  .image-wide {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-  .image-tall {
-    grid-column: span 2;
-    grid-row: span 4;
-  }
+  border-radius: 0.375em;
 }
 @media (max-width: 55rem) {
   .imageGallery {
@@ -69,6 +54,10 @@
     grid-auto-rows: clamp(6rem, 22vw, 15rem);
   }
 
+  .image-wide {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
   .image-tall {
     grid-column: span 1;
     grid-row: span 2;
