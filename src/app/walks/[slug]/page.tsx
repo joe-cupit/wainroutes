@@ -126,6 +126,7 @@ export default async function WalkPage({ params }: WalkProps) {
               startLocation={walkData.startLocation}
               busConnections={walkData.busConnections}
               walkLength={walkData.length}
+              walkElevation={walkData.elevation}
               terrain={walkData.terrain}
             />
           </div>

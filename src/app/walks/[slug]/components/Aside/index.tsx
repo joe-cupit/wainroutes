@@ -13,6 +13,7 @@ type AsideProps = {
   startLocation: Walk["startLocation"];
   busConnections: Walk["busConnections"];
   walkLength: Walk["length"];
+  walkElevation: Walk["elevation"];
   terrain: Walk["terrain"];
 };
 
@@ -20,6 +21,7 @@ export default function WalkAside({
   startLocation,
   busConnections,
   walkLength,
+  walkElevation,
   terrain,
 }: AsideProps) {
   const [asideTabIndex, setAsideTabIndex] = useState(-1);
@@ -75,6 +77,8 @@ export default function WalkAside({
         <EstimatedTime
           selected={asideTabIndex === 2}
           walkLengthInKm={walkLength}
+          elevationImM={walkElevation}
+          steepness={terrain?.gradient || 2}
         />
         <Terrain selected={asideTabIndex === 3} walkTerrain={terrain} />
       </div>

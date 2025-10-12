@@ -1,4 +1,4 @@
-type TerrainLevel = 1 | 2 | 3 | 4;
+export type TerrainLevel = 1 | 2 | 3 | 4;
 export type ImageSize = 0 | 1 | 2 | 3 | 4;
 
 export type Image = {
