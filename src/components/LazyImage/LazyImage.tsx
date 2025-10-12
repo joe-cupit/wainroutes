@@ -10,6 +10,7 @@ type LazyImageProps = {
   alt?: string;
   maxWidth?: number;
   newBase?: boolean;
+  onClick?: () => void;
 };
 
 export default function LazyImage({
@@ -19,6 +20,7 @@ export default function LazyImage({
   alt = "",
   maxWidth,
   newBase = false,
+  onClick,
 }: LazyImageProps) {
   let path: string;
   let extension: string;
@@ -42,6 +44,7 @@ export default function LazyImage({
       sizes={sizes}
       alt={alt}
       blurURL={`url(${path}_32w${extension})`}
+      onClick={onClick}
     />
   );
 }

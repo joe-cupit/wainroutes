@@ -1,17 +1,5 @@
-export type WalkGallery = {
-  imageIds: string[];
-  imageData: {
-    title: string;
-    caption: string;
-  }[];
-  coverId: string;
-  sections: {
-    type: number;
-    indexes: number[];
-  }[];
-};
-
 type TerrainLevel = 1 | 2 | 3 | 4;
+export type ImageSize = 0 | 1 | 2 | 3 | 4;
 
 type Walk = {
   slug: string;
@@ -47,7 +35,14 @@ type Walk = {
   waypoints?: {
     [name: string]: string;
   };
-  gallery?: WalkGallery;
+
+  images?: {
+    slug: string;
+    title: string;
+    caption: string;
+    size: ImageSize;
+  }[];
+  coverImage?: string;
 
   weatherLoc?: string;
   tags: string[];

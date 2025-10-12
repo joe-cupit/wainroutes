@@ -2,19 +2,16 @@ import styles from "../Walk.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
 import ImageGallery from "./ImageGallery";
-import { WalkGallery } from "@/types/Walk";
+import Walk from "@/types/Walk";
 
 export default function Photos({
   slug,
-  galleryData,
+  images,
 }: {
   slug: string;
-  galleryData: WalkGallery | undefined;
+  images: Walk["images"];
 }) {
-  if (!galleryData) return <></>;
-
-  if (slug) {
-  }
+  if (!images) return <></>;
 
   return (
     <div id="walk-photos">
@@ -22,11 +19,7 @@ export default function Photos({
         Photos
       </h2>
 
-      <ImageGallery
-        imageList={galleryData?.imageIds?.map((img) => slug + "_" + img)}
-        imageData={galleryData?.imageData}
-        groups={galleryData?.sections}
-      />
+      <ImageGallery slug={slug} images={images} />
     </div>
   );
 }

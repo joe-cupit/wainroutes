@@ -41,17 +41,10 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [
-        {
-          "title": "Hart Crag Summit",
-          "caption": ""
-        }
-      ],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "Fairfield Summit",
     "tags": ["horseshoe", "ambleside", "fairfield"]
   },
@@ -86,57 +79,40 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
-      "imageData": [
-        {
-          "title": "Above Glenridding",
-          "caption": ""
-        },
-        {
-          "title": "Summit Reveal",
-          "caption": ""
-        },
-        {
-          "title": "Sunny Mountain Neighbours",
-          "caption": ""
-        },
-        {
-          "title": "Striding Edge",
-          "caption": ""
-        },
-        {
-          "title": "Summit Approach",
-          "caption": ""
-        },
-        {
-          "title": "Above Striding Edge",
-          "caption": ""
-        },
-        {
-          "title": "Helvellyn Summit",
-          "caption": ""
-        },
-        {
-          "title": "Descending Swirral Edge",
-          "caption": ""
-        },
-        {
-          "title": "Catstycam Summit",
-          "caption": ""
-        },
-        {
-          "title": "Red Tarn Beck Bridge",
-          "caption": ""
-        }
-      ],
-      "coverId": "11",
-      "sections": [
-        { "type": 3, "indexes": [0, 1, 2] },
-        { "type": 2, "indexes": [3, 5, 6] },
-        { "type": 6, "indexes": [7, 8, 9, 4] }
-      ]
-    },
+
+    "images": [
+      { "slug": "01", "title": "Above Glenridding", "caption": "", "size": 0 },
+      { "slug": "02", "title": "Summit Reveal", "caption": "", "size": 0 },
+      {
+        "slug": "03",
+        "title": "Sunny Mountain Neighbours",
+        "caption": "",
+        "size": 0
+      },
+      { "slug": "04", "title": "Striding Edge", "caption": "", "size": 1 },
+      { "slug": "05", "title": "Summit Approach", "caption": "", "size": 2 },
+      {
+        "slug": "06",
+        "title": "Above Striding Edge",
+        "caption": "",
+        "size": 0
+      },
+      { "slug": "07", "title": "Helvellyn Summit", "caption": "", "size": 1 },
+      {
+        "slug": "08",
+        "title": "Descending Swirral Edge",
+        "caption": "",
+        "size": 0
+      },
+      {
+        "slug": "10",
+        "title": "Red Tarn Beck Bridge",
+        "caption": "",
+        "size": 0
+      }
+    ],
+    "coverImage": "11",
+
     "weatherLoc": "Helvellyn Summit",
     "tags": ["circular"]
   },
@@ -173,43 +149,34 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": [
-        "01",
-        "02",
-        "03",
-        "04",
-        "05",
-        "06",
-        "07",
-        "08",
-        "09",
-        "10",
-        "11",
-        "12"
-      ],
-      "imageData": [
-        { "title": "Buttermere Lake", "caption": "" },
-        { "title": "Climbing Red Pike", "caption": "" },
-        { "title": "Fleetwith Pike", "caption": "" },
-        { "title": "Red Tarn", "caption": "" },
-        { "title": "Red Pike Summit Ascent", "caption": "" },
-        { "title": "High Stile Summit", "caption": "" },
-        { "title": "High Crag Summit", "caption": "" },
-        { "title": "High Crag's Descent", "caption": "" },
-        { "title": "Buttermere Summit", "caption": "" },
-        { "title": "Approaching Innominate Tarn", "caption": "" },
-        { "title": "Innominate Tarn", "caption": "" },
-        { "title": "Return to Buttermere", "caption": "" }
-      ],
-      "coverId": "09",
-      "sections": [
-        { "type": 4, "indexes": [0, 1, 2] },
-        { "type": 2, "indexes": [3, 4, 5] },
-        { "type": 3, "indexes": [6, 7, 8] },
-        { "type": 2, "indexes": [9, 10, 11] }
-      ]
-    },
+
+    "images": [
+      { "slug": "01", "title": "Buttermere Lake", "caption": "", "size": 0 },
+      { "slug": "03", "title": "Fleetwith Pike", "caption": "", "size": 1 },
+      {
+        "slug": "12",
+        "title": "Return to Buttermere",
+        "caption": "",
+        "size": 2
+      },
+      {
+        "slug": "05",
+        "title": "Red Pike Summit Ascent",
+        "caption": "",
+        "size": 0
+      },
+      { "slug": "02", "title": "Climbing Red Pike", "caption": "", "size": 0 },
+      { "slug": "06", "title": "High Stile Summit", "caption": "", "size": 0 },
+      { "slug": "09", "title": "Buttermere Summit", "caption": "", "size": 0 },
+      {
+        "slug": "10",
+        "title": "Approaching Innominate Tarn",
+        "caption": "",
+        "size": 0
+      }
+    ],
+    "coverImage": "09",
+
     "weatherLoc": "High Stile Summit",
     "tags": ["point-to-point"]
   },
@@ -247,32 +214,19 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": [
-        "01",
-        "02",
-        "03",
-        "04",
-        "05",
-        "06",
-        "07",
-        "08",
-        "09",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14"
-      ],
-      "imageData": [],
-      "coverId": "04",
-      "sections": [
-        { "type": 3, "indexes": [1, 0, 2] },
-        { "type": 6, "indexes": [3, 4, 5, 6] },
-        { "type": 2, "indexes": [7, 8, 9] },
-        { "type": 6, "indexes": [10, 11, 12, 13] }
-      ]
-    },
+
+    "images": [
+      { "slug": "01", "title": "", "caption": "", "size": 0 },
+      { "slug": "02", "title": "", "caption": "", "size": 1 },
+      { "slug": "03", "title": "", "caption": "", "size": 2 },
+      { "slug": "06", "title": "", "caption": "", "size": 0 },
+      { "slug": "09", "title": "", "caption": "", "size": 0 },
+      { "slug": "11", "title": "", "caption": "", "size": 0 },
+      { "slug": "12", "title": "", "caption": "", "size": 0 },
+      { "slug": "13", "title": "", "caption": "", "size": 0 }
+    ],
+    "coverImage": "04",
+
     "tags": ["circular"]
   },
   {
@@ -313,53 +267,19 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": [
-        "03",
-        "01",
-        "02",
-        "04",
-        "05",
-        "06",
-        "08",
-        "07",
-        "09",
-        "10",
-        "11",
-        "12",
-        "14",
-        "15",
-        "13"
-      ],
-      "imageData": [
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        {
-          "title": "The Mickledore Gap",
-          "caption": ""
-        },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" }
-      ],
-      "coverId": "13",
-      "sections": [
-        { "type": 3, "indexes": [0, 1, 2] },
-        { "type": 6, "indexes": [3, 4, 5, 6] },
-        { "type": 3, "indexes": [7, 8, 9] },
-        { "type": 2, "indexes": [9, 10, 11] },
-        { "type": 4, "indexes": [12, 13, 14] }
-      ]
-    },
+
+    "images": [
+      { "slug": "03", "title": "", "caption": "", "size": 0 },
+      { "slug": "01", "title": "", "caption": "", "size": 0 },
+      { "slug": "02", "title": "", "caption": "", "size": 0 },
+      { "slug": "08", "title": "", "caption": "", "size": 2 },
+      { "slug": "04", "title": "", "caption": "", "size": 0 },
+      { "slug": "05", "title": "", "caption": "", "size": 1 },
+      { "slug": "06", "title": "", "caption": "", "size": 0 },
+      { "slug": "07", "title": "", "caption": "", "size": 0 }
+    ],
+    "coverImage": "13",
+
     "weatherLoc": "High Street Summit",
     "tags": ["horseshoe", "circular"]
   },
@@ -399,12 +319,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "Great Gable Summit",
     "tags": ["circular"]
   },
@@ -447,17 +365,19 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
-      "imageData": [],
-      "coverId": "03",
-      "sections": [
-        { "type": 4, "indexes": [0, 1, 2] },
-        { "type": 1, "indexes": [3, 4] },
-        { "type": 3, "indexes": [7, 5, 6] },
-        { "type": 1, "indexes": [8, 9] }
-      ]
-    },
+
+    "images": [
+      { "slug": "01", "title": "", "caption": "", "size": 0 },
+      { "slug": "02", "title": "", "caption": "", "size": 1 },
+      { "slug": "06", "title": "", "caption": "", "size": 2 },
+      { "slug": "03", "title": "", "caption": "", "size": 0 },
+      { "slug": "04", "title": "", "caption": "", "size": 0 },
+      { "slug": "07", "title": "", "caption": "", "size": 0 },
+      { "slug": "08", "title": "", "caption": "", "size": 0 },
+      { "slug": "10", "title": "", "caption": "", "size": 0 }
+    ],
+    "coverImage": "03",
+
     "weatherLoc": "Grisedale Pike Summit",
     "tags": ["horseshoe", "circular"]
   },
@@ -498,12 +418,9 @@
       "desc": ""
     },
     "intro": "",
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "Bowfell Summit",
     "tags": ["point-to-point"]
   },
@@ -533,12 +450,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "Scafell Pike Summit",
     "tags": ["there-and-back"]
   },
@@ -572,12 +487,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["circular"]
   },
   {
@@ -617,12 +530,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "High Raise Summit",
     "tags": ["circular", "horseshoe"]
   },
@@ -654,51 +565,37 @@
       "scrambling": 1,
       "desc": ""
     },
-    "intro": "The Old Man of Coniston.",
+    "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": [
-        "01",
-        "02",
-        "03",
-        "04",
-        "05",
-        "06",
-        "07",
-        "08",
-        "09",
-        "10",
-        "11",
-        "12"
-      ],
-      "imageData": [
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        {
-          "title": "The Snow Man of Coniston",
-          "caption": ""
-        },
-        { "title": "", "caption": "" },
-        { "title": "Arriving at The Summit", "caption": "" },
-        { "title": "Towards Dow Crag", "caption": "" },
-        { "title": "Dow Crag Summit", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" }
-      ],
-      "coverId": "04",
-      "sections": [
-        { "type": 2, "indexes": [0, 1, 2] },
-        { "type": 3, "indexes": [4, 3, 5] },
-        { "type": 4, "indexes": [6, 7, 8] },
-        { "type": 2, "indexes": [9, 10, 11] }
-      ]
-    },
+
+    "images": [
+      { "slug": "01", "title": "", "caption": "", "size": 0 },
+      { "slug": "04", "title": "", "caption": "", "size": 1 },
+      {
+        "slug": "06",
+        "title": "The Snow Man of Coniston",
+        "caption": "",
+        "size": 2
+      },
+      { "slug": "05", "title": "", "caption": "", "size": 1 },
+      { "slug": "03", "title": "", "caption": "", "size": 0 },
+      { "slug": "07", "title": "", "caption": "", "size": 0 },
+      {
+        "slug": "08",
+        "title": "Arriving at The Summit",
+        "caption": "",
+        "size": 0
+      },
+      { "slug": "10", "title": "Dow Crag Summit", "caption": "", "size": 0 },
+      {
+        "slug": "12",
+        "title": "A sheep above Levers Water",
+        "caption": "",
+        "size": 0
+      }
+    ],
+    "coverImage": "04",
+
     "weatherLoc": "The Old Man of Coniston Summit",
     "tags": ["circular"]
   },
@@ -732,22 +629,36 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": ["01", "02", "03", "04", "05", "06"],
-      "imageData": [
-        { "title": "Raven Crag From Below", "caption": "" },
-        { "title": "Around Castle Crag Base", "caption": "" },
-        { "title": "Woods Below Raven Crag", "caption": "" },
-        { "title": "Castle Crag Fort Sign", "caption": "" },
-        { "title": "Raven Crag Summit (Thirlmere Lake)", "caption": "" },
-        { "title": "Raven Crag Summit", "caption": "" }
-      ],
-      "coverId": "01",
-      "sections": [
-        { "type": 3, "indexes": [0, 1, 2] },
-        { "type": 4, "indexes": [3, 5, 4] }
-      ]
-    },
+
+    "images": [
+      {
+        "slug": "01",
+        "title": "Raven Crag From Below",
+        "caption": "",
+        "size": 3
+      },
+      {
+        "slug": "02",
+        "title": "Around Castle Crag Base",
+        "caption": "",
+        "size": 0
+      },
+      {
+        "slug": "05",
+        "title": "Raven Crag Summit (Thirlmere Lake)",
+        "caption": "",
+        "size": 1
+      },
+      {
+        "slug": "04",
+        "title": "Castle Crag Fort Sign",
+        "caption": "",
+        "size": 0
+      },
+      { "slug": "06", "title": "Raven Crag Summit", "caption": "", "size": 0 }
+    ],
+    "coverImage": "01",
+
     "tags": ["there-and-back"]
   },
   {
@@ -779,12 +690,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "Dollywagon Pike Summit",
     "tags": ["circular"]
   },
@@ -825,12 +734,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "Skiddaw Summit",
     "tags": ["there-and-back"]
   },
@@ -860,12 +767,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "Helvellyn Summit",
     "tags": ["point-to-point"]
   },
@@ -908,23 +813,28 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": ["01", "02", "03", "04", "05", "06", "07"],
-      "imageData": [
-        { "title": "Spring's Farm Goats", "caption": "" },
-        { "title": "Viewpoint", "caption": "" },
-        { "title": "Keswick and Skiddaw", "caption": "" },
-        { "title": "Viewpoint Admirers", "caption": "" },
-        { "title": "Derwent Water", "caption": "" },
-        { "title": "Towards the Fells", "caption": "" },
-        { "title": "Walla Woods", "caption": "" }
-      ],
-      "coverId": "01",
-      "sections": [
-        { "type": 6, "indexes": [0, 1, 3, 4] },
-        { "type": 2, "indexes": [2, 5, 6] }
-      ]
-    },
+
+    "images": [
+      {
+        "slug": "01",
+        "title": "Spring's Farm Goats",
+        "caption": "",
+        "size": 0
+      },
+      { "slug": "04", "title": "Viewpoint Admirers", "caption": "", "size": 1 },
+      { "slug": "02", "title": "Viewpoint", "caption": "", "size": 0 },
+      {
+        "slug": "03",
+        "title": "Keswick and Skiddaw",
+        "caption": "",
+        "size": 0
+      },
+      { "slug": "05", "title": "Derwent Water", "caption": "", "size": 0 },
+      { "slug": "06", "title": "Towards the Fells", "caption": "", "size": 0 },
+      { "slug": "07", "title": "Walla Woods", "caption": "", "size": 0 }
+    ],
+    "coverImage": "01",
+
     "tags": ["there-and-back"]
   },
   {
@@ -953,12 +863,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["circular"]
   },
   {
@@ -992,25 +900,29 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": ["01", "02", "03", "04", "05", "06", "07", "08"],
-      "imageData": [
-        { "title": "", "caption": "" },
-        { "title": "Rydal Cave", "caption": "" },
-        { "title": "Inside Rydal Cave", "caption": "" },
-        { "title": "Loughrigg Slate Towers", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "Loughrigg Fell Summit", "caption": "" },
-        { "title": "Grasmere Lake", "caption": "" },
-        { "title": "", "caption": "" }
-      ],
-      "coverId": "04",
-      "sections": [
-        { "type": 4, "indexes": [0, 1, 2] },
-        { "type": 2, "indexes": [4, 3, 5] },
-        { "type": 1, "indexes": [6, 7] }
-      ]
-    },
+
+    "images": [
+      { "slug": "01", "title": "", "caption": "", "size": 0 },
+      { "slug": "03", "title": "Inside Rydal Cave", "caption": "", "size": 2 },
+      { "slug": "02", "title": "Rydal Cave", "caption": "", "size": 0 },
+      {
+        "slug": "04",
+        "title": "Loughrigg Slate Towers",
+        "caption": "",
+        "size": 0
+      },
+      { "slug": "05", "title": "", "caption": "", "size": 0 },
+      {
+        "slug": "06",
+        "title": "Loughrigg Fell Summit",
+        "caption": "",
+        "size": 1
+      },
+      { "slug": "07", "title": "Grasmere Lake", "caption": "", "size": 0 },
+      { "slug": "08", "title": "", "caption": "", "size": 0 }
+    ],
+    "coverImage": "04",
+
     "tags": ["circular"]
   },
   {
@@ -1050,12 +962,10 @@
       "scrambling": 2,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["there-and-back"]
   },
   {
@@ -1095,12 +1005,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["02"],
-      "imageData": [],
-      "coverId": "02",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "02", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "02",
+
     "tags": ["there-and-back"]
   },
   {
@@ -1131,41 +1039,44 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": [
-        "01",
-        "02",
-        "03",
-        "04",
-        "06",
-        "07",
-        "08",
-        "09",
-        "10",
-        "11",
-        "12"
-      ],
-      "imageData": [
-        { "title": "Derwent River Bridge", "caption": "" },
-        { "title": "Around Castle Crag Base", "caption": "" },
-        { "title": "Inside Millican Dalton's Cave", "caption": "" },
-        { "title": "Millican Dalton's Inscription", "caption": "" },
-        { "title": "Stream", "caption": "" },
-        { "title": "Ascent Approach", "caption": "" },
-        { "title": "Castle Crag", "caption": "" },
-        { "title": "Slate Slopes", "caption": "" },
-        { "title": "Derwent Water and Keswick", "caption": "" },
-        { "title": "Borrowdale Valley", "caption": "" },
-        { "title": "Return to Rosthwaite", "caption": "" }
-      ],
-      "coverId": "01",
-      "sections": [
-        { "type": 1, "indexes": [0, 1] },
-        { "type": 3, "indexes": [2, 3, 4] },
-        { "type": 2, "indexes": [5, 6, 7] },
-        { "type": 4, "indexes": [9, 10, 8] }
-      ]
-    },
+
+    "images": [
+      {
+        "slug": "01",
+        "title": "Derwent River Bridge",
+        "caption": "",
+        "size": 0
+      },
+      {
+        "slug": "03",
+        "title": "Inside Millican Dalton's Cave",
+        "caption": "",
+        "size": 2
+      },
+      {
+        "slug": "02",
+        "title": "Around Castle Crag Base",
+        "caption": "",
+        "size": 0
+      },
+      {
+        "slug": "04",
+        "title": "Millican Dalton's Inscription",
+        "caption": "",
+        "size": 0
+      },
+      {
+        "slug": "10",
+        "title": "Derwent Water and Keswick",
+        "caption": "",
+        "size": 1
+      },
+      { "slug": "06", "title": "Stream", "caption": "", "size": 0 },
+      { "slug": "07", "title": "Ascent Approach", "caption": "", "size": 0 },
+      { "slug": "08", "title": "Castle Crag", "caption": "", "size": 0 }
+    ],
+    "coverImage": "01",
+
     "tags": ["there-and-back"]
   },
   {
@@ -1194,12 +1105,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["point-to-point"]
   },
   {
@@ -1231,12 +1140,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["there-and-back"]
   },
   {
@@ -1267,22 +1174,21 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": ["01", "02", "03", "05", "06"],
-      "imageData": [
-        { "title": "Towards Keswick", "caption": "" },
-        { "title": "Whinlatter Woods", "caption": "" },
-        { "title": "Along the Peak", "caption": "" },
-        { "title": "IDK", "caption": "" },
-        { "title": "Whinlatter Summit", "caption": "" },
-        { "title": "Descending the Woods", "caption": "" }
-      ],
-      "coverId": "01",
-      "sections": [
-        { "type": 3, "indexes": [0, 1, 2] },
-        { "type": 1, "indexes": [3, 4] }
-      ]
-    },
+
+    "images": [
+      { "slug": "01", "title": "Towards Keswick", "caption": "", "size": 0 },
+      { "slug": "02", "title": "Whinlatter Woods", "caption": "", "size": 0 },
+      { "slug": "03", "title": "Along the Peak", "caption": "", "size": 0 },
+      { "slug": "05", "title": "Whinlatter Summit", "caption": "", "size": 1 },
+      {
+        "slug": "06",
+        "title": "Descending the Woods",
+        "caption": "",
+        "size": 0
+      }
+    ],
+    "coverImage": "01",
+
     "weatherLoc": "Whinlatter Visitor Centre",
     "tags": ["there-and-back"]
   },
@@ -1315,12 +1221,10 @@
       "scrambling": 3,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "Blencathra Summit",
     "tags": ["circular"]
   },
@@ -1357,25 +1261,17 @@
     },
     "intro": "",
     "waypoints": {},
-    "gallery": {
-      "imageIds": ["01", "02", "03", "04", "05", "06"],
-      "imageData": [
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" },
-        {
-          "title": "",
-          "caption": ""
-        },
-        { "title": "", "caption": "" },
-        { "title": "", "caption": "" }
-      ],
-      "coverId": "04",
-      "sections": [
-        { "type": 4, "indexes": [0, 1, 2] },
-        { "type": 2, "indexes": [4, 3, 5] }
-      ]
-    },
+
+    "images": [
+      { "slug": "01", "title": "", "caption": "", "size": 0 },
+      { "slug": "02", "title": "", "caption": "", "size": 0 },
+      { "slug": "04", "title": "", "caption": "", "size": 1 },
+      { "slug": "03", "title": "", "caption": "", "size": 0 },
+      { "slug": "05", "title": "", "caption": "", "size": 0 },
+      { "slug": "06", "title": "", "caption": "", "size": 0 }
+    ],
+    "coverImage": "04",
+
     "tags": ["circular"]
   },
   {
@@ -1409,12 +1305,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["there-and-back"]
   },
   {
@@ -1446,12 +1340,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["there-and-back"]
   },
   {
@@ -1479,12 +1371,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["there-and-back"]
   },
   {
@@ -1512,12 +1402,10 @@
       "scrambling": 3,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "weatherLoc": "Scafell Pike Summit",
     "tags": ["circular"]
   },
@@ -1550,12 +1438,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["circular"]
   },
   {
@@ -1583,12 +1469,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["point-to-point"]
   },
   {
@@ -1618,12 +1502,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["circular"]
   },
   {
@@ -1653,12 +1535,10 @@
       "scrambling": 1,
       "desc": ""
     },
-    "gallery": {
-      "imageIds": ["01"],
-      "imageData": [],
-      "coverId": "01",
-      "sections": [{ "type": 0, "indexes": [0] }]
-    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
     "tags": ["circular"]
   }
 ]

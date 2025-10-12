@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: WalkProps) {
     walkData.wainwrights.length !== 1 ? "s" : ""
   }, with maps, terrain info, and photos.`;
   const path = `/walks/${walkData.slug}`;
-  const imageURL = `https://images.wainroutes.co.uk/wainroutes_${walkData.slug}_${walkData.gallery?.coverId}_1024w.webp`;
+  const imageURL = `https://images.wainroutes.co.uk/wainroutes_${walkData.slug}_${walkData.coverImage}_1024w.webp`;
 
   return createPageMetadata({
     title,
@@ -81,7 +81,7 @@ export default async function WalkPage({ params }: WalkProps) {
         <div className={styles.top}>
           <div className={styles.topImage}>
             <LazyImage
-              name={walkData.slug + "_" + walkData.gallery?.coverId}
+              name={walkData.slug + "_" + walkData.coverImage}
               sizes="(min-width: 1100px) 1100px, 100vw"
             />
           </div>
@@ -130,7 +130,7 @@ export default async function WalkPage({ params }: WalkProps) {
             />
           </div>
 
-          <Photos slug={slug} galleryData={walkData.gallery} />
+          <Photos slug={slug} images={walkData.images} />
 
           {walkData.weatherLoc && <Weather weatherLoc={walkData.weatherLoc} />}
         </div>

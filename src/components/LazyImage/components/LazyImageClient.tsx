@@ -12,6 +12,7 @@ type LazyImageClientProps = {
   blurURL: string;
 
   eager?: boolean;
+  onClick?: () => void;
 };
 
 export default function LazyImageClient({
@@ -22,6 +23,7 @@ export default function LazyImageClient({
   blurURL,
   className,
   eager = false,
+  onClick,
 }: LazyImageClientProps) {
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -39,6 +41,7 @@ export default function LazyImageClient({
         backgroundImage: blurURL,
         filter: loaded ? "none" : "blur(1em)",
       }}
+      onClick={onClick}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img

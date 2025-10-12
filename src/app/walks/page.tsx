@@ -50,9 +50,7 @@ export type SimpleWalk = {
     longitude?: number;
   };
   busConnections?: Walk["busConnections"];
-  gallery: {
-    coverId?: string;
-  };
+  coverImage: string;
   distance?: number;
 };
 
@@ -74,9 +72,7 @@ export default async function WalksPage({ searchParams }: MetadataProps) {
           longitude: walk.startLocation?.longitude,
         },
         busConnections: walk.busConnections,
-        gallery: {
-          coverId: walk.gallery?.coverId,
-        },
+        coverImage: walk.coverImage,
       } as SimpleWalk)
   );
 
