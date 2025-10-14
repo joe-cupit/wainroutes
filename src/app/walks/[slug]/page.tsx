@@ -19,6 +19,7 @@ import { displayDistance, displayElevation } from "@/utils/unitConversions";
 import { LocationIcon } from "@/icons/MaterialIcons";
 
 import walksJson from "@/data/walks.json";
+import estimateWalkTime from "@/utils/estimateWalkTime";
 
 type WalkProps = {
   params: Promise<{ slug: string }>;
@@ -65,6 +66,12 @@ export default async function WalkPage({ params }: WalkProps) {
   if (!walkData) {
     return notFound();
   }
+
+  const estimatedWalkTimes = estimateWalkTime(
+    walkData.length,
+    walkData.elevation,
+    walkData.terrain?.gradient ?? 2
+  );
 
   return (
     <main className={styles.walk}>
@@ -125,8 +132,7 @@ export default async function WalkPage({ params }: WalkProps) {
             <WalkAside
               startLocation={walkData.startLocation}
               busConnections={walkData.busConnections}
-              walkLength={walkData.length}
-              walkElevation={walkData.elevation}
+              estimatedTimes={estimatedWalkTimes}
               terrain={walkData.terrain}
             />
           </div>
