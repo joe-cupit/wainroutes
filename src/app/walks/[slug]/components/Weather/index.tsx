@@ -28,9 +28,7 @@ export default async function Weather({ weatherLoc }: { weatherLoc: string }) {
 
   return (
     <div className={styles.weather} id="walk-weather">
-      <h2 className={fontStyles.subheading} id="walk_weather">
-        Weather
-      </h2>
+      <h2 className={fontStyles.subheading}>Weather</h2>
 
       {weatherData ? (
         <>
@@ -47,10 +45,25 @@ export default async function Weather({ weatherLoc }: { weatherLoc: string }) {
         <p>The forecast for this walk is currently unavailable.</p>
       )}
 
-      <p className={styles.weatherLink}>
+      <p className={`${styles.weatherInfo} ${fontStyles.subtext}`}>
+        Forecast provided by the{" "}
+        <a href="https://www.metoffice.gov.uk/" target="_blank">
+          Met Office
+        </a>{" "}
+        under the{" "}
+        <a
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          target="_blank"
+        >
+          Open Government Licence
+        </a>
+        .
+      </p>
+
+      {/* <p className={styles.weatherLink}>
         For the district-wide forecast, see the{" "}
         <Link href="/weather">mountain weather forecast</Link>.
-      </p>
+      </p> */}
     </div>
   );
 }
