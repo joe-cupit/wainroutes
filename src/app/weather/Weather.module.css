@@ -38,24 +38,30 @@
   row-gap: var(--gap-300);
 }
 .forecastSticky {
-  position: sticky;
-  top: 6rem;
-
   display: grid;
   gap: var(--gap-500);
 
   height: fit-content;
-  padding-block-end: 2rem;
 
   & .boldheading {
     margin-block-end: 0.25lh;
   }
 }
-.futureForecast .forecastSticky {
-  padding-block: 0;
-}
 .additionalInfo {
   display: contents;
+
+  & .boldheading {
+    font-weight: var(--fw-medium);
+  }
+}
+
+.furtherTitle {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 .forecastMain {
@@ -74,6 +80,10 @@
 }
 
 @media (max-width: 60rem) {
+  .forecast,
+  .futureForecast {
+    row-gap: var(--gap-600);
+  }
   .forecastRow {
     grid-template-columns: 1fr;
   }
@@ -82,6 +92,21 @@
     padding-block: 0;
     gap: var(--gap-400);
   }
+
+  .forecastSticky h2 {
+    font-size: var(--fs-800);
+  }
+  .furtherTitle {
+    clip-path: unset;
+    height: unset;
+    overflow: unset;
+    position: unset;
+    white-space: unset;
+    width: unset;
+
+    margin-block-end: calc(-1 * var(--gap-400));
+  }
+
   .additionalInfo {
     display: none;
   }
@@ -96,6 +121,10 @@
 
 .mountainHazards {
   list-style: none;
+
+  display: flex;
+  gap: 0.5ch;
+  flex-wrap: wrap;
 }
 .mountainHazard,
 .meteorologistView {
@@ -146,11 +175,20 @@
   & th:first-child {
     text-align: left;
     padding-inline-start: 0;
+
+    position: sticky;
+    left: 0;
+    background: var(--clr-bg);
   }
 
   & svg {
     max-width: 4.5ch;
     max-height: 4.5ch;
+  }
+  & th svg {
+    display: none;
+    max-width: 2ch;
+    max-height: 2ch;
   }
 }
 .primaryRow th,
@@ -159,4 +197,36 @@
 }
 .secondaryRow {
   font-size: var(--fs-300);
+}
+
+/*  */
+
+@media (max-width: 36rem) {
+  .weatherTable th {
+    & svg {
+      display: block;
+    }
+    & span {
+      display: none;
+    }
+  }
+}
+
+/*  */
+
+.metoffice {
+  font-size: var(--fs-300);
+  color: var(--clr-text-muted);
+
+  margin-inline: auto;
+  text-align: center;
+  text-wrap: balance;
+
+  & a {
+    text-decoration: underline;
+    transition: color 100ms;
+  }
+  & a:hover {
+    color: var(--clr-text);
+  }
 }

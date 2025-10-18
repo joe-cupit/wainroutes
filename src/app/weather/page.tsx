@@ -37,9 +37,7 @@ export default async function WeatherPage() {
         <div className={styles.main}>
           <div>
             <h1 className={fontStyles.title}>Lake District Weather Forecast</h1>
-            <p className={styles.suntime}>
-              {`Updated at: ${weatherData?.update_time}`}
-            </p>
+            <UpdateDate date={weatherData.update_time} />
           </div>
 
           <Forecast weatherData={weatherData} />
@@ -48,5 +46,45 @@ export default async function WeatherPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+function UpdateDate({ date }: { date: string }) {
+  const weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const updateDate = new Date(date + " UTC");
+
+  return (
+    <p className={styles.suntime}>
+      {`Updated at:
+        ${updateDate.toTimeString().slice(0, 5)}
+        on
+        ${weekdays[updateDate.getDay()].slice(0, 3)}
+        ${updateDate.getDate()}
+        ${months[updateDate.getMonth()].slice(0, 3)}
+        ${updateDate.getFullYear()}`}
+    </p>
   );
 }

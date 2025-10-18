@@ -27,7 +27,9 @@ export default function formatDateString(dateString: string | undefined) {
 
   const date = new Date(dateString);
 
-  return [weekday[date.getDay()], date.getDate(), month[date.getMonth()]].join(
-    " "
-  );
+  return [
+    weekday[date.getDay()],
+    date.getDate(),
+    month[date.getMonth()].slice(0, 3),
+  ].join(" ");
 }

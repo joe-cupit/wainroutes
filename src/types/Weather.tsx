@@ -38,6 +38,7 @@ export type DistrictWeatherDay = {
 
 export type DistrictWeather = {
   update_time: string;
+  issue_time: string;
   confidence?: string;
   days: DistrictWeatherDay[];
 };

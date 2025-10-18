@@ -10,6 +10,11 @@ import {
 } from "@/types/Weather";
 import WeatherIcons from "@/icons/WeatherIcons";
 import formatDateString from "@/utils/formatDateString";
+import {
+  PrecipitationIcon,
+  TemperatureIcon,
+  WindIcon,
+} from "@/icons/MaterialIcons";
 
 export function Forecast({ weatherData }: { weatherData: DistrictWeather }) {
   return (
@@ -26,6 +31,21 @@ export function Forecast({ weatherData }: { weatherData: DistrictWeather }) {
             return <Fragment key={index}></Fragment>;
         }
       })}
+
+      <p className={styles.metoffice}>
+        Forecast provided by the{" "}
+        <a href="https://www.metoffice.gov.uk/" target="_blank">
+          Met Office
+        </a>{" "}
+        under the{" "}
+        <a
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          target="_blank"
+        >
+          Open Government Licence
+        </a>
+        .
+      </p>
     </div>
   );
 }
@@ -178,12 +198,14 @@ function FutureForecast({ weather }: { weather: DistrictWeatherDay }) {
 
   return (
     <div className={styles.futureForecast}>
-      <h2 className="visually-hidden">Further Outlook</h2>
+      <h2 className={`${fontStyles.heading} ${styles.furtherTitle}`}>
+        Further Outlook
+      </h2>
 
       {weather.days?.map((day, index) => {
         const dateList = day.date.split(" ");
         dateList[0] = weekdayDict[dateList[0]];
-        dateList[2] = monthDict[dateList[2]];
+        dateList[2] = monthDict[dateList[2]].slice(0, 3);
 
         return (
           <ForecastDay
@@ -248,7 +270,7 @@ function MeteorologistView({
   view?: DistrictWeatherDay["meteorologist_view"];
 }) {
   if (view && !view.startsWith("Nothing")) {
-    <p className={styles.meteorologistView}>{view}</p>;
+    return <p className={styles.meteorologistView}>{view}</p>;
   }
 
   return <p>{view ?? "Nothing to add."}</p>;
@@ -273,10 +295,15 @@ function WeatherTable({ forecast }: { forecast?: DistrictWeatherDayForecast }) {
             <WeatherTypeRow title="Weather type" data={forecast.type} />
           )}
           {forecast.precip && (
-            <WeatherTableRow title="Precipitation %" data={forecast.precip} />
+            <WeatherTableRow
+              icon={<PrecipitationIcon />}
+              title="Precipitation %"
+              data={forecast.precip}
+            />
           )}
           {forecast.temp && (
             <WeatherTableRow
+              icon={<TemperatureIcon />}
               title="Temperature (°C)"
               data={forecast.temp}
               postText={"°"}
@@ -293,6 +320,7 @@ function WeatherTable({ forecast }: { forecast?: DistrictWeatherDayForecast }) {
           )}
           {forecast.wind_speed && (
             <WeatherTableRow
+              icon={<WindIcon />}
               title="Wind speed (mph)"
               data={forecast.wind_speed}
               className={styles.primaryRow}
@@ -312,11 +340,13 @@ function WeatherTable({ forecast }: { forecast?: DistrictWeatherDayForecast }) {
 }
 
 function WeatherTableRow({
+  icon,
   title,
   data,
   postText,
   className,
 }: {
+  icon?: React.ReactNode;
   title: string;
   data: string[];
   postText?: string;
@@ -324,7 +354,9 @@ function WeatherTableRow({
 }) {
   return (
     <tr className={className}>
-      <th>{title}</th>
+      <th>
+        {icon} <span>{title}</span>
+      </th>
       {data.map((entry, index) => (
         <td key={index}>
           {entry}
@@ -335,17 +367,21 @@ function WeatherTableRow({
   );
 }
 function WeatherTypeRow({
+  icon,
   title,
   data,
   className,
 }: {
+  icon?: React.ReactNode;
   title: string;
   data: string[];
   className?: string;
 }) {
   return (
     <tr className={className}>
-      <th>{title}</th>
+      <th>
+        {icon} <span>{title}</span>
+      </th>
       {data.map((entry, index) => {
         const slug = entry
           .toLowerCase()
