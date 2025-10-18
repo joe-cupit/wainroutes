@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 1fr 2.25fr;
 
-  /* margin-block-start: var(--gap-300); */
+  margin-block-start: var(--gap-300);
 
   &[data-nighttime="true"] {
     --_weather-bg: oklch(88.487% 0.01317 266.733);
@@ -88,9 +88,15 @@
 }
 .dayNight {
   color: var(--clr-text-muted);
-  /* margin-inline-start: auto; */
 
-  & button.active {
+  & input {
+    display: none;
+  }
+
+  & label {
+    cursor: pointer;
+  }
+  & label:has(input:checked) {
     color: var(--clr-text);
     font-weight: var(--fw-medium);
   }
@@ -105,7 +111,7 @@
     width: 15ch;
     height: 15ch;
 
-    margin-block: -2ch;
+    margin-block: -1.5ch;
     margin-inline: -2ch -0.5ch;
   }
 }
@@ -144,6 +150,7 @@
 @media (max-width: 62rem) {
   .weather {
     grid-template-columns: 1fr;
+    gap: var(--gap-400);
     overflow: hidden;
     width: 100%;
   }
@@ -155,6 +162,7 @@
   .tabs {
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
+    gap: var(--gap-300);
 
     overflow-x: auto;
     width: 100%;
@@ -162,12 +170,10 @@
 
   .tab {
     justify-content: center;
-    padding-block: var(--gap-400);
+    padding-block: var(--gap-300) var(--gap-200);
     padding-inline: var(--gap-200);
 
     border-radius: 0.25rem;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
   }
   .tabDate {
     flex-direction: column-reverse;
@@ -201,6 +207,13 @@
 
   .overview {
     margin-inline: auto;
+
+    & svg {
+      margin-block: -1ch;
+    }
+    & .overviewMain {
+      width: 10ch;
+    }
   }
 }
 

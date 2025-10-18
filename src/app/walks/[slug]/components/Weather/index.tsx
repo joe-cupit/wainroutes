@@ -28,7 +28,7 @@ export default async function Weather({ weatherLoc }: { weatherLoc: string }) {
 
   return (
     <div className={styles.weather} id="walk-weather">
-      <h2 className={fontStyles.subheading}>Weather</h2>
+      <h2 className={fontStyles.subheading}>Weather Forecast</h2>
 
       {weatherData ? (
         <>

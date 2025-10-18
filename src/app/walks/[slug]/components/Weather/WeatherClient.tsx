@@ -97,19 +97,25 @@ export default function WeatherClient({
         <div className={styles.heading}>
           <h3 className={styles.date}>{formatDate(selectedDayWeather.date)}</h3>
           <div className={styles.dayNight}>
-            <button
-              className={displayNightData === 0 ? styles.active : ""}
-              onClick={() => setDisplayNightData(0)}
-            >
+            <label>
+              <input
+                type="radio"
+                name="daytime"
+                checked={displayNightData === 0}
+                onClick={() => setDisplayNightData(0)}
+              />
               daytime
-            </button>{" "}
-            /{" "}
-            <button
-              className={displayNightData === 1 ? styles.active : ""}
-              onClick={() => setDisplayNightData(1)}
-            >
+            </label>
+            {" / "}
+            <label>
+              <input
+                type="radio"
+                name="daytime"
+                checked={displayNightData === 1}
+                onClick={() => setDisplayNightData(1)}
+              />
               nighttime
-            </button>
+            </label>
           </div>
         </div>
         <div className={styles.overview}>
