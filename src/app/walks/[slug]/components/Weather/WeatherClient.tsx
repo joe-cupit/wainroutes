@@ -52,7 +52,6 @@ export default function WeatherClient({
       <div className={styles.tabs}>
         {weatherData.days.slice(0, 6).map((day, index: number) => {
           const dayDate = new Date(day.date);
-          const dayWeather = weatherData.days[index];
 
           return (
             <button
@@ -64,7 +63,7 @@ export default function WeatherClient({
               onClick={() => setSelectedDayIndex(index)}
             >
               <div className={styles.tabDate}>
-                {RenderWeatherIcon(dayWeather.weather_type[displayNightData])}
+                {RenderWeatherIcon(day.weather_type[displayNightData])}
                 <span className={styles.tabDayLong}>
                   {days[dayDate.getDay()]}
                 </span>
@@ -75,17 +74,11 @@ export default function WeatherClient({
 
               <div className={styles.tabTemp}>
                 <span>
-                  {displayTemperature(
-                    dayWeather.temp.min[displayNightData],
-                    false
-                  )}
+                  {displayTemperature(day.temp.min[displayNightData], false)}
                 </span>{" "}
                 /{" "}
                 <span>
-                  {displayTemperature(
-                    dayWeather.temp.max[displayNightData],
-                    false
-                  )}
+                  {displayTemperature(day.temp.max[displayNightData], false)}
                 </span>
               </div>
             </button>
@@ -102,7 +95,7 @@ export default function WeatherClient({
                 type="radio"
                 name="daytime"
                 checked={displayNightData === 0}
-                onClick={() => setDisplayNightData(0)}
+                onChange={() => setDisplayNightData(0)}
               />
               daytime
             </label>
@@ -112,7 +105,7 @@ export default function WeatherClient({
                 type="radio"
                 name="daytime"
                 checked={displayNightData === 1}
-                onClick={() => setDisplayNightData(1)}
+                onChange={() => setDisplayNightData(1)}
               />
               nighttime
             </label>
@@ -196,7 +189,11 @@ function RenderWeatherIcon(uncleanString: string) {
     .replaceAll(/[()]/g, "");
   const Icon = WeatherIcons[slug];
 
-  return <Icon />;
+  if (Icon) return <Icon />;
+  else {
+    const NoIcon = WeatherIcons["na"];
+    return <NoIcon />;
+  }
 }
 
 function DisplayVisibilityDistance(meters: number) {
