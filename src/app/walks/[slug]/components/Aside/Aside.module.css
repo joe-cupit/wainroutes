@@ -151,7 +151,7 @@
 
   & a {
     display: flex;
-    min-width: 2rem;
+    min-width: 3rem;
     max-width: 4rem;
     border-radius: 999rem;
 
@@ -216,5 +216,9 @@
 
     padding-inline: var(--gap-400);
     padding-block: var(--gap-400) calc(2 * var(--gap-300));
+  }
+
+  .terrainBadge a {
+    margin-inline: auto;
   }
 }

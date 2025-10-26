@@ -28,8 +28,6 @@ export default function ImageGallery({
   slug: string;
   images: Walk["images"];
 }) {
-  if (images === undefined) return <></>;
-
   const [carouselId, setCarouselId] = useState<number | null>(null);
   const [displayCorousel, setDisplayCarousel] = useState(false);
   useEffect(() => {
@@ -39,6 +37,8 @@ export default function ImageGallery({
   const openCarousel = useCallback((imageId: number) => {
     setCarouselId(imageId);
   }, []);
+
+  if (images === undefined) return <></>;
 
   const contextValue = {
     slug: slug,
@@ -51,7 +51,7 @@ export default function ImageGallery({
       <GalleryContext.Provider value={contextValue}>
         <div className={styles.imageGallery}>
           {images.map((image, index) => {
-            return <GalleryImage size={image.size} index={index} />;
+            return <GalleryImage key={index} size={image.size} index={index} />;
           })}
         </div>
 
@@ -208,7 +208,7 @@ function GalleryImage({
     },
     2: {
       name: "tall",
-      sizes: "(min-width: 1350px) 550px, (min-width: 881px) 40vw, 40vw",
+      sizes: "(min-width: 1350px) 550px, (min-width: 881px) 40vw, 60vw",
     },
     3: {
       name: "big",

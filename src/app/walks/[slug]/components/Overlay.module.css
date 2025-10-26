@@ -42,33 +42,29 @@
 
 .overlayLeft {
   display: flex;
-  gap: var(--gap-400);
+  gap: 0.5em;
   align-items: center;
   flex: 1;
 
   text-align: left;
   overflow: hidden;
   padding-block: 0.5em 0.75em;
-}
 
-.overlayLeft {
-  gap: 0.5em;
-  width: 100%;
-}
-.overlayLeft a {
-  line-height: 0;
+  & a {
+    line-height: 0;
+  }
 }
 .overlayTitle {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.overlayTitle button {
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: left;
+  display: grid;
+
+  & button {
+    max-width: 100%;
+    line-height: initial;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
 }
 .overlayDetails {
   display: flex;
@@ -107,9 +103,6 @@
 @media (max-width: 52rem) {
   .overlayLeft {
     padding-inline-end: 1em;
-  }
-  .overlayLeft a {
-    padding-bottom: 1.5em;
   }
   .overlayDetails {
     display: flex;

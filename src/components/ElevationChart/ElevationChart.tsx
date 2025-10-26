@@ -165,7 +165,7 @@ const CustomToolTipContent = ({
 }) => {
   useEffect(() => {
     if (!payload || payload.length === 0) setActiveIndex(null);
-  });
+  }, [payload]);
 
   return <></>;
 };

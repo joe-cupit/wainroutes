@@ -105,6 +105,7 @@
   display: flex;
   column-gap: 0.75ch;
   row-gap: 0.25ch;
+  align-items: baseline;
 }
 .summaryGroup.shouldWrap {
   flex-wrap: wrap;

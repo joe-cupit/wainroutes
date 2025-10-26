@@ -26,7 +26,8 @@
   aspect-ratio: 16 / 11;
 }
 .image img {
-  transition: scale 100ms;
+  transform-origin: bottom center;
+  transition: scale 200ms;
 }
 .walkCard:focus .image img,
 .walkCard:focus-visible .image img,

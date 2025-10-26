@@ -2,11 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createReadStream, statSync } from "fs";
 import { join } from "path";
 
-const ALLOWED_ORIGINS = [
-  "https://wainroutes.co.uk",
-  "http://localhost:3000",
-  "http://192.168.0.102:3000",
-];
+const ALLOWED_ORIGINS = ["https://wainroutes.co.uk"];
 
 type RouteProps = {
   params: Promise<{ slug: string }>;
