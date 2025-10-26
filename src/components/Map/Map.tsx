@@ -18,6 +18,7 @@ import { BookTitles } from "@/types/Hill";
 import getMapBounds from "@/utils/getMapBounds";
 
 import { useSupercluster } from "./hooks/useSupercluster";
+import { FitZoomIcon } from "@/icons/MaterialIcons";
 
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(import.meta.env.VITE_MAP_API_KEY, "topo-v2");
@@ -33,6 +34,12 @@ type LakeProps = {
 
   disableAutomaticMapBounds?: boolean;
 
+  mapButtons?: {
+    title: string;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    Icon: React.ReactNode;
+  }[];
+
   children?: ReactNode;
   className?: string;
 };
@@ -46,6 +53,7 @@ export default function LakeMap({
   defaultZoom,
   defaultMinZoom,
   disableAutomaticMapBounds,
+  mapButtons,
   className,
   children,
 }: LakeProps) {
@@ -261,6 +269,30 @@ export default function LakeMap({
         {children}
         {markers.map(renderMarker)}
         <ZoomControl />
+        <div className={styles.leftFloat}>
+          <button
+            onClick={resetMapBounds}
+            className={styles.button}
+            title="Zoom to fit"
+          >
+            <FitZoomIcon />
+          </button>
+        </div>
+
+        {mapButtons && mapButtons.length > 0 && (
+          <div className={styles.rightFloat}>
+            {mapButtons.map((button, index) => (
+              <button
+                key={index}
+                onClick={button.onClick}
+                className={styles.button}
+                title={button.title}
+              >
+                {button.Icon}
+              </button>
+            ))}
+          </div>
+        )}
       </Map>
     </div>
   );

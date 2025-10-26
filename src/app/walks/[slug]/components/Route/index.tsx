@@ -11,7 +11,6 @@ import { getDistanceValue, getElevationValue } from "@/utils/unitConversions";
 import haversineDistance from "@/utils/haversineDistance";
 import getMapBounds from "@/utils/getMapBounds";
 
-import DownloadButton from "./Components/DownloadButton";
 import InteractiveRoute from "./Components/InteractiveRoute";
 
 type ElevationPoint = {
@@ -107,9 +106,9 @@ export default function Route({ wainwrights, slug }: RouteProps) {
         <h2 className={fontStyles.subheading} id="walk_route">
           Route
         </h2>
-        <DownloadButton slug={slug} />
       </div>
       <InteractiveRoute
+        slug={slug}
         gpx={gpx}
         hillMarkers={hillMarkers}
         defaultCenter={mapBounds.center}
