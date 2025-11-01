@@ -88,7 +88,8 @@
 
 .duo {
   display: grid;
-  gap: var(--gap-500);
+  column-gap: var(--gap-500);
+  row-gap: var(--gap-700);
   grid-template-columns: 3fr 1.25fr;
 
   @media (max-width: 52rem) {

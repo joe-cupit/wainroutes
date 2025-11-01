@@ -127,23 +127,33 @@ export default function WeatherClient({
               )}
             </div>
           </div>
-          {/* <div className={styles.detail}>
+        </div>
+        <div className={styles.details}>
+          <div className={styles.detail}>
             <h4>Feels-like</h4>
             <p>
               {displayTemperature(
                 selectedDayWeather.temp.feels[displayNightData],
                 false
               )}
+              {/* <span>{`(H: ${displayTemperature(
+                selectedDayWeather.temp.min[displayNightData],
+                false
+              )} L: ${displayTemperature(
+                selectedDayWeather.temp.max[displayNightData],
+                false
+              )})`}</span> */}
             </p>
-          </div> */}
-        </div>
-        <div className={styles.details}>
-          <div className={styles.detail}>
+          </div>
+          {/* <div className={styles.detail}>
             <h4>Wind speed</h4>
             <p>
               {displaySpeed(selectedDayWeather.wind.speed[displayNightData])}
+              <span>{`(${displaySpeed(
+                selectedDayWeather.wind.gusts[displayNightData]
+              )} gusts)`}</span>
             </p>
-          </div>
+          </div> */}
           <div className={styles.detail}>
             <h4>Wind gusts</h4>
             <p>
@@ -152,28 +162,23 @@ export default function WeatherClient({
           </div>
           <div className={styles.detail}>
             <h4>
+              {/* Chance of precip. */}
               {"Chance of " +
                 (selectedDayWeather.precipitation.type[displayNightData] ??
                   "precipitation")}
             </h4>
             <p>
               {selectedDayWeather.precipitation.prob[displayNightData] + "%"}
+              {/* <span>{`(${selectedDayWeather.precipitation.type[displayNightData]})`}</span> */}
             </p>
           </div>
           <div className={styles.detail}>
             <h4>Visibility</h4>
-            <p className={styles.defaultValue}>
-              <span className={styles.visibilityLong}>
-                {selectedDayWeather.visibility.text[displayNightData] +
-                  " (" +
-                  DisplayVisibilityDistance(
-                    selectedDayWeather.visibility.m[displayNightData]
-                  ) +
-                  ")"}
-              </span>
-              <span className={styles.visibilityShort}>
-                {selectedDayWeather.visibility.text[displayNightData]}
-              </span>
+            <p>
+              {DisplayVisibilityDistance(
+                selectedDayWeather.visibility.m[displayNightData]
+              )}
+              {/* <span>{`(${selectedDayWeather.visibility.text[displayNightData]})`}</span> */}
             </p>
           </div>
         </div>
