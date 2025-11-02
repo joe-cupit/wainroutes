@@ -110,6 +110,16 @@ function TodayForecast({ weather }: { weather: DistrictWeatherDay }) {
             <h3 className={styles.boldheading}>Visibility</h3>
             <p>{weather.visibility}</p>
           </div>
+          <div className={styles.additionalInfo}>
+            <div>
+              <h3 className={styles.boldheading}>Mountain Hazards</h3>
+              <MountainHazardList hazards={weather.hazards} />
+            </div>
+            <div>
+              <h3 className={styles.boldheading}>Meteorologist&apos;s View</h3>
+              <MeteorologistView view={weather.meteorologist_view} />
+            </div>
+          </div>
         </>
       }
     />
@@ -154,7 +164,7 @@ function TomorrowForecast({ weather }: { weather: DistrictWeatherDay }) {
           <div>
             <h3 className={styles.boldheading}>Temperature</h3>
             {weather.temperature && (
-              <ul>
+              <ul className={styles.temperatureList}>
                 {Object.keys(weather.temperature).map((loc, index) => {
                   return (
                     <li key={index}>
@@ -312,6 +322,7 @@ function WeatherTable({ forecast }: { forecast?: DistrictWeatherDayForecast }) {
           )}
           {forecast.feel_temp && (
             <WeatherTableRow
+              icon="(°C)"
               title="Feels-like"
               data={forecast.feel_temp}
               postText={"°"}
@@ -328,6 +339,7 @@ function WeatherTable({ forecast }: { forecast?: DistrictWeatherDayForecast }) {
           )}
           {forecast.wind_gust && (
             <WeatherTableRow
+              icon="(mph)"
               title="Wind gusts"
               data={forecast.wind_gust}
               className={styles.secondaryRow}
@@ -355,7 +367,8 @@ function WeatherTableRow({
   return (
     <tr className={className}>
       <th>
-        {icon} <span>{title}</span>
+        {icon && <span className={styles.rowIcon}>{icon}</span>}
+        <span className={styles.rowTitle}>{title}</span>
       </th>
       {data.map((entry, index) => (
         <td key={index}>
@@ -380,7 +393,8 @@ function WeatherTypeRow({
   return (
     <tr className={className}>
       <th>
-        {icon} <span>{title}</span>
+        {icon && <span className={styles.rowIcon}>{icon}</span>}
+        <span className={styles.rowTitle}>{title}</span>
       </th>
       {data.map((entry, index) => {
         const slug = entry

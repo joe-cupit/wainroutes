@@ -49,10 +49,6 @@
 }
 .additionalInfo {
   display: contents;
-
-  & .boldheading {
-    font-weight: var(--fw-medium);
-  }
 }
 
 .furtherTitle {
@@ -76,6 +72,10 @@
   & > div {
     max-width: 100%;
     overflow: hidden;
+  }
+
+  & .additionalInfo {
+    display: none;
   }
 }
 
@@ -107,12 +107,15 @@
     margin-block-end: calc(-1 * var(--gap-400));
   }
 
-  .additionalInfo {
+  .forecastSticky .additionalInfo {
     display: none;
+  }
+  .forecastMain .additionalInfo {
+    display: contents;
   }
 }
 
-.forecastMain ul {
+.temperatureList {
   list-style: square inside;
   margin-inline-start: 0.25ch;
 }
@@ -185,10 +188,8 @@
     max-width: 4.5ch;
     max-height: 4.5ch;
   }
-  & th svg {
+  & .rowIcon {
     display: none;
-    max-width: 2ch;
-    max-height: 2ch;
   }
 }
 .primaryRow th,
@@ -202,13 +203,15 @@
 /*  */
 
 @media (max-width: 36rem) {
-  .weatherTable th {
-    & svg {
-      display: block;
-    }
-    & span {
-      display: none;
-    }
+  .weatherTable th .rowIcon {
+    display: flex;
+    justify-content: center;
+
+    font-size: var(--fs-200);
+    font-weight: var(--fw-regular);
+  }
+  .weatherTable th .rowTitle {
+    display: none;
   }
 }
 
