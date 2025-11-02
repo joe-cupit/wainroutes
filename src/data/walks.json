@@ -159,13 +159,13 @@
         "caption": "",
         "size": 2
       },
+      { "slug": "02", "title": "Climbing Red Pike", "caption": "", "size": 0 },
       {
         "slug": "05",
         "title": "Red Pike Summit Ascent",
         "caption": "",
         "size": 0
       },
-      { "slug": "02", "title": "Climbing Red Pike", "caption": "", "size": 0 },
       { "slug": "06", "title": "High Stile Summit", "caption": "", "size": 0 },
       { "slug": "09", "title": "Buttermere Summit", "caption": "", "size": 0 },
       {
@@ -892,7 +892,7 @@
       "599": ""
     },
     "terrain": {
-      "gradient": 1,
+      "gradient": 2,
       "path": 1,
       "exposure": 1,
       "scrambling": 1,
@@ -1434,7 +1434,7 @@
     "terrain": {
       "gradient": 3,
       "path": 1,
-      "exposure": 1,
+      "exposure": 2,
       "scrambling": 1,
       "desc": ""
     },

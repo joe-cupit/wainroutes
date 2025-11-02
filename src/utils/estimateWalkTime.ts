@@ -6,8 +6,8 @@ export default function estimateWalkTime(
   walkGradient: TerrainLevel
 ) {
   const horizontalSpeedKph = {
-    1: 2.25,
-    2: 3.25,
+    1: 2.5,
+    2: 3.5,
     3: 4.5,
     4: 5.75,
   };
