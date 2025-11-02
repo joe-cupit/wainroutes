@@ -48,12 +48,16 @@ export default function Summary({
               return (
                 <Fragment key={index}>
                   <span>
+                    {wainwrights.length > 1 && index + 1 === wainwrights.length
+                      ? "and "
+                      : ""}
                     <Link href={"/wainwrights/" + hill}>
                       {hillNames?.[hill]}
                     </Link>
-                    {index + 1 < wainwrights.length ? "," : ""}
-                  </span>
-                  {index + 2 === wainwrights.length ? " and " : " "}
+                    {wainwrights.length !== 2 && index + 1 < wainwrights.length
+                      ? ","
+                      : ""}
+                  </span>{" "}
                 </Fragment>
               );
             })}

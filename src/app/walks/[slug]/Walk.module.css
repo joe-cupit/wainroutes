@@ -113,7 +113,7 @@
 
   & p {
     flex: 1;
-    flex-basis: 30ch;
+    flex-basis: 35ch;
     max-width: fit-content;
   }
 }
@@ -121,15 +121,11 @@
   gap: var(--gap-500);
 }
 
-.wainwrights {
-  /* max-width: 55ch; */
-
-  & span {
-    display: inline-block;
-  }
-  & a:hover {
-    text-decoration: underline;
-  }
+.wainwrights span {
+  display: inline-block;
+}
+.wainwrights a:hover {
+  text-decoration: underline;
 }
 
 .section {
