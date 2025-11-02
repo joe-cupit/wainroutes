@@ -1,8 +1,6 @@
 import styles from "../../Walk.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
-import Link from "next/link";
-
 import { PointWeather } from "@/types/Weather";
 import { displayElevation } from "@/utils/unitConversions";
 
