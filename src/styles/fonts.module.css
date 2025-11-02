@@ -16,7 +16,6 @@
   font-size: var(--fs-600);
   font-weight: var(--fw-bold);
   line-height: 1.2;
-  padding-block: var(--gap-200);
 }
 .smallheading {
   font-family: var(--ff-body);

@@ -9,19 +9,12 @@ import WainroutesLogo from "@/components/Logo/Logo";
 
 const navbarId = "navbar";
 
-
 export default async function Navbar() {
-
-
   return (
-    <header
-      id={navbarId}
-      className={`${styles.navbar}`}
-    >
+    <header id={navbarId} className={`${styles.navbar}`}>
       <NavbarClient targetId={navbarId} />
 
       <div className={styles.main}>
-
         <div className={styles.mainLeft}>
           <Link href="/" className={`${styles.logo} ${fonts.heading}`}>
             <WainroutesLogo />
@@ -41,5 +34,5 @@ export default async function Navbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }

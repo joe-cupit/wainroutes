@@ -1,6 +1,6 @@
 .page {
   padding-block: 0;
-  
+
   & section {
     --content-max-width: 1100px;
     padding: 0;
@@ -71,6 +71,7 @@
   height: 25rem;
 }
 
+/*  */
 
 @media (max-width: 50rem) {
   .group {
@@ -94,6 +95,7 @@
   }
 }
 
+/*  */
 
 .walks {
   display: grid;
@@ -103,6 +105,7 @@
   margin-block-start: var(--gap-400);
 }
 
+/*  */
 
 .nearbyList {
   display: grid;

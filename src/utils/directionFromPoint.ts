@@ -1,4 +1,7 @@
-export default function directionFromPoint (a: [number, number], b: [number, number]) {
+export default function directionFromPoint(
+  a: [number, number],
+  b: [number, number]
+) {
   const northing = b[1] - a[1];
   const easting = b[0] - a[0];
 
@@ -6,7 +9,11 @@ export default function directionFromPoint (a: [number, number], b: [number, num
   const isEast = easting >= 0;
 
   return (
-    (Math.abs(northing) > Math.abs(easting) * 0.5 ? (isNorth ? "N" : "S") : "") +
+    (Math.abs(northing) > Math.abs(easting) * 0.5
+      ? isNorth
+        ? "N"
+        : "S"
+      : "") +
     (Math.abs(easting) > Math.abs(northing) * 0.5 ? (isEast ? "E" : "W") : "")
   );
 }

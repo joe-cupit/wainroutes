@@ -1,4 +1,3 @@
-
 .container {
   width: 100%;
   height: 100%;
@@ -8,6 +7,7 @@
   overflow: hidden;
 }
 
+/*  */
 
 .route {
   /* stroke: var(--clr-primary-300); */
@@ -89,7 +89,7 @@
   padding: var(--gap-300) var(--gap-400);
   border-radius: var(--gap-300);
 
-  box-shadow: 3px 3px 5px oklch(from var(--clr-text) l c h / .15);
+  box-shadow: 3px 3px 5px oklch(from var(--clr-text) l c h / 0.15);
 }
 .clusterTooltipTip {
   font-weight: var(--fw-regular);
@@ -111,6 +111,7 @@
   box-shadow: inherit;
 }
 
+/*  */
 
 .marker:hover .clusterTooltip,
 .marker:has(.focussedCluster) .clusterTooltip {
@@ -143,6 +144,7 @@
   display: none;
 }
 
+/*  */
 
 .hillMarker[data-book="1"] {
   fill: var(--clr-wain-book-1);
@@ -168,6 +170,55 @@
 
 .walkMarker {
   fill: lightblue;
+}
+
+.leftFloat {
+  position: absolute;
+  top: 74px;
+  left: 10px;
+}
+.rightFloat {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 1px;
+
+  border: medium;
+  outline: none;
+  border-radius: 2px;
+  color: rgb(102, 102, 102);
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+
+  cursor: pointer;
+
+  transition: background-color 100ms;
+
+  & svg {
+    max-width: 80%;
+    max-height: 80%;
+  }
+
+  &:hover {
+    background: #fafafa;
+  }
+  &:focus-visible,
+  &:focus-visible {
+    outline: 2px solid black !important;
+    outline-offset: 0 !important;
+  }
 }
 
 .attribution {

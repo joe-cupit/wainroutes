@@ -7,7 +7,7 @@ export type DistrictWeatherDayForecast = {
   wind_dir?: string[];
   temp?: string[];
   feel_temp?: string[];
-}
+};
 
 export type DistrictWeatherDay = {
   type: string;
@@ -15,7 +15,7 @@ export type DistrictWeatherDay = {
   sunrise?: string;
   sunset?: string;
   hazards?: {
-    [level: string]: {[name: string] : string}
+    [level: string]: { [name: string]: string };
   };
   meteorologist_view?: string;
   summary?: string;
@@ -27,20 +27,21 @@ export type DistrictWeatherDay = {
   max_wind?: string;
   temperature?: {
     [height: string]: string;
-  }
+  };
   days?: {
     date: string;
     sunrise?: string;
     sunset?: string;
     summary?: string;
-  }[]
-}
+  }[];
+};
 
 export type DistrictWeather = {
   update_time: string;
+  issue_time: string;
   confidence?: string;
   days: DistrictWeatherDay[];
-}
+};
 
 export type PointWeatherDay = {
   date: string;
@@ -50,20 +51,20 @@ export type PointWeatherDay = {
     max: number[];
     min: number[];
     feels: number[];
-  }
+  };
   precipitation: {
     prob: number[];
     type: string[];
-  }
+  };
   wind: {
     speed: number[];
     gusts: number[];
-  }
+  };
   visibility: {
     m: number[];
     text: string[];
-  }
-}
+  };
+};
 
 export type PointWeather = {
   request_date: string;
@@ -71,4 +72,4 @@ export type PointWeather = {
   elevation: number;
   coordinates: number[];
   days: PointWeatherDay[];
-}
+};

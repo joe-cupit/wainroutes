@@ -6,25 +6,24 @@ import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 
-
-export const metadata : Metadata = {
+export const metadata: Metadata = {
   title: {
     default: "Wainroutes Lake District Walks",
     template: "%s | Wainroutes",
   },
-  description: "Walk the Wainwrights in the Lake District with detailed routes, mountain forecasts, and travel info.",
+  description:
+    "Walk the Wainwrights in the Lake District with detailed routes, mountain forecasts, and travel info.",
 };
 
-export const viewport : Viewport = {
-  themeColor: "#0d0d0c"
-}
+export const viewport: Viewport = {
+  themeColor: "#0d0d0c",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   return (
     <html lang="en">
       <body>

@@ -2,20 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { createReadStream, statSync } from "fs";
 import { join } from "path";
 
-
-const ALLOWED_ORIGINS = [
-  "https://wainroutes.co.uk",
-  "http://localhost:3000",
-  "http://192.168.0.102:3000",
-]
+const ALLOWED_ORIGINS = ["https://wainroutes.co.uk"];
 
 type RouteProps = {
-  params: Promise<{ slug: string }>
-}
+  params: Promise<{ slug: string }>;
+};
 
-export async function GET(req: NextRequest, { params } : RouteProps) {
+export async function GET(req: NextRequest, { params }: RouteProps) {
   const referer = req.headers.get("referer");
-  if (!referer || !ALLOWED_ORIGINS.some(origin => referer.startsWith(origin))) {
+  if (
+    !referer ||
+    !ALLOWED_ORIGINS.some((origin) => referer.startsWith(origin))
+  ) {
     return new NextResponse("Forbidden", { status: 403 });
   }
 
@@ -33,8 +31,8 @@ export async function GET(req: NextRequest, { params } : RouteProps) {
         "Content-Disposition": `attachment; filename="Wainroutes-walk_${slug}.gpx"`,
         "Content-Length": stat.size.toString(),
         "Cache-Control": "public, max-age=86400, stale-while-revalidate=60",
-      }
-    })
+      },
+    });
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "File not found" }, { status: 404 });

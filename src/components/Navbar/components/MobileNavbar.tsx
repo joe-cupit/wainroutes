@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import styles from "../Navbar.module.css";
 
@@ -7,27 +7,27 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SearchIcon } from "@/icons/MaterialIcons";
 
-
-export default function MobileNavbar({ open, setOpen } : { open: boolean; setOpen: Dispatch<SetStateAction<boolean>> }) {
-
+export default function MobileNavbar({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) {
   const pathname = usePathname();
   useEffect(() => {
     setOpen(false);
-  }, [pathname, setOpen])
+  }, [pathname, setOpen]);
 
   function renderLink(href: string, name: React.ReactNode) {
     return (
       <li>
-        <Link
-          href={href}
-          onClick={() => setOpen(false)}
-        >
+        <Link href={href} onClick={() => setOpen(false)}>
           {name}
         </Link>
       </li>
-    )
+    );
   }
-
 
   return (
     <div
@@ -37,7 +37,12 @@ export default function MobileNavbar({ open, setOpen } : { open: boolean; setOpe
       <nav>
         <ul>
           <div>
-            {renderLink("/walks", <>Find a walk <SearchIcon /></>)}
+            {renderLink(
+              "/walks",
+              <>
+                Find a walk <SearchIcon />
+              </>
+            )}
           </div>
 
           <div>
@@ -59,5 +64,5 @@ export default function MobileNavbar({ open, setOpen } : { open: boolean; setOpe
 
       <p className={styles.bottomQuote}>&quot;No pain, no Wain&quot; -LT</p>
     </div>
-  )
+  );
 }

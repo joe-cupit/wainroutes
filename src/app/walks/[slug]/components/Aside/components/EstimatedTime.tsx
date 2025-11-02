@@ -1,46 +1,59 @@
-"use client"
+"use client";
 
-import styles from "../../../Walk.module.css";
+import styles from "../Aside.module.css";
 import fontStyles from "@/styles/fonts.module.css";
 
-import { useEffect, useMemo, useState } from "react";
-
-import { displayDistance } from "@/utils/unitConversions";
-
+import { useEffect, useState } from "react";
 
 const localStorageName = "user-set-hiking-speed";
+const speedNames: { [num: number]: string } = {
+  1: "slow",
+  2: "leisurely",
+  3: "steady",
+  4: "quick",
+};
 
-export default function EstimatedTime({ selected, walkLengthInKm } : { selected: boolean; walkLengthInKm: number | undefined }) {
-
-  const [speedInKm, setSpeedInKm] = useState<number>(2.5);
+export default function EstimatedTime({
+  selected,
+  estimatedTimes,
+}: {
+  selected: boolean;
+  estimatedTimes: { [level: number]: string };
+}) {
+  const [speedLevel, setSpeedLevel] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const stored = Number(localStorage.getItem(localStorageName));
+      if ([1, 2, 3, 4].includes(stored)) return stored;
+    }
+    return 2;
+  });
 
   useEffect(() => {
-    const storedSpeed = localStorage.getItem(localStorageName);
-    if (storedSpeed) setSpeedInKm(Number(storedSpeed));
-  }, [])
-
-  const timeTaken = useMemo(() => {
-    if (speedInKm !== 2.5)
-      localStorage.setItem(localStorageName, String(speedInKm));
-
-    const time = (walkLengthInKm ?? 0) / speedInKm;
-
-    if (time < 1) return (time * 60).toFixed(0) + " mins";
-    else return time.toFixed(1) + " hours";
-  }, [walkLengthInKm, speedInKm])
-
+    localStorage.setItem(localStorageName, String(speedLevel));
+  }, [speedLevel]);
 
   return (
-    <div className={`${styles.estimatedTime} ${styles.asideSection} ${selected ? styles.selected : ""}`}>
+    <div
+      className={`${styles.estimatedTime} ${styles.asideSection} ${
+        selected ? styles.selected : ""
+      }`}
+    >
       <h2 className={fontStyles.subheading}>Estimated Time</h2>
-      <p aria-live="polite">An average hiking pace of <b>{displayDistance(speedInKm, 1) + "/h"}</b> completes this walk in <b>{timeTaken}</b></p>
-      <input type="range"
-        min={1} max={5} step={0.1}
-        value={speedInKm} onChange={e => setSpeedInKm(Number(e.target.value))}
+      <p aria-live="polite">
+        A <b>{speedNames[speedLevel]}</b> hiking pace finishes this walk in
+        around <b>{estimatedTimes[speedLevel]}</b>
+      </p>
+      <input
+        type="range"
+        min={1}
+        max={4}
+        step={1}
+        value={speedLevel}
+        onChange={(e) => setSpeedLevel(Number(e.target.value) as 1 | 2 | 3 | 4)}
         aria-label="Walking speed"
       />
       {/* <p className={fontStyles.subtext}>*always allow ample time to complete walks in the mountains</p> */}
       {/* <p className={fontStyles.subtext}>*hiking pace in the mountains is always slower than on flat ground</p> */}
     </div>
-  )
+  );
 }

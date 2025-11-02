@@ -2,7 +2,6 @@
 
 import buttonStyles from "@/styles/buttons.module.css";
 
-
 export default function BackButton() {
   return (
     <button
@@ -11,5 +10,5 @@ export default function BackButton() {
     >
       Go back
     </button>
-  )
+  );
 }

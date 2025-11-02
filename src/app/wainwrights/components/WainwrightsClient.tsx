@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import styles from "../Wainwrights.module.css";
 
@@ -11,19 +11,20 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { BookTitles } from "@/types/Hill";
 
-
 type WainwrightsClientProps = {
-  simplifiedHillData: SimplifiedHill[]
-  hillMarkers: MapMarker[]
+  simplifiedHillData: SimplifiedHill[];
+  hillMarkers: MapMarker[];
   mapBounds: {
-    center: [number, number]
-    zoom: number
-  }
-}
+    center: [number, number];
+    zoom: number;
+  };
+};
 
-
-export default function WainwrightsClient({ simplifiedHillData, hillMarkers, mapBounds } : WainwrightsClientProps) {
-
+export default function WainwrightsClient({
+  simplifiedHillData,
+  hillMarkers,
+  mapBounds,
+}: WainwrightsClientProps) {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
   const searchParams = useSearchParams();
@@ -31,27 +32,26 @@ export default function WainwrightsClient({ simplifiedHillData, hillMarkers, map
 
   const [filteredHillData, filteredHillMarkers] = useMemo(() => {
     if (book && BookTitles[Number(book)]) {
-      return ([
-        simplifiedHillData.filter(hill => hill.book === book),
-        hillMarkers.filter(marker => marker.properties.book === book)
-      ])
-    }
-    else return ([
-      simplifiedHillData, hillMarkers
-    ])
-  }, [book, simplifiedHillData, hillMarkers])
-
+      return [
+        simplifiedHillData.filter((hill) => hill.book === book),
+        hillMarkers.filter((marker) => marker.properties.book === book),
+      ];
+    } else return [simplifiedHillData, hillMarkers];
+  }, [book, simplifiedHillData, hillMarkers]);
 
   return (
     <>
       <div className={styles.books}>
         {Object.keys(BookTitles).map((b, index) => (
-          <button key={index}
-            onClick={() => window.history.replaceState({}, "",
-              (Number(b) === book)
-               ? "/wainwrights"
-               : `/wainwrights?book=${b}`
-            )}
+          <button
+            key={index}
+            onClick={() =>
+              window.history.replaceState(
+                {},
+                "",
+                Number(b) === book ? "/wainwrights" : `/wainwrights?book=${b}`
+              )
+            }
             data-active={Number(b) === book}
             data-book={b}
           >
@@ -81,5 +81,5 @@ export default function WainwrightsClient({ simplifiedHillData, hillMarkers, map
         </div>
       </div>
     </>
-  )
+  );
 }

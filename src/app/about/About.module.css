@@ -7,6 +7,7 @@
   }
 }
 
+/*  */
 
 .intro {
   display: grid;
@@ -27,6 +28,7 @@
   }
 }
 
+/*  */
 
 .images {
   display: grid;
@@ -55,7 +57,6 @@
 }
 .imageGroupRight {
   grid-template-rows: 1fr 1fr;
-
 }
 
 @media (max-width: 42rem) {
@@ -84,6 +85,7 @@
   }
 }
 
+/*  */
 
 .storyContainer {
   display: flex;
@@ -125,6 +127,7 @@
   }
 }
 
+/*  */
 
 .features {
   display: grid;
@@ -181,6 +184,7 @@
   }
 }
 
+/*  */
 
 .link {
   color: var(--clr-primary-300);
@@ -191,6 +195,7 @@
   }
 }
 
+/*  */
 
 .supportContainer {
   display: flex;
@@ -216,6 +221,6 @@
 }
 .supportImage {
   min-width: clamp(20rem, 40vw, 30rem);
-  height: clamp(15rem, 30vw,18rem);
+  height: clamp(15rem, 30vw, 18rem);
   overflow: hidden;
 }

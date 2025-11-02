@@ -1,5 +1,4 @@
-import styles from "./Tip.module.css"
-
+import styles from "./Tip.module.css";
 
 export default function TipWidget() {
   return (
@@ -8,5 +7,5 @@ export default function TipWidget() {
       src="https://ko-fi.com/wainroutes/?hidefeed=true&widget=true&embed=true&preview=true"
       className={styles.widget}
     />
-  )
+  );
 }

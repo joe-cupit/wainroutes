@@ -46,6 +46,7 @@
   pointer-events: none;
 }
 
+/*  */
 
 .featured {
   display: flex;
@@ -89,6 +90,7 @@
   height: var(--_map-min-height);
 }
 
+/*  */
 
 .about {
   display: grid;

@@ -172,13 +172,14 @@
 .mobile .bottomQuote {
   margin-block-start: auto;
   margin-block-end: 0.5lh;
-  
+
   text-align: right;
   font-size: var(--fs-300);
   font-weight: var(--fw-regular);
   font-style: italic;
 }
 
+/*  */
 
 @media (max-width: 52rem) {
   .navbar {
@@ -202,7 +203,7 @@
     transform: translateX(0);
     transition-property: transform;
     /* transition-duration: 250ms; */
-  
+
     @starting-style {
       transform: translateX(100%);
     }
