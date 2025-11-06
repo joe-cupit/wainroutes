@@ -16,7 +16,7 @@ import { getHillMarkers } from "@/utils/getMapMarkers";
 
 import tempwalks from "@/data/walks.json";
 import LazyPicture from "@/components/LazyImage/LazyPicture";
-import { ArrowRightIcon } from "@/icons/MaterialIcons";
+import { ArrowRightIcon } from "@/icons/PhosphorIcons";
 
 export function generateMetadata() {
   return createPageMetadata({

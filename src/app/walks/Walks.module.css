@@ -48,6 +48,7 @@
 }
 .gridFiltersList li {
   display: flex;
+  align-items: center;
   gap: 1px;
 
   border-radius: 0.25rem;
@@ -67,6 +68,11 @@
   width: 2rem;
 
   transition: background-color 100ms;
+
+  & svg {
+    width: 1.5ch;
+    height: 1.5ch;
+  }
 }
 .gridFiltersList li button:hover {
   background: var(--clr-bg);
@@ -134,20 +140,25 @@
 
 .searchBar,
 .filterButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75ch;
+
   background: var(--clr-bg-light);
 
   border: 1px solid var(--clr-border-muted);
   border-radius: 0.25rem;
+
+  & svg {
+    width: 2ch;
+    height: 2ch;
+  }
 }
 
 .searchBar {
   position: relative;
   flex: 1;
   height: fit-content;
-
-  display: flex;
-  gap: var(--gap-300);
-  align-items: center;
 
   font-size: inherit;
   color: inherit;
@@ -181,9 +192,6 @@
   border-radius: 0.25rem;
 
   font-weight: var(--fw-medium);
-  display: flex;
-  align-items: center;
-  gap: var(--gap-300);
 }
 @media (max-width: 35rem) {
   .filterButton span {

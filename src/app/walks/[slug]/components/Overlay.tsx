@@ -7,11 +7,11 @@ import buttonStyles from "@/styles/buttons.module.css";
 import { Fragment, useEffect, useState } from "react";
 
 import {
-  BackIcon,
+  ArrowLeftIcon,
   ElevationIcon,
   HikingIcon,
   MountainIcon,
-} from "@/icons/MaterialIcons";
+} from "@/icons/PhosphorIcons";
 import Link from "next/link";
 
 export default function Overlay({
@@ -111,7 +111,7 @@ export default function Overlay({
               title="Back to walks"
               aria-label="Back to walks"
             >
-              <BackIcon />
+              <ArrowLeftIcon />
             </Link>
             <div className={styles.overlayTitle}>
               <button

@@ -16,7 +16,7 @@
 .topLink {
   display: flex;
   gap: 0.125em;
-  align-items: flex-end;
+  align-items: center;
 
   position: absolute;
   top: 5%;
@@ -28,6 +28,11 @@
 
   padding: 0.25rem 0.375rem;
   padding-inline-end: 0.625rem;
+
+  & svg {
+    width: 2ch;
+    height: 2ch;
+  }
 }
 .topLink:hover {
   text-decoration: underline;

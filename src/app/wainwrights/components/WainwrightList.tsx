@@ -10,7 +10,7 @@ import Fuse from "fuse.js";
 import type { SimplifiedHill } from "../page";
 import { BookTitles } from "@/types/Hill";
 import { displayElevation } from "@/utils/unitConversions";
-import { CloseIconSmall, SearchIcon } from "@/icons/MaterialIcons";
+import { SearchIcon, CloseIconSmall, ArrowUpIcon } from "@/icons/PhosphorIcons";
 
 type WainwrightListProps = {
   simplifiedHills: SimplifiedHill[];
@@ -169,38 +169,47 @@ export default function WainwrightList({
         <thead id="table-head">
           <tr>
             <td role="button" onClick={() => updateSortMode("book")}>
-              Book&nbsp;
-              <span
-                className={`${styles.tableArrow} ${
-                  sortMode === "book" ? styles.active : ""
-                }`}
-              >
-                {sortStates[0] ? "↓" : "↑"}
-              </span>
+              <div>
+                Book
+                <span
+                  className={`${styles.tableArrow} ${
+                    sortMode === "book" ? styles.active : ""
+                  }`}
+                  data-asc={sortStates[0]}
+                >
+                  <ArrowUpIcon />
+                </span>
+              </div>
             </td>
             <td
               role="button"
               onClick={() => updateSortMode("mountain")}
               className={styles.mountainHeading}
             >
-              Mountain&nbsp;
-              <span
-                className={`${styles.tableArrow} ${
-                  sortMode === "mountain" ? styles.active : ""
-                }`}
-              >
-                {sortStates[1] ? "↓" : "↑"}
-              </span>
+              <div>
+                Mountain
+                <span
+                  className={`${styles.tableArrow} ${
+                    sortMode === "mountain" ? styles.active : ""
+                  }`}
+                  data-asc={sortStates[1]}
+                >
+                  <ArrowUpIcon />
+                </span>
+              </div>
             </td>
             <td role="button" onClick={() => updateSortMode("height")}>
-              Height&nbsp;
-              <span
-                className={`${styles.tableArrow} ${
-                  sortMode === "height" ? styles.active : ""
-                }`}
-              >
-                {sortStates[2] ? "↓" : "↑"}
-              </span>
+              <div>
+                Height
+                <span
+                  className={`${styles.tableArrow} ${
+                    sortMode === "height" ? styles.active : ""
+                  }`}
+                  data-asc={sortStates[2]}
+                >
+                  <ArrowUpIcon />
+                </span>
+              </div>
             </td>
           </tr>
         </thead>

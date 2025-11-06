@@ -18,7 +18,7 @@ import { BookTitles } from "@/types/Hill";
 import getMapBounds from "@/utils/getMapBounds";
 
 import { useSupercluster } from "./hooks/useSupercluster";
-import { FitZoomIcon } from "@/icons/MaterialIcons";
+import { FitZoomIcon } from "@/icons/PhosphorIcons";
 
 // import { maptiler } from 'pigeon-maps/providers';
 // const maptilerProvider = maptiler(import.meta.env.VITE_MAP_API_KEY, "topo-v2");

@@ -190,6 +190,11 @@
   }
   & .rowIcon {
     display: none;
+
+    & svg {
+      width: 3ch;
+      height: 3ch;
+    }
   }
 }
 .primaryRow th,

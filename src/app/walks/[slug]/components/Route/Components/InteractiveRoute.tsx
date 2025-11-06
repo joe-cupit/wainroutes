@@ -9,7 +9,7 @@ import type MapMarker from "@/types/MapMarker";
 
 import LakeMap, { GeoRoute } from "@/components/Map/Map";
 import ElevationChart from "@/components/ElevationChart/ElevationChart";
-import { DownloadIcon } from "@/icons/MaterialIcons";
+import { DownloadIcon } from "@/icons/PhosphorIcons";
 
 type InteractiveRouteProps = {
   slug: string;

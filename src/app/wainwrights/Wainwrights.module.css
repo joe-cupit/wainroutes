@@ -234,13 +234,30 @@
   & td {
     cursor: pointer;
     padding-block: var(--gap-500) calc(1.5 * var(--gap-300));
+
+    & > div {
+      display: flex;
+      gap: 0.25ch;
+      align-items: center;
+      width: fit-content;
+    }
   }
 }
 .tableArrow {
+  width: 1.375ch;
+  height: 1.375ch;
   color: var(--clr-text-white-muted);
+
+  & svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
 
   &.active {
     color: var(--clr-text);
+  }
+  &[data-asc="true"] {
+    rotate: 180deg;
   }
 }
 

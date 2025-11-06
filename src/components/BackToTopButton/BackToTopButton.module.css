@@ -19,6 +19,11 @@
   transition-property: display opacity;
   transition-duration: 500ms;
   transition-behavior: allow-discrete;
+
+  & svg {
+    max-width: 55%;
+    max-height: 55%;
+  }
 }
 .button[data-show="true"] {
   display: flex;

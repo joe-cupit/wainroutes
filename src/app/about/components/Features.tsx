@@ -7,7 +7,7 @@ import {
   PhotoIcon,
   RouteIcon,
   WeatherIcon,
-} from "@/icons/MaterialIcons";
+} from "@/icons/PhosphorIcons";
 
 export default function Features() {
   return (

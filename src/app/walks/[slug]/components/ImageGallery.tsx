@@ -13,7 +13,8 @@ import {
 
 import Walk, { Image, ImageSize } from "@/types/Walk";
 import LazyImage from "@/components/LazyImage/LazyImage";
-import { CloseIcon, LeftIcon, RightIcon } from "@/icons/MaterialIcons";
+import { LeftIcon, RightIcon } from "@/icons/MaterialIcons";
+import { CloseIcon } from "@/icons/PhosphorIcons";
 
 const GalleryContext = createContext<{
   slug: string;

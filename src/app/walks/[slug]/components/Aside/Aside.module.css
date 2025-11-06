@@ -106,29 +106,7 @@
 /*  */
 
 .terrain {
-  gap: 0.5rem;
-}
-.terrainTitle {
-  display: flex;
-  gap: 1ch;
-  align-items: center;
-
-  & a {
-    width: 1.5ch;
-    height: 1.5ch;
-    color: var(--clr-text-muted);
-
-    transition-property: color, scale;
-    transition-duration: 100ms;
-  }
-  & a:hover {
-    color: var(--clr-text);
-    scale: 1.1;
-  }
-  & svg {
-    width: 100%;
-    height: 100%;
-  }
+  gap: 0.5lh;
 }
 .terrainMain {
   display: flex;
@@ -178,6 +156,13 @@
 
   &::before {
     content: "*";
+  }
+
+  & a {
+    text-decoration: underline;
+  }
+  & a:hover {
+    color: var(--clr-text);
   }
 }
 

@@ -16,7 +16,7 @@ import WalkAside from "./components/Aside";
 import type Walk from "@/types/Walk";
 import LazyImage from "@/components/LazyImage/LazyImage";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
-import { LocationIcon } from "@/icons/MaterialIcons";
+import { MapPinIcon } from "@/icons/PhosphorIcons";
 
 import walksJson from "@/data/walks.json";
 import estimateWalkTime from "@/utils/estimateWalkTime";
@@ -104,7 +104,7 @@ export default async function WalkPage({ params }: WalkProps) {
               className={styles.topLink}
               aria-label={"Walks near " + walkData.startLocation.location}
             >
-              <LocationIcon /> {walkData.startLocation.location}
+              <MapPinIcon /> {walkData.startLocation.location}
             </Link>
           )}
         </div>
