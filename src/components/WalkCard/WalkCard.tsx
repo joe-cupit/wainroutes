@@ -52,7 +52,6 @@ export default function WalkCard({
         <div className={styles.text}>
           <div>
             <h3 className={`${styles.subheading}`}>{walk.title}</h3>
-            {walk.intro && <p className={styles.intro}>{walk.intro}</p>}
           </div>
           <div className={styles.icons}>
             <div className={`${styles.iconsIcon} ${styles.wide}`}>
