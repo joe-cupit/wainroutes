@@ -17,7 +17,6 @@ import {
   pathLevels,
   pathTitles,
 } from "@/app/safety/terrain-icons/consts";
-import { InfoIcon } from "@/icons/MaterialIcons";
 
 export default function Terrain({
   selected,
@@ -34,12 +33,12 @@ export default function Terrain({
     >
       <div className={styles.terrainTitle}>
         <h2 className={fontStyles.subheading}>Walk Terrain</h2>
-        <Link
+        {/* <Link
           href="/safety/terrain-icons"
           title="Find out more about terrain icons"
         >
           <InfoIcon />
-        </Link>
+        </Link> */}
       </div>
       {walkTerrain ? (
         <div className={styles.terrainMain}>
@@ -87,8 +86,17 @@ export default function Terrain({
           {/* {(walkTerrain?.desc?.length ?? 0) > 0 ? <p>{walkTerrain?.desc}</p> : <></>} */}
 
           <p className={`${styles.walkTerrainNote} ${fontStyles.subtext}`}>
-            These ratings are based on my own experience and are for guidance
-            only.
+            <span>
+              These ratings are based on my own experience and are for guidance
+              only -{" "}
+              <Link
+                href="/safety/terrain-icons"
+                title="Find out more about terrain icons"
+              >
+                find out more
+              </Link>
+              .
+            </span>
           </p>
         </div>
       ) : (

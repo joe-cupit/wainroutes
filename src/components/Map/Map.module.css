@@ -207,8 +207,8 @@
   transition: background-color 100ms;
 
   & svg {
-    max-width: 80%;
-    max-height: 80%;
+    width: 70%;
+    height: 70%;
   }
 
   &:hover {

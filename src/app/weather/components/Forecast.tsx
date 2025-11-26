@@ -14,7 +14,7 @@ import {
   PrecipitationIcon,
   TemperatureIcon,
   WindIcon,
-} from "@/icons/MaterialIcons";
+} from "@/icons/PhosphorIcons";
 
 export function Forecast({ weatherData }: { weatherData: DistrictWeather }) {
   return (

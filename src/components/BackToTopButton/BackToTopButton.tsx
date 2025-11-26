@@ -4,7 +4,7 @@ import styles from "./BackToTopButton.module.css";
 
 import { useEffect, useState } from "react";
 
-import { BackToTopIcon } from "@/icons/MaterialIcons";
+import { ArrowUpIcon } from "@/icons/PhosphorIcons";
 
 export default function BackToTopButton({ minHeight = 400 }) {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -32,7 +32,7 @@ export default function BackToTopButton({ minHeight = 400 }) {
       aria-label="Back to top"
       title="Back to top"
     >
-      <BackToTopIcon />
+      <ArrowUpIcon />
     </button>
   );
 }

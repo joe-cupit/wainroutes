@@ -7,7 +7,7 @@ import buttonStyles from "@/styles/buttons.module.css";
 import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { DropdownIcon } from "@/icons/MaterialIcons";
+import { DropdownIcon } from "@/icons/PhosphorIcons";
 
 import {
   distanceOptions,

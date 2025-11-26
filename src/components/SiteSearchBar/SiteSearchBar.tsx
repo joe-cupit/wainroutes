@@ -15,9 +15,10 @@ import Hill from "@/types/Hill";
 import {
   CloseIconSmall,
   HikingIcon,
-  LocationIcon,
+  MapPinIcon,
   MountainIcon,
-} from "@/icons/MaterialIcons";
+  SearchIcon,
+} from "@/icons/PhosphorIcons";
 import { displayDistance, displayElevation } from "@/utils/unitConversions";
 
 type WalkOption = {
@@ -155,6 +156,7 @@ export default function SiteSearchBar({
         className={styles.siteSearchBar}
         onClick={() => inputRef.current?.focus()}
       >
+        <SearchIcon />
         <input
           ref={inputRef}
           type="text"
@@ -217,7 +219,7 @@ function SearchResult({
       <div className={styles.resultType}>
         {option.type === "fell" && <MountainIcon />}
         {option.type === "walk" && <HikingIcon />}
-        {option.type === "town" && <LocationIcon />}
+        {option.type === "town" && <MapPinIcon />}
       </div>
       <div>
         <h2 className={`${fontStyles.subheading} ${styles.subheading}`}>

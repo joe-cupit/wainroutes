@@ -10,7 +10,7 @@ import {
   CloseIconSmall,
   FilterIcon,
   SearchIcon,
-} from "@/icons/MaterialIcons";
+} from "@/icons/PhosphorIcons";
 
 type WalkSearchBarProps = {
   showFilters: boolean;

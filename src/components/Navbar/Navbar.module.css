@@ -156,13 +156,12 @@
 .mobile ul a {
   transition: opacity 50ms ease;
   display: flex;
-  gap: 0.375ch;
+  gap: 0.5ch;
   align-items: center;
 
   & svg {
-    width: 0.825lh;
-    height: 0.825lh;
-    scale: -1 1;
+    width: 1.5ch;
+    height: 1.5ch;
   }
 }
 .mobile ul a:hover {

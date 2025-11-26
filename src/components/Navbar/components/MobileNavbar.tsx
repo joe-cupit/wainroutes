@@ -5,7 +5,7 @@ import styles from "../Navbar.module.css";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SearchIcon } from "@/icons/MaterialIcons";
+import { SearchIcon } from "@/icons/PhosphorIcons";
 
 export default function MobileNavbar({
   open,
@@ -40,7 +40,7 @@ export default function MobileNavbar({
             {renderLink(
               "/walks",
               <>
-                Find a walk <SearchIcon />
+                <SearchIcon /> Find a walk
               </>
             )}
           </div>

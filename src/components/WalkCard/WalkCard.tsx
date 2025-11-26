@@ -12,7 +12,7 @@ import {
   getDistanceUnit,
   getDistanceValue,
 } from "@/utils/unitConversions";
-import { ElevationIcon, HikingIcon, MountainIcon } from "@/icons/MaterialIcons";
+import { HikingIcon, ElevationIcon, MountainIcon } from "@/icons/PhosphorIcons";
 
 type WalkCardProps = {
   walk: Walk | SimpleWalk;
@@ -52,8 +52,7 @@ export default function WalkCard({
         <div className={styles.text}>
           <div>
             <h3 className={`${styles.subheading}`}>{walk.title}</h3>
-            <p style={{ minHeight: "0.5lh" }}></p>
-            {/* <p>This is a lovely walk, with a simple-ish description of the route and some cool things that you will be able to see on the route.</p> */}
+            {walk.intro && <p className={styles.intro}>{walk.intro}</p>}
           </div>
           <div className={styles.icons}>
             <div className={`${styles.iconsIcon} ${styles.wide}`}>

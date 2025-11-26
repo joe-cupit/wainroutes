@@ -8,6 +8,7 @@
 
 .siteSearchBar {
   display: flex;
+  gap: 1ch;
   align-items: center;
 
   background: var(--clr-bg);
@@ -16,7 +17,8 @@
   border-radius: 999rem;
   width: 100%;
 
-  padding-inline: calc(var(--gap-500) - 1ch) var(--gap-400);
+  padding-inline: 1.5ch;
+  padding-block: 0.5lh;
 
   box-shadow: 1px 2px 5px 0 hsl(from currentColor h s l / 0.2);
 
@@ -26,20 +28,20 @@
 
   & input {
     flex: 1;
-    padding-block: var(--gap-400);
-    padding-inline: 1ch;
 
     background: none;
     border: none;
     outline: none;
   }
+  & svg {
+    width: 1.75ch;
+    height: 1.75ch;
+  }
 }
 .siteSearch[data-small="true"] .siteSearchBar {
-  padding-inline: var(--gap-300) var(--gap-400);
-
-  & input {
-    padding-block: calc(2 * var(--gap-400) / 3);
-  }
+  gap: 0.75ch;
+  padding-inline: 1.25ch;
+  padding-block: 0.375lh;
 }
 
 .siteSearchBarButton {

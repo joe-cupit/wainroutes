@@ -12,9 +12,9 @@ import {
   CloseIconSmall,
   ElevationIcon,
   HikingIcon,
-  LocationIcon,
+  MapPinIcon,
   MountainIcon,
-} from "@/icons/MaterialIcons";
+} from "@/icons/PhosphorIcons";
 import { useSearchParams } from "next/navigation";
 import {
   distanceOptions,
@@ -118,7 +118,7 @@ export default function WalkGrid({
           <ul className={styles.gridFiltersList}>
             {filterValues.town && (
               <FilterTag
-                Icon={<LocationIcon />}
+                Icon={<MapPinIcon />}
                 text={filterValues.town}
                 reset={() => updateParam("town")}
               />

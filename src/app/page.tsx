@@ -16,7 +16,7 @@ import { getHillMarkers } from "@/utils/getMapMarkers";
 
 import tempwalks from "@/data/walks.json";
 import LazyPicture from "@/components/LazyImage/LazyPicture";
-import { ArrowRightIcon } from "@/icons/MaterialIcons";
+import { ArrowRightIcon } from "@/icons/PhosphorIcons";
 
 export function generateMetadata() {
   return createPageMetadata({
@@ -27,9 +27,9 @@ export function generateMetadata() {
 
 export default function Home() {
   const featuredWalkSlugs = [
-    "wetherlam-and-the-northern-coniston-fells",
-    "castle-crag-with-millican-daltons-cave",
-    "the-kentmere-horseshoe",
+    "the-fairfield-horseshoe",
+    "gowbarrow-fell-with-aira-force",
+    "the-old-man-of-coniston",
   ];
   const walks = tempwalks as unknown as Walk[];
   const featuredWalks = featuredWalkSlugs.map((slug) =>

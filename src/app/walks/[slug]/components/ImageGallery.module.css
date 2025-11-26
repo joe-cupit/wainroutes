@@ -131,16 +131,19 @@
   top: calc(50% - 2em);
 
   display: flex;
-  padding-inline-start: 0.5em;
-  padding-block: 1em;
+  padding-inline: 0.5ch;
+  padding-block: 0.75lh;
+
+  & svg {
+    width: 2.5ch;
+    height: 2.5ch;
+  }
 }
 .galleryCarouselLeft {
-  left: 0.25em;
+  left: 0.5vw;
 }
 .galleryCarouselRight {
-  padding-inline-start: 0.25em;
-  padding-inline-end: 0.25em;
-  right: 0.25em;
+  right: 0.5vw;
 }
 
 .galleryCarouselImage {
@@ -178,6 +181,11 @@
   .galleryCarouselLeft,
   .galleryCarouselRight {
     position: initial;
-    padding-block: 0.5em;
+    padding-block: 0.5lh;
+
+    & svg {
+      width: 2ch;
+      height: 2ch;
+    }
   }
 }

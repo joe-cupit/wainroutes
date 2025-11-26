@@ -33,11 +33,11 @@
 /*  */
 
 .errorCode {
-  font-size: 8em !important;
+  font-size: 6em !important;
   line-height: 0.8 !important;
 }
 .message {
-  font-size: var(--fs-600) !important;
+  font-size: var(--fs-500) !important;
 }
 .link {
   display: inline-block;

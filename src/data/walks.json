@@ -193,8 +193,8 @@
       "loft-crag",
       "harrison-stickle"
     ],
-    "length": 8.26,
-    "elevation": 936,
+    "length": 8.43,
+    "elevation": 895,
     "estimatedTime": "3:00-5:30",
     "date": "2024-04-20",
     "startLocation": {
@@ -208,8 +208,8 @@
     "terrain": {
       "gradient": 2,
       "path": 3,
-      "exposure": 3,
-      "scrambling": 4,
+      "exposure": 2,
+      "scrambling": 1,
       "desc": ""
     },
     "intro": "",
@@ -594,7 +594,7 @@
         "size": 0
       }
     ],
-    "coverImage": "04",
+    "coverImage": "05",
 
     "weatherLoc": "The Old Man of Coniston Summit",
     "tags": ["circular"]
