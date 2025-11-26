@@ -60,8 +60,6 @@ export default function WalkAside({
         </button>
       </div>
 
-      <div className={styles.asideImage}></div>
-
       <div
         className={`${styles.asideContent} ${
           [1, 2, 3].includes(asideTabIndex) ? styles.visible : ""

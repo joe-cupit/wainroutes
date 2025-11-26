@@ -6,7 +6,7 @@ export default function BackButton() {
   return (
     <button
       onClick={() => history.back()}
-      className={`${buttonStyles.button} ${buttonStyles.primary}`}
+      className={`${buttonStyles.button} ${buttonStyles.primary} ${buttonStyles.small}`}
     >
       Go back
     </button>

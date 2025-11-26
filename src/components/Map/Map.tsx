@@ -242,7 +242,7 @@ export default function LakeMap({
     ]);
     setZoom(12);
     // setZoom((supercluster.getClusterExpansionZoom(Number(activeMarker.id)) ?? 10)+1);
-  }, [activePoint, markers, supercluster]);
+  }, [activePoint]);
 
   useEffect(() => {
     document.getElementsByClassName("pigeon-zoom-in")[0].ariaLabel = "Zoom in";
