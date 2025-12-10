@@ -40,7 +40,10 @@ type Walk = {
 
   intro?: string;
   waypoints?: {
-    [name: string]: string;
+    [name: string]: {
+      text: string;
+      warning?: string;
+    };
   };
 
   images?: Image[];

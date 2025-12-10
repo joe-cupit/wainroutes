@@ -27,9 +27,9 @@ export function generateMetadata() {
 
 export default function Home() {
   const featuredWalkSlugs = [
-    "the-fairfield-horseshoe",
-    "gowbarrow-fell-with-aira-force",
-    "the-old-man-of-coniston",
+    "a-high-raise-round",
+    "glenridding-dodd-over-ullswater",
+    "the-four-summits-of-dodd-wood",
   ];
   const walks = tempwalks as unknown as Walk[];
   const featuredWalks = featuredWalkSlugs.map((slug) =>

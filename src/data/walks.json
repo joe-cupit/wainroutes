@@ -1478,7 +1478,7 @@
   {
     "slug": "sour-howes-and-sallows",
     "title": "Sour Howes and Sallows",
-    "recommendedScore": 83,
+    "recommendedScore": 78,
     "type": "Circular",
     "summary": "",
     "wainwrights": ["sour-howes", "sallows"],
@@ -1540,5 +1540,112 @@
     "coverImage": "01",
 
     "tags": ["circular"]
+  },
+  {
+    "slug": "high-rigg-from-thirlmere",
+    "title": "High Rigg from Thirlmere",
+    "recommendedScore": 73,
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": ["high-rigg"],
+    "length": 8.25,
+    "elevation": 477,
+    "date": "2025-11-29",
+    "startLocation": {
+      "location": "Thirlmere",
+      "latitude": 54.566677,
+      "longitude": -3.056671,
+      "postcode": "CA12 4TQ",
+      "gridRef": "NY317195"
+    },
+    "busConnections": {
+      "555": ""
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 2,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
+    "tags": ["circular"]
+  },
+  {
+    "slug": "a-high-raise-round",
+    "title": "A High Raise Round",
+    "recommendedScore": 88,
+    "type": "Circular",
+    "summary": "",
+    "wainwrights": [
+      "the-knott",
+      "kidsty-pike",
+      "high-raise-fe",
+      "rampsgill-head",
+      "rest-dodd",
+      "brock-crags"
+    ],
+    "length": 12.97,
+    "elevation": 937,
+    "date": "2025-11-30",
+    "startLocation": {
+      "location": "Hartsop",
+      "latitude": 54.508969,
+      "longitude": -2.912818,
+      "postcode": "CA11 0NY",
+      "gridRef": "NY409130"
+    },
+    "busConnections": {
+      "508": ""
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 2,
+      "exposure": 2,
+      "scrambling": 1,
+      "desc": ""
+    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
+    "tags": ["circular"]
+  },
+  {
+    "slug": "glenridding-dodd-over-ullswater",
+    "title": "Glenridding Dodd over Ullswater",
+    "recommendedScore": 78,
+    "type": "Point-to-point",
+    "summary": "",
+    "wainwrights": ["glenridding-dodd"],
+    "length": 3.76,
+    "elevation": 333,
+    "date": "2025-12-02",
+    "startLocation": {
+      "location": "Glenridding",
+      "latitude": 54.544543,
+      "longitude": -2.950924,
+      "postcode": "CA11 0QG",
+      "gridRef": "NY385170"
+    },
+    "busConnections": {
+      "508": "",
+      "509": ""
+    },
+    "terrain": {
+      "gradient": 2,
+      "path": 1,
+      "exposure": 1,
+      "scrambling": 1,
+      "desc": ""
+    },
+
+    "images": [{ "slug": "01", "title": "", "caption": "", "size": 4 }],
+    "coverImage": "01",
+
+    "tags": ["point-to-point"]
   }
 ]

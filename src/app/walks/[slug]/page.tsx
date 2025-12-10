@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/utils/metadata";
 
 import Summary from "./components/Summary";
 import Route from "./components/Route";
-import Waypoints from "./components/Waypoints";
+// import Waypoints from "./components/Waypoints";
 import Photos from "./components/Photos";
 import Weather from "./components/Weather";
 import NearbyWalks from "./components/NearbyWalks";
@@ -124,9 +124,9 @@ export default async function WalkPage({ params }: WalkProps) {
 
               <Route wainwrights={walkData.wainwrights ?? []} slug={slug} />
 
-              {Object.keys(walkData.waypoints ?? {}).length > 0 && (
+              {/* {Object.keys(walkData.waypoints ?? {}).length > 0 && (
                 <Waypoints waypoints={walkData.waypoints} />
-              )}
+              )} */}
             </div>
 
             <WalkAside

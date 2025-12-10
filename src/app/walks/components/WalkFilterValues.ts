@@ -45,6 +45,7 @@ export const locations: Locations = {
   "dodd-wood": { name: "Dodd Wood", coords: [-3.1868, 54.6428] },
   "matterdale": { name: "Matterdale", coords: [-2.912, 54.5951] },
   "troutbeck": { name: "Troutbeck", coords: [-2.9146, 54.4157] },
+  "hartsop": { name: "Hartsop", coords: [-2.914, 54.5097] },
 
   "penrith": { name: "Penrith", coords: [-2.7584, 54.6619], distScale: 2.5 },
   "cockermouth": {

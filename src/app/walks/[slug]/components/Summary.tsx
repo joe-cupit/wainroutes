@@ -75,7 +75,7 @@ export default function Summary({
           </div>
         </div>
 
-        {intro && (
+        {/* {intro && (
           <div>
             <h3
               className={fontStyles.smallheading}
@@ -85,7 +85,7 @@ export default function Summary({
             </h3>
             <p>{intro}</p>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
